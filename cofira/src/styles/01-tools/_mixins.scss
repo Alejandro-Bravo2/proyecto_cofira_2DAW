@@ -1,0 +1,35 @@
+/*
+La capa Tools está diseñada exclusivamente para funciones y mixins reutilizables que sirven como herramientas genéricas para otras capas.
+*/
+
+/* ============================================
+   FLEXBOX MIXINS
+   ============================================ */
+
+
+// Centrado perfecto (horizontal y vertical)
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Distribuir espacio entre elementos
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Flex con wrap (cuando los elementos no caben)
+@mixin flex-wrap($gap: 1rem) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $gap;
+}
+
+// Flex completo (ocupa todo el ancho)
+@mixin flex-full {
+  display: flex;
+  width: 100%;
+}
