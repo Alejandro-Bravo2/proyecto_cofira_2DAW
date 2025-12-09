@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Importar variables CSS
+@import 'styles/00-settings/variables';
+
+// Importar herramientas
+@import 'styles/01-tools/mixins';
+
+// Importar estilos genéricos
+@import 'styles/02-generic/reset';
+
+// Importar layouts
+@import 'styles/04-layout/grid';
+
+
