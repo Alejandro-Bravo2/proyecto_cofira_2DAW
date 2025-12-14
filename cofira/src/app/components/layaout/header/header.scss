@@ -1,0 +1,139 @@
+@import "../../../../styles/01-tools/mixins";
+
+nav {
+  @include flex-full;
+  background: var(--gris-normal);
+  height: 4.4rem;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: space-between;
+  padding: 0 6rem;
+}
+
+
+.enlaces {
+  gap: 1.4rem;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  min-width: 22rem;
+
+
+  a {
+    color: var(--blanco-normal);
+
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-light);
+    text-decoration: none;
+    transition: all 1s ease;
+  }
+
+  a:hover {
+    color: var(--blanco-dark-hover);
+    text-decoration: underline;
+    transition: all 1s ease;
+
+
+  }
+}
+
+
+.cabecera__logo {
+  width: 9.9375rem;
+  height: 4.25rem;
+  flex-shrink: 0;
+  aspect-ratio: 159/68;
+}
+
+.cabecera__logo:hover {
+  cursor: pointer;
+}
+
+
+.boton_inscribete {
+  display: flex;
+  width: 9.125rem;
+  height: 3rem;
+  padding: 1.375rem 0.5625rem;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-size-xss);
+  border-radius: var(--radius-xss);
+  background: var(--amarillo-normal);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  transition: all 0.7s ease;
+
+
+  svg {
+    width: 1.5rem;
+  }
+}
+
+
+.boton_inscribete:hover {
+  color: var(--blanco-normal);
+  background-color: var(--amarillo-dark-hover);
+  cursor: pointer;
+
+  transition: all 0.7s ease;
+}
+
+.cabecera__botones {
+  display: flex;
+  align-items: center;
+  gap: 1.625rem;
+}
+
+.boton__cuenta {
+  @include flex-center;
+  width: 6.6875rem;
+  height: 3rem;
+  padding: var(--spacing-size-xss);
+  gap: var(--spacing-size-xss);
+  border-radius: var(--radius-l);
+  border: var(--border-width-grueso) solid var(--blanco-normal);
+  background: var(--gris-normal);
+  color: var(--blanco-normal);
+  transition: all var(--duration-slower) ease;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--blanco-normal-hover);
+    color: var(--gris-normal);
+  }
+}
+
+
+.buscador {
+  position: relative; //  Importante para posicionar el icono
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 36rem;
+  min-width: 20rem;
+}
+
+.buscador__input {
+  width: 100%;
+  height: 1.5rem;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  border-radius: var(--radius-l);
+  border: 0 solid var(--blanco-dark);
+  color: var(--text-light);
+
+
+}
+
+.buscador::placeholder {
+  color: var(--blanco-normal);
+}
+
+.buscador__icono {
+  position: absolute; // ← El icono flota sobre el input
+  left: 1rem; // ← 16px desde la izquierda
+  width: 1.5rem; // ← Tamaño del icono
+  color: var(--button-darker);
+  pointer-events: none; // ← El icono no bloquea clics
+}
