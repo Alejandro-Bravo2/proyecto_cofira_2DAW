@@ -1,0 +1,188 @@
+// ========================================
+// ESTRUCTURA BASE DE LA CARD
+// ========================================
+
+.pricing-card {
+  background: var(--gris-normal);
+  padding: var(--spacing-size-xxl) var(--spacing-size-m);
+  border-radius: var(--radius-xs);
+  width: 100%;
+  max-width: 450px;
+  box-shadow: var(--shadow-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+// ========================================
+// ELEMENTOS INTERNOS - Título y Precio
+// ========================================
+
+.card-titulo {
+  color: var(--text-dark);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-size-xxl) 0;
+}
+
+.card-precio {
+  color: var(--text-dark);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+
+
+// ========================================
+// ELEMENTOS INTERNOS - Lista de Ventajas
+// ========================================
+
+.card-lista {
+  padding: 0;
+  list-style-position: inside;
+  margin: 0 0 var(--spacing-size-xxl) 0;
+  width: 100%;
+}
+
+.card-ventaja {
+  color: var(--text-dark);
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-size-s);
+  padding-left: var(--spacing-size-s);
+  position: relative;
+  text-align: left;
+}
+
+
+// ========================================
+// BOTÓN - Estilos Base
+// ========================================
+
+.card-boton {
+  width: 100%;
+  max-width: 21rem;
+  height: 4rem;
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+  background: var(--button-yellow);
+  color: var(--negro-normal);
+  border: none;
+  border-radius: var(--radius-m);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-size-m);
+}
+
+
+// ========================================
+// BOTÓN - Estados Interactivos
+// ========================================
+
+.card-boton:hover {
+  background: var(--button-yellow-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-boton:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+
+// ========================================
+// BOTÓN - Estado Deshabilitado
+// ========================================
+
+.card-boton:disabled {
+  background: var(--gris-claro);
+  color: var(--gris-oscuro);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.card-boton:disabled:hover {
+  background: var(--gris-claro);
+  transform: none;
+  box-shadow: var(--shadow-md);
+}
+
+
+// ========================================
+// VARIANTES DE ESTILO
+// ========================================
+
+.pricing-card--info {
+  background: var(--gris-normal);
+}
+
+.pricing-card--planes {
+  background: var(--gris-normal);
+  box-shadow: var(--shadow-2xl);
+}
+
+
+// ========================================
+// TAMAÑOS - Pequeño (sm)
+// ========================================
+
+.pricing-card--sm {
+  max-width: 21rem;
+  padding: var(--spacing-size-l) var(--spacing-size-s);
+}
+
+.pricing-card--sm .card-titulo {
+  font-size: var(--font-size-2xl);
+}
+
+.pricing-card--sm .card-ventaja {
+  font-size: var(--font-size-base);
+}
+
+.pricing-card--sm .card-boton {
+  height: 3rem;
+  font-size: var(--font-size-lg);
+}
+
+.pricing-card--sm .card-precio {
+  font-size: var(--font-size-base);
+}
+
+
+// ========================================
+// TAMAÑOS - Mediano (md) - Por defecto
+// ========================================
+
+.pricing-card--md {
+  max-width: 28rem;
+}
+
+
+// ========================================
+// TAMAÑOS - Grande (lg)
+// ========================================
+
+.pricing-card--lg {
+  max-width: 34rem;
+  padding: var(--spacing-size-3xl) var(--spacing-size-xl);
+}
+
+.pricing-card--lg .card-titulo {
+  font-size: var(--font-size-5xl);
+}
+
+.pricing-card--lg .card-ventaja {
+  font-size: var(--font-size-xl);
+}
+
+.pricing-card--lg .card-boton {
+  height: 5rem;
+  font-size: var(--font-size-2xl);
+}
+
+.pricing-card--lg .card-precio {
+  font-size: var(--font-size-xl);
+}

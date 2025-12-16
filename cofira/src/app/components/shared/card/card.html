@@ -1,0 +1,21 @@
+<article [class]="obtenerClasesCard()">
+
+  <h2 class="card-titulo">{{ title }}</h2>
+
+  <ul class="card-lista">
+    @for (ventaja of ventajas; track ventaja) {
+      <li class="card-ventaja">{{ ventaja }}</li>
+    }
+  </ul>
+
+  <button
+    class="card-boton"
+    type="button"
+    [disabled]="deshabilitada"
+    (click)="onSubscribe()">
+    {{ texto_boton }}
+  </button>
+
+  <p class="card-precio">{{ precio }}</p>
+
+</article>

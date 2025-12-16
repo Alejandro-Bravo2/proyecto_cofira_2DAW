@@ -16,17 +16,33 @@
   <p>Profesionales 24/7 listos para atenderte y resolverte las dudas.</p>
   <p>Si quieres lograrlo porque no intentarlo.</p>
 </section>
+<article class="planes">
+  <app-card
+    title="Cuota mensual"
+    precio="19.99€ + IVA al mes"
+    texto_boton="Inscríbete"
+    [ventajas]="[
+    'Máximo de 7 comidas diarias',
+    'Rutinas de ejercicios hasta 7 días',
+    'Seguimiento avanzado con gráficos',
+    'Asesoría nutricional personalizada',
+    'Acceso a contenido exclusivo'
+  ]"></app-card>
 
-<section>
-  <h3>Cuota mensual</h3>
-  <ul>
-    <li>Maximo de 7 comidas diarias</li>
-    <li>Rutina de ejercicios hasta 7 días</li>
-    <li>Visualizar progreso gráficamente</li>
-    <li>Ver recetas con sus ingredientes</li>
-  </ul>
-  <button>Inscríbete</button>
-</section>
+  <!-- Card deshabilitada -->
+  <app-card
+    title="Cuota anual"
+    precio="15.99€ + IVA al año"
+    texto_boton="Inscríbete"
+    [deshabilitada]="false"
+    [ventajas]="[
+    'Máximo de 7 comidas diarias',
+    'Rutinas de ejercicios hasta 7 días',
+    'Seguimiento avanzado con gráficos',
+    'Asesoría nutricional personalizada',
+    'Acceso a contenido exclusivo'
+  ]"></app-card>
+</article>
 
 <section>
   <h1 class="titulo__formulario">¿Quieres estar al tanto de todas las noticias?</h1>
@@ -35,3 +51,27 @@
     </app-contact-form>
   </section>
 </section>
+
+<h2>Escribe una retroalimntación de la web:</h2>
+<app-form-textarea
+  label="Tu mensaje"
+  name="mensaje"
+  placeholder="Escribe tu mensaje aquí..."
+  [required]="true"
+  errorMessage="El mensaje debe tener entre 20 y 500 caracteres"
+  helpText="Por favor, describe tu consulta con detalle">
+</app-form-textarea>
+
+
+<h2>Objetivo</h2>
+<app-form-select
+  label="¿Cuál es tu objetivo?"
+  name="objetivo"
+  [options]="['Perder peso', 'Ganar músculo', 'Mantener peso', 'Definir']">
+</app-form-select>
+
+<app-form-select
+  label="Días de entrenamiento"
+  name="dias"
+  [options]="['2 días', '3 días', '4 días', '5 días', '6 días']">
+</app-form-select>
