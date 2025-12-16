@@ -630,3 +630,66 @@ Uso los siguientes elementos:
 
 ```
 
+### 2.2 Jerarquía de headings: Documenta tu estrategia de headings (h1 a h6). Reglas: solo un h1 por página, h2 para secciones principales, h3 para subsecciones. NUNCA saltes niveles. Muestra un diagrama de tu jerarquía.
+
+Mi estrategia ha sido siempre empezar usando los h1 y ir escalando para los elementos de esa página, siempre empezando por un h1 y ir escalando un diagrama que demuestre la jerarquía sería el siguiente:
+
+
+ Página: "Home"
+
+├─ H1: Tu entrenamiento, nutrición y progreso en un solo lugar
+│
+├─ H2: Inscríbete hoy y empieza tu cambio
+│
+├─ H2: Cuota mensual
+│
+└─ H2: ¿Quieres estar al tanto de todas las noticias?
+   ├─ H3: Contactoss
+
+
+### 2.3 Estructura de formularios: Muestra tu estructura de formularios explicando el uso de fieldset, legend, y la asociación de labels con inputs (for e id) o como hemos visto en clase. Incluye un ejemplo de código de tu componente form-input.
+
+- Fieldset: He usado el fieldset para agrupar todo el formulario en un mismo contenedor ya que fieldset es la etiqueta que se utiliza para agrupar todo el contenido de un formulario.
+- Legend: El elemento legend lo he usado para ponerle el titulo al formulario dentro de dicho formulario, es el titulo que se ve dentro del formulario.
+- Labels: La etiqueta label la he usado para asociar el input con el label através del for con el id del input, el label lo he usado para ponerle un titulo al input para que el usuario entienda que tiene que escribir en cada campo de input.
+- Input: El input es usado para que el usuario pueda escribir en la página web, lo he asociado con el label a través del id.
+
+```html
+    <fieldset class="form__fieldset">
+      <legend class="form__legend">Datos de contacto</legend>
+
+
+      <label for="nombre" class="form__label">Escribe tu nombre:</label>
+      <input
+        type="text"
+        id="nombre"
+        formControlName="nombre"
+        class="form__input"
+        placeholder="Escriba su nombre...">
+
+
+      <label for="apellido" class="form__label">Escribe tu apellido:</label>
+      <input
+        type="text"
+        id="apellido"
+        formControlName="apellido"
+        class="form__input"
+        placeholder="Escriba su apellido...">
+
+
+      <label for="email" class="form__label">Escribe tu email:</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form__input"
+        placeholder="Escriba su email...">
+
+    </fieldset>
+
+
+    <button type="submit" class="form__button" [disabled]="contactForm.invalid">
+      Enviar
+    </button>
+
+```

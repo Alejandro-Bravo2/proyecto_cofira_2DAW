@@ -1,13 +1,13 @@
 @import "../../../../styles/01-tools/mixins";
 
-.form__input {
+.form__textarea {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-xss);
   width: var(--width-estandar);
 
 
-  &__label {
+  &f__label {
     color: var(--text-light);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-regular);

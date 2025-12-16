@@ -1,0 +1,154 @@
+// ========================================
+// COMPONENTE BOTÓN REUTILIZABLE
+// ========================================
+
+.button {
+  // Estilos base (comunes a todos los botones)
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-semibold);
+  border: none;
+  border-radius: var(--radius-m);
+  cursor: pointer;
+  transition: all var(--duration-base) ease;
+  text-decoration: none;
+
+  // Evitar selección de texto al hacer clic
+  user-select: none;
+
+  // ========================================
+  // VARIANTES DE COLOR (modificadores BEM)
+  // ========================================
+
+  // Botón primario (amarillo)
+  &--primary {
+    background: var(--button-yellow);
+    color: var(--negro-normal);
+    box-shadow: var(--shadow-md);
+
+    &:hover:not(:disabled) {
+      background: var(--button-yellow-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
+    }
+
+    &:focus {
+      outline: 3px solid var(--amarillo-normal);
+      outline-offset: 2px;
+    }
+  }
+
+  // Botón secundario (gris)
+  &--secondary {
+    background: var(--button-gray);
+    color: var(--text-dark);
+    box-shadow: var(--shadow-sm);
+
+    &:hover:not(:disabled) {
+      background: var(--buton-gray-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:focus {
+      outline: 3px solid var(--gris-normal);
+      outline-offset: 2px;
+    }
+  }
+
+  // Botón ghost (transparente con borde)
+  &--ghost {
+    background: transparent;
+    color: var(--text-dark);
+    border: var(--border-width-normal) solid var(--gris-normal);
+
+    &:hover:not(:disabled) {
+      background: var(--gris-normal);
+      color: var(--text-dark);
+      border-color: var(--gris-normal-hover);
+    }
+
+    &:active:not(:disabled) {
+      background: var(--gris-normal-hover);
+    }
+
+    &:focus {
+      outline: 3px solid var(--gris-normal);
+      outline-offset: 2px;
+    }
+  }
+
+  // Botón peligro/destructivo (rojo)
+  &--danger {
+    background: var(--button-red);
+    color: var(--text-dark);
+    box-shadow: var(--shadow-md);
+
+    &:hover:not(:disabled) {
+      background: var(--button-red-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: var(--shadow-sm);
+    }
+
+    &:focus {
+      outline: 3px solid var(--button-red);
+      outline-offset: 2px;
+    }
+  }
+
+  // ========================================
+  // TAMAÑOS (modificadores BEM)
+  // ========================================
+
+  // Pequeño
+  &--sm {
+    padding: var(--spacing-size-xss) var(--spacing-size-s);
+    font-size: var(--font-size-sm);
+    height: 2rem;
+    min-width: var(--width-muy-pequenio);
+  }
+
+  // Mediano (por defecto)
+  &--md {
+    padding: var(--spacing-size-xss) var(--spacing-size-m);
+    font-size: var(--font-size-md);
+    height: 2.75rem;
+    min-width: var(--width-mediano);
+  }
+
+  // Grande
+  &--lg {
+    padding: var(--spacing-size-s) var(--spacing-size-l);
+    font-size: var(--font-size-lg);
+    height: 3.5rem;
+    min-width: var(--width-estandar);
+  }
+
+  // ========================================
+  // ESTADO DESHABILITADO
+  // ========================================
+
+  &:disabled,
+  &--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+  }
+}
