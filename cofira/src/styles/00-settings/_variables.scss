@@ -32,6 +32,8 @@
   --amarillo-dark-hover: #997f00;
   --amarillo-dark-active: #735f00;
 
+  --amarillo-darker: #594A00;
+
 
   /* ============================================
      COLORES - BLANCO
@@ -189,6 +191,21 @@
   --border-width-fino: 1px; /* Borde fino */
   --border-width-normal: 2px; /* Borde normal */
   --border-width-grueso: 3px; /* Borde grueso */
+
+
+  /* Form inputs */
+  --input-padding-vertical: 0.875rem;
+  --input-padding-horizontal: 1.25rem;
+  --input-margin-bottom: 0.25rem;
+
+
+  /* Tamaño botonse */
+  --width-estandar: 17rem;
+  --width-grande: 21rem; /* 336 */
+  --width-mediano: 9.125rem;
+  --width-pequenio: 11rem;
+  --width-muy-pequenio: 6.75rem; /* 108 */
+
 }
 
 

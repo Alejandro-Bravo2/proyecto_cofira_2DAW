@@ -33,3 +33,106 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   display: flex;
   width: 100%;
 }
+
+
+/* ============================================
+   FORM INPUT MIXINS
+   ============================================ */
+
+// Mixin para inputs básicos
+@mixin input-base {
+  width: 100%;
+  padding: var(--input-padding-vertical) var(--input-padding-horizontal);
+  background-color: var(--blanco-normal);
+  border-radius: var(--radius-s);
+  font-size: var(--font-size-md);
+  font-family: var(--font-secundary);
+  color: var(--text-light);
+  outline: none;
+  transition: all var(--duration-fast);
+}
+
+// Mixin para placeholder de inputs
+@mixin input-placeholder {
+  color: var(--negro-normal);
+}
+
+// Mixin para estado focus de inputs
+@mixin input-focus {
+  background-color: var(--blanco-normal-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+// Mixin para estado hover de inputs
+@mixin input-hover {
+  background-color: var(--amarillo-normal-hover);
+  border-color: var(--negro-normal);
+}
+
+
+/* ============================================
+   FORM CONTAINER MIXINS
+   ============================================ */
+
+// Mixin para contenedor de formulario
+@mixin form-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+  background-color: var(--form-background);
+  padding: var(--form-padding);
+  border-radius: var(--radius-s);
+  max-width: var(--form-max-width);
+  margin: 0 auto;
+  width: 100%;
+}
+
+// Mixin para inputs de formulario de contacto
+@mixin form-contact-input {
+  background-color: var(--form-input-background);
+  color: var(--text-dark);
+  border: 2px solid transparent;
+  transition: all var(--duration-base);
+
+  &:focus {
+    border-color: var(--amarillo-normal);
+    background-color: var(--form-input-background);
+  }
+
+  &:hover:not(:focus) {
+    background-color: var(--gris-dark);
+  }
+}
+
+// Mixin para labels de formulario
+@mixin form-label {
+  color: var(--blanco-normal);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  font-family: var(--font-secundary);
+  margin-bottom: var(--spacing-size-xss);
+}
+
+// Mixin para botón de formulario
+@mixin form-button {
+  width: 100%;
+  padding: var(--spacing-size-s);
+  background-color: var(--amarillo-normal);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--radius-s);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  font-family: var(--font-secundary);
+  cursor: pointer;
+  transition: all var(--duration-base);
+
+  &:hover:not(:disabled) {
+    background-color: var(--amarillo-dark-hover);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

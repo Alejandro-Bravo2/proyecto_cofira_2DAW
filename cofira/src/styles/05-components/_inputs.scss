@@ -21,7 +21,7 @@
   transition: border-color var(--duration-fast);
 
   &::placeholder {
-    color: var(--text-tertiary);
+    color: var(--text-light);
   }
 
   &:focus {
@@ -80,7 +80,7 @@
     transform: translateY(-50%);
     width: 1.25rem;
     height: 1.25rem;
-    color: var(--text-tertiary);
+    color: var(--text-light);
     pointer-events: none;
   }
 
