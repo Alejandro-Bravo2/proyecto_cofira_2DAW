@@ -1,46 +1,39 @@
-.form-input {
+@import "../../../../styles/01-tools/mixins";
+
+.form__input {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-xss);
-  width: 100%;
+  width: var(--width-estandar); // ESTO DEBE DE CAMBIAR PORQUE ES MUY PEQUEÑO Y LO DEBO AJUSTAR CORRECTAMENTE
+
 
   &__label {
-    color: var(--text-dark);
+    color: var(--text-light);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-regular);
     font-family: var(--font-secundary);
-    margin-bottom: 0.25rem;
+    margin-bottom: var(--input-margin-bottom);
   }
 
   &__required {
     color: var(--button-red);
-    margin-left: 0.25rem;
   }
 
   &__field {
-    width: 100%;
-    padding: 0.875rem 1.25rem;
-    background-color: var(--blanco-normal);
-    border: none;
-    border-radius: var(--radius-s);
-    font-size: var(--font-size-md);
-    font-family: var(--font-secundary);
-    color: var(--text-light);
-    outline: none;
-    transition: all var(--duration-fast);
+    @include input-base;
+    background-color: var(--button-yellow);
+
+
 
     &::placeholder {
-      color: var(--gris-normal);
-      opacity: 0.7;
+      @include input-placeholder;
     }
 
-    &:focus {
-      background-color: var(--blanco-normal-hover);
-      box-shadow: var(--shadow-sm);
-    }
 
-    &:hover:not(:focus) {
-      background-color: var(--blanco-normal-hover);
+
+
+    &:hover {
+      @include input-hover;
     }
   }
 
@@ -48,7 +41,7 @@
     color: var(--button-red);
     font-size: var(--font-size-sm);
     font-family: var(--font-secundary);
-    margin-top: 0.25rem;
+    margin-top: var(--input-margin-bottom);
   }
 
   &__help {
@@ -56,6 +49,6 @@
     font-size: var(--font-size-sm);
     font-family: var(--font-secundary);
     opacity: 0.8;
-    margin-top: 0.25rem;
+    margin-top: var(--input-margin-bottom);
   }
 }

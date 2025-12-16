@@ -1,26 +1,18 @@
-<div class="form-input">
-  <label [for]="inputId()" class="form-input__label">
+<article class="form__input">
+  <label [for]="inputId()" class="form__input__label">
     {{ label }}
     @if (required) {
-      <span class="form-input__required">*</span>
+      <span class="form__input__required">*</span>
     }
   </label>
 
-  <input
-    [autocomplete]="autocomplete"
-    [id]="inputId()"
-    [name]="name"
-    [placeholder]="placeholder"
-    [required]="required"
-    [type]="type"
-    class="form-input__field"
-  />
+  <input [autocomplete]="autocomplete" [id]="inputId()" [name]="name" [placeholder]="placeholder" [required]="required" [type]="type" [formControl]="control" class="form__input__field">
 
-  @if (errorMessage) {
-    <span class="form-input__error">{{ errorMessage }}</span>
+  @if (control && control.invalid && (control.dirty || control.touched)) {
+    <span class="form__input__error">{{ errorMessage }}</span>
   }
 
   @if (helpText) {
-    <span class="form-input__help">{{ helpText }}</span>
+    <span class="form__input__help">{{ helpText }}</span>
   }
-</div>
+</article>

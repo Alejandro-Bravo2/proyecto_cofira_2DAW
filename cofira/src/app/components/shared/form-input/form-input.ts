@@ -1,8 +1,10 @@
 import {Component, Input, signal} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormControl, ReactiveFormsModule} from '@angular/forms'; // Importa FormControl
 
 @Component({
   selector: 'app-form-input',
-  imports: [],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './form-input.html',
   styleUrl: './form-input.scss',
 })
@@ -16,9 +18,14 @@ export class FormInput {
   @Input() helpText: string = '';
   @Input() autocomplete: string = '';
 
-  protected readonly inputId = signal<string>('');
+  @Input() control!: FormControl;
+
+  protected readonly inputId = signal("");
 
   ngOnInit(): void {
-    this.inputId.set(`input-${this.name}-${Math.random().toString(36).substr(2, 9)}`);
+    this.inputId.set(`input-${this.name}-${Math.random().toString(36).substr(2, 10)}`);
   }
+
 }
+
+

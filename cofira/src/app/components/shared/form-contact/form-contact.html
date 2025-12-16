@@ -1,0 +1,48 @@
+<section class="contact-form">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="form">
+
+    <fieldset class="form__fieldset">
+      <legend class="form__legend">Datos de contacto</legend>
+
+      <!-- Campo Nombre -->
+      <fieldset class="form__group">
+        <legend class="form__label">Escribe tu nombre:</legend>
+        <input
+          type="text"
+          id="nombre"
+          formControlName="nombre"
+          class="form__input"
+          placeholder="">
+      </fieldset>
+
+      <!-- Campo Apellido -->
+      <fieldset class="form__group">
+        <legend class="form__label">Escribe tu apellido:</legend>
+        <input
+          type="text"
+          id="apellido"
+          formControlName="apellido"
+          class="form__input"
+          placeholder="">
+      </fieldset>
+
+      <!-- Campo Email -->
+      <fieldset class="form__group">
+        <legend class="form__label">Escribe tu email:</legend>
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="form__input"
+          placeholder="">
+      </fieldset>
+
+    </fieldset>
+
+    <!-- Botón Enviar -->
+    <button type="submit" class="form__button" [disabled]="contactForm.invalid">
+      Enviar
+    </button>
+
+  </form>
+</section>

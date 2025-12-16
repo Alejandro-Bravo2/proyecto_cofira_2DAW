@@ -1,71 +1,49 @@
 // ========================================
-// FOOTER
+// FOOTER - Sin divs
 // ========================================
 
 .footer {
-  background: #3A3F47; // Gris oscuro según la imagen
-  color: #F5F5F5;
-  padding: 1rem 0;
-
-  &__container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      gap: 1rem;
-      text-align: center;
-    }
-  }
-
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-size-m) var(--spacing-size-xxl);
+  background: var(--gris-dark);
+  border-top: var(--border-width-fino) solid var(--gris-normal);
+  
   // ========================================
-  // SECCIÓN IZQUIERDA - Condiciones de uso
+  // SECCIÓN IZQUIERDA - Condiciones
   // ========================================
   &__left {
     flex: 1;
-
-    @media (max-width: 768px) {
-      order: 2;
-    }
   }
-
+  
   &__link {
-    color: #F5F5F5;
-    font-size: 0.875rem;
-    font-weight: 400;
+    color: var(--text-dark);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
     text-decoration: none;
-    transition: color 0.3s ease;
-
+    transition: color var(--duration-base) ease;
+    
     &:hover {
-      color: #FFD300;
+      color: var(--amarillo-normal);
       text-decoration: underline;
     }
   }
-
+  
   // ========================================
   // SECCIÓN CENTRAL - Copyright
   // ========================================
-  &__center {
+  &__copyright {
     flex: 1;
     text-align: center;
-
-    @media (max-width: 768px) {
-      order: 1;
-    }
-  }
-
-  &__copyright {
-    font-size: 0.875rem;
-    font-weight: 500;
+    color: var(--text-dark);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-regular);
     margin: 0;
-    color: #F5F5F5;
   }
-
+  
   // ========================================
   // SECCIÓN DERECHA - Redes sociales
   // ========================================
@@ -73,38 +51,45 @@
     flex: 1;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    gap: 1rem;
-
-    @media (max-width: 768px) {
-      order: 3;
-      justify-content: center;
-    }
   }
-
+  
+  &__social-list {
+    display: flex;
+    gap: var(--spacing-size-s);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  &__social-item {
+    margin: 0;
+  }
+  
   &__social {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    color: #F5F5F5;
-    transition: all 0.3s ease;
-    border-radius: 0.25rem;
-
-    svg {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
-
+    width: 40px;
+    height: 40px;
+    color: var(--text-dark);
+    background: var(--gris-normal);
+    border-radius: var(--radius-xss);
+    transition: all var(--duration-base) ease;
+    text-decoration: none;
+    
     &:hover {
-      color: #FFD300;
-      background: rgba(255, 211, 0, 0.1);
+      color: var(--amarillo-normal);
+      background: var(--gris-normal-hover);
       transform: translateY(-2px);
     }
-
+    
     &:active {
       transform: translateY(0);
+    }
+    
+    svg {
+      width: 20px;
+      height: 20px;
     }
   }
 }
