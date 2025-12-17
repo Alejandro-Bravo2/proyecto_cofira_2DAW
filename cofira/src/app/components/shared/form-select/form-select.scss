@@ -9,18 +9,18 @@
 }
 
 .form__select__label {
-  font-size: var(--font-size-base);
+  font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   color: var(--text-light);
 }
 
 .form__select__field {
   padding: var(--spacing-size-s) var(--spacing-size-m);
-  border: 2px solid var(--gris-claro);
+  border: 2px solid var(--gris-normal);
   border-radius: var(--radius-xs);
-  font-size: var(--font-size-base);
-  color: var(--text-dark);
-  background-color: var(--background-light-gray);
+  font-size: var(--font-size-md);
+  color: var(--negro-normal);
+  background-color: var(--blanco-normal);
   cursor: pointer;
   transition: all 0.3s ease;
 
@@ -41,8 +41,16 @@
     box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
   }
 
+  // Estilos para las opciones
+  option {
+    background-color: var(--blanco-normal);
+    color: var(--negro-normal);
+    padding: var(--spacing-size-s);
+  }
+
   // Opción disabled
   option:disabled {
-    color: var(--gris-oscuro);
+    color: var(--gris-normal);
+    opacity: 0.5;
   }
 }

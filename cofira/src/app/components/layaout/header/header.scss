@@ -1,5 +1,39 @@
-@import "../../../../styles/01-tools/mixins";
+@import '../../../../styles/01-tools/mixins';
 
+// ========================================
+// VARIABLES DE BREAKPOINTS
+// ========================================
+$breakpoint-xl: 1400px;
+$breakpoint-lg: 1200px;
+$breakpoint-md: 1024px;
+$breakpoint-sm: 900px;
+
+// ========================================
+// MIXINS REUTILIZABLES
+// ========================================
+@mixin hide-text-show-icon {
+  width: 3rem;
+  padding: 0.5rem;
+
+  span {
+    display: none;
+  }
+}
+
+@mixin button-base {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-xss);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+// ========================================
+// NAVEGACIÓN PRINCIPAL
+// ========================================
 nav {
   @include flex-full;
   background: var(--gris-normal);
@@ -8,9 +42,66 @@ nav {
   box-sizing: border-box;
   justify-content: space-between;
   padding: 0 6rem;
+  position: relative;
+  z-index: 100;
+  gap: 1rem;
+
+  @media (max-width: $breakpoint-lg) {
+    padding: 0 2rem;
+    gap: 0.75rem;
+  }
+  @media (max-width: $breakpoint-md) {
+    padding: 0 1.5rem;
+    gap: 0.5rem;
+  }
+  @media (max-width: $breakpoint-sm) {
+    padding: 0 1.5rem;
+  }
 }
 
+// ========================================
+// BOTÓN HAMBURGUESA
+// ========================================
+.hamburguesa {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 200;
 
+  @media (max-width: $breakpoint-sm) {
+    display: flex;
+  }
+
+  &__linea {
+    width: 100%;
+    height: 3px;
+    background-color: var(--blanco-normal);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+
+  &.abierto {
+    .hamburguesa__linea:nth-child(1) {
+      transform: rotate(45deg) translateY(10px);
+    }
+    .hamburguesa__linea:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburguesa__linea:nth-child(3) {
+      transform: rotate(-45deg) translateY(-10px);
+    }
+  }
+}
+
+// ========================================
+// ENLACES DE NAVEGACIÓN
+// ========================================
 .enlaces {
   gap: 1.4rem;
   list-style: none;
@@ -18,101 +109,101 @@ nav {
   flex-direction: row;
   justify-content: start;
   min-width: 22rem;
+  flex-shrink: 0;
 
+  @media (max-width: $breakpoint-lg) {
+    min-width: 18rem;
+    gap: 1rem;
+  }
+  @media (max-width: $breakpoint-md) {
+    min-width: 15rem;
+    gap: 0.75rem;
+  }
+  @media (max-width: $breakpoint-sm) {
+    min-width: auto;
+    gap: 0.5rem;
+  }
 
   a {
     color: var(--blanco-normal);
-
     font-family: var(--font-primary);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-light);
     text-decoration: none;
-    transition: all 1s ease;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: var(--font-size-sm);
+    }
+
+    &:hover {
+      color: var(--blanco-dark-hover);
+      text-decoration: underline;
+    }
   }
 
-  a:hover {
-    color: var(--blanco-dark-hover);
-    text-decoration: underline;
-    transition: all 1s ease;
-
-
+  &--desktop {
+    @media (max-width: $breakpoint-sm) {
+      display: none;
+    }
   }
 }
 
-
+// ========================================
+// LOGO
+// ========================================
 .cabecera__logo {
   width: 9.9375rem;
   height: 4.25rem;
   flex-shrink: 0;
   aspect-ratio: 159/68;
-}
-
-.cabecera__logo:hover {
   cursor: pointer;
-}
 
-
-.boton_inscribete {
-  display: flex;
-  width: 9.125rem;
-  height: 3rem;
-  padding: 1.375rem 0.5625rem;
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-size-xss);
-  border-radius: var(--radius-xss);
-  background: var(--amarillo-normal);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  transition: all 0.7s ease;
-
-
-  svg {
-    width: 1.5rem;
+  @media (max-width: $breakpoint-lg) {
+    width: 8.5rem;
+    height: 3.6rem;
+  }
+  @media (max-width: $breakpoint-md) {
+    width: 7.5rem;
+    height: 3.2rem;
+  }
+  @media (max-width: $breakpoint-sm) {
+    width: 7rem;
+    height: 3rem;
   }
 }
 
-
-.boton_inscribete:hover {
-  color: var(--blanco-normal);
-  background-color: var(--amarillo-dark-hover);
-  cursor: pointer;
-
-  transition: all 0.7s ease;
-}
-
-.cabecera__botones {
-  display: flex;
-  align-items: center;
-  gap: 1.625rem;
-}
-
-.boton__cuenta {
-  @include flex-center;
-  width: 6.6875rem;
-  height: 3rem;
-  padding: var(--spacing-size-xss);
-  gap: var(--spacing-size-xss);
-  border-radius: var(--radius-l);
-  border: var(--border-width-grueso) solid var(--blanco-normal);
-  background: var(--gris-normal);
-  color: var(--blanco-normal);
-  transition: all var(--duration-slower) ease;
-  cursor: pointer;
-
-  &:hover {
-    background: var(--blanco-normal-hover);
-    color: var(--gris-normal);
-  }
-}
-
-
+// ========================================
+// BUSCADOR
+// ========================================
 .buscador {
-  position: relative; //  Importante para posicionar el icono
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 36rem;
   min-width: 20rem;
+  flex-shrink: 1;
+
+  @media (max-width: $breakpoint-xl) {
+    max-width: 30rem;
+    min-width: 16rem;
+  }
+  @media (max-width: $breakpoint-lg) {
+    max-width: 24rem;
+    min-width: 12rem;
+  }
+  @media (max-width: $breakpoint-md) {
+    max-width: 18rem;
+    min-width: 10rem;
+  }
+
+  &--desktop {
+    @media (max-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
 }
 
 .buscador__input {
@@ -122,18 +213,287 @@ nav {
   border-radius: var(--radius-l);
   border: 0 solid var(--blanco-dark);
   color: var(--text-light);
+  font-size: var(--font-size-md);
 
+  @media (max-width: $breakpoint-md) {
+    padding: 0.65rem 0.75rem 0.65rem 2.5rem;
+    font-size: var(--font-size-sm);
+  }
 
-}
+  @media (max-width: $breakpoint-sm) {
+    padding: 0.5rem 0.5rem 0.5rem 2rem;
+    font-size: var(--font-size-xs);
+  }
 
-.buscador::placeholder {
-  color: var(--blanco-normal);
+  &::placeholder {
+    color: var(--text-light);
+  }
 }
 
 .buscador__icono {
-  position: absolute; // ← El icono flota sobre el input
-  left: 1rem; // ← 16px desde la izquierda
-  width: 1.5rem; // ← Tamaño del icono
+  position: absolute;
+  left: 1rem;
+  width: 1.5rem;
   color: var(--button-darker);
-  pointer-events: none; // ← El icono no bloquea clics
+  pointer-events: none;
+
+  @media (max-width: $breakpoint-md) {
+    left: 0.75rem;
+    width: 1.25rem;
+  }
+  @media (max-width: $breakpoint-sm) {
+    left: 0.5rem;
+    width: 1rem;
+  }
+}
+
+// ========================================
+// BOTONES PRINCIPALES
+// ========================================
+.cabecera__botones {
+  display: flex;
+  align-items: center;
+  gap: 1.625rem;
+  flex-shrink: 0;
+
+  @media (max-width: $breakpoint-lg) {
+    gap: 1rem;
+  }
+  @media (max-width: $breakpoint-md) {
+    gap: 0.75rem;
+  }
+
+  &--desktop {
+    @media (max-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
+}
+
+.boton_inscribete {
+  @include button-base;
+  width: 9.125rem;
+  height: 3rem;
+  padding: 1.375rem 0.5625rem;
+  gap: var(--spacing-size-xss);
+  background: var(--amarillo-normal);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+
+  @media (max-width: $breakpoint-lg) {
+    width: 8rem;
+    padding: 1rem 0.5rem;
+    font-size: var(--font-size-sm);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    width: 7rem;
+    padding: 0.75rem 0.4rem;
+    font-size: var(--font-size-xs);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    @include hide-text-show-icon;
+  }
+
+  svg {
+    width: 1.5rem;
+    flex-shrink: 0;
+    @media (max-width: $breakpoint-md) {
+      width: 1.25rem;
+    }
+  }
+
+  &:hover {
+    color: var(--blanco-normal);
+    background-color: var(--amarillo-dark-hover);
+  }
+}
+
+.boton__cuenta {
+  @include button-base;
+  width: 6.6875rem;
+  height: 3rem;
+  padding: var(--spacing-size-xss);
+  gap: var(--spacing-size-xss);
+  border-radius: var(--radius-l);
+  border: var(--border-width-grueso) solid var(--blanco-normal);
+  background: var(--gris-normal);
+  color: var(--blanco-normal);
+
+  @media (max-width: $breakpoint-lg) {
+    width: 6rem;
+    font-size: var(--font-size-sm);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    width: 5rem;
+    padding: 0.4rem;
+    font-size: var(--font-size-xs);
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    @include hide-text-show-icon;
+  }
+
+  svg {
+    flex-shrink: 0;
+    @media (max-width: $breakpoint-md) {
+      width: 1.25rem;
+      height: 1.25rem;
+    }
+  }
+
+  &:hover {
+    background: var(--blanco-normal-hover);
+    color: var(--gris-normal);
+  }
+}
+
+// ========================================
+// MENÚ MÓVIL
+// ========================================
+.menu-movil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 150;
+
+  &--abierto {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+
+  &__contenido {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 400px;
+    height: 100%;
+    background: var(--gris-dark);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+
+    .menu-movil--abierto & {
+      transform: translateX(0);
+    }
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: var(--gris-normal);
+    border-bottom: 2px solid var(--amarillo-normal);
+
+    h2 {
+      color: var(--blanco-normal);
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      margin: 0;
+    }
+  }
+
+  &__cerrar {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+      fill: var(--blanco-normal);
+    }
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    flex: 1;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    color: var(--blanco-normal);
+    text-decoration: none;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+      fill: var(--amarillo-normal);
+    }
+
+    &:hover {
+      background: var(--gris-normal-hover);
+      border-left-color: var(--amarillo-normal);
+      padding-left: 2rem;
+    }
+
+    &--perfil {
+      margin-top: auto;
+      border-top: 1px solid var(--gris-normal);
+
+      svg {
+        fill: var(--blanco-normal);
+      }
+    }
+  }
+
+  &__inscripcion {
+    @include button-base;
+    gap: 0.75rem;
+    margin: 1.5rem;
+    padding: 1rem;
+    background: var(--amarillo-normal);
+    border: none;
+    color: var(--negro-normal);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    box-shadow: 0 4px 12px rgba(255, 211, 0, 0.3);
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    &:hover {
+      background: var(--amarillo-dark-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(255, 211, 0, 0.4);
+    }
+  }
 }
