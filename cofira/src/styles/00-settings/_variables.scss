@@ -1,222 +1,241 @@
-// AQUI DEFINIMOS LAS VARIABLES
+// ========================================
+// CSS CUSTOM PROPERTIES
+// Este archivo solo contiene CSS custom properties (--variable)
+// Las variables SCSS estan en _css-variables.scss
+// ========================================
 
-/* AQUI DEFINIMOS LAS VARIABLES DE DARK MODE Y LIGHT MODE */
+// Importar variables SCSS para poder usar interpolacion
+@import 'css-variables';
+
+
+// ========================================
+// 1. CSS CUSTOM PROPERTIES - TEMA CLARO (por defecto)
+// ========================================
+
 :root {
 
   /* ============================================
      COLORES - NEGRO
      ============================================ */
-
-  /* Negro - Estados Normal) */
-  --negro-normal: #110e10; /* Color secundario */
-  --negro-normal-hover: #0f0d0e;
-  --negro-normal-active: #0e0b0d;
-
-  /* Negro - Estados Dark */
-  --negro-dark: #0d0b0c;
-  --negro-dark-hover: #0a080a;
-  --negro-dark-active: #080607; /* FONDO */
+  --negro-normal: #{$negro-normal};
+  --negro-normal-hover: #{$negro-normal-hover};
+  --negro-normal-active: #{$negro-normal-active};
+  --negro-dark: #{$negro-dark};
+  --negro-dark-hover: #{$negro-dark-hover};
+  --negro-dark-active: #{$negro-dark-active};
 
 
   /* ============================================
      COLORES - AMARILLO
      ============================================ */
-
-  /* Amarillo - Estados Normal */
-  --amarillo-normal: #ffd300; /*  COLOR PRIMARIO */
-  --amarillo-normal-hover: #e6be00;
-  --amarillo-normal-active: #cca900;
-
-  /* Amarillo - Estados Dark */
-  --amarillo-dark: #bf9e00;
-  --amarillo-dark-hover: #997f00;
-  --amarillo-dark-active: #735f00;
-
-  --amarillo-darker: #594A00;
+  --amarillo-normal: #{$amarillo-normal};
+  --amarillo-normal-hover: #{$amarillo-normal-hover};
+  --amarillo-normal-active: #{$amarillo-normal-active};
+  --amarillo-dark: #{$amarillo-dark};
+  --amarillo-dark-hover: #{$amarillo-dark-hover};
+  --amarillo-dark-active: #{$amarillo-dark-active};
+  --amarillo-darker: #{$amarillo-darker};
 
 
   /* ============================================
      COLORES - BLANCO
      ============================================ */
-
-  /* Blanco - Estados Normal */
-  --blanco-normal: #f5f5f5; /* Color secundario // BACKGROUND CARD */
-  --blanco-normal-hover: #dddddd; /* FONDO */
-  --blanco-normal-active: #c4c4c4; /* Color secundario // BACKGROuND CARD INDIVIDUAL */
-
-  /* Blanco - Estados Dark*/
-  --blanco-dark: #b8b8b8;
-  --blanco-dark-hover: #939393;
-  --blanco-dark-active: #6e6e6e;
+  --blanco-normal: #{$blanco-normal};
+  --blanco-normal-hover: #{$blanco-normal-hover};
+  --blanco-normal-active: #{$blanco-normal-active};
+  --blanco-dark: #{$blanco-dark};
+  --blanco-dark-hover: #{$blanco-dark-hover};
+  --blanco-dark-active: #{$blanco-dark-active};
 
 
   /* ============================================
      COLORES - GRIS
      ============================================ */
-
-  /* Gris - Estados Normal */
-  --gris-normal: #3f454c; /* COLOR PRIMARIO DEL DARK MODE */
-  --gris-normal-hover: #393e44;
-  --gris-normal-active: #32373d; /* BACKGROUND CARD INDIVIDUAL */
-
-  /* Gris - Estados Dark */
-  --gris-dark: #2f3439; /* BACKGROUND CARD DARK MODE */
-  --gris-dark-hover: #26292e;
-  --gris-dark-active: #1c1f22;
+  --gris-normal: #{$gris-normal};
+  --gris-normal-hover: #{$gris-normal-hover};
+  --gris-normal-active: #{$gris-normal-active};
+  --gris-dark: #{$gris-dark};
+  --gris-dark-hover: #{$gris-dark-hover};
+  --gris-dark-active: #{$gris-dark-active};
 
 
-  /*Textos*/
-  --text-light: #110e10;
-  --text-dark: #f5f5f5;
-
-  /*Background gris transparente*/
-  --background-light-gray: #3F454C;
-
-
-  /*Botones*/
-  --button-red: #FF3434;
-  --button-red-hover: #910505;
+  /* ============================================
+     TEXTOS
+     ============================================ */
+  --text-light: #{$text-light};
+  --text-dark: #{$text-dark};
 
 
-  --button-gray: #3f454c;
-  --button-gray-hover: #2f3439;
+  /* ============================================
+     BACKGROUNDS
+     ============================================ */
+  --background-light-gray: #{$background-light-gray};
 
 
-  --button-yellow: #FFD300;
-  --button-yellow-hover: #594A00;
+  /* ============================================
+     BOTONES
+     ============================================ */
+  --button-red: #{$button-red};
+  --button-red-hover: #{$button-red-hover};
+  --button-gray: #{$button-gray};
+  --button-gray-hover: #{$button-gray-hover};
+  --button-yellow: #{$button-yellow};
+  --button-yellow-hover: #{$button-yellow-hover};
+  --button-darker: #{$button-darker};
+  --button-darker-hover: #{$button-darker-hover};
 
 
-  --button-darker: #32373D;
-  --button-darker-hover: #26292E;
+  /* ============================================
+     TIPOGRAFIA - Tamanios
+     ============================================ */
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-md: #{$font-size-md};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+  --font-size-2xl: #{$font-size-2xl};
+  --font-size-3xl: #{$font-size-3xl};
+  --font-size-4xl: #{$font-size-4xl};
+  --font-size-5xl: #{$font-size-5xl};
 
 
-  /* Tamaños de la tipografía */
-  --font-size-xs: 0.64rem; /* 10.24px */
-  --font-size-sm: 0.8rem; /* 12.8px  */
-  --font-size-md: 1rem; /* 16px */
-  --font-size-lg: 1.25rem; /* 20px */
-  --font-size-xl: 1.563rem; /* 25px */
-  --font-size-2xl: 1.953rem; /* 31.25px */
-  --font-size-3xl: 2.441rem; /* 39px  */
-  --font-size-4xl: 3.052rem; /* 48.8px */
-  --font-size-5xl: 3.815rem; /* 61px */
+  /* ============================================
+     ESPACIADO
+     ============================================ */
+  --spacing-size-xss: #{$spacing-size-xss};
+  --spacing-size-xs: #{$spacing-size-xs};
+  --spacing-size-s: #{$spacing-size-s};
+  --spacing-size-m: #{$spacing-size-m};
+  --spacing-size-l: #{$spacing-size-l};
+  --spacing-size-xl: #{$spacing-size-xl};
+  --spacing-size-xxl: #{$spacing-size-xxl};
+  --spacing-size-xxxl: #{$spacing-size-xxxl};
+  --spacing-size-xxxxl: #{$spacing-size-xxxxl};
+  --spacing-size-xxxxxl: #{$spacing-size-xxxxxl};
 
 
-  /* Tamaños de espaciados */
-  --spacing-size-xss: 0.5rem; /* 8px */
-  --spacing-size-xs: 1.1875rem; /* 19px */
-  --spacing-size-s: 1.3125rem; /* 21px */
-  --spacing-size-m: 1.5625rem; /* 25px */
-  --spacing-size-l: 2.0625rem; /* 33px */
-  --spacing-size-xl: 2.1875rem; /* 35px */
-  --spacing-size-xxl: 2.5rem; /* 40px */
-  --spacing-size-xxxl: 5.625rem; /* 90px */
-  --spacing-size-xxxxl: 7.75rem; /* 124px */
-  --spacing-size-xxxxxl: 8.75rem; /* 140px */
+  /* ============================================
+     BORDER RADIUS
+     ============================================ */
+  --radius-xss: #{$radius-xss};
+  --radius-xs: #{$radius-xs};
+  --radius-s: #{$radius-s};
+  --radius-m: #{$radius-m};
+  --radius-l: #{$radius-l};
 
 
-  /* Border radius */
-  --radius-xss: 0.5rem; /* 8px */
-  --radius-xs: 1.1875rem; /* 19px */
-  --radius-s: 1.3125rem; /* 21px */
-  --radius-m: 2.5rem; /* 40px */
-  --radius-l: 5.625rem; /* 90px */
+  /* ============================================
+     FUENTES
+     ============================================ */
+  --font-primary: #{$font-primary};
+  --font-secondary: #{$font-secondary};
 
 
-  /* Fuentes*/
-  --font-primary: 'Montserrat', sans-serif;
-  --font-secondary: 'Poppins', sans-serif;
+  /* ============================================
+     PESOS TIPOGRAFICOS
+     ============================================ */
+  --font-weight-light: #{$font-weight-light};
+  --font-weight-regular: #{$font-weight-regular};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-semibold: #{$font-weight-semibold};
+  --font-weight-bold: #{$font-weight-bold};
 
 
-  /* Pesos tipográficos */
-  --font-weight-light: 300;
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
+  /* ============================================
+     LINE HEIGHT
+     ============================================ */
+  --line-height-tight: #{$line-height-tight};
+  --line-height-normal: #{$line-height-normal};
+  --line-height-relaxed: #{$line-height-relaxed};
 
 
-  /* Espaciado entre líneas de texto */
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.75;
-
-
-  /* SOMBAS*/
-
-  /* Sombra extra pequeña (hover sutil) */
+  /* ============================================
+     SOMBRAS
+     ============================================ */
   --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-
-  /* Sombra pequeña - elementos ligeramente elevados */
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-  0 1px 2px -1px rgba(0, 0, 0, 0.1);
-
-  /* Sombra media - cards, botones elevados */
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
-  0 2px 4px -2px rgba(0, 0, 0, 0.1);
-
-  /* Sombra grande - modales, dropdowns */
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-  0 4px 6px -4px rgba(0, 0, 0, 0.1);
-
-  /* Sombra extra grande - elementos principales */
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-  0 8px 10px -6px rgba(0, 0, 0, 0.1);
-
-  /* Sombra 2XL - elementos flotantes importantes */
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
   --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-
-  /* Sombra interior (inset) */
   --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
-
-  /* Sombras de color (opcionales) */
-  --shadow-primary: 0 10px 15px -3px rgba(59, 130, 246, 0.3),
-  0 4px 6px -4px rgba(59, 130, 246, 0.3);
-
-  --shadow-success: 0 10px 15px -3px rgba(34, 197, 94, 0.3),
-  0 4px 6px -4px rgba(34, 197, 94, 0.3);
-
-  --shadow-danger: 0 10px 15px -3px rgba(239, 68, 68, 0.3),
-  0 4px 6px -4px rgba(239, 68, 68, 0.3);
+  --shadow-primary: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -4px rgba(59, 130, 246, 0.3);
+  --shadow-success: 0 10px 15px -3px rgba(34, 197, 94, 0.3), 0 4px 6px -4px rgba(34, 197, 94, 0.3);
+  --shadow-danger: 0 10px 15px -3px rgba(239, 68, 68, 0.3), 0 4px 6px -4px rgba(239, 68, 68, 0.3);
 
 
-  /* Duraciones */
-  --duration-fast: 150ms; /* Cambios rápidos, hover sutil */
-  --duration-base: 300ms; /* Duración estándar para la mayoría */
-  --duration-slow: 500ms; /* Transiciones complejas, animaciones elaboradas */
-  --duration-slower: 700ms; /* Animaciones muy lentas (opcional) */
+  /* ============================================
+     DURACIONES
+     ============================================ */
+  --duration-fast: #{$duration-fast};
+  --duration-base: #{$duration-base};
+  --duration-slow: #{$duration-slow};
+  --duration-slower: #{$duration-slower};
 
 
-  /* Grosores de borde */
-  --border-width-fino: 1px; /* Borde fino */
-  --border-width-normal: 2px; /* Borde normal */
-  --border-width-grueso: 3px; /* Borde grueso */
+  /* ============================================
+     BORDES
+     ============================================ */
+  --border-width-fino: #{$border-width-fino};
+  --border-width-normal: #{$border-width-normal};
+  --border-width-grueso: #{$border-width-grueso};
 
 
-  /* Form inputs */
-  --input-padding-vertical: 0.875rem;
-  --input-padding-horizontal: 1.25rem;
-  --input-margin-bottom: 0.25rem;
+  /* ============================================
+     FORM INPUTS
+     ============================================ */
+  --input-padding-vertical: #{$input-padding-vertical};
+  --input-padding-horizontal: #{$input-padding-horizontal};
+  --input-margin-bottom: #{$input-margin-bottom};
 
 
-  /* Tamaño botonse */
-  --width-estandar: 17rem;
-  --width-grande: 21rem; /* 336 */
-  --width-mediano: 9.125rem;
-  --width-pequenio: 11rem;
-  --width-muy-pequenio: 6.75rem; /* 108 */
+  /* ============================================
+     TAMANIOS BOTONES
+     ============================================ */
+  --width-estandar: #{$width-estandar};
+  --width-grande: #{$width-grande};
+  --width-mediano: #{$width-mediano};
+  --width-pequenio: #{$width-pequenio};
+  --width-muy-pequenio: #{$width-muy-pequenio};
 
+
+  /* ============================================
+     VARIABLES SEMANTICAS - TEMA CLARO
+     ============================================ */
+  --bg-body: #{$blanco-normal};
+  --bg-card: #{$blanco-normal};
+  --bg-card-alt: #{$blanco-normal-hover};
+  --bg-input: #{$blanco-normal};
+  --text-primary: #{$text-light};
+  --text-secondary: #{$gris-normal};
+  --text-muted: #{$blanco-dark-hover};
+  --border-color: #{$blanco-dark};
+  --border-color-light: #{$blanco-normal-hover};
 }
 
 
-// Mobile Grande / Phablets
-$breakpoint-xs: 640px;
+// ========================================
+// 2. TEMA OSCURO
+// ========================================
 
-// Tablets
-$breakpoint-s: 768px;
+body.modo-oscuro {
+  /* Variables semanticas - Tema Oscuro */
+  --bg-body: #{$gris-dark};
+  --bg-card: #{$gris-normal};
+  --bg-card-alt: #{$gris-dark-hover};
+  --bg-input: #{$gris-normal};
+  --text-primary: #{$text-dark};
+  --text-secondary: #{$blanco-dark};
+  --text-muted: #{$blanco-dark-hover};
+  --border-color: #{$gris-normal-hover};
+  --border-color-light: #{$gris-dark-hover};
 
-// Desktop / Tablets (Landscape)
-$breakpoint-M: 1024px;
-
-// Desktop Grande
-$breakpoint-L: 1280px;
+  /* Inversion de colores base para compatibilidad */
+  --blanco-normal: #{$gris-normal};
+  --blanco-normal-hover: #{$gris-normal-hover};
+  --blanco-normal-active: #{$gris-normal-active};
+  --negro-normal: #{$blanco-normal};
+  --negro-normal-hover: #{$blanco-normal-hover};
+  --text-light: #{$text-dark};
+  --text-dark: #{$text-light};
+}

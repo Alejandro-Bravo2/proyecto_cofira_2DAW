@@ -693,3 +693,644 @@ Mi estrategia ha sido siempre empezar usando los h1 y ir escalando para los elem
     </button>
 
 ```
+
+
+### 3.1 Componentes implementados: Lista TODOS los componentes creados. Para cada uno documenta: - Nombre del componente - Propósito - Variantes disponibles - Tamaños disponibles - Estados que maneja - Ejemplo de uso (código)
+
+---
+
+#### COMPONENTES DE LAYOUT
+
+---
+
+- **Header**
+    - Propósito: Su propósito es definir la cabecera, he creado este componente en vez de hacerlo directamente en cada página porque como voy a tener siempre páginas que usen la cabecera pues creo que la cabecera debería ser un componente si o si ya se va a reutilizar muchas veces.
+    - Variantes: Actualmente la cabecera no cuenta con variantes.
+    - Tamaños disponibles: La cabecera tiene 2 tamaños, su primer tamaño es el de desktop que es la cabecera completa, la que vemos en un ordenador y su segundo tamaño es el de los dispositivos móviles, este tamaño es una versión muy recortada de la cabecera de ordenador ya que esta cabecera solo cuenta con el menú de hamburguesa y el logo.
+    - Estados que maneja:
+        - `menuAbierto`: Este estado indica si el menú en su modo hamburguesa ha sido clickeado y está visible su contenido o no.
+        - `menuCuentaAbierto`: Este estado indica si el menú de la cuenta ha sido clickeado o no y por lo tanto si está visible su contenido o no.
+        - `modoOscuro`: Este estado hace referencia al modo oscuro / modo claro de la web, si este estado está activo indica que la web está en modo oscuro.
+    - Ejemplo de uso:
+    ```html
+    <app-header></app-header>
+    ```
+
+---
+
+- **Footer**
+    - Propósito: Su propósito es definir el pie de página de la aplicación, he decidido crear este componente porque al igual que la cabecera, el footer va a estar presente en todas las páginas de la aplicación por lo que tiene sentido que sea un componente reutilizable. El footer contiene los enlaces a las redes sociales, el copyright y el enlace a las condiciones de uso.
+    - Variantes: Actualmente el footer no cuenta con variantes.
+    - Tamaños disponibles: El footer tiene un único tamaño que se adapta a todos los dispositivos mediante responsive, manteniendo la misma estructura pero reorganizando los elementos según el espacio disponible.
+    - Estados que maneja:
+        - `currentYear`: Este estado almacena el año actual para mostrarlo en el copyright, se calcula automáticamente al cargar el componente.
+        - `socialLinks`: Este estado es un array que contiene todos los enlaces a las redes sociales con su nombre, URL e icono.
+    - Ejemplo de uso:
+    ```html
+    <app-footer></app-footer>
+    ```
+
+---
+
+#### COMPONENTES UI BÁSICOS
+
+---
+
+- **Button**
+    - Propósito: Su propósito es crear un componente de botón reutilizable que mantenga la consistencia visual en toda la aplicación. He creado este componente porque los botones se utilizan en muchas partes de la web y quería tener un único lugar donde gestionar todos los estilos y comportamientos de los botones para evitar repetir código y mantener la coherencia visual.
+    - Variantes: El botón cuenta con 4 variantes diferentes:
+        - `primary`: Es el botón principal, el que se usa para las acciones más importantes como "Inscríbete" o "Enviar". Tiene el color amarillo característico de la marca.
+        - `secondary`: Es el botón secundario, se usa para acciones menos importantes o alternativas. Tiene un estilo más neutro.
+        - `ghost`: Es el botón fantasma, no tiene fondo y solo muestra el texto con un borde. Se usa para acciones terciarias o cuando no quieres que el botón destaque mucho.
+        - `danger`: Es el botón de peligro, se usa para acciones destructivas como eliminar o cancelar. Tiene color rojo para alertar al usuario.
+    - Tamaños disponibles: El botón tiene 3 tamaños:
+        - `sm`: Tamaño pequeño, ideal para espacios reducidos o acciones secundarias.
+        - `md`: Tamaño mediano, es el tamaño por defecto y el más utilizado.
+        - `lg`: Tamaño grande, se usa para botones de llamada a la acción importantes.
+    - Estados que maneja:
+        - `habilitado`: Este estado indica si el botón está habilitado o deshabilitado. Cuando está deshabilitado el botón se muestra con opacidad reducida y no permite interacción.
+    - Ejemplo de uso:
+    ```html
+    <app-button variante="primary" tamanio="md">Inscríbete</app-button>
+    <app-button variante="secondary" tamanio="sm">Cancelar</app-button>
+    <app-button variante="danger" tamanio="lg" [habilitado]="true">Eliminar</app-button>
+    <app-button variante="ghost" tipo="submit">Enviar</app-button>
+    ```
+
+---
+
+- **Card**
+    - Propósito: Su propósito es mostrar información de los planes de suscripción de forma visual y atractiva. He creado este componente porque necesitaba mostrar los diferentes planes de pago (mensual y anual) con sus ventajas y precios, y quería que fuera un componente reutilizable para poder usarlo en diferentes partes de la web sin repetir código.
+    - Variantes: La card cuenta con 2 variantes:
+        - `planes`: Es la variante principal, diseñada específicamente para mostrar los planes de suscripción con título, lista de ventajas, precio y botón de inscripción.
+        - `info`: Es una variante más simple pensada para mostrar información general sin el formato de plan de precios.
+    - Tamaños disponibles: La card tiene 3 tamaños:
+        - `sm`: Tamaño pequeño, útil para grids con muchas cards.
+        - `md`: Tamaño mediano, es el tamaño por defecto.
+        - `lg`: Tamaño grande, para destacar un plan específico.
+    - Estados que maneja:
+        - `deshabilitada`: Este estado indica si la card está deshabilitada. Cuando está deshabilitada la card se muestra con opacidad reducida y el botón no permite interacción.
+    - Ejemplo de uso:
+    ```html
+    <app-card
+      title="Cuota mensual"
+      [ventajas]="['Acceso completo', 'Soporte 24/7', 'Sin permanencia']"
+      texto_boton="Suscríbete"
+      precio="15.99€ + IVA al mes"
+      variante="planes"
+      tamanio="md"
+      (subscribe)="onSubscribe()">
+    </app-card>
+    ```
+
+---
+
+- **Alert**
+    - Propósito: Su propósito es mostrar mensajes de alerta al usuario de forma visual y clara. He creado este componente porque necesitaba una forma de comunicar al usuario diferentes tipos de mensajes como éxitos, errores, advertencias o información general, y quería que todos estos mensajes tuvieran un estilo consistente.
+    - Variantes: La alerta cuenta con 4 variantes según el tipo de mensaje:
+        - `success`: Se usa para mensajes de éxito, como cuando una acción se ha completado correctamente. Tiene color verde.
+        - `error`: Se usa para mensajes de error, como cuando algo ha fallado. Tiene color rojo.
+        - `warning`: Se usa para mensajes de advertencia, como cuando el usuario debe prestar atención a algo. Tiene color naranja/amarillo.
+        - `info`: Se usa para mensajes informativos generales. Tiene color azul. Es la variante por defecto.
+    - Tamaños disponibles: Actualmente la alerta no tiene variantes de tamaño, tiene un tamaño único que se adapta al contenido del mensaje.
+    - Estados que maneja:
+        - `visible`: Este estado indica si la alerta está visible o no. Cuando el usuario cierra la alerta este estado cambia a false y la alerta desaparece.
+        - `closable`: Este estado indica si la alerta puede ser cerrada por el usuario. Si está en true muestra el botón de cerrar.
+    - Ejemplo de uso:
+    ```html
+    <app-alert type="success" message="¡Registro completado correctamente!" [closable]="true"></app-alert>
+    <app-alert type="error" message="Ha ocurrido un error, inténtalo de nuevo"></app-alert>
+    <app-alert type="warning" message="Tu sesión expirará en 5 minutos"></app-alert>
+    <app-alert type="info" message="Recuerda completar tu perfil"></app-alert>
+    ```
+
+---
+
+- **Notification**
+    - Propósito: Su propósito es mostrar notificaciones temporales al usuario que desaparecen automáticamente después de un tiempo. He creado este componente porque necesitaba una forma de mostrar mensajes que no requieran acción del usuario y que no interrumpan su flujo de navegación, como confirmaciones de acciones o recordatorios breves.
+    - Variantes: La notificación cuenta con 4 variantes según el tipo de mensaje:
+        - `success`: Se usa para notificar acciones exitosas. Tiene color verde.
+        - `error`: Se usa para notificar errores. Tiene color rojo.
+        - `warning`: Se usa para advertencias. Tiene color naranja/amarillo.
+        - `info`: Se usa para información general. Tiene color azul. Es la variante por defecto.
+    - Tamaños disponibles: Actualmente la notificación no tiene variantes de tamaño, tiene un tamaño único optimizado para ser visible sin ser intrusiva.
+    - Estados que maneja:
+        - `closing`: Este estado indica si la notificación está en proceso de cerrarse. Se usa para activar la animación de salida antes de que la notificación desaparezca completamente.
+        - `duration`: Este estado indica cuánto tiempo (en milisegundos) permanecerá visible la notificación antes de cerrarse automáticamente. Por defecto son 3000ms (3 segundos).
+        - `closable`: Este estado indica si el usuario puede cerrar manualmente la notificación.
+    - Ejemplo de uso:
+    ```html
+    <app-notification
+      type="success"
+      message="¡Cambios guardados correctamente!"
+      [duration]="3000"
+      [closable]="true"
+      (onClose)="eliminarNotificacion(notif.id)">
+    </app-notification>
+    ```
+
+---
+
+#### COMPONENTES DE FORMULARIO
+
+---
+
+- **FormInput**
+    - Propósito: Su propósito es crear un componente de campo de entrada reutilizable que incluya la etiqueta, el input y los mensajes de error/ayuda todo en uno. He creado este componente porque los inputs se usan en todos los formularios de la aplicación y quería evitar repetir el mismo código HTML una y otra vez, además de mantener la consistencia visual entre todos los campos de entrada.
+    - Variantes: Actualmente el input no tiene variantes de estilo, pero soporta diferentes tipos de input a través del atributo `type` (text, email, password, number, etc.).
+    - Tamaños disponibles: Actualmente el input tiene un tamaño único que se adapta al ancho del contenedor padre.
+    - Estados que maneja:
+        - `control`: Este estado es el FormControl de Angular que gestiona el valor del input y sus validaciones.
+        - `required`: Este estado indica si el campo es obligatorio o no.
+        - `errorMessage`: Este estado contiene el mensaje de error que se muestra cuando el campo no es válido.
+        - `helpText`: Este estado contiene un texto de ayuda que se muestra debajo del input para guiar al usuario.
+    - Ejemplo de uso:
+    ```html
+    <app-form-input
+      label="Nombre"
+      name="nombre"
+      type="text"
+      placeholder="Escribe tu nombre..."
+      [required]="true"
+      errorMessage="El nombre es obligatorio"
+      helpText="Introduce tu nombre completo"
+      [control]="nombreControl">
+    </app-form-input>
+    ```
+
+---
+
+- **FormTextarea**
+    - Propósito: Su propósito es crear un componente de área de texto reutilizable para cuando necesito que el usuario introduzca textos más largos como descripciones, comentarios o mensajes. He creado este componente siguiendo la misma filosofía que el FormInput, para mantener la consistencia y evitar repetir código.
+    - Variantes: Actualmente el textarea no tiene variantes de estilo.
+    - Tamaños disponibles: Actualmente el textarea tiene un tamaño único que se adapta al contenedor, aunque se puede redimensionar verticalmente.
+    - Estados que maneja:
+        - `control`: Este estado es el FormControl de Angular que gestiona el valor del textarea y sus validaciones.
+        - `required`: Este estado indica si el campo es obligatorio o no.
+        - `errorMessage`: Este estado contiene el mensaje de error que se muestra cuando el campo no es válido.
+        - `helpText`: Este estado contiene un texto de ayuda que se muestra debajo del textarea.
+    - Ejemplo de uso:
+    ```html
+    <app-form-textarea
+      label="Mensaje"
+      name="mensaje"
+      placeholder="Escribe tu mensaje..."
+      [required]="true"
+      errorMessage="El mensaje es obligatorio"
+      [control]="mensajeControl">
+    </app-form-textarea>
+    ```
+
+---
+
+- **FormCheckbox**
+    - Propósito: Su propósito es crear un componente de checkbox reutilizable que incluya la etiqueta asociada. He creado este componente porque los checkboxes se usan en formularios para aceptar términos y condiciones, suscripciones a newsletters, etc., y quería tener un componente consistente con el resto de campos de formulario.
+    - Variantes: Actualmente el checkbox no tiene variantes de estilo.
+    - Tamaños disponibles: Actualmente el checkbox tiene un tamaño único.
+    - Estados que maneja:
+        - `control`: Este estado es el FormControl de Angular que gestiona el valor del checkbox (true/false).
+        - `required`: Este estado indica si el checkbox debe estar marcado obligatoriamente (útil para términos y condiciones).
+    - Ejemplo de uso:
+    ```html
+    <app-form-checkbox
+      label="Acepto los términos y condiciones"
+      name="terminos"
+      [required]="true"
+      [control]="terminosControl">
+    </app-form-checkbox>
+    ```
+
+---
+
+- **FormSelect**
+    - Propósito: Su propósito es crear un componente de selector desplegable reutilizable. He creado este componente porque necesitaba selectores en varios formularios para que el usuario pueda elegir entre opciones predefinidas, como el objetivo de entrenamiento o los días de ejercicio.
+    - Variantes: Actualmente el select no tiene variantes de estilo.
+    - Tamaños disponibles: Actualmente el select tiene un tamaño único que se adapta al contenedor.
+    - Estados que maneja:
+        - `options`: Este estado es un array de strings que contiene todas las opciones disponibles en el selector.
+    - Ejemplo de uso:
+    ```html
+    <app-form-select
+      label="Objetivo"
+      name="objetivo"
+      [options]="['Perder peso', 'Ganar músculo', 'Mantener peso', 'Definir']">
+    </app-form-select>
+    ```
+
+---
+
+#### COMPONENTES DE FORMULARIO COMPLETOS
+
+---
+
+- **FormLogin**
+    - Propósito: Su propósito es proporcionar un formulario completo de inicio de sesión. He creado este componente porque el login es una funcionalidad que voy a necesitar en la aplicación y quería tener un formulario preparado con todos los campos necesarios (email y contraseña) ya estructurado.
+    - Variantes: Actualmente el formulario de login no tiene variantes.
+    - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
+    - Estados que maneja: Actualmente el componente está en desarrollo y no tiene estados implementados.
+    - Ejemplo de uso:
+    ```html
+    <app-form-login></app-form-login>
+    ```
+
+---
+
+- **FormRegister**
+    - Propósito: Su propósito es proporcionar un formulario completo de registro de usuarios. He creado este componente porque el registro es esencial para la aplicación y necesitaba un formulario con validaciones avanzadas como verificación de contraseñas coincidentes y aceptación de términos.
+    - Variantes: Actualmente el formulario de registro no tiene variantes.
+    - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
+    - Estados que maneja:
+        - `registerForm`: Este estado es el FormGroup que contiene todos los campos del formulario (nombre, apellido, email, password, confirmPassword, terminos).
+        - Validaciones implementadas:
+            - Nombre y apellido: Obligatorios con mínimo 2 caracteres.
+            - Email: Obligatorio y debe ser un email válido.
+            - Password: Obligatorio con mínimo 6 caracteres.
+            - ConfirmPassword: Obligatorio y debe coincidir con el password.
+            - Términos: Obligatorio y debe estar marcado.
+    - Ejemplo de uso:
+    ```html
+    <app-form-register></app-form-register>
+    ```
+
+---
+
+- **FormContact**
+    - Propósito: Su propósito es proporcionar un formulario de contacto para que los usuarios puedan comunicarse con nosotros. He creado este componente porque quería tener una forma de que los usuarios pudieran enviar mensajes o suscribirse a las novedades de la aplicación.
+    - Variantes: Actualmente el formulario de contacto no tiene variantes.
+    - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
+    - Estados que maneja:
+        - `contactForm`: Este estado es el FormGroup que contiene los campos del formulario (nombre, apellido, email).
+        - Validaciones implementadas:
+            - Nombre y apellido: Obligatorios con mínimo 2 caracteres.
+            - Email: Obligatorio y debe ser un email válido.
+    - Ejemplo de uso:
+    ```html
+    <app-contact-form></app-contact-form>
+    ```
+
+## 3.2 Nomenclatura y metodología: Muestra ejemplos reales de tu nomenclatura BEM aplicada en los componentes. Explica tu estrategia: qué es block vs element, cuándo usas modificadores vs clases de estado.
+
+### Mi estrategia BEM
+
+He aplicado la metodología BEM (Block, Element, Modifier) en todos mis componentes para mantener el código organizado y evitar problemas de especificidad. A continuación explico cómo he diferenciado cada parte:
+
+---
+
+#### ¿Qué es un Block?
+
+Un **Block** es el contenedor principal del componente, es la raíz de la que cuelgan todos los demás elementos. Lo identifico porque es el nombre base de la clase sin guiones bajos dobles ni guiones dobles.
+
+**Ejemplos de Blocks en mi proyecto:**
+
+```scss
+// El bloque .button es el contenedor principal del botón
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  border: none;
+  border-radius: var(--radius-m);
+  cursor: pointer;
+}
+
+// El bloque .alert es el contenedor principal de las alertas
+.alert {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+  border-radius: var(--radius-xss);
+}
+
+// El bloque .pricing-card es el contenedor principal de las cards
+.pricing-card {
+  background: var(--gris-normal);
+  padding: var(--spacing-size-xxl) var(--spacing-size-m);
+  border-radius: var(--radius-xs);
+}
+
+// El bloque .hamburguesa es el botón del menú móvil
+.hamburguesa {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+}
+
+// El bloque .menu-movil es el contenedor del menú en móviles
+.menu-movil {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+```
+
+---
+
+#### ¿Qué es un Element?
+
+Un **Element** es una parte interna del bloque que no tiene sentido por sí sola, siempre depende del bloque padre. Lo identifico con doble guión bajo **__** después del nombre del bloque.
+
+**Ejemplos de Elements en mi proyecto:**
+
+```scss
+// Elementos del bloque .alert
+.alert__icono {
+  flex-shrink: 0; // Impide encojerse en caso de que no haya suficiente espacio en el contenedor
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.alert__mensaje {
+  flex: 1;
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-medium);
+}
+
+.alert__cerrar {
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+// Elementos del bloque .hamburguesa
+.hamburguesa__linea {
+  width: 100%;
+  height: 0.188rem;
+  background-color: var(--blanco-normal);
+  border-radius: 0.625rem;
+}
+
+// Elementos del bloque .menu-movil
+.menu-movil__overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.menu-movil__contenido {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80%;
+  max-width: 25rem;
+}
+
+.menu-movil__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.menu-movil__link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  color: var(--blanco-normal);
+}
+
+// Elementos del bloque .menu-cuenta
+.menu-cuenta__item {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+}
+
+.menu-cuenta__icono {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--negro-normal);
+}
+
+// Elementos del bloque .buscador
+.buscador__input {
+  width: 100%;
+  height: 1.5rem;
+  padding: 0.75rem 1rem 0.75rem 3rem;
+  border-radius: var(--radius-l);
+}
+
+.buscador__icono {
+  position: absolute;
+  left: 1rem;
+  width: 1.5rem;
+  color: var(--button-darker);
+}
+
+// Elementos del bloque .pricing-card (cards)
+.card-titulo {
+  color: var(--text-dark);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+}
+
+.card-lista {
+  padding: 0;
+  list-style-position: inside;
+}
+
+.card-ventaja {
+  color: var(--text-dark);
+  font-size: var(--font-size-lg);
+}
+
+.card-boton {
+  width: 100%;
+  max-width: 21rem;
+  height: 4rem;
+  background: var(--button-yellow);
+}
+```
+
+---
+
+#### ¿Cuándo uso Modificadores?
+
+Un **Modifier** es una modificador del bloque o elemento que cambia su apariencia o comportamiento. Lo identifico con doble guión **--** después del nombre del bloque o elemento. Los uso cuando quiero crear variantes del componente como diferentes colores, tamaños o estados visuales.
+
+**Ejemplos de Modificadores en mi proyecto:**
+
+```scss
+// Modificadores de VARIANTE (tipo) para el bloque .button
+.button--primary {
+  background: var(--button-yellow);
+  color: var(--negro-normal);
+}
+
+.button--secondary {
+  background: var(--button-gray);
+  color: var(--text-dark);
+}
+
+.button--ghost {
+  background: transparent;
+  color: var(--text-dark);
+  border: var(--border-width-normal) solid var(--gris-normal);
+}
+
+.button--danger {
+  background: var(--button-red);
+  color: var(--text-dark);
+}
+
+// Modificadores de TAMAÑO para el bloque .button
+.button--sm {
+  padding: var(--spacing-size-xss) var(--spacing-size-s);
+  font-size: var(--font-size-sm);
+  height: 2rem;
+}
+
+.button--md {
+  padding: var(--spacing-size-xss) var(--spacing-size-m);
+  font-size: var(--font-size-md);
+  height: 2.75rem;
+}
+
+.button--lg {
+  padding: var(--spacing-size-s) var(--spacing-size-l);
+  font-size: var(--font-size-lg);
+  height: 3.5rem;
+}
+
+// Modificadores de TIPO para el bloque .alert
+.alert--success {
+  background-color: var(--amarillo-normal);
+  border-left-color: var(--amarillo-dark);
+  color: var(--negro-normal);
+}
+
+.alert--error {
+  background-color: var(--button-red);
+  border-left-color: var(--button-red-hover);
+  color: var(--blanco-normal);
+}
+
+.alert--warning {
+  background-color: var(--amarillo-normal-hover);
+  border-left-color: var(--amarillo-normal);
+  color: var(--negro-normal);
+}
+
+.alert--info {
+  background-color: var(--gris-normal);
+  border-left-color: var(--gris-dark);
+  color: var(--blanco-normal);
+}
+
+// Modificadores de VARIANTE para el bloque .pricing-card
+.pricing-card--info {
+  background: var(--gris-normal);
+}
+
+.pricing-card--planes {
+  background: var(--gris-normal);
+  box-shadow: var(--shadow-2xl);
+}
+
+// Modificadores de TAMAÑO para el bloque .pricing-card
+.pricing-card--sm {
+  max-width: 21rem;
+  padding: var(--spacing-size-l) var(--spacing-size-s);
+}
+
+.pricing-card--md {
+  max-width: 28rem;
+}
+
+.pricing-card--lg {
+  max-width: 34rem;
+  padding: var(--spacing-size-3xl) var(--spacing-size-xl);
+}
+
+// Modificadores de ESTADO para el bloque .menu-movil
+.menu-movil--abierto {
+  visibility: visible;
+  opacity: 1;
+}
+
+// Modificadores de ELEMENTO (variante de un element)
+.menu-movil__link--perfil {
+  margin-top: auto;
+  border-top: 1px solid var(--gris-normal);
+}
+
+.menu-cuenta__item--modo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-size-xs);
+  margin-top: var(--spacing-size-xs);
+}
+```
+
+---
+
+#### ¿Cuándo uso clases de estado vs modificadores?
+
+He decidido usar **modificadores BEM** para estados visuales que son parte del diseño del componente, como variantes de color o tamaño. Por otro lado, uso **pseudoclases CSS** y **clases de estado simples** para estados interactivos del usuario.
+
+**Modificadores BEM para estados de diseño:**
+```scss
+// Estado deshabilitado como modificador (parte del diseño)
+.button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+// Estado abierto del menú móvil (parte del diseño)
+.menu-movil--abierto {
+  visibility: visible;
+  opacity: 1;
+}
+
+// Estado abierto del hamburguesa (cambia visualmente las líneas)
+.hamburguesa.abierto {
+  .hamburguesa__linea:nth-child(1) {
+    transform: rotate(45deg) translateY(10px);
+  }
+  .hamburguesa__linea:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburguesa__linea:nth-child(3) {
+    transform: rotate(-45deg) translateY(-10px);
+  }
+}
+```
+
+**Pseudoclases CSS para estados interactivos:**
+```scss
+// Estados de hover, active y focus (interacción del usuario)
+.button--primary {
+  &:hover:not(:disabled) {
+    background: var(--button-yellow-hover);
+    transform: translateY(-2px);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:focus {
+    outline: 3px solid var(--amarillo-normal);
+    outline-offset: 2px;
+  }
+}
+
+// Estado :disabled nativo de HTML
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+```
