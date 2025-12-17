@@ -1,9 +1,10 @@
 import {Component, Input, signal} from '@angular/core';
+import {CommonModule} from "@angular/common";
 import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-form-select',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './form-select.html',
   styleUrl: './form-select.scss',
 })
