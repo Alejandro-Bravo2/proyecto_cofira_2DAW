@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, input} from '@angular/core';
 import { FormContact } from '../../components/shared/form-contact/form-contact';
 import {Card} from '../../components/shared/card/card';
 import {FormTextarea} from '../../components/shared/form-textarea/form-textarea';
@@ -17,5 +17,6 @@ import {FormSelect} from '../../components/shared/form-select/form-select';
   styleUrl: './home.scss',
 })
 export class Home {
+  @input options: string[] = ['General Inquiry', 'Support', 'Feedback', 'Other'];
 
 }
