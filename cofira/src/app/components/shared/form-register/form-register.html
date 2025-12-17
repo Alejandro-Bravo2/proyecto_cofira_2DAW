@@ -1,0 +1,81 @@
+<section class="register-form">
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
+
+                    <fieldset class="form__fieldset">
+                              <legend class="form__legend">Crea tu cuenta</legend>
+
+                              <!-- Campo Nombre -->
+                              <fieldset class="form__group">
+                                        <legend class="form__label">Nombre:</legend>
+                                        <input type="text" id="nombre" formControlName="nombre" class="form__input"
+                                                  placeholder="Escribe tu nombre"
+                                                  [class.form__input--error]="f['nombre'].invalid && f['nombre'].touched">
+                                        @if (f['nombre'].invalid && f['nombre'].touched) {
+                                        <small class="form__error">El nombre es requerido (mínimo 2 caracteres)</small>
+                                        }
+                              </fieldset>
+
+                              <!-- Campo Apellido -->
+                              <fieldset class="form__group">
+                                        <legend class="form__label">Apellido:</legend>
+                                        <input type="text" id="apellido" formControlName="apellido" class="form__input"
+                                                  placeholder="Escribe tu apellido"
+                                                  [class.form__input--error]="f['apellido'].invalid && f['apellido'].touched">
+                                        @if (f['apellido'].invalid && f['apellido'].touched) {
+                                        <small class="form__error">El apellido es requerido (mínimo 2
+                                                  caracteres)</small>
+                                        }
+                              </fieldset>
+
+                              <!-- Campo Email -->
+                              <fieldset class="form__group">
+                                        <legend class="form__label">Email:</legend>
+                                        <input type="email" id="email" formControlName="email" class="form__input"
+                                                  placeholder="tu@email.com"
+                                                  [class.form__input--error]="f['email'].invalid && f['email'].touched">
+                                        @if (f['email'].invalid && f['email'].touched) {
+                                        <small class="form__error">Por favor, introduce un email válido</small>
+                                        }
+                              </fieldset>
+
+                              <!-- Campo Contraseña -->
+                              <fieldset class="form__group">
+                                        <legend class="form__label">Contraseña:</legend>
+                                        <input type="password" id="password" formControlName="password"
+                                                  class="form__input" placeholder="Mínimo 6 caracteres"
+                                                  [class.form__input--error]="f['password'].invalid && f['password'].touched">
+                                        @if (f['password'].invalid && f['password'].touched) {
+                                        <small class="form__error">La contraseña debe tener al menos 6
+                                                  caracteres</small>
+                                        }
+                              </fieldset>
+
+                              <!-- Campo Confirmar Contraseña -->
+                              <fieldset class="form__group">
+                                        <legend class="form__label">Confirmar Contraseña:</legend>
+                                        <input type="password" id="confirmPassword" formControlName="confirmPassword"
+                                                  class="form__input" placeholder="Repite tu contraseña"
+                                                  [class.form__input--error]="f['confirmPassword'].invalid && f['confirmPassword'].touched">
+                                        @if (f['confirmPassword'].touched &&
+                                        f['confirmPassword'].errors?.['passwordMismatch']) {
+                                        <small class="form__error">Las contraseñas no coinciden</small>
+                                        }
+                              </fieldset>
+
+                              <!-- Checkbox Términos y Condiciones -->
+                              <app-form-checkbox label="Acepto los términos y condiciones" name="terminos"
+                                        [required]="true" [control]="terminosControl">
+                              </app-form-checkbox>
+                              @if (f['terminos'].invalid && f['terminos'].touched) {
+                              <small class="form__error">Debes aceptar los términos y condiciones</small>
+                              }
+
+                    </fieldset>
+
+                    <!-- Botón Enviar -->
+                    <button type="submit" class="form__button" [disabled]="registerForm.invalid">
+                              Registrarse
+                    </button>
+
+          </form>
+</section>

@@ -1,0 +1,42 @@
+// form-checkbox.component.scss
+
+.form__checkbox {
+  display: flex;
+  margin-bottom: var(--spacing-size-s);
+  width: 100%;
+}
+
+.form__checkbox__container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-xs);
+  cursor: pointer;
+  user-select: none;
+}
+
+.form__checkbox__input {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: var(--button-yellow);
+
+  &:focus {
+    outline: 2px solid var(--button-yellow);
+    outline-offset: 2px;
+  }
+}
+
+.form__checkbox__label {
+  font-size: var(--font-size-md);
+  color: var(--text-dark);
+  line-height: var(--line-height-normal);
+
+  a {
+    color: var(--button-yellow);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--amarillo-dark);
+    }
+  }
+}

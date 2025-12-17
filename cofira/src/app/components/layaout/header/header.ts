@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,5 +8,13 @@ import {RouterLink} from '@angular/router';
   styleUrl: './header.scss',
 })
 export class Header {
+  menuAbierto = false;
 
+  toggleMenu() {
+    this.menuAbierto = !this.menuAbierto;
+  }
+
+  cerrarMenu() {
+    this.menuAbierto = false;
+  }
 }

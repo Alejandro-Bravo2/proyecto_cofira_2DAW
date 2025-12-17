@@ -1,6 +1,6 @@
-import {Component, Input, signal} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FormControl, ReactiveFormsModule} from '@angular/forms'; // Importa FormControl
+import { Component, Input, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormControl, ReactiveFormsModule } from '@angular/forms'; // Importa FormControl
 
 @Component({
   selector: 'app-form-input',
@@ -9,8 +9,8 @@ import {FormControl, ReactiveFormsModule} from '@angular/forms'; // Importa Form
   styleUrl: './form-input.scss',
 })
 export class FormInput {
-  @Input({required: true}) label: string = '';
-  @Input({required: true}) name: string = '';
+  @Input({ required: true }) label: string = '';
+  @Input({ required: true }) name: string = '';
   @Input() type: string = 'text';
   @Input() placeholder: string = '';
   @Input() required: boolean = false;
@@ -18,14 +18,11 @@ export class FormInput {
   @Input() helpText: string = '';
   @Input() autocomplete: string = '';
 
-  @Input() control!: FormControl;
+  @Input() control: FormControl = new FormControl(''); // Control opcional con valor por defecto
 
-  protected readonly inputId = signal("");
+  protected readonly inputId = signal('');
 
   ngOnInit(): void {
     this.inputId.set(`input-${this.name}-${Math.random().toString(36).substr(2, 10)}`);
   }
-
 }
-
-

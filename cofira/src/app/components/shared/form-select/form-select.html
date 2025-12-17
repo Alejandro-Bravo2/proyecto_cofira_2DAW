@@ -1,12 +1,12 @@
-<!-- form-select.component.html -->
 <article class="form__select">
-  <label [for]="selectId()" class="form__select__label">
+  <label [for]="name" class="form__select__label">
     {{ label }}
   </label>
 
-  <select [id]="selectId()" [name]="name" class="form__select__field">
+  <select [id]="name" [name]="name" class="form__select__field">
+    <option value="" disabled selected>Selecciona una opción</option>
     @for (option of options; track option) {
-      <option [value]="option">{{ option }}</option>
+    <option [value]="option">{{ option }}</option>
     }
   </select>
 </article>

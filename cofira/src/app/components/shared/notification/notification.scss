@@ -1,0 +1,240 @@
+// ========================================
+// COMPONENTE: NOTIFICATION
+// Notificaciones flotantes en esquina superior derecha
+// Auto-cierre con animaciones de entrada/salida
+// Usa únicamente variables del sistema ITCSS
+// ========================================
+
+// BASE DEL COMPONENTE
+// ========================================
+.notification {
+  // Posicionamiento
+  position: fixed;
+  top: var(--spacing-size-m);
+  right: var(--spacing-size-m);
+  z-index: 9999;
+
+  // Layout
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+
+  // Dimensiones
+  min-width: 300px;
+  max-width: 400px;
+
+  // Espaciado
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+
+  // Bordes y sombras
+  border-radius: var(--radius-xss);
+  border-left: 4px solid;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+
+  // Tipografía
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+
+  // Animación de entrada
+  animation: slideInRight var(--duration-base) ease;
+
+  // Estados interactivos
+  &:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+}
+
+// Animación de salida
+.notification--closing {
+  animation: slideOutRight var(--duration-slow) ease-out forwards;
+}
+
+// ICONO
+// ========================================
+.notification__icono {
+  // Layout
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Tamaño
+  width: 1.5rem;
+  height: 1.5rem;
+
+  // Resetear estilos de figure
+  margin: 0;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// MENSAJE
+// ========================================
+.notification__mensaje {
+  // Layout
+  flex: 1;
+
+  // Tipografía
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-medium);
+
+  // Espaciado
+  margin: 0;
+}
+
+// BOTÓN CERRAR
+// ========================================
+.notification__cerrar {
+  // Layout
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // Estilos
+  background: transparent;
+  border: none;
+  cursor: pointer;
+
+  // Espaciado
+  padding: 0.25rem;
+
+  // Forma
+  border-radius: 50%;
+
+  // Visual
+  opacity: 0.7;
+  transition: all var(--duration-fast) ease;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  // Efecto hover
+  &:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.1);
+    transform: rotate(90deg);
+  }
+}
+
+// MODIFICADORES POR TIPO
+// ========================================
+
+// SUCCESS - Amarillo (éxito/confirmación)
+.notification--success {
+  background-color: var(--amarillo-normal);
+  border-left-color: var(--amarillo-dark);
+  color: var(--negro-normal);
+
+  .notification__icono svg {
+    fill: var(--amarillo-darker);
+  }
+
+  .notification__cerrar svg {
+    fill: var(--negro-normal);
+  }
+}
+
+// ERROR - Rojo
+.notification--error {
+  background-color: var(--button-red);
+  border-left-color: var(--button-red-hover);
+  color: var(--blanco-normal);
+
+  .notification__icono svg {
+    fill: var(--blanco-normal);
+  }
+
+  .notification__cerrar svg {
+    fill: var(--blanco-normal);
+  }
+
+  &:hover {
+    .notification__cerrar {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+// WARNING - Amarillo claro (advertencia)
+.notification--warning {
+  background-color: var(--amarillo-normal-hover);
+  border-left-color: var(--amarillo-normal);
+  color: var(--negro-normal);
+
+  .notification__icono svg {
+    fill: var(--amarillo-dark);
+  }
+
+  .notification__cerrar svg {
+    fill: var(--negro-normal);
+  }
+}
+
+// INFO - Gris (información)
+.notification--info {
+  background-color: var(--gris-normal);
+  border-left-color: var(--gris-dark);
+  color: var(--blanco-normal);
+
+  .notification__icono svg {
+    fill: var(--blanco-normal);
+  }
+
+  .notification__cerrar svg {
+    fill: var(--blanco-normal);
+  }
+
+  &:hover {
+    .notification__cerrar {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+// ANIMACIONES
+// ========================================
+
+// Entrada desde la derecha
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Salida hacia la derecha con desplazamiento suave
+@keyframes slideOutRight {
+  0% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(150%) scale(0.9);
+  }
+}
+
+// RESPONSIVE
+// ========================================
+@media (max-width: 768px) {
+  .notification {
+    // Ajustar posición en móvil
+    top: var(--spacing-size-s);
+    right: var(--spacing-size-s);
+    left: var(--spacing-size-s);
+
+    // Ancho completo menos márgenes
+    min-width: auto;
+    max-width: none;
+  }
+}

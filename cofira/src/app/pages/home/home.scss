@@ -1,12 +1,64 @@
-.titulo__formulario{
+// ENLACE A STYLE GUIDE
+// ========================================
+.style-guide-link {
+  // Layout
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-size-xs);
+
+  // Espaciado
+  padding: var(--spacing-size-xs) var(--spacing-size-m);
+  margin: var(--spacing-size-m) 0;
+
+  // Tipografía
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+
+  // Colores
+  color: var(--negro-normal);
+  background-color: var(--amarillo-normal);
+  border: 2px solid var(--amarillo-dark);
+
+  // Bordes
+  border-radius: var(--radius-xss);
+
+  // Transiciones
+  transition: all var(--duration-fast) ease;
+
+  // Icono antes del texto
+  &::before {
+    content: '→';
+    font-size: var(--font-size-lg);
+    transition: transform var(--duration-fast) ease;
+  }
+
+  // Hover
+  &:hover {
+    background-color: var(--amarillo-normal-hover);
+    border-color: var(--amarillo-darker);
+    transform: translateX(4px);
+
+    &::before {
+      transform: translateX(4px);
+    }
+  }
+
+  // Active
+  &:active {
+    transform: translateX(2px);
+  }
+}
+
+.titulo__formulario {
   font-size: var(--font-size-3xl);
   text-align: center;
   font-weight: var(--font-weight-bold);
   margin-bottom: 3rem;
 }
 
-
-.planes{
+.planes {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
