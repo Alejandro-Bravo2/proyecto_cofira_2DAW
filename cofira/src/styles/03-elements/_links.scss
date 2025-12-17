@@ -4,7 +4,8 @@
  */
 
 a {
-  color: var(--text-primary);
+  font-family: var(--font-primary);
+  color: var(--text-light);
   text-decoration: none;
   transition: color var(--duration-fast);
   cursor: pointer;

@@ -36,26 +36,66 @@
       <span>Inscribete</span>
     </button>
 
-    <button class="boton__cuenta">
-      <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"
-          fill="currentColor" />
-      </svg>
-      <span>Cuenta</span>
-    </button>
+    <article class="menu-cuenta-wrapper">
+      <button class="boton__cuenta" (click)="toggleMenuCuenta()">
+        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"
+            fill="currentColor" />
+        </svg>
+        <span>Cuenta</span>
+      </button>
+
+      <!-- Menú desplegable de cuenta -->
+      @if (menuCuentaAbierto) {
+      <nav class="menu-cuenta">
+        <a routerLink="/login" (click)="cerrarMenuCuenta()" class="menu-cuenta__item">
+          Inicio sesión
+        </a>
+        <a routerLink="/registro" (click)="cerrarMenuCuenta()" class="menu-cuenta__item">
+          Registro
+        </a>
+        <a routerLink="/planes" (click)="cerrarMenuCuenta()" class="menu-cuenta__item">
+          Planes
+        </a>
+        <a routerLink="/preferencias" (click)="cerrarMenuCuenta()" class="menu-cuenta__item">
+          Preferencias
+        </a>
+        <button (click)="toggleModoOscuro()" class="menu-cuenta__item menu-cuenta__item--modo">
+          @if (modoOscuro) {
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="menu-cuenta__icono">
+            <path
+              d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5M2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1m18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1M11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1m0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1M5.99 4.58a.996.996 0 0 0-1.41 0a.996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41zm12.37 12.37a.996.996 0 0 0-1.41 0a.996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 0 0 0-1.41zm1.06-10.96a.996.996 0 0 0 0-1.41a.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0zM7.05 18.36a.996.996 0 0 0 0-1.41a.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0z"
+              fill="currentColor" />
+          </svg>
+          } @else {
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="menu-cuenta__icono">
+            <path
+              d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26a5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1"
+              fill="currentColor" />
+          </svg>
+          }
+        </button>
+      </nav>
+      }
+
+      <!-- Overlay para cerrar al hacer clic fuera -->
+      @if (menuCuentaAbierto) {
+      <span class="menu-cuenta__overlay" (click)="cerrarMenuCuenta()"></span>
+      }
+    </article>
   </section>
 </nav>
 
 <!-- Menú móvil -->
-<div class="menu-movil" [class.menu-movil--abierto]="menuAbierto">
+<aside class="menu-movil" [class.menu-movil--abierto]="menuAbierto">
   <!-- Overlay para cerrar al hacer clic fuera -->
-  <div class="menu-movil__overlay" (click)="cerrarMenu()"></div>
+  <span class="menu-movil__overlay" (click)="cerrarMenu()"></span>
 
   <!-- Contenido del menú -->
-  <aside class="menu-movil__contenido">
+  <section class="menu-movil__contenido">
     <!-- Header del menú con botón cerrar -->
-    <div class="menu-movil__header">
+    <header class="menu-movil__header">
       <h2>Menú</h2>
       <button class="menu-movil__cerrar" (click)="cerrarMenu()" aria-label="Cerrar menú">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +104,7 @@
             fill="currentColor" />
         </svg>
       </button>
-    </div>
+    </header>
 
     <!-- Enlaces de navegación -->
     <nav class="menu-movil__nav">
@@ -113,5 +153,5 @@
       </svg>
       <span>Inscribete Ahora</span>
     </button>
-  </aside>
-</div>
+  </section>
+</aside>

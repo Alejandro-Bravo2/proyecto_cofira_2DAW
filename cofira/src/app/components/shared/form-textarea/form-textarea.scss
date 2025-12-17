@@ -7,11 +7,11 @@
   width: var(--width-estandar);
 
 
-  &f__label {
+  &__label {
     color: var(--text-light);
     font-size: var(--font-size-md);
     font-weight: var(--font-weight-regular);
-    font-family: var(--font-secundary);
+    font-family: var(--font-secondary);
     margin-bottom: var(--input-margin-bottom);
   }
 
@@ -40,14 +40,14 @@
   &__error {
     color: var(--button-red);
     font-size: var(--font-size-sm);
-    font-family: var(--font-secundary);
+    font-family: var(--font-secondary);
     margin-top: var(--input-margin-bottom);
   }
 
   &__help {
     color: var(--text-dark);
     font-size: var(--font-size-sm);
-    font-family: var(--font-secundary);
+    font-family: var(--font-secondary);
     opacity: 0.8;
     margin-top: var(--input-margin-bottom);
   }
