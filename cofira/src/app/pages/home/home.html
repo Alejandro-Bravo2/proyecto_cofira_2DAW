@@ -96,7 +96,7 @@
   <h2>Ejemplos de Notificaciones (esquina superior derecha)</h2>
   <p>Haz clic en los botones para ver las notificaciones flotantes con auto-cierre en 3 segundos:</p>
 
-  <button (click)="mostrarNotif()" class="margen-xs">Mostrar notificación</button>
+  <button (click)="mostrarNotif()" class="boton boton--primario boton--mediano margen-xs">Mostrar notificación</button>
 
   @for (notif of notificaciones; track notif.id) {
   <app-notification [type]="notif.type" [message]="notif.message" [duration]="3000"

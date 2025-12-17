@@ -30,7 +30,6 @@ export class Header {
 
   toggleModoOscuro() {
     this.modoOscuro = !this.modoOscuro;
-    // Aquí podrías agregar la lógica para cambiar el tema de toda la aplicación
     document.body.classList.toggle('modo-oscuro', this.modoOscuro);
   }
 }
