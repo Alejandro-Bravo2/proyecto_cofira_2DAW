@@ -72,7 +72,7 @@
 
 
 <!-- Sección de Alertas de Ejemplo -->
-<section style="max-width: 800px; margin: 2rem auto;">
+<section class="contenedor-demo">
   <h2>Ejemplos de Alertas</h2>
 
   <app-alert type="success" message="¡Éxito! Tu cuenta ha sido creada correctamente." [closable]="true">
@@ -92,11 +92,11 @@
 </section>
 
 <!-- Sección de Notificaciones de Ejemplo -->
-<section style="max-width: 800px; margin: 2rem auto;">
+<section class="contenedor-demo">
   <h2>Ejemplos de Notificaciones (esquina superior derecha)</h2>
   <p>Haz clic en los botones para ver las notificaciones flotantes con auto-cierre en 3 segundos:</p>
 
-  <button (click)="mostrarNotif()" style="margin: 0.5rem;">Mostrar notificación</button>
+  <button (click)="mostrarNotif()" class="margen-xs">Mostrar notificación</button>
 
   @for (notif of notificaciones; track notif.id) {
   <app-notification [type]="notif.type" [message]="notif.message" [duration]="3000"

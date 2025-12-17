@@ -1,6 +1,7 @@
-// ========================================
-// FORMULARIO DE REGISTRO
-// ========================================
+/* ============================================
+   FORMULARIO DE REGISTRO
+   Usa variables CSS del sistema de diseno
+   ============================================ */
 
 .register-form {
   display: flex;
@@ -9,92 +10,96 @@
 }
 
 .form {
-  background: var(--background-light-gray);
-  padding: 3rem 2.5rem;
-  border-radius: 1.5rem;
+  background-color: var(--gris-normal);
+  padding: var(--spacing-size-xxl) var(--spacing-size-xl);
+  border-radius: var(--radius-s);
   width: 100%;
   max-width: 650px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 
-  // ========================================
-  // FIELDSET PRINCIPAL
-  // ========================================
+  /* --------------------------------------------
+     FIELDSET PRINCIPAL
+     -------------------------------------------- */
   &__fieldset {
     border: none;
     padding: 0;
+    margin: 0 0 var(--spacing-size-xl) 0;
   }
 
-  // ========================================
-  // LEGEND PRINCIPAL (título del formulario)
-  // ========================================
+  /* --------------------------------------------
+     LEGEND PRINCIPAL (titulo del formulario)
+     -------------------------------------------- */
   &__legend {
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
+    color: var(--text-dark);
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-size-l);
     padding: 0;
     width: 100%;
     text-align: center;
   }
 
-  // ========================================
-  // GRUPO DE CAMPO (fieldset individual)
-  // ========================================
+  /* --------------------------------------------
+     GRUPO DE CAMPO (fieldset individual)
+     -------------------------------------------- */
   &__group {
     border: none;
     padding: 0;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 var(--spacing-size-l) 0;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 
-  // ========================================
-  // LABEL (legend de cada campo)
-  // ========================================
+  /* --------------------------------------------
+     LABEL (legend de cada campo)
+     -------------------------------------------- */
   &__label {
     display: block;
-    color: #ffffff;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-regular);
+    margin-bottom: var(--spacing-size-s);
     padding: 0;
-    line-height: 1.5;
+    line-height: var(--line-height-normal);
   }
 
-  // ========================================
-  // INPUT
-  // ========================================
+  /* --------------------------------------------
+     INPUT
+     -------------------------------------------- */
   &__input {
     width: 100%;
-    height: 3rem;
-    padding: 0.875rem 1.5rem;
-    background: #e8e8e8;
-    border: 2px solid transparent;
-    border-radius: 2rem;
-    color: #333333;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    height: 3.5rem;
+    padding: var(--spacing-size-s) var(--spacing-size-m);
+    background-color: var(--blanco-normal-hover);
+    border: none;
+    border-radius: var(--radius-m);
+    color: var(--negro-normal);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    transition: all var(--duration-base) ease;
     box-sizing: border-box;
 
     &::placeholder {
-      color: #999999;
+      color: var(--blanco-dark-hover);
     }
 
     &:focus {
       outline: none;
-      background: #f5f5f5;
-      border-color: var(--button-yellow);
-      box-shadow: 0 0 0 3px rgba(255, 211, 0, 0.2);
+      background-color: var(--blanco-normal);
+      box-shadow: 0 0 0 3px rgba(255, 211, 0, 0.3);
     }
 
     &:hover:not(:focus) {
-      background: #f0f0f0;
+      background-color: var(--blanco-normal-active);
     }
 
-    // Estado de error
+    /* Estado de error */
     &--error {
-      border-color: var(--button-red);
+      border: 2px solid var(--button-red);
 
       &:focus {
         border-color: var(--button-red);
@@ -103,49 +108,50 @@
     }
   }
 
-  // ========================================
-  // MENSAJE DE ERROR
-  // ========================================
+  /* --------------------------------------------
+     MENSAJE DE ERROR
+     -------------------------------------------- */
   &__error {
     display: block;
     color: var(--button-red);
-    font-size: 0.875rem;
-    margin-top: 0.5rem;
-    margin-left: 1rem;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-sm);
+    margin-top: var(--spacing-size-xss);
+    margin-left: var(--spacing-size-s);
   }
 
-  // ========================================
-  // BOTÓN ENVIAR
-  // ========================================
+  /* --------------------------------------------
+     BOTON ENVIAR
+     -------------------------------------------- */
   &__button {
     width: 100%;
     height: 3.75rem;
-    padding: 1rem 2rem;
-    background: var(--button-yellow);
-    color: #000000;
+    padding: var(--spacing-size-s) var(--spacing-size-l);
+    background-color: var(--amarillo-normal);
+    color: var(--negro-normal);
     border: none;
-    border-radius: 2rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
+    border-radius: var(--radius-m);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(255, 211, 0, 0.3);
+    transition: all var(--duration-base) ease;
+    box-shadow: var(--shadow-md);
 
     &:hover:not(:disabled) {
-      background: var(--amarillo-normal-hover);
+      background-color: var(--amarillo-normal-hover);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(255, 211, 0, 0.4);
+      box-shadow: var(--shadow-lg);
     }
 
     &:active:not(:disabled) {
       transform: translateY(0);
-      box-shadow: 0 2px 8px rgba(255, 211, 0, 0.3);
+      box-shadow: var(--shadow-sm);
     }
 
     &:disabled {
-      background: #cccccc;
-      color: #666666;
+      background-color: var(--blanco-dark);
+      color: var(--gris-normal);
       cursor: not-allowed;
       box-shadow: none;
     }

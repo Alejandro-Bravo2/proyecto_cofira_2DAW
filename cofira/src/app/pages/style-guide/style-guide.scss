@@ -534,6 +534,111 @@
   border: 2px solid var(--amarillo-dark);
 }
 
+// ========================================
+// CLASES DE DEMO PARA COLORES
+// Reemplazan inline styles
+// ========================================
+
+// Amarillo
+.demo-fondo-amarillo-normal { background-color: var(--amarillo-normal); }
+.demo-fondo-amarillo-normal-hover { background-color: var(--amarillo-normal-hover); }
+.demo-fondo-amarillo-normal-active { background-color: var(--amarillo-normal-active); }
+.demo-fondo-amarillo-dark { background-color: var(--amarillo-dark); }
+.demo-fondo-amarillo-dark-hover { background-color: var(--amarillo-dark-hover); }
+.demo-fondo-amarillo-dark-active { background-color: var(--amarillo-dark-active); }
+.demo-fondo-amarillo-darker { background-color: var(--amarillo-darker); }
+
+// Negro
+.demo-fondo-negro-normal { background-color: var(--negro-normal); }
+.demo-fondo-negro-normal-hover { background-color: var(--negro-normal-hover); }
+.demo-fondo-negro-normal-active { background-color: var(--negro-normal-active); }
+.demo-fondo-negro-dark { background-color: var(--negro-dark); }
+.demo-fondo-negro-dark-hover { background-color: var(--negro-dark-hover); }
+.demo-fondo-negro-dark-active { background-color: var(--negro-dark-active); }
+
+// Blanco
+.demo-fondo-blanco-normal { background-color: var(--blanco-normal); }
+.demo-fondo-blanco-normal-hover { background-color: var(--blanco-normal-hover); }
+.demo-fondo-blanco-normal-active { background-color: var(--blanco-normal-active); }
+.demo-fondo-blanco-dark { background-color: var(--blanco-dark); }
+.demo-fondo-blanco-dark-hover { background-color: var(--blanco-dark-hover); }
+.demo-fondo-blanco-dark-active { background-color: var(--blanco-dark-active); }
+
+// Gris
+.demo-fondo-gris-normal { background-color: var(--gris-normal); }
+.demo-fondo-gris-normal-hover { background-color: var(--gris-normal-hover); }
+.demo-fondo-gris-normal-active { background-color: var(--gris-normal-active); }
+.demo-fondo-gris-dark { background-color: var(--gris-dark); }
+.demo-fondo-gris-dark-hover { background-color: var(--gris-dark-hover); }
+.demo-fondo-gris-dark-active { background-color: var(--gris-dark-active); }
+
+// Botones
+.demo-fondo-button-yellow { background-color: var(--button-yellow); }
+.demo-fondo-button-yellow-hover { background-color: var(--button-yellow-hover); }
+.demo-fondo-button-red { background-color: var(--button-red); }
+.demo-fondo-button-red-hover { background-color: var(--button-red-hover); }
+.demo-fondo-button-gray { background-color: var(--button-gray); }
+.demo-fondo-button-gray-hover { background-color: var(--button-gray-hover); }
+.demo-fondo-button-darker { background-color: var(--button-darker); }
+.demo-fondo-button-darker-hover { background-color: var(--button-darker-hover); }
+
+// Texto
+.demo-fondo-text-light { background-color: var(--text-light); }
+.demo-fondo-text-dark { background-color: var(--text-dark); }
+
+// Background
+.demo-fondo-background-light-gray { background-color: var(--background-light-gray); }
+
+
+// ========================================
+// CLASES DE DEMO PARA TIPOGRAFIA
+// ========================================
+
+// Tamanos de fuente
+.demo-texto-xs { font-size: var(--font-size-xs); }
+.demo-texto-sm { font-size: var(--font-size-sm); }
+.demo-texto-md { font-size: var(--font-size-md); }
+.demo-texto-lg { font-size: var(--font-size-lg); }
+.demo-texto-xl { font-size: var(--font-size-xl); }
+.demo-texto-2xl { font-size: var(--font-size-2xl); }
+.demo-texto-3xl { font-size: var(--font-size-3xl); }
+.demo-texto-4xl { font-size: var(--font-size-4xl); }
+.demo-texto-5xl { font-size: var(--font-size-5xl); }
+
+// Pesos de fuente
+.demo-peso-light { font-weight: var(--font-weight-light); }
+.demo-peso-normal { font-weight: var(--font-weight-normal); }
+.demo-peso-medium { font-weight: var(--font-weight-medium); }
+.demo-peso-semibold { font-weight: var(--font-weight-semibold); }
+.demo-peso-bold { font-weight: var(--font-weight-bold); }
+
+
+// ========================================
+// CLASES DE DEMO PARA ESPACIADO
+// ========================================
+
+.demo-ancho-xss { width: var(--spacing-size-xss); }
+.demo-ancho-xs { width: var(--spacing-size-xs); }
+.demo-ancho-s { width: var(--spacing-size-s); }
+.demo-ancho-m { width: var(--spacing-size-m); }
+.demo-ancho-l { width: var(--spacing-size-l); }
+.demo-ancho-xl { width: var(--spacing-size-xl); }
+.demo-ancho-xxl { width: var(--spacing-size-xxl); }
+.demo-ancho-xxxl { width: var(--spacing-size-xxxl); }
+
+
+// ========================================
+// CLASES DE DEMO PARA BORDER RADIUS
+// ========================================
+
+.demo-radius-xss { border-radius: var(--radius-xss); }
+.demo-radius-xs { border-radius: var(--radius-xs); }
+.demo-radius-s { border-radius: var(--radius-s); }
+.demo-radius-m { border-radius: var(--radius-m); }
+.demo-radius-l { border-radius: var(--radius-l); }
+.demo-radius-full { border-radius: var(--radius-full); }
+
+
 // RESPONSIVE
 // ========================================
 @media (max-width: 768px) {

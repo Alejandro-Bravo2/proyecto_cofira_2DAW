@@ -1,6 +1,7 @@
-// ========================================
-// FORMULARIO DE CONTACTO
-// ========================================
+/* ============================================
+   FORMULARIO DE CONTACTO
+   Usa variables CSS del sistema de diseno
+   ============================================ */
 
 .contact-form {
   display: flex;
@@ -9,126 +10,126 @@
 }
 
 .form {
-  background: var(--background-light-gray);
-  padding: 3rem 2.5rem;
-  border-radius: 1.5rem;
+  background-color: var(--gris-normal);
+  padding: var(--spacing-size-xxl) var(--spacing-size-xl);
+  border-radius: var(--radius-s);
   width: 100%;
   max-width: 650px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
 
-  // ========================================
-  // FIELDSET PRINCIPAL
-  // ========================================
+  /* --------------------------------------------
+     FIELDSET PRINCIPAL
+     -------------------------------------------- */
   &__fieldset {
     border: none;
     padding: 0;
-    margin: 0 0 2.5rem 0;
+    margin: 0 0 var(--spacing-size-xl) 0;
   }
 
-  // ========================================
-  // LEGEND PRINCIPAL (título del formulario)
-  // ========================================
+  /* --------------------------------------------
+     LEGEND PRINCIPAL (titulo del formulario)
+     -------------------------------------------- */
   &__legend {
-    color: #FFFFFF;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
+    color: var(--text-dark);
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-size-l);
     padding: 0;
     width: 100%;
     text-align: center;
   }
 
-  // ========================================
-  // GRUPO DE CAMPO (fieldset individual)
-  // ========================================
+  /* --------------------------------------------
+     GRUPO DE CAMPO (fieldset individual)
+     -------------------------------------------- */
   &__group {
     border: none;
     padding: 0;
-    margin: 0 0 2rem 0;
+    margin: 0 0 var(--spacing-size-l) 0;
 
     &:last-of-type {
       margin-bottom: 0;
     }
   }
 
-  // ========================================
-  // LABEL (legend de cada campo)
-  // ========================================
+  /* --------------------------------------------
+     LABEL (legend de cada campo)
+     -------------------------------------------- */
   &__label {
     display: block;
-    color: #FFFFFF;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.125rem;
-    font-weight: 400;
-    margin-bottom: 1rem;
+    color: var(--text-dark);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-regular);
+    margin-bottom: var(--spacing-size-s);
     padding: 0;
-    line-height: 1.5;
+    line-height: var(--line-height-normal);
   }
 
-  // ========================================
-  // INPUT
-  // ========================================
+  /* --------------------------------------------
+     INPUT
+     -------------------------------------------- */
   &__input {
     width: 100%;
     height: 3.5rem;
-    padding: 1rem 1.5rem;
-    background: #E8E8E8;
+    padding: var(--spacing-size-s) var(--spacing-size-m);
+    background-color: var(--blanco-normal-hover);
     border: none;
-    border-radius: 2rem;
-    color: #333333;
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    border-radius: var(--radius-m);
+    color: var(--negro-normal);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    transition: all var(--duration-base) ease;
     box-sizing: border-box;
 
     &::placeholder {
-      color: #999999;
+      color: var(--blanco-dark-hover);
     }
 
     &:focus {
       outline: none;
-      background: #F5F5F5;
+      background-color: var(--blanco-normal);
       box-shadow: 0 0 0 3px rgba(255, 211, 0, 0.3);
     }
 
     &:hover:not(:focus) {
-      background: #F0F0F0;
+      background-color: var(--blanco-normal-active);
     }
   }
 
-  // ========================================
-  // BOTÓN ENVIAR
-  // ========================================
+  /* --------------------------------------------
+     BOTON ENVIAR
+     -------------------------------------------- */
   &__button {
     width: 100%;
     height: 3.75rem;
-    padding: 1rem 2rem;
-    background: #FFD300;
-    color: #000000;
+    padding: var(--spacing-size-s) var(--spacing-size-l);
+    background-color: var(--amarillo-normal);
+    color: var(--negro-normal);
     border: none;
-    border-radius: 2rem;
-    font-family: 'Inter', sans-serif;
-    font-size: 1.25rem;
-    font-weight: 700;
+    border-radius: var(--radius-m);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
     cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(255, 211, 0, 0.3);
+    transition: all var(--duration-base) ease;
+    box-shadow: var(--shadow-md);
 
     &:hover:not(:disabled) {
-      background: #FFDB33;
+      background-color: var(--amarillo-normal-hover);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(255, 211, 0, 0.4);
+      box-shadow: var(--shadow-lg);
     }
 
     &:active:not(:disabled) {
       transform: translateY(0);
-      box-shadow: 0 2px 8px rgba(255, 211, 0, 0.3);
+      box-shadow: var(--shadow-sm);
     }
 
     &:disabled {
-      background: #CCCCCC;
-      color: #666666;
+      background-color: var(--blanco-dark);
+      color: var(--gris-normal);
       cursor: not-allowed;
       box-shadow: none;
     }

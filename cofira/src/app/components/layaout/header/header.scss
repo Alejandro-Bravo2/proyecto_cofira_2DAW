@@ -350,6 +350,109 @@ nav {
 }
 
 // ========================================
+// MENÚ DESPLEGABLE DE CUENTA
+// ========================================
+.menu-cuenta-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.menu-cuenta {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: var(--blanco-normal);
+  border-radius: var(--radius-s);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  min-width: 12rem;
+  padding: var(--spacing-size-s);
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xss);
+  animation: slideDown 0.2s ease-out;
+
+  // Sobrescribir la altura del nav genérico
+  height: auto;
+  align-items: stretch;
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-0.5rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    padding: var(--spacing-size-s) var(--spacing-size-m);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-xss);
+    color: var(--negro-normal);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-regular);
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all var(--duration-fast) ease;
+    margin: 0;
+
+    &:hover {
+      background: var(--blanco-normal-hover);
+      color: var(--amarillo-darker);
+    }
+
+    &--modo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-size-xs);
+      margin-top: var(--spacing-size-xs);
+      padding: var(--spacing-size-s);
+      border-top: 1px solid var(--blanco-dark);
+      background: transparent;
+      border-radius: var(--radius-xss);
+
+      &:hover {
+        background: var(--amarillo-normal);
+        color: var(--negro-normal);
+
+        .menu-cuenta__icono {
+          color: var(--negro-normal);
+        }
+      }
+    }
+  }
+
+  &__icono {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--negro-normal);
+    flex-shrink: 0;
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 1000;
+  }
+}
+
+// ========================================
 // MENÚ MÓVIL
 // ========================================
 .menu-movil {
