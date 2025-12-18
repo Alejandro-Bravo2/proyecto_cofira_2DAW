@@ -37,7 +37,8 @@
 
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* Importar variables SCSS para usar valores literales */
+/* Importar variables SCSS para usar interpolación */
+/* Los colores base están en _css-variables.scss */
 @import '../00-settings/css-variables';
 
 

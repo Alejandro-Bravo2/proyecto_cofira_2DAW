@@ -138,7 +138,7 @@ body.modo-oscuro {
   app-header .buscador__input {
     background: var(--oscuro-cabecera-buscador-fondo);
     color: var(--oscuro-cabecera-buscador-texto);
-    border: 0.0625rem solid var(--oscuro-borde-suave);
+    border: 0.0625rem solid var(--oscuro-cabecera-boton-primario-fondo);
   }
 
   app-header .buscador__input::placeholder {
@@ -466,7 +466,7 @@ body.modo-oscuro {
   }
 
   .style-guide__demo {
-    background-color: var(--oscuro-guia-demo-fondo);
+
     border-color: var(--oscuro-guia-demo-borde);
   }
 
@@ -539,6 +539,30 @@ body.modo-oscuro {
     background-color: var(--oscuro-guia-nota-fondo);
     border-left-color: var(--oscuro-guia-nota-borde);
     color: var(--oscuro-texto-principal);
+  }
+
+  /* --- Textos que usan --negro-normal o --gris-dark --- */
+  .color-card__title,
+  .color-name,
+  .typography-sample,
+  .font-weights__item {
+    color: var(--blanco-normal);
+  }
+
+  .color-value,
+  .typography-info,
+  .font-weights__label,
+  .spacing-info,
+  .animation-info,
+  .radius-info {
+    color: var(--blanco-dark);
+  }
+
+  /* --- Fondos de código y valores --- */
+  .color-value,
+  .typography-info code {
+    background: var(--gris-dark);
+    color: var(--blanco-normal);
   }
 }
 

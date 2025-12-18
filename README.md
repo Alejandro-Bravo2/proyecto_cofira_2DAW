@@ -2,6 +2,12 @@
 
 **Tu entrenamiento, nutrición y progreso en un solo lugar**
 
+![Angular](https://img.shields.io/badge/Angular-20.3.0-DD0031?style=flat&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?style=flat&logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SCSS-BEM-CC6699?style=flat&logo=sass&logoColor=white)
+![RxJS](https://img.shields.io/badge/RxJS-7.8-B7178C?style=flat&logo=reactivex&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+
 ---
 
 ## Descripción
