@@ -983,33 +983,42 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
 **Ejemplos de Blocks en mi proyecto:**
 
 ```scss
+// Archivo: cofira/src/app/components/shared/button/button.scss
 // El bloque .button es el contenedor principal del botón
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-primary);
+  font-weight: var(--font-weight-semibold);
   border: none;
   border-radius: var(--radius-m);
   cursor: pointer;
+  transition: all var(--duration-base) ease;
+  text-decoration: none;
+  user-select: none;
+  white-space: nowrap;
 }
 
+// Archivo: cofira/src/app/components/shared/alert/alert.scss
 // El bloque .alert es el contenedor principal de las alertas
 .alert {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-s);
   padding: var(--spacing-size-s) var(--spacing-size-m);
+  margin-bottom: var(--spacing-size-s);
   border-radius: var(--radius-xss);
+  border-left: 4px solid;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  transition: all var(--duration-base) ease;
+  animation: alertSlideIn var(--duration-base) ease;
 }
 
-// El bloque .pricing-card es el contenedor principal de las cards
-.pricing-card {
-  background: var(--gris-normal);
-  padding: var(--spacing-size-xxl) var(--spacing-size-m);
-  border-radius: var(--radius-xs);
-}
 
+// Archivo: cofira/src/app/components/layaout/header/header.scss
 // El bloque .hamburguesa es el botón del menú móvil
 .hamburguesa {
   display: none;
@@ -1017,6 +1026,15 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
   justify-content: space-around;
   width: 2rem;
   height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 200;
+
+  @include responsive-down('md') {
+    display: flex;
+  }
 }
 
 // El bloque .menu-movil es el contenedor del menú en móviles
@@ -1026,6 +1044,20 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
   left: 0;
   width: 100%;
   height: 100vh;
+  visibility: hidden;
+  z-index: 150;
+  pointer-events: none;
+}
+
+// El bloque .buscador es el contenedor del campo de búsqueda
+.buscador {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 36rem;
+  min-width: 20rem;
+  flex-shrink: 1;
 }
 ```
 
@@ -1038,42 +1070,131 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
 **Ejemplos de Elements en mi proyecto:**
 
 ```scss
-// Elementos del bloque .alert
-.alert__icono {
-  flex-shrink: 0; // Impide encojerse en caso de que no haya suficiente espacio en el contenedor
+// Archivo: cofira/src/app/components/shared/button/button.scss
+// Elementos del bloque .button
+.button__icono {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 1.5rem;
   height: 1.5rem;
+  flex-shrink: 0; // CLAVE: No se encoge aunque falte espacio
 }
 
-.alert__mensaje {
+.button__texto {
   flex: 1;
-  line-height: var(--line-height-normal);
   font-weight: var(--font-weight-medium);
 }
 
+// Archivo: cofira/src/app/components/shared/alert/alert.scss
+// Elementos del bloque .alert
+.alert__icono {
+  flex-shrink: 0; // CLAVE: No se encoge aunque falte espacio
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+}
+
+.alert__mensaje {
+  flex: 1; // Crece para llenar el espacio disponible
+  line-height: var(--line-height-normal);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+}
+
 .alert__cerrar {
-  flex-shrink: 0;
+  flex-shrink: 0; // CLAVE: No se encoge
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   border: none;
   cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 50%;
+  opacity: 0.7;
+  transition: all var(--duration-fast) ease;
 }
 
+// Archivo: cofira/src/app/components/shared/card/card.scss
+// Elementos del bloque .pricing-card
+.pricing-card__titulo {
+  color: var(--text-dark);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-size-xxl) 0;
+  line-height: 1.2;
+}
+
+.pricing-card__lista {
+  padding: 0;
+  margin: 0 0 var(--spacing-size-xxl) 0;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-s);
+}
+
+.pricing-card__ventaja {
+  color: var(--text-dark);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-normal);
+  padding-left: var(--spacing-size-s);
+  position: relative;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-xs);
+}
+
+.pricing-card__boton {
+  width: 100%;
+  max-width: 21rem;
+  height: 4rem;
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+  background: var(--button-yellow);
+  color: var(--negro-normal);
+  border: none;
+  border-radius: var(--radius-m);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  margin-bottom: var(--spacing-size-m);
+  transition: all 0.3s ease;
+}
+
+.pricing-card__precio {
+  color: var(--text-dark);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+
+// Archivo: cofira/src/app/components/layaout/header/header.scss
 // Elementos del bloque .hamburguesa
 .hamburguesa__linea {
   width: 100%;
-  height: 0.188rem;
+  height: 3px;
   background-color: var(--blanco-normal);
-  border-radius: 0.625rem;
+  border-radius: 10px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease-out,
+              background-color 0.15s ease-out;
+  will-change: transform, opacity;
+  transform-origin: center;
 }
 
 // Elementos del bloque .menu-movil
 .menu-movil__overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color 0.25s ease-out;
 }
 
 .menu-movil__contenido {
@@ -1081,7 +1202,16 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   top: 0;
   right: 0;
   width: 80%;
-  max-width: 25rem;
+  max-width: 400px;
+  height: 100%;
+  background: var(--gris-dark);
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
+  will-change: transform;
 }
 
 .menu-movil__header {
@@ -1089,6 +1219,8 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
+  background: var(--gris-normal);
+  border-bottom: 2px solid var(--amarillo-normal);
 }
 
 .menu-movil__link {
@@ -1097,19 +1229,13 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   gap: 1rem;
   padding: 1.25rem 1.5rem;
   color: var(--blanco-normal);
-}
-
-// Elementos del bloque .menu-cuenta
-.menu-cuenta__item {
-  display: flex;
-  align-items: center;
-  padding: var(--spacing-size-s) var(--spacing-size-m);
-}
-
-.menu-cuenta__icono {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: var(--negro-normal);
+  text-decoration: none;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  transition: background-color 0.15s ease-out,
+              transform 0.15s ease-out;
+  border-left: 4px solid transparent;
+  position: relative;
 }
 
 // Elementos del bloque .buscador
@@ -1118,6 +1244,10 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   height: 1.5rem;
   padding: 0.75rem 1rem 0.75rem 3rem;
   border-radius: var(--radius-l);
+  border: 0 solid var(--blanco-dark);
+  color: var(--text-light);
+  font-size: var(--font-size-md);
+  transition: all 0.3s ease;
 }
 
 .buscador__icono {
@@ -1125,30 +1255,35 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   left: 1rem;
   width: 1.5rem;
   color: var(--button-darker);
+  pointer-events: none;
 }
 
-// Elementos del bloque .pricing-card (cards)
-.card-titulo {
-  color: var(--text-dark);
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-}
-
-.card-lista {
-  padding: 0;
-  list-style-position: inside;
-}
-
-.card-ventaja {
-  color: var(--text-dark);
-  font-size: var(--font-size-lg);
-}
-
-.card-boton {
+// Elementos del bloque .menu-cuenta
+.menu-cuenta__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   width: 100%;
-  max-width: 21rem;
-  height: 4rem;
-  background: var(--button-yellow);
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-xss);
+  color: var(--negro-normal);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+  margin: 0;
+}
+
+.menu-cuenta__icono {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--negro-normal);
+  flex-shrink: 0;
 }
 ```
 
@@ -1156,20 +1291,23 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
 
 #### ¿Cuándo uso Modificadores?
 
-Un **Modifier** es una modificador del bloque o elemento que cambia su apariencia o comportamiento. Lo identifico con doble guión **--** después del nombre del bloque o elemento. Los uso cuando quiero crear variantes del componente como diferentes colores, tamaños o estados visuales.
+Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia o comportamiento. Lo identifico con doble guión **--** después del nombre del bloque o elemento. Los uso cuando quiero crear variantes del componente como diferentes colores, tamaños o estados visuales.
 
 **Ejemplos de Modificadores en mi proyecto:**
 
 ```scss
+// Archivo: cofira/src/app/components/shared/button/button.scss
 // Modificadores de VARIANTE (tipo) para el bloque .button
 .button--primary {
   background: var(--button-yellow);
   color: var(--negro-normal);
+  box-shadow: var(--shadow-md);
 }
 
 .button--secondary {
   background: var(--button-gray);
   color: var(--text-dark);
+  box-shadow: var(--shadow-sm);
 }
 
 .button--ghost {
@@ -1181,6 +1319,7 @@ Un **Modifier** es una modificador del bloque o elemento que cambia su aparienci
 .button--danger {
   background: var(--button-red);
   color: var(--text-dark);
+  box-shadow: var(--shadow-md);
 }
 
 // Modificadores de TAMAÑO para el bloque .button
@@ -1188,20 +1327,24 @@ Un **Modifier** es una modificador del bloque o elemento que cambia su aparienci
   padding: var(--spacing-size-xss) var(--spacing-size-s);
   font-size: var(--font-size-sm);
   height: 2rem;
+  min-width: var(--width-muy-pequenio);
 }
 
 .button--md {
   padding: var(--spacing-size-xss) var(--spacing-size-m);
   font-size: var(--font-size-md);
   height: 2.75rem;
+  min-width: var(--width-mediano);
 }
 
 .button--lg {
   padding: var(--spacing-size-s) var(--spacing-size-l);
   font-size: var(--font-size-lg);
   height: 3.5rem;
+  min-width: var(--width-estandar);
 }
 
+// Archivo: cofira/src/app/components/shared/alert/alert.scss
 // Modificadores de TIPO para el bloque .alert
 .alert--success {
   background-color: var(--amarillo-normal);
@@ -1227,6 +1370,7 @@ Un **Modifier** es una modificador del bloque o elemento que cambia su aparienci
   color: var(--blanco-normal);
 }
 
+// Archivo: cofira/src/app/components/shared/card/card.scss
 // Modificadores de VARIANTE para el bloque .pricing-card
 .pricing-card--info {
   background: var(--gris-normal);
@@ -1252,10 +1396,33 @@ Un **Modifier** es una modificador del bloque o elemento que cambia su aparienci
   padding: var(--spacing-size-3xl) var(--spacing-size-xl);
 }
 
+// Archivo: cofira/src/app/components/layaout/header/header.scss
 // Modificadores de ESTADO para el bloque .menu-movil
 .menu-movil--abierto {
   visibility: visible;
-  opacity: 1;
+  pointer-events: auto;
+}
+
+.menu-movil--abierto .menu-movil__overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.menu-movil--abierto .menu-movil__contenido {
+  transform: translateX(0);
+}
+
+// Modificadores de ESTADO para el bloque .hamburguesa
+.hamburguesa--abierto .hamburguesa__linea:nth-child(1) {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.hamburguesa--abierto .hamburguesa__linea:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburguesa--abierto .hamburguesa__linea:nth-child(3) {
+  transform: rotate(-45deg) translateY(-10px);
 }
 
 // Modificadores de ELEMENTO (variante de un element)
@@ -1270,6 +1437,23 @@ Un **Modifier** es una modificador del bloque o elemento que cambia su aparienci
   justify-content: center;
   gap: var(--spacing-size-xs);
   margin-top: var(--spacing-size-xs);
+  padding: var(--spacing-size-s);
+  border-top: 1px solid var(--blanco-dark);
+  background: transparent;
+  border-radius: var(--radius-xss);
+}
+
+// Modificadores de visibilidad para desktop/móvil
+.enlaces--desktop {
+  @include responsive-down('md') {
+    display: none;
+  }
+}
+
+.buscador--desktop {
+  @include responsive-down('md') {
+    display: none;
+  }
 }
 ```
 
@@ -1277,60 +1461,322 @@ Un **Modifier** es una modificador del bloque o elemento que cambia su aparienci
 
 #### ¿Cuándo uso clases de estado vs modificadores?
 
-He decidido usar **modificadores BEM** para estados visuales que son parte del diseño del componente, como variantes de color o tamaño. Por otro lado, uso **pseudoclases CSS** y **clases de estado simples** para estados interactivos del usuario.
+He decidido usar **modificadores BEM** para estados visuales que son parte del diseño del componente, como variantes de color o tamaño. Por otro lado, uso **pseudoclases CSS** para estados interactivos del usuario.
 
 **Modificadores BEM para estados de diseño:**
+
+Son estados que forman parte del diseño visual del componente y se activan mediante JavaScript (añadiendo/quitando clases).
+
 ```scss
+// Archivo: cofira/src/app/components/shared/button/button.scss
 // Estado deshabilitado como modificador (parte del diseño)
+.button:disabled,
 .button--disabled {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
+  box-shadow: none;
 }
 
+// Archivo: cofira/src/app/components/layaout/header/header.scss
 // Estado abierto del menú móvil (parte del diseño)
 .menu-movil--abierto {
   visibility: visible;
-  opacity: 1;
+  pointer-events: auto;
 }
 
-// Estado abierto del hamburguesa (cambia visualmente las líneas)
-.hamburguesa.abierto {
-  .hamburguesa__linea:nth-child(1) {
-    transform: rotate(45deg) translateY(10px);
-  }
-  .hamburguesa__linea:nth-child(2) {
-    opacity: 0;
-  }
-  .hamburguesa__linea:nth-child(3) {
-    transform: rotate(-45deg) translateY(-10px);
-  }
+// Estado abierto de la hamburguesa (cambia visualmente las líneas)
+.hamburguesa--abierto .hamburguesa__linea:nth-child(1) {
+  transform: rotate(45deg) translateY(10px);
+}
+
+.hamburguesa--abierto .hamburguesa__linea:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburguesa--abierto .hamburguesa__linea:nth-child(3) {
+  transform: rotate(-45deg) translateY(-10px);
 }
 ```
 
 **Pseudoclases CSS para estados interactivos:**
+
+Son estados que se activan automáticamente por el navegador cuando el usuario interactúa con el elemento (hover, focus, active, disabled).
+
 ```scss
-// Estados de hover, active y focus (interacción del usuario)
-.button--primary {
-  &:hover:not(:disabled) {
-    background: var(--button-yellow-hover);
-    transform: translateY(-2px);
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(0);
-  }
-
-  &:focus {
-    outline: 3px solid var(--amarillo-normal);
-    outline-offset: 2px;
-  }
+// Archivo: cofira/src/app/components/shared/button/button.scss
+// Estados de hover para cada variante
+.button--primary:hover:not(:disabled) {
+  background: var(--button-yellow-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
-// Estado :disabled nativo de HTML
-.button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
+.button--secondary:hover:not(:disabled) {
+  background: var(--button-gray-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.button--ghost:hover:not(:disabled) {
+  background: var(--gris-normal);
+  color: var(--text-dark);
+  border-color: var(--gris-normal-hover);
+}
+
+.button--danger:hover:not(:disabled) {
+  background: var(--button-red-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+// Estados active (cuando el usuario está presionando)
+.button--primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+// Estados focus (para accesibilidad - navegación con teclado)
+.button--primary:focus {
+  outline: 3px solid var(--amarillo-normal);
+  outline-offset: 2px;
+}
+
+.button--secondary:focus {
+  outline: 3px solid var(--gris-normal);
+  outline-offset: 2px;
+}
+
+// Archivo: cofira/src/app/components/shared/alert/alert.scss
+// Hover en la alerta completa
+.alert:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+// Hover en el botón de cerrar
+.alert__cerrar:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.1);
+  transform: rotate(90deg);
+}
+
+// Focus para accesibilidad
+.alert__cerrar:focus {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+// Archivo: cofira/src/app/components/layaout/header/header.scss
+// Hover en los enlaces de navegación
+.menu-movil__link:hover {
+  background: var(--gris-normal-hover);
+  border-left-color: var(--amarillo-normal);
+  transform: translateX(0.5rem);
+}
+
+// Hover en la hamburguesa
+.hamburguesa:hover .hamburguesa__linea {
+  background-color: var(--amarillo-normal);
+}
+
+// Focus para accesibilidad
+.hamburguesa:focus {
+  outline: 2px solid var(--amarillo-normal);
+  outline-offset: 2px;
 }
 ```
+
+
+### 3.3 Style Guide: Incluye capturas de pantalla de tu página de Style Guide mostrando los componentes. Explica para qué sirve (documentación visual, testing, referencia).
+
+#### ¿Qué es el Style Guide y para qué sirve?
+
+El Style Guide es una página especial que he creado dentro de la aplicación Cofira donde se muestran todos los design tokens (colores, tipografías, espaciados, etc.) y todos los componentes reutilizables de la web. Esta página la he implementado como un componente de Angular que se encuentra en `cofira/src/app/pages/style-guide/style-guide.ts`, `cofira/src/app/pages/style-guide/style-guide.html` y `cofira/src/app/pages/style-guide/style-guide.scss`.
+
+He creado esta página porque cumple tres funciones muy importantes:
+
+---
+
+**1. Documentación Visual**
+
+El Style Guide funciona como documentación visual porque muestra de forma clara y organizada todos los elementos de diseño que uso en la aplicación. En vez de tener que buscar en los archivos SCSS qué colores o tamaños de fuente tengo disponibles, puedo abrir el Style Guide y verlos todos de un vistazo con sus códigos hexadecimales y nombres de variables CSS.
+
+Por ejemplo, si estoy desarrollando una nueva página y necesito saber qué colores amarillos tengo disponibles, en vez de ir a buscar en `cofira/src/styles/00-settings/_css-variables.scss` puedo simplemente mirar el Style Guide y ver que tengo desde `--amarillo-normal (#FFD300)` hasta `--amarillo-darker (#594A00)` con todos sus estados hover y active. Lo mismo pasa con la tipografía, los espaciados y los border-radius, todo está documentado visualmente para que cualquier persona que trabaje en el proyecto pueda consultarlo fácilmente sin tener que leer código.
+
+---
+
+**2. Testing Visual**
+
+El Style Guide también sirve como herramienta de testing visual porque al tener todos los componentes reunidos en una sola página puedo detectar rápidamente si algo se ha roto o si los estilos no se están aplicando correctamente.
+
+Por ejemplo, si hago un cambio en las variables de color en `cofira/src/styles/00-settings/_variables.scss` y sin querer rompo algún estilo, al abrir el Style Guide voy a ver inmediatamente que algo no está bien porque todos los componentes que usan esos colores van a verse afectados. Es mucho más fácil detectar errores visuales cuando tienes todos los componentes juntos que cuando están repartidos por toda la aplicación.
+
+También me sirve para probar los diferentes estados de los componentes. Por ejemplo, en la sección de botones puedo ver cómo se ven los botones en sus diferentes variantes (primary, secondary, ghost, danger) y tamaños (sm, md, lg) sin tener que navegar por toda la web buscando dónde está cada tipo de botón. Lo mismo con las alertas y notificaciones, que tienen variantes de success, error, warning e info que puedo probar todas desde el Style Guide usando los botones de demostración que he implementado en `cofira/src/app/pages/style-guide/style-guide.ts`.
+
+---
+
+**3. Referencia para desarrollo**
+
+El Style Guide funciona como referencia para el desarrollo porque cuando necesito usar un componente en alguna parte de la aplicación, puedo ir al Style Guide y ver exactamente cómo se usa, qué propiedades acepta y cómo se ve el resultado final.
+
+Por ejemplo, si quiero añadir un botón en una nueva página, voy al Style Guide y veo que el componente `<app-button>` acepta las propiedades `variante`, `tamanio`, `habilitado` y `tipo`. También veo ejemplos visuales de todas las combinaciones posibles, así que puedo elegir la que mejor se adapte a lo que necesito. Lo mismo con las cards, los inputs, los textareas, los selects, los checkboxes, las alertas y las notificaciones.
+
+Además, el Style Guide me sirve como referencia para mantener la consistencia visual en toda la aplicación. Si tengo dudas sobre qué espaciado usar entre dos elementos, puedo consultar la escala de espaciados y elegir el valor adecuado (`--spacing-size-s`, `--spacing-size-m`, etc.) sabiendo que voy a mantener la coherencia con el resto de la web.
+
+---
+
+#### Capturas de pantalla del Style Guide
+
+A continuación muestro las diferentes secciones del Style Guide con sus capturas de pantalla:
+
+---
+
+**Paleta de colores**
+
+Lo primero que muestra el Style Guide es la paleta de colores que he usado en toda la aplicación. Aquí se muestran los colores principales (amarillo), secundarios (negro), neutros (blanco y gris) y los colores específicos para botones y textos. Cada color aparece con su código hexadecimal y el nombre de la variable CSS asociada para que cualquiera pueda consultarlos fácilmente.
+
+Las variables de colores están definidas en `cofira/src/styles/00-settings/_css-variables.scss` y se exponen como CSS custom properties en `cofira/src/styles/00-settings/_variables.scss`.
+
+![img_5.png](img_5.png)
+![img_6.png](img_6.png)
+![img_7.png](img_7.png)
+
+---
+
+**Escala tipográfica**
+
+A continuación se muestra la escala tipográfica utilizada en la web con ejemplos visuales de cada tamaño de fuente y su uso recomendado (h1, h2, párrafos, etc.). También aparece el nombre de la variable CSS asociada a cada tamaño, desde `--font-size-xs (0.64rem)` hasta `--font-size-5xl (3.815rem)`.
+
+La escala tipográfica sigue un ratio de 1.25x (Major Third) y está definida en `cofira/src/styles/00-settings/_css-variables.scss`. Las familias tipográficas que uso son Montserrat para textos (`--font-primary`) y Poppins para títulos (`--font-secondary`).
+
+![img_8.png](img_8.png)
+![img_9.png](img_9.png)
+
+---
+
+**Pesos tipográficos**
+
+A continuación se muestran los diferentes pesos de la tipografía usados en la web con ejemplos visuales de cada peso (light, regular, medium, semibold, bold) y el nombre de la variable CSS asociada. Los pesos altos los uso para los títulos y los pesos medios para los párrafos y textos secundarios.
+
+Los pesos están definidos en `cofira/src/styles/00-settings/_css-variables.scss` y van desde `--font-weight-light (300)` hasta `--font-weight-bold (700)`.
+
+![img_10.png](img_10.png)
+
+---
+
+**Escala de espaciados**
+
+En esta parte se muestra la escala de espaciados utilizada en la web con ejemplos visuales de cada tamaño de espaciado (xss, xs, s, m, l, xl, xxl, etc.) y el nombre de la variable CSS asociada. Estos espaciados los uso para márgenes y paddings en los diferentes componentes para mantener la consistencia visual en toda la aplicación.
+
+La escala de espaciados está definida en `cofira/src/styles/00-settings/_css-variables.scss` y va desde `--spacing-size-xss (0.5rem)` hasta `--spacing-size-xxxxxl (8.75rem)`.
+
+![img_11.png](img_11.png)
+
+---
+
+**Animaciones y border radius**
+
+Aquí se muestra la duración de las animaciones usadas en la web con ejemplos visuales de cada duración (fast, base, slow, slower) y el nombre de la variable CSS asociada. Estas duraciones las uso para transiciones y animaciones en los componentes para mejorar la experiencia de usuario.
+
+También se muestra el border radius usado en la web con ejemplos visuales de cada tamaño (xss, xs, s, m, l) y el nombre de la variable CSS asociada. Estos border radius los uso para redondear los bordes de los componentes y darles un aspecto más amigable.
+
+Las duraciones y los border radius están definidos en `cofira/src/styles/00-settings/_css-variables.scss`.
+
+![img_12.png](img_12.png)
+
+---
+
+**Componentes Header y Footer**
+
+A continuación se muestra el componente header y footer que sirven para ser reutilizables en las páginas de la web y mantener la consistencia visual. El header contiene el logo, el menú de navegación y el buscador, mientras que el footer contiene los enlaces a las redes sociales y la información legal.
+
+El header está implementado en `cofira/src/app/components/layaout/header/header.ts`, `cofira/src/app/components/layaout/header/header.html` y `cofira/src/app/components/layaout/header/header.scss`. El footer está implementado en `cofira/src/app/components/layaout/footer/footer.ts`, `cofira/src/app/components/layaout/footer/footer.html` y `cofira/src/app/components/layaout/footer/footer.scss`.
+
+![img_13.png](img_13.png)
+
+---
+
+**Componente Button**
+
+A continuación se muestra el componente button que sirve para crear botones reutilizables en la web con diferentes variantes (primary, secondary, ghost, danger) y tamaños (sm, md, lg). Estos botones los uso en diferentes partes de la web para acciones como inscribirse, enviar formularios o cancelar acciones.
+
+El componente está implementado en `cofira/src/app/components/shared/button/button.ts`, `cofira/src/app/components/shared/button/button.html` y `cofira/src/app/components/shared/button/button.scss`. Acepta las propiedades `variante`, `tamanio`, `habilitado` y `tipo`.
+
+![img_14.png](img_14.png)
+
+---
+
+**Componente Card**
+
+A continuación se muestra el componente card que sirve para mostrar información de los planes de suscripción de forma visual y atractiva. Estas cards tienen diferentes variantes (planes, info) y tamaños (sm, md, lg) y las uso para mostrar los diferentes planes de pago con sus ventajas y precios.
+
+El componente está implementado en `cofira/src/app/components/shared/card/card.ts`, `cofira/src/app/components/shared/card/card.html` y `cofira/src/app/components/shared/card/card.scss`. Acepta las propiedades `title`, `ventajas`, `texto_boton`, `precio`, `variante`, `tamanio` y `deshabilitada`.
+
+![img_15.png](img_15.png)
+
+---
+
+**Componente Input**
+
+A continuación se muestra el componente input que sirve para crear campos de entrada reutilizables en los formularios de la web. Estos inputs incluyen la etiqueta, el input y los mensajes de error/ayuda todo en uno. Los uso en diferentes formularios para recoger datos del usuario como nombre, email o contraseña.
+
+El componente está implementado en `cofira/src/app/components/shared/form-input/form-input.ts`, `cofira/src/app/components/shared/form-input/form-input.html` y `cofira/src/app/components/shared/form-input/form-input.scss`. Acepta las propiedades `label`, `name`, `type`, `placeholder`, `required`, `errorMessage`, `helpText` y `control`.
+
+![img_16.png](img_16.png)
+
+---
+
+**Componente Textarea**
+
+A continuación se muestra el componente textarea que sirve para crear áreas de texto reutilizables en los formularios de la web. Estos textareas incluyen la etiqueta, el área de texto y los mensajes de error/ayuda todo en uno. Los uso en formularios donde se necesita que el usuario introduzca textos más largos como descripciones o mensajes.
+
+El componente está implementado en `cofira/src/app/components/shared/form-textarea/form-textarea.ts`, `cofira/src/app/components/shared/form-textarea/form-textarea.html` y `cofira/src/app/components/shared/form-textarea/form-textarea.scss`.
+
+![img_17.png](img_17.png)
+
+---
+
+**Componente Select**
+
+A continuación se muestra el componente select que sirve para crear selectores desplegables reutilizables en los formularios de la web. Estos selects permiten al usuario elegir entre opciones predefinidas y los uso en formularios para seleccionar objetivos de entrenamiento, días de ejercicio, etc.
+
+El componente está implementado en `cofira/src/app/components/shared/form-select/form-select.ts`, `cofira/src/app/components/shared/form-select/form-select.html` y `cofira/src/app/components/shared/form-select/form-select.scss`. Acepta la propiedad `options` que es un array de strings con las opciones disponibles.
+
+![img_18.png](img_18.png)
+
+---
+
+**Componente Checkbox**
+
+A continuación se muestra el componente checkbox que sirve para crear casillas de verificación reutilizables en los formularios de la web. Estos checkboxes incluyen la etiqueta asociada y los uso en formularios para aceptar términos y condiciones, suscripciones a newsletters, etc.
+
+El componente está implementado en `cofira/src/app/components/shared/form-checkbox/form-checkbox.ts`, `cofira/src/app/components/shared/form-checkbox/form-checkbox.html` y `cofira/src/app/components/shared/form-checkbox/form-checkbox.scss`.
+
+![img_19.png](img_19.png)
+
+---
+
+**Formularios de Contacto y Registro**
+
+A continuación se muestran los componentes de contacto y registro que sirven para proporcionar formularios completos de contacto y registro de usuarios. Estos formularios incluyen todos los campos necesarios con sus respectivas validaciones y los uso para que los usuarios puedan comunicarse con nosotros o registrarse en la aplicación.
+
+El formulario de contacto está implementado en `cofira/src/app/components/shared/form-contact/form-contact.ts` y el de registro en `cofira/src/app/components/shared/form-register/form-register.ts`. Ambos usan Reactive Forms de Angular con validaciones como `Validators.required`, `Validators.email` y `Validators.minLength`.
+
+![img_20.png](img_20.png)
+
+---
+
+**Componentes Alert y Notification**
+
+A continuación se muestran los componentes alerta y notificación que sirven para mostrar mensajes de alerta y notificaciones temporales al usuario. Estos componentes tienen diferentes variantes (success, error, warning, info) y los uso para comunicar al usuario diferentes tipos de mensajes como éxitos, errores, advertencias o información general.
+
+La alerta está implementada en `cofira/src/app/components/shared/alert/alert.ts`, `cofira/src/app/components/shared/alert/alert.html` y `cofira/src/app/components/shared/alert/alert.scss`. Acepta las propiedades `type`, `message` y `closable`.
+
+La notificación está implementada en `cofira/src/app/components/shared/notification/notification.ts` y `cofira/src/app/components/shared/notification/notification.scss`. Acepta las propiedades `type`, `message`, `duration` y `closable`, y tiene un evento `onClose` que se emite cuando la notificación se cierra.
+
+En el Style Guide he añadido botones de demostración para probar las notificaciones de forma interactiva, la lógica está en `cofira/src/app/pages/style-guide/style-guide.ts` donde implemento el método `mostrarNotificacion()` que añade notificaciones al array y las muestra en pantalla.
+
+![img_21.png](img_21.png)
+![img_22.png](img_22.png)
