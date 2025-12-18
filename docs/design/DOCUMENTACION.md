@@ -209,10 +209,6 @@ styles/
 ├── 07-dark-mode/
 │   ├── _dark-mode-config.scss
 │   └── _dark-mode.scss
-├── objects/
-│   └── _objetcs.scss
-├── utilities/
-│   └── _utilities.scss
 ```
 
 ### Explicación del orden (de menor a mayor especificidad)
@@ -253,11 +249,18 @@ styles/
 - **Propósito:** Estilos de componentes reutilizables
 - **Ejemplo:** Inputs, cards, botones
 
-**06-utilities/** (y carpetas `objects/`, `utilities/`)
+**06-utilities/**  - Clases unitarias
 
 - **Especificidad:** Muy alta ya que aqui definiremos los componentes de forma individual.
 - **Propósito:** Clases de una sola responsabilidad que sobrescriben otros estilos.
 - **Ejemplo:** `.text-center`, `.m-2`, `.hidden`
+
+
+**07-dark-mode/** - Dark mode
+
+- **Especificidad:** Muy alta ya que aqui definiremos los componentes de forma individual para el dark mode.
+- **Propósito:** Permitir cambiar los estilos de toda la web al modo oscuro, de una forma mucho más centralizada y ordenada en vez de tener todas estas clases en un mismo fichero junto con los estilos del modo claro.
+- **Ejemplo:** `.app-header .menu-cuenta`, `.app-header .menu-cuenta__item`, `.typography-item`
 
 Esta estructura sigue el principio ITCSS de "cascada invertida", donde los estilos van de lo más genérico y reutilizable
 a lo más específico y concreto, evitando problemas de especificidad y facilitando el mantenimiento del código.
@@ -354,8 +357,8 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --button-darker: #32373D;
   --button-darker-hover: #26292E;
   ```
-- Por qué esa escala tipográfica
-    - Porque es una escala muy ajustable a cualquier diseño que quieras hacer además de que es la más usada en diseño
+- ¿Por qué esa escala tipográfica?
+    - He usado esta escala de tipografía porque es una escala muy ajustable a cualquier diseño que quieras hacer además de que es la más usada en diseño
       web, ya que permite crear jerarquías visuales claras y consistentes.
   ```css
   
@@ -370,8 +373,8 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --font-size-4xl: 3.052rem; /* 48.8px */
   --font-size-5xl: 3.815rem; /* 61px */
   ```
-- Por qué esos breakpoints
-    - Porque son los más comunes en dispositivos y permiten que el diseño sea responsive en la mayoría de dispositivos.
+- ¿Por qué esos breakpoints?
+    - He usado estos breakpoints porque son los más comunes entre dispositivos y permiten que el diseño sea responsive en la mayoría de dispositivos.
   ```css
     
     // Mobile Grande / Phablets
@@ -410,17 +413,25 @@ Cree estos mixins para facilitar la creación de layouts flexibles y reutilizabl
     align-items: center;
 }
 
-// Flex con wrap (cuando los elementos no caben)
-@mixin flex-wrap($gap: 1rem) {
-    display: flex;
-    flex-wrap: wrap;
-    gap: $ gap;
+// Tipografia para textos (p, span, etc)
+// Usa --font-primary (Montserrat)
+// Uso: @include tipografia-texto;
+@mixin tipografia-texto {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-regular);
+    line-height: var(--line-height-normal);
 }
+    
+    
+    
+// Mixin para labels de formulario
 
-// Flex completo (ocupa todo el ancho)
-@mixin flex-full {
-    display: flex;
-    width: 100%;
+@mixin form-label {
+    color: var(--blanco-normal);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-regular);
+    font-family: var(--font-secondary);
+    margin-bottom: var(--spacing-size-xss);
 }
 
 ```
@@ -1594,11 +1605,7 @@ Además, el Style Guide me sirve como referencia para mantener la consistencia v
 
 ---
 
-#### Capturas de pantalla del Style Guide
-
-A continuación muestro las diferentes secciones del Style Guide con sus capturas de pantalla:
-
----
+#### Capturas de pantalla del style guide y explicaciones
 
 **Paleta de colores**
 
