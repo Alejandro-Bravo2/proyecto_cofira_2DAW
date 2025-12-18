@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class Header {
   menuAbierto = false;

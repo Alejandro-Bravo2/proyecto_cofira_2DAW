@@ -1,0 +1,600 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+
+   ███╗   ███╗ ██████╗ ██████╗  ██████╗      ██████╗ ███████╗ ██████╗██╗   ██╗██████╗  ██████╗
+   ████╗ ████║██╔═══██╗██╔══██╗██╔═══██╗    ██╔═══██╗██╔════╝██╔════╝██║   ██║██╔══██╗██╔═══██╗
+   ██╔████╔██║██║   ██║██║  ██║██║   ██║    ██║   ██║███████╗██║     ██║   ██║██████╔╝██║   ██║
+   ██║╚██╔╝██║██║   ██║██║  ██║██║   ██║    ██║   ██║╚════██║██║     ██║   ██║██╔══██╗██║   ██║
+   ██║ ╚═╝ ██║╚██████╔╝██████╔╝╚██████╔╝    ╚██████╔╝███████║╚██████╗╚██████╔╝██║  ██║╚██████╔╝
+   ╚═╝     ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝      ╚═════╝ ╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝ ╚═════╝
+
+   SISTEMA DE MODO OSCURO - COFIRA
+   ═══════════════════════════════════════════════════════════════════════════
+
+
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │                                                                         │
+   │   📁 ESTRUCTURA DE ARCHIVOS                                             │
+   │   ─────────────────────────────────────────────────────────────────     │
+   │                                                                         │
+   │   styles/07-dark-mode/                                                  │
+   │   ├── _dark-mode-config.scss  ← CONFIGURACIÓN (edita aquí los colores) │
+   │   └── _dark-mode.scss         ← APLICACIÓN (este archivo)              │
+   │                                                                         │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │                                                                         │
+   │   🎯 GUÍA RÁPIDA DE USO                                                 │
+   │   ─────────────────────────────────────────────────────────────────     │
+   │                                                                         │
+   │   ¿QUIERES CAMBIAR UN COLOR DEL MODO OSCURO?                            │
+   │                                                                         │
+   │   1. Abre: _dark-mode-config.scss                                       │
+   │   2. Busca la sección del componente (Cabecera, Pie, Tarjetas, etc.)    │
+   │   3. Modifica la variable --oscuro-xxx que necesites                    │
+   │   4. Guarda y recarga ¡Listo!                                           │
+   │                                                                         │
+   │   Ejemplo: Cambiar el fondo de la cabecera                              │
+   │   --oscuro-cabecera-fondo: var(--negro-dark);  ← Cambia esto            │
+   │                                                                         │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │                                                                         │
+   │   📋 ÍNDICE DE SECCIONES                                                │
+   │   ─────────────────────────────────────────────────────────────────     │
+   │                                                                         │
+   │   Busca (Ctrl+F):       │ Para ir a:                                    │
+   │   ─────────────────────┼─────────────────────────────                   │
+   │   SECCION-CABECERA     │ Cabecera / Navegación                          │
+   │   SECCION-MENU         │ Menú desplegable de cuenta                     │
+   │   SECCION-MOVIL        │ Menú móvil (hamburguesa)                       │
+   │   SECCION-PIE          │ Pie de página (Footer)                         │
+   │   SECCION-TARJETAS     │ Tarjetas / Cards                               │
+   │   SECCION-FORMULARIOS  │ Formularios                                    │
+   │   SECCION-INPUTS       │ Inputs globales                                │
+   │   SECCION-ALERTAS      │ Alertas                                        │
+   │   SECCION-GUIA         │ Página Guía de Estilos                         │
+   │                                                                         │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │                                                                         │
+   │   ⚠️  IMPORTANTE - ¿POR QUÉ ESTÁ AQUÍ ESTE ARCHIVO?                     │
+   │   ─────────────────────────────────────────────────────────────────     │
+   │                                                                         │
+   │   Angular usa "View Encapsulation" que impide que los estilos de        │
+   │   componentes sean afectados por selectores externos como               │
+   │   body.modo-oscuro.                                                     │
+   │                                                                         │
+   │   Por eso, todos los estilos de modo oscuro DEBEN estar en este         │
+   │   archivo global, y usamos el prefijo del componente Angular            │
+   │   (ej: app-header, app-footer) para ser específicos.                    │
+   │                                                                         │
+   │   NO muevas estos estilos a los archivos .scss de los componentes       │
+   │   porque NO funcionarán.                                                │
+   │                                                                         │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* Importar configuración de variables */
+@import 'dark-mode-config';
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   APLICACIÓN DE ESTILOS MODO OSCURO
+   ═══════════════════════════════════════════════════════════════════════════
+   Aquí se aplican las variables definidas en _dark-mode-config.scss
+   a cada componente de la aplicación.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+body.modo-oscuro {
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-CABECERA: NAVEGACIÓN PRINCIPAL
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Componente: app-header
+     Archivo original: components/layaout/header/header.scss
+
+     ┌──────────────────────────────────────────────────────────────────────────┐
+     │ [Logo]  [Enlaces]  [=Buscador=]  [Inscríbete] [Cuenta]  [≡ Hamburguesa] │
+     └──────────────────────────────────────────────────────────────────────────┘
+
+     Variables para modificar (en _dark-mode-config.scss):
+     - --oscuro-cabecera-fondo              → Fondo de la cabecera
+     - --oscuro-cabecera-borde              → Borde inferior
+     - --oscuro-cabecera-enlace             → Color de enlaces
+     - --oscuro-cabecera-enlace-hover       → Enlaces al pasar el ratón
+     - --oscuro-cabecera-buscador-fondo     → Fondo del buscador
+     - --oscuro-cabecera-buscador-texto     → Texto del buscador
+     - --oscuro-cabecera-boton-primario-*   → Botón "Inscríbete"
+     - --oscuro-cabecera-boton-secundario-* → Botón "Cuenta"
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* --- Nav container --- */
+  app-header nav {
+    background: var(--oscuro-superficie-fondo);
+    border-bottom: 0.0625rem solid var(--oscuro-cabecera-borde);
+  }
+
+  /* --- Enlaces de navegación --- */
+  app-header .enlaces a {
+    color: var(--oscuro-cabecera-enlace);
+  }
+
+  app-header .enlaces a:hover {
+    color: var(--oscuro-cabecera-enlace-hover);
+  }
+
+  /* --- Buscador --- */
+  app-header .buscador__input {
+    background: var(--oscuro-cabecera-buscador-fondo);
+    color: var(--oscuro-cabecera-buscador-texto);
+    border: 0.0625rem solid var(--oscuro-borde-suave);
+  }
+
+  app-header .buscador__input::placeholder {
+    color: var(--oscuro-cabecera-buscador-placeholder);
+  }
+
+  app-header .buscador__icono {
+    color: var(--oscuro-cabecera-buscador-icono);
+  }
+
+  /* --- Botón Inscríbete (primario/amarillo) --- */
+  app-header .boton-inscribete {
+    background: var(--oscuro-cabecera-boton-primario-fondo);
+    color: var(--oscuro-cabecera-boton-primario-texto);
+  }
+
+  app-header .boton-inscribete:hover {
+    background: var(--oscuro-cabecera-boton-primario-hover);
+    color: var(--oscuro-cabecera-boton-primario-texto);
+  }
+
+  /* --- Botón Cuenta (secundario/outline) --- */
+  app-header .boton-cuenta {
+    background: var(--oscuro-cabecera-boton-secundario-fondo);
+    border-color: var(--oscuro-cabecera-boton-secundario-borde);
+    color: var(--oscuro-cabecera-boton-secundario-texto);
+  }
+
+  app-header .boton-cuenta:hover {
+    background: var(--oscuro-cabecera-boton-secundario-hover-fondo);
+    border-color: var(--oscuro-cabecera-boton-secundario-hover-color);
+    color: var(--oscuro-cabecera-boton-secundario-hover-color);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-MENU: MENÚ DESPLEGABLE DE CUENTA
+     ═══════════════════════════════════════════════════════════════════════════
+
+     El dropdown que aparece al hacer clic en "Cuenta"
+
+     ┌─────────────────┐
+     │ Mi Perfil       │
+     │ Configuración   │
+     │ Cerrar Sesión   │
+     └─────────────────┘
+
+     Variables: --oscuro-menu-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  app-header .menu-cuenta {
+    background: var(--oscuro-menu-fondo);
+    border: 0.0625rem solid var(--oscuro-menu-borde);
+    box-shadow: 0 0.5rem 1.5rem var(--oscuro-menu-sombra);
+  }
+
+  app-header .menu-cuenta__item {
+    color: var(--oscuro-menu-item-texto);
+  }
+
+  app-header .menu-cuenta__item:hover {
+    background: var(--oscuro-menu-item-hover-fondo);
+    color: var(--oscuro-menu-item-hover-texto);
+  }
+
+  app-header .menu-cuenta__icono {
+    color: var(--oscuro-menu-icono);
+  }
+
+  app-header .menu-cuenta__item:hover .menu-cuenta__icono {
+    color: var(--oscuro-menu-item-hover-texto);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-MOVIL: MENÚ MÓVIL (HAMBURGUESA)
+     ═══════════════════════════════════════════════════════════════════════════
+
+     El menú lateral que aparece en móvil al tocar ≡
+
+     Variables: --oscuro-menu-movil-*, --oscuro-hamburguesa-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  app-header .menu-movil__contenido {
+    background: var(--oscuro-menu-movil-fondo);
+  }
+
+  app-header .menu-movil__header {
+    background: var(--oscuro-menu-movil-cabecera-fondo);
+  }
+
+  app-header .menu-movil__link:hover {
+    background: var(--oscuro-menu-movil-enlace-hover);
+  }
+
+  /* --- Icono hamburguesa (las 3 líneas) --- */
+  app-header .hamburguesa__linea {
+    background-color: var(--oscuro-hamburguesa-color);
+  }
+
+  app-header .hamburguesa:hover .hamburguesa__linea {
+    background-color: var(--oscuro-hamburguesa-hover);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-PIE: PIE DE PÁGINA (FOOTER)
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Componente: app-footer
+     Archivo original: components/layaout/footer/footer.scss
+
+     ┌──────────────────────────────────────────────────────────────────────────┐
+     │ [Condiciones de uso]      © Copyright Cofira      [YT][FB][TW][IG][LI]  │
+     └──────────────────────────────────────────────────────────────────────────┘
+
+     Variables: --oscuro-pie-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  app-footer .footer {
+    background: var(--oscuro-pie-fondo);
+    border-top-color: var(--oscuro-pie-borde);
+  }
+
+  app-footer .footer__link {
+    color: var(--oscuro-pie-texto);
+  }
+
+  app-footer .footer__link:hover {
+    color: var(--oscuro-pie-enlace-hover);
+  }
+
+  app-footer .footer__copyright {
+    color: var(--oscuro-pie-texto);
+  }
+
+  /* --- Iconos de redes sociales --- */
+  app-footer .footer__social {
+    background: var(--oscuro-pie-social-fondo);
+    color: var(--oscuro-pie-social-icono);
+  }
+
+  app-footer .footer__social:hover {
+    background: var(--oscuro-pie-social-hover-fondo);
+    color: var(--oscuro-pie-social-hover-icono);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-TARJETAS: TARJETAS (CARDS)
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Archivo original: styles/05-components/_tarjeta.scss
+
+     ┌─────────────────────────┐
+     │      [Imagen]           │
+     │ ─────────────────────── │
+     │ Título de la tarjeta    │
+     │ Descripción o contenido │
+     │ ─────────────────────── │
+     │      [Acciones]         │
+     └─────────────────────────┘
+
+     Variables: --oscuro-tarjeta-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  .tarjeta {
+    background: var(--oscuro-tarjeta-fondo);
+    border-color: var(--oscuro-tarjeta-borde);
+  }
+
+  .tarjeta__titulo {
+    color: var(--oscuro-tarjeta-titulo);
+  }
+
+  .tarjeta__contenido {
+    color: var(--oscuro-tarjeta-contenido);
+  }
+
+  .tarjeta__pie {
+    border-top-color: var(--oscuro-tarjeta-pie-borde);
+  }
+
+  .tarjeta--destacada {
+    border-color: var(--oscuro-tarjeta-destacada-borde);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-FORMULARIOS: FORMULARIOS
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Archivo original: styles/05-components/_formulario.scss
+
+     Incluye: labels, inputs, textareas, selects, mensajes de ayuda
+
+     Variables: --oscuro-formulario-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  .formulario__etiqueta {
+    color: var(--oscuro-formulario-etiqueta);
+  }
+
+  .formulario__campo {
+    background-color: var(--oscuro-formulario-campo-fondo);
+    color: var(--oscuro-formulario-campo-texto);
+    border-color: var(--oscuro-formulario-campo-borde);
+  }
+
+  .formulario__campo:focus {
+    border-color: var(--oscuro-formulario-campo-foco-borde);
+    background-color: var(--oscuro-formulario-campo-foco-fondo);
+  }
+
+  .formulario__campo::placeholder {
+    color: var(--oscuro-formulario-placeholder);
+  }
+
+  .formulario__textarea {
+    background-color: var(--oscuro-formulario-campo-fondo);
+    color: var(--oscuro-formulario-campo-texto);
+  }
+
+  .formulario__select {
+    background-color: var(--oscuro-formulario-campo-fondo);
+    color: var(--oscuro-formulario-campo-texto);
+  }
+
+  .formulario__ayuda {
+    color: var(--oscuro-formulario-ayuda-texto);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-INPUTS: INPUTS GLOBALES (clase .input)
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Archivo original: styles/05-components/_inputs.scss
+
+     Variables: --oscuro-input-campo-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  .input {
+    background: var(--oscuro-input-campo-fondo);
+    color: var(--oscuro-input-campo-texto);
+    border-color: var(--oscuro-input-campo-borde);
+  }
+
+  .input:focus {
+    border-color: var(--oscuro-input-campo-foco);
+  }
+
+  .input::placeholder {
+    color: var(--oscuro-formulario-placeholder);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-ALERTAS: ALERTAS Y NOTIFICACIONES
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Archivo original: styles/05-components/_alerta.scss
+
+     Variables: --oscuro-alerta-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  .alerta {
+    border: 0.0625rem solid var(--oscuro-alerta-borde);
+  }
+
+  .alerta--info {
+    background-color: var(--oscuro-alerta-info-fondo);
+    border-color: var(--oscuro-alerta-info-borde);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-GUIA: PÁGINA GUÍA DE ESTILOS
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Página de documentación de estilos: /style-guide
+
+     Variables: --oscuro-guia-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  .style-guide {
+    background-color: var(--oscuro-guia-fondo);
+  }
+
+  .style-guide__header {
+    border-bottom-color: var(--oscuro-borde-color);
+  }
+
+  .style-guide__header h1 {
+    color: var(--oscuro-texto-principal);
+  }
+
+  .style-guide__header p {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  .style-guide__section {
+    border-bottom-color: var(--oscuro-borde-color);
+  }
+
+  .style-guide__title {
+    color: var(--oscuro-guia-titulo);
+    border-bottom-color: var(--amarillo-dark);
+  }
+
+  .style-guide__component h3 {
+    color: var(--oscuro-guia-subtitulo);
+  }
+
+  .style-guide__description {
+    color: var(--oscuro-guia-descripcion);
+  }
+
+  .style-guide__demo {
+    background-color: var(--oscuro-guia-demo-fondo);
+    border-color: var(--oscuro-guia-demo-borde);
+  }
+
+  .style-guide__footer {
+    border-top-color: var(--oscuro-borde-color);
+  }
+
+  .style-guide__footer p {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* --- Tarjetas de colores --- */
+  .color-card {
+    background: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  .color-card__title,
+  .color-name {
+    color: var(--oscuro-texto-principal);
+  }
+
+  /* --- Elementos de tipografía --- */
+  .typography-item {
+    background: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  .typography-sample {
+    color: var(--oscuro-texto-principal);
+  }
+
+  .typography-info {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* --- Elementos de espaciado --- */
+  .spacing-item {
+    background: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  .spacing-info span {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* --- Elementos de animación --- */
+  .animation-item {
+    background: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  .animation-item code {
+    color: var(--oscuro-texto-secundario);
+    background: var(--oscuro-pagina-fondo);
+  }
+
+  /* --- Elementos de radio/bordes --- */
+  .radius-item {
+    background: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  .radius-item span {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* --- Notas informativas --- */
+  .style-guide__note {
+    background-color: var(--oscuro-guia-nota-fondo);
+    border-left-color: var(--oscuro-guia-nota-borde);
+    color: var(--oscuro-texto-principal);
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+
+   📝 ¿NECESITAS AÑADIR UN NUEVO COMPONENTE AL MODO OSCURO?
+   ═══════════════════════════════════════════════════════════════════════════
+
+   Sigue estos 3 pasos:
+
+   ───────────────────────────────────────────────────────────────────────────
+   PASO 1: Añade las variables en _dark-mode-config.scss
+   ───────────────────────────────────────────────────────────────────────────
+
+   Busca la sección adecuada (o crea una nueva) y añade:
+
+   --oscuro-mi-componente-fondo: var(--gris-normal);
+   --oscuro-mi-componente-texto: var(--blanco-normal);
+   --oscuro-mi-componente-borde: var(--gris-normal-hover);
+
+
+   ───────────────────────────────────────────────────────────────────────────
+   PASO 2: Añade los estilos aquí (en este archivo)
+   ───────────────────────────────────────────────────────────────────────────
+
+   Crea una nueva sección con el formato:
+
+   /* ═══════════════════════════════════════════════════════════════════════
+      SECCION-MICOMPONENTE: NOMBRE DEL COMPONENTE
+      ═══════════════════════════════════════════════════════════════════════
+
+      Descripción breve del componente.
+
+      Variables: --oscuro-mi-componente-*
+
+      ═══════════════════════════════════════════════════════════════════════ * /
+
+   .mi-componente {
+     background: var(--oscuro-mi-componente-fondo);
+     color: var(--oscuro-mi-componente-texto);
+     border-color: var(--oscuro-mi-componente-borde);
+   }
+
+
+   ───────────────────────────────────────────────────────────────────────────
+   PASO 3: Si es un componente Angular, usa el prefijo
+   ───────────────────────────────────────────────────────────────────────────
+
+   Para componentes Angular, añade el selector del componente:
+
+   app-mi-componente .clase-interna {
+     background: var(--oscuro-mi-componente-fondo);
+   }
+
+   Esto es necesario porque Angular encapsula los estilos.
+
+
+   ═══════════════════════════════════════════════════════════════════════════ */

@@ -1,195 +1,217 @@
-// ========================================
-// COMPONENTE: ALERT
-// Sistema de alertas con 4 tipos: success, error, warning, info
-// Usa únicamente variables del sistema ITCSS
-// ========================================
+/**
+ * ALERT COMPONENT
+ * ─────────────────────────────────────────────────────────────────────────
+ * Block: .alert
+ *
+ * Elements:
+ * - .alert__icono: Icono de la alerta (obligatorio)
+ * - .alert__mensaje: Texto del mensaje (obligatorio)
+ * - .alert__cerrar: Botón para cerrar la alerta (opcional)
+ *
+ * Modifiers:
+ * - TYPE: --success | --error | --warning | --info
+ * - STATE: :hover
+ *
+ * HTML Example:
+ * <div class="alert alert--success">
+ *   <figure class="alert__icono">✓</figure>
+ *   <p class="alert__mensaje">Operación completada</p>
+ *   <button class="alert__cerrar">×</button>
+ * </div>
+ */
 
-// BASE DEL COMPONENTE
-// ========================================
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Contenedor de la alerta
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 .alert {
-  // Layout
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-size-s);
-
-  // Espaciado
+  display: flex; /* Estructura horizontal */
+  align-items: center; /* Centra verticalmente */
+  gap: var(--spacing-size-s); /* Espacio entre elementos */
   padding: var(--spacing-size-s) var(--spacing-size-m);
   margin-bottom: var(--spacing-size-s);
-
-  // Bordes y sombras
   border-radius: var(--radius-xss);
-  border-left: 4px solid;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
-  // Tipografía
+  border-left: 0.25rem solid; /* Borde izquierdo como indicador de tipo */
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
-
-  // Animaciones
   transition: all var(--duration-base) ease;
-  animation: slideIn var(--duration-base) ease;
-
-  // Efecto hover
-  &:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-  }
+  animation: alertSlideIn var(--duration-base) ease;
 }
 
-// ICONO
-// ========================================
+/* Efecto hover en la alerta */
+.alert:hover {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-0.125rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENTS: Partes internas de la alerta
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * .alert__icono
+ * Icono de la alerta. Debe ser un emoji, <i>, o SVG
+ * flex-shrink: 0 es CRÍTICO para mantener el tamaño original
+ */
 .alert__icono {
-  // Layout
-  flex-shrink: 0;
+  flex-shrink: 0; /* CLAVE: No se encoge aunque falte espacio */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  // Tamaño
   width: 1.5rem;
   height: 1.5rem;
-
-  // Resetear estilos de figure
-  margin: 0;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+  margin: 0; /* Resetear estilos de figure */
 }
 
-// MENSAJE
-// ========================================
-.alert__mensaje {
-  // Layout
-  flex: 1;
+.alert__icono svg {
+  width: 100%;
+  height: 100%;
+}
 
-  // Tipografía
+/**
+ * .alert__mensaje
+ * Texto principal de la alerta
+ * flex: 1 hace que ocupe todo el espacio disponible
+ */
+.alert__mensaje {
+  flex: 1; /* Crece para llenar el espacio disponible */
   line-height: var(--line-height-normal);
   font-weight: var(--font-weight-medium);
-
-  // Espaciado
   margin: 0;
 }
 
-// BOTÓN CERRAR
-// ========================================
+/**
+ * .alert__cerrar
+ * Botón para cerrar la alerta
+ * Propósito: Permite al usuario descartar la alerta manualmente
+ */
 .alert__cerrar {
-  // Layout
-  flex-shrink: 0;
+  flex-shrink: 0; /* CLAVE: No se encoge */
   display: flex;
   align-items: center;
   justify-content: center;
-
-  // Estilos
   background: transparent;
   border: none;
   cursor: pointer;
-
-  // Espaciado
   padding: 0.25rem;
-
-  // Forma
   border-radius: 50%;
-
-  // Visual
   opacity: 0.7;
   transition: all var(--duration-fast) ease;
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  // Efecto hover
-  &:hover {
-    opacity: 1;
-    background: rgba(0, 0, 0, 0.1);
-    transform: rotate(90deg);
-  }
 }
 
-// MODIFICADORES POR TIPO
-// ========================================
+.alert__cerrar svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
 
-// SUCCESS - Amarillo (éxito/confirmación)
+.alert__cerrar:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.1);
+  transform: rotate(90deg);
+}
+
+.alert__cerrar:focus {
+  outline: 0.125rem solid currentColor;
+  outline-offset: 0.125rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODIFIERS DE TIPO
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * .alert--success
+ * Tipo éxito - Para confirmaciones y operaciones exitosas
+ * Color: Amarillo (siguiendo el sistema de diseño)
+ */
 .alert--success {
   background-color: var(--amarillo-normal);
   border-left-color: var(--amarillo-dark);
   color: var(--negro-normal);
-
-  .alert__icono svg {
-    fill: var(--amarillo-darker);
-  }
-
-  .alert__cerrar svg {
-    fill: var(--negro-normal);
-  }
 }
 
-// ERROR - Rojo
+.alert--success .alert__icono svg {
+  fill: var(--amarillo-darker);
+}
+
+.alert--success .alert__cerrar svg {
+  fill: var(--negro-normal);
+}
+
+/**
+ * .alert--error
+ * Tipo error - Para errores y fallos críticos
+ * Color: Rojo
+ */
 .alert--error {
   background-color: var(--button-red);
   border-left-color: var(--button-red-hover);
   color: var(--blanco-normal);
-
-  .alert__icono svg {
-    fill: var(--blanco-normal);
-  }
-
-  .alert__cerrar svg {
-    fill: var(--blanco-normal);
-  }
-
-  &:hover {
-    .alert__cerrar {
-      background: rgba(255, 255, 255, 0.2);
-    }
-  }
 }
 
-// WARNING - Amarillo claro (advertencia)
+.alert--error .alert__icono svg {
+  fill: var(--blanco-normal);
+}
+
+.alert--error .alert__cerrar svg {
+  fill: var(--blanco-normal);
+}
+
+.alert--error:hover .alert__cerrar {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/**
+ * .alert--warning
+ * Tipo advertencia - Para avisos importantes
+ * Color: Amarillo claro
+ */
 .alert--warning {
   background-color: var(--amarillo-normal-hover);
   border-left-color: var(--amarillo-normal);
   color: var(--negro-normal);
-
-  .alert__icono svg {
-    fill: var(--amarillo-dark);
-  }
-
-  .alert__cerrar svg {
-    fill: var(--negro-normal);
-  }
 }
 
-// INFO - Gris (información)
+.alert--warning .alert__icono svg {
+  fill: var(--amarillo-dark);
+}
+
+.alert--warning .alert__cerrar svg {
+  fill: var(--negro-normal);
+}
+
+/**
+ * .alert--info
+ * Tipo información - Para mensajes informativos neutrales
+ * Color: Gris
+ */
 .alert--info {
   background-color: var(--gris-normal);
   border-left-color: var(--gris-dark);
   color: var(--blanco-normal);
-
-  .alert__icono svg {
-    fill: var(--blanco-normal);
-  }
-
-  .alert__cerrar svg {
-    fill: var(--blanco-normal);
-  }
-
-  &:hover {
-    .alert__cerrar {
-      background: rgba(255, 255, 255, 0.2);
-    }
-  }
 }
 
-// ANIMACIONES
-// ========================================
-@keyframes slideIn {
+.alert--info .alert__icono svg {
+  fill: var(--blanco-normal);
+}
+
+.alert--info .alert__cerrar svg {
+  fill: var(--blanco-normal);
+}
+
+.alert--info:hover .alert__cerrar {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMACIONES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes alertSlideIn {
   from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-0.625rem);
   }
   to {
     opacity: 1;

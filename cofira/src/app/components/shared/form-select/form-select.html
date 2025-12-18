@@ -1,9 +1,9 @@
-<article class="form__select">
-  <label [for]="name" class="form__select__label">
+<article class="form-select">
+  <label [for]="name" class="form-select__label">
     {{ label }}
   </label>
 
-  <select [id]="name" [name]="name" class="form__select__field">
+  <select [id]="name" [name]="name" class="form-select__field">
     <option value="" disabled selected>Selecciona una opción</option>
     @for (option of options; track option) {
     <option [value]="option">{{ option }}</option>

@@ -1,7 +1,37 @@
-/* ============================================
-   FORMULARIO DE REGISTRO
-   Usa variables CSS del sistema de diseno
-   ============================================ */
+/* ─────────────────────────────────────────────────────────────────────────────
+   COMPONENT: Form Register
+   ─────────────────────────────────────────────────────────────────────────────
+   
+   BLOCK: .form
+   
+   ELEMENTS:
+   - .form__fieldset     → Fieldset principal
+   - .form__legend       → Título del formulario
+   - .form__group        → Grupo de campo individual
+   - .form__label        → Etiqueta de campo
+   - .form__input        → Campo de entrada
+   - .form__error        → Mensaje de error
+   - .form__button       → Botón de envío
+   
+   MODIFIERS:
+   - .form__input--error → Input con estado de error
+   
+   STATES:
+   - :focus, :hover, :active, :disabled
+   
+   USAGE:
+   <form class="form">
+     <fieldset class="form__fieldset">
+       <legend class="form__legend">Registro</legend>
+       <fieldset class="form__group">
+         <legend class="form__label">Email</legend>
+         <input class="form__input form__input--error" />
+         <span class="form__error">Email inválido</span>
+       </fieldset>
+     </fieldset>
+     <button class="form__button">Registrarse</button>
+   </form>
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .register-form {
   display: flex;
@@ -9,151 +39,155 @@
   align-items: center;
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Form
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .form {
   background-color: var(--gris-normal);
   padding: var(--spacing-size-xxl) var(--spacing-size-xl);
   border-radius: var(--radius-s);
   width: 100%;
-  max-width: 650px;
+  max-width: 40.625rem;
   box-shadow: var(--shadow-lg);
+}
 
-  /* --------------------------------------------
-     FIELDSET PRINCIPAL
-     -------------------------------------------- */
-  &__fieldset {
-    border: none;
-    padding: 0;
-    margin: 0 0 var(--spacing-size-xl) 0;
-  }
+/* Fieldset principal */
+.form__fieldset {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-size-xl) 0;
+}
 
-  /* --------------------------------------------
-     LEGEND PRINCIPAL (titulo del formulario)
-     -------------------------------------------- */
-  &__legend {
-    color: var(--text-dark);
-    font-family: var(--font-secondary);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
-    margin-bottom: var(--spacing-size-l);
-    padding: 0;
-    width: 100%;
-    text-align: center;
-  }
+/* Legend principal (título del formulario) */
+.form__legend {
+  color: var(--text-dark);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-size-l);
+  padding: 0;
+  width: 100%;
+  text-align: center;
+}
 
-  /* --------------------------------------------
-     GRUPO DE CAMPO (fieldset individual)
-     -------------------------------------------- */
-  &__group {
-    border: none;
-    padding: 0;
-    margin: 0 0 var(--spacing-size-l) 0;
+/* Grupo de campo (fieldset individual) */
+.form__group {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--spacing-size-l) 0;
+}
 
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-  }
+.form__group:last-of-type {
+  margin-bottom: 0;
+}
 
-  /* --------------------------------------------
-     LABEL (legend de cada campo)
-     -------------------------------------------- */
-  &__label {
-    display: block;
-    color: var(--text-dark);
-    font-family: var(--font-primary);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-regular);
-    margin-bottom: var(--spacing-size-s);
-    padding: 0;
-    line-height: var(--line-height-normal);
-  }
+/* Label (legend de cada campo) */
+.form__label {
+  display: block;
+  color: var(--text-dark);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  margin-bottom: var(--spacing-size-s);
+  padding: 0;
+  line-height: var(--line-height-normal);
+}
 
-  /* --------------------------------------------
-     INPUT
-     -------------------------------------------- */
-  &__input {
-    width: 100%;
-    height: 3.5rem;
-    padding: var(--spacing-size-s) var(--spacing-size-m);
-    background-color: var(--blanco-normal-hover);
-    border: none;
-    border-radius: var(--radius-m);
-    color: var(--negro-normal);
-    font-family: var(--font-primary);
-    font-size: var(--font-size-md);
-    transition: all var(--duration-base) ease;
-    box-sizing: border-box;
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Input
+   ───────────────────────────────────────────────────────────────────────────── */
 
-    &::placeholder {
-      color: var(--blanco-dark-hover);
-    }
+.form__input {
+  width: 100%;
+  height: 3.5rem;
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+  background-color: var(--blanco-normal-hover);
+  border: none;
+  border-radius: var(--radius-m);
+  color: var(--negro-normal);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  transition: all var(--duration-base) ease;
+  box-sizing: border-box;
+}
 
-    &:focus {
-      outline: none;
-      background-color: var(--blanco-normal);
-      box-shadow: 0 0 0 3px rgba(255, 211, 0, 0.3);
-    }
+.form__input::placeholder {
+  color: var(--blanco-dark-hover);
+}
 
-    &:hover:not(:focus) {
-      background-color: var(--blanco-normal-active);
-    }
+.form__input:focus {
+  outline: none;
+  background-color: var(--blanco-normal);
+  box-shadow: 0 0 0 0.1875rem rgba(255, 211, 0, 0.3);
+}
 
-    /* Estado de error */
-    &--error {
-      border: 2px solid var(--button-red);
+.form__input:hover:not(:focus) {
+  background-color: var(--blanco-normal-active);
+}
 
-      &:focus {
-        border-color: var(--button-red);
-        box-shadow: 0 0 0 3px rgba(255, 52, 52, 0.2);
-      }
-    }
-  }
+/* Estado de error */
+.form__input--error {
+  border: 0.125rem solid var(--button-red);
+}
 
-  /* --------------------------------------------
-     MENSAJE DE ERROR
-     -------------------------------------------- */
-  &__error {
-    display: block;
-    color: var(--button-red);
-    font-family: var(--font-primary);
-    font-size: var(--font-size-sm);
-    margin-top: var(--spacing-size-xss);
-    margin-left: var(--spacing-size-s);
-  }
+.form__input--error:focus {
+  border-color: var(--button-red);
+  box-shadow: 0 0 0 0.1875rem rgba(255, 52, 52, 0.2);
+}
 
-  /* --------------------------------------------
-     BOTON ENVIAR
-     -------------------------------------------- */
-  &__button {
-    width: 100%;
-    height: 3.75rem;
-    padding: var(--spacing-size-s) var(--spacing-size-l);
-    background-color: var(--amarillo-normal);
-    color: var(--negro-normal);
-    border: none;
-    border-radius: var(--radius-m);
-    font-family: var(--font-primary);
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    cursor: pointer;
-    transition: all var(--duration-base) ease;
-    box-shadow: var(--shadow-md);
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Error Message
+   ───────────────────────────────────────────────────────────────────────────── */
 
-    &:hover:not(:disabled) {
-      background-color: var(--amarillo-normal-hover);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
+.form__error {
+  display: block;
+  color: var(--button-red);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  margin-top: var(--spacing-size-xss);
+  margin-left: var(--spacing-size-s);
+}
 
-    &:active:not(:disabled) {
-      transform: translateY(0);
-      box-shadow: var(--shadow-sm);
-    }
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Button
+   ───────────────────────────────────────────────────────────────────────────── */
 
-    &:disabled {
-      background-color: var(--blanco-dark);
-      color: var(--gris-normal);
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-  }
+.form__button {
+  width: 100%;
+  height: 3.75rem;
+  padding: var(--spacing-size-s) var(--spacing-size-l);
+  background-color: var(--amarillo-normal);
+  color: var(--negro-normal);
+  border: none;
+  border-radius: var(--radius-m);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: all var(--duration-base) ease;
+  box-shadow: var(--shadow-md);
+}
+
+.form__button:hover:not(:disabled) {
+  background-color: var(--amarillo-normal-hover);
+  transform: translateY(-0.125rem);
+  box-shadow: var(--shadow-lg);
+}
+
+.form__button:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.form__button:focus {
+  outline: 0.125rem solid var(--amarillo-dark);
+  outline-offset: 0.125rem;
+}
+
+.form__button:disabled {
+  background-color: var(--blanco-dark);
+  color: var(--gris-normal);
+  cursor: not-allowed;
+  box-shadow: none;
 }

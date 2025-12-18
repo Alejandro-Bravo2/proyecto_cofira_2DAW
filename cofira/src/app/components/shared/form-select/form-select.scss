@@ -1,6 +1,30 @@
-// form-select.component.scss
+/**
+ * FORM-SELECT COMPONENT
+ * ─────────────────────────────────────────────────────────────────────────
+ * Block: .form-select
+ *
+ * Elements:
+ * - .form-select__label: Etiqueta del campo
+ * - .form-select__field: Campo select desplegable
+ *
+ * Modifiers:
+ * - STATE: :focus | :hover | :disabled
+ *
+ * HTML Example:
+ * <article class="form-select">
+ *   <label class="form-select__label">Objetivo</label>
+ *   <select class="form-select__field">
+ *     <option value="">Selecciona una opción</option>
+ *     <option value="1">Opción 1</option>
+ *   </select>
+ * </article>
+ */
 
-.form__select {
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Contenedor del select
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.form-select {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-xs);
@@ -8,15 +32,27 @@
   width: 100%;
 }
 
-.form__select__label {
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENTS: Partes internas del form-select
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * .form-select__label
+ * Etiqueta del campo select
+ */
+.form-select__label {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   color: var(--text-light);
 }
 
-.form__select__field {
+/**
+ * .form-select__field
+ * Campo select desplegable
+ */
+.form-select__field {
   padding: var(--spacing-size-s) var(--spacing-size-m);
-  border: 2px solid var(--gris-normal);
+  border: 0.125rem solid var(--gris-normal);
   border-radius: var(--radius-xs);
   font-size: var(--font-size-md);
   color: var(--negro-normal);
@@ -24,33 +60,33 @@
   cursor: pointer;
   transition: all 0.3s ease;
 
-  // Flecha personalizada
+  /* Flecha personalizada */
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right var(--spacing-size-s) center;
   padding-right: var(--spacing-size-xl);
+}
 
-  &:hover {
-    border-color: var(--button-yellow);
-  }
+.form-select__field:hover {
+  border-color: var(--button-yellow);
+}
 
-  &:focus {
-    outline: none;
-    border-color: var(--button-yellow);
-    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.1);
-  }
+.form-select__field:focus {
+  outline: none;
+  border-color: var(--button-yellow);
+  box-shadow: 0 0 0 0.1875rem rgba(255, 193, 7, 0.1);
+}
 
-  // Estilos para las opciones
-  option {
-    background-color: var(--blanco-normal);
-    color: var(--negro-normal);
-    padding: var(--spacing-size-s);
-  }
+/* Estilos para las opciones */
+.form-select__field option {
+  background-color: var(--blanco-normal);
+  color: var(--negro-normal);
+  padding: var(--spacing-size-s);
+}
 
-  // Opción disabled
-  option:disabled {
-    color: var(--gris-normal);
-    opacity: 0.5;
-  }
+/* Opción disabled */
+.form-select__field option:disabled {
+  color: var(--gris-normal);
+  opacity: 0.5;
 }

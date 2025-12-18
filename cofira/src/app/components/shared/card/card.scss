@@ -1,66 +1,125 @@
-// ========================================
-// ESTRUCTURA BASE DE LA CARD
-// ========================================
+/**
+ * PRICING-CARD COMPONENT
+ * ─────────────────────────────────────────────────────────────────────────
+ * Block: .pricing-card
+ *
+ * Elements:
+ * - .pricing-card__titulo: Título principal de la tarjeta
+ * - .pricing-card__precio: Texto del precio
+ * - .pricing-card__lista: Contenedor de la lista de ventajas
+ * - .pricing-card__ventaja: Cada ítem de ventaja
+ * - .pricing-card__boton: Botón de acción principal
+ *
+ * Modifiers:
+ * - VARIANT: --info | --planes
+ * - SIZE: --sm | --md | --lg
+ * - STATE: :disabled (en botón)
+ *
+ * HTML Example:
+ * <article class="pricing-card pricing-card--planes pricing-card--md">
+ *   <h2 class="pricing-card__titulo">Plan Premium</h2>
+ *   <ul class="pricing-card__lista">
+ *     <li class="pricing-card__ventaja">Ventaja 1</li>
+ *   </ul>
+ *   <button class="pricing-card__boton">Inscríbete</button>
+ *   <p class="pricing-card__precio">19.99€/mes</p>
+ * </article>
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Base de la pricing-card
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 .pricing-card {
   background: var(--gris-normal);
   padding: var(--spacing-size-xxl) var(--spacing-size-m);
   border-radius: var(--radius-xs);
   width: 100%;
-  max-width: 450px;
+  max-width: 28.125rem;
   box-shadow: var(--shadow-xl);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
 }
 
+/* Efecto hover en la card */
+.pricing-card:hover {
+  transform: translateY(-0.25rem);
+  box-shadow: var(--shadow-2xl);
+}
 
-// ========================================
-// ELEMENTOS INTERNOS - Título y Precio
-// ========================================
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENTS: Partes internas de la pricing-card
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-.card-titulo {
+/**
+ * .pricing-card__titulo
+ * Título principal de la tarjeta de precios
+ */
+.pricing-card__titulo {
   color: var(--text-dark);
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   margin: 0 0 var(--spacing-size-xxl) 0;
+  line-height: 1.2;
 }
 
-.card-precio {
+/**
+ * .pricing-card__precio
+ * Muestra el precio del plan
+ */
+.pricing-card__precio {
   color: var(--text-dark);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   margin: 0;
 }
 
-
-// ========================================
-// ELEMENTOS INTERNOS - Lista de Ventajas
-// ========================================
-
-.card-lista {
+/**
+ * .pricing-card__lista
+ * Contenedor de la lista de ventajas
+ */
+.pricing-card__lista {
   padding: 0;
-  list-style-position: inside;
   margin: 0 0 var(--spacing-size-xxl) 0;
   width: 100%;
+  list-style: none; /* Quitamos bullets por defecto */
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-s);
 }
 
-.card-ventaja {
+/**
+ * .pricing-card__ventaja
+ * Cada ítem de la lista de ventajas
+ */
+.pricing-card__ventaja {
   color: var(--text-dark);
   font-size: var(--font-size-lg);
-  margin-bottom: var(--spacing-size-s);
+  font-weight: var(--font-weight-normal);
   padding-left: var(--spacing-size-s);
   position: relative;
   text-align: left;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-xs);
 }
 
+/* Checkmark antes de cada ventaja */
+.pricing-card__ventaja::before {
+  content: '✓';
+  color: var(--amarillo-normal);
+  font-weight: var(--font-weight-bold);
+  flex-shrink: 0; /* CLAVE: No se encoge aunque falte espacio */
+}
 
-// ========================================
-// BOTÓN - Estilos Base
-// ========================================
-
-.card-boton {
+/**
+ * .pricing-card__boton
+ * Botón de acción principal de la card
+ */
+.pricing-card__boton {
   width: 100%;
   max-width: 21rem;
   height: 4rem;
@@ -74,115 +133,118 @@
   cursor: pointer;
   box-shadow: var(--shadow-md);
   margin-bottom: var(--spacing-size-m);
+  transition: all 0.3s ease; /* Transición suave para interacciones */
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATES: Pseudoclases para el botón
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ========================================
-// BOTÓN - Estados Interactivos
-// ========================================
-
-.card-boton:hover {
+.pricing-card__boton:hover:not(:disabled) {
   background: var(--button-yellow-hover);
-  transform: translateY(-2px);
+  transform: translateY(-0.125rem);
   box-shadow: var(--shadow-lg);
 }
 
-.card-boton:active {
+.pricing-card__boton:active:not(:disabled) {
   transform: translateY(0);
   box-shadow: var(--shadow-sm);
 }
 
+.pricing-card__boton:focus {
+  outline: 0.1875rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
+}
 
-// ========================================
-// BOTÓN - Estado Deshabilitado
-// ========================================
-
-.card-boton:disabled {
+.pricing-card__boton:disabled {
   background: var(--gris-claro);
   color: var(--gris-oscuro);
   cursor: not-allowed;
   opacity: 0.6;
+  pointer-events: none;
 }
 
-.card-boton:disabled:hover {
-  background: var(--gris-claro);
-  transform: none;
-  box-shadow: var(--shadow-md);
-}
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODIFIERS DE VARIANTE
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-
-// ========================================
-// VARIANTES DE ESTILO
-// ========================================
-
+/**
+ * .pricing-card--info
+ * Variante informativa
+ */
 .pricing-card--info {
   background: var(--gris-normal);
 }
 
+/**
+ * .pricing-card--planes
+ * Variante para página de planes con más énfasis visual
+ */
 .pricing-card--planes {
   background: var(--gris-normal);
   box-shadow: var(--shadow-2xl);
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODIFIERS DE TAMAÑO
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ========================================
-// TAMAÑOS - Pequeño (sm)
-// ========================================
-
+/**
+ * .pricing-card--sm
+ * Tamaño pequeño - Para espacios reducidos
+ */
 .pricing-card--sm {
   max-width: 21rem;
   padding: var(--spacing-size-l) var(--spacing-size-s);
 }
 
-.pricing-card--sm .card-titulo {
+.pricing-card--sm .pricing-card__titulo {
   font-size: var(--font-size-2xl);
 }
 
-.pricing-card--sm .card-ventaja {
+.pricing-card--sm .pricing-card__ventaja {
   font-size: var(--font-size-base);
 }
 
-.pricing-card--sm .card-boton {
+.pricing-card--sm .pricing-card__boton {
   height: 3rem;
   font-size: var(--font-size-lg);
 }
 
-.pricing-card--sm .card-precio {
+.pricing-card--sm .pricing-card__precio {
   font-size: var(--font-size-base);
 }
 
-
-// ========================================
-// TAMAÑOS - Mediano (md) - Por defecto
-// ========================================
-
+/**
+ * .pricing-card--md
+ * Tamaño mediano - Por defecto
+ */
 .pricing-card--md {
   max-width: 28rem;
 }
 
-
-// ========================================
-// TAMAÑOS - Grande (lg)
-// ========================================
-
+/**
+ * .pricing-card--lg
+ * Tamaño grande - Para destacar planes premium
+ */
 .pricing-card--lg {
   max-width: 34rem;
   padding: var(--spacing-size-3xl) var(--spacing-size-xl);
 }
 
-.pricing-card--lg .card-titulo {
+.pricing-card--lg .pricing-card__titulo {
   font-size: var(--font-size-5xl);
 }
 
-.pricing-card--lg .card-ventaja {
+.pricing-card--lg .pricing-card__ventaja {
   font-size: var(--font-size-xl);
 }
 
-.pricing-card--lg .card-boton {
+.pricing-card--lg .pricing-card__boton {
   height: 5rem;
   font-size: var(--font-size-2xl);
 }
 
-.pricing-card--lg .card-precio {
+.pricing-card--lg .pricing-card__precio {
   font-size: var(--font-size-xl);
 }

@@ -1,66 +1,101 @@
-.flex__basico {
+/* ═══════════════════════════════════════════════════════════════════════════
+   LAYOUT: Grid & Flex utilities
+   Sistema de layout reutilizable
+   ═══════════════════════════════════════════════════════════════════════════
+
+   ESTRUCTURA BEM
+   ─────────────────────────────────────────────────────────────────────────────
+   Block:     .flex, .grid, .col
+   Modifiers: .grid--cols-2, .grid--cols-3, .grid--cols-4, .grid--cols-6,
+              .col--span-1, .col--span-2, .col--span-3, .col--span-4,
+              .col--span-6, .col--span-12
+
+   USO
+   ─────────────────────────────────────────────────────────────────────────────
+   <section class="grid grid--cols-3">
+     <article class="col col--span-2">...</article>
+     <article class="col col--span-1">...</article>
+   </section>
+
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Flex container
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.flex {
   display: flex;
   margin: 0 auto;
   padding: 0 var(--spacing-size-xs);
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Grid container
+   ───────────────────────────────────────────────────────────────────────────── */
 
-// Grid con columnas
 .grid {
   display: grid;
   gap: var(--spacing-4);
   width: 100%;
 }
 
-// Sistema de columnas (2, 3, 4, 6, 12)
-.grid__cols__2 {
+/* ─────────────────────────────────────────────────────────────────────────────
+   MODIFIERS: Grid columns (2, 3, 4, 6)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.grid--cols-2 {
   grid-template-columns: repeat(2, 1fr);
 }
 
-.grid__cols__3 {
+.grid--cols-3 {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.grid__cols__4 {
+.grid--cols-4 {
   grid-template-columns: repeat(4, 1fr);
 }
 
-.grid__cols__6 {
+.grid--cols-6 {
   grid-template-columns: repeat(6, 1fr);
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Column with span modifiers
+   ───────────────────────────────────────────────────────────────────────────── */
 
-// Columnas que ocupan múltiples espacios
-.col__span__1 {
+.col--span-1 {
   grid-column: span 1;
 }
 
-.col__span__2 {
+.col--span-2 {
   grid-column: span 2;
 }
 
-.col__span__3 {
+.col--span-3 {
   grid-column: span 3;
 }
 
-.col__span__4 {
+.col--span-4 {
   grid-column: span 4;
 }
 
-.col__span__6 {
+.col--span-6 {
   grid-column: span 6;
 }
 
-.col__span__12 {
+.col--span-12 {
   grid-column: span 12;
 }
 
-// Responsive: en móvil todo a 1 columna
-@media (max-width: 768px) {
-  .grid__cols__2,
-  .grid__cols__3,
-  .grid__cols__4,
-  .grid__cols__6 {
+/* ─────────────────────────────────────────────────────────────────────────────
+   RESPONSIVE: Mobile (1 column)
+   ───────────────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 48rem) {
+  .grid--cols-2,
+  .grid--cols-3,
+  .grid--cols-4,
+  .grid--cols-6 {
     grid-template-columns: 1fr;
   }
 }

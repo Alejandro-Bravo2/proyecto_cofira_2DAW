@@ -91,7 +91,7 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 @mixin form-contact-input {
   background-color: var(--form-input-background);
   color: var(--text-dark);
-  border: 2px solid transparent;
+  border: 0.125rem solid transparent;
   transition: all var(--duration-base);
 
   &:focus {
@@ -142,24 +142,62 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
    RESPONSIVE MIXINS
    ============================================ */
 
-// Mixin para media queries responsive
+// Mixin para media queries responsive (mobile-first: min-width)
 // Uso: @include responsive('md') { width: 50%; }
-// Breakpoints: 'xs' (640px), 's' (768px), 'M' (1024px), 'L' (1280px)
+// Breakpoints: 'xs' (640px), 'sm' (768px), 'md' (900px), 'lg' (1024px), 'xl' (1200px), 'xxl' (1400px)
 @mixin responsive($breakpoint) {
   @if $breakpoint == 'xs' {
     @media (min-width: $breakpoint-xs) {
       @content;
     }
-  } @else if $breakpoint == 's' {
-    @media (min-width: $breakpoint-s) {
+  } @else if $breakpoint == 'sm' {
+    @media (min-width: $breakpoint-sm) {
       @content;
     }
-  } @else if $breakpoint == 'M' {
-    @media (min-width: $breakpoint-M) {
+  } @else if $breakpoint == 'md' {
+    @media (min-width: $breakpoint-md) {
       @content;
     }
-  } @else if $breakpoint == 'L' {
-    @media (min-width: $breakpoint-L) {
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == 'xxl' {
+    @media (min-width: $breakpoint-xxl) {
+      @content;
+    }
+  }
+}
+
+// Mixin para media queries responsive (desktop-first: max-width)
+// Uso: @include responsive-down('lg') { font-size: 14px; }
+@mixin responsive-down($breakpoint) {
+  @if $breakpoint == 'xs' {
+    @media (max-width: $breakpoint-xs) {
+      @content;
+    }
+  } @else if $breakpoint == 'sm' {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == 'xl' {
+    @media (max-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == 'xxl' {
+    @media (max-width: $breakpoint-xxl) {
       @content;
     }
   }
@@ -304,10 +342,10 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 // Uso: @include sr-only;
 @mixin sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;

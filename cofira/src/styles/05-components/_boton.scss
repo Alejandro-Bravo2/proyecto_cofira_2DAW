@@ -1,15 +1,30 @@
-/* ============================================
-   05-COMPONENTS: Boton
-   Componentes de boton reutilizables
-   Nomenclatura BEM en espanol
-   ============================================ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   BOTON COMPONENT (Global)
+   Componentes de botón reutilizables en toda la aplicación
+   ═══════════════════════════════════════════════════════════════════════════
+
+   ESTRUCTURA BEM
+   ─────────────────────────────────────────────────────────────────────────────
+   Block:     .boton
+   Elements:  .boton__icono, .boton__texto
+   Modifiers: .boton--primario, .boton--secundario, .boton--fantasma,
+              .boton--peligro, .boton--pequeno, .boton--mediano,
+              .boton--grande, .boton--completo, .boton__icono--derecha
+
+   USO
+   ─────────────────────────────────────────────────────────────────────────────
+   <button class="boton boton--primario boton--mediano">
+     <span class="boton__icono">...</span>
+     <span class="boton__texto">Enviar</span>
+   </button>
+
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 @import '../01-tools/mixins';
 
-/* --------------------------------------------
-   BLOQUE: .boton
-   Estilos base del boton
-   -------------------------------------------- */
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Base button styles
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .boton {
   @include boton-base;
@@ -17,105 +32,111 @@
   font-size: var(--font-size-md);
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   MODIFIER: Primary (yellow)
+   ───────────────────────────────────────────────────────────────────────────── */
 
-/* --------------------------------------------
-   MODIFICADORES DE TIPO
-   -------------------------------------------- */
-
-// Boton primario (amarillo)
 .boton--primario {
   background-color: var(--button-yellow);
   color: var(--negro-normal);
   box-shadow: var(--shadow-md);
-
-  &:hover:not(:disabled) {
-    background-color: var(--button-yellow-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
-  }
-
-  &:focus {
-    outline: 3px solid var(--amarillo-normal);
-    outline-offset: 2px;
-  }
 }
 
-// Boton secundario (gris)
+.boton--primario:hover:not(:disabled) {
+  background-color: var(--button-yellow-hover);
+  transform: translateY(-0.125rem);
+  box-shadow: var(--shadow-lg);
+}
+
+.boton--primario:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.boton--primario:focus {
+  outline: 0.1875rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MODIFIER: Secondary (gray)
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .boton--secundario {
   background-color: var(--button-gray);
   color: var(--text-dark);
   box-shadow: var(--shadow-sm);
-
-  &:hover:not(:disabled) {
-    background-color: var(--button-gray-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(0);
-  }
-
-  &:focus {
-    outline: 3px solid var(--gris-normal);
-    outline-offset: 2px;
-  }
 }
 
-// Boton fantasma (transparente con borde)
+.boton--secundario:hover:not(:disabled) {
+  background-color: var(--button-gray-hover);
+  transform: translateY(-0.125rem);
+  box-shadow: var(--shadow-md);
+}
+
+.boton--secundario:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.boton--secundario:focus {
+  outline: 0.1875rem solid var(--gris-normal);
+  outline-offset: 0.125rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MODIFIER: Ghost (transparent with border)
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .boton--fantasma {
   background-color: transparent;
   color: var(--text-dark);
   border: var(--border-width-normal) solid var(--gris-normal);
-
-  &:hover:not(:disabled) {
-    background-color: var(--gris-normal);
-    color: var(--text-dark);
-    border-color: var(--gris-normal-hover);
-  }
-
-  &:active:not(:disabled) {
-    background-color: var(--gris-normal-hover);
-  }
-
-  &:focus {
-    outline: 3px solid var(--gris-normal);
-    outline-offset: 2px;
-  }
 }
 
-// Boton peligro (rojo)
+.boton--fantasma:hover:not(:disabled) {
+  background-color: var(--gris-normal);
+  color: var(--text-dark);
+  border-color: var(--gris-normal-hover);
+}
+
+.boton--fantasma:active:not(:disabled) {
+  background-color: var(--gris-normal-hover);
+}
+
+.boton--fantasma:focus {
+  outline: 0.1875rem solid var(--gris-normal);
+  outline-offset: 0.125rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MODIFIER: Danger (red)
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .boton--peligro {
   background-color: var(--button-red);
   color: var(--text-dark);
   box-shadow: var(--shadow-md);
-
-  &:hover:not(:disabled) {
-    background-color: var(--button-red-hover);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(0);
-    box-shadow: var(--shadow-sm);
-  }
-
-  &:focus {
-    outline: 3px solid var(--button-red);
-    outline-offset: 2px;
-  }
 }
 
+.boton--peligro:hover:not(:disabled) {
+  background-color: var(--button-red-hover);
+  transform: translateY(-0.125rem);
+  box-shadow: var(--shadow-lg);
+}
 
-/* --------------------------------------------
-   MODIFICADORES DE TAMANO
-   -------------------------------------------- */
+.boton--peligro:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+.boton--peligro:focus {
+  outline: 0.1875rem solid var(--button-red);
+  outline-offset: 0.125rem;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MODIFIERS: Sizes
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .boton--pequeno {
   padding: var(--spacing-size-xss) var(--spacing-size-s);
@@ -138,28 +159,26 @@
   min-width: var(--width-estandar);
 }
 
-
-/* --------------------------------------------
-   MODIFICADOR DE ANCHO COMPLETO
-   -------------------------------------------- */
+/* ─────────────────────────────────────────────────────────────────────────────
+   MODIFIER: Full width
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .boton--completo {
   width: 100%;
 }
 
-
-/* --------------------------------------------
-   ELEMENTOS DEL BOTON
-   -------------------------------------------- */
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Icon and text
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .boton__icono {
   display: inline-flex;
   margin-right: var(--spacing-size-xss);
+}
 
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
+.boton__icono svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .boton__icono--derecha {
@@ -168,5 +187,5 @@
 }
 
 .boton__texto {
-  // Espacio para texto si se necesita estilizar separadamente
+  /* Espacio para texto si se necesita estilizar separadamente */
 }

@@ -1,154 +1,237 @@
-// ========================================
-// COMPONENTE BOTÓN REUTILIZABLE
-// ========================================
+/**
+ * BUTTON COMPONENT
+ * ─────────────────────────────────────────────────────────────────────────
+ * Block: .button
+ *
+ * Elements:
+ * - .button__icono: Icono dentro del botón (opcional)
+ * - .button__texto: Texto del botón (opcional)
+ *
+ * Modifiers:
+ * - TYPE: --primary | --secondary | --ghost | --danger
+ * - SIZE: --sm (2rem) | --md (2.75rem) | --lg (3.5rem)
+ * - STATE: :disabled | :hover | :active | :focus
+ *
+ * HTML Examples:
+ * <button class="button button--primary button--md">Enviar</button>
+ * <button class="button button--secondary button--sm" disabled>Cancelar</button>
+ * <button class="button button--ghost button--lg">
+ *   <span class="button__icono">🔍</span>
+ *   <span class="button__texto">Buscar</span>
+ * </button>
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Base del botón - propiedades comunes a TODOS los botones
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 .button {
-  // Estilos base (comunes a todos los botones)
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-flex; /* Flexbox inline para fluir con el texto */
+  align-items: center; /* Centra elementos verticalmente */
+  justify-content: center; /* Centra elementos horizontalmente */
   font-family: var(--font-primary);
   font-weight: var(--font-weight-semibold);
-  border: none;
+  border: none; /* Sin borde por defecto */
   border-radius: var(--radius-m);
-  cursor: pointer;
-  transition: all var(--duration-base) ease;
-  text-decoration: none;
+  cursor: pointer; /* Indica que es clickeable */
+  transition: all var(--duration-base) ease; /* Transiciones suaves */
+  text-decoration: none; /* Importante si es un <a> en lugar de <button> */
+  user-select: none; /* Evita selección de texto al hacer clic */
+  white-space: nowrap; /* Previene que el texto se rompa en líneas */
+}
 
-  // Evitar selección de texto al hacer clic
-  user-select: none;
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENTS: Partes internas del botón
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-  // ========================================
-  // VARIANTES DE COLOR (modificadores BEM)
-  // ========================================
+/**
+ * .button__icono
+ * Icono dentro del botón. Debe ser un <span>, <i>, o SVG
+ */
+.button__icono {
+  display: flex; /* Para que SVGs se alineen bien */
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0; /* CLAVE: No se encoge aunque falte espacio */
+}
 
-  // Botón primario (amarillo)
-  &--primary {
-    background: var(--button-yellow);
-    color: var(--negro-normal);
-    box-shadow: var(--shadow-md);
+/**
+ * .button__texto
+ * Texto dentro del botón cuando se combina con icono
+ */
+.button__texto {
+  flex: 1; /* Ocupa el espacio disponible */
+  font-weight: var(--font-weight-medium);
+}
 
-    &:hover:not(:disabled) {
-      background: var(--button-yellow-hover);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODIFIERS DE TIPO (varían el color y propósito)
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-    &:active:not(:disabled) {
-      transform: translateY(0);
-      box-shadow: var(--shadow-sm);
-    }
+/**
+ * .button--primary
+ * Botón principal - El que más destaca, para acciones principales
+ * Uso: Enviar formularios, confirmar acciones principales
+ */
+.button--primary {
+  background: var(--button-yellow);
+  color: var(--negro-normal);
+  box-shadow: var(--shadow-md);
+}
 
-    &:focus {
-      outline: 3px solid var(--amarillo-normal);
-      outline-offset: 2px;
-    }
-  }
+/**
+ * .button--secondary
+ * Botón secundario - Menos importante que primary
+ * Uso: Acciones complementarias, alternativas
+ */
+.button--secondary {
+  background: var(--button-gray);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-sm);
+}
 
-  // Botón secundario (gris)
-  &--secondary {
-    background: var(--button-gray);
-    color: var(--text-dark);
-    box-shadow: var(--shadow-sm);
+/**
+ * .button--ghost
+ * Botón transparente - El que menos destaca visualmente
+ * Uso: Enlaces estilizados como botones, acciones terciarias
+ */
+.button--ghost {
+  background: transparent;
+  color: var(--text-dark);
+  border: var(--border-width-normal) solid var(--gris-normal);
+}
 
-    &:hover:not(:disabled) {
-      background: var(--button-gray-hover);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
+/**
+ * .button--danger
+ * Botón de peligro - Para acciones destructivas
+ * Uso: Eliminar, borrar, acciones irreversibles
+ */
+.button--danger {
+  background: var(--button-red);
+  color: var(--text-dark);
+  box-shadow: var(--shadow-md);
+}
 
-    &:active:not(:disabled) {
-      transform: translateY(0);
-    }
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODIFIERS DE TAMAÑO
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-    &:focus {
-      outline: 3px solid var(--gris-normal);
-      outline-offset: 2px;
-    }
-  }
+/**
+ * .button--sm
+ * Tamaño pequeño - Para botones en espacios reducidos
+ * Altura: 2rem (32px)
+ */
+.button--sm {
+  padding: var(--spacing-size-xss) var(--spacing-size-s);
+  font-size: var(--font-size-sm);
+  height: 2rem;
+  min-width: var(--width-muy-pequenio);
+}
 
-  // Botón ghost (transparente con borde)
-  &--ghost {
-    background: transparent;
-    color: var(--text-dark);
-    border: var(--border-width-normal) solid var(--gris-normal);
+/**
+ * .button--md
+ * Tamaño mediano - El tamaño por defecto, recomendado
+ * Altura: 2.75rem (44px)
+ */
+.button--md {
+  padding: var(--spacing-size-xss) var(--spacing-size-m);
+  font-size: var(--font-size-md);
+  height: 2.75rem;
+  min-width: var(--width-mediano);
+}
 
-    &:hover:not(:disabled) {
-      background: var(--gris-normal);
-      color: var(--text-dark);
-      border-color: var(--gris-normal-hover);
-    }
+/**
+ * .button--lg
+ * Tamaño grande - Para botones prominentes, llamadas a acción principales
+ * Altura: 3.5rem (56px)
+ */
+.button--lg {
+  padding: var(--spacing-size-s) var(--spacing-size-l);
+  font-size: var(--font-size-lg);
+  height: 3.5rem;
+  min-width: var(--width-estandar);
+}
 
-    &:active:not(:disabled) {
-      background: var(--gris-normal-hover);
-    }
+/* ═══════════════════════════════════════════════════════════════════════════
+   STATES: Pseudoclases para interacciones del usuario
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-    &:focus {
-      outline: 3px solid var(--gris-normal);
-      outline-offset: 2px;
-    }
-  }
+/* ─── HOVER: Cuando el usuario pasa el ratón sobre el botón ─── */
 
-  // Botón peligro/destructivo (rojo)
-  &--danger {
-    background: var(--button-red);
-    color: var(--text-dark);
-    box-shadow: var(--shadow-md);
+.button--primary:hover:not(:disabled) {
+  background: var(--button-yellow-hover);
+  transform: translateY(-0.125rem); /* Se eleva para feedback visual */
+  box-shadow: var(--shadow-lg);
+}
 
-    &:hover:not(:disabled) {
-      background: var(--button-red-hover);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-lg);
-    }
+.button--secondary:hover:not(:disabled) {
+  background: var(--button-gray-hover);
+  transform: translateY(-0.125rem);
+  box-shadow: var(--shadow-md);
+}
 
-    &:active:not(:disabled) {
-      transform: translateY(0);
-      box-shadow: var(--shadow-sm);
-    }
+.button--ghost:hover:not(:disabled) {
+  background: var(--gris-normal);
+  color: var(--text-dark);
+  border-color: var(--gris-normal-hover);
+}
 
-    &:focus {
-      outline: 3px solid var(--button-red);
-      outline-offset: 2px;
-    }
-  }
+.button--danger:hover:not(:disabled) {
+  background: var(--button-red-hover);
+  transform: translateY(-0.125rem);
+  box-shadow: var(--shadow-lg);
+}
 
-  // ========================================
-  // TAMAÑOS (modificadores BEM)
-  // ========================================
+/* ─── ACTIVE: Cuando el usuario está presionando el botón ─── */
 
-  // Pequeño
-  &--sm {
-    padding: var(--spacing-size-xss) var(--spacing-size-s);
-    font-size: var(--font-size-sm);
-    height: 2rem;
-    min-width: var(--width-muy-pequenio);
-  }
+.button--primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
 
-  // Mediano (por defecto)
-  &--md {
-    padding: var(--spacing-size-xss) var(--spacing-size-m);
-    font-size: var(--font-size-md);
-    height: 2.75rem;
-    min-width: var(--width-mediano);
-  }
+.button--secondary:active:not(:disabled) {
+  transform: translateY(0);
+}
 
-  // Grande
-  &--lg {
-    padding: var(--spacing-size-s) var(--spacing-size-l);
-    font-size: var(--font-size-lg);
-    height: 3.5rem;
-    min-width: var(--width-estandar);
-  }
+.button--ghost:active:not(:disabled) {
+  background: var(--gris-normal-hover);
+}
 
-  // ========================================
-  // ESTADO DESHABILITADO
-  // ========================================
+.button--danger:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
 
-  &:disabled,
-  &--disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    pointer-events: none;
-    box-shadow: none;
-  }
+/* ─── FOCUS: Para accesibilidad - navegación con teclado ─── */
+
+.button--primary:focus {
+  outline: 0.1875rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
+}
+
+.button--secondary:focus {
+  outline: 0.1875rem solid var(--gris-normal);
+  outline-offset: 0.125rem;
+}
+
+.button--ghost:focus {
+  outline: 0.1875rem solid var(--gris-normal);
+  outline-offset: 0.125rem;
+}
+
+.button--danger:focus {
+  outline: 0.1875rem solid var(--button-red);
+  outline-offset: 0.125rem;
+}
+
+/* ─── DISABLED: Estado deshabilitado ─── */
+
+.button:disabled,
+.button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none;
 }

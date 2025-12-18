@@ -19,7 +19,6 @@
   visibility: hidden;
 }
 
-
 /* --------------------------------------------
    TEXTO
    -------------------------------------------- */
@@ -43,7 +42,6 @@
 .texto-capitalizado {
   text-transform: capitalize;
 }
-
 
 /* --------------------------------------------
    ESPACIADO - MARGENES
@@ -81,7 +79,6 @@
   margin-bottom: var(--spacing-size-l);
 }
 
-
 /* --------------------------------------------
    ESPACIADO - PADDING
    -------------------------------------------- */
@@ -102,7 +99,6 @@
   padding: var(--spacing-size-l);
 }
 
-
 /* --------------------------------------------
    ANCHO
    -------------------------------------------- */
@@ -118,7 +114,6 @@
 .ancho-maximo {
   max-width: 100%;
 }
-
 
 /* --------------------------------------------
    FLEXBOX UTILIDADES
@@ -172,7 +167,6 @@
   align-items: flex-end;
 }
 
-
 /* --------------------------------------------
    GAP (Espaciado flex/grid)
    -------------------------------------------- */
@@ -192,7 +186,6 @@
 .gap-l {
   gap: var(--spacing-size-l);
 }
-
 
 /* --------------------------------------------
    COLORES DE FONDO
@@ -214,7 +207,6 @@
   background-color: var(--blanco-normal);
 }
 
-
 /* --------------------------------------------
    COLORES DE TEXTO
    -------------------------------------------- */
@@ -231,39 +223,37 @@
   color: var(--text-light);
 }
 
-
 /* --------------------------------------------
    ACCESIBILIDAD
    -------------------------------------------- */
 
-// Ocultar visualmente pero mantener accesible
+/* Ocultar visualmente pero mantener accesible */
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
 }
 
-// Skip link para navegacion por teclado
+/* Skip link para navegación por teclado */
 .skip-link {
   position: absolute;
-  top: -40px;
+  top: -2.5rem;
   left: 0;
   background: var(--negro-normal);
   color: var(--text-dark);
   padding: var(--spacing-size-s);
-  z-index: 9999;
-
-  &:focus {
-    top: 0;
-  }
+  z-index: var(--z-toast);
 }
 
+.skip-link:focus {
+  top: 0;
+}
 
 /* --------------------------------------------
    CURSORES
@@ -276,7 +266,6 @@
 .cursor-no-permitido {
   cursor: not-allowed;
 }
-
 
 /* --------------------------------------------
    OVERFLOW
@@ -297,7 +286,6 @@
 .overflow-y-auto {
   overflow-y: auto;
 }
-
 
 /* --------------------------------------------
    POSICION
@@ -320,13 +308,12 @@
   top: 0;
 }
 
-
 /* --------------------------------------------
    CONTENEDORES DE CONTENIDO
    -------------------------------------------- */
 
 .contenedor-demo {
-  max-width: 800px;
+  max-width: 50rem;
   margin: var(--spacing-size-xl) auto;
 }
 

@@ -1,0 +1,411 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+
+   CONFIGURACIÓN DE MODO OSCURO - VARIABLES CENTRALIZADAS
+   ═══════════════════════════════════════════════════════════════════════════
+
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │  GUÍA RÁPIDA: ¿Cómo cambiar colores del modo oscuro?                   │
+   ├─────────────────────────────────────────────────────────────────────────┤
+   │                                                                         │
+   │  1. Busca la sección del componente que quieres modificar              │
+   │  2. Cambia el valor de la variable SCSS (ej: $blanco-normal)           │
+   │  3. Guarda y recarga - ¡Listo!                                         │
+   │                                                                         │
+   │  Ejemplo: Para cambiar el fondo de las tarjetas en modo oscuro:        │
+   │  --oscuro-tarjeta-fondo: #\{$gris-normal};  ← Cambia esto              │
+   │                                                                         │
+   │  IMPORTANTE: Usamos variables SCSS (#\{$variable}) en lugar de         │
+   │  CSS Custom Properties (var(--variable)) para evitar conflictos        │
+   │  con la inversión de colores del tema claro/oscuro.                    │
+   │                                                                         │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │  NOMENCLATURA DE VARIABLES                                             │
+   ├─────────────────────────────────────────────────────────────────────────┤
+   │                                                                         │
+   │  Todas las variables siguen este patrón:                               │
+   │                                                                         │
+   │  --oscuro-[componente]-[elemento]-[propiedad]                          │
+   │                                                                         │
+   │  Ejemplos:                                                              │
+   │  --oscuro-cabecera-fondo         → Fondo de la cabecera                │
+   │  --oscuro-cabecera-enlace-hover  → Hover de enlaces en cabecera        │
+   │  --oscuro-tarjeta-titulo         → Color del título en tarjetas        │
+   │                                                                         │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Importar variables SCSS para usar valores literales */
+@import '../00-settings/css-variables';
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   PALETA DE COLORES DISPONIBLES (para referencia rápida)
+   ─────────────────────────────────────────────────────────────────────────────
+
+   NEGROS (más oscuros → más claros):
+   - $negro-dark-active     │ #080607  │ Muy muy oscuro
+   - $negro-dark-hover      │ #0a080a  │ Muy oscuro
+   - $negro-dark            │ #0d0b0c  │ Oscuro
+   - $negro-normal-active   │ #0e0b0d  │ Normal activo
+   - $negro-normal-hover    │ #0f0d0e  │ Normal hover
+   - $negro-normal          │ #110e10  │ Negro base
+
+   GRISES (más oscuros → más claros):
+   - $gris-dark-active      │ #1c1f22  │ Gris muy oscuro
+   - $gris-dark-hover       │ #26292e  │ Gris oscuro hover
+   - $gris-dark             │ #2f3439  │ Gris oscuro
+   - $gris-normal-active    │ #32373d  │ Gris normal activo
+   - $gris-normal-hover     │ #393e44  │ Gris normal hover
+   - $gris-normal           │ #3f454c  │ Gris base
+
+   BLANCOS (más oscuros → más claros):
+   - $blanco-dark-active    │ #6e6e6e  │ Gris claro
+   - $blanco-dark-hover     │ #939393  │ Gris medio
+   - $blanco-dark           │ #b8b8b8  │ Gris suave
+   - $blanco-normal-active  │ #c4c4c4  │ Casi blanco activo
+   - $blanco-normal-hover   │ #dddddd  │ Casi blanco hover
+   - $blanco-normal         │ #f5f5f5  │ Blanco base
+
+   AMARILLOS (más oscuros → más claros):
+   - $amarillo-darker       │ #594A00  │ Amarillo muy oscuro
+   - $amarillo-dark-active  │ #735f00  │ Amarillo oscuro activo
+   - $amarillo-dark-hover   │ #997f00  │ Amarillo oscuro hover
+   - $amarillo-dark         │ #bf9e00  │ Amarillo oscuro
+   - $amarillo-normal-active│ #cca900  │ Amarillo activo
+   - $amarillo-normal-hover │ #e6be00  │ Amarillo hover
+   - $amarillo-normal       │ #ffd300  │ Amarillo base (marca)
+
+   ───────────────────────────────────────────────────────────────────────────── */
+
+
+body.modo-oscuro {
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 1: FONDOS PRINCIPALES
+     ═══════════════════════════════════════════════════════════════════════════
+     Estos son los fondos base de la aplicación.
+     Cambiar estos afecta a grandes áreas de la interfaz.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo principal del body/página */
+  --oscuro-pagina-fondo: #{$gris-dark};
+
+  /* Fondo de secciones elevadas (cards, modales, etc.) */
+  --oscuro-superficie-fondo: #{$gris-normal};
+
+  /* Fondo de elementos interactivos (inputs, selects) */
+  --oscuro-input-fondo: #{$gris-dark};
+
+  /* Fondo al hacer hover en elementos */
+  --oscuro-hover-fondo: #{$gris-normal-hover};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 2: COLORES DE TEXTO
+     ═══════════════════════════════════════════════════════════════════════════
+     Controla los colores de todo el texto en modo oscuro.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Texto principal (títulos, contenido importante) */
+  --oscuro-texto-principal: #{$blanco-normal};
+
+  /* Texto secundario (descripciones, ayudas) */
+  --oscuro-texto-secundario: #{$blanco-dark};
+
+  /* Texto deshabilitado o muy sutil */
+  --oscuro-texto-suave: #{$blanco-dark-hover};
+
+  /* Texto de enlaces */
+  --oscuro-texto-enlace: #{$blanco-normal};
+
+  /* Texto de enlaces al hacer hover */
+  --oscuro-texto-enlace-hover: #{$amarillo-normal};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 3: BORDES Y SEPARADORES
+     ═══════════════════════════════════════════════════════════════════════════
+     Controla el color de bordes, líneas divisorias, etc.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Borde principal (inputs, cards) */
+  --oscuro-borde-color: #{$gris-normal};
+
+  /* Borde más sutil (separadores) */
+  --oscuro-borde-suave: #{$gris-normal-hover};
+
+  /* Borde de foco/activo */
+  --oscuro-borde-foco: #{$amarillo-normal};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 4: CABECERA / NAVEGACIÓN
+     ═══════════════════════════════════════════════════════════════════════════
+     Colores específicos para la cabecera de la página.
+
+     ┌─ ESTRUCTURA DE LA CABECERA ────────────────────────────────────────────┐
+     │  ┌──────────────────────────────────────────────────────────────────┐   │
+     │  │ [Logo]  [Enlaces]  [Buscador]  [Btn Inscríbete] [Btn Cuenta]    │   │
+     │  └──────────────────────────────────────────────────────────────────┘   │
+     └─────────────────────────────────────────────────────────────────────────┘
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo de la cabecera */
+  --oscuro-cabecera-fondo: #{$gris-dark};
+
+  /* Borde inferior de la cabecera */
+  --oscuro-cabecera-borde: #{$gris-normal};
+
+  /* Color de los enlaces de navegación */
+  --oscuro-cabecera-enlace: #{$blanco-normal};
+
+  /* Color de enlaces al hacer hover */
+  --oscuro-cabecera-enlace-hover: #{$amarillo-normal};
+
+  /* Fondo del buscador */
+  --oscuro-cabecera-buscador-fondo: #{$gris-normal};
+
+  /* Texto del buscador */
+  --oscuro-cabecera-buscador-texto: #{$blanco-normal};
+
+  /* Placeholder del buscador */
+  --oscuro-cabecera-buscador-placeholder: #{$blanco-dark};
+
+  /* Icono del buscador */
+  --oscuro-cabecera-buscador-icono: #{$blanco-dark};
+
+  /* Botón inscríbete - fondo */
+  --oscuro-cabecera-boton-primario-fondo: #{$amarillo-normal};
+
+  /* Botón inscríbete - texto */
+  --oscuro-cabecera-boton-primario-texto: #{$negro-normal};
+
+  /* Botón inscríbete - hover */
+  --oscuro-cabecera-boton-primario-hover: #{$amarillo-dark};
+
+  /* Botón cuenta - fondo */
+  --oscuro-cabecera-boton-secundario-fondo: transparent;
+
+  /* Botón cuenta - borde */
+  --oscuro-cabecera-boton-secundario-borde: #{$blanco-dark};
+
+  /* Botón cuenta - texto */
+  --oscuro-cabecera-boton-secundario-texto: #{$blanco-normal};
+
+  /* Botón cuenta - hover fondo */
+  --oscuro-cabecera-boton-secundario-hover-fondo: #{$gris-normal};
+
+  /* Botón cuenta - hover borde/texto */
+  --oscuro-cabecera-boton-secundario-hover-color: #{$amarillo-normal};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 5: MENÚ DESPLEGABLE DE CUENTA
+     ═══════════════════════════════════════════════════════════════════════════
+     El menú que aparece al hacer clic en "Cuenta".
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo del menú */
+  --oscuro-menu-fondo: #{$gris-dark};
+
+  /* Borde del menú */
+  --oscuro-menu-borde: #{$gris-normal};
+
+  /* Sombra del menú */
+  --oscuro-menu-sombra: rgba(0, 0, 0, 0.4);
+
+  /* Color de los items */
+  --oscuro-menu-item-texto: #{$blanco-normal};
+
+  /* Fondo de item al hacer hover */
+  --oscuro-menu-item-hover-fondo: #{$gris-normal};
+
+  /* Color de item al hacer hover */
+  --oscuro-menu-item-hover-texto: #{$amarillo-normal};
+
+  /* Color de iconos */
+  --oscuro-menu-icono: #{$blanco-dark};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 6: MENÚ MÓVIL
+     ═══════════════════════════════════════════════════════════════════════════
+     El menú lateral que aparece en dispositivos móviles.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo del panel del menú */
+  --oscuro-menu-movil-fondo: #{$negro-dark};
+
+  /* Fondo del header del menú */
+  --oscuro-menu-movil-cabecera-fondo: #{$gris-dark};
+
+  /* Fondo de link al hacer hover */
+  --oscuro-menu-movil-enlace-hover: #{$gris-dark};
+
+  /* Color de las líneas de la hamburguesa */
+  --oscuro-hamburguesa-color: #{$blanco-normal};
+
+  /* Hamburguesa hover */
+  --oscuro-hamburguesa-hover: #{$amarillo-normal};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 7: PIE DE PÁGINA (FOOTER)
+     ═══════════════════════════════════════════════════════════════════════════
+
+     ┌─ ESTRUCTURA DEL PIE DE PÁGINA ─────────────────────────────────────────┐
+     │  ┌──────────────────────────────────────────────────────────────────┐   │
+     │  │ [Link Condiciones]    [Copyright]    [Iconos Redes Sociales]    │   │
+     │  └──────────────────────────────────────────────────────────────────┘   │
+     └─────────────────────────────────────────────────────────────────────────┘
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo del pie de página */
+  --oscuro-pie-fondo: #{$negro-dark};
+
+  /* Borde superior del pie de página */
+  --oscuro-pie-borde: #{$gris-normal};
+
+  /* Color del texto (copyright, links) */
+  --oscuro-pie-texto: #{$blanco-dark};
+
+  /* Color de links al hacer hover */
+  --oscuro-pie-enlace-hover: #{$amarillo-normal};
+
+  /* Fondo de botones de redes sociales */
+  --oscuro-pie-social-fondo: #{$gris-dark};
+
+  /* Color de iconos de redes sociales */
+  --oscuro-pie-social-icono: #{$blanco-normal};
+
+  /* Hover de botones de redes sociales */
+  --oscuro-pie-social-hover-fondo: #{$gris-normal};
+
+  /* Color de iconos al hacer hover */
+  --oscuro-pie-social-hover-icono: #{$amarillo-normal};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 8: TARJETAS / CARDS
+     ═══════════════════════════════════════════════════════════════════════════
+     Todas las tarjetas de la aplicación.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo de la tarjeta */
+  --oscuro-tarjeta-fondo: #{$gris-normal};
+
+  /* Borde de la tarjeta */
+  --oscuro-tarjeta-borde: #{$gris-normal-hover};
+
+  /* Título de la tarjeta */
+  --oscuro-tarjeta-titulo: #{$blanco-normal};
+
+  /* Contenido/descripción de la tarjeta */
+  --oscuro-tarjeta-contenido: #{$blanco-dark};
+
+  /* Borde del pie de tarjeta */
+  --oscuro-tarjeta-pie-borde: #{$gris-dark};
+
+  /* Borde de tarjeta destacada */
+  --oscuro-tarjeta-destacada-borde: #{$amarillo-normal};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 9: FORMULARIOS
+     ═══════════════════════════════════════════════════════════════════════════
+     Todos los elementos de formularios.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Color de etiquetas (labels) */
+  --oscuro-formulario-etiqueta: #{$blanco-normal};
+
+  /* Fondo de campos de texto */
+  --oscuro-formulario-campo-fondo: #{$gris-dark};
+
+  /* Color de texto en campos */
+  --oscuro-formulario-campo-texto: #{$blanco-normal};
+
+  /* Borde de campos */
+  --oscuro-formulario-campo-borde: #{$gris-normal};
+
+  /* Borde al hacer focus */
+  --oscuro-formulario-campo-foco-borde: #{$amarillo-normal};
+
+  /* Fondo al hacer focus */
+  --oscuro-formulario-campo-foco-fondo: #{$gris-dark-hover};
+
+  /* Texto de ayuda */
+  --oscuro-formulario-ayuda-texto: #{$blanco-dark-hover};
+
+  /* Placeholder */
+  --oscuro-formulario-placeholder: #{$blanco-dark-hover};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 10: INPUTS GLOBALES
+     ═══════════════════════════════════════════════════════════════════════════
+     Inputs que usan la clase .input directamente.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo del input */
+  --oscuro-input-campo-fondo: #{$gris-dark};
+
+  /* Texto del input */
+  --oscuro-input-campo-texto: #{$blanco-normal};
+
+  /* Borde del input */
+  --oscuro-input-campo-borde: #{$gris-normal};
+
+  /* Borde al hacer focus */
+  --oscuro-input-campo-foco: #{$amarillo-normal};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 11: ALERTAS
+     ═══════════════════════════════════════════════════════════════════════════
+     Mensajes de alerta y notificaciones.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Borde general de alertas */
+  --oscuro-alerta-borde: #{$gris-normal};
+
+  /* Alerta info - fondo */
+  --oscuro-alerta-info-fondo: #{$gris-normal};
+
+  /* Alerta info - borde */
+  --oscuro-alerta-info-borde: #{$gris-normal-hover};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 12: PÁGINA GUÍA DE ESTILOS
+     ═══════════════════════════════════════════════════════════════════════════
+     Estilos específicos para la página de guía de estilos.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo principal */
+  --oscuro-guia-fondo: #{$gris-dark};
+
+  /* Título principal */
+  --oscuro-guia-titulo: #{$amarillo-normal};
+
+  /* Subtítulos */
+  --oscuro-guia-subtitulo: #{$blanco-normal};
+
+  /* Descripciones */
+  --oscuro-guia-descripcion: #{$blanco-dark};
+
+  /* Fondo de demos */
+  --oscuro-guia-demo-fondo: #{$gris-normal};
+
+  /* Borde de demos */
+  --oscuro-guia-demo-borde: #{$gris-normal-hover};
+
+  /* Fondo de notas */
+  --oscuro-guia-nota-fondo: #{$gris-normal};
+
+  /* Borde de notas */
+  --oscuro-guia-nota-borde: #{$amarillo-normal};
+}

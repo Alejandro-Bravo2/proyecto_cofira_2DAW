@@ -1,41 +1,41 @@
-<section class="contact-form">
+<article class="contact-form">
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="form">
 
     <fieldset class="form__fieldset">
       <legend class="form__legend">Datos de contacto</legend>
 
       <!-- Campo Nombre -->
-      <fieldset class="form__group">
-        <legend class="form__label">Escribe tu nombre:</legend>
+      <p class="form__group">
+        <label for="nombre" class="form__label">Escribe tu nombre:</label>
         <input
           type="text"
           id="nombre"
           formControlName="nombre"
           class="form__input"
           placeholder="">
-      </fieldset>
+      </p>
 
       <!-- Campo Apellido -->
-      <fieldset class="form__group">
-        <legend class="form__label">Escribe tu apellido:</legend>
+      <p class="form__group">
+        <label for="apellido" class="form__label">Escribe tu apellido:</label>
         <input
           type="text"
           id="apellido"
           formControlName="apellido"
           class="form__input"
           placeholder="">
-      </fieldset>
+      </p>
 
       <!-- Campo Email -->
-      <fieldset class="form__group">
-        <legend class="form__label">Escribe tu email:</legend>
+      <p class="form__group">
+        <label for="email" class="form__label">Escribe tu email:</label>
         <input
           type="email"
           id="email"
           formControlName="email"
           class="form__input"
           placeholder="">
-      </fieldset>
+      </p>
 
     </fieldset>
 
@@ -45,4 +45,4 @@
     </button>
 
   </form>
-</section>
+</article>
