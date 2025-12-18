@@ -1,7 +1,7 @@
-/*
- * 03-ELEMENTS: Links
- * Estilos base para todos los enlaces <a> de la aplicación
- */
+/* ============================================
+   03-ELEMENTS: Links
+   Estilos base para todos los enlaces <a>
+   ============================================ */
 
 a {
   font-family: var(--font-primary);
@@ -9,17 +9,17 @@ a {
   text-decoration: none;
   transition: color var(--duration-fast);
   cursor: pointer;
+}
 
-  &:hover {
-    color: var(--amarillo-normal);
-  }
+a:hover {
+  color: var(--amarillo-normal);
+}
 
-  &:focus {
-    outline: 2px solid var(--amarillo-normal);
-    outline-offset: 2px;
-  }
+a:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
+}
 
-  &:active {
-    color: var(--amarillo-normal-active);
-  }
+a:active {
+  color: var(--amarillo-normal-active);
 }

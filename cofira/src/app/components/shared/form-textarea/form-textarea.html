@@ -1,18 +1,19 @@
-<article class="form__textarea">
-  <label [for]="inputId()" class="form__textarea__label">
+<article class="form-textarea">
+  <label [for]="inputId()" class="form-textarea__label">
     {{ label }}
     @if (required) {
-      <span class="form__input__required">*</span>
+    <span class="form-textarea__required">*</span>
     }
   </label>
 
-  <textarea [id]="inputId()" [name]="name" [placeholder]="placeholder" [required]="required"  [formControl]="control" class="form__input__field"></textarea>
+  <textarea [id]="inputId()" [name]="name" [placeholder]="placeholder" [required]="required" [formControl]="control"
+    class="form-textarea__field"></textarea>
 
   @if (control && control.invalid && (control.dirty || control.touched)) {
-    <span class="form__input__error">{{ errorMessage }}</span>
+  <span class="form-textarea__error">{{ errorMessage }}</span>
   }
 
   @if (helpText) {
-    <span class="form__input__help">{{ helpText }}</span>
+  <span class="form-textarea__help">{{ helpText }}</span>
   }
 </article>

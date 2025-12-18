@@ -1,16 +1,33 @@
+/**
+ * HEADER COMPONENT
+ * ─────────────────────────────────────────────────────────────────────────
+ * Componentes incluidos:
+ * - .cabecera: Navegación principal
+ * - .hamburguesa: Botón menú móvil
+ * - .enlaces: Links de navegación
+ * - .buscador: Campo de búsqueda
+ * - .menu-cuenta: Menú desplegable de cuenta
+ * - .menu-movil: Menú lateral móvil
+ *
+ * NOTA: Este componente usa ViewEncapsulation.None para que los estilos
+ * globales de dark mode funcionen correctamente.
+ *
+ * Breakpoints disponibles (de _css-variables.scss):
+ * - $breakpoint-xs: 640px   (Móviles pequeños)
+ * - $breakpoint-sm: 768px   (Móviles grandes / Tablets pequeñas)
+ * - $breakpoint-md: 900px   (Tablets)
+ * - $breakpoint-lg: 1024px  (Tablets grandes / Laptops pequeños)
+ * - $breakpoint-xl: 1200px  (Laptops)
+ * - $breakpoint-xxl: 1400px (Escritorios grandes)
+ */
+
+@import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
 
-// ========================================
-// VARIABLES DE BREAKPOINTS
-// ========================================
-$breakpoint-xl: 1400px;
-$breakpoint-lg: 1200px;
-$breakpoint-md: 1024px;
-$breakpoint-sm: 900px;
+/* ═══════════════════════════════════════════════════════════════════════════
+   MIXINS LOCALES DEL COMPONENTE
+   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ========================================
-// MIXINS REUTILIZABLES
-// ========================================
 @mixin hide-text-show-icon {
   width: 3rem;
   padding: 0.5rem;
@@ -25,15 +42,19 @@ $breakpoint-sm: 900px;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-xss);
-  transition: all 0.3s ease;
+  /* OPTIMIZADO: Transiciones específicas, no "all" */
+  transition: background-color 0.15s ease-out,
+              color 0.15s ease-out,
+              transform 0.15s ease-out;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
-// ========================================
-// NAVEGACIÓN PRINCIPAL
-// ========================================
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVEGACIÓN PRINCIPAL
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 nav {
   @include flex-full;
   background: var(--gris-normal);
@@ -43,25 +64,34 @@ nav {
   justify-content: space-between;
   padding: 0 6rem;
   position: relative;
-  z-index: 100;
+  z-index: var(--z-header);
   gap: 1rem;
 
-  @media (max-width: $breakpoint-lg) {
+  @include responsive-down('xl') {
     padding: 0 2rem;
     gap: 0.75rem;
   }
-  @media (max-width: $breakpoint-md) {
+  @include responsive-down('lg') {
     padding: 0 1.5rem;
     gap: 0.5rem;
   }
-  @media (max-width: $breakpoint-sm) {
+  @include responsive-down('md') {
     padding: 0 1.5rem;
   }
 }
 
-// ========================================
-// BOTÓN HAMBURGUESA
-// ========================================
+/* ═══════════════════════════════════════════════════════════════════════════
+   HAMBURGUESA COMPONENT
+   Block: .hamburguesa
+   Elements: .hamburguesa__linea
+   Modifiers: .hamburguesa--abierto
+
+   OPTIMIZACIÓN DE RENDIMIENTO:
+   - Usamos transform y opacity (propiedades aceleradas por GPU)
+   - will-change solo en elementos que se animan frecuentemente
+   - Transiciones específicas en lugar de "all"
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 .hamburguesa {
   display: none;
   flex-direction: column;
@@ -72,36 +102,57 @@ nav {
   border: none;
   cursor: pointer;
   padding: 0;
-  z-index: 200;
+  z-index: var(--z-header-controls);
 
-  @media (max-width: $breakpoint-sm) {
+  @include responsive-down('md') {
     display: flex;
-  }
-
-  &__linea {
-    width: 100%;
-    height: 3px;
-    background-color: var(--blanco-normal);
-    border-radius: 10px;
-    transition: all 0.3s ease;
-  }
-
-  &.abierto {
-    .hamburguesa__linea:nth-child(1) {
-      transform: rotate(45deg) translateY(10px);
-    }
-    .hamburguesa__linea:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburguesa__linea:nth-child(3) {
-      transform: rotate(-45deg) translateY(-10px);
-    }
   }
 }
 
-// ========================================
-// ENLACES DE NAVEGACIÓN
-// ========================================
+.hamburguesa__linea {
+  width: 100%;
+  height: 0.1875rem;
+  background-color: var(--blanco-normal);
+  border-radius: 0.625rem;
+  /* OPTIMIZADO: Solo transicionamos las propiedades necesarias */
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s ease-out,
+              background-color 0.15s ease-out;
+  /* Prepara la GPU para las transformaciones */
+  will-change: transform, opacity;
+  transform-origin: center;
+}
+
+/* Modifier: Estado abierto */
+.hamburguesa--abierto .hamburguesa__linea:nth-child(1) {
+  transform: rotate(45deg) translateY(0.625rem);
+}
+
+.hamburguesa--abierto .hamburguesa__linea:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0); /* Añadido: colapso horizontal más suave */
+}
+
+.hamburguesa--abierto .hamburguesa__linea:nth-child(3) {
+  transform: rotate(-45deg) translateY(-0.625rem);
+}
+
+/* Hover y focus para accesibilidad */
+.hamburguesa:hover .hamburguesa__linea {
+  background-color: var(--amarillo-normal);
+}
+
+.hamburguesa:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ENLACES COMPONENT
+   Block: .enlaces
+   Modifiers: .enlaces--desktop
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 .enlaces {
   gap: 1.4rem;
   list-style: none;
@@ -111,48 +162,49 @@ nav {
   min-width: 22rem;
   flex-shrink: 0;
 
-  @media (max-width: $breakpoint-lg) {
+  @include responsive-down('xl') {
     min-width: 18rem;
     gap: 1rem;
   }
-  @media (max-width: $breakpoint-md) {
+  @include responsive-down('lg') {
     min-width: 15rem;
     gap: 0.75rem;
   }
-  @media (max-width: $breakpoint-sm) {
+  @include responsive-down('md') {
     min-width: auto;
     gap: 0.5rem;
   }
+}
 
-  a {
-    color: var(--blanco-normal);
-    font-family: var(--font-primary);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-light);
-    text-decoration: none;
-    transition: all 0.3s ease;
-    white-space: nowrap;
+.enlaces a {
+  color: var(--blanco-normal);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-light);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
 
-    @media (max-width: $breakpoint-md) {
-      font-size: var(--font-size-sm);
-    }
-
-    &:hover {
-      color: var(--blanco-dark-hover);
-      text-decoration: underline;
-    }
-  }
-
-  &--desktop {
-    @media (max-width: $breakpoint-sm) {
-      display: none;
-    }
+  @include responsive-down('lg') {
+    font-size: var(--font-size-sm);
   }
 }
 
-// ========================================
-// LOGO
-// ========================================
+.enlaces a:hover {
+  color: var(--blanco-dark-hover);
+  text-decoration: underline;
+}
+
+.enlaces--desktop {
+  @include responsive-down('md') {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CABECERA LOGO
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 .cabecera__logo {
   width: 9.9375rem;
   height: 4.25rem;
@@ -160,23 +212,27 @@ nav {
   aspect-ratio: 159/68;
   cursor: pointer;
 
-  @media (max-width: $breakpoint-lg) {
+  @include responsive-down('xl') {
     width: 8.5rem;
     height: 3.6rem;
   }
-  @media (max-width: $breakpoint-md) {
+  @include responsive-down('lg') {
     width: 7.5rem;
     height: 3.2rem;
   }
-  @media (max-width: $breakpoint-sm) {
+  @include responsive-down('md') {
     width: 7rem;
     height: 3rem;
   }
 }
 
-// ========================================
-// BUSCADOR
-// ========================================
+/* ═══════════════════════════════════════════════════════════════════════════
+   BUSCADOR COMPONENT
+   Block: .buscador
+   Elements: .buscador__input, .buscador__icono
+   Modifiers: .buscador--desktop
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 .buscador {
   position: relative;
   display: flex;
@@ -186,23 +242,23 @@ nav {
   min-width: 20rem;
   flex-shrink: 1;
 
-  @media (max-width: $breakpoint-xl) {
+  @include responsive-down('xxl') {
     max-width: 30rem;
     min-width: 16rem;
   }
-  @media (max-width: $breakpoint-lg) {
+  @include responsive-down('xl') {
     max-width: 24rem;
     min-width: 12rem;
   }
-  @media (max-width: $breakpoint-md) {
+  @include responsive-down('lg') {
     max-width: 18rem;
     min-width: 10rem;
   }
+}
 
-  &--desktop {
-    @media (max-width: $breakpoint-sm) {
-      display: none;
-    }
+.buscador--desktop {
+  @include responsive-down('md') {
+    display: none;
   }
 }
 
@@ -214,20 +270,26 @@ nav {
   border: 0 solid var(--blanco-dark);
   color: var(--text-light);
   font-size: var(--font-size-md);
+  transition: all 0.3s ease;
 
-  @media (max-width: $breakpoint-md) {
+  @include responsive-down('lg') {
     padding: 0.65rem 0.75rem 0.65rem 2.5rem;
     font-size: var(--font-size-sm);
   }
 
-  @media (max-width: $breakpoint-sm) {
+  @include responsive-down('md') {
     padding: 0.5rem 0.5rem 0.5rem 2rem;
     font-size: var(--font-size-xs);
   }
+}
 
-  &::placeholder {
-    color: var(--text-light);
-  }
+.buscador__input::placeholder {
+  color: var(--text-light);
+}
+
+.buscador__input:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
 }
 
 .buscador__icono {
@@ -237,79 +299,93 @@ nav {
   color: var(--button-darker);
   pointer-events: none;
 
-  @media (max-width: $breakpoint-md) {
+  @include responsive-down('lg') {
     left: 0.75rem;
     width: 1.25rem;
   }
-  @media (max-width: $breakpoint-sm) {
+  @include responsive-down('md') {
     left: 0.5rem;
     width: 1rem;
   }
 }
 
-// ========================================
-// BOTONES PRINCIPALES
-// ========================================
+/* ═══════════════════════════════════════════════════════════════════════════
+   CABECERA BOTONES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 .cabecera__botones {
   display: flex;
   align-items: center;
   gap: 1.625rem;
   flex-shrink: 0;
 
-  @media (max-width: $breakpoint-lg) {
+  @include responsive-down('xl') {
     gap: 1rem;
   }
-  @media (max-width: $breakpoint-md) {
+  @include responsive-down('lg') {
     gap: 0.75rem;
-  }
-
-  &--desktop {
-    @media (max-width: $breakpoint-sm) {
-      display: none;
-    }
   }
 }
 
-.boton_inscribete {
+.cabecera__botones--desktop {
+  @include responsive-down('md') {
+    display: none;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BOTÓN INSCRIBETE
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.boton-inscribete {
   @include button-base;
   width: 9.125rem;
   height: 3rem;
   padding: 1.375rem 0.5625rem;
   gap: var(--spacing-size-xss);
   background: var(--amarillo-normal);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
 
-  @media (max-width: $breakpoint-lg) {
+  @include responsive-down('xl') {
     width: 8rem;
     padding: 1rem 0.5rem;
     font-size: var(--font-size-sm);
   }
 
-  @media (max-width: $breakpoint-md) {
+  @include responsive-down('lg') {
     width: 7rem;
     padding: 0.75rem 0.4rem;
     font-size: var(--font-size-xs);
   }
 
-  @media (max-width: $breakpoint-sm) {
+  @include responsive-down('md') {
     @include hide-text-show-icon;
-  }
-
-  svg {
-    width: 1.5rem;
-    flex-shrink: 0;
-    @media (max-width: $breakpoint-md) {
-      width: 1.25rem;
-    }
-  }
-
-  &:hover {
-    color: var(--blanco-normal);
-    background-color: var(--amarillo-dark-hover);
   }
 }
 
-.boton__cuenta {
+.boton-inscribete svg {
+  width: 1.5rem;
+  flex-shrink: 0;
+  @include responsive-down('lg') {
+    width: 1.25rem;
+  }
+}
+
+.boton-inscribete:hover {
+  color: var(--blanco-normal);
+  background-color: var(--amarillo-dark-hover);
+}
+
+.boton-inscribete:focus {
+  outline: 0.125rem solid var(--amarillo-dark);
+  outline-offset: 0.125rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BOTÓN CUENTA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.boton-cuenta {
   @include button-base;
   width: 6.6875rem;
   height: 3rem;
@@ -320,42 +396,52 @@ nav {
   background: var(--gris-normal);
   color: var(--blanco-normal);
 
-  @media (max-width: $breakpoint-lg) {
+  @include responsive-down('xl') {
     width: 6rem;
     font-size: var(--font-size-sm);
   }
 
-  @media (max-width: $breakpoint-md) {
+  @include responsive-down('lg') {
     width: 5rem;
     padding: 0.4rem;
     font-size: var(--font-size-xs);
   }
 
-  @media (max-width: $breakpoint-sm) {
+  @include responsive-down('md') {
     @include hide-text-show-icon;
-  }
-
-  svg {
-    flex-shrink: 0;
-    @media (max-width: $breakpoint-md) {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
-  }
-
-  &:hover {
-    background: var(--blanco-normal-hover);
-    color: var(--gris-normal);
   }
 }
 
-// ========================================
-// MENÚ DESPLEGABLE DE CUENTA
-// ========================================
+.boton-cuenta svg {
+  flex-shrink: 0;
+  @include responsive-down('lg') {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.boton-cuenta:hover {
+  background: var(--blanco-normal-hover);
+  color: var(--gris-normal);
+}
+
+.boton-cuenta:focus {
+  outline: 0.125rem solid var(--blanco-normal);
+  outline-offset: 0.125rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MENU-CUENTA COMPONENT
+   Block: .menu-cuenta
+   Elements: .menu-cuenta__item, .menu-cuenta__icono, .menu-cuenta__overlay
+   Modifiers: .menu-cuenta__item--modo
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 .menu-cuenta-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+  color: var(--text-dark);
 }
 
 .menu-cuenta {
@@ -364,97 +450,112 @@ nav {
   right: 0;
   background: var(--blanco-normal);
   border-radius: var(--radius-s);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
   min-width: 12rem;
   padding: var(--spacing-size-s);
-  z-index: 1001;
+  z-index: var(--z-modal);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-xss);
-  animation: slideDown 0.2s ease-out;
-
-  // Sobrescribir la altura del nav genérico
+  animation: menuCuentaSlideDown 0.2s ease-out;
   height: auto;
   align-items: stretch;
+}
 
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-0.5rem);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+@keyframes menuCuentaSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
   }
-
-  &__item {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    padding: var(--spacing-size-s) var(--spacing-size-m);
-    background: transparent;
-    border: none;
-    border-radius: var(--radius-xss);
-    color: var(--negro-normal);
-    font-family: var(--font-primary);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-regular);
-    text-align: left;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all var(--duration-fast) ease;
-    margin: 0;
-
-    &:hover {
-      background: var(--blanco-normal-hover);
-      color: var(--amarillo-darker);
-    }
-
-    &--modo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: var(--spacing-size-xs);
-      margin-top: var(--spacing-size-xs);
-      padding: var(--spacing-size-s);
-      border-top: 1px solid var(--blanco-dark);
-      background: transparent;
-      border-radius: var(--radius-xss);
-
-      &:hover {
-        background: var(--amarillo-normal);
-        color: var(--negro-normal);
-
-        .menu-cuenta__icono {
-          color: var(--negro-normal);
-        }
-      }
-    }
-  }
-
-  &__icono {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: var(--negro-normal);
-    flex-shrink: 0;
-  }
-
-  &__overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: transparent;
-    z-index: 1000;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-// ========================================
-// MENÚ MÓVIL
-// ========================================
+.menu-cuenta__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-xss);
+  color: var(--negro-normal);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+  margin: 0;
+}
+
+.menu-cuenta__item:hover {
+  background: var(--blanco-normal-hover);
+  color: var(--amarillo-darker);
+}
+
+.menu-cuenta__item:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: -0.125rem;
+}
+
+.menu-cuenta__item--modo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-size-xs);
+  margin-top: var(--spacing-size-xs);
+  padding: var(--spacing-size-s);
+  border-top: 0.0625rem solid var(--blanco-dark);
+  background: transparent;
+  border-radius: var(--radius-xss);
+}
+
+.menu-cuenta__item--modo:hover {
+  background: var(--amarillo-normal);
+  color: var(--negro-normal);
+}
+
+.menu-cuenta__item--modo:hover .menu-cuenta__icono {
+  color: var(--negro-normal);
+}
+
+.menu-cuenta__icono {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--negro-normal);
+  flex-shrink: 0;
+}
+
+.menu-cuenta__overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: var(--z-overlay);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MENU-MOVIL COMPONENT
+   Block: .menu-movil
+   Elements: .menu-movil__overlay, .menu-movil__contenido, .menu-movil__header,
+             .menu-movil__cerrar, .menu-movil__nav, .menu-movil__link,
+             .menu-movil__inscripcion
+   Modifiers: .menu-movil--abierto, .menu-movil__link--perfil
+
+   OPTIMIZACIÓN DE RENDIMIENTO:
+   - Eliminado backdrop-filter (muy costoso en móviles)
+   - Usamos visibility + opacity con transiciones escalonadas
+   - will-change solo cuando es necesario
+   - transform para deslizamiento (GPU accelerated)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 .menu-movil {
   position: fixed;
   top: 0;
@@ -462,141 +563,198 @@ nav {
   width: 100%;
   height: 100vh;
   visibility: hidden;
-  opacity: 0;
-  transition: all 0.3s ease;
-  z-index: 150;
-
-  &--abierto {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  &__overlay {
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
-  }
-
-  &__contenido {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 80%;
-    max-width: 400px;
-    height: 100%;
-    background: var(--gris-dark);
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
-
-    .menu-movil--abierto & {
-      transform: translateX(0);
-    }
-  }
-
-  &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    background: var(--gris-normal);
-    border-bottom: 2px solid var(--amarillo-normal);
-
-    h2 {
-      color: var(--blanco-normal);
-      font-size: var(--font-size-xl);
-      font-weight: var(--font-weight-bold);
-      margin: 0;
-    }
-  }
-
-  &__cerrar {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-
-    svg {
-      width: 2rem;
-      height: 2rem;
-      fill: var(--blanco-normal);
-    }
-
-    &:hover {
-      transform: rotate(90deg);
-    }
-  }
-
-  &__nav {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem 0;
-    flex: 1;
-  }
-
-  &__link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem 1.5rem;
-    color: var(--blanco-normal);
-    text-decoration: none;
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-medium);
-    transition: all 0.3s ease;
-    border-left: 4px solid transparent;
-
-    svg {
-      width: 1.5rem;
-      height: 1.5rem;
-      fill: var(--amarillo-normal);
-    }
-
-    &:hover {
-      background: var(--gris-normal-hover);
-      border-left-color: var(--amarillo-normal);
-      padding-left: 2rem;
-    }
-
-    &--perfil {
-      margin-top: auto;
-      border-top: 1px solid var(--gris-normal);
-
-      svg {
-        fill: var(--blanco-normal);
-      }
-    }
-  }
-
-  &__inscripcion {
-    @include button-base;
-    gap: 0.75rem;
-    margin: 1.5rem;
-    padding: 1rem;
-    background: var(--amarillo-normal);
-    border: none;
-    color: var(--negro-normal);
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-bold);
-    box-shadow: 0 4px 12px rgba(255, 211, 0, 0.3);
-
-    svg {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-
-    &:hover {
-      background: var(--amarillo-dark-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(255, 211, 0, 0.4);
-    }
-  }
+  z-index: var(--z-modal);
+  /* OPTIMIZADO: Removido pointer-events cuando está cerrado */
+  pointer-events: none;
 }
+
+.menu-movil--abierto {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.menu-movil__overlay {
+  position: absolute;
+  inset: 0;
+  /* OPTIMIZADO: Fondo semi-transparente SIN blur */
+  background-color: rgba(0, 0, 0, 0);
+  /* Transición solo de opacity (GPU accelerated) */
+  transition: background-color 0.25s ease-out;
+}
+
+.menu-movil--abierto .menu-movil__overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.menu-movil__contenido {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80%;
+  max-width: 25rem;
+  height: 100%;
+  background: var(--gris-dark);
+  /* OPTIMIZADO: transform es GPU accelerated */
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  /* Sombra estática, no animada */
+  box-shadow: -0.25rem 0 1.25rem rgba(0, 0, 0, 0.3);
+  /* Preparar GPU solo cuando va a animar */
+  will-change: transform;
+  /* Mejora el scroll en iOS */
+  -webkit-overflow-scrolling: touch;
+}
+
+.menu-movil--abierto .menu-movil__contenido {
+  transform: translateX(0);
+}
+
+.menu-movil__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--gris-normal);
+  border-bottom: 0.125rem solid var(--amarillo-normal);
+}
+
+.menu-movil__header h2 {
+  color: var(--blanco-normal);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+
+.menu-movil__cerrar {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* OPTIMIZADO: Transición específica con curva suave */
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Preparar para transformación */
+  will-change: transform;
+}
+
+.menu-movil__cerrar svg {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--blanco-normal);
+}
+
+.menu-movil__cerrar:hover {
+  transform: rotate(90deg);
+}
+
+.menu-movil__cerrar:active {
+  transform: rotate(90deg) scale(0.9);
+}
+
+.menu-movil__cerrar:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
+}
+
+.menu-movil__nav {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  flex: 1;
+}
+
+.menu-movil__link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  color: var(--blanco-normal);
+  text-decoration: none;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  /* OPTIMIZADO: Transiciones específicas, no "all" */
+  transition: background-color 0.15s ease-out,
+              transform 0.15s ease-out;
+  border-left: 0.25rem solid transparent;
+  /* Posición relativa para pseudo-elemento */
+  position: relative;
+}
+
+.menu-movil__link svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: var(--amarillo-normal);
+  /* Transición suave del color */
+  transition: fill 0.15s ease-out;
+}
+
+.menu-movil__link:hover {
+  background: var(--gris-normal-hover);
+  border-left-color: var(--amarillo-normal);
+  /* OPTIMIZADO: Usamos transform en lugar de padding-left */
+  transform: translateX(0.5rem);
+}
+
+.menu-movil__link:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: -0.125rem;
+}
+
+.menu-movil__link--perfil {
+  margin-top: auto;
+  border-top: 0.0625rem solid var(--gris-normal);
+}
+
+.menu-movil__link--perfil svg {
+  fill: var(--blanco-normal);
+}
+
+.menu-movil__inscripcion {
+  @include button-base;
+  gap: 0.75rem;
+  margin: 1.5rem;
+  padding: 1rem;
+  background: var(--amarillo-normal);
+  border: none;
+  color: var(--negro-normal);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  /* Sombra estática base */
+  box-shadow: 0 0.25rem 0.75rem rgba(255, 211, 0, 0.3);
+  /* OPTIMIZADO: Solo transicionamos transform y background (GPU accelerated) */
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color 0.15s ease-out;
+}
+
+.menu-movil__inscripcion svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.menu-movil__inscripcion:hover {
+  background: var(--amarillo-dark-hover);
+  /* OPTIMIZADO: Solo transform, sin animar box-shadow */
+  transform: translateY(-0.125rem) scale(1.02);
+  /* Sombra estática más pronunciada, no animada */
+}
+
+.menu-movil__inscripcion:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.menu-movil__inscripcion:focus {
+  outline: 0.125rem solid var(--amarillo-dark);
+  outline-offset: 0.125rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODO OSCURO
+   Los estilos de dark mode están en: styles/07-dark-mode/_dark-mode.scss
+   Esto es necesario porque Angular encapsula los estilos de componentes
+   y no permite que selectores como body.modo-oscuro atraviesen.
+   ═══════════════════════════════════════════════════════════════════════════ */

@@ -1,15 +1,35 @@
-/* ============================================
-   05-COMPONENTS: Navegacion
-   Componentes de navegacion reutilizables
-   Nomenclatura BEM en espanol
-   ============================================ */
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVEGACION COMPONENT (Global)
+   Componentes de navegación reutilizables
+   ═══════════════════════════════════════════════════════════════════════════
+
+   ESTRUCTURA BEM
+   ─────────────────────────────────────────────────────────────────────────────
+   Block:     .navegacion, .navegacion-movil, .pie
+   Elements:  .navegacion__logo, .navegacion__contenido, .navegacion__lista,
+              .navegacion__item, .navegacion__enlace, .navegacion__acciones,
+              .navegacion__buscador, .navegacion__buscador-input,
+              .navegacion__buscador-icono, .navegacion__hamburguesa
+   Modifiers: .navegacion__enlace--activo, .navegacion-movil--abierto
+
+   USO
+   ─────────────────────────────────────────────────────────────────────────────
+   <nav class="navegacion">
+     <a class="navegacion__logo" href="/">Logo</a>
+     <ul class="navegacion__lista">
+       <li class="navegacion__item">
+         <a class="navegacion__enlace navegacion__enlace--activo">Inicio</a>
+       </li>
+     </ul>
+   </nav>
+
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 @import '../01-tools/mixins';
 
-/* --------------------------------------------
-   BLOQUE: .navegacion
-   Barra de navegacion principal
-   -------------------------------------------- */
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Navigation bar
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .navegacion {
   display: flex;
@@ -19,20 +39,24 @@
   background-color: var(--gris-normal);
 }
 
-
-/* --------------------------------------------
-   ELEMENTOS DE LA NAVEGACION
-   -------------------------------------------- */
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Navigation components
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .navegacion__logo {
   @include tipografia-titulo;
   font-size: var(--font-size-xl);
   color: var(--amarillo-normal);
   text-decoration: none;
+}
 
-  &:hover {
-    color: var(--amarillo-normal-hover);
-  }
+.navegacion__logo:hover {
+  color: var(--amarillo-normal-hover);
+}
+
+.navegacion__logo:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
 }
 
 .navegacion__contenido {
@@ -50,7 +74,7 @@
 }
 
 .navegacion__item {
-  // Para estilos especificos de items si es necesario
+  /* Para estilos específicos de items si es necesario */
 }
 
 .navegacion__enlace {
@@ -60,11 +84,16 @@
   padding: var(--spacing-size-xss) var(--spacing-size-s);
   border-radius: var(--radius-xss);
   transition: all var(--duration-fast);
+}
 
-  &:hover {
-    color: var(--amarillo-normal);
-    background-color: var(--gris-dark);
-  }
+.navegacion__enlace:hover {
+  color: var(--amarillo-normal);
+  background-color: var(--gris-dark);
+}
+
+.navegacion__enlace:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
 }
 
 .navegacion__enlace--activo {
@@ -84,13 +113,13 @@
 
 .navegacion__buscador-input {
   @include input-base;
-  width: 200px;
+  width: 12.5rem;
   padding-left: var(--spacing-size-l);
   border-radius: var(--radius-l);
   border: none;
 
   @include responsive('M') {
-    width: 300px;
+    width: 18.75rem;
   }
 }
 
@@ -104,15 +133,14 @@
   color: var(--gris-normal);
 }
 
-
-/* --------------------------------------------
-   NAVEGACION MOVIL
-   -------------------------------------------- */
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Hamburger menu button
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .navegacion__hamburguesa {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
   padding: var(--spacing-size-xss);
   background: transparent;
   border: none;
@@ -123,29 +151,37 @@
   }
 }
 
+.navegacion__hamburguesa:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
+}
+
 .navegacion__hamburguesa-linea {
-  width: 24px;
-  height: 3px;
+  width: 1.5rem;
+  height: 0.1875rem;
   background-color: var(--blanco-normal);
-  border-radius: 2px;
+  border-radius: 0.125rem;
   transition: all var(--duration-base);
 }
 
-// Menu movil
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVEGACION-MOVIL COMPONENT (Mobile menu)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 .navegacion-movil {
   position: fixed;
   top: 0;
   right: -100%;
   width: 80%;
-  max-width: 300px;
+  max-width: 18.75rem;
   height: 100vh;
   background-color: var(--gris-dark);
-  z-index: 1000;
+  z-index: var(--z-modal);
   transition: right var(--duration-base);
+}
 
-  &--abierto {
-    right: 0;
-  }
+.navegacion-movil--abierto {
+  right: 0;
 }
 
 .navegacion-movil__overlay {
@@ -155,15 +191,15 @@
   width: 100%;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
+  z-index: var(--z-overlay);
   opacity: 0;
   visibility: hidden;
   transition: all var(--duration-base);
+}
 
-  &--visible {
-    opacity: 1;
-    visibility: visible;
-  }
+.navegacion-movil__overlay--visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 .navegacion-movil__cabecera {
@@ -171,7 +207,7 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-size-m);
-  border-bottom: 1px solid var(--gris-normal);
+  border-bottom: 0.0625rem solid var(--gris-normal);
 }
 
 .navegacion-movil__cerrar {
@@ -180,6 +216,11 @@
   color: var(--text-dark);
   font-size: var(--font-size-xl);
   cursor: pointer;
+}
+
+.navegacion-movil__cerrar:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
 }
 
 .navegacion-movil__lista {
@@ -195,17 +236,21 @@
   text-decoration: none;
   padding: var(--spacing-size-s);
   border-radius: var(--radius-xss);
-
-  &:hover {
-    background-color: var(--gris-normal);
-    color: var(--amarillo-normal);
-  }
 }
 
+.navegacion-movil__enlace:hover {
+  background-color: var(--gris-normal);
+  color: var(--amarillo-normal);
+}
 
-/* --------------------------------------------
-   PIE DE PAGINA (Footer)
-   -------------------------------------------- */
+.navegacion-movil__enlace:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: -0.125rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   PIE COMPONENT (Footer)
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 .pie {
   display: flex;
@@ -242,10 +287,15 @@
   font-size: var(--font-size-sm);
   color: var(--blanco-dark);
   text-decoration: none;
+}
 
-  &:hover {
-    color: var(--amarillo-normal);
-  }
+.pie__enlace:hover {
+  color: var(--amarillo-normal);
+}
+
+.pie__enlace:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
 }
 
 .pie__copyright {
@@ -270,14 +320,19 @@
   color: var(--text-dark);
   text-decoration: none;
   transition: all var(--duration-fast);
+}
 
-  &:hover {
-    background-color: var(--amarillo-normal);
-    color: var(--negro-normal);
-  }
+.pie__red-social:hover {
+  background-color: var(--amarillo-normal);
+  color: var(--negro-normal);
+}
 
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
+.pie__red-social:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
+}
+
+.pie__red-social svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }

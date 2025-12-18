@@ -131,9 +131,7 @@ Ejemplos:
 ### 1.2 Metodología CSS Explica qué metodología usas (BEM recomendado) y por qué. Muestra ejemplos de tu nomenclatura. Si usas BEM, explica que usarás bloques (.card), elementos (.card__title), y modificadores (.card--featured).
 
 He usado la metología BEM porque me permite organizar el código por componentes, además de permitirme reutilizar estilos
-en diferentes
-partes sin tener problemas de especificidad. El principal mótivo por lo que lo he usado es por la especifidad ya que al
-estar trabajando con componentes
+en diferentes partes sin tener problemas de especificidad. El principal mótivo por lo que lo he usado es por la especifidad ya que al estar trabajando con componentes
 muchas veces voy a tener estilos repetidos y con BEM puedo usar los estilos ya creados sin tener que preocuparme por que
 se repita esta
 clase.
@@ -141,29 +139,39 @@ clase.
 Ejemplos de nomenclatura BEM usada en el proyecto:
 
 ```css
-.flex__basico {
-    display: flex;
-    margin: 0 auto;
-    padding: 0 var(--spacing-size-xs);
-}
+
+/* BLOQUE: Contenedor principal del componente */ 
+
+.button { }          
+.alert { }          
+.pricing-card { }    
+.menu-movil { }      
 
 
-.grid__cols__2 {
-    grid-template-columns: repeat(2, 1fr);
-}
+/* ELEMENTO: Parte interna del bloque (usa __) */
 
-.grid__cols__3 {
-    grid-template-columns: repeat(3, 1fr);
-}
+.button__icono { }        
+.button__texto { }         
+.alert__mensaje { }         
+.alert__cerrar { }        
+.pricing-card__titulo { } 
+.pricing-card__lista { }     
+.pricing-card__boton { }   
+.menu-movil__contenido { }
+.menu-movil__link { }     
 
-.grid__cols__4 {
-    grid-template-columns: repeat(4, 1fr);
-}
 
-.grid__cols__6 {
-    grid-template-columns: repeat(6, 1fr);
-}
+/* MODIFICADOR: Variante del bloque/elemento (usa --) */
 
+.button--primary { }       
+.button--secondary { }   
+.button--danger { }    
+.button--sm { }
+.button--lg { }            
+.alert--success { }       
+.alert--error { }          
+.pricing-card--planes { }  
+.menu-movil--abierto { }   
 ```
 
 ### 1.3 Organización de archivos: Documenta tu estructura ITCSS. Explica por qué cada carpeta está en ese orden (de menor a mayor especificidad). Muestra el árbol de carpetas completo.
@@ -173,25 +181,38 @@ Ejemplos de nomenclatura BEM usada en el proyecto:
 ```
 styles/
 ├── 00-settings/
+│   ├── _css-variables.scss
 │   └── _variables.scss
 ├── 01-tools/
 │   └── _mixins.scss
 ├── 02-generic/
 │   └── _reset.scss
 ├── 03-elements/
+│   ├── _buttons.scss
 │   ├── _elements.scss
-│   └── _links.scss
+│   ├── _forms.scss
+│   ├── _links.scss
+│   ├── _lists.scss
+│   └── _typography.scss
 ├── 04-layout/
 │   ├── _grid.scss
 │   └── _layaout.scss
 ├── 05-components/
-│   └── _inputs.scss
+│   ├── _alerta.scss
+│   ├── _boton.scss
+│   ├── _formulario.scss
+│   ├── _inputs.scss
+│   ├── _navegacion.scss
+│   └── _tarjeta.scss
 ├── 06-utilities/
 │   └── _utilities.scss
+├── 07-dark-mode/
+│   ├── _dark-mode-config.scss
+│   └── _dark-mode.scss
 ├── objects/
 │   └── _objetcs.scss
-└── utilities/
-    └── _utilities.scss
+├── utilities/
+│   └── _utilities.scss
 ```
 
 ### Explicación del orden (de menor a mayor especificidad)
@@ -372,23 +393,16 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
 Cree estos mixins para facilitar la creación de layouts flexibles y reutilizables en todo el proyecto.
 
 ```css
-    /
-/
-Centrado perfecto
+// Centrado perfecto (horizontal y vertical)
+@mixin flex-center {
 
-(
-horizontal y vertical
-
-)
 @mixin flex-center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-/
-/
-Distribuir espacio entre elementos
+// Distribuir espacio entre elementos
 
 @mixin flex-between {
     display: flex;
@@ -396,28 +410,14 @@ Distribuir espacio entre elementos
     align-items: center;
 }
 
-/
-/
-Flex con wrap
-
-(
-cuando los elementos no caben
-
-)
+// Flex con wrap (cuando los elementos no caben)
 @mixin flex-wrap($gap: 1rem) {
     display: flex;
     flex-wrap: wrap;
     gap: $ gap;
 }
 
-/
-/
-Flex completo
-
-(
-ocupa todo el ancho
-
-)
+// Flex completo (ocupa todo el ancho)
 @mixin flex-full {
     display: flex;
     width: 100%;
@@ -1175,19 +1175,7 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   margin: 0;
 }
 
-// Archivo: cofira/src/app/components/layaout/header/header.scss
-// Elementos del bloque .hamburguesa
-.hamburguesa__linea {
-  width: 100%;
-  height: 3px;
-  background-color: var(--blanco-normal);
-  border-radius: 10px;
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.2s ease-out,
-              background-color 0.15s ease-out;
-  will-change: transform, opacity;
-  transform-origin: center;
-}
+
 
 // Elementos del bloque .menu-movil
 .menu-movil__overlay {
@@ -1256,27 +1244,6 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   width: 1.5rem;
   color: var(--button-darker);
   pointer-events: none;
-}
-
-// Elementos del bloque .menu-cuenta
-.menu-cuenta__item {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  padding: var(--spacing-size-s) var(--spacing-size-m);
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-xss);
-  color: var(--negro-normal);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-regular);
-  text-align: left;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all var(--duration-fast) ease;
-  margin: 0;
 }
 
 .menu-cuenta__icono {
@@ -1639,9 +1606,9 @@ Lo primero que muestra el Style Guide es la paleta de colores que he usado en to
 
 Las variables de colores están definidas en `cofira/src/styles/00-settings/_css-variables.scss` y se exponen como CSS custom properties en `cofira/src/styles/00-settings/_variables.scss`.
 
-![img_5.png](img_5.png)
-![img_6.png](img_6.png)
-![img_7.png](img_7.png)
+![img_5.png](../assets/colores.png)
+![img_6.png](../assets/colores_2.png)
+![img_7.png](../assets/background.png)
 
 ---
 
@@ -1651,8 +1618,8 @@ A continuación se muestra la escala tipográfica utilizada en la web con ejempl
 
 La escala tipográfica sigue un ratio de 1.25x (Major Third) y está definida en `cofira/src/styles/00-settings/_css-variables.scss`. Las familias tipográficas que uso son Montserrat para textos (`--font-primary`) y Poppins para títulos (`--font-secondary`).
 
-![img_8.png](img_8.png)
-![img_9.png](img_9.png)
+![img_8.png](../assets/tipogarfia.png)
+![img_9.png](../assets/tamanios_2.png)
 
 ---
 
@@ -1662,7 +1629,7 @@ A continuación se muestran los diferentes pesos de la tipografía usados en la 
 
 Los pesos están definidos en `cofira/src/styles/00-settings/_css-variables.scss` y van desde `--font-weight-light (300)` hasta `--font-weight-bold (700)`.
 
-![img_10.png](img_10.png)
+![img_10.png](../assets/tamanios.png)
 
 ---
 
@@ -1672,7 +1639,7 @@ En esta parte se muestra la escala de espaciados utilizada en la web con ejemplo
 
 La escala de espaciados está definida en `cofira/src/styles/00-settings/_css-variables.scss` y va desde `--spacing-size-xss (0.5rem)` hasta `--spacing-size-xxxxxl (8.75rem)`.
 
-![img_11.png](img_11.png)
+![img_11.png](../assets/espaciados.png)
 
 ---
 
@@ -1684,7 +1651,7 @@ También se muestra el border radius usado en la web con ejemplos visuales de ca
 
 Las duraciones y los border radius están definidos en `cofira/src/styles/00-settings/_css-variables.scss`.
 
-![img_12.png](img_12.png)
+![img_12.png](../assets/animaciones.png)
 
 ---
 
@@ -1694,7 +1661,7 @@ A continuación se muestra el componente header y footer que sirven para ser reu
 
 El header está implementado en `cofira/src/app/components/layaout/header/header.ts`, `cofira/src/app/components/layaout/header/header.html` y `cofira/src/app/components/layaout/header/header.scss`. El footer está implementado en `cofira/src/app/components/layaout/footer/footer.ts`, `cofira/src/app/components/layaout/footer/footer.html` y `cofira/src/app/components/layaout/footer/footer.scss`.
 
-![img_13.png](img_13.png)
+![img_13.png](../assets/navegacion_cabecera.png)
 
 ---
 
@@ -1704,7 +1671,7 @@ A continuación se muestra el componente button que sirve para crear botones reu
 
 El componente está implementado en `cofira/src/app/components/shared/button/button.ts`, `cofira/src/app/components/shared/button/button.html` y `cofira/src/app/components/shared/button/button.scss`. Acepta las propiedades `variante`, `tamanio`, `habilitado` y `tipo`.
 
-![img_14.png](img_14.png)
+![img_14.png](../assets/botones.png)
 
 ---
 
@@ -1714,7 +1681,7 @@ A continuación se muestra el componente card que sirve para mostrar informació
 
 El componente está implementado en `cofira/src/app/components/shared/card/card.ts`, `cofira/src/app/components/shared/card/card.html` y `cofira/src/app/components/shared/card/card.scss`. Acepta las propiedades `title`, `ventajas`, `texto_boton`, `precio`, `variante`, `tamanio` y `deshabilitada`.
 
-![img_15.png](img_15.png)
+![img_15.png](../assets/card.png)
 
 ---
 
@@ -1724,7 +1691,7 @@ A continuación se muestra el componente input que sirve para crear campos de en
 
 El componente está implementado en `cofira/src/app/components/shared/form-input/form-input.ts`, `cofira/src/app/components/shared/form-input/form-input.html` y `cofira/src/app/components/shared/form-input/form-input.scss`. Acepta las propiedades `label`, `name`, `type`, `placeholder`, `required`, `errorMessage`, `helpText` y `control`.
 
-![img_16.png](img_16.png)
+![img_16.png](../assets/input.png)
 
 ---
 
@@ -1734,7 +1701,7 @@ A continuación se muestra el componente textarea que sirve para crear áreas de
 
 El componente está implementado en `cofira/src/app/components/shared/form-textarea/form-textarea.ts`, `cofira/src/app/components/shared/form-textarea/form-textarea.html` y `cofira/src/app/components/shared/form-textarea/form-textarea.scss`.
 
-![img_17.png](img_17.png)
+![img_17.png](../assets/textarea.png)
 
 ---
 
@@ -1744,7 +1711,7 @@ A continuación se muestra el componente select que sirve para crear selectores 
 
 El componente está implementado en `cofira/src/app/components/shared/form-select/form-select.ts`, `cofira/src/app/components/shared/form-select/form-select.html` y `cofira/src/app/components/shared/form-select/form-select.scss`. Acepta la propiedad `options` que es un array de strings con las opciones disponibles.
 
-![img_18.png](img_18.png)
+![img_18.png](../assets/select.png)
 
 ---
 
@@ -1754,7 +1721,7 @@ A continuación se muestra el componente checkbox que sirve para crear casillas 
 
 El componente está implementado en `cofira/src/app/components/shared/form-checkbox/form-checkbox.ts`, `cofira/src/app/components/shared/form-checkbox/form-checkbox.html` y `cofira/src/app/components/shared/form-checkbox/form-checkbox.scss`.
 
-![img_19.png](img_19.png)
+![img_19.png](../assets/checkbox.png)
 
 ---
 
@@ -1764,7 +1731,7 @@ A continuación se muestran los componentes de contacto y registro que sirven pa
 
 El formulario de contacto está implementado en `cofira/src/app/components/shared/form-contact/form-contact.ts` y el de registro en `cofira/src/app/components/shared/form-register/form-register.ts`. Ambos usan Reactive Forms de Angular con validaciones como `Validators.required`, `Validators.email` y `Validators.minLength`.
 
-![img_20.png](img_20.png)
+![img_20.png](../assets/formulario_contacto.png)
 
 ---
 
@@ -1778,5 +1745,5 @@ La notificación está implementada en `cofira/src/app/components/shared/notific
 
 En el Style Guide he añadido botones de demostración para probar las notificaciones de forma interactiva, la lógica está en `cofira/src/app/pages/style-guide/style-guide.ts` donde implemento el método `mostrarNotificacion()` que añade notificaciones al array y las muestra en pantalla.
 
-![img_21.png](img_21.png)
-![img_22.png](img_22.png)
+![img_21.png](../assets/alertas.png)
+![img_22.png](../assets/img_22.png)

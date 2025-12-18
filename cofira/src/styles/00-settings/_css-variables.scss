@@ -152,9 +152,9 @@ $duration-slower: 700ms;
 // ========================================
 // BORDES
 // ========================================
-$border-width-fino: 1px;
-$border-width-normal: 2px;
-$border-width-grueso: 3px;
+$border-width-fino: 0.0625rem;
+$border-width-normal: 0.125rem;
+$border-width-grueso: 0.1875rem;
 
 
 // ========================================
@@ -176,9 +176,26 @@ $width-muy-pequenio: 6.75rem;
 
 
 // ========================================
+// Z-INDEX
+// Escala semántica: cada capa tiene un propósito claro
+// ========================================
+$z-index-header: 1;           // Navegación principal fija
+$z-index-header-controls: 2;  // Controles sobre el header (hamburguesa)
+$z-index-dropdown: 3;         // Dropdowns y menús desplegables
+$z-index-overlay: 4;          // Overlays oscuros (fondo de modales)
+$z-index-modal: 5;            // Modales y paneles laterales
+$z-index-toast: 10;           // Notificaciones/alertas flotantes
+$z-index-tooltip: 11;         // Tooltips (por encima de todo)
+
+
+// ========================================
 // BREAKPOINTS
 // ========================================
-$breakpoint-xs: 640px;
-$breakpoint-s: 768px;
-$breakpoint-M: 1024px;
-$breakpoint-L: 1280px;
+// Mobile first: usar con min-width
+// Desktop first: usar con max-width
+$breakpoint-xs: 40rem;    // 640px - Móviles pequeños
+$breakpoint-sm: 48rem;    // 768px - Móviles grandes / Tablets pequeñas
+$breakpoint-md: 56.25rem; // 900px - Tablets
+$breakpoint-lg: 64rem;    // 1024px - Tablets grandes / Laptops pequeños
+$breakpoint-xl: 75rem;    // 1200px - Laptops
+$breakpoint-xxl: 87.5rem; // 1400px - Escritorios grandes

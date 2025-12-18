@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.html',
-  styleUrls: ['./footer.scss']
+  styleUrls: ['./footer.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class Footer {
   currentYear = new Date().getFullYear();

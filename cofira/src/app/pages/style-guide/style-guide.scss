@@ -1,289 +1,274 @@
-// ========================================
-// PÁGINA: STYLE GUIDE
-// Guía de estilos con todos los componentes
-// ========================================
+/* ═══════════════════════════════════════════════════════════════════════════
+   STYLE GUIDE PAGE
+   Guía de estilos con todos los componentes del sistema de diseño
+   ═══════════════════════════════════════════════════════════════════════════
+
+   ESTRUCTURA BEM
+   ─────────────────────────────────────────────────────────────────────────────
+   Block:     .style-guide
+   Elements:  .style-guide__header, .style-guide__section, .style-guide__title,
+              .style-guide__component, .style-guide__description, .style-guide__note,
+              .style-guide__demo, .style-guide__footer
+   Modifiers: .style-guide__demo--buttons, .style-guide__demo--cards,
+              .style-guide__demo--forms, .style-guide__section:last-of-type
+
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Style guide container
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .style-guide {
-  // Layout
-  max-width: 1400px;
+  max-width: 87.5rem;
   margin: 0 auto;
   padding: var(--spacing-size-xl);
-
-  // Fondo
   background-color: var(--blanco-normal);
 }
 
-// HEADER DE LA GUÍA
-// ========================================
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Header
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .style-guide__header {
-  // Espaciado
   margin-bottom: var(--spacing-size-xxl);
   padding-bottom: var(--spacing-size-l);
-
-  // Borde inferior
-  border-bottom: 2px solid var(--gris-light);
-
-  h1 {
-    // Tipografía
-    font-size: var(--font-size-4xl);
-    font-weight: var(--font-weight-bold);
-    color: var(--negro-normal);
-    margin: 0 0 var(--spacing-size-s) 0;
-  }
-
-  p {
-    // Tipografía
-    font-size: var(--font-size-lg);
-    color: var(--gris-normal);
-    margin: 0;
-  }
+  border-bottom: 0.125rem solid var(--gris-light);
 }
 
-// SECCIONES
-// ========================================
+.style-guide__header h1 {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+}
+
+.style-guide__header p {
+  font-size: var(--font-size-lg);
+  color: var(--gris-normal);
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Sections
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .style-guide__section {
-  // Espaciado
   margin-bottom: var(--spacing-size-xxxl);
   padding-bottom: var(--spacing-size-xl);
-
-  // Borde inferior
-  border-bottom: 1px solid var(--gris-lighter);
-
-  &:last-of-type {
-    border-bottom: none;
-  }
+  border-bottom: 0.0625rem solid var(--gris-lighter);
 }
 
-// TÍTULOS DE SECCIÓN
-// ========================================
+.style-guide__section:last-of-type {
+  border-bottom: none;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Section titles
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .style-guide__title {
-  // Tipografía
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   color: var(--amarillo-dark);
-
-  // Espaciado
   margin: 0 0 var(--spacing-size-xl) 0;
   padding-bottom: var(--spacing-size-s);
-
-  // Borde inferior
-  border-bottom: 3px solid var(--amarillo-normal);
-
-  // Icono decorativo
-  &::before {
-    content: '●';
-    color: var(--amarillo-normal);
-    margin-right: var(--spacing-size-xs);
-  }
+  border-bottom: 0.1875rem solid var(--amarillo-normal);
 }
 
-// COMPONENTES INDIVIDUALES
-// ========================================
+.style-guide__title::before {
+  content: '●';
+  color: var(--amarillo-normal);
+  margin-right: var(--spacing-size-xs);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Individual components
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .style-guide__component {
-  // Espaciado
   margin-bottom: var(--spacing-size-xxl);
-
-  h3 {
-    // Tipografía
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--negro-normal);
-
-    // Espaciado
-    margin: 0 0 var(--spacing-size-xs) 0;
-  }
 }
 
-// DESCRIPCIÓN DEL COMPONENTE
-// ========================================
+.style-guide__component h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-xs) 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Description and notes
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .style-guide__description {
-  // Tipografía
   font-size: var(--font-size-md);
   color: var(--gris-dark);
   font-style: italic;
-
-  // Espaciado
   margin: 0 0 var(--spacing-size-m) 0;
 }
 
-// NOTA INFORMATIVA
-// ========================================
 .style-guide__note {
-  // Tipografía
   font-size: var(--font-size-sm);
   color: var(--gris-normal);
   font-weight: var(--font-weight-medium);
-
-  // Espaciado
   padding: var(--spacing-size-s);
   margin: var(--spacing-size-s) 0;
-
-  // Fondo
   background-color: var(--amarillo-normal-hover);
-  border-left: 3px solid var(--amarillo-normal);
+  border-left: 0.1875rem solid var(--amarillo-normal);
   border-radius: var(--radius-xss);
-} // ÁREA DE DEMOSTRACIÓN
-// ========================================
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Demo area
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .style-guide__demo {
-  // Fondo
   background-color: var(--gris-lighter);
-
-  // Espaciado
   padding: var(--spacing-size-l);
-
-  // Bordes
   border-radius: var(--radius-xs);
-  border: 1px solid var(--gris-light);
-
-  // Resetear estilos de figure
+  border: 0.0625rem solid var(--gris-light);
   margin: 0;
-
-  // Layout por defecto (stack vertical)
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-m);
 }
 
-// Variante para botones (horizontal)
 .style-guide__demo--buttons {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
 }
 
-// Variante para cards (grid)
 .style-guide__demo--cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
   gap: var(--spacing-size-l);
 }
 
-// Variante para formularios (max-width)
 .style-guide__demo--forms {
-  max-width: 600px;
+  max-width: 37.5rem;
 }
 
-// FOOTER DE LA GUÍA
-// ========================================
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Footer
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .style-guide__footer {
-  // Espaciado
   margin-top: var(--spacing-size-xxxl);
   padding-top: var(--spacing-size-xl);
-
-  // Borde superior
-  border-top: 2px solid var(--gris-light);
-
-  // Centrado
+  border-top: 0.125rem solid var(--gris-light);
   text-align: center;
-
-  p {
-    // Tipografía
-    font-size: var(--font-size-md);
-    color: var(--gris-normal);
-    margin: var(--spacing-size-xs) 0;
-  }
 }
 
-// BOTONES DE DEMO (para notificaciones)
-// ========================================
+.style-guide__footer p {
+  font-size: var(--font-size-md);
+  color: var(--gris-normal);
+  margin: var(--spacing-size-xs) 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Demo buttons (for notifications)
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .demo-btn {
-  // Layout
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  // Espaciado
   padding: var(--spacing-size-xs) var(--spacing-size-m);
-
-  // Tipografía
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-
-  // Bordes
-  border: 2px solid;
+  border: 0.125rem solid;
   border-radius: var(--radius-xss);
-
-  // Cursor
   cursor: pointer;
-
-  // Transición
   transition: all var(--duration-fast) ease;
+}
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+.demo-btn:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
 
-  &:active {
-    transform: translateY(0);
-  }
+.demo-btn:active {
+  transform: translateY(0);
+}
+
+.demo-btn:focus {
+  outline: 0.125rem solid currentColor;
+  outline-offset: 0.125rem;
 }
 
 .demo-btn--success {
   background-color: var(--amarillo-normal);
   border-color: var(--amarillo-dark);
   color: var(--negro-normal);
+}
 
-  &:hover {
-    background-color: var(--amarillo-normal-hover);
-  }
+.demo-btn--success:hover {
+  background-color: var(--amarillo-normal-hover);
 }
 
 .demo-btn--error {
   background-color: var(--button-red);
   border-color: var(--button-red-hover);
   color: var(--blanco-normal);
+}
 
-  &:hover {
-    background-color: var(--button-red-hover);
-  }
+.demo-btn--error:hover {
+  background-color: var(--button-red-hover);
 }
 
 .demo-btn--warning {
   background-color: var(--amarillo-normal-hover);
   border-color: var(--amarillo-normal);
   color: var(--negro-normal);
+}
 
-  &:hover {
-    background-color: var(--amarillo-normal);
-  }
+.demo-btn--warning:hover {
+  background-color: var(--amarillo-normal);
 }
 
 .demo-btn--info {
   background-color: var(--gris-normal);
   border-color: var(--gris-dark);
   color: var(--blanco-normal);
-
-  &:hover {
-    background-color: var(--gris-dark);
-  }
 }
 
-// ESTILOS PARA DESIGN TOKENS
-// ========================================
+.demo-btn--info:hover {
+  background-color: var(--gris-dark);
+}
 
-// GRID DE COLORES
-// ========================================
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Color Grid (Design Tokens)
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .color-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
   gap: var(--spacing-size-l);
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Color Card
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .color-card {
   background: var(--blanco-normal);
   padding: var(--spacing-size-m);
   border-radius: var(--radius-xs);
-  border: 1px solid var(--gris-light);
-
-  h4 {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    margin: 0 0 var(--spacing-size-m) 0;
-    color: var(--negro-normal);
-  }
+  border: 0.0625rem solid var(--gris-light);
 }
+
+.color-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--spacing-size-m) 0;
+  color: var(--negro-normal);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Color Swatches
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .color-swatches {
   display: flex;
@@ -298,17 +283,25 @@
   margin: 0;
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Color Circle
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .color-circle {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
   flex-shrink: 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-  &--border {
-    border: 1px solid var(--gris-light);
-  }
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
 }
+
+.color-circle--border {
+  border: 0.0625rem solid var(--gris-light);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Color Name & Value
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .color-name {
   flex: 1;
@@ -327,8 +320,10 @@
   border-radius: var(--radius-xss);
 }
 
-// ESCALA TIPOGRÁFICA
-// ========================================
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Typography Scale
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .typography-scale {
   display: flex;
   flex-direction: column;
@@ -342,7 +337,7 @@
   padding: var(--spacing-size-m);
   background: var(--blanco-normal);
   border-radius: var(--radius-xs);
-  border: 1px solid var(--gris-light);
+  border: 0.0625rem solid var(--gris-light);
 }
 
 .typography-sample {
@@ -357,37 +352,43 @@
   gap: var(--spacing-size-m);
   font-size: var(--font-size-sm);
   color: var(--gris-dark);
-
-  code {
-    font-family: 'Courier New', monospace;
-    background: var(--amarillo-normal-hover);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-xss);
-    font-weight: var(--font-weight-semibold);
-  }
 }
+
+.typography-info code {
+  font-family: 'Courier New', monospace;
+  background: var(--amarillo-normal-hover);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-xss);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Font Weights
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .font-weights {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-m);
-
-  p {
-    margin: 0;
-    font-size: var(--font-size-lg);
-    color: var(--negro-normal);
-
-    strong {
-      display: block;
-      font-size: var(--font-size-sm);
-      color: var(--gris-dark);
-      margin-bottom: var(--spacing-size-xs);
-    }
-  }
 }
 
-// ESCALA DE ESPACIADO
-// ========================================
+.font-weights__item {
+  margin: 0;
+  font-size: var(--font-size-lg);
+  color: var(--negro-normal);
+}
+
+.font-weights__label {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--gris-dark);
+  margin-bottom: var(--spacing-size-xs);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Spacing Scale
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .spacing-scale {
   display: flex;
   flex-direction: column;
@@ -401,14 +402,14 @@
   padding: var(--spacing-size-m);
   background: var(--blanco-normal);
   border-radius: var(--radius-xs);
-  border: 1px solid var(--gris-light);
+  border: 0.0625rem solid var(--gris-light);
 }
 
 .spacing-box {
   height: 2rem;
   background: var(--amarillo-normal);
   border-radius: var(--radius-xss);
-  border: 2px solid var(--amarillo-dark);
+  border: 0.125rem solid var(--amarillo-dark);
   flex-shrink: 0;
 }
 
@@ -418,24 +419,26 @@
   align-items: center;
   flex: 1;
   gap: var(--spacing-size-m);
-
-  code {
-    font-family: 'Courier New', monospace;
-    background: var(--gris-lighter);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-xss);
-    font-size: var(--font-size-sm);
-    font-weight: var(--font-weight-semibold);
-  }
-
-  span {
-    font-size: var(--font-size-sm);
-    color: var(--gris-dark);
-  }
 }
 
-// ANIMACIONES
-// ========================================
+.spacing-info code {
+  font-family: 'Courier New', monospace;
+  background: var(--gris-lighter);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-xss);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+}
+
+.spacing-info span {
+  font-size: var(--font-size-sm);
+  color: var(--gris-dark);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Animation Demos
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .animation-demos {
   display: flex;
   flex-wrap: wrap;
@@ -450,35 +453,44 @@
   padding: var(--spacing-size-l);
   background: var(--blanco-normal);
   border-radius: var(--radius-xs);
-  border: 1px solid var(--gris-light);
+  border: 0.0625rem solid var(--gris-light);
   flex: 1;
-  min-width: 200px;
-
-  code {
-    font-family: 'Courier New', monospace;
-    font-size: var(--font-size-xs);
-    color: var(--gris-dark);
-    background: var(--gris-lighter);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-xss);
-  }
+  min-width: 12.5rem;
 }
+
+.animation-item code {
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-xs);
+  color: var(--gris-dark);
+  background: var(--gris-lighter);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-xss);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Animation Button
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .animation-btn {
   padding: var(--spacing-size-s) var(--spacing-size-m);
   background: var(--amarillo-normal);
   color: var(--negro-normal);
-  border: 2px solid var(--amarillo-dark);
+  border: 0.125rem solid var(--amarillo-dark);
   border-radius: var(--radius-xs);
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   cursor: pointer;
+}
 
-  &:hover {
-    background: var(--amarillo-normal-hover);
-    transform: scale(1.05);
-  }
+.animation-btn:hover {
+  background: var(--amarillo-normal-hover);
+  transform: scale(1.05);
+}
+
+.animation-btn:focus {
+  outline: 0.125rem solid var(--amarillo-dark);
+  outline-offset: 0.125rem;
 }
 
 .animation-btn--fast {
@@ -493,11 +505,13 @@
   transition: all var(--duration-slow) ease;
 }
 
-// BORDER RADIUS
-// ========================================
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Radius Scale
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .radius-scale {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(9.375rem, 1fr));
   gap: var(--spacing-size-l);
 }
 
@@ -508,145 +522,270 @@
   gap: var(--spacing-size-s);
   padding: var(--spacing-size-m);
   background: var(--blanco-normal);
-  border: 1px solid var(--gris-light);
+  border: 0.0625rem solid var(--gris-light);
   border-radius: var(--radius-xs);
   text-align: center;
+}
 
-  code {
-    font-family: 'Courier New', monospace;
-    font-size: var(--font-size-xs);
-    background: var(--gris-lighter);
-    padding: 0.25rem 0.5rem;
-    border-radius: var(--radius-xss);
-    font-weight: var(--font-weight-semibold);
-  }
+.radius-item code {
+  font-family: 'Courier New', monospace;
+  font-size: var(--font-size-xs);
+  background: var(--gris-lighter);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-xss);
+  font-weight: var(--font-weight-semibold);
+}
 
-  span {
-    font-size: var(--font-size-xs);
-    color: var(--gris-dark);
-  }
+.radius-item span {
+  font-size: var(--font-size-xs);
+  color: var(--gris-dark);
 }
 
 .radius-box {
   width: 4rem;
   height: 4rem;
   background: var(--amarillo-normal);
-  border: 2px solid var(--amarillo-dark);
+  border: 0.125rem solid var(--amarillo-dark);
 }
 
-// ========================================
-// CLASES DE DEMO PARA COLORES
-// Reemplazan inline styles
-// ========================================
+/* ─────────────────────────────────────────────────────────────────────────────
+   UTILITY: Demo Classes for Colors
+   ───────────────────────────────────────────────────────────────────────────── */
 
-// Amarillo
-.demo-fondo-amarillo-normal { background-color: var(--amarillo-normal); }
-.demo-fondo-amarillo-normal-hover { background-color: var(--amarillo-normal-hover); }
-.demo-fondo-amarillo-normal-active { background-color: var(--amarillo-normal-active); }
-.demo-fondo-amarillo-dark { background-color: var(--amarillo-dark); }
-.demo-fondo-amarillo-dark-hover { background-color: var(--amarillo-dark-hover); }
-.demo-fondo-amarillo-dark-active { background-color: var(--amarillo-dark-active); }
-.demo-fondo-amarillo-darker { background-color: var(--amarillo-darker); }
+/* Amarillo */
+.demo-fondo-amarillo-normal {
+  background-color: var(--amarillo-normal);
+}
+.demo-fondo-amarillo-normal-hover {
+  background-color: var(--amarillo-normal-hover);
+}
+.demo-fondo-amarillo-normal-active {
+  background-color: var(--amarillo-normal-active);
+}
+.demo-fondo-amarillo-dark {
+  background-color: var(--amarillo-dark);
+}
+.demo-fondo-amarillo-dark-hover {
+  background-color: var(--amarillo-dark-hover);
+}
+.demo-fondo-amarillo-dark-active {
+  background-color: var(--amarillo-dark-active);
+}
+.demo-fondo-amarillo-darker {
+  background-color: var(--amarillo-darker);
+}
 
-// Negro
-.demo-fondo-negro-normal { background-color: var(--negro-normal); }
-.demo-fondo-negro-normal-hover { background-color: var(--negro-normal-hover); }
-.demo-fondo-negro-normal-active { background-color: var(--negro-normal-active); }
-.demo-fondo-negro-dark { background-color: var(--negro-dark); }
-.demo-fondo-negro-dark-hover { background-color: var(--negro-dark-hover); }
-.demo-fondo-negro-dark-active { background-color: var(--negro-dark-active); }
+/* Negro */
+.demo-fondo-negro-normal {
+  background-color: var(--negro-normal);
+}
+.demo-fondo-negro-normal-hover {
+  background-color: var(--negro-normal-hover);
+}
+.demo-fondo-negro-normal-active {
+  background-color: var(--negro-normal-active);
+}
+.demo-fondo-negro-dark {
+  background-color: var(--negro-dark);
+}
+.demo-fondo-negro-dark-hover {
+  background-color: var(--negro-dark-hover);
+}
+.demo-fondo-negro-dark-active {
+  background-color: var(--negro-dark-active);
+}
 
-// Blanco
-.demo-fondo-blanco-normal { background-color: var(--blanco-normal); }
-.demo-fondo-blanco-normal-hover { background-color: var(--blanco-normal-hover); }
-.demo-fondo-blanco-normal-active { background-color: var(--blanco-normal-active); }
-.demo-fondo-blanco-dark { background-color: var(--blanco-dark); }
-.demo-fondo-blanco-dark-hover { background-color: var(--blanco-dark-hover); }
-.demo-fondo-blanco-dark-active { background-color: var(--blanco-dark-active); }
+/* Blanco */
+.demo-fondo-blanco-normal {
+  background-color: var(--blanco-normal);
+}
+.demo-fondo-blanco-normal-hover {
+  background-color: var(--blanco-normal-hover);
+}
+.demo-fondo-blanco-normal-active {
+  background-color: var(--blanco-normal-active);
+}
+.demo-fondo-blanco-dark {
+  background-color: var(--blanco-dark);
+}
+.demo-fondo-blanco-dark-hover {
+  background-color: var(--blanco-dark-hover);
+}
+.demo-fondo-blanco-dark-active {
+  background-color: var(--blanco-dark-active);
+}
 
-// Gris
-.demo-fondo-gris-normal { background-color: var(--gris-normal); }
-.demo-fondo-gris-normal-hover { background-color: var(--gris-normal-hover); }
-.demo-fondo-gris-normal-active { background-color: var(--gris-normal-active); }
-.demo-fondo-gris-dark { background-color: var(--gris-dark); }
-.demo-fondo-gris-dark-hover { background-color: var(--gris-dark-hover); }
-.demo-fondo-gris-dark-active { background-color: var(--gris-dark-active); }
+/* Gris */
+.demo-fondo-gris-normal {
+  background-color: var(--gris-normal);
+}
+.demo-fondo-gris-normal-hover {
+  background-color: var(--gris-normal-hover);
+}
+.demo-fondo-gris-normal-active {
+  background-color: var(--gris-normal-active);
+}
+.demo-fondo-gris-dark {
+  background-color: var(--gris-dark);
+}
+.demo-fondo-gris-dark-hover {
+  background-color: var(--gris-dark-hover);
+}
+.demo-fondo-gris-dark-active {
+  background-color: var(--gris-dark-active);
+}
 
-// Botones
-.demo-fondo-button-yellow { background-color: var(--button-yellow); }
-.demo-fondo-button-yellow-hover { background-color: var(--button-yellow-hover); }
-.demo-fondo-button-red { background-color: var(--button-red); }
-.demo-fondo-button-red-hover { background-color: var(--button-red-hover); }
-.demo-fondo-button-gray { background-color: var(--button-gray); }
-.demo-fondo-button-gray-hover { background-color: var(--button-gray-hover); }
-.demo-fondo-button-darker { background-color: var(--button-darker); }
-.demo-fondo-button-darker-hover { background-color: var(--button-darker-hover); }
+/* Botones */
+.demo-fondo-button-yellow {
+  background-color: var(--button-yellow);
+}
+.demo-fondo-button-yellow-hover {
+  background-color: var(--button-yellow-hover);
+}
+.demo-fondo-button-red {
+  background-color: var(--button-red);
+}
+.demo-fondo-button-red-hover {
+  background-color: var(--button-red-hover);
+}
+.demo-fondo-button-gray {
+  background-color: var(--button-gray);
+}
+.demo-fondo-button-gray-hover {
+  background-color: var(--button-gray-hover);
+}
+.demo-fondo-button-darker {
+  background-color: var(--button-darker);
+}
+.demo-fondo-button-darker-hover {
+  background-color: var(--button-darker-hover);
+}
 
-// Texto
-.demo-fondo-text-light { background-color: var(--text-light); }
-.demo-fondo-text-dark { background-color: var(--text-dark); }
+/* Texto */
+.demo-fondo-text-light {
+  background-color: var(--text-light);
+}
+.demo-fondo-text-dark {
+  background-color: var(--text-dark);
+}
 
-// Background
-.demo-fondo-background-light-gray { background-color: var(--background-light-gray); }
+/* Background */
+.demo-fondo-background-light-gray {
+  background-color: var(--background-light-gray);
+}
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   UTILITY: Demo Classes for Typography
+   ───────────────────────────────────────────────────────────────────────────── */
 
-// ========================================
-// CLASES DE DEMO PARA TIPOGRAFIA
-// ========================================
+/* Tamaños de fuente */
+.demo-texto-xs {
+  font-size: var(--font-size-xs);
+}
+.demo-texto-sm {
+  font-size: var(--font-size-sm);
+}
+.demo-texto-md {
+  font-size: var(--font-size-md);
+}
+.demo-texto-lg {
+  font-size: var(--font-size-lg);
+}
+.demo-texto-xl {
+  font-size: var(--font-size-xl);
+}
+.demo-texto-2xl {
+  font-size: var(--font-size-2xl);
+}
+.demo-texto-3xl {
+  font-size: var(--font-size-3xl);
+}
+.demo-texto-4xl {
+  font-size: var(--font-size-4xl);
+}
+.demo-texto-5xl {
+  font-size: var(--font-size-5xl);
+}
 
-// Tamanos de fuente
-.demo-texto-xs { font-size: var(--font-size-xs); }
-.demo-texto-sm { font-size: var(--font-size-sm); }
-.demo-texto-md { font-size: var(--font-size-md); }
-.demo-texto-lg { font-size: var(--font-size-lg); }
-.demo-texto-xl { font-size: var(--font-size-xl); }
-.demo-texto-2xl { font-size: var(--font-size-2xl); }
-.demo-texto-3xl { font-size: var(--font-size-3xl); }
-.demo-texto-4xl { font-size: var(--font-size-4xl); }
-.demo-texto-5xl { font-size: var(--font-size-5xl); }
+/* Pesos de fuente */
+.demo-peso-light {
+  font-weight: var(--font-weight-light);
+}
+.demo-peso-normal {
+  font-weight: var(--font-weight-normal);
+}
+.demo-peso-medium {
+  font-weight: var(--font-weight-medium);
+}
+.demo-peso-semibold {
+  font-weight: var(--font-weight-semibold);
+}
+.demo-peso-bold {
+  font-weight: var(--font-weight-bold);
+}
 
-// Pesos de fuente
-.demo-peso-light { font-weight: var(--font-weight-light); }
-.demo-peso-normal { font-weight: var(--font-weight-normal); }
-.demo-peso-medium { font-weight: var(--font-weight-medium); }
-.demo-peso-semibold { font-weight: var(--font-weight-semibold); }
-.demo-peso-bold { font-weight: var(--font-weight-bold); }
+/* ─────────────────────────────────────────────────────────────────────────────
+   UTILITY: Demo Classes for Spacing
+   ───────────────────────────────────────────────────────────────────────────── */
 
+.demo-ancho-xss {
+  width: var(--spacing-size-xss);
+}
+.demo-ancho-xs {
+  width: var(--spacing-size-xs);
+}
+.demo-ancho-s {
+  width: var(--spacing-size-s);
+}
+.demo-ancho-m {
+  width: var(--spacing-size-m);
+}
+.demo-ancho-l {
+  width: var(--spacing-size-l);
+}
+.demo-ancho-xl {
+  width: var(--spacing-size-xl);
+}
+.demo-ancho-xxl {
+  width: var(--spacing-size-xxl);
+}
+.demo-ancho-xxxl {
+  width: var(--spacing-size-xxxl);
+}
 
-// ========================================
-// CLASES DE DEMO PARA ESPACIADO
-// ========================================
+/* ─────────────────────────────────────────────────────────────────────────────
+   UTILITY: Demo Classes for Border Radius
+   ───────────────────────────────────────────────────────────────────────────── */
 
-.demo-ancho-xss { width: var(--spacing-size-xss); }
-.demo-ancho-xs { width: var(--spacing-size-xs); }
-.demo-ancho-s { width: var(--spacing-size-s); }
-.demo-ancho-m { width: var(--spacing-size-m); }
-.demo-ancho-l { width: var(--spacing-size-l); }
-.demo-ancho-xl { width: var(--spacing-size-xl); }
-.demo-ancho-xxl { width: var(--spacing-size-xxl); }
-.demo-ancho-xxxl { width: var(--spacing-size-xxxl); }
+.demo-radius-xss {
+  border-radius: var(--radius-xss);
+}
+.demo-radius-xs {
+  border-radius: var(--radius-xs);
+}
+.demo-radius-s {
+  border-radius: var(--radius-s);
+}
+.demo-radius-m {
+  border-radius: var(--radius-m);
+}
+.demo-radius-l {
+  border-radius: var(--radius-l);
+}
+.demo-radius-full {
+  border-radius: var(--radius-full);
+}
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   RESPONSIVE
+   ───────────────────────────────────────────────────────────────────────────── */
 
-// ========================================
-// CLASES DE DEMO PARA BORDER RADIUS
-// ========================================
-
-.demo-radius-xss { border-radius: var(--radius-xss); }
-.demo-radius-xs { border-radius: var(--radius-xs); }
-.demo-radius-s { border-radius: var(--radius-s); }
-.demo-radius-m { border-radius: var(--radius-m); }
-.demo-radius-l { border-radius: var(--radius-l); }
-.demo-radius-full { border-radius: var(--radius-full); }
-
-
-// RESPONSIVE
-// ========================================
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .style-guide {
     padding: var(--spacing-size-m);
   }
 
-  .style-guide__header h1 {
+  .style-guide__header-title {
     font-size: var(--font-size-3xl);
   }
 

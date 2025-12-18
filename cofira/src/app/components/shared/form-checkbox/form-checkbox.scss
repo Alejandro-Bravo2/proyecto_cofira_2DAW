@@ -1,12 +1,44 @@
-// form-checkbox.component.scss
+/**
+ * FORM-CHECKBOX COMPONENT
+ * ─────────────────────────────────────────────────────────────────────────
+ * Block: .form-checkbox
+ *
+ * Elements:
+ * - .form-checkbox__container: Contenedor del checkbox y label
+ * - .form-checkbox__input: Campo checkbox
+ * - .form-checkbox__label: Texto del label
+ *
+ * Modifiers:
+ * - STATE: :focus | :checked
+ *
+ * HTML Example:
+ * <article class="form-checkbox">
+ *   <label class="form-checkbox__container">
+ *     <input type="checkbox" class="form-checkbox__input">
+ *     <span class="form-checkbox__label">Acepto los términos</span>
+ *   </label>
+ * </article>
+ */
 
-.form__checkbox {
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Contenedor principal del checkbox
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.form-checkbox {
   display: flex;
   margin-bottom: var(--spacing-size-s);
   width: 100%;
 }
 
-.form__checkbox__container {
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENTS: Partes internas del form-checkbox
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * .form-checkbox__container
+ * Contenedor que agrupa el input y el label
+ */
+.form-checkbox__container {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-xs);
@@ -14,29 +46,39 @@
   user-select: none;
 }
 
-.form__checkbox__input {
+/**
+ * .form-checkbox__input
+ * Campo checkbox
+ */
+.form-checkbox__input {
   width: 1.25rem;
   height: 1.25rem;
   cursor: pointer;
   accent-color: var(--button-yellow);
-
-  &:focus {
-    outline: 2px solid var(--button-yellow);
-    outline-offset: 2px;
-  }
+  flex-shrink: 0; /* CLAVE: No se encoge */
 }
 
-.form__checkbox__label {
+.form-checkbox__input:focus {
+  outline: 0.125rem solid var(--button-yellow);
+  outline-offset: 0.125rem;
+}
+
+/**
+ * .form-checkbox__label
+ * Texto descriptivo del checkbox
+ */
+.form-checkbox__label {
   font-size: var(--font-size-md);
   color: var(--text-dark);
   line-height: var(--line-height-normal);
+}
 
-  a {
-    color: var(--button-yellow);
-    text-decoration: underline;
+.form-checkbox__label a {
+  color: var(--button-yellow);
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
 
-    &:hover {
-      color: var(--amarillo-dark);
-    }
-  }
+.form-checkbox__label a:hover {
+  color: var(--amarillo-dark);
 }

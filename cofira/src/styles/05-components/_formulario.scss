@@ -1,32 +1,52 @@
-/* ============================================
-   05-COMPONENTS: Formulario
+/* ═══════════════════════════════════════════════════════════════════════════
+   FORMULARIO COMPONENT (Global)
    Componentes de formulario reutilizables
-   Nomenclatura BEM en espanol
-   ============================================ */
+   ═══════════════════════════════════════════════════════════════════════════
+
+   ESTRUCTURA BEM
+   ─────────────────────────────────────────────────────────────────────────────
+   Block:     .formulario
+   Elements:  .formulario__titulo, .formulario__descripcion, .formulario__grupo,
+              .formulario__fila, .formulario__etiqueta, .formulario__requerido,
+              .formulario__campo, .formulario__error, .formulario__ayuda,
+              .formulario__textarea, .formulario__select, .formulario__checkbox,
+              .formulario__checkbox-input, .formulario__checkbox-texto,
+              .formulario__acciones, .formulario__separador, .formulario__enlace
+   Modifiers: .formulario--ancho, .formulario__campo--error, .formulario__campo--valido,
+              .formulario__acciones--centrado, .formulario__acciones--derecha
+
+   USO
+   ─────────────────────────────────────────────────────────────────────────────
+   <form class="formulario">
+     <h2 class="formulario__titulo">Título</h2>
+     <p class="formulario__grupo">
+       <label class="formulario__etiqueta" for="email">Email</label>
+       <input class="formulario__campo" type="email" id="email">
+     </p>
+   </form>
+
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 @import '../01-tools/mixins';
 
-/* --------------------------------------------
-   BLOQUE: .formulario
-   Contenedor principal del formulario
-   -------------------------------------------- */
+/* ─────────────────────────────────────────────────────────────────────────────
+   BLOCK: Form container
+   ───────────────────────────────────────────────────────────────────────────── */
 
 .formulario {
   @include flex-columna(var(--spacing-size-m));
   width: 100%;
-  max-width: 500px;
+  max-width: 31.25rem;
 }
 
 .formulario--ancho {
   max-width: 100%;
 }
 
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Form structure
+   ───────────────────────────────────────────────────────────────────────────── */
 
-/* --------------------------------------------
-   ELEMENTOS DEL FORMULARIO
-   -------------------------------------------- */
-
-// Titulo del formulario
 .formulario__titulo {
   @include tipografia-titulo;
   font-size: var(--font-size-2xl);
@@ -34,7 +54,6 @@
   margin-bottom: var(--spacing-size-m);
 }
 
-// Subtitulo/descripcion
 .formulario__descripcion {
   @include tipografia-texto;
   text-align: center;
@@ -42,22 +61,19 @@
   margin-bottom: var(--spacing-size-m);
 }
 
-// Grupo de campo (label + input + error)
 .formulario__grupo {
   @include flex-columna(var(--spacing-size-xss));
 }
 
-// Fila de campos (para campos lado a lado)
 .formulario__fila {
   display: flex;
   gap: var(--spacing-size-m);
-
-  .formulario__grupo {
-    flex: 1;
-  }
 }
 
-// Etiqueta/label
+.formulario__fila .formulario__grupo {
+  flex: 1;
+}
+
 .formulario__etiqueta {
   @include tipografia-texto;
   font-size: var(--font-size-md);
@@ -66,44 +82,43 @@
   margin-bottom: var(--spacing-size-xss);
 }
 
-// Indicador de campo requerido
 .formulario__requerido {
   color: var(--button-red);
   margin-left: var(--spacing-size-xss);
 }
 
-// Campo de entrada (input, textarea, select)
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Form fields
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .formulario__campo {
   @include input-base;
   background-color: var(--gris-dark);
   color: var(--text-dark);
-  border: 2px solid transparent;
-
-  &:focus {
-    border-color: var(--amarillo-normal);
-    background-color: var(--gris-dark);
-  }
-
-  &:hover:not(:focus) {
-    background-color: var(--gris-dark-hover);
-  }
+  border: 0.125rem solid transparent;
 }
 
-// Campo con error
+.formulario__campo:focus {
+  border-color: var(--amarillo-normal);
+  background-color: var(--gris-dark);
+}
+
+.formulario__campo:hover:not(:focus) {
+  background-color: var(--gris-dark-hover);
+}
+
 .formulario__campo--error {
   border-color: var(--button-red);
-
-  &:focus {
-    border-color: var(--button-red);
-  }
 }
 
-// Campo valido
+.formulario__campo--error:focus {
+  border-color: var(--button-red);
+}
+
 .formulario__campo--valido {
   border-color: var(--amarillo-normal);
 }
 
-// Mensaje de error
 .formulario__error {
   @include tipografia-texto;
   font-size: var(--font-size-sm);
@@ -111,7 +126,6 @@
   margin-top: var(--spacing-size-xss);
 }
 
-// Mensaje de ayuda
 .formulario__ayuda {
   @include tipografia-texto;
   font-size: var(--font-size-sm);
@@ -119,26 +133,32 @@
   margin-top: var(--spacing-size-xss);
 }
 
-// Textarea especifico
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Textarea
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .formulario__textarea {
   @include input-base;
   background-color: var(--gris-dark);
   color: var(--text-dark);
-  border: 2px solid transparent;
+  border: 0.125rem solid transparent;
   min-height: 8rem;
   resize: vertical;
-
-  &:focus {
-    border-color: var(--amarillo-normal);
-  }
 }
 
-// Select especifico
+.formulario__textarea:focus {
+  border-color: var(--amarillo-normal);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Select
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .formulario__select {
   @include input-base;
   background-color: var(--gris-dark);
   color: var(--text-dark);
-  border: 2px solid transparent;
+  border: 0.125rem solid transparent;
   cursor: pointer;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
@@ -146,13 +166,16 @@
   background-position: right 1rem center;
   background-size: 1rem;
   padding-right: 3rem;
-
-  &:focus {
-    border-color: var(--amarillo-normal);
-  }
 }
 
-// Checkbox container
+.formulario__select:focus {
+  border-color: var(--amarillo-normal);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Checkbox
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .formulario__checkbox {
   display: flex;
   align-items: flex-start;
@@ -163,7 +186,7 @@
 .formulario__checkbox-input {
   width: 1.25rem;
   height: 1.25rem;
-  margin-top: 2px;
+  margin-top: 0.125rem;
   accent-color: var(--amarillo-normal);
 }
 
@@ -173,35 +196,41 @@
   color: var(--text-dark);
 }
 
-// Contenedor de acciones (botones)
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Actions
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .formulario__acciones {
   display: flex;
   gap: var(--spacing-size-m);
   margin-top: var(--spacing-size-m);
-
-  &--centrado {
-    justify-content: center;
-  }
-
-  &--derecha {
-    justify-content: flex-end;
-  }
 }
 
-// Separador
+.formulario__acciones--centrado {
+  justify-content: center;
+}
+
+.formulario__acciones--derecha {
+  justify-content: flex-end;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Separator
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .formulario__separador {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-m);
   margin: var(--spacing-size-m) 0;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background-color: var(--gris-dark);
-  }
+.formulario__separador::before,
+.formulario__separador::after {
+  content: '';
+  flex: 1;
+  height: 0.0625rem;
+  background-color: var(--gris-dark);
 }
 
 .formulario__separador-texto {
@@ -210,12 +239,20 @@
   color: var(--blanco-dark);
 }
 
-// Enlace dentro del formulario
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENTS: Link
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .formulario__enlace {
   color: var(--amarillo-normal);
   text-decoration: none;
+}
 
-  &:hover {
-    text-decoration: underline;
-  }
+.formulario__enlace:hover {
+  text-decoration: underline;
+}
+
+.formulario__enlace:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
 }

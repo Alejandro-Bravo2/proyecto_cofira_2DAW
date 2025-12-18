@@ -1,64 +1,78 @@
-// ENLACE A STYLE GUIDE
-// ========================================
+/* ═══════════════════════════════════════════════════════════════════════════
+   HOME PAGE STYLES
+   Estilos específicos de la página de inicio
+   ═══════════════════════════════════════════════════════════════════════════
+
+   ESTRUCTURA BEM
+   ─────────────────────────────────────────────────────────────────────────────
+   Block:     .home
+   Elements:  .home__titulo-formulario, .home__planes
+   Modifiers: Ninguno
+
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Style guide link
+   ───────────────────────────────────────────────────────────────────────────── */
+
 .style-guide-link {
-  // Layout
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-size-xs);
-
-  // Espaciado
   padding: var(--spacing-size-xs) var(--spacing-size-m);
   margin: var(--spacing-size-m) 0;
-
-  // Tipografía
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
-
-  // Colores
   color: var(--negro-normal);
   background-color: var(--amarillo-normal);
-  border: 2px solid var(--amarillo-dark);
-
-  // Bordes
+  border: 0.125rem solid var(--amarillo-dark);
   border-radius: var(--radius-xss);
-
-  // Transiciones
   transition: all var(--duration-fast) ease;
-
-  // Icono antes del texto
-  &::before {
-    content: '→';
-    font-size: var(--font-size-lg);
-    transition: transform var(--duration-fast) ease;
-  }
-
-  // Hover
-  &:hover {
-    background-color: var(--amarillo-normal-hover);
-    border-color: var(--amarillo-darker);
-    transform: translateX(4px);
-
-    &::before {
-      transform: translateX(4px);
-    }
-  }
-
-  // Active
-  &:active {
-    transform: translateX(2px);
-  }
 }
 
-.titulo__formulario {
+.style-guide-link::before {
+  content: '→';
+  font-size: var(--font-size-lg);
+  transition: transform var(--duration-fast) ease;
+}
+
+.style-guide-link:hover {
+  background-color: var(--amarillo-normal-hover);
+  border-color: var(--amarillo-darker);
+  transform: translateX(0.25rem);
+}
+
+.style-guide-link:hover::before {
+  transform: translateX(0.25rem);
+}
+
+.style-guide-link:focus {
+  outline: 0.125rem solid var(--amarillo-dark);
+  outline-offset: 0.125rem;
+}
+
+.style-guide-link:active {
+  transform: translateX(0.125rem);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Form title
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.home__titulo-formulario {
   font-size: var(--font-size-3xl);
   text-align: center;
   font-weight: var(--font-weight-bold);
   margin-bottom: 3rem;
 }
 
-.planes {
+/* ─────────────────────────────────────────────────────────────────────────────
+   ELEMENT: Plans container
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.home__planes {
   display: flex;
   flex-direction: row;
   justify-content: space-around;

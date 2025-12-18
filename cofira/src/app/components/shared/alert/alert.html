@@ -1,7 +1,7 @@
 @if (visible) {
-<article class="alert alert--{{ type }}">
+<aside class="alert alert--{{ type }}" role="alert">
           <!-- Icono según el tipo -->
-          <figure class="alert__icono">
+          <span class="alert__icono">
                     @if (type === 'success') {
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z" fill="currentColor" />
@@ -24,7 +24,7 @@
                                         fill="currentColor" />
                     </svg>
                     }
-          </figure>
+          </span>
 
           <!-- Mensaje -->
           <p class="alert__mensaje">{{ message }}</p>
@@ -38,5 +38,5 @@
                     </svg>
           </button>
           }
-</article>
+</aside>
 }
