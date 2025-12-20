@@ -1,0 +1,30 @@
+# Dependencias
+node_modules
+npm-debug.log
+
+# Build output
+dist
+.angular
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Git
+.git
+.gitignore
+
+# Documentación
+*.md
+docs
+
+# Tests
+coverage
+.nyc_output
+
+# Misc
+.DS_Store
+Thumbs.db
+*.log
