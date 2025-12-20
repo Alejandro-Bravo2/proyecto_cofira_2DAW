@@ -1,0 +1,40 @@
+services:
+  # ================================
+  # Servicio de DESARROLLO
+  # ================================
+  cofira-dev:
+    build:
+      context: ./cofira
+      dockerfile: Dockerfile
+      target: development
+    container_name: cofira-dev
+    ports:
+      - "4200:4200"
+    volumes:
+      # Sincronizar código fuente para hot-reload
+      - ./cofira/src:/app/src
+      - ./cofira/public:/app/public
+      - ./cofira/angular.json:/app/angular.json
+      - ./cofira/tsconfig.json:/app/tsconfig.json
+      - ./cofira/tsconfig.app.json:/app/tsconfig.app.json
+    environment:
+      - NODE_ENV=development
+    profiles:
+      - dev
+
+  # ================================
+  # Servicio de PRODUCCIÓN
+  # ================================
+  cofira-prod:
+    build:
+      context: ./cofira
+      dockerfile: Dockerfile
+      target: production
+    container_name: cofira-prod
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    profiles:
+      - prod
