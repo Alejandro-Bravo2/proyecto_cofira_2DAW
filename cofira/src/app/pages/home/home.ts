@@ -1,25 +1,13 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { FormContact } from '../../components/shared/form-contact/form-contact';
-import { Card } from '../../components/shared/card/card';
-import { FormTextarea } from '../../components/shared/form-textarea/form-textarea';
-import { FormSelect } from '../../components/shared/form-select/form-select';
-import { FormRegister } from '../../components/shared/form-register/form-register';
-import { Alert } from '../../components/shared/alert/alert';
-import { Notification } from '../../components/shared/notification/notification';
+import {Component} from '@angular/core';
+import {Card} from '../../components/shared/card/card';
+import {Button} from '../../components/shared/button/button';
 
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
-    RouterLink,
-    FormContact,
     Card,
-    FormTextarea,
-    FormSelect,
-    FormRegister,
-    Alert,
-    Notification,
+    Button
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',

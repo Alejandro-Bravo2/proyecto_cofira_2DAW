@@ -54,10 +54,9 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    NAVEGACIÓN PRINCIPAL
    ═══════════════════════════════════════════════════════════════════════════ */
-
-nav {
-  @include flex-full;
+.header__container {
   background: var(--gris-normal);
+  @include flex-full;
   height: 4.4rem;
   align-items: center;
   box-sizing: border-box;
@@ -528,7 +527,6 @@ nav {
   width: 1.5rem;
   height: 1.5rem;
   color: var(--negro-normal);
-  flex-shrink: 0;
 }
 
 .menu-cuenta__overlay {
@@ -645,7 +643,8 @@ nav {
 .menu-movil__cerrar svg {
   width: 2rem;
   height: 2rem;
-  fill: var(--blanco-normal);
+
+  color: var(--blanco-normal);
 }
 
 .menu-movil__cerrar:hover {
@@ -707,7 +706,6 @@ nav {
 
 .menu-movil__link--perfil {
   margin-top: auto;
-  border-top: 0.0625rem solid var(--gris-normal);
 }
 
 .menu-movil__link--perfil svg {

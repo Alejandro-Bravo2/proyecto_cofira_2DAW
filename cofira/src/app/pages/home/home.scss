@@ -1,3 +1,6 @@
+@import '../../../styles/00-settings/css-variables';
+@import '../../../styles/01-tools/mixins';
+
 /* ═══════════════════════════════════════════════════════════════════════════
    HOME PAGE STYLES
    Estilos específicos de la página de inicio
@@ -76,4 +79,524 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+
+  @include responsive-down('xl') {
+    align-items: center;
+    gap: var(--spacing-size-l);
+    flex-direction: column;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTAINER QUERIES: Wrapper para las cards
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/**
+ * .home__card-wrapper
+ * Contenedor que habilita Container Queries para las pricing-cards.
+ * La card se adapta según el ancho de este wrapper, NO del viewport.
+ * Esto hace que el componente sea independiente del viewport y reutilizable.
+ */
+.home__card-wrapper {
+  container-type: inline-size;
+  container-name: card-container;
+  width: 100%;
+  max-width: 28rem;
+}
+
+/**
+ * Container Query: Card en móvil
+ * Cuando el wrapper tiene menos de 640px, la card se compacta automáticamente.
+ * Ejemplo: sidebar, modal estrecho, columna pequeña en grid.
+ */
+@container card-container ($breakpoint-xs) {
+  .pricing-card__titulo {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-size-l);
+  }
+
+  .pricing-card__ventaja {
+    font-size: var(--font-size-base);
+  }
+
+  .pricing-card__boton {
+    height: 3rem;
+    font-size: var(--font-size-lg);
+  }
+
+  .pricing-card__precio {
+    font-size: var(--font-size-base);
+  }
+
+  .pricing-card__lista {
+    margin-bottom: var(--spacing-size-l);
+  }
+}
+
+/**
+ * Container Query: Card en espacio grande (> 400px)
+ * Cuando el wrapper tiene más de 400px, la card se expande con más presencia.
+ * Ejemplo: sección principal, hero, página de planes destacados.
+ */
+@container card-container (min-width: 400px) {
+  .pricing-card__titulo {
+    font-size: var(--font-size-5xl);
+  }
+
+  .pricing-card__ventaja {
+    font-size: var(--font-size-xl);
+  }
+
+  .pricing-card__boton {
+    height: 5rem;
+    font-size: var(--font-size-2xl);
+  }
+
+  .pricing-card__precio {
+    font-size: var(--font-size-xl);
+  }
+
+  .pricing-card__lista {
+    gap: var(--spacing-size-m);
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MEDIA QUERY: Tablet
+   ───────────────────────────────────────────────────────────────────────────── */
+
+
+@container card-container (min-width: 1200px) {
+  .home__card-wrapper {
+    container-type: inline-size;
+    container-name: card-container;
+    width: 100%;
+    max-width: 28rem;
+    flex-direction: row;
+  }
+
+  .pricing-card__titulo {
+    font-size: var(--font-size-5xl);
+  }
+
+  .pricing-card__ventaja {
+    font-size: var(--font-size-xl);
+  }
+
+  .pricing-card__boton {
+    height: 5rem;
+    font-size: var(--font-size-2xl);
+  }
+
+  .pricing-card__precio {
+    font-size: var(--font-size-xl);
+  }
+
+  .pricing-card__lista {
+    gap: var(--spacing-size-m);
+  }
+}
+
+
+.home__seccion-intro {
+  // Expandir más allá del padding del padre
+  width: 100vw;
+  margin-left: -6rem;
+
+
+  // Background que cubre toda la pantalla
+  background-image: url('/assets/images/personaComiendo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; // CLAVE: El fondo se queda fijo
+
+  min-height: 600px;
+  padding: var(--spacing-size-xxxl) var(--spacing-size-xl);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--spacing-size-m);
+}
+
+/* Hacer el texto legible sobre la imagen */
+.home__seccion-intro h1 {
+  color: var(--negro-normal);
+  text-align: left;
+  max-width: 450px;
+  margin: 0;
+  font-size: var(--font-size-4xl);
+  margin-bottom: 2rem;
+  font-family: var(--font-secondary);
+}
+
+.home__seccion-intro h2 {
+  font-size: var(--font-size-2xl);
+  max-width: 400px;
+}
+
+.home__seccion-intro button {
+  z-index: 1; /* Por encima del fondo */
+}
+
+.boton__primary {
+  display: flex;
+  gap: 1rem;
+
+}
+
+.boton__primary--inscripcion {
+  ::ng-deep .button {
+    padding: 0.75rem 1rem; // Reduce el padding
+    min-width: 170px;
+  }
+}
+
+
+.boton__primary--planes {
+  ::ng-deep .button {
+    padding: 0.75rem 1rem; // Reduce el padding
+    min-width: 170px;
+    color: var(--negro-normal);
+    background: transparent;
+    border: var(--negro-normal) solid var(--radius-xsss);
+
+    &:hover:not(:disabled) {
+      background: var(--gris-normal-active);
+      color: var(--blanco-normal); // Texto blanco
+      transform: translateY(-0.125rem); // Efecto de elevación
+    }
+  }
+}
+
+.planes__section {
+  // Full-width (misma técnica que la intro)
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+
+  // Fondo negro
+  background-color: var(--negro-normal);
+
+  // Padding interno
+  padding: var(--spacing-size-xxxl) 6rem;
+
+  box-sizing: border-box;
+  color: var(--blanco-normal);
+}
+
+
+.planes__section h1 {
+  text-align: center;
+  margin-top: 5rem;
+  color: var(--blanco-normal);
+}
+
+.planes__section-eleccion {
+  color: var(--blanco-normal);
+}
+
+
+.planes__section {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+
+  background-color: var(--negro-normal);
+  padding: var(--spacing-size-xxxl) 6rem;
+  box-sizing: border-box;
+
+  * {
+    background: transparent;
+  }
+}
+
+.planes__titulo {
+  text-align: center;
+  color: var(--amarillo-normal);
+  font-size: var(--font-size-5xl);
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-size-xxl) 0;
+}
+
+.planes__contenido {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); // 3 columnas iguales
+  gap: var(--spacing-size-xl);
+  align-items: start;
+}
+
+.planes__info {
+  flex: 0 0 280px;
+  max-width: 300px;
+}
+
+.planes__subtitulo {
+  color: var(--blanco-normal);
+  font-size: var(--font-size-3xl);
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+  margin: 0 0 var(--spacing-size-m) 0;
+}
+
+.planes__destacado {
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  text-decoration-color: var(--amarillo-normal); // Solo el subrayado amarillo
+}
+
+.planes__info p {
+  color: var(--blanco-normal);
+  font-size: var(--font-size-md);
+  margin: 0 0 var(--spacing-size-s) 0;
+}
+
+.planes__section .home__planes {
+  display: flex;
+  gap: var(--spacing-size-xl);
+  flex: 1;
+  justify-content: center;
+}
+
+.planes__section .home__card-wrapper {
+  max-width: 320px;
+}
+
+
+.planes__section ::ng-deep .pricing-card__titulo {
+  max-width: 160px;
+  text-align: center;
+}
+
+
+.funcionalidades__contenedor {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+
+  background-color: var(--blanco-normal);
+  padding: var(--spacing-size-xxxl) 6rem;
+  box-sizing: border-box;
+}
+
+.funcionalidades__titulo {
+  text-align: center;
+  color: var(--negro-normal);
+  font-size: var(--font-size-4xl);
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-size-xxl) 0;
+}
+
+.funcionalidades__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-size-l);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  // Tablet: 2 columnas
+  @include responsive-down('lg') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  // Móvil: 1 columna
+  @include responsive-down('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.funcionalidades__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--blanco-normal-hover);
+  border: 1px solid var(--blanco-dark);
+  border-radius: var(--radius-xs);
+  padding: var(--spacing-size-xl);
+
+  transition: all var(--duration-base) ease;
+
+  &:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--amarillo-normal);
+  }
+}
+
+.funcionalidades__icono {
+  font-size: 3.5rem;
+  margin-bottom: var(--spacing-size-m);
+  line-height: 1;
+}
+
+.funcionalidades__texto {
+  color: var(--negro-normal);
+  font-size: var(--font-size-lg);
+  font-family: var(--font-primary);
+  text-align: center;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FAQ SECTION - Preguntas Frecuentes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.faq__section {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+
+  background-color: var(--negro-normal);
+  padding: var(--spacing-size-xxxl) 6rem;
+  box-sizing: border-box;
+}
+
+.faq__titulo {
+  text-align: center;
+  color: var(--blanco-normal);
+  font-size: var(--font-size-4xl);
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 var(--spacing-size-xxl) 0;
+}
+
+.faq__contenedor {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+}
+
+.faq__item {
+  background-color: var(--blanco-normal);
+  border-radius: var(--radius-xss);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-base) ease;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  &[open] {
+    box-shadow: var(--shadow-lg);
+  }
+
+  &[open] .faq__icono::after {
+    transform: rotate(180deg);
+  }
+}
+
+.faq__pregunta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-size-m) var(--spacing-size-l);
+  cursor: pointer;
+  list-style: none;
+
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+
+  transition: background-color var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--blanco-normal-hover);
+  }
+
+  // Quitar el marcador por defecto de Safari/Chrome
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.faq__icono {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::after {
+    content: '';
+    width: 0.75rem;
+    height: 0.75rem;
+    border-right: 2px solid var(--negro-normal);
+    border-bottom: 2px solid var(--negro-normal);
+    transform: rotate(45deg);
+    transition: transform var(--duration-base) ease;
+  }
+}
+
+.faq__respuesta {
+  padding: 0 var(--spacing-size-l) var(--spacing-size-l);
+  margin: 0;
+
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--gris-normal);
+  line-height: var(--line-height-relaxed);
+}
+
+.faq__contacto {
+  text-align: center;
+  margin-top: var(--spacing-size-xxl);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--blanco-normal);
+}
+
+.faq__email {
+  color: var(--blanco-normal);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--amarillo-normal);
+  }
+}
+
+// Responsive para FAQ
+@include responsive-down('md') {
+  .faq__section {
+    padding: var(--spacing-size-xxl) var(--spacing-size-l);
+  }
+
+  .faq__titulo {
+    font-size: var(--font-size-3xl);
+  }
+
+  .faq__pregunta {
+    font-size: var(--font-size-md);
+    padding: var(--spacing-size-s) var(--spacing-size-m);
+  }
+
+  .faq__respuesta {
+    padding: 0 var(--spacing-size-m) var(--spacing-size-m);
+    font-size: var(--font-size-sm);
+  }
 }

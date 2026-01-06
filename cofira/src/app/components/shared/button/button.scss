@@ -32,7 +32,7 @@
   font-family: var(--font-primary);
   font-weight: var(--font-weight-semibold);
   border: none; /* Sin borde por defecto */
-  border-radius: var(--radius-m);
+  border-radius: var(--radius-xss);
   cursor: pointer; /* Indica que es clickeable */
   transition: all var(--duration-base) ease; /* Transiciones suaves */
   text-decoration: none; /* Importante si es un <a> en lugar de <button> */
@@ -161,7 +161,7 @@
 /* ─── HOVER: Cuando el usuario pasa el ratón sobre el botón ─── */
 
 .button--primary:hover:not(:disabled) {
-  background: var(--button-yellow-hover);
+  background: var(--amarillo-dark);
   transform: translateY(-0.125rem); /* Se eleva para feedback visual */
   box-shadow: var(--shadow-lg);
 }

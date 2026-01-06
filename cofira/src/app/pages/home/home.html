@@ -1,107 +1,140 @@
-<h1>Tu entrenamiento, nutrición y progreso en un solo lugar</h1>
-
-<nav>
-  <a routerLink="/style-guide" class="style-guide-link">Ver Guía de Estilos</a>
-</nav>
-
-<h2>Inscríbete hoy y empieza tu cambio</h2>
-
-<button>Inscribete</button>
-
-<button>Ver planes</button>
-
-<h1>PLANES</h1>
+<section class="home__seccion-intro">
+  <h1>Tu entrenamiento, nutrición y progreso en un solo lugar</h1>
 
 
-<section>
-  <h3>Elige tu
-    cuota individual</h3>
-  <hr>
-  <p>Profesionales 24/7 listos para atenderte y resolverte las dudas.</p>
-  <p>Si quieres lograrlo porque no intentarlo.</p>
+  <h2>Inscríbete hoy y empieza tu cambio</h2>
+
+  <article class="boton__primary">
+    <app-button class="boton__primary--inscripcion" tamanio="lg" variante="primary">
+      Inscríbete
+    </app-button>
+
+    <app-button class="boton__primary--planes" tamanio="lg" variante="secondary">
+      Ver planes
+    </app-button>
+
+  </article>
+
+
 </section>
-<article class="home__planes">
-  <app-card title="Cuota mensual" precio="19.99€ + IVA al mes" texto_boton="Inscríbete" [ventajas]="[
-    'Máximo de 7 comidas diarias',
-    'Rutinas de ejercicios hasta 7 días',
-    'Seguimiento avanzado con gráficos',
-    'Asesoría nutricional personalizada',
-    'Acceso a contenido exclusivo'
-  ]"></app-card>
+<section class="planes__section">
+  <h2 class="planes__titulo">PLANES</h2>
 
-  <!-- Card deshabilitada -->
-  <app-card title="Cuota anual" precio="15.99€ + IVA al año" texto_boton="Inscríbete" [deshabilitada]="false"
-    [ventajas]="[
-    'Máximo de 7 comidas diarias',
-    'Rutinas de ejercicios hasta 7 días',
-    'Seguimiento avanzado con gráficos',
-    'Asesoría nutricional personalizada',
-    'Acceso a contenido exclusivo'
-  ]"></app-card>
-</article>
+  <section class="planes__contenido">
+    <!-- Texto a la izquierda -->
+    <article class="planes__info">
+      <h3 class="planes__subtitulo">
+        Elige tu cuota <span class="planes__destacado">individual</span>
+      </h3>
+      <p>Profesionales 24/7 listos para atenderte y resolverte las dudas.</p>
+      <p>Si quieres lograrlo porque no intentarlo.</p>
+    </article>
 
-<section>
-  <h1 class="home__titulo-formulario">¿Quieres estar al tanto de todas las noticias?</h1>
-  <section>
-    <app-contact-form>
-    </app-contact-form>
+    <!-- Cards a la derecha -->
+    <article class="home__card-wrapper">
+      <app-card [ventajas]="[
+            'Máximo de 7 comidas diarias',
+            'Rutinas de ejercicios hasta 7 días',
+            'Seguimiento avanzado con gráficos',
+            'Asesoría nutricional personalizada',
+            'Acceso a contenido exclusivo'
+          ]" precio="19.99€ + IVA al mes" texto_boton="Inscríbete" title="Cuota mensual"></app-card>
+    </article>
+
+    <article class="home__card-wrapper">
+      <app-card [deshabilitada]="false" [ventajas]="[
+            'Máximo de 7 comidas diarias',
+            'Rutinas de ejercicios hasta 7 días',
+            'Seguimiento avanzado con gráficos',
+            'Asesoría nutricional personalizada',
+            'Acceso a contenido exclusivo'
+          ]" precio="15.99€ + IVA al año" texto_boton="Inscríbete"
+                title="Cuota anual"></app-card>
+    </article>
   </section>
 </section>
 
-<h2>Escribe una retroalimntación de la web:</h2>
-<app-form-textarea label="Tu mensaje" name="mensaje" placeholder="Escribe tu mensaje aquí..." [required]="true"
-  errorMessage="El mensaje debe tener entre 20 y 500 caracteres" helpText="Por favor, describe tu consulta con detalle">
-</app-form-textarea>
+
+<section class="funcionalidades__contenedor">
+  <h2 class="funcionalidades__titulo">Más funcionalidades que disfrutar</h2>
+
+  <ul class="funcionalidades__grid">
+    <li class="funcionalidades__item">
+      <span class="funcionalidades__icono">📊</span>
+      <p class="funcionalidades__texto">Gráficos de Progreso</p>
+    </li>
+
+    <li class="funcionalidades__item">
+      <span class="funcionalidades__icono">🖼️</span>
+      <p class="funcionalidades__texto">Fotos de Progreso</p>
+    </li>
+
+    <li class="funcionalidades__item">
+      <span class="funcionalidades__icono">⏳</span>
+      <p class="funcionalidades__texto">Ayuno</p>
+    </li>
 
 
-<h2>Objetivo</h2>
-<app-form-select label="¿Cuál es tu objetivo?" name="objetivo"
-  [options]="['Perder peso', 'Ganar músculo', 'Mantener peso', 'Definir']">
-</app-form-select>
+    <li class="funcionalidades__item">
+      <span class="funcionalidades__icono">💧</span>
+      <p class="funcionalidades__texto">Registro de Agua</p>
+    </li>
 
-<app-form-select label="Días de entrenamiento" name="dias"
-  [options]="['2 días', '3 días', '4 días', '5 días', '6 días']">
-</app-form-select>
+    <li class="funcionalidades__item">
+      <span class="funcionalidades__icono">🧩</span>
+      <p class="funcionalidades__texto">Widgets</p>
+    </li>
 
-<!-- Sección de Registro -->
-<section>
-  <h1 class="home__titulo-formulario">Crea tu cuenta ahora mismo</h1>
-  <p>Únete a nuestra comunidad y alcanza tus objetivos de fitness</p>
-  <app-form-register></app-form-register>
+    <li class="funcionalidades__item">
+      <span class="funcionalidades__icono">🍎</span>
+      <p class="funcionalidades__texto">Registro de comidas</p>
+    </li>
+  </ul>
 </section>
 
+<section class="faq__section">
+  <h2 class="faq__titulo">Preguntas Frecuentes</h2>
 
-<!-- Sección de Alertas de Ejemplo -->
-<section class="contenedor-demo">
-  <h2>Ejemplos de Alertas</h2>
+  <article class="faq__contenedor">
+    <details class="faq__item">
+      <summary class="faq__pregunta">
+        <span>¿Qué incluye la cuota mensual de Cofira?</span>
+        <span class="faq__icono"></span>
+      </summary>
+      <p class="faq__respuesta">
+        La cuota mensual incluye acceso completo a todas las funcionalidades: planificación de hasta 7 comidas diarias,
+        rutinas de ejercicio personalizadas, seguimiento avanzado con gráficos de progreso, asesoría nutricional y
+        acceso a contenido exclusivo.
+      </p>
+    </details>
 
-  <app-alert type="success" message="¡Éxito! Tu cuenta ha sido creada correctamente." [closable]="true">
-  </app-alert>
+    <details class="faq__item">
+      <summary class="faq__pregunta">
+        <span>¿Puedo cancelar mi suscripción en cualquier momento?</span>
+        <span class="faq__icono"></span>
+      </summary>
+      <p class="faq__respuesta">
+        Sí, puedes cancelar tu suscripción cuando quieras desde la configuración de tu cuenta. No hay permanencia mínima
+        ni penalizaciones por cancelación anticipada.
+      </p>
+    </details>
 
-  <app-alert type="error" message="Error: No se pudo procesar tu solicitud. Inténtalo de nuevo." [closable]="true">
-  </app-alert>
 
-  <app-alert type="warning" message="Advertencia: Tu suscripción vencerá en 3 días. Renueva ahora." [closable]="true">
-  </app-alert>
+    <details class="faq__item">
+      <summary class="faq__pregunta">
+        <span>¿Cómo funciona el seguimiento de progreso?</span>
+        <span class="faq__icono"></span>
+      </summary>
+      <p class="faq__respuesta">
+        Cofira registra tu peso, medidas corporales y fotos de progreso. Genera gráficos detallados que te muestran tu
+        evolución a lo largo del tiempo, permitiéndote visualizar tus logros y ajustar tu plan según tus objetivos.
+      </p>
+    </details>
 
-  <app-alert type="info" message="Información: Hemos actualizado nuestros términos y condiciones." [closable]="true">
-  </app-alert>
 
-  <app-alert type="success" message="Esta alerta no se puede cerrar (ejemplo sin botón X)." [closable]="false">
-  </app-alert>
-</section>
-
-<!-- Sección de Notificaciones de Ejemplo -->
-<section class="contenedor-demo">
-  <h2>Ejemplos de Notificaciones (esquina superior derecha)</h2>
-  <p>Haz clic en los botones para ver las notificaciones flotantes con auto-cierre en 3 segundos:</p>
-
-  <button (click)="mostrarNotif()" class="boton boton--primario boton--mediano margen-xs">Mostrar notificación</button>
-
-  @for (notif of notificaciones; track notif.id) {
-  <app-notification [type]="notif.type" [message]="notif.message" [duration]="3000"
-    (onClose)="eliminarNotificacion(notif.id)">
-  </app-notification>
-  }
-
+    <p class="faq__contacto">
+      ¿Tienes más preguntas? Escríbenos a
+      <a class="faq__email" href="mailto:soporte@cofira.com">soporte&#64;cofira.com</a>
+    </p>
+  </article>
 </section>

@@ -85,44 +85,44 @@
   --button-darker: #32373D;
   --button-darker-hover: #26292E;
 
-
   /* ============================================
-     TIPOGRAFIA - Tamanios
+     TIPOGRAFIA - Tamaños
      ============================================ */
-  --font-size-xs: 0.64rem;
-  --font-size-sm: 0.8rem;
-  --font-size-md: 1rem;
-  --font-size-lg: 1.25rem;
-  --font-size-xl: 1.563rem;
-  --font-size-2xl: 1.953rem;
-  --font-size-3xl: 2.441rem;
-  --font-size-4xl: 3.052rem;
-  --font-size-5xl: 3.815rem;
+  --font-size-xs: 0.64rem; /* 10.24px - Extra pequeño (etiquetas, badges) */
+  --font-size-sm: 0.8rem; /* 12.8px - Pequeño (texto secundario, footnotes) */
+  --font-size-md: 1rem; /* 16px - Tamaño base/estándar (cuerpo de texto) */
+  --font-size-lg: 1.25rem; /* 20px - Grande (subtítulos, destacados) */
+  --font-size-xl: 1.563rem; /* 25px - Extra grande (títulos de sección) */
+  --font-size-2xl: 1.953rem; /* 31.25px - 2XL (títulos principales) */
+  --font-size-3xl: 2.441rem; /* 39px - 3XL (encabezados de página) */
+  --font-size-4xl: 3.052rem; /* 48.83px - 4XL (hero headings) */
+  --font-size-5xl: 3.815rem; /* 61.04px - 5XL (displays, landing pages) */
 
 
   /* ============================================
      ESPACIADO
      ============================================ */
-  --spacing-size-xss: 0.5rem;
-  --spacing-size-xs: 1.1875rem;
-  --spacing-size-s: 1.3125rem;
-  --spacing-size-m: 1.5625rem;
-  --spacing-size-l: 2.0625rem;
-  --spacing-size-xl: 2.1875rem;
-  --spacing-size-xxl: 2.5rem;
-  --spacing-size-xxxl: 5.625rem;
-  --spacing-size-xxxxl: 7.75rem;
-  --spacing-size-xxxxxl: 8.75rem;
+  --spacing-size-xss: 0.5rem; /* 8px - Micro spacing (gaps internos, padding mínimo) */
+  --spacing-size-xs: 1.1875rem; /* 19px - Extra pequeño (espaciado entre íconos) */
+  --spacing-size-s: 1.3125rem; /* 21px - Pequeño (padding de botones) */
+  --spacing-size-m: 1.5625rem; /* 25px - Mediano (márgenes entre elementos) */
+  --spacing-size-l: 2.0625rem; /* 33px - Grande (secciones de cards) */
+  --spacing-size-xl: 2.1875rem; /* 35px - Extra grande (separación entre bloques) */
+  --spacing-size-xxl: 2.5rem; /* 40px - 2XL (padding de containers) */
+  --spacing-size-xxxl: 5.625rem; /* 90px - 3XL (márgenes de sección principales) */
+  --spacing-size-xxxxl: 7.75rem; /* 124px - 4XL (espacios hero, headers grandes) */
+  --spacing-size-xxxxxl: 8.75rem; /* 140px - 5XL (márgenes máximos, layouts amplios) */
 
 
   /* ============================================
      BORDER RADIUS
      ============================================ */
-  --radius-xss: 0.5rem;
-  --radius-xs: 1.1875rem;
-  --radius-s: 1.3125rem;
-  --radius-m: 2.5rem;
-  --radius-l: 5.625rem;
+  --radius-xsss: 0.125rem; /* 2px - Muy sutil (líneas, bordes finos) */
+  --radius-xss: 0.5rem; /* 8px - Mínimo redondeado (chips, pills) */
+  --radius-xs: 1.1875rem; /* 19px - Pequeño (botones estándar) */
+  --radius-s: 1.3125rem; /* 21px - Mediano (inputs, cards pequeñas) */
+  --radius-m: 2.5rem; /* 40px - Grande (cards destacadas, modales) */
+  --radius-l: 5.625rem; /* 90px - Completo (botones circulares, avatares) */
 
 
   /* ============================================
