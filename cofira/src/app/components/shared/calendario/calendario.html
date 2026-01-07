@@ -1,0 +1,50 @@
+<app-modal
+  (cerrar)="cerrarModal()"
+  [abierto]="abierto"
+  [anchoPX]="450"
+  titulo="Seleccionar fecha">
+
+  <div class="calendario">
+    <!-- Navegación de mes -->
+    <nav class="calendario__navegacion">
+      <button (click)="mesAnterior()" aria-label="Mes anterior" class="calendario__btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <h3 class="calendario__mes-anio">
+        {{ meses[mesActual] }} {{ anioActual }}
+      </h3>
+
+      <button (click)="mesSiguiente()" aria-label="Mes siguiente" class="calendario__btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/>
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Días de la semana -->
+    <div class="calendario__dias-semana">
+      @for (dia of diasSemana; track dia) {
+        <span class="calendario__dia-semana">{{ dia }}</span>
+      }
+    </div>
+
+    <!-- Grid de días -->
+    <div class="calendario__grid">
+      @for (dia of diasDelMes; track $index) {
+        @if (dia === null) {
+          <div class="calendario__dia calendario__dia--vacio"></div>
+        } @else {
+          <button
+            (click)="seleccionarDia(dia)"
+            [class.calendario__dia--seleccionado]="esDiaSeleccionado(dia)"
+            class="calendario__dia">
+            {{ dia }}
+          </button>
+        }
+      }
+    </div>
+  </div>
+</app-modal>

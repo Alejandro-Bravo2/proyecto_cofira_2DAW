@@ -1,0 +1,141 @@
+/**
+ * MODAL COMPONENT STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Componente modal genérico reutilizable
+ *
+ * ESTRUCTURA BEM:
+ * Block: .modal, .modal-overlay
+ * Elements: __header, __titulo, __cerrar, __contenido
+ *
+ * IMPORTANTE: ViewEncapsulation.None para z-index global
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../styles/00-settings/css-variables';
+@import '../../../../styles/01-tools/mixins';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   OVERLAY
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--z-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-size-m);
+  animation: fadeIn var(--duration-base) ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODAL CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.modal {
+  position: relative;
+  width: 100%;
+  background-color: var(--blanco-normal);
+  border-radius: var(--radius-xss);
+  box-shadow: var(--shadow-2xl);
+  z-index: var(--z-modal);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  animation: slideUp var(--duration-base) ease;
+
+  @include responsive-down('md') {
+    max-height: 95vh;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(2rem);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-size-l);
+  border-bottom: 0.0625rem solid var(--gris-dark);
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-m);
+  }
+}
+
+.modal__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-lg);
+  }
+}
+
+.modal__cerrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--gris-normal);
+  transition: all var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--blanco-normal-hover);
+    color: var(--negro-normal);
+  }
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTENIDO
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.modal__contenido {
+  padding: var(--spacing-size-l);
+  overflow-y: auto;
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-m);
+  }
+}

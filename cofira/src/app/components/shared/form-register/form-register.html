@@ -73,9 +73,10 @@
                     </fieldset>
 
                     <!-- Botón Enviar -->
-                    <button type="submit" class="form__button" [disabled]="registerForm.invalid">
+            <app-button [fullWidth]="true" [habilitado]="registerForm.invalid" tamanio="lg" tipo="submit"
+                        variante="primary">
                               Registrarse
-                    </button>
+            </app-button>
 
           </form>
 </section>

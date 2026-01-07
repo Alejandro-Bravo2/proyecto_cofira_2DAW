@@ -1,1 +1,174 @@
-<p>gimnasio works!</p>
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     ENTRENAMIENTO PAGE - Tabla Semanal
+     ═══════════════════════════════════════════════════════════════════════════
+     Página de gestión de rutina de ejercicios semanal
+
+     ESTRUCTURA BEM:
+     Block: .entrenamiento
+     Elements: __titulo, __navegacion-dias, __tabla, __feedback, __progreso
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<main class="entrenamiento">
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       TÍTULO PRINCIPAL
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <h1 class="entrenamiento__titulo">TABLA SEMANAL</h1>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       NAVEGACIÓN DE DÍAS
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <nav aria-label="Navegación de días" class="entrenamiento__navegacion-dias">
+    <button
+      (click)="diaAnterior()"
+      aria-label="Día anterior"
+      class="entrenamiento__btn-dia entrenamiento__btn-dia--anterior">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+      </svg>
+    </button>
+
+    <span class="entrenamiento__dia entrenamiento__dia--anterior">{{ diasSemana[diaActualIndex - 1] || '' }}</span>
+    <h2 class="entrenamiento__dia entrenamiento__dia--actual">{{ diasSemana[diaActualIndex] }}</h2>
+    <span class="entrenamiento__dia entrenamiento__dia--siguiente">{{ diasSemana[diaActualIndex + 1] || '' }}</span>
+
+    <button
+      (click)="diaSiguiente()"
+      aria-label="Día siguiente"
+      class="entrenamiento__btn-dia entrenamiento__btn-dia--siguiente">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       TABLA DE EJERCICIOS
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="entrenamiento__tabla-section">
+    <table class="entrenamiento__tabla">
+      <thead>
+      <tr>
+        <th>Descanso</th>
+        <th>Repeticiones</th>
+        <th>Descanso</th>
+        <th>Series</th>
+        <th>Realizado</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (ejercicio of ejerciciosDelDia; track ejercicio.id) {
+          <tr>
+            <td class="entrenamiento__ejercicio-nombre">
+              <button (click)="toggleEjercicio(ejercicio)" class="entrenamiento__ejercicio-toggle">
+                <svg [class.rotated]="ejercicio.expandido" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/>
+                </svg>
+              </button>
+              {{ ejercicio.nombre }}
+            </td>
+            <td>{{ ejercicio.repeticiones }}</td>
+            <td>{{ ejercicio.descanso }}</td>
+            <td>{{ ejercicio.series }}</td>
+            <td class="entrenamiento__acciones">
+              <button
+                (click)="marcarRealizado(ejercicio, true)"
+                [class.activo]="ejercicio.realizado === true"
+                aria-label="Marcar como realizado"
+                class="entrenamiento__btn-accion entrenamiento__btn-accion--ok">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+                </svg>
+              </button>
+              <button
+                (click)="marcarRealizado(ejercicio, false)"
+                [class.activo]="ejercicio.realizado === false"
+                aria-label="Marcar como no realizado"
+                class="entrenamiento__btn-accion entrenamiento__btn-accion--no">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                    fill="currentColor"/>
+                </svg>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECCIÓN DE RETROALIMENTACIÓN
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="entrenamiento__feedback">
+    <h2 class="entrenamiento__feedback-titulo">Retroalimentación</h2>
+
+    <form (ngSubmit)="enviarFeedback()" class="entrenamiento__feedback-form">
+      <fieldset class="entrenamiento__feedback-field">
+        <label class="entrenamiento__feedback-label" for="ejercicios-dificiles">
+          ¿Cuales son los ejercicios que más te ha costado?
+        </label>
+        <textarea
+          [(ngModel)]="feedback.ejerciciosDificiles"
+          class="entrenamiento__feedback-textarea"
+          id="ejercicios-dificiles"
+          name="ejerciciosDificiles"
+          placeholder="Escribe aquellos ejercicios que te hayan costado y diciendo los posibles motivos..."
+          rows="4">
+        </textarea>
+      </fieldset>
+
+      <fieldset class="entrenamiento__feedback-field">
+        <label class="entrenamiento__feedback-label" for="mas-peso">
+          ¿Crees que podrías con más peso?
+        </label>
+        <textarea
+          [(ngModel)]="feedback.masPeso"
+          class="entrenamiento__feedback-textarea"
+          id="mas-peso"
+          name="masPeso"
+          placeholder="Escribe si podrías realizar los ejercicios usando más peso o no o si crees que está bien ajustado el peso actual..."
+          rows="4">
+        </textarea>
+      </fieldset>
+
+      <footer class="entrenamiento__feedback-acciones">
+        <button (click)="cancelarFeedback()" class="entrenamiento__btn-cancelar" type="button">
+          Cancelar
+        </button>
+        <button class="entrenamiento__btn-enviar" type="submit">
+          Enviar
+        </button>
+      </footer>
+    </form>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECCIÓN VER MI PROGRESO
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="entrenamiento__progreso">
+    <article class="entrenamiento__progreso-contenido">
+      <header class="entrenamiento__progreso-info">
+        <h2 class="entrenamiento__progreso-titulo">Ver mi progreso</h2>
+        <p class="entrenamiento__progreso-descripcion">
+          ¿Quieres ver tu progreso y como has evolucionado durante toda tu estancia en Cofira?
+        </p>
+        <a class="entrenamiento__btn-progreso" routerLink="/seguimiento">
+          Ver mi progreso
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" fill="currentColor"/>
+          </svg>
+        </a>
+      </header>
+      <figure class="entrenamiento__progreso-imagen">
+        <img
+          alt="Persona entrenando en el gimnasio"
+          loading="lazy"
+          src="assets/images/imagen_progreso.jpg"
+        />
+      </figure>
+    </article>
+  </section>
+
+</main>

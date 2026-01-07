@@ -40,9 +40,9 @@
     </fieldset>
 
     <!-- Botón Enviar -->
-    <button type="submit" class="form__button" [disabled]="contactForm.invalid">
+    <app-button [fullWidth]="true" [habilitado]="contactForm.invalid" tamanio="lg" tipo="submit" variante="primary">
       Enviar
-    </button>
+    </app-button>
 
   </form>
 </article>

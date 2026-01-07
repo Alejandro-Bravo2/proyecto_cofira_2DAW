@@ -1,1 +1,170 @@
-<p>seguimiento works!</p>
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     SEGUIMIENTO PAGE - Contador de Nutrientes
+     ═══════════════════════════════════════════════════════════════════════════
+     Página de seguimiento de progreso y nutrientes
+
+     ESTRUCTURA BEM:
+     Block: .seguimiento
+     Elements: __titulo, __macronutrientes, __grafico-fuerza
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<main class="seguimiento">
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       TÍTULO PRINCIPAL
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <h1 class="seguimiento__titulo">CONTADOR DE NUTRIENTES</h1>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECCIÓN DE MACRONUTRIENTES
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="seguimiento__macronutrientes">
+    <article class="seguimiento__card-macros">
+      <header class="seguimiento__macros-info">
+        <h2 class="seguimiento__macros-titulo">Desglose de Macronutrientes y Caloría</h2>
+        <p class="seguimiento__macros-calorias">Calorías totales: {{ caloriasActuales }}/{{ caloriasObjetivo }} kcal</p>
+
+        <ul class="seguimiento__macros-lista">
+          <li class="seguimiento__macro-item">
+            <span class="seguimiento__macro-indicador seguimiento__macro-indicador--proteinas"></span>
+            <span class="seguimiento__macro-texto">Proteínas: {{ macros.proteinas.gramos }}
+              g ({{ macros.proteinas.porcentaje }}%)</span>
+          </li>
+          <li class="seguimiento__macro-item">
+            <span class="seguimiento__macro-indicador seguimiento__macro-indicador--carbohidratos"></span>
+            <span class="seguimiento__macro-texto">Carbohidratos: {{ macros.carbohidratos.gramos }}
+              g ({{ macros.carbohidratos.porcentaje }}%)</span>
+          </li>
+          <li class="seguimiento__macro-item">
+            <span class="seguimiento__macro-indicador seguimiento__macro-indicador--grasas"></span>
+            <span class="seguimiento__macro-texto">Grasas: {{ macros.grasas.gramos }}g ({{ macros.grasas.porcentaje }}
+              %)</span>
+          </li>
+        </ul>
+
+        <dl class="seguimiento__extras">
+          <dt class="seguimiento__extra-label">Fibra:</dt>
+          <dd class="seguimiento__extra-valor">{{ fibra }}g</dd>
+          <dt class="seguimiento__extra-label">Agua:</dt>
+          <dd class="seguimiento__extra-valor">{{ aguaActual }}L / {{ aguaObjetivo }}L</dd>
+        </dl>
+      </header>
+
+      <figure class="seguimiento__grafico-circular">
+        <svg class="seguimiento__pie-chart" viewBox="0 0 200 200">
+          <!-- Proteínas (negro) -->
+          <circle
+            [attr.stroke-dasharray]="calcularDashArray(macros.proteinas.porcentaje)"
+            [attr.stroke-dashoffset]="calcularDashOffset(0)"
+            cx="100"
+            cy="100"
+            fill="transparent"
+            r="80"
+            stroke="#110e10"
+            stroke-width="40"
+            transform="rotate(-90 100 100)"
+          />
+          <!-- Carbohidratos (amarillo) -->
+          <circle
+            [attr.stroke-dasharray]="calcularDashArray(macros.carbohidratos.porcentaje)"
+            [attr.stroke-dashoffset]="calcularDashOffset(macros.proteinas.porcentaje)"
+            cx="100"
+            cy="100"
+            fill="transparent"
+            r="80"
+            stroke="#ffd300"
+            stroke-width="40"
+            transform="rotate(-90 100 100)"
+          />
+          <!-- Grasas (gris oscuro) -->
+          <circle
+            [attr.stroke-dasharray]="calcularDashArray(macros.grasas.porcentaje)"
+            [attr.stroke-dashoffset]="calcularDashOffset(macros.proteinas.porcentaje + macros.carbohidratos.porcentaje)"
+            cx="100"
+            cy="100"
+            fill="transparent"
+            r="80"
+            stroke="#3f454c"
+            stroke-width="40"
+            transform="rotate(-90 100 100)"
+          />
+        </svg>
+      </figure>
+    </article>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECCIÓN DE GANANCIA DE FUERZA
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="seguimiento__fuerza">
+    <h2 class="seguimiento__fuerza-titulo">Ganancia de fuerza</h2>
+
+    <nav class="seguimiento__selector-ejercicio">
+      <select
+        (change)="cambiarEjercicio()"
+        [(ngModel)]="ejercicioSeleccionado"
+        class="seguimiento__select">
+        @for (ejercicio of ejercicios; track ejercicio.id) {
+          <option [value]="ejercicio.id">{{ ejercicio.nombre }}</option>
+        }
+      </select>
+    </nav>
+
+    <article class="seguimiento__grafico-lineas">
+      <figure class="seguimiento__chart-container">
+        <svg class="seguimiento__line-chart" viewBox="0 0 600 300">
+          <!-- Eje Y -->
+          <line stroke="#b8b8b8" stroke-width="1" x1="50" x2="50" y1="20" y2="250"/>
+          <!-- Eje X -->
+          <line stroke="#b8b8b8" stroke-width="1" x1="50" x2="580" y1="250" y2="250"/>
+
+          <!-- Etiquetas eje Y -->
+          <text class="seguimiento__chart-label" text-anchor="end" x="40" y="35">100kg</text>
+          <text class="seguimiento__chart-label" text-anchor="end" x="40" y="90">75kg</text>
+          <text class="seguimiento__chart-label" text-anchor="end" x="40" y="145">50kg</text>
+          <text class="seguimiento__chart-label" text-anchor="end" x="40" y="200">25kg</text>
+          <text class="seguimiento__chart-label" text-anchor="end" x="40" y="255">0kg</text>
+
+          <!-- Líneas de guía horizontales -->
+          <line stroke="#e0e0e0" stroke-dasharray="5,5" stroke-width="1" x1="50" x2="580" y1="35" y2="35"/>
+          <line stroke="#e0e0e0" stroke-dasharray="5,5" stroke-width="1" x1="50" x2="580" y1="90" y2="90"/>
+          <line stroke="#e0e0e0" stroke-dasharray="5,5" stroke-width="1" x1="50" x2="580" y1="145" y2="145"/>
+          <line stroke="#e0e0e0" stroke-dasharray="5,5" stroke-width="1" x1="50" x2="580" y1="200" y2="200"/>
+
+          <!-- Etiquetas eje X -->
+          <text class="seguimiento__chart-label" text-anchor="middle" x="100" y="270">1/3</text>
+          <text class="seguimiento__chart-label" text-anchor="middle" x="180" y="270">8/3</text>
+          <text class="seguimiento__chart-label" text-anchor="middle" x="260" y="270">15/3</text>
+          <text class="seguimiento__chart-label" text-anchor="middle" x="340" y="270">22/3</text>
+          <text class="seguimiento__chart-label" text-anchor="middle" x="420" y="270">29/3</text>
+          <text class="seguimiento__chart-label" text-anchor="middle" x="500" y="270">5/4</text>
+          <text class="seguimiento__chart-label" text-anchor="middle" x="560" y="270">12/4</text>
+
+          <!-- Etiqueta Fecha -->
+          <text class="seguimiento__chart-label-axis" text-anchor="middle" x="315" y="295">Fecha</text>
+
+          <!-- Etiqueta Peso levantado -->
+          <text class="seguimiento__chart-label-axis" text-anchor="middle" transform="rotate(-90 15 145)" x="15"
+                y="145">Peso levantado (kg)
+          </text>
+
+          <!-- Línea de progreso -->
+          <polyline
+            fill="none"
+            points="100,200 180,200 260,175 340,175 420,175 500,185 560,160"
+            stroke="#ffd300"
+            stroke-width="2"
+          />
+
+          <!-- Puntos de datos -->
+          <circle cx="260" cy="175" fill="#ffd300" r="6"/>
+          <circle cx="500" cy="185" fill="#ffd300" r="6"/>
+          <circle cx="560" cy="160" fill="#ffd300" r="6">
+            <animate attributeName="r" dur="1s" repeatCount="indefinite" values="6;8;6"/>
+          </circle>
+        </svg>
+      </figure>
+    </article>
+  </section>
+
+</main>

@@ -1,0 +1,539 @@
+/**
+ * ENTRENAMIENTO PAGE STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos de la página de entrenamiento (Tabla Semanal)
+ *
+ * ESTRUCTURA BEM:
+ * Block: .entrenamiento
+ * Elements: __titulo, __navegacion-dias, __tabla, __feedback, __progreso
+ *
+ * ESTRATEGIA RESPONSIVE: Desktop-first
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../styles/00-settings/css-variables';
+@import '../../../styles/01-tools/mixins';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Entrenamiento page container
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.entrenamiento {
+  width: 100%;
+  max-width: 100%;
+  background-color: var(--blanco-normal-hover);
+  padding: var(--spacing-size-xxxl) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-xxl);
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-xl) var(--spacing-size-m);
+    gap: var(--spacing-size-l);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Título Principal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.entrenamiento__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  text-align: center;
+  text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  margin: 0;
+
+  @include responsive-down('lg') {
+    font-size: var(--font-size-3xl);
+  }
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Navegación de Días
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.entrenamiento__navegacion-dias {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-size-xl);
+  width: 100%;
+  max-width: 60.625rem;
+
+  @include responsive-down('md') {
+    gap: var(--spacing-size-m);
+  }
+}
+
+.entrenamiento__btn-dia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--negro-normal);
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--amarillo-dark);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.entrenamiento__dia {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+  margin: 0;
+
+  &--anterior,
+  &--siguiente {
+    font-size: var(--font-size-xl);
+    opacity: 0.6;
+
+    @include responsive-down('md') {
+      display: none;
+    }
+  }
+
+  &--actual {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+
+    @include responsive-down('md') {
+      font-size: var(--font-size-xl);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Tabla de Ejercicios
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.entrenamiento__tabla-section {
+  width: 100%;
+  max-width: 60.625rem;
+  padding: 0 var(--spacing-size-m);
+}
+
+.entrenamiento__tabla {
+  width: 100%;
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+
+  thead {
+    tr {
+      background-color: var(--blanco-normal);
+    }
+
+    th {
+      font-family: var(--font-primary);
+      font-size: 0.9375rem;
+      font-weight: var(--font-weight-regular);
+      color: var(--negro-normal);
+      padding: var(--spacing-size-s) var(--spacing-size-m);
+      text-align: center;
+      border-bottom: 0.0625rem solid var(--blanco-dark);
+
+      @include responsive-down('md') {
+        padding: var(--spacing-size-xs);
+        font-size: 0.8125rem;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 0.0625rem solid var(--blanco-dark);
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    td {
+      font-family: var(--font-primary);
+      font-size: 0.9375rem;
+      font-weight: var(--font-weight-regular);
+      color: var(--negro-normal);
+      padding: var(--spacing-size-s) var(--spacing-size-m);
+      text-align: center;
+      vertical-align: middle;
+
+      @include responsive-down('md') {
+        padding: var(--spacing-size-xs);
+        font-size: 0.8125rem;
+      }
+    }
+  }
+}
+
+.entrenamiento__ejercicio-nombre {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-xs);
+  text-align: left;
+}
+
+.entrenamiento__ejercicio-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 0.5625rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--negro-normal);
+  transition: transform var(--duration-fast) ease;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(270deg);
+    transition: transform var(--duration-fast) ease;
+
+    &.rotated {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.entrenamiento__acciones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.entrenamiento__btn-accion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast) ease,
+  opacity var(--duration-fast) ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  &--ok {
+    background-color: #4caf50;
+    color: white;
+    opacity: 0.5;
+
+    &.activo {
+      opacity: 1;
+    }
+  }
+
+  &--no {
+    background-color: #f44336;
+    color: white;
+    opacity: 0.5;
+
+    &.activo {
+      opacity: 1;
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Sección de Retroalimentación
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.entrenamiento__feedback {
+  width: 100%;
+  max-width: 60.3125rem;
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-xxl) var(--spacing-size-xl);
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-l) var(--spacing-size-m);
+  }
+}
+
+.entrenamiento__feedback-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-l) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-size-m);
+  }
+}
+
+.entrenamiento__feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-l);
+}
+
+.entrenamiento__feedback-field {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.entrenamiento__feedback-label {
+  display: block;
+  font-family: var(--font-primary);
+  font-size: var(--spacing-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+  margin-bottom: var(--spacing-size-s);
+
+  @include responsive-down('md') {
+    font-size: 0.9375rem;
+  }
+}
+
+.entrenamiento__feedback-textarea {
+  width: 90%;
+  min-height: 8.9375rem;
+  padding: var(--spacing-size-s);
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  resize: vertical;
+  transition: border-color var(--duration-fast) ease;
+
+  &::placeholder {
+    color: var(--negro-normal);
+    opacity: 0.6;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--amarillo-normal);
+  }
+
+  @include responsive-down('md') {
+    min-height: 6.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+.entrenamiento__feedback-acciones {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-size-m);
+  margin-top: var(--spacing-size-m);
+
+  @include responsive-down('md') {
+    flex-direction: column;
+    gap: var(--spacing-size-s);
+  }
+}
+
+.entrenamiento__btn-cancelar {
+  min-width: 6.8125rem;
+  padding: var(--spacing-size-s) var(--spacing-size-l);
+  font-family: var(--font-primary);
+  font-size: 0.8125rem;
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+  background-color: var(--blanco-normal-active);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  cursor: pointer;
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  transition: background-color var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--blanco-normal-hover);
+  }
+
+  @include responsive-down('md') {
+    width: 100%;
+  }
+}
+
+.entrenamiento__btn-enviar {
+  min-width: 6.3125rem;
+  padding: var(--spacing-size-s) var(--spacing-size-l);
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  background-color: var(--amarillo-normal);
+  border: 0.0625rem solid var(--gris-normal);
+  border-radius: var(--radius-xss);
+  cursor: pointer;
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  transition: background-color var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--amarillo-normal-hover);
+  }
+
+  @include responsive-down('md') {
+    width: 100%;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Sección Ver Mi Progreso
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.entrenamiento__progreso {
+  width: 100%;
+  max-width: 60.625rem;
+  padding: 0 var(--spacing-size-m);
+}
+
+.entrenamiento__progreso-contenido {
+  display: flex;
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  overflow: hidden;
+
+  @include responsive-down('lg') {
+    flex-direction: column;
+  }
+}
+
+.entrenamiento__progreso-info {
+  flex: 0 0 auto;
+  width: 21.75rem;
+  min-width: 0;
+  padding: var(--spacing-size-xxl) var(--spacing-size-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xl);
+
+  @include responsive-down('lg') {
+    width: 100%;
+    padding: var(--spacing-size-l) var(--spacing-size-m);
+    gap: var(--spacing-size-m);
+  }
+}
+
+.entrenamiento__progreso-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+.entrenamiento__progreso-descripcion {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  line-height: var(--line-height-normal);
+  margin: 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-md);
+  }
+}
+
+.entrenamiento__btn-progreso {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-size-s);
+  width: 17.5rem;
+  max-width: 100%;
+  padding: var(--spacing-size-xl) var(--spacing-size-xxl);
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  background-color: var(--amarillo-normal);
+  border: 0.0625rem solid var(--gris-normal);
+  border-radius: var(--radius-xss);
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  transition: background-color var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--amarillo-normal-hover);
+  }
+
+  svg {
+    width: 1.125rem;
+    height: 0.875rem;
+  }
+
+  @include responsive-down('lg') {
+    width: 16rem;
+    padding: var(--spacing-size-l) var(--spacing-size-xl);
+  }
+
+  @include responsive-down('md') {
+    width: 100%;
+    font-size: var(--font-size-lg);
+    padding: var(--spacing-size-m) var(--spacing-size-l);
+  }
+}
+
+.entrenamiento__progreso-imagen {
+  flex: 1;
+  margin: 0;
+  background-color: var(--blanco-normal-active);
+  min-height: 26.25rem;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @include responsive-down('lg') {
+    min-height: 15rem;
+  }
+}

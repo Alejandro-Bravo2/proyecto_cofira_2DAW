@@ -1,8 +1,10 @@
 import {Component, Input} from '@angular/core';
+import {NgTemplateOutlet} from '@angular/common';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-button',
-  imports: [],
+  imports: [RouterLink, NgTemplateOutlet],
   templateUrl: './button.html',
   styleUrl: './button.scss',
 })
@@ -15,7 +17,17 @@ export class Button {
 
   @Input() tipo: 'button' | 'submit' | 'reset' = 'button';
 
+  @Input() enlace: string | null = null;
+
+  @Input() href: string | null = null;
+
+  @Input() fullWidth: boolean = false;
+
   obtenerClasesBoton(): string {
-    return `button button--${this.variante} button--${this.tamanio}`;
+    let clases = `button button--${this.variante} button--${this.tamanio}`;
+    if (this.fullWidth) {
+      clases += ' button--full-width';
+    }
+    return clases;
   }
 }

@@ -1,91 +1,32 @@
-<nav class="header__container">
+<header class="header">
   <!-- Logo -->
-  <img alt="Cofira Logo" class="cabecera__logo" routerLink="/home" src="assets/images/cofiraLogoPng.png">
+  <a class="header__logo-link" routerLink="/home">
+    <img alt="Cofira Logo" class="header__logo" src="assets/images/cofira_logo_hombre.png">
+  </a>
+
+  <!-- Navegación central (desktop) -->
+  <nav class="header__nav header__nav--desktop">
+    <ul class="header__menu">
+      <li><a class="header__link" routerLink="/alimentacion">Nutrición</a></li>
+      <li><a class="header__link" routerLink="/gimnasio">Ejercicio</a></li>
+      <li><a class="header__link" routerLink="/seguimiento">Seguimiento</a></li>
+    </ul>
+  </nav>
+
+  <!-- Botones de acción (desktop) -->
+  <section class="header__actions header__actions--desktop">
+    <app-button enlace="/login" tamanio="sm" variante="secondary">Inicia Sesión</app-button>
+    <app-button enlace="/registro" tamanio="sm" variante="primary">Inscríbete</app-button>
+  </section>
 
   <!-- Botón Hamburguesa (solo móvil) -->
-  <button class="hamburguesa" (click)="toggleMenu()" [class.hamburguesa--abierto]="menuAbierto" aria-label="Menú">
-    <span class="hamburguesa__linea"></span>
-    <span class="hamburguesa__linea"></span>
-    <span class="hamburguesa__linea"></span>
+  <button (click)="toggleMenu()" [class.header__hamburguesa--abierto]="menuAbierto" aria-label="Menú"
+          class="header__hamburguesa">
+    <span class="header__hamburguesa-linea"></span>
+    <span class="header__hamburguesa-linea"></span>
+    <span class="header__hamburguesa-linea"></span>
   </button>
-
-  <!-- Enlaces de navegación (desktop) -->
-  <ul class="enlaces enlaces--desktop">
-    <li><a routerLink="/gimnasio">Entrenamiento</a></li>
-    <li><a routerLink="/alimentacion">Alimentación</a></li>
-    <li><a routerLink="/seguimiento">Seguimiento</a></li>
-  </ul>
-
-  <!-- Buscador (desktop) -->
-  <article class="buscador buscador--desktop">
-    <svg class="buscador__icono" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5
-  6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5" fill="currentColor" />
-    </svg>
-    <input class="buscador__input" placeholder="¿Que buscas?" type="text">
-  </article>
-
-  <!-- Botones (desktop) -->
-  <section class="cabecera__botones cabecera__botones--desktop">
-    <button class="boton-inscribete">
-      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="m77.492 18.457l-17.726 3.127L69.09 74.47a1631 1631 0 0 0-15.8 2.54l-6.503-36.89l-17.726 3.124l6.49 36.795a1878 1878 0 0 0-17.196 3.112l3.292 17.696c5.728-1.066 11.397-2.09 17.028-3.084l7.056 40.02l17.727-3.124l-7.04-39.93q7.956-1.319 15.798-2.54l9.777 55.45l17.727-3.126l-9.697-54.99a1416 1416 0 0 1 25.18-3.38c15.54 46.39 34.697 99.995 66.936 134.448C190.86 250.992 192 268 214.56 310C192 348 176 412 167.21 471l-48 6v15H192c16-48 64-144 64-144s48 96 64 144h72.79v-15l-48-6C336 412 320 348 294 310c26-42 24.175-59.585 35.83-89.377c32.25-34.452 51.42-88.075 66.967-134.478c8.314 1.04 16.697 2.16 25.18 3.38l-9.696 54.99l17.728 3.124l9.777-55.45q7.843 1.221 15.8 2.54l-7.042 39.93l17.727 3.125l7.056-40.02c5.63.993 11.3 2.017 17.028 3.083l3.292-17.696c-5.78-1.075-11.507-2.11-17.195-3.113l6.49-36.796l-17.727-3.125l-6.504 36.89a1565 1565 0 0 0-15.8-2.54l9.324-52.886l-17.726-3.127l-9.406 53.35C365.982 63.31 310.982 59.04 256 59.04c-54.98 0-109.983 4.27-169.102 12.767zM256 76.98c35.53 0 71.07 1.83 107.822 5.463c-14.082 34.858-38.454 73.504-63.203 101.967C290.293 199.27 274.35 209 256 209s-34.294-9.73-44.62-24.59c-24.748-28.463-49.12-67.11-63.202-101.967c36.75-3.633 72.29-5.463 107.822-5.463M256 97c-20.835 0-39 20.24-39 47s18.165 47 39 47s39-20.24 39-47s-18.165-47-39-47"
-          fill="currentColor" />
-      </svg>
-      <span>Inscribete</span>
-    </button>
-
-    <article class="menu-cuenta-wrapper">
-      <button class="boton-cuenta" (click)="toggleMenuCuenta()">
-        <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"
-            fill="currentColor" />
-        </svg>
-        <span>Cuenta</span>
-      </button>
-
-      <!-- Menú desplegable de cuenta -->
-      @if (menuCuentaAbierto) {
-      <nav class="menu-cuenta">
-        <a routerLink="/login" (click)="cerrarMenuCuenta()" class="menu-cuenta__item">
-          Inicio sesión
-        </a>
-        <a routerLink="/registro" (click)="cerrarMenuCuenta()" class="menu-cuenta__item">
-          Registro
-        </a>
-        <a routerLink="/planes" (click)="cerrarMenuCuenta()" class="menu-cuenta__item">
-          Planes
-        </a>
-        <a routerLink="/preferencias" (click)="cerrarMenuCuenta()" class="menu-cuenta__item">
-          Preferencias
-        </a>
-        <button (click)="toggleModoOscuro()" class="menu-cuenta__item menu-cuenta__item--modo">
-          @if (modoOscuro) {
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="menu-cuenta__icono">
-            <path
-              d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5s5-2.24 5-5s-2.24-5-5-5M2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1m18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1M11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1m0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1M5.99 4.58a.996.996 0 0 0-1.41 0a.996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41zm12.37 12.37a.996.996 0 0 0-1.41 0a.996.996 0 0 0 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0a.996.996 0 0 0 0-1.41zm1.06-10.96a.996.996 0 0 0 0-1.41a.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0zM7.05 18.36a.996.996 0 0 0 0-1.41a.996.996 0 0 0-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0z"
-              fill="currentColor" />
-          </svg>
-          } @else {
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="menu-cuenta__icono">
-            <path
-              d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26a5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1"
-              fill="currentColor" />
-          </svg>
-          }
-        </button>
-      </nav>
-      }
-
-      <!-- Overlay para cerrar al hacer clic fuera -->
-      @if (menuCuentaAbierto) {
-      <span class="menu-cuenta__overlay" (click)="cerrarMenuCuenta()"></span>
-      }
-    </article>
-  </section>
-</nav>
+</header>
 
 <!-- Menú móvil -->
 <aside class="menu-movil" [class.menu-movil--abierto]="menuAbierto">
@@ -101,57 +42,49 @@
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"
-            fill="currentColor" />
+            fill="currentColor"/>
         </svg>
       </button>
     </header>
 
-    <!-- Enlaces de navegación -->
+    <!-- Enlaces de navegación móvil -->
     <nav class="menu-movil__nav">
-      <a routerLink="/gimnasio" (click)="cerrarMenu()" class="menu-movil__link">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M20.57 14.86L22 13.43L20.57 12L17 15.57L8.43 7L12 3.43L10.57 2L9.14 3.43L7.71 2L5.57 4.14L4.14 2.71L2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57L3.43 12L7 8.43L15.57 17L12 20.57L13.43 22l1.43-1.43L16.29 22l2.14-2.14l1.43 1.43l1.43-1.43l-1.43-1.43L22 16.29z"
-            fill="currentColor" />
-        </svg>
-        <span>Entrenamiento</span>
-      </a>
-
-      <a routerLink="/alimentacion" (click)="cerrarMenu()" class="menu-movil__link">
+      <a (click)="cerrarMenu()" class="menu-movil__link" routerLink="/alimentacion">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"
-            fill="currentColor" />
+            fill="currentColor"/>
         </svg>
-        <span>Alimentación</span>
+        <span>Nutrición</span>
+      </a>
+
+      <a (click)="cerrarMenu()" class="menu-movil__link" routerLink="/gimnasio">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M20.57 14.86L22 13.43L20.57 12L17 15.57L8.43 7L12 3.43L10.57 2L9.14 3.43L7.71 2L5.57 4.14L4.14 2.71L2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57L3.43 12L7 8.43L15.57 17L12 20.57L13.43 22l1.43-1.43L16.29 22l2.14-2.14l1.43 1.43l1.43-1.43l-1.43-1.43L22 16.29z"
+            fill="currentColor"/>
+        </svg>
+        <span>Ejercicio</span>
       </a>
 
       <a routerLink="/seguimiento" (click)="cerrarMenu()" class="menu-movil__link">
         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 11.78l4.24-7.33l1.73 1l-5.23 9.05l-6.51-3.75L5.46 19H22v2H2V3h2v14.54L9.5 8z"
-            fill="currentColor" />
+          <path
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"
+            fill="currentColor"/>
         </svg>
         <span>Seguimiento</span>
       </a>
-
-      <a routerLink="/perfil" (click)="cerrarMenu()" class="menu-movil__link menu-movil__link--perfil">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"
-            fill="currentColor" />
-        </svg>
-        <span>Mi Perfil</span>
-      </a>
     </nav>
 
-    <!-- Botón de Inscripción en el menú móvil -->
-    <button class="menu-movil__inscripcion" (click)="cerrarMenu()">
-      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="m77.492 18.457l-17.726 3.127L69.09 74.47a1631 1631 0 0 0-15.8 2.54l-6.503-36.89l-17.726 3.124l6.49 36.795a1878 1878 0 0 0-17.196 3.112l3.292 17.696c5.728-1.066 11.397-2.09 17.028-3.084l7.056 40.02l17.727-3.124l-7.04-39.93q7.956-1.319 15.798-2.54l9.777 55.45l17.727-3.126l-9.697-54.99a1416 1416 0 0 1 25.18-3.38c15.54 46.39 34.697 99.995 66.936 134.448C190.86 250.992 192 268 214.56 310C192 348 176 412 167.21 471l-48 6v15H192c16-48 64-144 64-144s48 96 64 144h72.79v-15l-48-6C336 412 320 348 294 310c26-42 24.175-59.585 35.83-89.377c32.25-34.452 51.42-88.075 66.967-134.478c8.314 1.04 16.697 2.16 25.18 3.38l-9.696 54.99l17.728 3.124l9.777-55.45q7.843 1.221 15.8 2.54l-7.042 39.93l17.727 3.125l7.056-40.02c5.63.993 11.3 2.017 17.028 3.083l3.292-17.696c-5.78-1.075-11.507-2.11-17.195-3.113l6.49-36.796l-17.727-3.125l-6.504 36.89a1565 1565 0 0 0-15.8-2.54l9.324-52.886l-17.726-3.127l-9.406 53.35C365.982 63.31 310.982 59.04 256 59.04c-54.98 0-109.983 4.27-169.102 12.767zM256 76.98c35.53 0 71.07 1.83 107.822 5.463c-14.082 34.858-38.454 73.504-63.203 101.967C290.293 199.27 274.35 209 256 209s-34.294-9.73-44.62-24.59c-24.748-28.463-49.12-67.11-63.202-101.967c36.75-3.633 72.29-5.463 107.822-5.463M256 97c-20.835 0-39 20.24-39 47s18.165 47 39 47s39-20.24 39-47s-18.165-47-39-47"
-          fill="currentColor" />
-      </svg>
-      <span>Inscribete Ahora</span>
-    </button>
+    <!-- Botones de acción móvil -->
+    <section class="menu-movil__actions">
+      <app-button (click)="cerrarMenu()" [fullWidth]="true" enlace="/login" tamanio="md" variante="secondary">
+        Inicia Sesión
+      </app-button>
+      <app-button (click)="cerrarMenu()" [fullWidth]="true" enlace="/registro" tamanio="md" variante="primary">
+        Inscríbete
+      </app-button>
+    </section>
   </section>
 </aside>

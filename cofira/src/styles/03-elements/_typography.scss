@@ -115,3 +115,49 @@ blockquote {
   margin: var(--spacing-size-m) 0;
   color: var(--text-light);
 }
+
+
+/* --------------------------------------------
+   ELEMENTOS DE FORMULARIO
+   Heredan Montserrat del body
+   -------------------------------------------- */
+
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+}
+
+label {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+
+/* --------------------------------------------
+   ENLACES Y LISTAS
+   -------------------------------------------- */
+
+a {
+  font-family: var(--font-primary);
+}
+
+li {
+  font-family: var(--font-primary);
+}
+
+
+/* --------------------------------------------
+   TABLAS
+   -------------------------------------------- */
+
+th {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-semibold);
+}
+
+td {
+  font-family: var(--font-primary);
+}

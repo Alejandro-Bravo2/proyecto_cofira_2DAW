@@ -1,139 +1,355 @@
+@import '../../../../styles/00-settings/css-variables';
+@import '../../../../styles/01-tools/mixins';
+
 /* ═══════════════════════════════════════════════════════════════════════════
    FOOTER COMPONENT
    Componente de pie de página con enlaces, copyright y redes sociales
    ═══════════════════════════════════════════════════════════════════════════
 
+   TABLA DE CONTENIDOS
+   ─────────────────────────────────────────────────────────────────────────────
+   1. IMPORTS
+   2. BLOCK: Footer container
+   3. MAIN SECTION (4 columnas)
+   4. BRAND COLUMN (logo, descripción, redes)
+   5. SOCIAL LINKS
+   6. NAVIGATION COLUMNS
+   7. DIVIDER
+   8. BOTTOM SECTION (copyright + legal)
+   9. RESPONSIVE
+
    ESTRUCTURA BEM
    ─────────────────────────────────────────────────────────────────────────────
    Block:     .footer
-   Elements:  .footer__left, .footer__link, .footer__copyright,
-              .footer__right, .footer__social-list, .footer__social-item,
-              .footer__social
+   Elements:  .footer__main, .footer__brand, .footer__logo, .footer__descripcion,
+              .footer__social-list, .footer__social, .footer__nav, .footer__nav-titulo,
+              .footer__nav-lista, .footer__nav-link, .footer__divider, .footer__bottom,
+              .footer__copyright, .footer__legal, .footer__legal-link
    Modifiers: Ninguno
-
-   USO
-   ─────────────────────────────────────────────────────────────────────────────
-   <footer class="footer">
-     <nav class="footer__left">
-       <a class="footer__link" href="#">Condiciones</a>
-     </nav>
-     <p class="footer__copyright">&copy; 2024 Cofira</p>
-     <nav class="footer__right">
-       <ul class="footer__social-list">
-         <li class="footer__social-item">
-           <a class="footer__social" href="#">...</a>
-         </li>
-       </ul>
-     </nav>
-   </footer>
 
    ═══════════════════════════════════════════════════════════════════════════ */
 
+
 /* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Footer container
+   2. BLOCK: Footer container
    ───────────────────────────────────────────────────────────────────────────── */
 
 .footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--spacing-size-m) var(--spacing-size-xxl);
+  // 2. MODELO DE CAJA
+  padding: var(--spacing-size-xxxl) 6rem var(--spacing-size-xxl);
+  box-sizing: border-box;
+
+  // 4. VISUAL
   background: var(--gris-dark);
-  border-top: var(--border-width-fino) solid var(--gris-normal);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Left section (terms link)
+   3. MAIN SECTION: Grid de 4 columnas
    ───────────────────────────────────────────────────────────────────────────── */
 
-.footer__left {
-  flex: 1;
+.footer__main {
+  // 2. MODELO DE CAJA
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--spacing-size-xxl);
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.footer__link {
-  color: var(--text-dark);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-regular);
-  text-decoration: none;
-  transition: color var(--duration-base) ease;
+/* ─────────────────────────────────────────────────────────────────────────────
+   4. BRAND COLUMN: Logo, descripción y redes sociales
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.footer__brand {
+  // 2. MODELO DE CAJA
+  max-width: 320px;
 }
 
-.footer__link:hover {
+.footer__logo {
+  // 2. MODELO DE CAJA
+  margin: 0 0 var(--spacing-size-m) 0;
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.05em;
+
+  // 4. VISUAL
   color: var(--amarillo-normal);
-  text-decoration: underline;
 }
 
-.footer__link:focus {
-  outline: 0.125rem solid var(--amarillo-normal);
-  outline-offset: 0.125rem;
-}
+.footer__descripcion {
+  // 2. MODELO DE CAJA
+  margin: 0 0 var(--spacing-size-l) 0;
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Center section (copyright)
-   ───────────────────────────────────────────────────────────────────────────── */
-
-.footer__copyright {
-  flex: 1;
-  text-align: center;
-  color: var(--text-dark);
+  // 3. TIPOGRAFÍA
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
-  margin: 0;
+  line-height: var(--line-height-relaxed);
+
+  // 4. VISUAL
+  color: var(--blanco-dark);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Right section (social links)
+   5. SOCIAL LINKS: Enlaces a redes sociales
    ───────────────────────────────────────────────────────────────────────────── */
-
-.footer__right {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-}
 
 .footer__social-list {
+  // 2. MODELO DE CAJA
   display: flex;
   gap: var(--spacing-size-s);
-  list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
+
+  // 4. VISUAL
+  list-style: none;
 }
 
 .footer__social-item {
+  // 2. MODELO DE CAJA
   margin: 0;
 }
 
 .footer__social {
+  // 2. MODELO DE CAJA
   display: flex;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  color: var(--text-dark);
+
+  // 3. TIPOGRAFÍA
+  text-decoration: none;
+
+  // 4. VISUAL
+  color: var(--blanco-normal);
   background: var(--gris-normal);
   border-radius: var(--radius-xss);
+
+  // 5. MISCELÁNEA
   transition: all var(--duration-base) ease;
-  text-decoration: none;
+
+  // Estados interactivos
+  &:hover {
+    color: var(--negro-normal);
+    background: var(--amarillo-normal);
+    transform: translateY(-0.125rem);
+  }
+
+  @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
+
+  &:active {
+    transform: translateY(0);
+  }
 }
 
 .footer__social svg {
-  width: 1.25rem;
-  height: 1.25rem;
+  // 2. MODELO DE CAJA
+  width: 1.125rem;
+  height: 1.125rem;
 }
 
-.footer__social:hover {
-  color: var(--amarillo-normal);
-  background: var(--gris-normal-hover);
-  transform: translateY(-0.125rem);
+/* ─────────────────────────────────────────────────────────────────────────────
+   6. NAVIGATION COLUMNS: Columnas de enlaces
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.footer__nav {
+  // 2. MODELO DE CAJA
+  display: flex;
+  flex-direction: column;
 }
 
-.footer__social:focus {
-  outline: 0.125rem solid var(--amarillo-normal);
-  outline-offset: 0.125rem;
+.footer__nav-titulo {
+  // 2. MODELO DE CAJA
+  margin: 0 0 var(--spacing-size-m) 0;
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  // 4. VISUAL
+  color: var(--blanco-normal);
 }
 
-.footer__social:active {
-  transform: translateY(0);
+.footer__nav-lista {
+  // 2. MODELO DE CAJA
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-s);
+  margin: 0;
+  padding: 0;
+
+  // 4. VISUAL
+  list-style: none;
+}
+
+.footer__nav-link {
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  text-decoration: none;
+
+  // 4. VISUAL
+  color: var(--blanco-dark);
+
+  // 5. MISCELÁNEA
+  transition: color var(--duration-fast) ease;
+
+  // Estados interactivos
+  &:hover {
+    color: var(--amarillo-normal);
+  }
+
+  @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   7. DIVIDER: Línea separadora
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.footer__divider {
+  // 2. MODELO DE CAJA
+  max-width: 1400px;
+  margin: var(--spacing-size-xxl) auto;
+
+  // 4. VISUAL
+  border: none;
+  border-top: var(--border-width-fino) solid var(--gris-normal);
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   8. BOTTOM SECTION: Copyright y enlaces legales
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.footer__bottom {
+  // 2. MODELO DE CAJA
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer__copyright {
+  // 2. MODELO DE CAJA
+  margin: 0;
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+
+  // 4. VISUAL
+  color: var(--blanco-dark);
+}
+
+.footer__legal {
+  // 2. MODELO DE CAJA
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+}
+
+.footer__legal-link {
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  text-decoration: none;
+
+  // 4. VISUAL
+  color: var(--blanco-dark);
+
+  // 5. MISCELÁNEA
+  transition: color var(--duration-fast) ease;
+
+  // Estados interactivos
+  &:hover {
+    color: var(--amarillo-normal);
+  }
+
+  @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
+}
+
+.footer__legal-separador {
+  // 3. TIPOGRAFÍA
+  font-size: var(--font-size-sm);
+
+  // 4. VISUAL
+  color: var(--gris-normal);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   9. RESPONSIVE: Adaptaciones para tablet y móvil
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9.1 TABLET: Breakpoint LG (1024px)
+// ─────────────────────────────────────────────────────────────────────────────
+@include responsive-down('lg') {
+  .footer {
+    padding: var(--spacing-size-xxl) var(--spacing-size-xl);
+  }
+
+  .footer__main {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-size-xl);
+  }
+
+  .footer__brand {
+    grid-column: 1 / -1;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .footer__descripcion {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .footer__social-list {
+    justify-content: center;
+  }
+
+  .footer__nav {
+    text-align: center;
+  }
+
+  .footer__nav-lista {
+    align-items: center;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 9.2 MÓVIL: Breakpoint SM (768px)
+// ─────────────────────────────────────────────────────────────────────────────
+@include responsive-down('sm') {
+  .footer {
+    padding: var(--spacing-size-xl) var(--spacing-size-m);
+  }
+
+  .footer__main {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-size-xl);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--spacing-size-m);
+    text-align: center;
+  }
+
+  .footer__legal {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }

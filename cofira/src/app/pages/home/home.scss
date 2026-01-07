@@ -6,113 +6,613 @@
    Estilos específicos de la página de inicio
    ═══════════════════════════════════════════════════════════════════════════
 
+   TABLA DE CONTENIDOS
+   ─────────────────────────────────────────────────────────────────────────────
+   1. IMPORTS
+   2. UTILIDADES (Style guide link)
+   3. INTRO SECTION
+      3.1 Contenedor principal
+      3.2 Tipografía
+      3.3 Botones de acción
+   4. PLANES SECTION
+      4.1 Contenedor principal
+      4.2 Título
+      4.3 Grid de contenido
+      4.4 Info lateral
+      4.5 Cards wrapper
+   5. FUNCIONALIDADES SECTION
+      5.1 Contenedor principal
+      5.2 Título
+      5.3 Grid de items
+      5.4 Items individuales
+   6. FAQ SECTION
+      6.1 Contenedor principal
+      6.2 Título
+      6.3 Contenedor de items
+      6.4 Items (details/summary)
+      6.5 Contacto
+   7. HOME PLANES (contenedor de cards)
+   8. CONTAINER QUERIES
+   9. RESPONSIVE
+
    ESTRUCTURA BEM
    ─────────────────────────────────────────────────────────────────────────────
-   Block:     .home
-   Elements:  .home__titulo-formulario, .home__planes
-   Modifiers: Ninguno
+   Blocks:    .home, .planes, .funcionalidades, .faq
+   Elements:  Ver cada sección
 
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Style guide link
-   ───────────────────────────────────────────────────────────────────────────── */
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   2. UTILIDADES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Style guide link - Enlace a la guía de estilos
+// ─────────────────────────────────────────────────────────────────────────────
 .style-guide-link {
+  // 2. MODELO DE CAJA
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-size-xs);
-  padding: var(--spacing-size-xs) var(--spacing-size-m);
   margin: var(--spacing-size-m) 0;
+  padding: var(--spacing-size-xs) var(--spacing-size-m);
+
+  // 3. TIPOGRAFÍA
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
+
+  // 4. VISUAL
   color: var(--negro-normal);
   background-color: var(--amarillo-normal);
   border: 0.125rem solid var(--amarillo-dark);
   border-radius: var(--radius-xss);
+
+  // 5. MISCELÁNEA
   transition: all var(--duration-fast) ease;
+
+  // Flecha decorativa
+  &::before {
+    content: '→';
+    font-size: var(--font-size-lg);
+    transition: transform var(--duration-fast) ease;
+  }
+
+  // Estados interactivos
+  &:hover {
+    background-color: var(--amarillo-normal-hover);
+    border-color: var(--amarillo-darker);
+    transform: translateX(0.25rem);
+
+    &::before {
+      transform: translateX(0.25rem);
+    }
+  }
+
+  @include focus-anillo(var(--amarillo-dark), 0.125rem, 0.125rem);
+
+  &:active {
+    transform: translateX(0.125rem);
+  }
 }
 
-.style-guide-link::before {
-  content: '→';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3. INTRO SECTION - Hero con imagen de fondo
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3.1 Contenedor principal
+// ─────────────────────────────────────────────────────────────────────────────
+.home__seccion-intro {
+  // 2. MODELO DE CAJA
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: var(--spacing-size-m);
+  width: 100vw;
+  min-height: 600px;
+  margin-left: -6rem;
+  padding: var(--spacing-size-xxxl) var(--spacing-size-xl);
+
+  // 4. VISUAL
+  background-image: url('/assets/images/personaComiendo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3.2 Tipografía del hero
+// ─────────────────────────────────────────────────────────────────────────────
+.home__seccion-intro h1 {
+  // 2. MODELO DE CAJA
+  max-width: 450px;
+  margin: 0 0 2rem 0;
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-4xl);
+  text-align: left;
+
+  // 4. VISUAL
+  color: var(--negro-normal);
+}
+
+.home__seccion-intro h2 {
+  // 2. MODELO DE CAJA
+  max-width: 400px;
+
+  // 3. TIPOGRAFÍA
+  font-size: var(--font-size-2xl);
+}
+
+.home__seccion-intro button {
+  // 1. POSICIONAMIENTO
+  z-index: 1;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 3.3 Botones de acción del hero
+// ─────────────────────────────────────────────────────────────────────────────
+.boton__primary {
+  // 2. MODELO DE CAJA
+  display: flex;
+  gap: 1rem;
+}
+
+.boton__primary--inscripcion {
+  ::ng-deep .button {
+    min-width: 170px;
+    padding: 0.75rem 1rem;
+  }
+}
+
+.boton__primary--planes {
+  ::ng-deep .button {
+    min-width: 170px;
+    padding: 0.75rem 1rem;
+
+    color: var(--negro-normal);
+    background: transparent;
+    border: var(--negro-normal) solid var(--radius-xsss);
+
+    &:hover:not(:disabled) {
+      color: var(--blanco-normal);
+      background: var(--gris-normal-active);
+      transform: translateY(-0.125rem);
+    }
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4. PLANES SECTION - Sección de planes de precios
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4.1 Contenedor principal (full-width)
+// ─────────────────────────────────────────────────────────────────────────────
+.planes__section {
+  // Layout full-width usando mixin
+  @include seccion-full-width(6rem, var(--spacing-size-xxxl));
+
+  // 4. VISUAL
+  background-color: var(--negro-normal);
+  color: var(--blanco-normal);
+
+  // Resetear backgrounds de hijos
+  * {
+    background: transparent;
+  }
+
+  // Contenedor de cards
+  .home__planes {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    gap: var(--spacing-size-xl);
+  }
+
+  .home__card-wrapper {
+    max-width: 320px;
+  }
+
+  ::ng-deep .pricing-card__titulo {
+    max-width: 160px;
+    text-align: center;
+  }
+}
+
+.planes__section h1 {
+  // 2. MODELO DE CAJA
+  margin-top: 5rem;
+
+  // 3. TIPOGRAFÍA
+  text-align: center;
+
+  // 4. VISUAL
+  color: var(--blanco-normal);
+}
+
+.planes__section-eleccion {
+  color: var(--blanco-normal);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4.2 Título de la sección
+// ─────────────────────────────────────────────────────────────────────────────
+.planes__titulo {
+  @include titulo-seccion(var(--amarillo-normal), var(--font-size-5xl));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4.3 Grid de contenido (3 columnas)
+// ─────────────────────────────────────────────────────────────────────────────
+.planes__contenido {
+  // 2. MODELO DE CAJA
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-size-xl);
+  align-items: start;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 4.4 Info lateral
+// ─────────────────────────────────────────────────────────────────────────────
+.planes__info {
+  // 2. MODELO DE CAJA
+  flex: 0 0 280px;
+  max-width: 300px;
+
+  p {
+    // 2. MODELO DE CAJA
+    margin: 0 0 var(--spacing-size-s) 0;
+
+    // 3. TIPOGRAFÍA
+    font-size: var(--font-size-md);
+
+    // 4. VISUAL
+    color: var(--blanco-normal);
+  }
+}
+
+.planes__subtitulo {
+  // 2. MODELO DE CAJA
+  margin: 0 0 var(--spacing-size-m) 0;
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+
+  // 4. VISUAL
+  color: var(--blanco-normal);
+}
+
+.planes__destacado {
+  // 3. TIPOGRAFÍA
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  text-decoration-color: var(--amarillo-normal);
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   5. FUNCIONALIDADES SECTION - Grid de características
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5.1 Contenedor principal (full-width)
+// ─────────────────────────────────────────────────────────────────────────────
+.funcionalidades__contenedor {
+  // Layout full-width usando mixin
+  @include seccion-full-width(6rem, var(--spacing-size-xxxl));
+
+  // 4. VISUAL
+  background-color: var(--blanco-normal);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5.2 Título de la sección
+// ─────────────────────────────────────────────────────────────────────────────
+.funcionalidades__titulo {
+  @include titulo-seccion(var(--negro-normal), var(--font-size-4xl));
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5.3 Grid de items
+// ─────────────────────────────────────────────────────────────────────────────
+.funcionalidades__grid {
+  // 2. MODELO DE CAJA
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--spacing-size-l);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+
+  // 4. VISUAL
+  list-style: none;
+
+  // RESPONSIVE
+  @include responsive-down('lg') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive-down('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 5.4 Items individuales
+// ─────────────────────────────────────────────────────────────────────────────
+.funcionalidades__item {
+  // 2. MODELO DE CAJA
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-size-xl);
+
+  // 4. VISUAL
+  background-color: var(--blanco-normal-hover);
+  border: 1px solid var(--blanco-dark);
+  border-radius: var(--radius-xs);
+
+  // 5. MISCELÁNEA
+  transition: all var(--duration-base) ease;
+
+  &:hover {
+    border-color: var(--amarillo-normal);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-0.25rem);
+  }
+}
+
+.funcionalidades__icono {
+  // 2. MODELO DE CAJA
+  margin-bottom: var(--spacing-size-m);
+
+  // 3. TIPOGRAFÍA
+  font-size: 3.5rem;
+  line-height: 1;
+}
+
+.funcionalidades__texto {
+  // 2. MODELO DE CAJA
+  margin: 0;
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-primary);
   font-size: var(--font-size-lg);
-  transition: transform var(--duration-fast) ease;
+  text-align: center;
+
+  // 4. VISUAL
+  color: var(--negro-normal);
 }
 
-.style-guide-link:hover {
-  background-color: var(--amarillo-normal-hover);
-  border-color: var(--amarillo-darker);
-  transform: translateX(0.25rem);
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   6. FAQ SECTION - Preguntas frecuentes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6.1 Contenedor principal (full-width)
+// ─────────────────────────────────────────────────────────────────────────────
+.faq__section {
+  // Layout full-width usando mixin
+  @include seccion-full-width(6rem, var(--spacing-size-xxxl));
+
+  // 4. VISUAL
+  background-color: var(--negro-normal);
 }
 
-.style-guide-link:hover::before {
-  transform: translateX(0.25rem);
+// ─────────────────────────────────────────────────────────────────────────────
+// 6.2 Título de la sección
+// ─────────────────────────────────────────────────────────────────────────────
+.faq__titulo {
+  @include titulo-seccion(var(--blanco-normal), var(--font-size-4xl));
 }
 
-.style-guide-link:focus {
-  outline: 0.125rem solid var(--amarillo-dark);
-  outline-offset: 0.125rem;
+// ─────────────────────────────────────────────────────────────────────────────
+// 6.3 Contenedor de items
+// ─────────────────────────────────────────────────────────────────────────────
+.faq__contenedor {
+  // 2. MODELO DE CAJA
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.style-guide-link:active {
-  transform: translateX(0.125rem);
+// ─────────────────────────────────────────────────────────────────────────────
+// 6.4 Items (details/summary)
+// ─────────────────────────────────────────────────────────────────────────────
+.faq__item {
+  // 2. MODELO DE CAJA
+  overflow: hidden;
+
+  // 4. VISUAL
+  background-color: var(--blanco-normal);
+  border-radius: var(--radius-xss);
+  box-shadow: var(--shadow-sm);
+
+  // 5. MISCELÁNEA
+  transition: box-shadow var(--duration-base) ease;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  &[open] {
+    box-shadow: var(--shadow-lg);
+  }
+
+  &[open] .faq__icono::after {
+    transform: rotate(180deg);
+  }
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Form title
-   ───────────────────────────────────────────────────────────────────────────── */
+.faq__pregunta {
+  // 2. MODELO DE CAJA
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-size-m) var(--spacing-size-l);
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+
+  // 4. VISUAL
+  color: var(--negro-normal);
+  list-style: none;
+
+  // 5. MISCELÁNEA
+  cursor: pointer;
+  transition: background-color var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--blanco-normal-hover);
+  }
+
+  // Quitar marcador por defecto de Safari/Chrome
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.faq__icono {
+  // 2. MODELO DE CAJA
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+
+  // Flecha animada
+  &::after {
+    content: '';
+    width: 0.75rem;
+    height: 0.75rem;
+    border-right: 2px solid var(--negro-normal);
+    border-bottom: 2px solid var(--negro-normal);
+    transform: rotate(45deg);
+    transition: transform var(--duration-base) ease;
+  }
+}
+
+.faq__respuesta {
+  // 2. MODELO DE CAJA
+  margin: 0;
+  padding: 0 var(--spacing-size-l) var(--spacing-size-l);
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+
+  // 4. VISUAL
+  color: var(--gris-normal);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 6.5 Contacto de la sección FAQ
+// ─────────────────────────────────────────────────────────────────────────────
+.faq__contacto {
+  // 2. MODELO DE CAJA
+  margin-top: var(--spacing-size-xxl);
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  text-align: center;
+
+  // 4. VISUAL
+  color: var(--blanco-normal);
+}
+
+.faq__email {
+  // 3. TIPOGRAFÍA
+  font-weight: var(--font-weight-semibold);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+
+  // 4. VISUAL
+  color: var(--blanco-normal);
+
+  // 5. MISCELÁNEA
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--amarillo-normal);
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   7. HOME PLANES - Contenedor de pricing cards
+   ═══════════════════════════════════════════════════════════════════════════ */
 
 .home__titulo-formulario {
-  font-size: var(--font-size-3xl);
-  text-align: center;
-  font-weight: var(--font-weight-bold);
+  // 2. MODELO DE CAJA
   margin-bottom: 3rem;
+
+  // 3. TIPOGRAFÍA
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Plans container
-   ───────────────────────────────────────────────────────────────────────────── */
-
 .home__planes {
+  // 2. MODELO DE CAJA
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 
   @include responsive-down('xl') {
+    flex-direction: column;
     align-items: center;
     gap: var(--spacing-size-l);
-    flex-direction: column;
   }
 }
 
+
 /* ═══════════════════════════════════════════════════════════════════════════
-   CONTAINER QUERIES: Wrapper para las cards
+   8. CONTAINER QUERIES - Cards adaptativas
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/**
- * .home__card-wrapper
- * Contenedor que habilita Container Queries para las pricing-cards.
- * La card se adapta según el ancho de este wrapper, NO del viewport.
- * Esto hace que el componente sea independiente del viewport y reutilizable.
- */
+// ─────────────────────────────────────────────────────────────────────────────
+// Wrapper que habilita Container Queries para las pricing-cards
+// ─────────────────────────────────────────────────────────────────────────────
 .home__card-wrapper {
-  container-type: inline-size;
-  container-name: card-container;
+  // 2. MODELO DE CAJA
   width: 100%;
   max-width: 28rem;
+
+  // 5. MISCELÁNEA - Container Queries
+  container-type: inline-size;
+  container-name: card-container;
 }
 
-/**
- * Container Query: Card en móvil
- * Cuando el wrapper tiene menos de 640px, la card se compacta automáticamente.
- * Ejemplo: sidebar, modal estrecho, columna pequeña en grid.
- */
+// ─────────────────────────────────────────────────────────────────────────────
+// Container Query: Card compacta (< 640px)
+// ─────────────────────────────────────────────────────────────────────────────
 @container card-container ($breakpoint-xs) {
   .pricing-card__titulo {
-    font-size: var(--font-size-2xl);
     margin-bottom: var(--spacing-size-l);
+    font-size: var(--font-size-2xl);
   }
 
   .pricing-card__ventaja {
@@ -133,11 +633,9 @@
   }
 }
 
-/**
- * Container Query: Card en espacio grande (> 400px)
- * Cuando el wrapper tiene más de 400px, la card se expande con más presencia.
- * Ejemplo: sección principal, hero, página de planes destacados.
- */
+// ─────────────────────────────────────────────────────────────────────────────
+// Container Query: Card expandida (> 400px)
+// ─────────────────────────────────────────────────────────────────────────────
 @container card-container (min-width: 400px) {
   .pricing-card__titulo {
     font-size: var(--font-size-5xl);
@@ -161,18 +659,11 @@
   }
 }
 
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   MEDIA QUERY: Tablet
-   ───────────────────────────────────────────────────────────────────────────── */
-
-
+// ─────────────────────────────────────────────────────────────────────────────
+// Container Query: Card en espacio muy grande (> 1200px)
+// ─────────────────────────────────────────────────────────────────────────────
 @container card-container (min-width: 1200px) {
   .home__card-wrapper {
-    container-type: inline-size;
-    container-name: card-container;
-    width: 100%;
-    max-width: 28rem;
     flex-direction: row;
   }
 
@@ -199,389 +690,15 @@
 }
 
 
-.home__seccion-intro {
-  // Expandir más allá del padding del padre
-  width: 100vw;
-  margin-left: -6rem;
-
-
-  // Background que cubre toda la pantalla
-  background-image: url('/assets/images/personaComiendo.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed; // CLAVE: El fondo se queda fijo
-
-  min-height: 600px;
-  padding: var(--spacing-size-xxxl) var(--spacing-size-xl);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: var(--spacing-size-m);
-}
-
-/* Hacer el texto legible sobre la imagen */
-.home__seccion-intro h1 {
-  color: var(--negro-normal);
-  text-align: left;
-  max-width: 450px;
-  margin: 0;
-  font-size: var(--font-size-4xl);
-  margin-bottom: 2rem;
-  font-family: var(--font-secondary);
-}
-
-.home__seccion-intro h2 {
-  font-size: var(--font-size-2xl);
-  max-width: 400px;
-}
-
-.home__seccion-intro button {
-  z-index: 1; /* Por encima del fondo */
-}
-
-.boton__primary {
-  display: flex;
-  gap: 1rem;
-
-}
-
-.boton__primary--inscripcion {
-  ::ng-deep .button {
-    padding: 0.75rem 1rem; // Reduce el padding
-    min-width: 170px;
-  }
-}
-
-
-.boton__primary--planes {
-  ::ng-deep .button {
-    padding: 0.75rem 1rem; // Reduce el padding
-    min-width: 170px;
-    color: var(--negro-normal);
-    background: transparent;
-    border: var(--negro-normal) solid var(--radius-xsss);
-
-    &:hover:not(:disabled) {
-      background: var(--gris-normal-active);
-      color: var(--blanco-normal); // Texto blanco
-      transform: translateY(-0.125rem); // Efecto de elevación
-    }
-  }
-}
-
-.planes__section {
-  // Full-width (misma técnica que la intro)
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-
-  // Fondo negro
-  background-color: var(--negro-normal);
-
-  // Padding interno
-  padding: var(--spacing-size-xxxl) 6rem;
-
-  box-sizing: border-box;
-  color: var(--blanco-normal);
-}
-
-
-.planes__section h1 {
-  text-align: center;
-  margin-top: 5rem;
-  color: var(--blanco-normal);
-}
-
-.planes__section-eleccion {
-  color: var(--blanco-normal);
-}
-
-
-.planes__section {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-
-  background-color: var(--negro-normal);
-  padding: var(--spacing-size-xxxl) 6rem;
-  box-sizing: border-box;
-
-  * {
-    background: transparent;
-  }
-}
-
-.planes__titulo {
-  text-align: center;
-  color: var(--amarillo-normal);
-  font-size: var(--font-size-5xl);
-  font-family: var(--font-secondary);
-  font-weight: var(--font-weight-bold);
-  margin: 0 0 var(--spacing-size-xxl) 0;
-}
-
-.planes__contenido {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); // 3 columnas iguales
-  gap: var(--spacing-size-xl);
-  align-items: start;
-}
-
-.planes__info {
-  flex: 0 0 280px;
-  max-width: 300px;
-}
-
-.planes__subtitulo {
-  color: var(--blanco-normal);
-  font-size: var(--font-size-3xl);
-  font-family: var(--font-secondary);
-  font-weight: var(--font-weight-bold);
-  line-height: 1.2;
-  margin: 0 0 var(--spacing-size-m) 0;
-}
-
-.planes__destacado {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-  text-decoration-color: var(--amarillo-normal); // Solo el subrayado amarillo
-}
-
-.planes__info p {
-  color: var(--blanco-normal);
-  font-size: var(--font-size-md);
-  margin: 0 0 var(--spacing-size-s) 0;
-}
-
-.planes__section .home__planes {
-  display: flex;
-  gap: var(--spacing-size-xl);
-  flex: 1;
-  justify-content: center;
-}
-
-.planes__section .home__card-wrapper {
-  max-width: 320px;
-}
-
-
-.planes__section ::ng-deep .pricing-card__titulo {
-  max-width: 160px;
-  text-align: center;
-}
-
-
-.funcionalidades__contenedor {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-
-  background-color: var(--blanco-normal);
-  padding: var(--spacing-size-xxxl) 6rem;
-  box-sizing: border-box;
-}
-
-.funcionalidades__titulo {
-  text-align: center;
-  color: var(--negro-normal);
-  font-size: var(--font-size-4xl);
-  font-family: var(--font-secondary);
-  font-weight: var(--font-weight-bold);
-  margin: 0 0 var(--spacing-size-xxl) 0;
-}
-
-.funcionalidades__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--spacing-size-l);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-
-  // Tablet: 2 columnas
-  @include responsive-down('lg') {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  // Móvil: 1 columna
-  @include responsive-down('sm') {
-    grid-template-columns: 1fr;
-  }
-}
-
-.funcionalidades__item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  background-color: var(--blanco-normal-hover);
-  border: 1px solid var(--blanco-dark);
-  border-radius: var(--radius-xs);
-  padding: var(--spacing-size-xl);
-
-  transition: all var(--duration-base) ease;
-
-  &:hover {
-    transform: translateY(-0.25rem);
-    box-shadow: var(--shadow-lg);
-    border-color: var(--amarillo-normal);
-  }
-}
-
-.funcionalidades__icono {
-  font-size: 3.5rem;
-  margin-bottom: var(--spacing-size-m);
-  line-height: 1;
-}
-
-.funcionalidades__texto {
-  color: var(--negro-normal);
-  font-size: var(--font-size-lg);
-  font-family: var(--font-primary);
-  text-align: center;
-  margin: 0;
-}
-
 /* ═══════════════════════════════════════════════════════════════════════════
-   FAQ SECTION - Preguntas Frecuentes
+   9. RESPONSIVE - Adaptaciones por breakpoint
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.faq__section {
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-
-  background-color: var(--negro-normal);
-  padding: var(--spacing-size-xxxl) 6rem;
-  box-sizing: border-box;
-}
-
-.faq__titulo {
-  text-align: center;
-  color: var(--blanco-normal);
-  font-size: var(--font-size-4xl);
-  font-family: var(--font-secondary);
-  font-weight: var(--font-weight-bold);
-  margin: 0 0 var(--spacing-size-xxl) 0;
-}
-
-.faq__contenedor {
-  max-width: 800px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-size-m);
-}
-
-.faq__item {
-  background-color: var(--blanco-normal);
-  border-radius: var(--radius-xss);
-  overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--duration-base) ease;
-
-  &:hover {
-    box-shadow: var(--shadow-md);
-  }
-
-  &[open] {
-    box-shadow: var(--shadow-lg);
-  }
-
-  &[open] .faq__icono::after {
-    transform: rotate(180deg);
-  }
-}
-
-.faq__pregunta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: var(--spacing-size-m) var(--spacing-size-l);
-  cursor: pointer;
-  list-style: none;
-
-  font-family: var(--font-primary);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-semibold);
-  color: var(--negro-normal);
-
-  transition: background-color var(--duration-fast) ease;
-
-  &:hover {
-    background-color: var(--blanco-normal-hover);
-  }
-
-  // Quitar el marcador por defecto de Safari/Chrome
-  &::-webkit-details-marker {
-    display: none;
-  }
-}
-
-.faq__icono {
-  flex-shrink: 0;
-  width: 1.5rem;
-  height: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &::after {
-    content: '';
-    width: 0.75rem;
-    height: 0.75rem;
-    border-right: 2px solid var(--negro-normal);
-    border-bottom: 2px solid var(--negro-normal);
-    transform: rotate(45deg);
-    transition: transform var(--duration-base) ease;
-  }
-}
-
-.faq__respuesta {
-  padding: 0 var(--spacing-size-l) var(--spacing-size-l);
-  margin: 0;
-
-  font-family: var(--font-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-regular);
-  color: var(--gris-normal);
-  line-height: var(--line-height-relaxed);
-}
-
-.faq__contacto {
-  text-align: center;
-  margin-top: var(--spacing-size-xxl);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-md);
-  color: var(--blanco-normal);
-}
-
-.faq__email {
-  color: var(--blanco-normal);
-  font-weight: var(--font-weight-semibold);
-  text-decoration: underline;
-  text-underline-offset: 0.2rem;
-
-  transition: color var(--duration-fast) ease;
-
-  &:hover {
-    color: var(--amarillo-normal);
-  }
-}
-
-// Responsive para FAQ
+// ─────────────────────────────────────────────────────────────────────────────
+// 9.1 TABLET/MÓVIL: Breakpoint MD (900px)
+// ─────────────────────────────────────────────────────────────────────────────
 @include responsive-down('md') {
+  // FAQ Section
   .faq__section {
     padding: var(--spacing-size-xxl) var(--spacing-size-l);
   }
@@ -591,8 +708,8 @@
   }
 
   .faq__pregunta {
-    font-size: var(--font-size-md);
     padding: var(--spacing-size-s) var(--spacing-size-m);
+    font-size: var(--font-size-md);
   }
 
   .faq__respuesta {

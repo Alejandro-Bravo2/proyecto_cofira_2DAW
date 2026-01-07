@@ -1,568 +1,285 @@
-/**
- * HEADER COMPONENT
- * ─────────────────────────────────────────────────────────────────────────
- * Componentes incluidos:
- * - .cabecera: Navegación principal
- * - .hamburguesa: Botón menú móvil
- * - .enlaces: Links de navegación
- * - .buscador: Campo de búsqueda
- * - .menu-cuenta: Menú desplegable de cuenta
- * - .menu-movil: Menú lateral móvil
- *
- * NOTA: Este componente usa ViewEncapsulation.None para que los estilos
- * globales de dark mode funcionen correctamente.
- *
- * Breakpoints disponibles (de _css-variables.scss):
- * - $breakpoint-xs: 640px   (Móviles pequeños)
- * - $breakpoint-sm: 768px   (Móviles grandes / Tablets pequeñas)
- * - $breakpoint-md: 900px   (Tablets)
- * - $breakpoint-lg: 1024px  (Tablets grandes / Laptops pequeños)
- * - $breakpoint-xl: 1200px  (Laptops)
- * - $breakpoint-xxl: 1400px (Escritorios grandes)
- */
-
 @import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   MIXINS LOCALES DEL COMPONENTE
+   HEADER COMPONENT - Minimalista y Fijo
+   Cabecera principal con navegación y acciones
+   ═══════════════════════════════════════════════════════════════════════════
+
+   TABLA DE CONTENIDOS
+   ─────────────────────────────────────────────────────────────────────────────
+   1. IMPORTS
+   2. BLOCK: Header principal
+   3. ELEMENTS
+      3.1 Logo
+      3.2 Navegación central (desktop)
+      3.3 Botones de acción (desktop)
+      3.4 Hamburguesa (móvil)
+   4. MENU-MOVIL COMPONENT
+      4.1 Contenedor principal
+      4.2 Overlay
+      4.3 Contenido del menú
+      4.4 Header del menú
+      4.5 Navegación móvil
+      4.6 Botones de acción móvil
+   5. RESPONSIVE
+
+   ESTRUCTURA BEM
+   ─────────────────────────────────────────────────────────────────────────────
+   Block:     .header
+   Elements:  .header__logo-link, .header__logo, .header__nav, .header__menu,
+              .header__link, .header__actions, .header__btn, .header__hamburguesa
+   Modifiers: .header__nav--desktop, .header__actions--desktop,
+              .header__btn--primary, .header__btn--secondary,
+              .header__hamburguesa--abierto
+
    ═══════════════════════════════════════════════════════════════════════════ */
 
-@mixin hide-text-show-icon {
-  width: 3rem;
-  padding: 0.5rem;
 
-  span {
+/* ─────────────────────────────────────────────────────────────────────────────
+   2. BLOCK: Header principal - Fijo con transparencia
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.header {
+  // 1. POSICIONAMIENTO
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-header);
+
+  // 2. MODELO DE CAJA
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.5rem;
+  padding: 0 6rem;
+  box-sizing: border-box;
+
+  // 4. VISUAL - Efecto glassmorphism
+  @include efecto-glass(rgba(245, 245, 245, 0.85), 12px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
+
+  // RESPONSIVE
+  @include responsive-down('xl') {
+    padding: 0 3rem;
+  }
+
+  @include responsive-down('lg') {
+    padding: 0 2rem;
+  }
+
+  @include responsive-down('md') {
+    height: 4rem;
+    padding: 0 1.5rem;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   3.1 ELEMENT: Logo
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.header__logo-link {
+  // 2. MODELO DE CAJA
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  // 3. TIPOGRAFÍA
+  text-decoration: none;
+}
+
+.header__logo {
+  // 2. MODELO DE CAJA
+  width: 8rem;
+  height: 8rem;
+
+  // 5. MISCELÁNEA
+  transition: opacity var(--duration-fast) ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  @include responsive-down('md') {
+    width: 6rem;
+    height: 6rem;
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   3.2 ELEMENT: Navegación central
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.header__nav {
+  // 1. POSICIONAMIENTO
+  position: absolute;
+  left: 50%;
+
+  // 5. MISCELÁNEA
+  transform: translateX(-50%);
+}
+
+.header__nav--desktop {
+  @include responsive-down('md') {
     display: none;
   }
 }
 
-@mixin button-base {
+.header__menu {
+  // 2. MODELO DE CAJA
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: var(--radius-xss);
-  /* OPTIMIZADO: Transiciones específicas, no "all" */
-  transition: background-color 0.15s ease-out,
-              color 0.15s ease-out,
-              transform 0.15s ease-out;
-  cursor: pointer;
-  white-space: nowrap;
+  gap: var(--spacing-size-xxl);
+  margin: 0;
+  padding: 0;
+
+  // 4. VISUAL
+  list-style: none;
+
+  @include responsive-down('lg') {
+    gap: var(--spacing-size-xl);
+  }
+}
+
+.header__link {
+  // 1. POSICIONAMIENTO
+  position: relative;
+
+  // 2. MODELO DE CAJA
+  padding: var(--spacing-size-xss) 0;
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+
+  // 4. VISUAL
+  color: var(--negro-normal);
+
+  // 5. MISCELÁNEA
+  transition: color var(--duration-fast) ease;
+
+  // Línea inferior animada
+  @include enlace-subrayado-animado(var(--amarillo-normal), 2px);
+
+  &:hover {
+    color: var(--negro-dark);
+  }
+
+
+  @include responsive-down('lg') {
+    font-size: var(--font-size-sm);
+  }
+}
+
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   3.3 ELEMENT: Botones de acción
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.header__actions {
+  // 2. MODELO DE CAJA
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
   flex-shrink: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   NAVEGACIÓN PRINCIPAL
-   ═══════════════════════════════════════════════════════════════════════════ */
-.header__container {
-  background: var(--gris-normal);
-  @include flex-full;
-  height: 4.4rem;
-  align-items: center;
-  box-sizing: border-box;
-  justify-content: space-between;
-  padding: 0 6rem;
-  position: relative;
-  z-index: var(--z-header);
-  gap: 1rem;
-
-  @include responsive-down('xl') {
-    padding: 0 2rem;
-    gap: 0.75rem;
-  }
-  @include responsive-down('lg') {
-    padding: 0 1.5rem;
-    gap: 0.5rem;
-  }
+.header__actions--desktop {
   @include responsive-down('md') {
-    padding: 0 1.5rem;
+    display: none;
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HAMBURGUESA COMPONENT
-   Block: .hamburguesa
-   Elements: .hamburguesa__linea
-   Modifiers: .hamburguesa--abierto
 
-   OPTIMIZACIÓN DE RENDIMIENTO:
-   - Usamos transform y opacity (propiedades aceleradas por GPU)
-   - will-change solo en elementos que se animan frecuentemente
-   - Transiciones específicas en lugar de "all"
-   ═══════════════════════════════════════════════════════════════════════════ */
+/* ─────────────────────────────────────────────────────────────────────────────
+   3.4 ELEMENT: Hamburguesa (solo móvil)
+   ───────────────────────────────────────────────────────────────────────────── */
 
-.hamburguesa {
+.header__hamburguesa {
+  // 1. POSICIONAMIENTO
+  z-index: var(--z-header-controls);
+
+  // 2. MODELO DE CAJA
   display: none;
   flex-direction: column;
   justify-content: space-around;
-  width: 2rem;
-  height: 2rem;
+  width: 1.75rem;
+  height: 1.5rem;
+  padding: 0;
+
+  // 4. VISUAL
   background: transparent;
   border: none;
+
+  // 5. MISCELÁNEA
   cursor: pointer;
-  padding: 0;
-  z-index: var(--z-header-controls);
 
   @include responsive-down('md') {
     display: flex;
   }
+
 }
 
-.hamburguesa__linea {
+.header__hamburguesa-linea {
+  // 2. MODELO DE CAJA
   width: 100%;
-  height: 0.1875rem;
-  background-color: var(--blanco-normal);
-  border-radius: 0.625rem;
-  /* OPTIMIZADO: Solo transicionamos las propiedades necesarias */
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.2s ease-out,
-              background-color 0.15s ease-out;
-  /* Prepara la GPU para las transformaciones */
-  will-change: transform, opacity;
+  height: 2px;
+
+  // 4. VISUAL
+  background-color: var(--negro-normal);
+  border-radius: 2px;
+
+  // 5. MISCELÁNEA
   transform-origin: center;
+  transition: transform 0.25s ease, opacity 0.2s ease;
 }
 
-/* Modifier: Estado abierto */
-.hamburguesa--abierto .hamburguesa__linea:nth-child(1) {
-  transform: rotate(45deg) translateY(0.625rem);
+// Estado abierto - Animación de la hamburguesa
+.header__hamburguesa--abierto .header__hamburguesa-linea:nth-child(1) {
+  transform: rotate(45deg) translateY(0.5rem);
 }
 
-.hamburguesa--abierto .hamburguesa__linea:nth-child(2) {
+.header__hamburguesa--abierto .header__hamburguesa-linea:nth-child(2) {
   opacity: 0;
-  transform: scaleX(0); /* Añadido: colapso horizontal más suave */
 }
 
-.hamburguesa--abierto .hamburguesa__linea:nth-child(3) {
-  transform: rotate(-45deg) translateY(-0.625rem);
+.header__hamburguesa--abierto .header__hamburguesa-linea:nth-child(3) {
+  transform: rotate(-45deg) translateY(-0.5rem);
 }
 
-/* Hover y focus para accesibilidad */
-.hamburguesa:hover .hamburguesa__linea {
-  background-color: var(--amarillo-normal);
+.header__hamburguesa:hover .header__hamburguesa-linea {
+  background-color: var(--amarillo-dark);
 }
 
-.hamburguesa:focus {
-  outline: 0.125rem solid var(--amarillo-normal);
-  outline-offset: 0.125rem;
-}
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ENLACES COMPONENT
-   Block: .enlaces
-   Modifiers: .enlaces--desktop
+   4. MENU-MOVIL COMPONENT
+   Panel lateral de navegación para dispositivos móviles
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.enlaces {
-  gap: 1.4rem;
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  min-width: 22rem;
-  flex-shrink: 0;
-
-  @include responsive-down('xl') {
-    min-width: 18rem;
-    gap: 1rem;
-  }
-  @include responsive-down('lg') {
-    min-width: 15rem;
-    gap: 0.75rem;
-  }
-  @include responsive-down('md') {
-    min-width: auto;
-    gap: 0.5rem;
-  }
-}
-
-.enlaces a {
-  color: var(--blanco-normal);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-light);
-  text-decoration: none;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-
-  @include responsive-down('lg') {
-    font-size: var(--font-size-sm);
-  }
-}
-
-.enlaces a:hover {
-  color: var(--blanco-dark-hover);
-  text-decoration: underline;
-}
-
-.enlaces--desktop {
-  @include responsive-down('md') {
-    display: none;
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   CABECERA LOGO
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.cabecera__logo {
-  width: 9.9375rem;
-  height: 4.25rem;
-  flex-shrink: 0;
-  aspect-ratio: 159/68;
-  cursor: pointer;
-
-  @include responsive-down('xl') {
-    width: 8.5rem;
-    height: 3.6rem;
-  }
-  @include responsive-down('lg') {
-    width: 7.5rem;
-    height: 3.2rem;
-  }
-  @include responsive-down('md') {
-    width: 7rem;
-    height: 3rem;
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   BUSCADOR COMPONENT
-   Block: .buscador
-   Elements: .buscador__input, .buscador__icono
-   Modifiers: .buscador--desktop
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.buscador {
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  max-width: 36rem;
-  min-width: 20rem;
-  flex-shrink: 1;
-
-  @include responsive-down('xxl') {
-    max-width: 30rem;
-    min-width: 16rem;
-  }
-  @include responsive-down('xl') {
-    max-width: 24rem;
-    min-width: 12rem;
-  }
-  @include responsive-down('lg') {
-    max-width: 18rem;
-    min-width: 10rem;
-  }
-}
-
-.buscador--desktop {
-  @include responsive-down('md') {
-    display: none;
-  }
-}
-
-.buscador__input {
-  width: 100%;
-  height: 1.5rem;
-  padding: 0.75rem 1rem 0.75rem 3rem;
-  border-radius: var(--radius-l);
-  border: 0 solid var(--blanco-dark);
-  color: var(--text-light);
-  font-size: var(--font-size-md);
-  transition: all 0.3s ease;
-
-  @include responsive-down('lg') {
-    padding: 0.65rem 0.75rem 0.65rem 2.5rem;
-    font-size: var(--font-size-sm);
-  }
-
-  @include responsive-down('md') {
-    padding: 0.5rem 0.5rem 0.5rem 2rem;
-    font-size: var(--font-size-xs);
-  }
-}
-
-.buscador__input::placeholder {
-  color: var(--text-light);
-}
-
-.buscador__input:focus {
-  outline: 0.125rem solid var(--amarillo-normal);
-  outline-offset: 0.125rem;
-}
-
-.buscador__icono {
-  position: absolute;
-  left: 1rem;
-  width: 1.5rem;
-  color: var(--button-darker);
-  pointer-events: none;
-
-  @include responsive-down('lg') {
-    left: 0.75rem;
-    width: 1.25rem;
-  }
-  @include responsive-down('md') {
-    left: 0.5rem;
-    width: 1rem;
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   CABECERA BOTONES
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.cabecera__botones {
-  display: flex;
-  align-items: center;
-  gap: 1.625rem;
-  flex-shrink: 0;
-
-  @include responsive-down('xl') {
-    gap: 1rem;
-  }
-  @include responsive-down('lg') {
-    gap: 0.75rem;
-  }
-}
-
-.cabecera__botones--desktop {
-  @include responsive-down('md') {
-    display: none;
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   BOTÓN INSCRIBETE
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.boton-inscribete {
-  @include button-base;
-  width: 9.125rem;
-  height: 3rem;
-  padding: 1.375rem 0.5625rem;
-  gap: var(--spacing-size-xss);
-  background: var(--amarillo-normal);
-  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
-
-  @include responsive-down('xl') {
-    width: 8rem;
-    padding: 1rem 0.5rem;
-    font-size: var(--font-size-sm);
-  }
-
-  @include responsive-down('lg') {
-    width: 7rem;
-    padding: 0.75rem 0.4rem;
-    font-size: var(--font-size-xs);
-  }
-
-  @include responsive-down('md') {
-    @include hide-text-show-icon;
-  }
-}
-
-.boton-inscribete svg {
-  width: 1.5rem;
-  flex-shrink: 0;
-  @include responsive-down('lg') {
-    width: 1.25rem;
-  }
-}
-
-.boton-inscribete:hover {
-  color: var(--blanco-normal);
-  background-color: var(--amarillo-dark-hover);
-}
-
-.boton-inscribete:focus {
-  outline: 0.125rem solid var(--amarillo-dark);
-  outline-offset: 0.125rem;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   BOTÓN CUENTA
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.boton-cuenta {
-  @include button-base;
-  width: 6.6875rem;
-  height: 3rem;
-  padding: var(--spacing-size-xss);
-  gap: var(--spacing-size-xss);
-  border-radius: var(--radius-l);
-  border: var(--border-width-grueso) solid var(--blanco-normal);
-  background: var(--gris-normal);
-  color: var(--blanco-normal);
-
-  @include responsive-down('xl') {
-    width: 6rem;
-    font-size: var(--font-size-sm);
-  }
-
-  @include responsive-down('lg') {
-    width: 5rem;
-    padding: 0.4rem;
-    font-size: var(--font-size-xs);
-  }
-
-  @include responsive-down('md') {
-    @include hide-text-show-icon;
-  }
-}
-
-.boton-cuenta svg {
-  flex-shrink: 0;
-  @include responsive-down('lg') {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-}
-
-.boton-cuenta:hover {
-  background: var(--blanco-normal-hover);
-  color: var(--gris-normal);
-}
-
-.boton-cuenta:focus {
-  outline: 0.125rem solid var(--blanco-normal);
-  outline-offset: 0.125rem;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   MENU-CUENTA COMPONENT
-   Block: .menu-cuenta
-   Elements: .menu-cuenta__item, .menu-cuenta__icono, .menu-cuenta__overlay
-   Modifiers: .menu-cuenta__item--modo
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.menu-cuenta-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  color: var(--text-dark);
-}
-
-.menu-cuenta {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  background: var(--blanco-normal);
-  border-radius: var(--radius-s);
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.15);
-  min-width: 12rem;
-  padding: var(--spacing-size-s);
-  z-index: var(--z-modal);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-size-xss);
-  animation: menuCuentaSlideDown 0.2s ease-out;
-  height: auto;
-  align-items: stretch;
-}
-
-@keyframes menuCuentaSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-0.5rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.menu-cuenta__item {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  padding: var(--spacing-size-s) var(--spacing-size-m);
-  background: transparent;
-  border: none;
-  border-radius: var(--radius-xss);
-  color: var(--negro-normal);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-regular);
-  text-align: left;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all var(--duration-fast) ease;
-  margin: 0;
-}
-
-.menu-cuenta__item:hover {
-  background: var(--blanco-normal-hover);
-  color: var(--amarillo-darker);
-}
-
-.menu-cuenta__item:focus {
-  outline: 0.125rem solid var(--amarillo-normal);
-  outline-offset: -0.125rem;
-}
-
-.menu-cuenta__item--modo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-size-xs);
-  margin-top: var(--spacing-size-xs);
-  padding: var(--spacing-size-s);
-  border-top: 0.0625rem solid var(--blanco-dark);
-  background: transparent;
-  border-radius: var(--radius-xss);
-}
-
-.menu-cuenta__item--modo:hover {
-  background: var(--amarillo-normal);
-  color: var(--negro-normal);
-}
-
-.menu-cuenta__item--modo:hover .menu-cuenta__icono {
-  color: var(--negro-normal);
-}
-
-.menu-cuenta__icono {
-  width: 1.5rem;
-  height: 1.5rem;
-  color: var(--negro-normal);
-}
-
-.menu-cuenta__overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: transparent;
-  z-index: var(--z-overlay);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   MENU-MOVIL COMPONENT
-   Block: .menu-movil
-   Elements: .menu-movil__overlay, .menu-movil__contenido, .menu-movil__header,
-             .menu-movil__cerrar, .menu-movil__nav, .menu-movil__link,
-             .menu-movil__inscripcion
-   Modifiers: .menu-movil--abierto, .menu-movil__link--perfil
-
-   OPTIMIZACIÓN DE RENDIMIENTO:
-   - Eliminado backdrop-filter (muy costoso en móviles)
-   - Usamos visibility + opacity con transiciones escalonadas
-   - will-change solo cuando es necesario
-   - transform para deslizamiento (GPU accelerated)
-   ═══════════════════════════════════════════════════════════════════════════ */
-
+// ─────────────────────────────────────────────────────────────────────────────
+// 4.1 Contenedor principal
+// ─────────────────────────────────────────────────────────────────────────────
 .menu-movil {
+  // 1. POSICIONAMIENTO
   position: fixed;
   top: 0;
   left: 0;
+  z-index: var(--z-modal);
+
+  // 2. MODELO DE CAJA
   width: 100%;
   height: 100vh;
+
+  // 4. VISUAL
   visibility: hidden;
-  z-index: var(--z-modal);
-  /* OPTIMIZADO: Removido pointer-events cuando está cerrado */
+
+  // 5. MISCELÁNEA
   pointer-events: none;
 }
 
@@ -571,12 +288,18 @@
   pointer-events: auto;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4.2 Overlay oscuro
+// ─────────────────────────────────────────────────────────────────────────────
 .menu-movil__overlay {
+  // 1. POSICIONAMIENTO
   position: absolute;
   inset: 0;
-  /* OPTIMIZADO: Fondo semi-transparente SIN blur */
+
+  // 4. VISUAL
   background-color: rgba(0, 0, 0, 0);
-  /* Transición solo de opacity (GPU accelerated) */
+
+  // 5. MISCELÁNEA
   transition: background-color 0.25s ease-out;
 }
 
@@ -584,175 +307,150 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4.3 Contenido del menú
+// ─────────────────────────────────────────────────────────────────────────────
 .menu-movil__contenido {
+  // 1. POSICIONAMIENTO
   position: absolute;
   top: 0;
   right: 0;
-  width: 80%;
-  max-width: 25rem;
-  height: 100%;
-  background: var(--gris-dark);
-  /* OPTIMIZADO: transform es GPU accelerated */
-  transform: translateX(100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow-y: auto;
+
+  // 2. MODELO DE CAJA
   display: flex;
   flex-direction: column;
-  /* Sombra estática, no animada */
-  box-shadow: -0.25rem 0 1.25rem rgba(0, 0, 0, 0.3);
-  /* Preparar GPU solo cuando va a animar */
-  will-change: transform;
-  /* Mejora el scroll en iOS */
-  -webkit-overflow-scrolling: touch;
+  width: 85%;
+  max-width: 20rem;
+  height: 100%;
+  overflow-y: auto;
+
+  // 4. VISUAL
+  background: var(--blanco-normal);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+
+  // 5. MISCELÁNEA
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-movil--abierto .menu-movil__contenido {
   transform: translateX(0);
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// 4.4 Header del menú
+// ─────────────────────────────────────────────────────────────────────────────
 .menu-movil__header {
+  // 2. MODELO DE CAJA
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
-  background: var(--gris-normal);
-  border-bottom: 0.125rem solid var(--amarillo-normal);
-}
+  padding: 1.25rem 1.5rem;
 
-.menu-movil__header h2 {
-  color: var(--blanco-normal);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  margin: 0;
+  // 4. VISUAL
+  background: var(--blanco-normal);
+  border-bottom: 1px solid var(--blanco-dark);
+
+  h2 {
+    // 2. MODELO DE CAJA
+    margin: 0;
+
+    // 3. TIPOGRAFÍA
+    font-family: var(--font-secondary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+
+    // 4. VISUAL
+    color: var(--negro-normal);
+  }
 }
 
 .menu-movil__cerrar {
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0.5rem;
+  // 2. MODELO DE CAJA
   display: flex;
   align-items: center;
   justify-content: center;
-  /* OPTIMIZADO: Transición específica con curva suave */
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  /* Preparar para transformación */
-  will-change: transform;
+  padding: 0.5rem;
+
+  // 4. VISUAL
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-xss);
+
+  // 5. MISCELÁNEA
+  cursor: pointer;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: rotate(90deg);
+  }
+
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--negro-normal);
+  }
 }
 
-.menu-movil__cerrar svg {
-  width: 2rem;
-  height: 2rem;
-
-  color: var(--blanco-normal);
-}
-
-.menu-movil__cerrar:hover {
-  transform: rotate(90deg);
-}
-
-.menu-movil__cerrar:active {
-  transform: rotate(90deg) scale(0.9);
-}
-
-.menu-movil__cerrar:focus {
-  outline: 0.125rem solid var(--amarillo-normal);
-  outline-offset: 0.125rem;
-}
-
+// ─────────────────────────────────────────────────────────────────────────────
+// 4.5 Navegación móvil
+// ─────────────────────────────────────────────────────────────────────────────
 .menu-movil__nav {
+  // 2. MODELO DE CAJA
   display: flex;
   flex-direction: column;
-  padding: 1rem 0;
   flex: 1;
+  padding: 1rem 0;
 }
 
 .menu-movil__link {
+  // 2. MODELO DE CAJA
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.25rem 1.5rem;
-  color: var(--blanco-normal);
-  text-decoration: none;
-  font-size: var(--font-size-lg);
+  padding: 1rem 1.5rem;
+
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
-  /* OPTIMIZADO: Transiciones específicas, no "all" */
-  transition: background-color 0.15s ease-out,
-              transform 0.15s ease-out;
-  border-left: 0.25rem solid transparent;
-  /* Posición relativa para pseudo-elemento */
-  position: relative;
-}
+  text-decoration: none;
 
-.menu-movil__link svg {
-  width: 1.5rem;
-  height: 1.5rem;
-  fill: var(--amarillo-normal);
-  /* Transición suave del color */
-  transition: fill 0.15s ease-out;
-}
-
-.menu-movil__link:hover {
-  background: var(--gris-normal-hover);
-  border-left-color: var(--amarillo-normal);
-  /* OPTIMIZADO: Usamos transform en lugar de padding-left */
-  transform: translateX(0.5rem);
-}
-
-.menu-movil__link:focus {
-  outline: 0.125rem solid var(--amarillo-normal);
-  outline-offset: -0.125rem;
-}
-
-.menu-movil__link--perfil {
-  margin-top: auto;
-}
-
-.menu-movil__link--perfil svg {
-  fill: var(--blanco-normal);
-}
-
-.menu-movil__inscripcion {
-  @include button-base;
-  gap: 0.75rem;
-  margin: 1.5rem;
-  padding: 1rem;
-  background: var(--amarillo-normal);
-  border: none;
+  // 4. VISUAL
   color: var(--negro-normal);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  /* Sombra estática base */
-  box-shadow: 0 0.25rem 0.75rem rgba(255, 211, 0, 0.3);
-  /* OPTIMIZADO: Solo transicionamos transform y background (GPU accelerated) */
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-              background-color 0.15s ease-out;
+  border-left: 3px solid transparent;
+
+  // 5. MISCELÁNEA
+  transition: background-color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    background: var(--blanco-normal-hover);
+    border-left-color: var(--amarillo-normal);
+    transform: translateX(0.25rem);
+  }
+
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
+    fill: var(--amarillo-dark);
+  }
 }
 
-.menu-movil__inscripcion svg {
-  width: 1.5rem;
-  height: 1.5rem;
+// ─────────────────────────────────────────────────────────────────────────────
+// 4.6 Botones de acción móvil
+// ─────────────────────────────────────────────────────────────────────────────
+.menu-movil__actions {
+  // 2. MODELO DE CAJA
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding: 1.5rem;
+
+  // 4. VISUAL
+  border-top: 1px solid var(--blanco-dark);
 }
 
-.menu-movil__inscripcion:hover {
-  background: var(--amarillo-dark-hover);
-  /* OPTIMIZADO: Solo transform, sin animar box-shadow */
-  transform: translateY(-0.125rem) scale(1.02);
-  /* Sombra estática más pronunciada, no animada */
-}
-
-.menu-movil__inscripcion:active {
-  transform: translateY(0) scale(0.98);
-}
-
-.menu-movil__inscripcion:focus {
-  outline: 0.125rem solid var(--amarillo-dark);
-  outline-offset: 0.125rem;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   MODO OSCURO
-   Los estilos de dark mode están en: styles/07-dark-mode/_dark-mode.scss
-   Esto es necesario porque Angular encapsula los estilos de componentes
-   y no permite que selectores como body.modo-oscuro atraviesen.
-   ═══════════════════════════════════════════════════════════════════════════ */

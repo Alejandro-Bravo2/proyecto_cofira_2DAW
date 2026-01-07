@@ -1,0 +1,132 @@
+/**
+ * MODAL INGREDIENTES COMPONENT STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos del modal de ingredientes detallados
+ *
+ * ESTRUCTURA BEM:
+ * Block: .ingredientes
+ * Elements: __info, __icono, __resumen, __calorias, __lista, __subtitulo,
+ *           __items, __item, __nombre, __cantidad, __calorias-item
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../styles/00-settings/css-variables';
+@import '../../../../styles/01-tools/mixins';
+
+.ingredientes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   INFO DEL ALIMENTO
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ingredientes__info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-l);
+  padding: var(--spacing-size-l);
+  background-color: var(--blanco-normal-hover);
+  border-radius: var(--radius-xss);
+}
+
+.ingredientes__icono {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--amarillo-normal);
+  border-radius: 50%;
+  color: var(--negro-normal);
+
+  svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.ingredientes__resumen {
+  flex: 1;
+}
+
+.ingredientes__calorias {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  color: var(--negro-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LISTA DE INGREDIENTES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.ingredientes__lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+}
+
+.ingredientes__subtitulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0;
+}
+
+.ingredientes__items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-s);
+}
+
+.ingredientes__item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--spacing-size-m);
+  padding: var(--spacing-size-m);
+  background-color: var(--blanco-normal-hover);
+  border-radius: var(--radius-xss);
+  align-items: center;
+
+  @include responsive-down('md') {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-size-xs);
+  }
+}
+
+.ingredientes__nombre {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+}
+
+.ingredientes__cantidad {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-normal);
+  text-align: center;
+
+  @include responsive-down('md') {
+    text-align: left;
+  }
+}
+
+.ingredientes__calorias-item {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--amarillo-dark);
+  text-align: right;
+
+  @include responsive-down('md') {
+    text-align: left;
+  }
+}

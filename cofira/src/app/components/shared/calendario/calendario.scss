@@ -1,0 +1,132 @@
+/**
+ * MODAL CALENDARIO COMPONENT STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos del modal de selección de calendario
+ *
+ * ESTRUCTURA BEM:
+ * Block: .calendario
+ * Elements: __navegacion, __btn, __mes-anio, __dias-semana, __dia-semana,
+ *          __grid, __dia
+ * Modifiers: --vacio, --seleccionado
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../styles/00-settings/css-variables';
+@import '../../../../styles/01-tools/mixins';
+
+.calendario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-l);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   NAVEGACIÓN
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.calendario__navegacion {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-size-m);
+}
+
+.calendario__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--gris-normal);
+  transition: all var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--blanco-normal-hover);
+    color: var(--negro-normal);
+  }
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.calendario__mes-anio {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DÍAS DE LA SEMANA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.calendario__dias-semana {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-size-xs);
+}
+
+.calendario__dia-semana {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--gris-normal);
+  text-align: center;
+  padding: var(--spacing-size-xs);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GRID DE DÍAS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.calendario__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--spacing-size-xs);
+}
+
+.calendario__dia {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  background-color: transparent;
+  border: 0.0625rem solid transparent;
+  border-radius: var(--radius-xss);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+
+  &:hover:not(.calendario__dia--vacio) {
+    background-color: var(--blanco-normal-hover);
+    border-color: var(--amarillo-normal);
+  }
+
+  &--vacio {
+    cursor: default;
+  }
+
+  &--seleccionado {
+    background-color: var(--amarillo-normal);
+    border-color: var(--amarillo-dark);
+    color: var(--negro-normal);
+    font-weight: var(--font-weight-bold);
+
+    &:hover {
+      background-color: var(--amarillo-normal-hover);
+    }
+  }
+}

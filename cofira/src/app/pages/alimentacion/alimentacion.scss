@@ -1,0 +1,301 @@
+/**
+ * ALIMENTACIÓN PAGE STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos de la página de menú diario de alimentación
+ *
+ * ESTRUCTURA BEM:
+ * Block: .alimentacion
+ * Elements: __titulo, __navegacion-fecha, __menu-dia, __comida
+ *
+ * ESTRATEGIA RESPONSIVE: Desktop-first
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../styles/00-settings/css-variables';
+@import '../../../styles/01-tools/mixins';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Alimentación page container
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.alimentacion {
+  width: 100%;
+  max-width: 100%;
+  background-color: var(--blanco-normal-hover);
+  padding: var(--spacing-size-xxxl) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-xl);
+  min-height: calc(100vh - 10.5rem);
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-xl) var(--spacing-size-m);
+    gap: var(--spacing-size-l);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Título Principal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.alimentacion__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  text-align: center;
+  text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  margin: 0;
+
+  @include responsive-down('lg') {
+    font-size: var(--font-size-3xl);
+  }
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Navegación de Fecha
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.alimentacion__navegacion-fecha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-size-xxl);
+
+  @include responsive-down('md') {
+    gap: var(--spacing-size-m);
+  }
+}
+
+.alimentacion__btn-fecha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.8125rem;
+  height: 2.8125rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--gris-normal);
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--amarillo-dark);
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.alimentacion__selector-fecha {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--duration-fast) ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.alimentacion__icono-calendario {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--negro-normal);
+
+  @include responsive-down('md') {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+}
+
+.alimentacion__fecha-texto {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Menú del Día
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.alimentacion__menu-dia {
+  width: 100%;
+  max-width: 60.625rem;
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--gris-dark);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xxxl);
+
+  @include responsive-down('lg') {
+    padding: var(--spacing-size-l);
+    gap: var(--spacing-size-xxl);
+  }
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-m);
+    gap: var(--spacing-size-xl);
+  }
+
+  @include responsive-down('sm') {
+    padding: var(--spacing-size-s);
+    gap: var(--spacing-size-l);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Comida (Desayuno, Almuerzo, etc.)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.alimentacion__comida {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-l);
+}
+
+.alimentacion__comida-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+  flex-wrap: wrap;
+}
+
+.alimentacion__comida-icono {
+  width: 1.875rem;
+  height: 1.875rem;
+  margin: 0;
+  color: var(--negro-normal);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.alimentacion__comida-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0;
+  flex: 1;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.alimentacion__comida-costo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-xs);
+  margin-left: auto;
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--negro-normal);
+  }
+
+  span {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-regular);
+    color: var(--negro-normal);
+
+    @include responsive-down('md') {
+      font-size: var(--font-size-lg);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Lista de Alimentos
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.alimentacion__alimentos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-s);
+  padding-left: var(--spacing-size-l);
+
+  @include responsive-down('md') {
+    padding-left: var(--spacing-size-m);
+  }
+}
+
+.alimentacion__alimento {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+}
+
+.alimentacion__alimento-icono {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+  color: var(--amarillo-normal);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.alimentacion__alimento-nombre {
+  flex: 1;
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+}
+
+.alimentacion__btn-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.875rem;
+  height: 1.875rem;
+  padding: 0;
+  background-color: var(--gris-normal);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--blanco-normal);
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  transition: background-color var(--duration-fast) ease,
+  transform var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--gris-normal-hover);
+    transform: scale(1.1);
+  }
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}

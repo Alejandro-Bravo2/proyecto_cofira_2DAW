@@ -8,9 +8,14 @@
     }
   </ul>
 
-  <button class="pricing-card__boton" type="button" [disabled]="deshabilitada" (click)="onSubscribe()">
+  <app-button
+    (click)="onSubscribe()"
+    [fullWidth]="true"
+    [habilitado]="deshabilitada"
+    tamanio="lg"
+    variante="primary">
     {{ texto_boton }}
-  </button>
+  </app-button>
 
   <p class="pricing-card__precio">{{ precio }}</p>
 

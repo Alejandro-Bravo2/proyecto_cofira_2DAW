@@ -10,15 +10,22 @@
  * Modifiers:
  * - TYPE: --primary | --secondary | --ghost | --danger
  * - SIZE: --sm (2rem) | --md (2.75rem) | --lg (3.5rem)
+ * - WIDTH: --full-width (100% del contenedor)
  * - STATE: :disabled | :hover | :active | :focus
  *
- * HTML Examples:
- * <button class="button button--primary button--md">Enviar</button>
- * <button class="button button--secondary button--sm" disabled>Cancelar</button>
- * <button class="button button--ghost button--lg">
- *   <span class="button__icono">🔍</span>
- *   <span class="button__texto">Buscar</span>
- * </button>
+ * Component Inputs:
+ * - variante: 'primary' | 'secondary' | 'ghost' | 'danger'
+ * - tamanio: 'sm' | 'md' | 'lg'
+ * - habilitado: boolean (disabled state)
+ * - tipo: 'button' | 'submit' | 'reset'
+ * - enlace: string (para navegación Angular con routerLink)
+ * - href: string (para enlaces externos)
+ * - fullWidth: boolean (ancho completo)
+ *
+ * Usage Examples:
+ * <app-button variante="primary" tamanio="lg">Inscríbete</app-button>
+ * <app-button enlace="/login" variante="secondary" tamanio="sm">Inicia Sesión</app-button>
+ * <app-button tipo="submit" variante="primary" [fullWidth]="true">Enviar</app-button>
  */
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -206,10 +213,6 @@
 
 /* ─── FOCUS: Para accesibilidad - navegación con teclado ─── */
 
-.button--primary:focus {
-  outline: 0.1875rem solid var(--amarillo-normal);
-  outline-offset: 0.125rem;
-}
 
 .button--secondary:focus {
   outline: 0.1875rem solid var(--gris-normal);
@@ -234,4 +237,12 @@
   cursor: not-allowed;
   pointer-events: none;
   box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MODIFIER DE ANCHO COMPLETO
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.button--full-width {
+  width: 100%;
 }

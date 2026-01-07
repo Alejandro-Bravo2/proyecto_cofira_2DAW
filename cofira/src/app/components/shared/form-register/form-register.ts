@@ -1,17 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { FormCheckbox } from '../form-checkbox/form-checkbox';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators,} from '@angular/forms';
+import {FormCheckbox} from '../form-checkbox/form-checkbox';
+import {Button} from '../button/button';
 
 @Component({
   selector: 'app-form-register',
   standalone: true,
-  imports: [ReactiveFormsModule, FormCheckbox],
+  imports: [ReactiveFormsModule, FormCheckbox, Button],
   templateUrl: './form-register.html',
   styleUrl: './form-register.scss',
 })

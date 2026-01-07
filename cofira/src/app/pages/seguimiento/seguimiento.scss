@@ -1,0 +1,316 @@
+/**
+ * SEGUIMIENTO PAGE STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos de la página de contador de nutrientes
+ *
+ * ESTRUCTURA BEM:
+ * Block: .seguimiento
+ * Elements: __titulo, __macronutrientes, __grafico-fuerza
+ *
+ * ESTRATEGIA RESPONSIVE: Desktop-first
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../styles/00-settings/css-variables';
+@import '../../../styles/01-tools/mixins';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Seguimiento page container
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.seguimiento {
+  width: 100%;
+  max-width: 100%;
+  background-color: var(--blanco-normal-hover);
+  padding: var(--spacing-size-xxxl) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-xxl);
+  min-height: calc(100vh - 10.5rem);
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-xl) var(--spacing-size-m);
+    gap: var(--spacing-size-l);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Título Principal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.seguimiento__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  text-align: center;
+  text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  margin: 0;
+
+  @include responsive-down('lg') {
+    font-size: var(--font-size-3xl);
+  }
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Sección de Macronutrientes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.seguimiento__macronutrientes {
+  width: 100%;
+  max-width: 60.625rem;
+  padding: 0 var(--spacing-size-m);
+}
+
+.seguimiento__card-macros {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-xxl);
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-xl);
+
+  @include responsive-down('lg') {
+    flex-direction: column;
+    gap: var(--spacing-size-l);
+    padding: var(--spacing-size-l);
+  }
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-m);
+  }
+}
+
+.seguimiento__macros-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+}
+
+.seguimiento__macros-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-lg);
+  }
+}
+
+.seguimiento__macros-calorias {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  margin: 0;
+}
+
+.seguimiento__macros-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xs);
+}
+
+.seguimiento__macro-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+}
+
+.seguimiento__macro-indicador {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+
+  &--proteinas {
+    background-color: var(--negro-normal);
+  }
+
+  &--carbohidratos {
+    background-color: var(--amarillo-normal);
+  }
+
+  &--grasas {
+    background-color: var(--gris-normal);
+  }
+}
+
+.seguimiento__macro-texto {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+}
+
+.seguimiento__extras {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--spacing-size-xs) var(--spacing-size-s);
+  margin: 0;
+}
+
+.seguimiento__extra-label {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+}
+
+.seguimiento__extra-valor {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Gráfico Circular
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.seguimiento__grafico-circular {
+  flex-shrink: 0;
+  width: 15.625rem;
+  height: 15.625rem;
+  max-width: 100%;
+  margin: 0;
+
+  @include responsive-down('lg') {
+    width: 14rem;
+    height: 14rem;
+  }
+
+  @include responsive-down('md') {
+    width: 12.5rem;
+    height: 12.5rem;
+  }
+
+  @include responsive-down('sm') {
+    width: 11rem;
+    height: 11rem;
+  }
+}
+
+.seguimiento__pie-chart {
+  width: 100%;
+  height: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Sección de Ganancia de Fuerza
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.seguimiento__fuerza {
+  width: 100%;
+  max-width: 60.625rem;
+  padding: 0 var(--spacing-size-m);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-l);
+}
+
+.seguimiento__fuerza-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  text-align: center;
+  margin: 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.seguimiento__selector-ejercicio {
+  display: flex;
+  justify-content: center;
+}
+
+.seguimiento__select {
+  min-width: 10rem;
+  padding: var(--spacing-size-s) var(--spacing-size-xl) var(--spacing-size-s) var(--spacing-size-m);
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23110e10'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+  transition: border-color var(--duration-fast) ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--amarillo-normal);
+  }
+
+  &:hover {
+    border-color: var(--gris-normal);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Gráfico de Líneas
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.seguimiento__grafico-lineas {
+  width: 100%;
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-l);
+  overflow-x: auto;
+}
+
+.seguimiento__chart-container {
+  min-width: 37.5rem;
+  height: 18.75rem;
+  margin: 0;
+
+  @include responsive-down('md') {
+    min-width: 30rem;
+    height: 15rem;
+  }
+
+  @include responsive-down('sm') {
+    min-width: 100%;
+    height: 12.5rem;
+  }
+}
+
+.seguimiento__line-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.seguimiento__chart-label {
+  font-family: var(--font-primary);
+  font-size: 0.75rem;
+  fill: var(--negro-normal);
+}
+
+.seguimiento__chart-label-axis {
+  font-family: var(--font-primary);
+  font-size: 0.75rem;
+  fill: var(--gris-normal);
+}

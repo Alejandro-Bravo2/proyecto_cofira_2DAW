@@ -1,0 +1,39 @@
+<!-- Solo renderizar si está abierto -->
+@if (abierto) {
+  <!-- Overlay con z-index 4 -->
+  <div (click)="cerrarEnOverlay($event)" class="modal-overlay">
+    <!-- Contenedor del modal con z-index 5 -->
+    <article
+      [attr.aria-labelledby]="titulo ? 'modal-titulo' : null"
+      [style.max-width.px]="anchoPX"
+      aria-modal="true"
+      class="modal"
+      role="dialog">
+
+      <!-- Header -->
+      <header class="modal__header">
+        @if (titulo) {
+          <h2 class="modal__titulo" id="modal-titulo">{{ titulo }}</h2>
+        }
+
+        @if (mostrarCerrar) {
+          <button
+            (click)="cerrarModal()"
+            aria-label="Cerrar modal"
+            class="modal__cerrar">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"
+                fill="currentColor"/>
+            </svg>
+          </button>
+        }
+      </header>
+
+      <!-- Contenido proyectado -->
+      <article class="modal__contenido">
+        <ng-content></ng-content>
+      </article>
+    </article>
+  </div>
+}

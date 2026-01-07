@@ -1,23 +1,22 @@
 /* ─────────────────────────────────────────────────────────────────────────────
    COMPONENT: Form Contact
    ─────────────────────────────────────────────────────────────────────────────
-   
+
    BLOCK: .form
-   
+
    ELEMENTS:
    - .form__fieldset     → Fieldset principal
    - .form__legend       → Título del formulario
    - .form__group        → Grupo de campo individual
    - .form__label        → Etiqueta de campo
    - .form__input        → Campo de entrada
-   - .form__button       → Botón de envío
-   
+
    MODIFIERS:
    - .form__group--last  → Último grupo (sin margen inferior)
-   
+
    STATES:
    - :focus, :hover, :active, :disabled
-   
+
    USAGE:
    <form class="form">
      <fieldset class="form__fieldset">
@@ -27,7 +26,7 @@
          <input class="form__input" />
        </fieldset>
      </fieldset>
-     <button class="form__button">Enviar</button>
+     <app-button tipo="submit" variante="primary" tamanio="lg" [fullWidth]="true">Enviar</app-button>
    </form>
    ───────────────────────────────────────────────────────────────────────────── */
 
@@ -124,45 +123,3 @@
   background-color: var(--blanco-normal-active);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Button
-   ───────────────────────────────────────────────────────────────────────────── */
-
-.form__button {
-  width: 100%;
-  height: 3.75rem;
-  padding: var(--spacing-size-s) var(--spacing-size-l);
-  background-color: var(--amarillo-normal);
-  color: var(--negro-normal);
-  border: none;
-  border-radius: var(--radius-m);
-  font-family: var(--font-primary);
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  cursor: pointer;
-  transition: all var(--duration-base) ease;
-  box-shadow: var(--shadow-md);
-}
-
-.form__button:hover:not(:disabled) {
-  background-color: var(--amarillo-normal-hover);
-  transform: translateY(-0.125rem);
-  box-shadow: var(--shadow-lg);
-}
-
-.form__button:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-
-.form__button:focus {
-  outline: 0.125rem solid var(--amarillo-dark);
-  outline-offset: 0.125rem;
-}
-
-.form__button:disabled {
-  background-color: var(--blanco-dark);
-  color: var(--gris-normal);
-  cursor: not-allowed;
-  box-shadow: none;
-}

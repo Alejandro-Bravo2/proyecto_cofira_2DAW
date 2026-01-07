@@ -1,9 +1,10 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {RouterLink} from '@angular/router';
+import {Button} from '../../shared/button/button';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink],
+  imports: [RouterLink, Button],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   encapsulation: ViewEncapsulation.None,

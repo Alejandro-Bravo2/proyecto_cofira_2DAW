@@ -1,0 +1,48 @@
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Modal} from '../modal/modal';
+
+interface Alimento {
+  id: number;
+  descripcion: string;
+  icono: 'pizza' | 'bebida' | 'plato';
+  ingredientes?: string[];
+}
+
+interface IngredienteDetalle {
+  nombre: string;
+  cantidad: string;
+  calorias: number;
+}
+
+@Component({
+  selector: 'app-ingredientes',
+  standalone: true,
+  imports: [CommonModule, Modal],
+  templateUrl: './ingredientes.html',
+  styleUrl: './ingredientes.scss',
+})
+export class Ingredientes {
+  @Input() abierto: boolean = false;
+  @Input() alimento: Alimento | null = null;
+
+  @Output() cerrar = new EventEmitter<void>();
+
+  ingredientesDetallados: IngredienteDetalle[] = [
+    {nombre: 'Harina de trigo', cantidad: '200g', calorias: 360},
+    {nombre: 'Queso mozzarella', cantidad: '150g', calorias: 280},
+    {nombre: 'Salsa de tomate', cantidad: '100g', calorias: 30},
+    {nombre: 'Aceite de oliva', cantidad: '15ml', calorias: 120},
+  ];
+
+  get caloriasTotal(): number {
+    return this.ingredientesDetallados.reduce(
+      (total, ing) => total + ing.calorias,
+      0
+    );
+  }
+
+  cerrarModal(): void {
+    this.cerrar.emit();
+  }
+}

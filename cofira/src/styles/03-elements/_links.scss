@@ -15,10 +15,6 @@ a:hover {
   color: var(--amarillo-normal);
 }
 
-a:focus {
-  outline: 0.125rem solid var(--amarillo-normal);
-  outline-offset: 0.125rem;
-}
 
 a:active {
   color: var(--amarillo-normal-active);

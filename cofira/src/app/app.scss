@@ -1,16 +1,15 @@
 
-*{
+* {
   background-color: var(--blanco-normal-hover);
-
 }
 
 
 .main-content {
   margin: 0;
-  padding: 0 6rem;
+  padding: 4.5rem 6rem 0; // padding-top para compensar header fijo
   box-sizing: border-box;
   font-family: var(--font-primary);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 
