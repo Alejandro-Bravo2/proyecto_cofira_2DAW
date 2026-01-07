@@ -2,6 +2,8 @@
 La capa Tools está diseñada exclusivamente para funciones y mixins reutilizables que sirven como herramientas genéricas para otras capas.
 */
 
+@import '../00-settings/css-variables';
+
 /* ============================================
    FLEXBOX MIXINS
    ============================================ */
@@ -530,5 +532,87 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 
   &:hover::after {
     width: 100%;
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SECCIONES Y CONTENEDORES
+   Mixins para secciones de página y contenedores de contenido
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+// ============================================
+// Caja de Contenido (Content Box)
+// ============================================
+// Base para cajas blancas con borde sutil.
+// Uso común: formularios, tablas, cards de sección.
+//
+// Uso: @include caja-contenido;
+// ============================================
+@mixin caja-contenido {
+  width: 100%;
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  box-sizing: border-box;
+}
+
+// ============================================
+// Botón de Icono (Icon Button)
+// ============================================
+// Botón transparente que solo muestra un icono.
+// Reset completo de estilos de botón nativo.
+//
+// @param $size - Tamaño del botón (default: 1.5rem)
+//
+// Uso: @include boton-icono;
+// Uso: @include boton-icono(2rem);
+// ============================================
+@mixin boton-icono($size: 1.5rem) {
+  @include flex-center;
+  width: $size;
+  height: $size;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  transition: color var(--duration-fast) ease;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+// ============================================
+// Botón Circular de Acción
+// ============================================
+// Botón redondo para acciones (check, close, etc).
+//
+// @param $size - Tamaño del botón (default: 1.875rem)
+// @param $bg-color - Color de fondo
+//
+// Uso: @include boton-circular(1.875rem, #4caf50);
+// ============================================
+@mixin boton-circular($size: 1.875rem, $bg-color: var(--gris-normal)) {
+  @include flex-center;
+  width: $size;
+  height: $size;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  background-color: $bg-color;
+  color: white;
+  cursor: pointer;
+  transition: transform var(--duration-fast) ease, opacity var(--duration-fast) ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  svg {
+    width: 50%;
+    height: 50%;
   }
 }

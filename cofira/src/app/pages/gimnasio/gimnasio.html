@@ -1,55 +1,60 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     ENTRENAMIENTO PAGE - Tabla Semanal
-     ═══════════════════════════════════════════════════════════════════════════
-     Página de gestión de rutina de ejercicios semanal
+<!--
+  GIMNASIO PAGE
+  ═══════════════════════════════════════════════════════════════════════════
+  Página de gestión de rutina de ejercicios semanal.
 
-     ESTRUCTURA BEM:
-     Block: .entrenamiento
-     Elements: __titulo, __navegacion-dias, __tabla, __feedback, __progreso
-     ═══════════════════════════════════════════════════════════════════════════ -->
+  Secciones:
+  1. Título principal
+  2. Navegación de días
+  3. Tabla de ejercicios
+  4. Formulario de retroalimentación
+  5. CTA de progreso
+-->
 
-<main class="entrenamiento">
+<main class="gimnasio">
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       TÍTULO PRINCIPAL
-       ═══════════════════════════════════════════════════════════════════════ -->
-  <h1 class="entrenamiento__titulo">TABLA SEMANAL</h1>
+  <!-- TÍTULO -->
+  <h1 class="gimnasio__titulo">TABLA SEMANAL</h1>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       NAVEGACIÓN DE DÍAS
-       ═══════════════════════════════════════════════════════════════════════ -->
-  <nav aria-label="Navegación de días" class="entrenamiento__navegacion-dias">
+  <!-- NAVEGACIÓN DE DÍAS -->
+  <nav aria-label="Navegación de días" class="gimnasio__dias">
     <button
       (click)="diaAnterior()"
       aria-label="Día anterior"
-      class="entrenamiento__btn-dia entrenamiento__btn-dia--anterior">
+      class="gimnasio__dias-btn">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
       </svg>
     </button>
 
-    <span class="entrenamiento__dia entrenamiento__dia--anterior">{{ diasSemana[diaActualIndex - 1] || '' }}</span>
-    <h2 class="entrenamiento__dia entrenamiento__dia--actual">{{ diasSemana[diaActualIndex] }}</h2>
-    <span class="entrenamiento__dia entrenamiento__dia--siguiente">{{ diasSemana[diaActualIndex + 1] || '' }}</span>
+    <span class="gimnasio__dia gimnasio__dia--adyacente">
+      {{ diasSemana[diaActualIndex - 1] || '' }}
+    </span>
+
+    <h2 class="gimnasio__dia gimnasio__dia--actual">
+      {{ diasSemana[diaActualIndex] }}
+    </h2>
+
+    <span class="gimnasio__dia gimnasio__dia--adyacente">
+      {{ diasSemana[diaActualIndex + 1] || '' }}
+    </span>
 
     <button
       (click)="diaSiguiente()"
       aria-label="Día siguiente"
-      class="entrenamiento__btn-dia entrenamiento__btn-dia--siguiente">
+      class="gimnasio__dias-btn">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/>
       </svg>
     </button>
   </nav>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       TABLA DE EJERCICIOS
-       ═══════════════════════════════════════════════════════════════════════ -->
-  <section class="entrenamiento__tabla-section">
-    <table class="entrenamiento__tabla">
+  <!-- TABLA DE EJERCICIOS -->
+  <section class="gimnasio__tabla-section">
+    <table class="gimnasio__tabla">
       <thead>
       <tr>
-        <th>Descanso</th>
+        <th>Ejercicio</th>
         <th>Repeticiones</th>
         <th>Descanso</th>
         <th>Series</th>
@@ -59,9 +64,12 @@
       <tbody>
         @for (ejercicio of ejerciciosDelDia; track ejercicio.id) {
           <tr>
-            <td class="entrenamiento__ejercicio-nombre">
-              <button (click)="toggleEjercicio(ejercicio)" class="entrenamiento__ejercicio-toggle">
-                <svg [class.rotated]="ejercicio.expandido" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <td class="gimnasio__ejercicio">
+              <button
+                (click)="toggleEjercicio(ejercicio)"
+                aria-label="Expandir ejercicio"
+                class="gimnasio__ejercicio-toggle">
+                <svg [class.rotated]="ejercicio.expandido" viewBox="0 0 24 24">
                   <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/>
                 </svg>
               </button>
@@ -70,13 +78,13 @@
             <td>{{ ejercicio.repeticiones }}</td>
             <td>{{ ejercicio.descanso }}</td>
             <td>{{ ejercicio.series }}</td>
-            <td class="entrenamiento__acciones">
+            <td class="gimnasio__acciones">
               <button
                 (click)="marcarRealizado(ejercicio, true)"
                 [class.activo]="ejercicio.realizado === true"
                 aria-label="Marcar como realizado"
-                class="entrenamiento__btn-accion entrenamiento__btn-accion--ok">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                class="gimnasio__btn-accion gimnasio__btn-accion--ok">
+                <svg viewBox="0 0 24 24">
                   <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
                 </svg>
               </button>
@@ -84,8 +92,8 @@
                 (click)="marcarRealizado(ejercicio, false)"
                 [class.activo]="ejercicio.realizado === false"
                 aria-label="Marcar como no realizado"
-                class="entrenamiento__btn-accion entrenamiento__btn-accion--no">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                class="gimnasio__btn-accion gimnasio__btn-accion--no">
+                <svg viewBox="0 0 24 24">
                   <path
                     d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
                     fill="currentColor"/>
@@ -98,70 +106,73 @@
     </table>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       SECCIÓN DE RETROALIMENTACIÓN
-       ═══════════════════════════════════════════════════════════════════════ -->
-  <section class="entrenamiento__feedback">
-    <h2 class="entrenamiento__feedback-titulo">Retroalimentación</h2>
+  <!-- RETROALIMENTACIÓN -->
+  <section class="gimnasio__feedback">
+    <h2 class="gimnasio__feedback-titulo">Retroalimentación</h2>
 
-    <form (ngSubmit)="enviarFeedback()" class="entrenamiento__feedback-form">
-      <fieldset class="entrenamiento__feedback-field">
-        <label class="entrenamiento__feedback-label" for="ejercicios-dificiles">
-          ¿Cuales son los ejercicios que más te ha costado?
+    <form (ngSubmit)="enviarFeedback()" class="gimnasio__feedback-form">
+      <fieldset class="gimnasio__feedback-field">
+        <label class="gimnasio__feedback-label" for="ejercicios-dificiles">
+          ¿Cuáles son los ejercicios que más te han costado?
         </label>
         <textarea
           [(ngModel)]="feedback.ejerciciosDificiles"
-          class="entrenamiento__feedback-textarea"
+          class="gimnasio__feedback-textarea"
           id="ejercicios-dificiles"
           name="ejerciciosDificiles"
-          placeholder="Escribe aquellos ejercicios que te hayan costado y diciendo los posibles motivos..."
+          placeholder="Escribe aquellos ejercicios que te hayan costado y los posibles motivos..."
           rows="4">
         </textarea>
       </fieldset>
 
-      <fieldset class="entrenamiento__feedback-field">
-        <label class="entrenamiento__feedback-label" for="mas-peso">
+      <fieldset class="gimnasio__feedback-field">
+        <label class="gimnasio__feedback-label" for="mas-peso">
           ¿Crees que podrías con más peso?
         </label>
         <textarea
           [(ngModel)]="feedback.masPeso"
-          class="entrenamiento__feedback-textarea"
+          class="gimnasio__feedback-textarea"
           id="mas-peso"
           name="masPeso"
-          placeholder="Escribe si podrías realizar los ejercicios usando más peso o no o si crees que está bien ajustado el peso actual..."
+          placeholder="Escribe si podrías realizar los ejercicios con más peso o si el actual está bien ajustado..."
           rows="4">
         </textarea>
       </fieldset>
 
-      <footer class="entrenamiento__feedback-acciones">
-        <button (click)="cancelarFeedback()" class="entrenamiento__btn-cancelar" type="button">
+      <footer class="gimnasio__feedback-acciones">
+        <app-button
+          (click)="cancelarFeedback()"
+          tamanio="md"
+          tipo="button"
+          variante="secondary">
           Cancelar
-        </button>
-        <button class="entrenamiento__btn-enviar" type="submit">
+        </app-button>
+        <app-button
+          tamanio="md"
+          tipo="submit"
+          variante="primary">
           Enviar
-        </button>
+        </app-button>
       </footer>
     </form>
   </section>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       SECCIÓN VER MI PROGRESO
-       ═══════════════════════════════════════════════════════════════════════ -->
-  <section class="entrenamiento__progreso">
-    <article class="entrenamiento__progreso-contenido">
-      <header class="entrenamiento__progreso-info">
-        <h2 class="entrenamiento__progreso-titulo">Ver mi progreso</h2>
-        <p class="entrenamiento__progreso-descripcion">
-          ¿Quieres ver tu progreso y como has evolucionado durante toda tu estancia en Cofira?
+  <!-- PROGRESO -->
+  <section class="gimnasio__progreso">
+    <article class="gimnasio__progreso-contenido">
+      <header class="gimnasio__progreso-info">
+        <h2 class="gimnasio__progreso-titulo">Ver mi progreso</h2>
+        <p class="gimnasio__progreso-descripcion">
+          ¿Quieres ver tu progreso y cómo has evolucionado durante toda tu estancia en Cofira?
         </p>
-        <a class="entrenamiento__btn-progreso" routerLink="/seguimiento">
+        <app-button
+          enlace="/seguimiento"
+          tamanio="lg"
+          variante="primary">
           Ver mi progreso
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" fill="currentColor"/>
-          </svg>
-        </a>
+        </app-button>
       </header>
-      <figure class="entrenamiento__progreso-imagen">
+      <figure class="gimnasio__progreso-imagen">
         <img
           alt="Persona entrenando en el gimnasio"
           loading="lazy"

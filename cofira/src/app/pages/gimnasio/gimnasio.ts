@@ -1,6 +1,10 @@
 import {Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {RouterLink} from '@angular/router';
+import {Button} from '../../components/shared/button/button';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INTERFACES
+// ═══════════════════════════════════════════════════════════════════════════
 
 interface Ejercicio {
   id: number;
@@ -12,23 +16,50 @@ interface Ejercicio {
   expandido: boolean;
 }
 
-interface EjerciciosPorDia {
-  [key: string]: Ejercicio[];
+interface Feedback {
+  ejerciciosDificiles: string;
+  masPeso: string;
 }
+
+type EjerciciosPorDia = Record<string, Ejercicio[]>;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// COMPONENTE
+// ═══════════════════════════════════════════════════════════════════════════
 
 @Component({
   selector: 'app-gimnasio',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, Button],
   templateUrl: './gimnasio.html',
   styleUrl: './gimnasio.scss',
 })
 export class Gimnasio {
-  diasSemana = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+  // ─────────────────────────────────────────────────────────────────────────
+  // CONSTANTES
+  // ─────────────────────────────────────────────────────────────────────────
+
+  readonly diasSemana = [
+    'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
+  ];
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // ESTADO
+  // ─────────────────────────────────────────────────────────────────────────
+
   diaActualIndex = 1; // Martes por defecto
 
-  ejerciciosPorDia: EjerciciosPorDia = {
-    'Lunes': [
+  feedback: Feedback = {
+    ejerciciosDificiles: '',
+    masPeso: '',
+  };
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // DATOS
+  // ─────────────────────────────────────────────────────────────────────────
+
+  private readonly ejerciciosPorDia: EjerciciosPorDia = {
+    Lunes: [
       {
         id: 1,
         nombre: 'Press banca',
@@ -57,7 +88,7 @@ export class Gimnasio {
         expandido: false
       },
     ],
-    'Martes': [
+    Martes: [
       {
         id: 4,
         nombre: 'Press banca',
@@ -86,7 +117,7 @@ export class Gimnasio {
         expandido: false
       },
     ],
-    'Miércoles': [
+    Miércoles: [
       {id: 7, nombre: 'Peso muerto', repeticiones: '6-8', descanso: "3'", series: 4, realizado: null, expandido: false},
       {
         id: 8,
@@ -98,7 +129,7 @@ export class Gimnasio {
         expandido: false
       },
     ],
-    'Jueves': [
+    Jueves: [
       {
         id: 9,
         nombre: 'Press militar',
@@ -118,7 +149,7 @@ export class Gimnasio {
         expandido: false
       },
     ],
-    'Viernes': [
+    Viernes: [
       {
         id: 11,
         nombre: 'Sentadillas',
@@ -130,19 +161,22 @@ export class Gimnasio {
       },
       {id: 12, nombre: 'Prensa', repeticiones: '10-12', descanso: "2'", series: 3, realizado: null, expandido: false},
     ],
-    'Sábado': [],
-    'Domingo': [],
+    Sábado: [],
+    Domingo: [],
   };
 
-  feedback = {
-    ejerciciosDificiles: '',
-    masPeso: '',
-  };
+  // ─────────────────────────────────────────────────────────────────────────
+  // GETTERS
+  // ─────────────────────────────────────────────────────────────────────────
 
   get ejerciciosDelDia(): Ejercicio[] {
-    const diaActual = this.diasSemana[this.diaActualIndex];
-    return this.ejerciciosPorDia[diaActual] || [];
+    const dia = this.diasSemana[this.diaActualIndex];
+    return this.ejerciciosPorDia[dia] ?? [];
   }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // NAVEGACIÓN DE DÍAS
+  // ─────────────────────────────────────────────────────────────────────────
 
   diaAnterior(): void {
     if (this.diaActualIndex > 0) {
@@ -156,6 +190,10 @@ export class Gimnasio {
     }
   }
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // EJERCICIOS
+  // ─────────────────────────────────────────────────────────────────────────
+
   toggleEjercicio(ejercicio: Ejercicio): void {
     ejercicio.expandido = !ejercicio.expandido;
   }
@@ -164,15 +202,20 @@ export class Gimnasio {
     ejercicio.realizado = ejercicio.realizado === realizado ? null : realizado;
   }
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // FEEDBACK
+  // ─────────────────────────────────────────────────────────────────────────
+
   enviarFeedback(): void {
     console.log('Feedback enviado:', this.feedback);
-    this.feedback = {
-      ejerciciosDificiles: '',
-      masPeso: '',
-    };
+    this.resetFeedback();
   }
 
   cancelarFeedback(): void {
+    this.resetFeedback();
+  }
+
+  private resetFeedback(): void {
     this.feedback = {
       ejerciciosDificiles: '',
       masPeso: '',

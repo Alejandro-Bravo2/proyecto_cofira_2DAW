@@ -1,109 +1,105 @@
 /**
- * ENTRENAMIENTO PAGE STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos de la página de entrenamiento (Tabla Semanal)
+ * GIMNASIO PAGE STYLES
+ * ═══════════════════════════════════════════════════════════════════════════
  *
- * ESTRUCTURA BEM:
- * Block: .entrenamiento
- * Elements: __titulo, __navegacion-dias, __tabla, __feedback, __progreso
+ * Página de gestión de rutina de ejercicios semanal.
  *
- * ESTRATEGIA RESPONSIVE: Desktop-first
- * ─────────────────────────────────────────────────────────────────────────────
+ * ESTRUCTURA:
+ * - Título principal
+ * - Navegación de días (carrusel)
+ * - Tabla de ejercicios
+ * - Formulario de retroalimentación
+ * - CTA de progreso
+ *
+ * NOMENCLATURA BEM:
+ * Block: .gimnasio
+ * Elements: __titulo, __dias, __tabla, __feedback, __progreso
  */
 
-@import '../../../styles/00-settings/css-variables';
 @import '../../../styles/01-tools/mixins';
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   BLOCK: Entrenamiento page container
+   CONFIGURACIÓN LOCAL
+   Variables CSS específicas de esta página
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.entrenamiento {
-  width: 100%;
-  max-width: 100%;
-  background-color: var(--blanco-normal-hover);
-  padding: var(--spacing-size-xxxl) 0;
-  display: flex;
-  flex-direction: column;
+.gimnasio {
+  // Anchos
+  --contenido-max-width: 970px;
+
+  // Colores semánticos
+  --color-exito: #4caf50;
+  --color-error: #f44336;
+
+  // Tamaños de elementos
+  --btn-accion-size: 1.875rem;
+  --btn-nav-size: 1.5rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Contenedor principal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.gimnasio {
+  @include flex-columna(var(--spacing-size-xxl));
   align-items: center;
-  gap: var(--spacing-size-xxl);
+  width: 100%;
+  padding: var(--spacing-size-xxxl) 0;
+  background-color: var(--blanco-normal-hover);
 
   @include responsive-down('md') {
-    padding: var(--spacing-size-xl) var(--spacing-size-m);
     gap: var(--spacing-size-l);
+    padding: var(--spacing-size-xl) var(--spacing-size-m);
   }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Título Principal
+   ELEMENT: Título
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.entrenamiento__titulo {
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-4xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--negro-normal);
-  text-align: center;
+.gimnasio__titulo {
+  @include titulo-seccion(var(--negro-normal), var(--font-size-4xl), 0);
   text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-  margin: 0;
 
   @include responsive-down('lg') {
     font-size: var(--font-size-3xl);
   }
-
   @include responsive-down('md') {
     font-size: var(--font-size-2xl);
   }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Navegación de Días
+   ELEMENT: Navegación de días
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.entrenamiento__navegacion-dias {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.gimnasio__dias {
+  @include flex-center;
   gap: var(--spacing-size-xl);
   width: 100%;
-  max-width: 60.625rem;
+  max-width: var(--contenido-max-width);
 
   @include responsive-down('md') {
     gap: var(--spacing-size-m);
   }
 }
 
-.entrenamiento__btn-dia {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+.gimnasio__dias-btn {
+  @include boton-icono(var(--btn-nav-size));
   color: var(--negro-normal);
-  transition: color var(--duration-fast) ease;
 
   &:hover {
     color: var(--amarillo-dark);
   }
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 }
 
-.entrenamiento__dia {
+.gimnasio__dia {
   font-family: var(--font-secondary);
   font-weight: var(--font-weight-medium);
   color: var(--negro-normal);
   margin: 0;
 
-  &--anterior,
-  &--siguiente {
+  &--adyacente {
     font-size: var(--font-size-xl);
     opacity: 0.6;
 
@@ -123,96 +119,65 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Tabla de Ejercicios
+   ELEMENT: Tabla de ejercicios
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.entrenamiento__tabla-section {
+.gimnasio__tabla-section {
   width: 100%;
-  max-width: 60.625rem;
-  padding: 0 var(--spacing-size-m);
+  max-width: var(--contenido-max-width);
 }
 
-.entrenamiento__tabla {
-  width: 100%;
-  background-color: var(--blanco-normal);
-  border: 0.0625rem solid var(--blanco-dark);
-  border-radius: var(--radius-xss);
+.gimnasio__tabla {
+  @include caja-contenido;
   border-collapse: separate;
   border-spacing: 0;
   overflow: hidden;
 
-  thead {
-    tr {
-      background-color: var(--blanco-normal);
-    }
+  // Celdas base
+  th, td {
+    font-family: var(--font-primary);
+    font-size: 0.9375rem;
+    font-weight: var(--font-weight-regular);
+    color: var(--negro-normal);
+    padding: var(--spacing-size-s) var(--spacing-size-m);
+    text-align: center;
 
-    th {
-      font-family: var(--font-primary);
-      font-size: 0.9375rem;
-      font-weight: var(--font-weight-regular);
-      color: var(--negro-normal);
-      padding: var(--spacing-size-s) var(--spacing-size-m);
-      text-align: center;
-      border-bottom: 0.0625rem solid var(--blanco-dark);
-
-      @include responsive-down('md') {
-        padding: var(--spacing-size-xs);
-        font-size: 0.8125rem;
-      }
+    @include responsive-down('md') {
+      padding: var(--spacing-size-xs);
+      font-size: 0.8125rem;
     }
   }
 
-  tbody {
-    tr {
-      border-bottom: 0.0625rem solid var(--blanco-dark);
+  th {
+    border-bottom: 0.0625rem solid var(--blanco-dark);
+  }
 
-      &:last-child {
-        border-bottom: none;
-      }
+  tbody tr {
+    border-bottom: 0.0625rem solid var(--blanco-dark);
+
+    &:last-child {
+      border-bottom: none;
     }
+  }
 
-    td {
-      font-family: var(--font-primary);
-      font-size: 0.9375rem;
-      font-weight: var(--font-weight-regular);
-      color: var(--negro-normal);
-      padding: var(--spacing-size-s) var(--spacing-size-m);
-      text-align: center;
-      vertical-align: middle;
-
-      @include responsive-down('md') {
-        padding: var(--spacing-size-xs);
-        font-size: 0.8125rem;
-      }
-    }
+  td {
+    vertical-align: middle;
   }
 }
 
-.entrenamiento__ejercicio-nombre {
+.gimnasio__ejercicio {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-xs);
   text-align: left;
 }
 
-.entrenamiento__ejercicio-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1rem;
-  height: 0.5625rem;
-  padding: 0;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--negro-normal);
-  transition: transform var(--duration-fast) ease;
+.gimnasio__ejercicio-toggle {
+  @include boton-icono(1rem);
 
   svg {
-    width: 100%;
-    height: 100%;
     transform: rotate(270deg);
-    transition: transform var(--duration-fast) ease;
+    @include transicion-suave(transform);
 
     &.rotated {
       transform: rotate(90deg);
@@ -220,66 +185,35 @@
   }
 }
 
-.entrenamiento__acciones {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.gimnasio__acciones {
+  @include flex-center;
   gap: 0.75rem;
 }
 
-.entrenamiento__btn-accion {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.875rem;
-  height: 1.875rem;
-  padding: 0;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  transition: transform var(--duration-fast) ease,
-  opacity var(--duration-fast) ease;
+.gimnasio__btn-accion {
+  @include boton-circular(var(--btn-accion-size));
+  opacity: 0.5;
 
-  &:hover {
-    transform: scale(1.1);
-  }
-
-  svg {
-    width: 0.875rem;
-    height: 0.875rem;
+  &.activo {
+    opacity: 1;
   }
 
   &--ok {
-    background-color: #4caf50;
-    color: white;
-    opacity: 0.5;
-
-    &.activo {
-      opacity: 1;
-    }
+    background-color: var(--color-exito);
   }
 
   &--no {
-    background-color: #f44336;
-    color: white;
-    opacity: 0.5;
-
-    &.activo {
-      opacity: 1;
-    }
+    background-color: var(--color-error);
   }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Sección de Retroalimentación
+   ELEMENT: Retroalimentación
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.entrenamiento__feedback {
-  width: 100%;
-  max-width: 60.3125rem;
-  background-color: var(--blanco-normal);
-  border: 0.0625rem solid var(--blanco-dark);
-  border-radius: var(--radius-xss);
+.gimnasio__feedback {
+  @include caja-contenido;
+  max-width: var(--contenido-max-width);
   padding: var(--spacing-size-xxl) var(--spacing-size-xl);
 
   @include responsive-down('md') {
@@ -287,7 +221,7 @@
   }
 }
 
-.entrenamiento__feedback-titulo {
+.gimnasio__feedback-titulo {
   font-family: var(--font-secondary);
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-semibold);
@@ -300,44 +234,31 @@
   }
 }
 
-.entrenamiento__feedback-form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-size-l);
+.gimnasio__feedback-form {
+  @include flex-columna(var(--spacing-size-l));
 }
 
-.entrenamiento__feedback-field {
+.gimnasio__feedback-field {
   border: none;
   padding: 0;
   margin: 0;
 }
 
-.entrenamiento__feedback-label {
+.gimnasio__feedback-label {
   display: block;
   font-family: var(--font-primary);
-  font-size: var(--spacing-size-xs);
+  font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   color: var(--negro-normal);
   margin-bottom: var(--spacing-size-s);
-
-  @include responsive-down('md') {
-    font-size: 0.9375rem;
-  }
 }
 
-.entrenamiento__feedback-textarea {
+.gimnasio__feedback-textarea {
+  @include input-base;
   width: 90%;
   min-height: 8.9375rem;
-  padding: var(--spacing-size-s);
-  font-family: var(--font-primary);
-  font-size: 0.9375rem;
-  font-weight: var(--font-weight-regular);
-  color: var(--negro-normal);
-  background-color: var(--blanco-normal);
   border: 0.0625rem solid var(--blanco-dark);
-  border-radius: var(--radius-xss);
   resize: vertical;
-  transition: border-color var(--duration-fast) ease;
 
   &::placeholder {
     color: var(--negro-normal);
@@ -345,21 +266,17 @@
   }
 
   &:focus {
-    outline: none;
     border-color: var(--amarillo-normal);
   }
 
   @include responsive-down('md') {
     min-height: 6.25rem;
-    font-size: 0.875rem;
   }
 }
 
-.entrenamiento__feedback-acciones {
-  display: flex;
-  align-items: center;
+.gimnasio__feedback-acciones {
+  @include flex-fila(var(--spacing-size-m));
   justify-content: flex-end;
-  gap: var(--spacing-size-m);
   margin-top: var(--spacing-size-m);
 
   @include responsive-down('md') {
@@ -368,67 +285,18 @@
   }
 }
 
-.entrenamiento__btn-cancelar {
-  min-width: 6.8125rem;
-  padding: var(--spacing-size-s) var(--spacing-size-l);
-  font-family: var(--font-primary);
-  font-size: 0.8125rem;
-  font-weight: var(--font-weight-medium);
-  color: var(--negro-normal);
-  background-color: var(--blanco-normal-active);
-  border: 0.0625rem solid var(--blanco-dark);
-  border-radius: var(--radius-xss);
-  cursor: pointer;
-  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-  transition: background-color var(--duration-fast) ease;
-
-  &:hover {
-    background-color: var(--blanco-normal-hover);
-  }
-
-  @include responsive-down('md') {
-    width: 100%;
-  }
-}
-
-.entrenamiento__btn-enviar {
-  min-width: 6.3125rem;
-  padding: var(--spacing-size-s) var(--spacing-size-l);
-  font-family: var(--font-primary);
-  font-size: 0.9375rem;
-  font-weight: var(--font-weight-regular);
-  color: var(--negro-normal);
-  background-color: var(--amarillo-normal);
-  border: 0.0625rem solid var(--gris-normal);
-  border-radius: var(--radius-xss);
-  cursor: pointer;
-  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-  transition: background-color var(--duration-fast) ease;
-
-  &:hover {
-    background-color: var(--amarillo-normal-hover);
-  }
-
-  @include responsive-down('md') {
-    width: 100%;
-  }
-}
-
 /* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Sección Ver Mi Progreso
+   ELEMENT: Sección progreso
    ═══════════════════════════════════════════════════════════════════════════ */
 
-.entrenamiento__progreso {
+.gimnasio__progreso {
   width: 100%;
-  max-width: 60.625rem;
-  padding: 0 var(--spacing-size-m);
+  max-width: var(--contenido-max-width);
 }
 
-.entrenamiento__progreso-contenido {
+.gimnasio__progreso-contenido {
+  @include caja-contenido;
   display: flex;
-  background-color: var(--blanco-normal);
-  border: 0.0625rem solid var(--blanco-dark);
-  border-radius: var(--radius-xss);
   overflow: hidden;
 
   @include responsive-down('lg') {
@@ -436,23 +304,20 @@
   }
 }
 
-.entrenamiento__progreso-info {
-  flex: 0 0 auto;
-  width: 21.75rem;
-  min-width: 0;
+.gimnasio__progreso-info {
+  @include flex-columna(var(--spacing-size-xl));
+  flex: 0 0 21.75rem;
   padding: var(--spacing-size-xxl) var(--spacing-size-xl);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-size-xl);
 
   @include responsive-down('lg') {
+    flex: none;
     width: 100%;
-    padding: var(--spacing-size-l) var(--spacing-size-m);
     gap: var(--spacing-size-m);
+    padding: var(--spacing-size-l) var(--spacing-size-m);
   }
 }
 
-.entrenamiento__progreso-titulo {
+.gimnasio__progreso-titulo {
   font-family: var(--font-secondary);
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-semibold);
@@ -464,12 +329,10 @@
   }
 }
 
-.entrenamiento__progreso-descripcion {
-  font-family: var(--font-primary);
+.gimnasio__progreso-descripcion {
+  @include tipografia-texto;
   font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-regular);
   color: var(--negro-normal);
-  line-height: var(--line-height-normal);
   margin: 0;
 
   @include responsive-down('md') {
@@ -477,57 +340,15 @@
   }
 }
 
-.entrenamiento__btn-progreso {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-size-s);
-  width: 17.5rem;
-  max-width: 100%;
-  padding: var(--spacing-size-xl) var(--spacing-size-xxl);
-  font-family: var(--font-secondary);
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--negro-normal);
-  background-color: var(--amarillo-normal);
-  border: 0.0625rem solid var(--gris-normal);
-  border-radius: var(--radius-xss);
-  text-decoration: none;
-  cursor: pointer;
-  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-  transition: background-color var(--duration-fast) ease;
-
-  &:hover {
-    background-color: var(--amarillo-normal-hover);
-  }
-
-  svg {
-    width: 1.125rem;
-    height: 0.875rem;
-  }
-
-  @include responsive-down('lg') {
-    width: 16rem;
-    padding: var(--spacing-size-l) var(--spacing-size-xl);
-  }
-
-  @include responsive-down('md') {
-    width: 100%;
-    font-size: var(--font-size-lg);
-    padding: var(--spacing-size-m) var(--spacing-size-l);
-  }
-}
-
-.entrenamiento__progreso-imagen {
+.gimnasio__progreso-imagen {
   flex: 1;
   margin: 0;
-  background-color: var(--blanco-normal-active);
   min-height: 26.25rem;
+  background-color: var(--blanco-normal-active);
   overflow: hidden;
 
   img {
     width: 100%;
-    max-width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;

@@ -251,7 +251,7 @@
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 4.3 Grid de contenido (3 columnas)
+// 4.3 Grid de contenido (3 columnas → 1 columna en móvil)
 // ─────────────────────────────────────────────────────────────────────────────
 .planes__contenido {
   // 2. MODELO DE CAJA
@@ -259,6 +259,27 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-size-xl);
   align-items: start;
+
+  // RESPONSIVE: Tablet (2 columnas centradas) - a partir de 1300px
+  @media (max-width: 1300px) {
+    grid-template-columns: repeat(2, minmax(auto, 320px));
+    justify-content: center;
+    column-gap: 5rem;
+    row-gap: var(--spacing-size-xl);
+
+    // Info ocupa las 2 columnas
+    .planes__info {
+      grid-column: 1 / -1;
+      max-width: 100%;
+      text-align: center;
+    }
+  }
+
+  // RESPONSIVE: Móvil (1 columna)
+  @include responsive-down('md') {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-size-l);
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -604,6 +625,12 @@
   // 5. MISCELÁNEA - Container Queries
   container-type: inline-size;
   container-name: card-container;
+
+  // RESPONSIVE: Móvil - centrar cards
+  @include responsive-down('md') {
+    max-width: 100%;
+    justify-self: center;
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -698,6 +725,19 @@
 // 9.1 TABLET/MÓVIL: Breakpoint MD (900px)
 // ─────────────────────────────────────────────────────────────────────────────
 @include responsive-down('md') {
+  // Planes Section
+  .planes__section {
+    padding: var(--spacing-size-xxl) var(--spacing-size-m);
+  }
+
+  .planes__titulo {
+    font-size: var(--font-size-3xl);
+  }
+
+  .planes__subtitulo {
+    font-size: var(--font-size-2xl);
+  }
+
   // FAQ Section
   .faq__section {
     padding: var(--spacing-size-xxl) var(--spacing-size-l);
