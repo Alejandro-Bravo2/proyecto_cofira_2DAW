@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {NgFor} from '@angular/common';
 
 interface TeamMember {
@@ -25,6 +25,7 @@ interface Estadistica {
   imports: [NgFor],
   templateUrl: './sobre-nosotros.html',
   styleUrl: './sobre-nosotros.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class SobreNosotros {
   readonly equipo: TeamMember[] = [

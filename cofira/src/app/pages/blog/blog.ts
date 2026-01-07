@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {NgClass, NgFor} from '@angular/common';
 
 interface Articulo {
@@ -19,6 +19,7 @@ interface Articulo {
   imports: [NgFor, NgClass],
   templateUrl: './blog.html',
   styleUrl: './blog.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class Blog {
   categoriaActiva: string = 'todos';

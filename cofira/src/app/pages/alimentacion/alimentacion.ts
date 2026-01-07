@@ -52,6 +52,27 @@ export class Alimentacion {
         {id: 3, descripcion: '1 plato de arroz con pollo', icono: 'plato'},
       ],
     },
+    {
+      id: 3,
+      tipo: 'merienda',
+      nombre: 'Merienda',
+      costoTotal: '4,5',
+      alimentos: [
+        {id: 4, descripcion: '1 yogur natural con frutos secos', icono: 'plato'},
+        {id: 5, descripcion: '1 zumo de naranja', icono: 'bebida'},
+      ],
+    },
+    {
+      id: 4,
+      tipo: 'cena',
+      nombre: 'Cena',
+      costoTotal: '12',
+      alimentos: [
+        {id: 6, descripcion: '1 ensalada mediterránea', icono: 'plato'},
+        {id: 7, descripcion: '1 filete de salmón a la plancha', icono: 'plato'},
+        {id: 8, descripcion: '1 vaso de agua', icono: 'bebida'},
+      ],
+    },
   ];
 
   get fechaActual(): string {

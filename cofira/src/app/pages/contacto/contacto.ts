@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {NgFor} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
@@ -20,6 +20,7 @@ interface InfoContacto {
   imports: [NgFor, FormsModule],
   templateUrl: './contacto.html',
   styleUrl: './contacto.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class Contacto {
   formulario = {

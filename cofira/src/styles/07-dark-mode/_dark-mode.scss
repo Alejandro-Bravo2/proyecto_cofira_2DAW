@@ -564,6 +564,431 @@ body.modo-oscuro {
     background: var(--gris-dark);
     color: var(--blanco-normal);
   }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-LEGAL: PÁGINAS LEGALES
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Páginas: /privacidad, /terminos, /cookies, /licencias
+
+     ┌──────────────────────────────────────────────────────────────────────────┐
+     │                     POLÍTICA DE PRIVACIDAD                               │
+     │                  Última actualización: Enero 2025                        │
+     │  ┌────────────────────────────────────────────────────────────────────┐  │
+     │  │ 1. Introducción                                                    │  │
+     │  │ Lorem ipsum dolor sit amet...                                      │  │
+     │  │ ────────────────────────────────────────────────────────────────── │  │
+     │  │ 2. Datos que Recopilamos                                           │  │
+     │  │ ...                                                                │  │
+     │  └────────────────────────────────────────────────────────────────────┘  │
+     └──────────────────────────────────────────────────────────────────────────┘
+
+     Variables: --oscuro-legal-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* --- Contenedor principal --- */
+  app-privacidad .legal,
+  app-terminos .legal,
+  app-cookies .legal,
+  app-licencias .legal {
+    background-color: var(--oscuro-legal-fondo);
+  }
+
+  /* --- Título principal --- */
+  app-privacidad .legal__titulo,
+  app-terminos .legal__titulo,
+  app-cookies .legal__titulo,
+  app-licencias .legal__titulo {
+    color: var(--oscuro-legal-titulo);
+  }
+
+  /* --- Fecha de actualización --- */
+  app-privacidad .legal__fecha,
+  app-terminos .legal__fecha,
+  app-cookies .legal__fecha,
+  app-licencias .legal__fecha {
+    color: var(--oscuro-legal-fecha);
+  }
+
+  /* --- Card de contenido --- */
+  app-privacidad .legal__contenido,
+  app-terminos .legal__contenido,
+  app-cookies .legal__contenido,
+  app-licencias .legal__contenido {
+    background-color: var(--oscuro-legal-contenido-fondo);
+    box-shadow: 0 0.25rem 1rem var(--oscuro-legal-contenido-sombra);
+  }
+
+  /* --- Secciones con borde --- */
+  app-privacidad .legal__seccion,
+  app-terminos .legal__seccion,
+  app-cookies .legal__seccion,
+  app-licencias .legal__seccion {
+    border-bottom-color: var(--oscuro-legal-borde);
+  }
+
+  /* --- Subtítulos --- */
+  app-privacidad .legal__subtitulo,
+  app-privacidad .legal__subtitulo-menor,
+  app-terminos .legal__subtitulo,
+  app-terminos .legal__subtitulo-menor,
+  app-cookies .legal__subtitulo,
+  app-cookies .legal__subtitulo-menor,
+  app-licencias .legal__subtitulo,
+  app-licencias .legal__subtitulo-menor {
+    color: var(--oscuro-legal-subtitulo);
+  }
+
+  /* --- Texto y listas --- */
+  app-privacidad .legal__texto,
+  app-privacidad .legal__lista,
+  app-terminos .legal__texto,
+  app-terminos .legal__lista,
+  app-cookies .legal__texto,
+  app-cookies .legal__lista,
+  app-licencias .legal__texto,
+  app-licencias .legal__lista {
+    color: var(--oscuro-legal-texto);
+  }
+
+  /* --- Enlaces --- */
+  app-privacidad .legal__enlace,
+  app-terminos .legal__enlace,
+  app-cookies .legal__enlace,
+  app-licencias .legal__enlace {
+    color: var(--oscuro-legal-enlace);
+  }
+
+  app-privacidad .legal__enlace:hover,
+  app-terminos .legal__enlace:hover,
+  app-cookies .legal__enlace:hover,
+  app-licencias .legal__enlace:hover {
+    color: var(--oscuro-legal-enlace-hover);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-ABOUT: PÁGINA SOBRE NOSOTROS
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Página: /sobre-nosotros
+
+     Secciones: Hero, Historia, Valores, Estadísticas, Equipo, CTA
+
+     Variables: --oscuro-info-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* --- Títulos de sección --- */
+  .about__seccion-titulo {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .about__seccion-descripcion {
+    color: var(--oscuro-info-texto);
+  }
+
+  /* --- Sección Historia --- */
+  .about__historia {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  .about__historia-texto p {
+    color: var(--oscuro-info-texto);
+  }
+
+  /* --- Sección Valores --- */
+  .about__valores {
+    background-color: var(--oscuro-info-seccion-alt-fondo);
+  }
+
+  .about__valor {
+    background-color: var(--oscuro-info-card-fondo);
+  }
+
+  .about__valor-titulo {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .about__valor-descripcion {
+    color: var(--oscuro-info-texto);
+  }
+
+  .about__valor-icono {
+    background-color: var(--gris-dark);
+  }
+
+  /* --- Sección Equipo --- */
+  .about__equipo {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  .about__miembro-nombre {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .about__miembro-cargo {
+    color: var(--oscuro-info-texto);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-BLOG: PÁGINA DE BLOG
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Página: /blog
+
+     Secciones: Header (oscuro), Filtros, Grid de artículos, Newsletter
+
+     Variables: --oscuro-info-*, --oscuro-pagina-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* --- Contenedor principal --- */
+  .blog {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  /* --- Barra de filtros --- */
+  .blog__filtros {
+    background-color: var(--oscuro-info-card-fondo);
+    border-bottom-color: var(--oscuro-info-borde);
+  }
+
+  .blog__categoria-btn {
+    color: var(--oscuro-info-texto);
+    border-color: var(--oscuro-info-borde);
+
+    &:hover {
+      color: var(--oscuro-info-titulo);
+      border-color: var(--oscuro-info-titulo);
+    }
+  }
+
+  /* --- Cards de artículos --- */
+  .blog__articulo {
+    background-color: var(--oscuro-info-card-fondo);
+  }
+
+  .blog__articulo-titulo {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .blog__articulo-extracto,
+  .blog__articulo-fecha,
+  .blog__articulo-tiempo,
+  .blog__articulo-autor,
+  .blog__articulo-separador {
+    color: var(--oscuro-info-texto);
+  }
+
+  /* --- Sin resultados --- */
+  .blog__sin-resultados p {
+    color: var(--oscuro-info-texto);
+  }
+
+  /* --- Categorías con colores adaptados a modo oscuro --- */
+  .blog__articulo-categoria--ejercicio {
+    background-color: rgba(21, 101, 192, 0.25);
+    color: #64b5f6;
+  }
+
+  .blog__articulo-categoria--nutricion {
+    background-color: rgba(46, 125, 50, 0.25);
+    color: #81c784;
+  }
+
+  .blog__articulo-categoria--bienestar {
+    background-color: rgba(194, 24, 91, 0.25);
+    color: #f48fb1;
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-CARRERAS: PÁGINA DE EMPLEOS
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Página: /carreras
+
+     Secciones: Hero (oscuro), Beneficios, Posiciones, Proceso, CTA (amarillo)
+
+     Variables: --oscuro-info-*, --oscuro-pagina-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* --- Títulos de sección genéricos --- */
+  .carreras__seccion-titulo {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .carreras__seccion-descripcion {
+    color: var(--oscuro-info-texto);
+  }
+
+  /* --- Sección beneficios --- */
+  app-carreras .carreras__beneficios {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  app-carreras .carreras__beneficio {
+    background-color: var(--oscuro-info-card-fondo);
+  }
+
+  app-carreras .carreras__beneficio-titulo {
+    color: var(--oscuro-info-titulo);
+  }
+
+  app-carreras .carreras__beneficio-descripcion {
+    color: var(--oscuro-info-texto);
+  }
+
+  app-carreras .carreras__beneficio-icono {
+    background-color: var(--gris-dark);
+  }
+
+  /* --- Sección posiciones --- */
+  app-carreras .carreras__posiciones {
+    background-color: var(--oscuro-info-seccion-alt-fondo);
+  }
+
+  app-carreras .carreras__posicion {
+    background-color: var(--oscuro-info-card-fondo);
+  }
+
+  app-carreras .carreras__posicion-titulo {
+    color: var(--oscuro-info-titulo);
+  }
+
+  app-carreras .carreras__posicion-tag {
+    background-color: var(--gris-dark);
+    color: var(--oscuro-info-texto);
+  }
+
+  app-carreras .carreras__posicion-descripcion {
+    color: var(--oscuro-info-texto);
+  }
+
+  /* --- Sección proceso --- */
+  app-carreras .carreras__proceso {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  app-carreras .carreras__paso-titulo {
+    color: var(--oscuro-info-titulo);
+  }
+
+  app-carreras .carreras__paso-descripcion {
+    color: var(--oscuro-info-texto);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-CONTACTO: PÁGINA DE CONTACTO
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Página: /contacto
+
+     Secciones: Header, Formulario, Info de contacto, FAQ
+
+     Variables: --oscuro-info-*, --oscuro-pagina-*, --oscuro-input-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* --- Contenedor principal --- */
+  .contacto {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  /* --- Títulos de sección --- */
+  .contacto__seccion-titulo {
+    color: var(--oscuro-info-titulo);
+  }
+
+  /* --- Formulario --- */
+  .contacto__formulario-wrapper {
+    background-color: var(--oscuro-info-card-fondo);
+  }
+
+  .contacto__label {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .contacto__input,
+  .contacto__select,
+  .contacto__textarea {
+    background-color: var(--oscuro-input-fondo);
+    color: var(--oscuro-texto-principal);
+    border-color: var(--oscuro-info-borde);
+
+    &::placeholder {
+      color: var(--oscuro-texto-secundario);
+    }
+
+    &:focus {
+      border-color: var(--amarillo-normal);
+    }
+  }
+
+  /* --- Info de contacto --- */
+  .contacto__info-titulo {
+    color: var(--oscuro-info-texto);
+  }
+
+  .contacto__info-valor {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .contacto__info-valor--enlace {
+    color: var(--amarillo-normal);
+
+    &:hover {
+      color: var(--amarillo-dark);
+    }
+  }
+
+  .contacto__info-icono {
+    background-color: var(--gris-dark);
+  }
+
+  /* --- Horarios --- */
+  .contacto__horarios {
+    background-color: var(--oscuro-info-card-fondo);
+  }
+
+  .contacto__horarios-titulo {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .contacto__horario-dia {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .contacto__horario-hora {
+    color: var(--oscuro-info-texto);
+  }
+
+  /* --- FAQ Section --- */
+  .contacto__faq {
+    background-color: var(--oscuro-info-seccion-alt-fondo);
+  }
+
+  .contacto__faq-titulo {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .contacto__faq-item {
+    background-color: var(--oscuro-info-card-fondo);
+  }
+
+  .contacto__faq-pregunta {
+    color: var(--oscuro-info-titulo);
+  }
+
+  .contacto__faq-respuesta {
+    color: var(--oscuro-info-texto);
+  }
 }
 
 

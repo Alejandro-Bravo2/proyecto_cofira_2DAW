@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-licencias',
@@ -6,6 +6,7 @@ import {Component} from '@angular/core';
   imports: [],
   templateUrl: './licencias.html',
   styleUrl: './licencias.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class Licencias {
   readonly fechaActualizacion = 'Enero 2025';

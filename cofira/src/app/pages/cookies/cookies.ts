@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-cookies',
@@ -6,6 +6,7 @@ import {Component} from '@angular/core';
   imports: [],
   templateUrl: './cookies.html',
   styleUrl: './cookies.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class Cookies {
   readonly fechaActualizacion = 'Enero 2025';

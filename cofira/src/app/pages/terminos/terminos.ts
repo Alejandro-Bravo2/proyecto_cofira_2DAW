@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-terminos',
@@ -6,6 +6,7 @@ import {Component} from '@angular/core';
   imports: [],
   templateUrl: './terminos.html',
   styleUrl: './terminos.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class Terminos {
   readonly fechaActualizacion = 'Enero 2025';

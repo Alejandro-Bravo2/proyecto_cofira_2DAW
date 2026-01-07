@@ -409,4 +409,88 @@ body.modo-oscuro {
 
   /* Borde de notas */
   --oscuro-guia-nota-borde: #{$amarillo-normal};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 13: PÁGINAS LEGALES
+     ═══════════════════════════════════════════════════════════════════════════
+     Estilos para páginas: Privacidad, Términos, Cookies, Licencias
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo principal de la página */
+  --oscuro-legal-fondo: #{$gris-dark};
+
+  /* Fondo del contenido/card */
+  --oscuro-legal-contenido-fondo: #{$gris-normal};
+
+  /* Sombra del contenido */
+  --oscuro-legal-contenido-sombra: rgba(0, 0, 0, 0.3);
+
+  /* Título principal */
+  --oscuro-legal-titulo: #{$blanco-normal};
+
+  /* Fecha de actualización */
+  --oscuro-legal-fecha: #{$blanco-dark};
+
+  /* Subtítulos */
+  --oscuro-legal-subtitulo: #{$blanco-normal};
+
+  /* Texto de párrafos y listas */
+  --oscuro-legal-texto: #{$blanco-dark};
+
+  /* Borde entre secciones */
+  --oscuro-legal-borde: #{$gris-normal-hover};
+
+  /* Enlaces */
+  --oscuro-legal-enlace: #{$amarillo-normal};
+
+  /* Enlaces hover */
+  --oscuro-legal-enlace-hover: #{$amarillo-dark};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 14: PÁGINAS PRINCIPALES (Gimnasio, Alimentación, Seguimiento)
+     ═══════════════════════════════════════════════════════════════════════════
+     Variables compartidas para las páginas principales de la aplicación.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo principal de las páginas */
+  --oscuro-pagina-fondo-principal: #{$gris-dark-active};
+
+  /* Fondo de cards y contenedores */
+  --oscuro-pagina-card-fondo: #{$gris-normal};
+
+  /* Color de títulos */
+  --oscuro-pagina-titulo: #{$blanco-normal};
+
+  /* Color de texto secundario */
+  --oscuro-pagina-texto: #{$blanco-dark};
+
+  /* Color de bordes */
+  --oscuro-pagina-borde: #{$gris-normal-hover};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 15: PÁGINAS INFORMATIVAS (Sobre Nosotros, Blog, Carreras, Contacto)
+     ═══════════════════════════════════════════════════════════════════════════
+     Variables para páginas con headers hero y secciones alternadas.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Fondo de headers hero (negro sólido) */
+  --oscuro-info-header-fondo: #{$negro-normal};
+
+  /* Fondo de secciones alternativas */
+  --oscuro-info-seccion-alt-fondo: #{$gris-dark};
+
+  /* Fondo de cards de contenido */
+  --oscuro-info-card-fondo: #{$gris-normal};
+
+  /* Color de títulos */
+  --oscuro-info-titulo: #{$blanco-normal};
+
+  /* Color de texto */
+  --oscuro-info-texto: #{$blanco-dark};
+
+  /* Color de bordes */
+  --oscuro-info-borde: #{$gris-normal-hover};
 }

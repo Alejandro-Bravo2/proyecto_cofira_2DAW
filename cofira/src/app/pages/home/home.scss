@@ -119,7 +119,7 @@
   padding: var(--spacing-size-xxxl) var(--spacing-size-xl);
 
   // 4. VISUAL
-  background-image: url('/assets/images/personaComiendo.jpg');
+  background-image: url('/assets/images/heroFitnessNutricion.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -140,7 +140,7 @@
   text-align: left;
 
   // 4. VISUAL
-  color: var(--negro-normal);
+  color: var(--blanco-normal);
 }
 
 .home__seccion-intro h2 {
@@ -149,6 +149,7 @@
 
   // 3. TIPOGRAFÍA
   font-size: var(--font-size-2xl);
+  color: var(--blanco-normal);
 }
 
 .home__seccion-intro button {

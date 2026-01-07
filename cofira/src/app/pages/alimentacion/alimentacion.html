@@ -70,6 +70,13 @@
                   fill="currentColor"/>
               </svg>
             }
+            @if (comida.tipo === 'merienda') {
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05l-5 2v16l.06-.06zM1 21.99h15.03V5.84L1 21.99zM9 4V2H7v2H5V2H3v4h4v16h2V6h4V4H9z"
+                  fill="currentColor"/>
+              </svg>
+            }
           </figure>
           <h2 class="alimentacion__comida-titulo">{{ comida.nombre }}</h2>
           <aside class="alimentacion__comida-costo">
