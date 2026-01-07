@@ -49,10 +49,9 @@
     <nav class="footer__nav">
       <h3 class="footer__nav-titulo">PRODUCTO</h3>
       <ul class="footer__nav-lista">
-        <li><a class="footer__nav-link" routerLink="/nutricion">Nutrición</a></li>
-        <li><a class="footer__nav-link" routerLink="/ejercicio">Ejercicio</a></li>
-        <li><a class="footer__nav-link" routerLink="/dashboard">Dashboard</a></li>
-        <li><a class="footer__nav-link" routerLink="/configuracion">Configuración</a></li>
+        <li><a class="footer__nav-link" routerLink="/alimentacion">Nutrición</a></li>
+        <li><a class="footer__nav-link" routerLink="/gimnasio">Ejercicio</a></li>
+        <li><a class="footer__nav-link" routerLink="/seguimiento">Seguimiento</a></li>
       </ul>
     </nav>
 
@@ -86,6 +85,57 @@
   <!-- Sección inferior: Copyright y enlaces legales -->
   <section class="footer__bottom">
     <p class="footer__copyright">© 2025 Cofira. Todos los derechos reservados.</p>
+
+    <!-- Controles: Tema e Idioma -->
+    <div class="footer__controles">
+      <!-- Toggle Tema -->
+      <button (click)="toggleTema()" aria-label="Cambiar tema" class="footer__tema-btn">
+        @if (modoOscuro) {
+          <!-- Luna -->
+          <svg fill="currentColor" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        } @else {
+          <!-- Sol -->
+          <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+               stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" x2="12" y1="1" y2="3"/>
+            <line x1="12" x2="12" y1="21" y2="23"/>
+            <line x1="4.22" x2="5.64" y1="4.22" y2="5.64"/>
+            <line x1="18.36" x2="19.78" y1="18.36" y2="19.78"/>
+            <line x1="1" x2="3" y1="12" y2="12"/>
+            <line x1="21" x2="23" y1="12" y2="12"/>
+            <line x1="4.22" x2="5.64" y1="19.78" y2="18.36"/>
+            <line x1="18.36" x2="19.78" y1="5.64" y2="4.22"/>
+          </svg>
+        }
+      </button>
+
+      <!-- Selector Idioma -->
+      <div class="footer__idioma">
+        <button (click)="toggleIdiomas()" class="footer__idioma-btn">
+          <span>{{ idiomaActual }}</span>
+          <svg fill="currentColor" height="12" viewBox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg">
+            <path d="m7 10 5 5 5-5z"/>
+          </svg>
+        </button>
+        @if (mostrarIdiomas) {
+          <ul class="footer__idioma-dropdown">
+            @for (idioma of idiomas; track idioma) {
+              <li>
+                <button
+                  (click)="cambiarIdioma(idioma)"
+                  [class.footer__idioma-opcion--activo]="idioma === idiomaActual"
+                  class="footer__idioma-opcion">
+                  {{ idioma }}
+                </button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    </div>
 
     <nav class="footer__legal">
       <a class="footer__legal-link" routerLink="/privacidad">Política de Privacidad</a>

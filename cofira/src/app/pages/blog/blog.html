@@ -1,0 +1,96 @@
+<main class="blog">
+  <!-- Hero Section -->
+  <header class="blog__header">
+    <div class="blog__header-content">
+      <h1 class="blog__titulo">Blog de Cofira</h1>
+      <p class="blog__subtitulo">
+        Consejos, guías y artículos sobre fitness, nutrición y bienestar para ayudarte
+        a alcanzar tus objetivos.
+      </p>
+    </div>
+  </header>
+
+  <!-- Filtros -->
+  <section class="blog__filtros">
+    <div class="blog__container">
+      <nav aria-label="Filtrar por categoría" class="blog__categorias">
+        <button
+          (click)="filtrarPorCategoria(cat.id)"
+          *ngFor="let cat of categorias"
+          [ngClass]="{'blog__categoria-btn--activo': categoriaActiva === cat.id}"
+          class="blog__categoria-btn"
+        >
+          {{ cat.label }}
+        </button>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Grid de Artículos -->
+  <section class="blog__contenido">
+    <div class="blog__container">
+      <div class="blog__grid">
+        <article *ngFor="let articulo of articulosFiltrados" class="blog__articulo">
+          <div class="blog__articulo-imagen">
+            <img [alt]="articulo.titulo" [src]="articulo.imagen" loading="lazy"/>
+            <span
+              [ngClass]="'blog__articulo-categoria--' + articulo.categoria"
+              class="blog__articulo-categoria"
+            >
+              {{ articulo.categoriaLabel }}
+            </span>
+          </div>
+          <div class="blog__articulo-contenido">
+            <div class="blog__articulo-meta">
+              <span class="blog__articulo-fecha">{{ articulo.fecha }}</span>
+              <span class="blog__articulo-separador">·</span>
+              <span class="blog__articulo-tiempo">{{ articulo.tiempoLectura }} lectura</span>
+            </div>
+            <h2 class="blog__articulo-titulo">{{ articulo.titulo }}</h2>
+            <p class="blog__articulo-extracto">{{ articulo.extracto }}</p>
+            <div class="blog__articulo-footer">
+              <span class="blog__articulo-autor">Por {{ articulo.autor }}</span>
+              <a class="blog__articulo-leer" href="#">
+                Leer más
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                     stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M5 12h14"/>
+                  <path d="m12 5 7 7-7 7"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Mensaje sin resultados -->
+      <div *ngIf="articulosFiltrados.length === 0" class="blog__sin-resultados">
+        <p>No hay artículos en esta categoría todavía.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter CTA -->
+  <section class="blog__newsletter">
+    <div class="blog__container">
+      <div class="blog__newsletter-card">
+        <div class="blog__newsletter-contenido">
+          <h2 class="blog__newsletter-titulo">Mantente al día</h2>
+          <p class="blog__newsletter-texto">
+            Suscríbete a nuestra newsletter y recibe los mejores consejos de fitness
+            y nutrición directamente en tu bandeja de entrada.
+          </p>
+        </div>
+        <form (submit)="$event.preventDefault()" class="blog__newsletter-form">
+          <input
+            aria-label="Email para newsletter"
+            class="blog__newsletter-input"
+            placeholder="tu@email.com"
+            type="email"
+          />
+          <button class="blog__newsletter-btn" type="submit">Suscribirse</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>

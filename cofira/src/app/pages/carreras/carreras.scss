@@ -1,0 +1,377 @@
+/**
+ * CARRERAS PAGE STYLES
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Página de ofertas de empleo y cultura de empresa
+ *
+ * NOMENCLATURA BEM:
+ * Block: .carreras
+ * Elements: __hero, __beneficios, __posiciones, __proceso, __cta
+ */
+
+@import '../../../styles/01-tools/mixins';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Contenedor principal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.carreras {
+  width: 100%;
+}
+
+.carreras__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-size-m);
+}
+
+.carreras__seccion-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  text-align: center;
+  margin: 0 0 var(--spacing-size-m) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+.carreras__seccion-descripcion {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  color: var(--gris-normal);
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--spacing-size-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Hero
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.carreras__hero {
+  background: linear-gradient(135deg, var(--negro-normal) 0%, #1a1a2e 100%);
+  padding: var(--spacing-size-xxxl) var(--spacing-size-m);
+  text-align: center;
+}
+
+.carreras__hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.carreras__hero-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--blanco-normal);
+  margin: 0 0 var(--spacing-size-m) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+.carreras__hero-subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xl);
+  color: var(--gris-normal);
+  margin: 0 0 var(--spacing-size-xl) 0;
+  line-height: 1.6;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-md);
+  }
+}
+
+.carreras__hero-btn {
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  background-color: var(--amarillo-normal);
+  padding: var(--spacing-size-m) var(--spacing-size-xl);
+  border-radius: var(--radius-xss);
+  text-decoration: none;
+  transition: background-color var(--duration-fast) ease, transform var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--amarillo-dark);
+    transform: translateY(-2px);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Beneficios
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.carreras__beneficios {
+  padding: var(--spacing-size-xxxl) 0;
+  background-color: var(--blanco-normal);
+}
+
+.carreras__beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-size-l);
+
+  @include responsive-down('lg') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive-down('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.carreras__beneficio {
+  background-color: var(--blanco-normal-hover);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-xl);
+  text-align: center;
+  transition: transform var(--duration-fast) ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.carreras__beneficio-icono {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--spacing-size-m);
+  background-color: var(--amarillo-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 28px;
+    height: 28px;
+    color: var(--amarillo-dark);
+  }
+}
+
+.carreras__beneficio-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+}
+
+.carreras__beneficio-descripcion {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-normal);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Posiciones
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.carreras__posiciones {
+  padding: var(--spacing-size-xxxl) 0;
+  background-color: var(--blanco-normal-hover);
+}
+
+.carreras__posiciones-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+}
+
+.carreras__posicion {
+  background-color: var(--blanco-normal);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-xl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-size-l);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-fast) ease;
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  @include responsive-down('md') {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.carreras__posicion-info {
+  flex: 1;
+}
+
+.carreras__posicion-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+}
+
+.carreras__posicion-detalles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-size-xs);
+  margin-bottom: var(--spacing-size-s);
+}
+
+.carreras__posicion-tag {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xs);
+  color: var(--gris-normal);
+  background-color: var(--blanco-normal-hover);
+  padding: var(--spacing-size-xxs) var(--spacing-size-s);
+  border-radius: var(--radius-xss);
+}
+
+.carreras__posicion-descripcion {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-normal);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.carreras__posicion-btn {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  background-color: var(--amarillo-normal);
+  padding: var(--spacing-size-s) var(--spacing-size-l);
+  border-radius: var(--radius-xss);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--amarillo-dark);
+  }
+
+  @include responsive-down('md') {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Proceso
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.carreras__proceso {
+  padding: var(--spacing-size-xxxl) 0;
+  background-color: var(--blanco-normal);
+}
+
+.carreras__proceso-pasos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-size-l);
+  position: relative;
+
+  @include responsive-down('lg') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include responsive-down('sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.carreras__paso {
+  text-align: center;
+  position: relative;
+}
+
+.carreras__paso-numero {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto var(--spacing-size-m);
+  background-color: var(--amarillo-normal);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+}
+
+.carreras__paso-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-xs) 0;
+}
+
+.carreras__paso-descripcion {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-normal);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: CTA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.carreras__cta {
+  padding: var(--spacing-size-xxxl) 0;
+  background: linear-gradient(135deg, var(--amarillo-normal) 0%, var(--amarillo-dark) 100%);
+  text-align: center;
+}
+
+.carreras__cta-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-m) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.carreras__cta-texto {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-xl) 0;
+  opacity: 0.8;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.carreras__cta-btn {
+  display: inline-block;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--blanco-normal);
+  background-color: var(--negro-normal);
+  padding: var(--spacing-size-m) var(--spacing-size-xl);
+  border-radius: var(--radius-xss);
+  text-decoration: none;
+  transition: background-color var(--duration-fast) ease, transform var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--negro-dark);
+    transform: translateY(-2px);
+  }
+}

@@ -1,0 +1,175 @@
+/**
+ * LEGAL PAGE STYLES
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Estilos para páginas legales: Privacidad, Términos, Cookies, Licencias
+ *
+ * NOMENCLATURA BEM:
+ * Block: .legal
+ * Elements: __header, __titulo, __fecha, __contenido, __seccion, __subtitulo, etc.
+ */
+
+@import '../../../styles/01-tools/mixins';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Contenedor principal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.legal {
+  width: 100%;
+  min-height: 100vh;
+  padding: var(--spacing-size-xxxl) var(--spacing-size-m);
+  background-color: var(--blanco-normal-hover);
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-xl) var(--spacing-size-m);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Header
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.legal__header {
+  max-width: 800px;
+  margin: 0 auto var(--spacing-size-xxl);
+  text-align: center;
+}
+
+.legal__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+
+  @include responsive-down('lg') {
+    font-size: var(--font-size-3xl);
+  }
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+.legal__fecha {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--gris-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Contenido
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.legal__contenido {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--blanco-normal);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-xxl);
+  box-shadow: var(--shadow-sm);
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-l);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Secciones
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.legal__seccion {
+  margin-bottom: var(--spacing-size-xl);
+  padding-bottom: var(--spacing-size-xl);
+  border-bottom: 1px solid var(--blanco-dark);
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.legal__subtitulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-m) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-lg);
+  }
+}
+
+.legal__subtitulo-menor {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+  margin: var(--spacing-size-m) 0 var(--spacing-size-s) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-md);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Texto y listas
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.legal__texto {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  line-height: 1.7;
+  margin: 0 0 var(--spacing-size-m) 0;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.legal__lista {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--negro-normal);
+  line-height: 1.7;
+  margin: 0 0 var(--spacing-size-m) 0;
+  padding-left: var(--spacing-size-l);
+
+  li {
+    margin-bottom: var(--spacing-size-xs);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  strong {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &--sin-estilo {
+    list-style: none;
+    padding-left: 0;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Enlaces
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.legal__enlace {
+  color: var(--amarillo-dark);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color var(--duration-fast) ease;
+
+  &:hover {
+    color: var(--amarillo-normal);
+    text-decoration: underline;
+  }
+}

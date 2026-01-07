@@ -353,3 +353,113 @@
     justify-content: center;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   10. CONTROLES: Toggle tema y selector de idioma
+   ───────────────────────────────────────────────────────────────────────────── */
+
+.footer__controles {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-m);
+}
+
+.footer__tema-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--gris-normal);
+  color: var(--blanco-normal);
+  cursor: pointer;
+  transition: all var(--duration-base) ease;
+
+  &:hover {
+    background: var(--amarillo-normal);
+    color: var(--negro-normal);
+    transform: translateY(-0.125rem);
+  }
+
+  @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.footer__idioma {
+  position: relative;
+}
+
+.footer__idioma-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-xs);
+  padding: var(--spacing-size-xs) var(--spacing-size-s);
+  border: none;
+  border-radius: var(--radius-xss);
+  background: var(--gris-normal);
+  color: var(--blanco-normal);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--duration-base) ease;
+
+  &:hover {
+    background: var(--amarillo-normal);
+    color: var(--negro-normal);
+  }
+
+  @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
+}
+
+.footer__idioma-dropdown {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: var(--spacing-size-xs);
+  list-style: none;
+  background: var(--gris-normal);
+  border-radius: var(--radius-xss);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+
+  li {
+    margin: 0;
+  }
+}
+
+.footer__idioma-opcion {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-size-xs) var(--spacing-size-m);
+  border: none;
+  background: transparent;
+  color: var(--blanco-normal);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+
+  &:hover {
+    background: var(--gris-dark);
+  }
+
+  &--activo {
+    color: var(--amarillo-normal);
+    font-weight: var(--font-weight-bold);
+  }
+}

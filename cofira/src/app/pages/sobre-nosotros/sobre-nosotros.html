@@ -1,0 +1,128 @@
+<main class="about">
+  <!-- Hero Section -->
+  <section class="about__hero">
+    <div class="about__hero-overlay"></div>
+    <div class="about__hero-content">
+      <h1 class="about__hero-titulo">Transformamos vidas a través del fitness</h1>
+      <p class="about__hero-subtitulo">
+        En Cofira creemos que cada persona merece las herramientas necesarias para alcanzar
+        su mejor versión física y mental.
+      </p>
+    </div>
+  </section>
+
+  <!-- Historia Section -->
+  <section class="about__historia">
+    <div class="about__container">
+      <h2 class="about__seccion-titulo">Nuestra Historia</h2>
+      <div class="about__historia-contenido">
+        <div class="about__historia-texto">
+          <p>
+            Cofira nació en 2023 de una idea simple: hacer el fitness accesible y personalizado
+            para todos. Nuestro fundador, Carlos Martínez, tras años como entrenador personal,
+            vio cómo muchas personas abandonaban sus objetivos por falta de herramientas
+            adecuadas y seguimiento personalizado.
+          </p>
+          <p>
+            Hoy, Cofira es una plataforma integral que combina planificación de entrenamientos,
+            gestión nutricional y seguimiento de progreso en una sola aplicación. Nuestro
+            equipo de desarrolladores, nutricionistas y entrenadores trabaja cada día para
+            ofrecerte la mejor experiencia posible.
+          </p>
+          <p>
+            Nuestra misión es clara: democratizar el acceso a planes de fitness y nutrición
+            de calidad profesional, adaptados a las necesidades únicas de cada usuario.
+          </p>
+        </div>
+        <div class="about__historia-imagen">
+          <img
+            alt="Gimnasio moderno con equipamiento de fitness"
+            loading="lazy"
+            src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valores Section -->
+  <section class="about__valores">
+    <div class="about__container">
+      <h2 class="about__seccion-titulo">Nuestros Valores</h2>
+      <div class="about__valores-grid">
+        <article *ngFor="let valor of valores" class="about__valor">
+          <div class="about__valor-icono">
+            <svg *ngIf="valor.icono === 'heart'" fill="none" stroke="currentColor" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+            </svg>
+            <svg *ngIf="valor.icono === 'users'" fill="none" stroke="currentColor" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+            <svg *ngIf="valor.icono === 'target'" fill="none" stroke="currentColor" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+            <svg *ngIf="valor.icono === 'shield'" fill="none" stroke="currentColor" stroke-linecap="round"
+                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+          </div>
+          <h3 class="about__valor-titulo">{{ valor.titulo }}</h3>
+          <p class="about__valor-descripcion">{{ valor.descripcion }}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Estadísticas Section -->
+  <section class="about__estadisticas">
+    <div class="about__container">
+      <div class="about__estadisticas-grid">
+        <div *ngFor="let stat of estadisticas" class="about__estadistica">
+          <span class="about__estadistica-valor">{{ stat.valor }}</span>
+          <span class="about__estadistica-etiqueta">{{ stat.etiqueta }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipo Section -->
+  <section class="about__equipo">
+    <div class="about__container">
+      <h2 class="about__seccion-titulo">Nuestro Equipo</h2>
+      <p class="about__seccion-descripcion">
+        Un equipo multidisciplinar apasionado por el fitness y la tecnología.
+      </p>
+      <div class="about__equipo-grid">
+        <article *ngFor="let miembro of equipo" class="about__miembro">
+          <div class="about__miembro-foto">
+            <img [alt]="miembro.nombre" [src]="miembro.foto" loading="lazy"/>
+          </div>
+          <h3 class="about__miembro-nombre">{{ miembro.nombre }}</h3>
+          <p class="about__miembro-cargo">{{ miembro.cargo }}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="about__cta">
+    <div class="about__container">
+      <h2 class="about__cta-titulo">¿Listo para empezar tu transformación?</h2>
+      <p class="about__cta-texto">
+        Únete a miles de usuarios que ya están alcanzando sus objetivos con Cofira.
+      </p>
+      <a class="about__cta-boton" href="/registro">Comenzar gratis</a>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,336 @@
+/**
+ * CONTACTO PAGE STYLES
+ * ═══════════════════════════════════════════════════════════════════════════
+ * Página de contacto con formulario e información
+ *
+ * NOMENCLATURA BEM:
+ * Block: .contacto
+ * Elements: __header, __formulario, __info, __faq
+ */
+
+@import '../../../styles/01-tools/mixins';
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BLOCK: Contenedor principal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.contacto {
+  width: 100%;
+  background-color: var(--blanco-normal-hover);
+}
+
+.contacto__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-size-m);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Header
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.contacto__header {
+  background-color: var(--negro-normal);
+  padding: var(--spacing-size-xxxl) var(--spacing-size-m);
+  text-align: center;
+}
+
+.contacto__header-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.contacto__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--blanco-normal);
+  margin: 0 0 var(--spacing-size-m) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+.contacto__subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  color: var(--gris-normal);
+  margin: 0;
+  line-height: 1.6;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-md);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Contenido Principal
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.contacto__contenido {
+  padding: var(--spacing-size-xxxl) 0;
+}
+
+.contacto__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--spacing-size-xxl);
+
+  @include responsive-down('lg') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contacto__seccion-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-l) 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Formulario
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.contacto__formulario-wrapper {
+  background-color: var(--blanco-normal);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.contacto__formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+}
+
+.contacto__campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xs);
+}
+
+.contacto__label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+}
+
+.contacto__input {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--negro-normal);
+  background-color: var(--blanco-normal);
+  border: 1px solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-m);
+  transition: border-color var(--duration-fast) ease;
+
+  &::placeholder {
+    color: var(--gris-normal);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: var(--amarillo-normal);
+  }
+}
+
+.contacto__select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--spacing-size-m) center;
+  background-size: 20px;
+  padding-right: var(--spacing-size-xxl);
+}
+
+.contacto__textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contacto__btn-enviar {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  background-color: var(--amarillo-normal);
+  border: none;
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-m) var(--spacing-size-xl);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) ease, transform var(--duration-fast) ease;
+  margin-top: var(--spacing-size-s);
+
+  &:hover {
+    background-color: var(--amarillo-dark);
+    transform: translateY(-2px);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Información de Contacto
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.contacto__info-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xl);
+}
+
+.contacto__info-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+}
+
+.contacto__info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-size-m);
+}
+
+.contacto__info-icono {
+  width: 48px;
+  height: 48px;
+  background-color: var(--amarillo-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    color: var(--amarillo-dark);
+  }
+}
+
+.contacto__info-texto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xxs);
+}
+
+.contacto__info-titulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--gris-normal);
+}
+
+.contacto__info-valor {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--negro-normal);
+
+  &--enlace {
+    text-decoration: none;
+    transition: color var(--duration-fast) ease;
+
+    &:hover {
+      color: var(--amarillo-dark);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Horarios
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.contacto__horarios {
+  background-color: var(--blanco-normal);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-l);
+  box-shadow: var(--shadow-sm);
+}
+
+.contacto__horarios-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-m) 0;
+}
+
+.contacto__horarios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-s);
+}
+
+.contacto__horario {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contacto__horario-dia {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--negro-normal);
+}
+
+.contacto__horario-hora {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--gris-normal);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: FAQ
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.contacto__faq {
+  padding: var(--spacing-size-xxxl) 0;
+  background-color: var(--blanco-normal);
+}
+
+.contacto__faq-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  text-align: center;
+  margin: 0 0 var(--spacing-size-xl) 0;
+}
+
+.contacto__faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-size-l);
+
+  @include responsive-down('md') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contacto__faq-item {
+  background-color: var(--blanco-normal-hover);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-l);
+}
+
+.contacto__faq-pregunta {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+}
+
+.contacto__faq-respuesta {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-normal);
+  line-height: 1.6;
+  margin: 0;
+}
