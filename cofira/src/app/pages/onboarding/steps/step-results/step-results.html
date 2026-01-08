@@ -1,0 +1,97 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STEP RESULTS - Resultados del onboarding
+     ═══════════════════════════════════════════════════════════════════════════
+     Paso final mostrando resultados calculados (BMR, TDEE, macros)
+
+     NOMENCLATURA BEM:
+     Block: .step-results
+     Elements: __header, __titulo, __subtitulo, __content, __card, __label, __value, __unit, __macros, __macro, __footer
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<article class="step-results">
+
+  @if (isLoading()) {
+    <section class="step-results__loading">
+      <p class="step-results__loading-text">Calculando tu plan personalizado...</p>
+    </section>
+  } @else if (error()) {
+    <section class="step-results__error">
+      <p class="step-results__error-text">{{ error() }}</p>
+    </section>
+  } @else if (results()) {
+    <header class="step-results__header">
+      <h2 class="step-results__titulo">Tu plan personalizado</h2>
+      <p class="step-results__subtitulo">
+        Basado en tu objetivo: {{ goalText() }}
+      </p>
+    </header>
+
+    <section class="step-results__content">
+      <article class="step-results__card step-results__card--highlight">
+        <span class="step-results__label">Calorias diarias</span>
+        <data class="step-results__value" [value]="results()!.dailyCalories">
+          {{ results()!.dailyCalories }}
+        </data>
+        <span class="step-results__unit">kcal</span>
+      </article>
+
+      <section class="step-results__grid">
+        <article class="step-results__card">
+          <span class="step-results__label">Metabolismo basal</span>
+          <data class="step-results__value step-results__value--small" [value]="results()!.calculatedBMR">
+            {{ results()!.calculatedBMR }}
+          </data>
+          <span class="step-results__unit">kcal</span>
+        </article>
+
+        <article class="step-results__card">
+          <span class="step-results__label">Gasto total (TDEE)</span>
+          <data class="step-results__value step-results__value--small" [value]="results()!.calculatedTDEE">
+            {{ results()!.calculatedTDEE }}
+          </data>
+          <span class="step-results__unit">kcal</span>
+        </article>
+      </section>
+
+      <section class="step-results__macros">
+        <h3 class="step-results__macros-title">Macronutrientes diarios</h3>
+        <ul class="step-results__macros-list">
+          <li class="step-results__macro step-results__macro--protein">
+            <span class="step-results__macro-label">Proteina</span>
+            <data class="step-results__macro-value" [value]="results()!.proteinGrams">
+              {{ results()!.proteinGrams }}g
+            </data>
+          </li>
+          <li class="step-results__macro step-results__macro--carbs">
+            <span class="step-results__macro-label">Carbohidratos</span>
+            <data class="step-results__macro-value" [value]="results()!.carbsGrams">
+              {{ results()!.carbsGrams }}g
+            </data>
+          </li>
+          <li class="step-results__macro step-results__macro--fat">
+            <span class="step-results__macro-label">Grasas</span>
+            <data class="step-results__macro-value" [value]="results()!.fatGrams">
+              {{ results()!.fatGrams }}g
+            </data>
+          </li>
+          <li class="step-results__macro step-results__macro--fiber">
+            <span class="step-results__macro-label">Fibra</span>
+            <data class="step-results__macro-value" [value]="results()!.fiberGrams">
+              {{ results()!.fiberGrams }}g
+            </data>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <footer class="step-results__footer">
+      <app-button
+        variante="primary"
+        tamanio="lg"
+        (click)="onComplete()">
+        Crear cuenta
+      </app-button>
+    </footer>
+  }
+
+</article>

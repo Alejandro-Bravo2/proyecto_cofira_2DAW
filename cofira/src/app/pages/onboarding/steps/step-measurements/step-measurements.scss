@@ -1,0 +1,135 @@
+/**
+ * STEP MEASUREMENTS STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos del paso de medidas corporales
+ *
+ * NOMENCLATURA BEM:
+ * Block: .step-measurements
+ * Elements: __header, __titulo, __subtitulo, __form, __input-group, __input-wrapper, __label, __input, __unit, __footer
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../../styles/00-settings/css-variables';
+@import '../../../../../styles/01-tools/mixins';
+
+.step-measurements {
+  @include flex-center;
+  flex-direction: column;
+  gap: var(--spacing-size-xl);
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: var(--spacing-size-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-measurements__header {
+  text-align: center;
+}
+
+.step-measurements__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.step-measurements__subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--gris-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FORM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-measurements__form {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.step-measurements__input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-l);
+  width: 100%;
+}
+
+.step-measurements__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xs);
+  width: 100%;
+}
+
+.step-measurements__label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+}
+
+.step-measurements__input-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+  width: 100%;
+}
+
+.step-measurements__input {
+  flex: 1;
+  padding: var(--spacing-size-m);
+  background-color: var(--bg-input);
+  border: var(--border-width-normal) solid var(--border-color-light);
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  transition: border-color var(--duration-fast) ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--amarillo-normal);
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  -moz-appearance: textfield;
+}
+
+.step-measurements__unit {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--gris-normal);
+  min-width: 2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-measurements__footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--spacing-size-l);
+}

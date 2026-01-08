@@ -1,0 +1,43 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STEP FITNESS LEVEL - Nivel de experiencia fitness
+     ═══════════════════════════════════════════════════════════════════════════
+     Paso para seleccionar nivel de experiencia en ejercicio
+
+     NOMENCLATURA BEM:
+     Block: .step-fitness-level
+     Elements: __header, __titulo, __subtitulo, __opciones, __footer
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<article class="step-fitness-level">
+
+  <header class="step-fitness-level__header">
+    <h2 class="step-fitness-level__titulo">Cual es tu experiencia?</h2>
+    <p class="step-fitness-level__subtitulo">
+      Selecciona tu nivel de experiencia en entrenamiento
+    </p>
+  </header>
+
+  <ul class="step-fitness-level__opciones">
+    @for (option of options; track option.value) {
+      <li>
+        <app-option-card
+          (seleccionar)="onSelect($any(option.value))"
+          [descripcion]="option.description || ''"
+          [seleccionado]="selectedLevel() === option.value"
+          [titulo]="option.label">
+        </app-option-card>
+      </li>
+    }
+  </ul>
+
+  <footer class="step-fitness-level__footer">
+    <app-button
+      (click)="onContinue()"
+      [habilitado]="!canContinue()"
+      tamanio="lg"
+      variante="primary">
+      Continuar
+    </app-button>
+  </footer>
+
+</article>

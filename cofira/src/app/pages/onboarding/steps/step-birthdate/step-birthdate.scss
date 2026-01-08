@@ -1,0 +1,110 @@
+/**
+ * STEP BIRTHDATE STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos del paso de fecha de nacimiento
+ *
+ * NOMENCLATURA BEM:
+ * Block: .step-birthdate
+ * Elements: __header, __titulo, __subtitulo, __form, __input-wrapper, __label, __input, __footer
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../../styles/00-settings/css-variables';
+@import '../../../../../styles/01-tools/mixins';
+
+.step-birthdate {
+  @include flex-center;
+  flex-direction: column;
+  gap: var(--spacing-size-xl);
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: var(--spacing-size-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-birthdate__header {
+  text-align: center;
+}
+
+.step-birthdate__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.step-birthdate__subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--gris-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FORM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-birthdate__form {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.step-birthdate__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xs);
+  width: 100%;
+}
+
+.step-birthdate__label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+}
+
+.step-birthdate__input {
+  width: 100%;
+  padding: var(--spacing-size-m);
+  background-color: var(--bg-input);
+  border: var(--border-width-normal) solid var(--border-color-light);
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  transition: border-color var(--duration-fast) ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--amarillo-normal);
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    filter: invert(0.5);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-birthdate__footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--spacing-size-l);
+}

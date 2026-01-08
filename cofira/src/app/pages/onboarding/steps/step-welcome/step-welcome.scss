@@ -1,0 +1,194 @@
+/**
+ * STEP WELCOME STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos de la pagina de bienvenida con layout 60/40
+ *
+ * NOMENCLATURA BEM:
+ * Block: .welcome
+ * Elements: __hero, __image, __content, __header, __titulo, __subtitulo,
+ *           __features, __feature, __feature-icono, __footer, __tiempo
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../../styles/00-settings/css-variables';
+@import '../../../../../styles/01-tools/mixins';
+
+.welcome {
+  display: flex;
+  min-height: 100vh;
+
+  @include responsive-down('lg') {
+    flex-direction: column;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HERO IMAGE (60%)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.welcome__hero {
+  flex: 50%;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+
+  @include responsive-down('lg') {
+    flex: none;
+    height: 35vh;
+    min-height: 15rem;
+  }
+}
+
+.welcome__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTENIDO (40%)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.welcome__content {
+  flex: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--spacing-size-xl);
+  padding: var(--spacing-size-xxxl);
+  background-color: var(--negro-normal);
+
+  @include responsive-down('lg') {
+    flex: 1;
+    padding: var(--spacing-size-xl);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.welcome__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+}
+
+.welcome__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--blanco-normal);
+  margin: 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-3xl);
+  }
+}
+
+.welcome__subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-relaxed);
+  color: var(--blanco-dark);
+  margin: 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-md);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FEATURES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.welcome__features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.welcome__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--blanco-normal);
+}
+
+.welcome__feature-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+  color: var(--amarillo-normal);
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.welcome__footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+  margin-top: var(--spacing-size-l);
+  align-items: center;
+}
+
+.welcome__tiempo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-size-xs);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--gris-light);
+  margin: 0;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+.welcome__login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-size-xs);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-light);
+  margin: 0;
+  color: var(--blanco-normal);
+}
+
+.welcome__login-link {
+  color: var(--amarillo-normal);
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: var(--amarillo-dark);
+    text-decoration: underline;
+  }
+}

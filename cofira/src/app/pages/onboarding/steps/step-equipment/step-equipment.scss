@@ -1,0 +1,81 @@
+/**
+ * STEP EQUIPMENT STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos del paso de equipamiento
+ *
+ * NOMENCLATURA BEM:
+ * Block: .step-equipment
+ * Elements: __header, __titulo, __subtitulo, __grid, __footer, __actions
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../../styles/00-settings/css-variables';
+@import '../../../../../styles/01-tools/mixins';
+
+.step-equipment {
+  @include flex-center;
+  flex-direction: column;
+  gap: var(--spacing-size-xl);
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: var(--spacing-size-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-equipment__header {
+  text-align: center;
+}
+
+.step-equipment__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.step-equipment__subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--gris-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GRID DE CHIPS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-equipment__grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-size-s);
+  width: 100%;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-equipment__footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--spacing-size-l);
+}
+
+.step-equipment__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-m);
+}

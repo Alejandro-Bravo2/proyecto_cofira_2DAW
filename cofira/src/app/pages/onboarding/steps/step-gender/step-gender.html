@@ -1,0 +1,44 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STEP GENDER - Seleccion de genero
+     ═══════════════════════════════════════════════════════════════════════════
+     Paso para seleccionar el genero del usuario
+
+     NOMENCLATURA BEM:
+     Block: .step-gender
+     Elements: __header, __titulo, __subtitulo, __opciones, __footer
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<article class="step-gender">
+
+  <header class="step-gender__header">
+    <h2 class="step-gender__titulo">Cual es tu genero?</h2>
+    <p class="step-gender__subtitulo">
+      Necesitamos esta informacion para calcular tus necesidades nutricionales
+    </p>
+  </header>
+
+  <ul class="step-gender__opciones">
+    @for (gender of genders; track gender.value) {
+      <li>
+        <app-option-card
+          (seleccionar)="selectGender($event)"
+          [icono]="gender.icon || ''"
+          [seleccionado]="selectedGender() === gender.value"
+          [titulo]="gender.label"
+          [valor]="gender.value">
+        </app-option-card>
+      </li>
+    }
+  </ul>
+
+  <footer class="step-gender__footer">
+    <app-button
+      (click)="onContinue()"
+      [habilitado]="!canContinue()"
+      tamanio="lg"
+      variante="primary">
+      Continuar
+    </app-button>
+  </footer>
+
+</article>

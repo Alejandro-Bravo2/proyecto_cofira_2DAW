@@ -1,0 +1,43 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STEP TRAINING DAYS - Dias de entrenamiento por semana
+     ═══════════════════════════════════════════════════════════════════════════
+     Paso para seleccionar dias de entrenamiento semanales
+
+     NOMENCLATURA BEM:
+     Block: .step-training-days
+     Elements: __header, __titulo, __subtitulo, __opciones, __footer
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<article class="step-training-days">
+
+  <header class="step-training-days__header">
+    <h2 class="step-training-days__titulo">Cuantos dias entrenas?</h2>
+    <p class="step-training-days__subtitulo">
+      Selecciona cuantos dias a la semana puedes entrenar
+    </p>
+  </header>
+
+  <ul class="step-training-days__opciones">
+    @for (option of options; track option.value) {
+      <li>
+        <app-option-card
+          (seleccionar)="onSelect(option.value)"
+          [descripcion]="option.description"
+          [seleccionado]="selectedDays() === option.value"
+          [titulo]="option.label">
+        </app-option-card>
+      </li>
+    }
+  </ul>
+
+  <footer class="step-training-days__footer">
+    <app-button
+      (click)="onContinue()"
+      [habilitado]="!canContinue()"
+      tamanio="lg"
+      variante="primary">
+      Continuar
+    </app-button>
+  </footer>
+
+</article>

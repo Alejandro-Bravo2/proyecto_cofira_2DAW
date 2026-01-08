@@ -1,0 +1,80 @@
+/**
+ * STEP FITNESS LEVEL STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos del paso de nivel de experiencia fitness
+ *
+ * NOMENCLATURA BEM:
+ * Block: .step-fitness-level
+ * Elements: __header, __titulo, __subtitulo, __opciones, __footer
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../../styles/00-settings/css-variables';
+@import '../../../../../styles/01-tools/mixins';
+
+.step-fitness-level {
+  @include flex-center;
+  flex-direction: column;
+  gap: var(--spacing-size-xl);
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: var(--spacing-size-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-fitness-level__header {
+  text-align: center;
+}
+
+.step-fitness-level__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.step-fitness-level__subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--gris-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   OPCIONES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-fitness-level__opciones {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    width: 100%;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-fitness-level__footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--spacing-size-l);
+}

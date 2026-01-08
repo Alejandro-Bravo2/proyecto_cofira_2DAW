@@ -1,0 +1,57 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STEP TARGET WEIGHT - Peso objetivo
+     ═══════════════════════════════════════════════════════════════════════════
+     Paso para ingresar el peso objetivo
+
+     NOMENCLATURA BEM:
+     Block: .step-target-weight
+     Elements: __header, __titulo, __subtitulo, __form, __input-wrapper, __label, __input, __unit, __difference, __footer
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<article class="step-target-weight">
+
+  <header class="step-target-weight__header">
+    <h2 class="step-target-weight__titulo">Cual es tu peso objetivo?</h2>
+    <p class="step-target-weight__subtitulo">
+      Tu peso actual es de {{ currentWeight() }} kg
+    </p>
+  </header>
+
+  <fieldset class="step-target-weight__form">
+    <label class="step-target-weight__input-wrapper">
+      <span class="step-target-weight__label">Peso objetivo</span>
+      <span class="step-target-weight__input-container">
+        <input
+          (input)="onWeightChange($any($event.target).value)"
+          [value]="targetWeightKg()"
+          class="step-target-weight__input"
+          max="300"
+          min="30"
+          placeholder="65"
+          required
+          step="0.1"
+          type="number">
+        <span class="step-target-weight__unit">kg</span>
+      </span>
+    </label>
+
+    @if (targetWeightKg() !== null && weightDifference() !== 0) {
+      <aside [class.step-target-weight__difference--negative]="weightDifference() < 0"
+             [class.step-target-weight__difference--positive]="weightDifference() > 0"
+             class="step-target-weight__difference">
+        <span class="step-target-weight__difference-text">{{ differenceText() }}</span>
+      </aside>
+    }
+  </fieldset>
+
+  <footer class="step-target-weight__footer">
+    <app-button
+      (click)="onContinue()"
+      [habilitado]="!canContinue()"
+      tamanio="lg"
+      variante="primary">
+      Continuar
+    </app-button>
+  </footer>
+
+</article>

@@ -15,8 +15,7 @@
 
   <!-- Botones de acción (desktop) -->
   <section class="header__actions header__actions--desktop">
-    <app-button enlace="/login" tamanio="sm" variante="secondary">Inicia Sesión</app-button>
-    <app-button enlace="/registro" tamanio="sm" variante="primary">Inscríbete</app-button>
+    <app-button enlace="/onboarding" tamanio="sm" variante="primary">Inscríbete</app-button>
   </section>
 
   <!-- Botón Hamburguesa (solo móvil) -->
@@ -79,10 +78,7 @@
 
     <!-- Botones de acción móvil -->
     <section class="menu-movil__actions">
-      <app-button (click)="cerrarMenu()" [fullWidth]="true" enlace="/login" tamanio="md" variante="secondary">
-        Inicia Sesión
-      </app-button>
-      <app-button (click)="cerrarMenu()" [fullWidth]="true" enlace="/registro" tamanio="md" variante="primary">
+      <app-button (click)="cerrarMenu()" [fullWidth]="true" enlace="/onboarding" tamanio="md" variante="primary">
         Inscríbete
       </app-button>
     </section>

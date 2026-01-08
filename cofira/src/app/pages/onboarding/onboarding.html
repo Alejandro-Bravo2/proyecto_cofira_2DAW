@@ -1,0 +1,91 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     ONBOARDING PAGE
+     ═══════════════════════════════════════════════════════════════════════════
+     Pagina principal del flujo de onboarding
+
+     NOMENCLATURA BEM:
+     Block: .onboarding
+     Elements: __header, __progress, __content, __navigation
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<main class="onboarding">
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       HEADER CON PROGRESO
+       ═══════════════════════════════════════════════════════════════════════ -->
+  @if (showProgress()) {
+    <header class="onboarding__header">
+      <nav class="onboarding__nav">
+        @if (canGoBack()) {
+          <button
+            (click)="previousStep()"
+            aria-label="Volver al paso anterior"
+            class="onboarding__btn-back"
+            type="button">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+          </button>
+        }
+      </nav>
+
+      <section class="onboarding__progress">
+        <app-progress-bar
+          [currentStep]="currentStep()"
+          [totalSteps]="totalSteps()">
+        </app-progress-bar>
+      </section>
+    </header>
+  }
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       CONTENIDO DEL PASO ACTUAL
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="onboarding__content">
+    @switch (currentStep()) {
+      @case (0) {
+        <app-step-welcome (continuar)="nextStep()"></app-step-welcome>
+      }
+      @case (1) {
+        <app-step-goal (continuar)="nextStep()"></app-step-goal>
+      }
+      @case (2) {
+        <app-step-gender (continuar)="nextStep()"></app-step-gender>
+      }
+      @case (3) {
+        <app-step-birthdate (continuar)="nextStep()"></app-step-birthdate>
+      }
+      @case (4) {
+        <app-step-measurements (continuar)="nextStep()"></app-step-measurements>
+      }
+      @case (5) {
+        <app-step-target-weight (continuar)="nextStep()"></app-step-target-weight>
+      }
+      @case (6) {
+        <app-step-activity-level (continuar)="nextStep()"></app-step-activity-level>
+      }
+      @case (7) {
+        <app-step-fitness-level (continuar)="nextStep()"></app-step-fitness-level>
+      }
+      @case (8) {
+        <app-step-training-days (continuar)="nextStep()"></app-step-training-days>
+      }
+      @case (9) {
+        <app-step-diet-type (continuar)="nextStep()"></app-step-diet-type>
+      }
+      @case (10) {
+        <app-step-meals (continuar)="nextStep()"></app-step-meals>
+      }
+      @case (11) {
+        <app-step-allergies (continuar)="nextStep()"></app-step-allergies>
+      }
+      @case (12) {
+        <app-step-equipment (continuar)="nextStep()"></app-step-equipment>
+      }
+      @case (13) {
+        <app-step-results (continuar)="nextStep()"></app-step-results>
+      }
+    }
+  </section>
+
+</main>

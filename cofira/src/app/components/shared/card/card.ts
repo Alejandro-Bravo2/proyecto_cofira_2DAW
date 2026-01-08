@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import {Router} from '@angular/router';
 import {Button} from '../button/button';
 
 @Component({
@@ -7,8 +8,9 @@ import {Button} from '../button/button';
   templateUrl: './card.html',
   styleUrl: './card.scss',
 })
-
 export class Card {
+  private readonly router = inject(Router);
+
   @Input() title: string = 'Cuota anual';
   @Input() ventajas: string[] = [
     'Máximo de 7 comidas diarias',
@@ -28,7 +30,7 @@ export class Card {
   }
 
   onSubscribe(): void {
-    alert("Gracías por subscribirte al plan: " + this.title);
+    this.router.navigate(['/onboarding']);
   }
 }
 

@@ -1,0 +1,75 @@
+/**
+ * CHIP COMPONENT STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos de las etiquetas de elementos seleccionados
+ *
+ * NOMENCLATURA BEM:
+ * Block: .chip
+ * Elements: __texto, __btn-eliminar
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../styles/00-settings/css-variables';
+@import '../../../../styles/01-tools/mixins';
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-size-xs);
+  padding: var(--spacing-size-xs) var(--spacing-size-s);
+  background-color: var(--bg-surface);
+  border: var(--border-width-normal) solid var(--border-color-light);
+  border-radius: var(--radius-full);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+
+  &:hover {
+    border-color: var(--amarillo-normal);
+    background-color: var(--amarillo-light);
+  }
+}
+
+.chip--selected {
+  background-color: var(--amarillo-normal);
+  border-color: var(--amarillo-dark);
+  color: var(--negro-normal);
+  font-weight: var(--font-weight-semibold);
+}
+
+.chip__texto {
+  line-height: 1;
+}
+
+.chip__btn-eliminar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  color: var(--gris-normal);
+  transition: all var(--duration-fast) ease;
+
+  &:hover {
+    background-color: var(--amarillo-normal);
+    color: var(--negro-normal);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.125rem var(--amarillo-normal);
+  }
+
+  svg {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+}

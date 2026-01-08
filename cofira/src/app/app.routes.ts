@@ -5,6 +5,7 @@ import {Gimnasio} from './pages/gimnasio/gimnasio';
 import {Alimentacion} from './pages/alimentacion/alimentacion';
 import {Seguimiento} from './pages/seguimiento/seguimiento';
 import {StyleGuide} from './pages/style-guide/style-guide';
+import {Onboarding} from './pages/onboarding/onboarding';
 
 // Páginas legales
 import {Privacidad} from './pages/privacidad/privacidad';
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'seguimiento', component: Seguimiento },
   { path: 'gimnasio', component: Gimnasio },
   { path: 'style-guide', component: StyleGuide },
+  {path: 'onboarding', component: Onboarding},
 
   // Páginas legales
   {path: 'privacidad', component: Privacidad},

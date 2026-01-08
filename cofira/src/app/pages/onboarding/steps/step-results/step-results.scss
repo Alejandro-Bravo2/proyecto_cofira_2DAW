@@ -1,0 +1,217 @@
+/**
+ * STEP RESULTS STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos del paso de resultados finales
+ *
+ * NOMENCLATURA BEM:
+ * Block: .step-results
+ * Elements: __header, __titulo, __subtitulo, __content, __card, __grid, __macros, __footer
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../../styles/00-settings/css-variables';
+@import '../../../../../styles/01-tools/mixins';
+
+.step-results {
+  @include flex-center;
+  flex-direction: column;
+  gap: var(--spacing-size-xl);
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: var(--spacing-size-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LOADING & ERROR STATES
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-results__loading,
+.step-results__error {
+  @include flex-center;
+  min-height: 20rem;
+  text-align: center;
+}
+
+.step-results__loading-text {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  color: var(--gris-normal);
+}
+
+.step-results__error-text {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--rojo-normal);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-results__header {
+  text-align: center;
+}
+
+.step-results__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.step-results__subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--gris-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTENT
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-results__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-l);
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARDS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-results__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-xs);
+  padding: var(--spacing-size-l);
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  text-align: center;
+}
+
+.step-results__card--highlight {
+  background-color: var(--amarillo-light);
+  border: var(--border-width-thick) solid var(--amarillo-normal);
+}
+
+.step-results__label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--gris-normal);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.step-results__value {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  line-height: 1;
+}
+
+.step-results__value--small {
+  font-size: var(--font-size-2xl);
+}
+
+.step-results__unit {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--gris-normal);
+}
+
+.step-results__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-size-m);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MACROS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-results__macros {
+  padding: var(--spacing-size-l);
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+}
+
+.step-results__macros-title {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-m) 0;
+  text-align: center;
+}
+
+.step-results__macros-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-size-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step-results__macro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-xxs);
+  padding: var(--spacing-size-m);
+  border-radius: var(--radius-md);
+}
+
+.step-results__macro--protein {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.step-results__macro--carbs {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.step-results__macro--fat {
+  background-color: rgba(234, 179, 8, 0.1);
+}
+
+.step-results__macro--fiber {
+  background-color: rgba(34, 197, 94, 0.1);
+}
+
+.step-results__macro-label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--gris-normal);
+}
+
+.step-results__macro-value {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-results__footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--spacing-size-l);
+}

@@ -1,0 +1,69 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STEP MEASUREMENTS - Altura y peso actual
+     ═══════════════════════════════════════════════════════════════════════════
+     Paso para ingresar medidas corporales
+
+     NOMENCLATURA BEM:
+     Block: .step-measurements
+     Elements: __header, __titulo, __subtitulo, __form, __input-group, __input-wrapper, __label, __input, __unit, __footer
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<article class="step-measurements">
+
+  <header class="step-measurements__header">
+    <h2 class="step-measurements__titulo">Tus medidas actuales</h2>
+    <p class="step-measurements__subtitulo">
+      Necesitamos estos datos para calcular tu metabolismo
+    </p>
+  </header>
+
+  <fieldset class="step-measurements__form">
+    <section class="step-measurements__input-group">
+
+      <label class="step-measurements__input-wrapper">
+        <span class="step-measurements__label">Altura</span>
+        <span class="step-measurements__input-container">
+          <input
+            (input)="onHeightChange($any($event.target).value)"
+            [value]="heightCm()"
+            class="step-measurements__input"
+            max="250"
+            min="100"
+            placeholder="170"
+            required
+            type="number">
+          <span class="step-measurements__unit">cm</span>
+        </span>
+      </label>
+
+      <label class="step-measurements__input-wrapper">
+        <span class="step-measurements__label">Peso actual</span>
+        <span class="step-measurements__input-container">
+          <input
+            (input)="onWeightChange($any($event.target).value)"
+            [value]="currentWeightKg()"
+            class="step-measurements__input"
+            max="300"
+            min="30"
+            placeholder="70"
+            required
+            step="0.1"
+            type="number">
+          <span class="step-measurements__unit">kg</span>
+        </span>
+      </label>
+
+    </section>
+  </fieldset>
+
+  <footer class="step-measurements__footer">
+    <app-button
+      (click)="onContinue()"
+      [habilitado]="!canContinue()"
+      tamanio="lg"
+      variante="primary">
+      Continuar
+    </app-button>
+  </footer>
+
+</article>

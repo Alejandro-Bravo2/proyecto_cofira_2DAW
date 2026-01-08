@@ -1,0 +1,156 @@
+/**
+ * STEP TARGET WEIGHT STYLES
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos del paso de peso objetivo
+ *
+ * NOMENCLATURA BEM:
+ * Block: .step-target-weight
+ * Elements: __header, __titulo, __subtitulo, __form, __input-wrapper, __label, __input, __unit, __difference, __footer
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../../../styles/00-settings/css-variables';
+@import '../../../../../styles/01-tools/mixins';
+
+.step-target-weight {
+  @include flex-center;
+  flex-direction: column;
+  gap: var(--spacing-size-xl);
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: var(--spacing-size-xl);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-target-weight__header {
+  text-align: center;
+}
+
+.step-target-weight__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-s) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.step-target-weight__subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+  color: var(--gris-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FORM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-target-weight__form {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.step-target-weight__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xs);
+  width: 100%;
+}
+
+.step-target-weight__label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+}
+
+.step-target-weight__input-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+  width: 100%;
+}
+
+.step-target-weight__input {
+  flex: 1;
+  padding: var(--spacing-size-m);
+  background-color: var(--bg-input);
+  border: var(--border-width-normal) solid var(--border-color-light);
+  border-radius: var(--radius-md);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  transition: border-color var(--duration-fast) ease;
+
+  &:focus {
+    outline: none;
+    border-color: var(--amarillo-normal);
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  -moz-appearance: textfield;
+}
+
+.step-target-weight__unit {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--gris-normal);
+  min-width: 2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   DIFFERENCE INDICATOR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-target-weight__difference {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-size-m);
+  margin-top: var(--spacing-size-m);
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-md);
+}
+
+.step-target-weight__difference--positive {
+  background-color: var(--verde-light);
+}
+
+.step-target-weight__difference--negative {
+  background-color: var(--rojo-light);
+}
+
+.step-target-weight__difference-text {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.step-target-weight__footer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: var(--spacing-size-l);
+}

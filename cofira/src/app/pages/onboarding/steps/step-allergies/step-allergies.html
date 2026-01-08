@@ -1,0 +1,50 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STEP ALLERGIES - Alergias alimentarias
+     ═══════════════════════════════════════════════════════════════════════════
+     Paso para seleccionar alergias alimentarias
+
+     NOMENCLATURA BEM:
+     Block: .step-allergies
+     Elements: __header, __titulo, __subtitulo, __grid, __footer, __actions
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<article class="step-allergies">
+
+  <header class="step-allergies__header">
+    <h2 class="step-allergies__titulo">Tienes alguna alergia?</h2>
+    <p class="step-allergies__subtitulo">
+      Selecciona todas las que apliquen (opcional)
+    </p>
+  </header>
+
+  <section class="step-allergies__grid">
+    @for (option of options; track option.id) {
+      <app-chip
+        (click)="onToggle(option.id)"
+        [seleccionado]="isSelected(option.id)"
+        [texto]="option.label">
+      </app-chip>
+    }
+  </section>
+
+  <footer class="step-allergies__footer">
+    <nav class="step-allergies__actions">
+      <app-button
+        (click)="onSkip()"
+        tamanio="lg"
+        variante="secondary">
+        No tengo alergias
+      </app-button>
+
+      @if (selectedAllergies().length > 0) {
+        <app-button
+          (click)="onContinue()"
+          tamanio="lg"
+          variante="primary">
+          Continuar ({{ selectedAllergies().length }} seleccionadas)
+        </app-button>
+      }
+    </nav>
+  </footer>
+
+</article>

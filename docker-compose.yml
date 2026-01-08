@@ -1,6 +1,51 @@
 services:
   # ================================
-  # Servicio de DESARROLLO
+  # BASE DE DATOS - PostgreSQL
+  # ================================
+  postgres:
+    image: postgres:16-alpine
+    container_name: cofira-postgres
+    environment:
+      POSTGRES_DB: cofira
+      POSTGRES_USER: cofira_user
+      POSTGRES_PASSWORD: cofira_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U cofira_user -d cofira" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    profiles:
+      - dev
+      - prod
+
+  # ================================
+  # BACKEND - Spring Boot
+  # ================================
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cofira-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/cofira
+      SPRING_DATASOURCE_USERNAME: cofira_user
+      SPRING_DATASOURCE_PASSWORD: cofira_pass
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles:
+      - dev
+      - prod
+
+  # ================================
+  # FRONTEND - Servicio de DESARROLLO
   # ================================
   cofira-dev:
     build:
@@ -19,11 +64,13 @@ services:
       - ./cofira/tsconfig.app.json:/app/tsconfig.app.json
     environment:
       - NODE_ENV=development
+    depends_on:
+      - backend
     profiles:
       - dev
 
   # ================================
-  # Servicio de PRODUCCIÓN
+  # FRONTEND - Servicio de PRODUCCIÓN
   # ================================
   cofira-prod:
     build:
@@ -36,5 +83,10 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
+    depends_on:
+      - backend
     profiles:
       - prod
+
+volumes:
+  postgres_data:

@@ -1,0 +1,43 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STEP DIET TYPE - Tipo de dieta
+     ═══════════════════════════════════════════════════════════════════════════
+     Paso para seleccionar tipo de dieta
+
+     NOMENCLATURA BEM:
+     Block: .step-diet-type
+     Elements: __header, __titulo, __subtitulo, __opciones, __footer
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<article class="step-diet-type">
+
+  <header class="step-diet-type__header">
+    <h2 class="step-diet-type__titulo">Cual es tu tipo de dieta?</h2>
+    <p class="step-diet-type__subtitulo">
+      Esto nos ayuda a personalizar tus recomendaciones
+    </p>
+  </header>
+
+  <ul class="step-diet-type__opciones">
+    @for (option of options; track option.value) {
+      <li>
+        <app-option-card
+          (seleccionar)="onSelect($any(option.value))"
+          [descripcion]="option.description || ''"
+          [seleccionado]="selectedDiet() === option.value"
+          [titulo]="option.label">
+        </app-option-card>
+      </li>
+    }
+  </ul>
+
+  <footer class="step-diet-type__footer">
+    <app-button
+      (click)="onContinue()"
+      [habilitado]="!canContinue()"
+      tamanio="lg"
+      variante="primary">
+      Continuar
+    </app-button>
+  </footer>
+
+</article>

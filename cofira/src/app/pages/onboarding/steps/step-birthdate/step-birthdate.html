@@ -1,0 +1,44 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     STEP BIRTHDATE - Fecha de nacimiento
+     ═══════════════════════════════════════════════════════════════════════════
+     Paso para ingresar la fecha de nacimiento
+
+     NOMENCLATURA BEM:
+     Block: .step-birthdate
+     Elements: __header, __titulo, __subtitulo, __form, __input-wrapper, __label, __input, __footer
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<article class="step-birthdate">
+
+  <header class="step-birthdate__header">
+    <h2 class="step-birthdate__titulo">Cuando naciste?</h2>
+    <p class="step-birthdate__subtitulo">
+      Tu edad nos ayuda a calcular tu metabolismo basal
+    </p>
+  </header>
+
+  <fieldset class="step-birthdate__form">
+    <label class="step-birthdate__input-wrapper">
+      <span class="step-birthdate__label">Fecha de nacimiento</span>
+      <input
+        (change)="onDateChange($any($event.target).value)"
+        [max]="maxDate"
+        [min]="minDate"
+        [value]="birthDate()"
+        class="step-birthdate__input"
+        required
+        type="date">
+    </label>
+  </fieldset>
+
+  <footer class="step-birthdate__footer">
+    <app-button
+      (click)="onContinue()"
+      [habilitado]="!canContinue()"
+      tamanio="lg"
+      variante="primary">
+      Continuar
+    </app-button>
+  </footer>
+
+</article>

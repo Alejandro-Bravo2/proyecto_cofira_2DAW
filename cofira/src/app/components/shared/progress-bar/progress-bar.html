@@ -1,0 +1,19 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     PROGRESS BAR COMPONENT
+     ═══════════════════════════════════════════════════════════════════════════
+     Barra de progreso para el onboarding
+
+     NOMENCLATURA BEM:
+     Block: .progress-bar
+     Elements: __track, __fill, __label
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<figure [attr.aria-valuenow]="progress()" aria-valuemax="100" aria-valuemin="0" class="progress-bar" role="progressbar">
+  <figcaption [class.progress-bar__label--hidden]="!showLabel()" class="progress-bar__label">
+    {{ stepText() }}
+  </figcaption>
+
+  <meter class="progress-bar__track">
+    <span [style.width.%]="progress()" class="progress-bar__fill"></span>
+  </meter>
+</figure>
