@@ -36,7 +36,7 @@ export class OnboardingService {
   // ================================================================
   // COMPUTED - Valores derivados
   // ================================================================
-  private readonly TOTAL_STEPS = 14;
+  private readonly TOTAL_STEPS = 15;
   readonly progress = computed(() => {
     return Math.round((this.completedSteps().length / this.TOTAL_STEPS) * 100);
   });
@@ -223,7 +223,8 @@ export class OnboardingService {
       10: 'Comidas al dia',
       11: 'Alergias',
       12: 'Equipamiento',
-      13: 'Resultados'
+      13: 'Resultados',
+      14: 'Registro'
     };
 
     return titles[step] || '';

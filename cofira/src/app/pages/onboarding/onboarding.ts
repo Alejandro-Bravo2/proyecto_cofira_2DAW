@@ -19,6 +19,7 @@ import {StepMeals} from './steps/step-meals/step-meals';
 import {StepAllergies} from './steps/step-allergies/step-allergies';
 import {StepEquipment} from './steps/step-equipment/step-equipment';
 import {StepResults} from './steps/step-results/step-results';
+import {StepRegister} from './steps/step-register/step-register';
 
 @Component({
   selector: 'app-onboarding',
@@ -38,7 +39,8 @@ import {StepResults} from './steps/step-results/step-results';
     StepMeals,
     StepAllergies,
     StepEquipment,
-    StepResults
+    StepResults,
+    StepRegister
   ],
   templateUrl: './onboarding.html',
   styleUrl: './onboarding.scss'

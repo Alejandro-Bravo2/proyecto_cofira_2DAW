@@ -4,7 +4,7 @@
 </ng-template>
 
 @if (enlace) {
-  <a [class]="obtenerClasesBoton()" [routerLink]="enlace">
+  <a (click)="onClick()" [class]="obtenerClasesBoton()" [routerLink]="enlace">
     <ng-container *ngTemplateOutlet="contenido"></ng-container>
   </a>
 } @else if (href) {
@@ -12,7 +12,7 @@
     <ng-container *ngTemplateOutlet="contenido"></ng-container>
   </a>
 } @else {
-  <button [class]="obtenerClasesBoton()" [disabled]="habilitado" [type]="tipo">
+  <button (click)="onClick()" [class]="obtenerClasesBoton()" [disabled]="habilitado" [type]="tipo">
     <ng-container *ngTemplateOutlet="contenido"></ng-container>
   </button>
 }

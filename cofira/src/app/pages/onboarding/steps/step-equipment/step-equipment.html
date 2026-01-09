@@ -30,7 +30,7 @@
   <footer class="step-equipment__footer">
     <nav class="step-equipment__actions">
       <app-button
-        (click)="onSkip()"
+        (clicked)="onSkip()"
         tamanio="lg"
         variante="secondary">
         Solo peso corporal
@@ -38,7 +38,7 @@
 
       @if (selectedEquipment().length > 0) {
         <app-button
-          (click)="onContinue()"
+          (clicked)="onContinue()"
           tamanio="lg"
           variante="primary">
           Continuar ({{ selectedEquipment().length }} seleccionados)

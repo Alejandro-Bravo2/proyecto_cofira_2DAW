@@ -31,7 +31,6 @@ public class Usuario {
     private String nombre;
 
     @NotNull
-    @Column(unique = true)
     private String username;
 
     @NotNull

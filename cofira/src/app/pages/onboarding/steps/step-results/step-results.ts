@@ -1,5 +1,4 @@
 import {Component, computed, EventEmitter, inject, OnInit, Output, signal} from '@angular/core';
-import {Router} from '@angular/router';
 import {OnboardingService} from '../../../../services/onboarding.service';
 import {Button} from '../../../../components/shared/button/button';
 import type {NutritionTargets} from '../../../../models/onboarding.model';
@@ -33,16 +32,14 @@ export class StepResults implements OnInit {
   });
   private readonly onboardingService = inject(OnboardingService);
   readonly formData = computed(() => this.onboardingService.formData());
-  private readonly router = inject(Router);
 
   ngOnInit(): void {
     this.calculateResults();
   }
 
   onComplete(): void {
-    // Aqui se enviaria al backend cuando este disponible
-    this.onboardingService.clearProgress();
-    this.router.navigate(['/']);
+    // Emitir evento para pasar al paso de registro
+    this.continuar.emit();
   }
 
   private calculateResults(): void {

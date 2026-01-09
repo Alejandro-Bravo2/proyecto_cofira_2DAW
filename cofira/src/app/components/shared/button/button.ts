@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgTemplateOutlet} from '@angular/common';
 import {RouterLink} from '@angular/router';
 
@@ -23,11 +23,19 @@ export class Button {
 
   @Input() fullWidth: boolean = false;
 
+  @Output() clicked = new EventEmitter<void>();
+
   obtenerClasesBoton(): string {
     let clases = `button button--${this.variante} button--${this.tamanio}`;
     if (this.fullWidth) {
       clases += ' button--full-width';
     }
     return clases;
+  }
+
+  onClick(): void {
+    if (!this.habilitado) {
+      this.clicked.emit();
+    }
   }
 }

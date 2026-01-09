@@ -30,7 +30,7 @@
   <footer class="step-allergies__footer">
     <nav class="step-allergies__actions">
       <app-button
-        (click)="onSkip()"
+        (clicked)="onSkip()"
         tamanio="lg"
         variante="secondary">
         No tengo alergias
@@ -38,7 +38,7 @@
 
       @if (selectedAllergies().length > 0) {
         <app-button
-          (click)="onContinue()"
+          (clicked)="onContinue()"
           tamanio="lg"
           variante="primary">
           Continuar ({{ selectedAllergies().length }} seleccionadas)

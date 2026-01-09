@@ -58,6 +58,27 @@
   --gris-dark: #2f3439;
   --gris-dark-hover: #26292e;
   --gris-dark-active: #1c1f22;
+  --gris-light: #b8b8b8;
+
+
+  /* ============================================
+     COLORES - VERDE
+     ============================================ */
+  --verde-normal: #22c55e;
+  --verde-normal-hover: #16a34a;
+  --verde-normal-active: #15803d;
+  --verde-dark: #166534;
+  --verde-light: #86efac;
+
+
+  /* ============================================
+     COLORES - ROJO
+     ============================================ */
+  --rojo-normal: #ef4444;
+  --rojo-normal-hover: #dc2626;
+  --rojo-normal-active: #b91c1c;
+  --rojo-dark: #991b1b;
+  --rojo-light: #fca5a5;
 
 
   /* ============================================
@@ -219,11 +240,20 @@
   --bg-card: #f5f5f5;
   --bg-card-alt: #dddddd;
   --bg-input: #f5f5f5;
+  --bg-surface: #f0f0f0;
+  --blanco: #ffffff;
   --text-primary: #110e10;
   --text-secondary: #3f454c;
   --text-muted: #939393;
   --border-color: #b8b8b8;
   --border-color-light: #dddddd;
+
+  /* ============================================
+     RADIUS ADICIONALES
+     ============================================ */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
 }
 
 
@@ -237,6 +267,8 @@ body.modo-oscuro {
   --bg-card: #3f454c;
   --bg-card-alt: #26292e;
   --bg-input: #3f454c;
+  --bg-surface: #393e44;
+  --blanco: #f5f5f5;
   --text-primary: #f5f5f5;
   --text-secondary: #b8b8b8;
   --text-muted: #939393;

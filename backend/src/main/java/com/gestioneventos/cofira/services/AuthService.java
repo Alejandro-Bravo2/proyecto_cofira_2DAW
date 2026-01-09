@@ -79,10 +79,6 @@ public class AuthService {
 
     @Transactional
     public AuthResponseDTO register(RegisterRequestDTO registerRequest) {
-        if (usuarioRepository.existsByUsername(registerRequest.getUsername())) {
-            throw new RecursoDuplicadoException("Error: El username ya está en uso!");
-        }
-
         if (usuarioRepository.existsByEmail(registerRequest.getEmail())) {
             throw new RecursoDuplicadoException("Error: El email ya está en uso!");
         }
@@ -150,5 +146,9 @@ public class AuthService {
     @Transactional
     public void cleanupExpiredTokens() {
         tokenRevocadoRepository.deleteExpiredTokens(LocalDateTime.now());
+    }
+
+    public boolean isEmailAvailable(String email) {
+        return !usuarioRepository.existsByEmail(email);
     }
 }

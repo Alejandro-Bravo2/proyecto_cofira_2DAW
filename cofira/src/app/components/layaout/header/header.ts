@@ -1,6 +1,7 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, inject, ViewEncapsulation} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {Button} from '../../shared/button/button';
+import {AuthService} from '../../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -10,6 +11,12 @@ import {Button} from '../../shared/button/button';
   encapsulation: ViewEncapsulation.None,
 })
 export class Header {
+  private readonly authService = inject(AuthService);
+
+  // Signals de autenticación
+  readonly isAuthenticated = this.authService.isAuthenticated;
+  readonly userNombre = this.authService.userNombre;
+
   menuAbierto = false;
   menuCuentaAbierto = false;
   modoOscuro = false;
@@ -33,5 +40,10 @@ export class Header {
   toggleModoOscuro() {
     this.modoOscuro = !this.modoOscuro;
     document.body.classList.toggle('modo-oscuro', this.modoOscuro);
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.cerrarMenuCuenta();
   }
 }

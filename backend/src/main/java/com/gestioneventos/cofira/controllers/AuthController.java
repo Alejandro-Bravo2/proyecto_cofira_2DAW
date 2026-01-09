@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController implements AuthControllerApi {
@@ -44,5 +46,11 @@ public class AuthController implements AuthControllerApi {
             return ResponseEntity.ok().body("Logout exitoso");
         }
         return ResponseEntity.badRequest().body("Token no proporcionado");
+    }
+
+    @GetMapping("/check-email")
+    public ResponseEntity<Map<String, Boolean>> checkEmailAvailable(@RequestParam String email) {
+        boolean available = authService.isEmailAvailable(email);
+        return ResponseEntity.ok(Map.of("available", available));
     }
 }

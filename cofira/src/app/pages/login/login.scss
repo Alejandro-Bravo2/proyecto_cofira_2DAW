@@ -1,0 +1,280 @@
+/**
+ * LOGIN PAGE STYLES - Estilo Onboarding
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Estilos limpios como el onboarding (sin tarjeta flotante)
+ *
+ * NOMENCLATURA BEM:
+ * Block: .login
+ * Elements: __header, __titulo, __subtitulo, __form, __fieldset, __field,
+ *           __field-icon, __input, __toggle-password, __error, __footer
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+@import '../../../styles/00-settings/css-variables';
+@import '../../../styles/01-tools/mixins';
+
+// Variables específicas
+$login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CONTAINER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.login {
+  @include flex-center;
+  flex-direction: column;
+  gap: var(--spacing-size-2xl);
+  width: 100%;
+  max-width: 26rem;
+  margin: 0 auto;
+  padding: var(--spacing-size-xl);
+  min-height: calc(100vh - 10rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.login__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--spacing-size-xs);
+  margin-bottom: 1rem;
+}
+
+.login__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0;
+  letter-spacing: -0.02em;
+
+  @include responsive-down('sm') {
+    font-size: var(--font-size-lg);
+  }
+}
+
+.login__subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  color: var(--gris-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FORM
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-l);
+  width: 100%;
+}
+
+.login__fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FIELDS - Con iconos integrados
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.login__field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.login__field-icon {
+  position: absolute;
+  left: var(--spacing-size-m);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gris-normal);
+  transition: color $login-transition;
+  pointer-events: none;
+  z-index: 1;
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+.login__input {
+  width: 100%;
+  padding: var(--spacing-size-m) var(--spacing-size-m) var(--spacing-size-m) 3rem;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--negro-normal);
+  background-color: var(--bg-surface);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-lg);
+  transition: all $login-transition;
+
+  &::placeholder {
+    color: var(--gris-normal);
+    font-weight: var(--font-weight-regular);
+  }
+
+  &:hover {
+    background-color: var(--blanco);
+    border-color: var(--gris-light);
+  }
+
+  &:focus {
+    outline: none;
+    background-color: var(--blanco);
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 0 0 4px rgba(255, 211, 0, 0.12);
+  }
+
+  // Input de password con espacio para toggle
+  &--password {
+    padding-right: 3rem;
+  }
+}
+
+// Cuando el input tiene focus, activar icono
+.login__field:focus-within .login__field-icon {
+  color: var(--amarillo-dark);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TOGGLE PASSWORD
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.login__toggle-password {
+  position: absolute;
+  right: var(--spacing-size-s);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  color: var(--gris-normal);
+  padding: 0;
+  transition: all $login-transition;
+  z-index: 1;
+
+  &:hover {
+    color: var(--negro-normal);
+    background-color: var(--bg-surface);
+  }
+
+  &:focus {
+    outline: none;
+    color: var(--amarillo-dark);
+  }
+
+  svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ERROR
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.login__error {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+  padding: var(--spacing-size-m);
+  background-color: rgba(239, 68, 68, 0.06);
+  border-radius: var(--radius-lg);
+
+  svg {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--rojo-normal);
+  }
+}
+
+.login__error-text {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--rojo-normal);
+  margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.login__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-l);
+  width: 100%;
+}
+
+.login__alt-action {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-normal);
+  margin: 0;
+  text-align: center;
+}
+
+.login__link {
+  color: var(--amarillo-dark);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  transition: color $login-transition;
+  margin-left: var(--spacing-size-xs);
+
+  &:hover {
+    color: var(--negro-normal);
+  }
+
+  &:focus {
+    outline: 2px solid var(--amarillo-normal);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LOADING SPINNER
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.login__loading {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+}
+
+.login__spinner {
+  width: 1.25rem;
+  height: 1.25rem;
+  animation: login-spin 0.8s linear infinite;
+}
+
+@keyframes login-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
