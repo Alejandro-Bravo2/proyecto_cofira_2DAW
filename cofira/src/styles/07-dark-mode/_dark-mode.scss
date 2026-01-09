@@ -119,58 +119,77 @@ body.modo-oscuro {
 
      ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* --- Nav container --- */
-  app-header nav {
-    background: var(--oscuro-superficie-fondo);
-    border-bottom: 0.0625rem solid var(--oscuro-cabecera-borde);
+  /* --- Header principal con glassmorphism oscuro --- */
+  app-header .header {
+    background: rgba(17, 14, 16, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05),
+    0 4px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 211, 0, 0.1);
+  }
+
+  /* --- Logo con brillo sutil --- */
+  app-header .header__logo {
+    filter: brightness(1.1);
+  }
+
+  app-header .header__logo:hover {
+    filter: brightness(1.2);
   }
 
   /* --- Enlaces de navegación --- */
-  app-header .enlaces a {
+  app-header .header__link {
     color: var(--oscuro-cabecera-enlace);
+    position: relative;
   }
 
-  app-header .enlaces a:hover {
+  app-header .header__link:hover {
     color: var(--oscuro-cabecera-enlace-hover);
   }
 
-  /* --- Buscador --- */
-  app-header .buscador__input {
-    background: var(--oscuro-cabecera-buscador-fondo);
-    color: var(--oscuro-cabecera-buscador-texto);
-    border: 0.0625rem solid var(--oscuro-cabecera-boton-primario-fondo);
+  app-header .header__link::after {
+    background: var(--oscuro-cabecera-enlace-hover) !important;
   }
 
-  app-header .buscador__input::placeholder {
-    color: var(--oscuro-cabecera-buscador-placeholder);
+  /* --- Botón de perfil de usuario --- */
+  app-header .header__perfil {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
   }
 
-  app-header .buscador__icono {
-    color: var(--oscuro-cabecera-buscador-icono);
+  app-header .header__perfil:hover {
+    background: rgba(255, 211, 0, 0.1);
+    border-color: var(--oscuro-cabecera-enlace-hover);
   }
 
-  /* --- Botón Inscríbete (primario/amarillo) --- */
-  app-header .boton-inscribete {
-    background: var(--oscuro-cabecera-boton-primario-fondo);
-    color: var(--oscuro-cabecera-boton-primario-texto);
+  app-header .header__perfil-icono {
+    color: rgba(255, 255, 255, 0.7);
   }
 
-  app-header .boton-inscribete:hover {
-    background: var(--oscuro-cabecera-boton-primario-hover);
-    color: var(--oscuro-cabecera-boton-primario-texto);
+  app-header .header__perfil:hover .header__perfil-icono {
+    color: var(--oscuro-cabecera-enlace-hover);
   }
 
-  /* --- Botón Cuenta (secundario/outline) --- */
-  app-header .boton-cuenta {
-    background: var(--oscuro-cabecera-boton-secundario-fondo);
-    border-color: var(--oscuro-cabecera-boton-secundario-borde);
-    color: var(--oscuro-cabecera-boton-secundario-texto);
+  app-header .header__perfil-nombre {
+    color: var(--oscuro-cabecera-enlace);
   }
 
-  app-header .boton-cuenta:hover {
-    background: var(--oscuro-cabecera-boton-secundario-hover-fondo);
-    border-color: var(--oscuro-cabecera-boton-secundario-hover-color);
-    color: var(--oscuro-cabecera-boton-secundario-hover-color);
+  app-header .header__perfil-chevron {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  app-header .header__perfil:hover .header__perfil-chevron {
+    color: var(--oscuro-cabecera-enlace-hover);
+  }
+
+  /* --- Hamburguesa móvil --- */
+  app-header .header__hamburguesa-linea {
+    background-color: var(--oscuro-hamburguesa-color);
+  }
+
+  app-header .header__hamburguesa:hover .header__hamburguesa-linea {
+    background-color: var(--oscuro-hamburguesa-hover);
   }
 
 
@@ -190,27 +209,47 @@ body.modo-oscuro {
 
      ═══════════════════════════════════════════════════════════════════════════ */
 
-  app-header .menu-cuenta {
-    background: var(--oscuro-menu-fondo);
-    border: 0.0625rem solid var(--oscuro-menu-borde);
-    box-shadow: 0 0.5rem 1.5rem var(--oscuro-menu-sombra);
+  /* --- Dropdown de cuenta --- */
+  app-header .header__dropdown {
+    background: rgba(25, 22, 24, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 211, 0, 0.05);
   }
 
-  app-header .menu-cuenta__item {
+  app-header .header__dropdown-item {
     color: var(--oscuro-menu-item-texto);
   }
 
-  app-header .menu-cuenta__item:hover {
-    background: var(--oscuro-menu-item-hover-fondo);
+  app-header .header__dropdown-item svg {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  app-header .header__dropdown-item:hover {
+    background: rgba(255, 211, 0, 0.1);
     color: var(--oscuro-menu-item-hover-texto);
   }
 
-  app-header .menu-cuenta__icono {
-    color: var(--oscuro-menu-icono);
+  app-header .header__dropdown-item:hover svg {
+    color: var(--oscuro-menu-item-hover-texto);
   }
 
-  app-header .menu-cuenta__item:hover .menu-cuenta__icono {
-    color: var(--oscuro-menu-item-hover-texto);
+  app-header .header__dropdown-item--logout {
+    color: #ef4444;
+  }
+
+  app-header .header__dropdown-item--logout svg {
+    color: #ef4444;
+  }
+
+  app-header .header__dropdown-item--logout:hover {
+    background: rgba(239, 68, 68, 0.15);
+  }
+
+  app-header .header__dropdown-separator {
+    background: rgba(255, 255, 255, 0.1);
   }
 
 
@@ -224,24 +263,80 @@ body.modo-oscuro {
 
      ═══════════════════════════════════════════════════════════════════════════ */
 
+  /* --- Menú móvil con glassmorphism --- */
   app-header .menu-movil__contenido {
-    background: var(--oscuro-menu-movil-fondo);
+    background: rgba(17, 14, 16, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.5);
   }
 
   app-header .menu-movil__header {
-    background: var(--oscuro-menu-movil-cabecera-fondo);
+    background: rgba(30, 27, 29, 0.9);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+
+  app-header .menu-movil__header h2 {
+    color: #f5f5f5;
+  }
+
+  app-header .menu-movil__cerrar svg {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  app-header .menu-movil__cerrar:hover svg {
+    color: var(--oscuro-cabecera-enlace-hover);
+  }
+
+  app-header .menu-movil__link {
+    color: #f5f5f5;
+    border-left-color: transparent;
+  }
+
+  app-header .menu-movil__link svg {
+    fill: var(--oscuro-cabecera-enlace-hover);
   }
 
   app-header .menu-movil__link:hover {
-    background: var(--oscuro-menu-movil-enlace-hover);
+    background: rgba(255, 211, 0, 0.08);
+    border-left-color: var(--oscuro-cabecera-enlace-hover);
   }
 
-  /* --- Icono hamburguesa (las 3 líneas) --- */
-  app-header .hamburguesa__linea {
+  /* --- Usuario móvil --- */
+  app-header .menu-movil__usuario {
+    background: rgba(255, 211, 0, 0.08);
+    border: 1px solid rgba(255, 211, 0, 0.15);
+  }
+
+  app-header .menu-movil__usuario svg {
+    color: var(--oscuro-cabecera-enlace-hover);
+  }
+
+  app-header .menu-movil__usuario span {
+    color: #f5f5f5;
+  }
+
+  /* --- Actions móvil --- */
+  app-header .menu-movil__actions {
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
+
+  app-header .menu-movil__logout {
+    background: transparent;
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+  }
+
+  app-header .menu-movil__logout:hover {
+    background: rgba(239, 68, 68, 0.1);
+  }
+
+  /* --- Hamburguesa móvil --- */
+  app-header .header__hamburguesa-linea {
     background-color: var(--oscuro-hamburguesa-color);
   }
 
-  app-header .hamburguesa:hover .hamburguesa__linea {
+  app-header .header__hamburguesa:hover .header__hamburguesa-linea {
     background-color: var(--oscuro-hamburguesa-hover);
   }
 
@@ -969,26 +1064,924 @@ body.modo-oscuro {
     color: var(--oscuro-info-texto);
   }
 
-  /* --- FAQ Section --- */
+  /* --- FAQ Section - Diseño mejorado con mejor contraste --- */
   .contacto__faq {
-    background-color: var(--oscuro-info-seccion-alt-fondo);
+    background-color: var(--negro-dark);
   }
 
   .contacto__faq-titulo {
-    color: var(--oscuro-info-titulo);
+    color: var(--blanco-normal);
   }
 
   .contacto__faq-item {
-    background-color: var(--oscuro-info-card-fondo);
+    background-color: var(--gris-dark);
+    border: 1px solid var(--gris-normal);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.2s ease;
+  }
+
+  .contacto__faq-item:hover {
+    background-color: var(--gris-normal);
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .contacto__faq-item:hover .contacto__faq-pregunta {
+    color: var(--amarillo-normal);
+  }
+
+  .contacto__faq-item:hover .contacto__faq-respuesta {
+    color: var(--blanco-normal);
   }
 
   .contacto__faq-pregunta {
-    color: var(--oscuro-info-titulo);
+    color: var(--blanco-normal);
   }
 
   .contacto__faq-respuesta {
-    color: var(--oscuro-info-texto);
+    color: var(--blanco-dark);
   }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-HOME: PÁGINA PRINCIPAL
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Componente: app-home
+     Variables: --oscuro-home-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  app-home .home {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  app-home .home__hero {
+    background: var(--oscuro-home-hero-fondo);
+  }
+
+  app-home .home__titulo,
+  app-home .home__section-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-home .home__subtitulo,
+  app-home .home__section-subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Features */
+  app-home .home__feature,
+  app-home .home__caracteristica {
+    background-color: var(--oscuro-home-feature-fondo);
+  }
+
+  app-home .home__feature-titulo,
+  app-home .home__caracteristica-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-home .home__feature-descripcion,
+  app-home .home__caracteristica-descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-home .home__feature-icono,
+  app-home .home__caracteristica-icono {
+    background-color: var(--oscuro-home-feature-icono-fondo);
+  }
+
+  /* Testimonials */
+  app-home .home__testimonial {
+    background-color: var(--oscuro-home-testimonial-fondo);
+  }
+
+  app-home .home__testimonial-texto {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-home .home__testimonial-autor {
+    color: var(--oscuro-texto-principal);
+  }
+
+  /* Stats */
+  app-home .home__stat,
+  app-home .home__estadistica {
+    background-color: var(--oscuro-home-stat-fondo);
+  }
+
+  app-home .home__stat-valor,
+  app-home .home__estadistica-valor {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-home .home__stat-label,
+  app-home .home__estadistica-label {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* CTA Section */
+  app-home .home__cta {
+    background: var(--oscuro-home-cta-fondo);
+  }
+
+  /* Secciones alternadas */
+  app-home .home__section--alt {
+    background-color: var(--oscuro-home-seccion-alt);
+  }
+
+  /* Funcionalidades - CORREGIDO con selectores reales */
+  app-home .funcionalidades__contenedor {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  app-home .funcionalidades__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-home .funcionalidades__item {
+    background-color: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-home .funcionalidades__item:hover {
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-home .funcionalidades__icono {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-home .funcionalidades__texto {
+    color: var(--oscuro-texto-principal);
+  }
+
+  /* FAQ Section - Diseño mejorado con mejor contraste */
+  app-home .faq__section {
+    background-color: var(--negro-dark);
+  }
+
+  app-home .faq__titulo {
+    color: var(--blanco-normal);
+  }
+
+  app-home .faq__item {
+    background-color: var(--gris-dark);
+    border: 1px solid var(--gris-normal);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  app-home .faq__item:hover {
+    background-color: var(--gris-normal);
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  app-home .faq__item:hover .faq__pregunta {
+    color: var(--amarillo-normal);
+  }
+
+  app-home .faq__item:hover .faq__icono {
+    color: var(--amarillo-normal);
+  }
+
+  app-home .faq__item:hover .faq__icono::after {
+    border-color: var(--amarillo-normal) !important;
+  }
+
+  app-home .faq__item[open] {
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 4px 20px rgba(255, 211, 0, 0.15);
+  }
+
+  app-home .faq__pregunta {
+    color: var(--blanco-normal);
+  }
+
+  app-home .faq__pregunta:hover {
+    color: var(--amarillo-normal);
+  }
+
+  app-home .faq__respuesta {
+    color: var(--blanco-dark);
+    border-top: 1px solid var(--gris-normal);
+    padding-top: var(--spacing-size-m);
+  }
+
+  app-home .faq__icono {
+    color: var(--amarillo-normal);
+  }
+
+  app-home .faq__icono::after {
+    border-color: var(--amarillo-normal) !important;
+  }
+
+  app-home .faq__contacto {
+    color: var(--blanco-dark);
+  }
+
+  app-home .faq__email {
+    color: var(--amarillo-normal);
+  }
+
+  app-home .faq__email:hover {
+    color: var(--amarillo-dark);
+  }
+
+  /* Planes section */
+  app-home .planes__section {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  app-home .planes__titulo {
+    color: var(--amarillo-normal);
+  }
+
+  app-home .planes__subtitulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-home .planes__info {
+    color: var(--oscuro-texto-secundario);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-ONBOARDING: FLUJO DE REGISTRO
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Componente: app-onboarding y sus steps
+     Variables: --oscuro-onboarding-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  app-onboarding .onboarding,
+  app-onboarding main {
+    background-color: var(--oscuro-onboarding-fondo);
+  }
+
+  app-onboarding .onboarding__card {
+    background-color: var(--oscuro-onboarding-card-fondo);
+  }
+
+  /* Progress bar */
+  app-onboarding .onboarding__progress,
+  app-onboarding .progress-bar {
+    background-color: var(--oscuro-onboarding-progress-bg);
+  }
+
+  app-onboarding .onboarding__progress-fill,
+  app-onboarding .progress-bar__fill {
+    background-color: var(--oscuro-onboarding-progress-fill);
+  }
+
+  /* Step titles - todos los steps */
+  app-onboarding [class*="step-"] __titulo,
+  app-onboarding .step-register__titulo,
+  app-onboarding .step-goal__titulo,
+  app-onboarding .step-body__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding [class*="step-"] __subtitulo,
+  app-onboarding .step-register__subtitulo,
+  app-onboarding .step-goal__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Option cards */
+  app-onboarding .option-card,
+  app-onboarding [class*="option-card"] {
+    background-color: var(--oscuro-onboarding-option-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-onboarding .option-card:hover,
+  app-onboarding [class*="option-card"]:hover {
+    background-color: var(--oscuro-onboarding-option-hover);
+  }
+
+  app-onboarding .option-card--selected,
+  app-onboarding [class*="option-card--selected"],
+  app-onboarding .option-card--activa {
+    background-color: var(--oscuro-onboarding-option-selected);
+    border-color: var(--oscuro-onboarding-option-borde-selected);
+  }
+
+  app-onboarding .option-card__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .option-card__descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .option-card__icono {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .option-card--selected .option-card__icono,
+  app-onboarding .option-card--activa .option-card__icono {
+    color: var(--amarillo-normal);
+  }
+
+  /* Inputs en onboarding */
+  app-onboarding .step-register__input,
+  app-onboarding [class*="step-"] __input {
+    background-color: var(--oscuro-onboarding-input-fondo);
+    border-color: var(--oscuro-onboarding-input-borde);
+    color: var(--oscuro-texto-principal);
+
+    &::placeholder {
+      color: var(--oscuro-texto-suave);
+    }
+
+    &:focus {
+      border-color: var(--amarillo-normal);
+    }
+  }
+
+  /* Field icons */
+  app-onboarding .step-register__field-icon {
+    color: var(--oscuro-texto-suave);
+  }
+
+  app-onboarding .step-register__field:focus-within .step-register__field-icon {
+    color: var(--amarillo-normal);
+  }
+
+  /* Requirements list */
+  app-onboarding .step-register__requirements {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+  app-onboarding .step-register__requirement {
+    color: var(--oscuro-texto-suave);
+  }
+
+  app-onboarding .step-register__requirement--valid {
+    color: var(--verde-normal);
+  }
+
+  /* Error messages */
+  app-onboarding .step-register__field-error {
+    background-color: rgba(239, 68, 68, 0.1);
+  }
+
+  /* Alt action link */
+  app-onboarding .step-register__alt-action {
+    color: var(--oscuro-texto-secundario);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-GIMNASIO: PÁGINA DE EJERCICIOS
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Componente: app-gimnasio
+     Variables: --oscuro-gimnasio-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  app-gimnasio .gimnasio {
+    background-color: var(--oscuro-gimnasio-fondo);
+  }
+
+  app-gimnasio .gimnasio__sidebar {
+    background-color: var(--oscuro-gimnasio-sidebar-fondo);
+  }
+
+  app-gimnasio .gimnasio__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-gimnasio .gimnasio__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Ejercicios */
+  app-gimnasio .gimnasio__ejercicio,
+  app-gimnasio .ejercicio-card {
+    background-color: var(--oscuro-gimnasio-ejercicio-fondo);
+  }
+
+  app-gimnasio .gimnasio__ejercicio:hover,
+  app-gimnasio .ejercicio-card:hover {
+    background-color: var(--oscuro-gimnasio-ejercicio-hover);
+  }
+
+  app-gimnasio .gimnasio__ejercicio-nombre,
+  app-gimnasio .ejercicio-card__nombre {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-gimnasio .gimnasio__ejercicio-info,
+  app-gimnasio .ejercicio-card__info {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Categorias */
+  app-gimnasio .gimnasio__categoria,
+  app-gimnasio .categoria-btn {
+    background-color: var(--oscuro-gimnasio-categoria-fondo);
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-gimnasio .gimnasio__categoria--activa,
+  app-gimnasio .categoria-btn--activa {
+    background-color: var(--amarillo-normal);
+    color: var(--negro-normal);
+  }
+
+  /* Badges/Tags */
+  app-gimnasio .gimnasio__badge,
+  app-gimnasio .ejercicio-card__badge {
+    background-color: var(--oscuro-gimnasio-badge-fondo);
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Detalle de ejercicio */
+  app-gimnasio .gimnasio__detalle,
+  app-gimnasio .ejercicio-detalle {
+    background-color: var(--oscuro-gimnasio-detalle-fondo);
+  }
+
+  app-gimnasio .ejercicio-detalle__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-gimnasio .ejercicio-detalle__descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Video overlay */
+  app-gimnasio .gimnasio__video-overlay {
+    background-color: var(--oscuro-gimnasio-video-overlay);
+  }
+
+  /* Tabla semanal - CORREGIDO con selectores reales */
+  app-gimnasio .gimnasio__tabla-section {
+    background-color: var(--oscuro-superficie-fondo);
+    border-radius: var(--radius-lg);
+  }
+
+  app-gimnasio .gimnasio__tabla {
+    background-color: var(--oscuro-superficie-fondo);
+    color: var(--blanco-normal);
+  }
+
+  app-gimnasio .gimnasio__tabla th {
+    background-color: var(--oscuro-hover-fondo);
+    color: var(--blanco-normal);
+  }
+
+  app-gimnasio .gimnasio__tabla td {
+    background-color: var(--oscuro-superficie-fondo);
+    color: var(--blanco-normal);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-gimnasio .gimnasio__ejercicio {
+    color: var(--blanco-normal);
+  }
+
+  app-gimnasio .gimnasio__ejercicio-toggle svg {
+    color: var(--blanco-normal);
+  }
+
+  /* Feedback section */
+  app-gimnasio .gimnasio__feedback {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+  app-gimnasio .gimnasio__feedback-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-gimnasio .gimnasio__feedback-label {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-gimnasio .gimnasio__feedback-textarea {
+    background-color: var(--oscuro-input-fondo);
+    color: var(--oscuro-texto-principal);
+    border-color: var(--oscuro-borde-color);
+
+    &::placeholder {
+      color: var(--oscuro-texto-suave);
+    }
+  }
+
+  /* Progreso section */
+  app-gimnasio .gimnasio__progreso {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+  app-gimnasio .gimnasio__progreso-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-gimnasio .gimnasio__progreso-descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Dias navegacion */
+  app-gimnasio .gimnasio__dias-btn {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-gimnasio .gimnasio__dia {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-gimnasio .gimnasio__dia--actual {
+    color: var(--amarillo-normal);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-ALIMENTACION: PÁGINA DE NUTRICIÓN
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Componente: app-alimentacion
+     Variables: --oscuro-alimentacion-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  app-alimentacion .alimentacion {
+    background-color: var(--oscuro-alimentacion-fondo);
+  }
+
+  app-alimentacion .alimentacion__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-alimentacion .alimentacion__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Recetas */
+  app-alimentacion .alimentacion__receta,
+  app-alimentacion .receta-card {
+    background-color: var(--oscuro-alimentacion-receta-fondo);
+  }
+
+  app-alimentacion .alimentacion__receta-nombre,
+  app-alimentacion .receta-card__nombre {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-alimentacion .alimentacion__receta-descripcion,
+  app-alimentacion .receta-card__descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Nutrientes */
+  app-alimentacion .alimentacion__nutrientes,
+  app-alimentacion .nutrientes-panel {
+    background-color: var(--oscuro-alimentacion-nutrientes-fondo);
+  }
+
+  app-alimentacion .alimentacion__nutriente-valor {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-alimentacion .alimentacion__nutriente-label {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Ingredientes */
+  app-alimentacion .alimentacion__ingrediente,
+  app-alimentacion .ingrediente-item {
+    background-color: var(--oscuro-alimentacion-ingrediente-fondo);
+    color: var(--oscuro-texto-principal);
+  }
+
+  /* Tabs */
+  app-alimentacion .alimentacion__tab,
+  app-alimentacion .tab-btn {
+    background-color: var(--oscuro-alimentacion-tab-fondo);
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-alimentacion .alimentacion__tab--activa,
+  app-alimentacion .tab-btn--activa {
+    background-color: var(--oscuro-alimentacion-tab-activa);
+    color: var(--negro-normal);
+  }
+
+  /* Macros */
+  app-alimentacion .alimentacion__macro,
+  app-alimentacion .macro-card {
+    background-color: var(--oscuro-alimentacion-macro-fondo);
+  }
+
+  app-alimentacion .macro-card__valor {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-alimentacion .macro-card__label {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Calorias ring */
+  app-alimentacion .alimentacion__calorias-ring {
+    stroke: var(--oscuro-alimentacion-calorias-ring);
+  }
+
+  /* Menu del dia - CORREGIDO con selectores reales */
+  app-alimentacion .alimentacion__menu-dia {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+  /* Comidas (Desayuno, Almuerzo, etc.) */
+  app-alimentacion .alimentacion__comida {
+    background-color: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-alimentacion .alimentacion__comida-header {
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  app-alimentacion .alimentacion__comida-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-alimentacion .alimentacion__comida-costo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  /* Alimentos */
+  app-alimentacion .alimentacion__alimentos {
+    background-color: transparent;
+  }
+
+  app-alimentacion .alimentacion__alimento {
+    background-color: transparent;
+    color: var(--oscuro-texto-principal);
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  app-alimentacion .alimentacion__alimento:hover {
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-alimentacion .alimentacion__alimento-nombre {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-alimentacion .alimentacion__btn-info {
+    color: var(--oscuro-texto-secundario);
+
+    &:hover {
+      color: var(--oscuro-texto-principal);
+    }
+  }
+
+  /* Navegacion fecha */
+  app-alimentacion .alimentacion__navegacion-fecha {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-alimentacion .alimentacion__btn-fecha {
+    color: var(--oscuro-texto-secundario);
+
+    &:hover {
+      color: var(--oscuro-texto-principal);
+    }
+  }
+
+  app-alimentacion .alimentacion__fecha-texto {
+    color: var(--oscuro-texto-principal);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-SEGUIMIENTO: PÁGINA DE PROGRESO
+     ═══════════════════════════════════════════════════════════════════════════
+
+     Componente: app-seguimiento
+     Variables: --oscuro-seguimiento-*
+
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  app-seguimiento .seguimiento {
+    background-color: var(--oscuro-seguimiento-fondo);
+  }
+
+  app-seguimiento .seguimiento__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-seguimiento .seguimiento__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Cards */
+  app-seguimiento .seguimiento__card,
+  app-seguimiento .stat-card {
+    background-color: var(--oscuro-seguimiento-card-fondo);
+  }
+
+  /* Stats */
+  app-seguimiento .seguimiento__stat,
+  app-seguimiento .stat-item {
+    background-color: var(--oscuro-seguimiento-stat-fondo);
+  }
+
+  app-seguimiento .seguimiento__stat-valor,
+  app-seguimiento .stat-item__valor {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-seguimiento .seguimiento__stat-label,
+  app-seguimiento .stat-item__label {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  /* Progress bars */
+  app-seguimiento .seguimiento__progress-bg,
+  app-seguimiento .progress-bar__bg {
+    background-color: var(--oscuro-seguimiento-progress-bg);
+  }
+
+  app-seguimiento .seguimiento__progress-fill,
+  app-seguimiento .progress-bar__fill {
+    background-color: var(--oscuro-seguimiento-progress-fill);
+  }
+
+  /* Charts */
+  app-seguimiento .seguimiento__chart,
+  app-seguimiento .chart-container {
+    background-color: var(--oscuro-seguimiento-chart-bg);
+  }
+
+  app-seguimiento .seguimiento__chart-line {
+    stroke: var(--oscuro-seguimiento-grafico-linea);
+  }
+
+  app-seguimiento .seguimiento__chart-grid {
+    stroke: var(--oscuro-seguimiento-grafico-grid);
+  }
+
+  /* Calendario */
+  app-seguimiento .seguimiento__calendario {
+    background-color: var(--oscuro-seguimiento-card-fondo);
+  }
+
+  app-seguimiento .calendario__dia {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-seguimiento .calendario__dia--activo {
+    background-color: var(--amarillo-normal);
+    color: var(--negro-normal);
+  }
+
+  app-seguimiento .calendario__dia--completado {
+    background-color: var(--oscuro-hover-fondo);
+    color: var(--oscuro-texto-principal);
+  }
+
+  /* Macronutrientes - CORREGIDO con selectores reales */
+  app-seguimiento .seguimiento__macronutrientes {
+    background-color: transparent;
+  }
+
+  app-seguimiento .seguimiento__card-macros {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+  app-seguimiento .seguimiento__macros-info {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-seguimiento .seguimiento__macros-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-seguimiento .seguimiento__macros-calorias {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-seguimiento .seguimiento__macros-lista {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-seguimiento .seguimiento__macro-item {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-seguimiento .seguimiento__macro-texto {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-seguimiento .seguimiento__extras {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-seguimiento .seguimiento__extra-label {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-seguimiento .seguimiento__extra-valor {
+    color: var(--oscuro-texto-principal);
+  }
+
+  /* Fuerza section */
+  app-seguimiento .seguimiento__fuerza {
+    background-color: transparent;
+  }
+
+  app-seguimiento .seguimiento__fuerza-titulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-seguimiento .seguimiento__selector-ejercicio {
+    background-color: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-seguimiento .seguimiento__select {
+    background-color: var(--oscuro-superficie-fondo);
+    color: var(--oscuro-texto-principal);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  /* Graficos */
+  app-seguimiento .seguimiento__grafico-lineas {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+  app-seguimiento .seguimiento__grafico-circular {
+    background-color: transparent;
+  }
+
+  app-seguimiento .seguimiento__chart-container {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCION-SCROLLBAR: SCROLLBAR ESTILIZADO
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  /* Scrollbar para navegadores webkit (Chrome, Safari, Edge) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--oscuro-pagina-fondo);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--oscuro-borde-color);
+    border-radius: 5px;
+
+    &:hover {
+      background: var(--oscuro-texto-suave);
+    }
+  }
+
+  /* Scrollbar para Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--oscuro-borde-color) var(--oscuro-pagina-fondo);
+  }
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   TRANSICIONES SUAVES PARA CAMBIO DE TEMA
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+body {
+  transition: background-color 0.3s ease,
+  color 0.3s ease;
+}
+
+/* Elementos principales con transicion */
+body *,
+body.modo-oscuro * {
+  transition: background-color 0.2s ease,
+  border-color 0.2s ease,
+  color 0.2s ease,
+  box-shadow 0.2s ease,
+  fill 0.2s ease,
+  stroke 0.2s ease;
+}
+
+/* Excluir animaciones de transicion para evitar conflictos */
+body [class*="animate"],
+body [class*="spinner"],
+body [class*="loading"],
+body.modo-oscuro [class*="animate"],
+body.modo-oscuro [class*="spinner"],
+body.modo-oscuro [class*="loading"] {
+  transition: none;
 }
 
 

@@ -1,5 +1,7 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, inject, ViewEncapsulation} from '@angular/core';
 import {RouterLink} from '@angular/router';
+
+import {ThemeService} from '../../../services/theme.service';
 
 @Component({
   selector: 'app-footer',
@@ -10,6 +12,8 @@ import {RouterLink} from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class Footer {
+  private readonly themeService = inject(ThemeService);
+
   currentYear = new Date().getFullYear();
 
   socialLinks = [
@@ -20,27 +24,18 @@ export class Footer {
     {name: 'LinkedIn', url: 'https://linkedin.com/company/cofira', icon: 'linkedin'}
   ];
 
-  // Tema oscuro/claro
-  modoOscuro = false;
-
   // Selector de idiomas
   idiomaActual = 'ES';
   idiomas = ['ES', 'EN', 'FR', 'DE'];
   mostrarIdiomas = false;
 
-  constructor() {
-    // Recuperar preferencia de tema guardada
-    const temaGuardado = localStorage.getItem('tema');
-    if (temaGuardado === 'oscuro') {
-      this.modoOscuro = true;
-      document.body.classList.add('modo-oscuro');
-    }
+  // Getter para el estado del tema (usa el servicio)
+  get modoOscuro(): boolean {
+    return this.themeService.isDarkMode();
   }
 
   toggleTema(): void {
-    this.modoOscuro = !this.modoOscuro;
-    document.body.classList.toggle('modo-oscuro', this.modoOscuro);
-    localStorage.setItem('tema', this.modoOscuro ? 'oscuro' : 'claro');
+    this.themeService.toggle();
   }
 
   cambiarIdioma(idioma: string): void {

@@ -85,61 +85,83 @@
 body.modo-oscuro {
 
   /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 1: FONDOS PRINCIPALES
+     SECCIÓN 1: FONDOS PRINCIPALES (REFINADOS)
      ═══════════════════════════════════════════════════════════════════════════
-     Estos son los fondos base de la aplicación.
-     Cambiar estos afecta a grandes áreas de la interfaz.
+     Paleta premium con escala jerarquica clara.
+     Base: #1e2227 (gris oscuro suave, facil a la vista)
      ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Fondo principal del body/página */
-  --oscuro-pagina-fondo: #{$gris-dark};
+  /* Fondo principal del body/pagina - Base mas profundo */
+  --oscuro-pagina-fondo: #1e2227;
 
   /* Fondo de secciones elevadas (cards, modales, etc.) */
-  --oscuro-superficie-fondo: #{$gris-normal};
+  --oscuro-superficie-fondo: #282d33;
 
   /* Fondo de elementos interactivos (inputs, selects) */
-  --oscuro-input-fondo: #{$gris-dark};
+  --oscuro-input-fondo: #1e2227;
 
   /* Fondo al hacer hover en elementos */
-  --oscuro-hover-fondo: #{$gris-normal-hover};
+  --oscuro-hover-fondo: #323840;
+
+  /* Fondo alternativo para secciones */
+  --oscuro-seccion-alt-fondo: #1a1e22;
 
 
   /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 2: COLORES DE TEXTO
+     SECCIÓN 2: COLORES DE TEXTO (MAYOR CONTRASTE)
      ═══════════════════════════════════════════════════════════════════════════
-     Controla los colores de todo el texto en modo oscuro.
+     Colores optimizados para WCAG AA (4.5:1 ratio minimo)
      ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Texto principal (títulos, contenido importante) */
-  --oscuro-texto-principal: #{$blanco-normal};
+  /* Texto principal (titulos, contenido importante) - Mas blanco */
+  --oscuro-texto-principal: #f0f2f5;
 
-  /* Texto secundario (descripciones, ayudas) */
-  --oscuro-texto-secundario: #{$blanco-dark};
+  /* Texto secundario (descripciones, ayudas) - Gris mas calido */
+  --oscuro-texto-secundario: #a8b3c4;
 
   /* Texto deshabilitado o muy sutil */
-  --oscuro-texto-suave: #{$blanco-dark-hover};
+  --oscuro-texto-suave: #6b7a90;
 
   /* Texto de enlaces */
-  --oscuro-texto-enlace: #{$blanco-normal};
+  --oscuro-texto-enlace: #f0f2f5;
 
   /* Texto de enlaces al hacer hover */
   --oscuro-texto-enlace-hover: #{$amarillo-normal};
 
 
   /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 3: BORDES Y SEPARADORES
+     SECCIÓN 3: BORDES Y SEPARADORES (MAS SUTILES)
      ═══════════════════════════════════════════════════════════════════════════
-     Controla el color de bordes, líneas divisorias, etc.
+     Bordes refinados para mejor integracion visual.
      ═══════════════════════════════════════════════════════════════════════════ */
 
   /* Borde principal (inputs, cards) */
-  --oscuro-borde-color: #{$gris-normal};
+  --oscuro-borde-color: #363c45;
 
-  /* Borde más sutil (separadores) */
-  --oscuro-borde-suave: #{$gris-normal-hover};
+  /* Borde mas sutil (separadores) */
+  --oscuro-borde-suave: #2a3038;
 
   /* Borde de foco/activo */
   --oscuro-borde-foco: #{$amarillo-normal};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 3.5: SOMBRAS (PROFUNDIDAD MEJORADA)
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --oscuro-sombra-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --oscuro-sombra-sm: 0 2px 4px rgba(0, 0, 0, 0.35);
+  --oscuro-sombra-md: 0 4px 8px rgba(0, 0, 0, 0.4);
+  --oscuro-sombra-lg: 0 8px 16px rgba(0, 0, 0, 0.45);
+  --oscuro-sombra-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 3.6: COLORES DE ACENTO
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --oscuro-acento-primario: #ffda2d;
+  --oscuro-acento-hover: #e6c426;
 
 
   /* ═══════════════════════════════════════════════════════════════════════════
@@ -493,4 +515,85 @@ body.modo-oscuro {
 
   /* Color de bordes */
   --oscuro-info-borde: #{$gris-normal-hover};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 16: HOME PAGE
+     ═══════════════════════════════════════════════════════════════════════════
+     Variables especificas para la pagina principal.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --oscuro-home-hero-fondo: linear-gradient(135deg, #1e2227 0%, #282d33 100%);
+  --oscuro-home-seccion-alt: #1a1e22;
+  --oscuro-home-feature-fondo: #282d33;
+  --oscuro-home-feature-icono-fondo: #323840;
+  --oscuro-home-testimonial-fondo: #282d33;
+  --oscuro-home-cta-fondo: linear-gradient(135deg, #2a2510 0%, #1e2227 100%);
+  --oscuro-home-stat-fondo: #323840;
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 17: ONBOARDING
+     ═══════════════════════════════════════════════════════════════════════════
+     Flujo de registro y configuracion inicial del usuario.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --oscuro-onboarding-fondo: #1e2227;
+  --oscuro-onboarding-card-fondo: #282d33;
+  --oscuro-onboarding-progress-bg: #363c45;
+  --oscuro-onboarding-progress-fill: #{$amarillo-normal};
+  --oscuro-onboarding-option-fondo: #282d33;
+  --oscuro-onboarding-option-hover: #323840;
+  --oscuro-onboarding-option-selected: #2a2510;
+  --oscuro-onboarding-option-borde-selected: #{$amarillo-normal};
+  --oscuro-onboarding-input-fondo: #1e2227;
+  --oscuro-onboarding-input-borde: #363c45;
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 18: GIMNASIO
+     ═══════════════════════════════════════════════════════════════════════════
+     Pagina de ejercicios y rutinas.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --oscuro-gimnasio-fondo: #1e2227;
+  --oscuro-gimnasio-sidebar-fondo: #282d33;
+  --oscuro-gimnasio-ejercicio-fondo: #282d33;
+  --oscuro-gimnasio-ejercicio-hover: #323840;
+  --oscuro-gimnasio-categoria-fondo: #363c45;
+  --oscuro-gimnasio-badge-fondo: #323840;
+  --oscuro-gimnasio-detalle-fondo: #282d33;
+  --oscuro-gimnasio-video-overlay: rgba(0, 0, 0, 0.6);
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 19: ALIMENTACIÓN
+     ═══════════════════════════════════════════════════════════════════════════
+     Pagina de nutricion, recetas y planes alimenticios.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --oscuro-alimentacion-fondo: #1e2227;
+  --oscuro-alimentacion-receta-fondo: #282d33;
+  --oscuro-alimentacion-nutrientes-fondo: #323840;
+  --oscuro-alimentacion-ingrediente-fondo: #282d33;
+  --oscuro-alimentacion-tab-fondo: #363c45;
+  --oscuro-alimentacion-tab-activa: #{$amarillo-normal};
+  --oscuro-alimentacion-macro-fondo: #323840;
+  --oscuro-alimentacion-calorias-ring: #{$amarillo-normal};
+
+
+  /* ═══════════════════════════════════════════════════════════════════════════
+     SECCIÓN 20: SEGUIMIENTO
+     ═══════════════════════════════════════════════════════════════════════════
+     Pagina de progreso, estadisticas y graficos.
+     ═══════════════════════════════════════════════════════════════════════════ */
+
+  --oscuro-seguimiento-fondo: #1e2227;
+  --oscuro-seguimiento-card-fondo: #282d33;
+  --oscuro-seguimiento-grafico-linea: #{$amarillo-normal};
+  --oscuro-seguimiento-grafico-grid: #363c45;
+  --oscuro-seguimiento-stat-fondo: #323840;
+  --oscuro-seguimiento-progress-bg: #363c45;
+  --oscuro-seguimiento-progress-fill: #{$amarillo-normal};
+  --oscuro-seguimiento-chart-bg: #282d33;
 }
