@@ -175,11 +175,17 @@
       </div>
       <!-- Imagen posicionada detrás del panel -->
       <figure class="gimnasio__progreso-imagen">
-        <img
-          alt="Persona entrenando en el gimnasio"
-          loading="lazy"
-          src="assets/images/imagen_progreso.jpg"
-        />
+        <picture>
+          <source
+            media="(max-width: 900px)"
+            srcset="assets/images/imagen_progreso_mobile.jpg"
+          />
+          <img
+            alt="Persona entrenando en el gimnasio"
+            loading="lazy"
+            src="assets/images/imagen_progreso.jpg"
+          />
+        </picture>
       </figure>
     </article>
   </section>
