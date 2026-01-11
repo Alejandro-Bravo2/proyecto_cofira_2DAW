@@ -655,7 +655,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Container Query: Card compacta (< 640px)
 // ─────────────────────────────────────────────────────────────────────────────
-@container card-container ($breakpoint-xs) {
+@container card-container (max-width: #{$breakpoint-xs}) {
   .pricing-card__titulo {
     margin-bottom: var(--spacing-size-l);
     font-size: var(--font-size-2xl);
