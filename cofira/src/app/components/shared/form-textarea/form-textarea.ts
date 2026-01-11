@@ -1,27 +1,41 @@
-import { Component, Input, signal } from '@angular/core';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CampoFormularioBase } from '../base/campo-formulario.base';
 
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * COMPONENTE: FormTextarea
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * Área de texto multilínea reutilizable.
+ * Hereda de CampoFormularioBase para evitar duplicación de código.
+ *
+ * USO:
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <app-form-textarea
+ *   label="Mensaje"
+ *   name="mensaje"
+ *   placeholder="Escribe tu mensaje..."
+ *   [control]="mensajeControl"
+ *   [rows]="5"
+ * ></app-form-textarea>
+ *
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
 @Component({
   selector: 'app-form-textarea',
   imports: [ReactiveFormsModule],
   templateUrl: './form-textarea.html',
   styleUrl: './form-textarea.scss',
 })
-export class FormTextarea {
-  @Input({ required: true }) label: string = '';
-  @Input({ required: true }) name: string = '';
-  @Input() type: string = 'text';
-  @Input() placeholder: string = '';
-  @Input() required: boolean = false;
-  @Input() errorMessage: string = '';
-  @Input() helpText: string = '';
-  @Input() autocomplete: string = '';
+export class FormTextarea extends CampoFormularioBase {
+  // ─────────────────────────────────────────────────────────────────────────
+  // INPUTS ESPECÍFICOS DE TEXTAREA
+  // ─────────────────────────────────────────────────────────────────────────
 
-  @Input() control: FormControl = new FormControl(''); // Control opcional con valor por defecto
+  /** Número de filas visibles del textarea */
+  @Input() rows: number = 4;
 
-  protected readonly inputId = signal('');
-
-  ngOnInit(): void {
-    this.inputId.set(`input-${this.name}-${Math.random().toString(36).substr(2, 10)}`);
-  }
+  /** Número máximo de caracteres permitidos */
+  @Input() maxLength: number | null = null;
 }

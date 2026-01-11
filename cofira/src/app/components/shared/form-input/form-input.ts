@@ -1,28 +1,43 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, ReactiveFormsModule } from '@angular/forms'; // Importa FormControl
+import { ReactiveFormsModule } from '@angular/forms';
+import { CampoFormularioBase } from '../base/campo-formulario.base';
 
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * COMPONENTE: FormInput
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * Campo de entrada de texto reutilizable.
+ * Hereda de CampoFormularioBase para evitar duplicación de código.
+ *
+ * USO:
+ * ─────────────────────────────────────────────────────────────────────────────
+ * <app-form-input
+ *   label="Email"
+ *   name="email"
+ *   type="email"
+ *   placeholder="tu@email.com"
+ *   [control]="emailControl"
+ *   [required]="true"
+ * ></app-form-input>
+ *
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
 @Component({
   selector: 'app-form-input',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './form-input.html',
   styleUrl: './form-input.scss',
 })
-export class FormInput {
-  @Input({ required: true }) label: string = '';
-  @Input({ required: true }) name: string = '';
+export class FormInput extends CampoFormularioBase {
+  // ─────────────────────────────────────────────────────────────────────────
+  // INPUTS ESPECÍFICOS DE INPUT
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /** Tipo de input: text, email, password, number, tel, etc. */
   @Input() type: string = 'text';
-  @Input() placeholder: string = '';
-  @Input() required: boolean = false;
-  @Input() errorMessage: string = '';
-  @Input() helpText: string = '';
+
+  /** Valor para el atributo autocomplete del navegador */
   @Input() autocomplete: string = '';
-
-  @Input() control: FormControl = new FormControl(''); // Control opcional con valor por defecto
-
-  protected readonly inputId = signal('');
-
-  ngOnInit(): void {
-    this.inputId.set(`input-${this.name}-${Math.random().toString(36).substr(2, 10)}`);
-  }
 }

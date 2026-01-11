@@ -1,8 +1,19 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators,} from '@angular/forms';
-import {FormCheckbox} from '../form-checkbox/form-checkbox';
-import {Button} from '../button/button';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormCheckbox } from '../form-checkbox/form-checkbox';
+import { Button } from '../button/button';
+import { NotificacionService } from '../../../services/notificacion.service';
 
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * COMPONENTE: FormRegister
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * Formulario de registro de usuario con validaciones.
+ * Incluye validación de contraseñas coincidentes.
+ *
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
 @Component({
   selector: 'app-form-register',
   standalone: true,
@@ -11,9 +22,22 @@ import {Button} from '../button/button';
   styleUrl: './form-register.scss',
 })
 export class FormRegister implements OnInit {
+  // ─────────────────────────────────────────────────────────────────────────
+  // INYECCIÓN DE DEPENDENCIAS
+  // ─────────────────────────────────────────────────────────────────────────
+
+  private fb = inject(FormBuilder);
+  private notificacion = inject(NotificacionService);
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // PROPIEDADES
+  // ─────────────────────────────────────────────────────────────────────────
+
   registerForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  // ─────────────────────────────────────────────────────────────────────────
+  // CICLO DE VIDA
+  // ─────────────────────────────────────────────────────────────────────────
 
   ngOnInit(): void {
     this.registerForm = this.fb.group(
@@ -31,7 +55,13 @@ export class FormRegister implements OnInit {
     );
   }
 
-  // Validador personalizado para verificar que las contraseñas coincidan
+  // ─────────────────────────────────────────────────────────────────────────
+  // VALIDADORES
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /**
+   * Valida que las contraseñas coincidan
+   */
   passwordMatchValidator(form: FormGroup) {
     const password = form.get('password');
     const confirmPassword = form.get('confirmPassword');
@@ -44,23 +74,31 @@ export class FormRegister implements OnInit {
     return null;
   }
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // MÉTODOS
+  // ─────────────────────────────────────────────────────────────────────────
+
   onSubmit(): void {
     if (this.registerForm.valid) {
       console.log('Formulario de registro enviado:', this.registerForm.value);
-      alert('¡Registro completado correctamente!');
+      this.notificacion.exito('¡Registro completado correctamente!');
       this.registerForm.reset();
     } else {
       this.registerForm.markAllAsTouched();
-      alert('Por favor, completa todos los campos correctamente');
+      this.notificacion.advertencia('Por favor, completa todos los campos correctamente');
     }
   }
 
-  // Getter para acceder fácilmente a los controles del formulario
+  // ─────────────────────────────────────────────────────────────────────────
+  // GETTERS
+  // ─────────────────────────────────────────────────────────────────────────
+
+  /** Acceso rápido a los controles del formulario */
   get f() {
     return this.registerForm.controls;
   }
 
-  // Getter específico para el control de términos (como FormControl)
+  /** Control de términos como FormControl */
   get terminosControl(): FormControl {
     return this.registerForm.get('terminos') as FormControl;
   }

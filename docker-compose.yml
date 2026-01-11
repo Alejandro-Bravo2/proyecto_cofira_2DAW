@@ -10,7 +10,7 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin123
     ports:
-      - "5432:5432"
+      - "6005:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -31,7 +31,7 @@ services:
       dockerfile: Dockerfile
     container_name: cofira-backend
     ports:
-      - "8080:8080"
+      - "9002:8080"
     environment:
       SPRING_PROFILES_ACTIVE: docker
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/cofira
@@ -62,7 +62,7 @@ services:
       target: development
     container_name: cofira-frontend
     ports:
-      - "4500:4200"
+      - "4600:4200"
     volumes:
       - ./cofira/src:/app/src
       - ./cofira/public:/app/public
@@ -82,7 +82,7 @@ services:
     image: dpage/pgadmin4:latest
     container_name: cofira-pgadmin
     ports:
-      - "5050:80"
+      - "5051:80"
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@cofira.com
       PGADMIN_DEFAULT_PASSWORD: admin123

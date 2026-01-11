@@ -1,6 +1,22 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {NgFor} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { NotificacionService } from '../../services/notificacion.service';
+
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * PÁGINA: Contacto
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * Página de contacto con formulario, información de contacto,
+ * horarios y preguntas frecuentes.
+ *
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
+
+// ─────────────────────────────────────────────────────────────────────────────
+// INTERFACES
+// ─────────────────────────────────────────────────────────────────────────────
 
 interface FAQ {
   pregunta: string;
@@ -14,6 +30,10 @@ interface InfoContacto {
   enlace?: string;
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// COMPONENTE
+// ─────────────────────────────────────────────────────────────────────────────
+
 @Component({
   selector: 'app-contacto',
   standalone: true,
@@ -23,12 +43,26 @@ interface InfoContacto {
   encapsulation: ViewEncapsulation.None,
 })
 export class Contacto {
+  // ─────────────────────────────────────────────────────────────────────────
+  // INYECCIÓN DE DEPENDENCIAS
+  // ─────────────────────────────────────────────────────────────────────────
+
+  private notificacion = inject(NotificacionService);
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // DATOS DEL FORMULARIO
+  // ─────────────────────────────────────────────────────────────────────────
+
   formulario = {
     nombre: '',
     email: '',
     asunto: '',
     mensaje: '',
   };
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // DATOS ESTÁTICOS
+  // ─────────────────────────────────────────────────────────────────────────
 
   readonly infoContacto: InfoContacto[] = [
     {
@@ -57,9 +91,9 @@ export class Contacto {
   ];
 
   readonly horarios = [
-    {dia: 'Lunes - Viernes', horario: '9:00 - 20:00'},
-    {dia: 'Sábados', horario: '10:00 - 14:00'},
-    {dia: 'Domingos', horario: 'Cerrado'},
+    { dia: 'Lunes - Viernes', horario: '9:00 - 20:00' },
+    { dia: 'Sábados', horario: '10:00 - 14:00' },
+    { dia: 'Domingos', horario: 'Cerrado' },
   ];
 
   readonly faqs: FAQ[] = [
@@ -85,10 +119,14 @@ export class Contacto {
     },
   ];
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // MÉTODOS
+  // ─────────────────────────────────────────────────────────────────────────
+
   enviarFormulario(): void {
     console.log('Formulario enviado:', this.formulario);
     // Aquí iría la lógica de envío real
-    alert('¡Mensaje enviado! Te responderemos pronto.');
-    this.formulario = {nombre: '', email: '', asunto: '', mensaje: ''};
+    this.notificacion.exito('¡Mensaje enviado! Te responderemos pronto.');
+    this.formulario = { nombre: '', email: '', asunto: '', mensaje: '' };
   }
 }

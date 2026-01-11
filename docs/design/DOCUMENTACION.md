@@ -1754,3 +1754,435 @@ En el Style Guide he añadido botones de demostración para probar las notificac
 
 ![img_21.png](../assets/alertas.png)
 ![img_22.png](../assets/img_22.png)
+
+---
+
+# Sección 4: Responsive Design
+
+## 4.1 Breakpoints definidos
+
+He definido 6 breakpoints principales para adaptar la aplicación a diferentes tamaños de pantalla. Estos breakpoints están definidos como variables SCSS en el archivo `cofira/src/styles/00-settings/_css-variables.scss` porque las media queries no soportan CSS Custom Properties.
+
+**Breakpoints del proyecto:**
+
+| Nombre | Valor | Dispositivo objetivo |
+|--------|-------|---------------------|
+| `$breakpoint-xs` | 40rem (640px) | Móviles pequeños |
+| `$breakpoint-sm` | 48rem (768px) | Móviles grandes / Tablets pequeñas |
+| `$breakpoint-md` | 56.25rem (900px) | Tablets |
+| `$breakpoint-lg` | 64rem (1024px) | Tablets grandes / Laptops pequeños |
+| `$breakpoint-xl` | 75rem (1200px) | Laptops |
+| `$breakpoint-xxl` | 87.5rem (1400px) | Escritorios grandes |
+
+**Código de los breakpoints:**
+
+```scss
+// Archivo: cofira/src/styles/00-settings/_css-variables.scss
+
+$breakpoint-xs: 40rem;    // 640px - Móviles pequeños
+$breakpoint-sm: 48rem;    // 768px - Móviles grandes / Tablets pequeñas
+$breakpoint-md: 56.25rem; // 900px - Tablets
+$breakpoint-lg: 64rem;    // 1024px - Tablets grandes / Laptops pequeños
+$breakpoint-xl: 75rem;    // 1200px - Laptops
+$breakpoint-xxl: 87.5rem; // 1400px - Escritorios grandes
+```
+
+**¿Por qué elegí estos valores?**
+
+- **640px (xs):** Es el ancho máximo de la mayoría de móviles pequeños, a partir de aquí empiezo a ajustar los layouts más compactos.
+- **768px (sm):** Es el punto donde la mayoría de tablets empiezan a tener suficiente espacio para mostrar más contenido.
+- **900px (md):** Es mi breakpoint principal para tablets en horizontal, donde empiezo a usar layouts de 2 columnas.
+- **1024px (lg):** Es donde la navegación de desktop empieza a tener sentido, aquí oculto el menú hamburguesa.
+- **1200px (xl):** Es el ancho estándar de laptops, aquí aprovecho para mostrar más contenido lateral.
+- **1400px (xxl):** Para monitores grandes, evito que el contenido se estire demasiado.
+
+He usado estos breakpoints porque son los más comunes entre dispositivos y permiten que el diseño sea responsive en la mayoría de dispositivos.
+
+---
+
+## 4.2 Estrategia responsive
+
+He usado la estrategia **desktop-first** en mi proyecto. Esto significa que primero defino los estilos para pantallas grandes (desktop) y luego uso media queries con `max-width` para ir reduciendo y adaptando el diseño a pantallas más pequeñas.
+
+**¿Por qué elegí desktop-first?**
+
+1. **El diseño inicial fue pensado para desktop:** Cuando empecé el proyecto, diseñé primero la versión de escritorio porque era más fácil visualizar todos los elementos y luego ir simplificando para móvil.
+
+2. **Facilidad para ocultar elementos:** Con desktop-first es más natural ir ocultando o simplificando elementos a medida que la pantalla se hace más pequeña, en vez de ir añadiéndolos.
+
+3. **Mejor control del layout:** Me resulta más intuitivo pensar "en móvil esto debe ser más pequeño/simple" que "en desktop esto debe ser más grande/complejo".
+
+**Mixins responsive que he creado:**
+
+He creado dos mixins en `cofira/src/styles/01-tools/_mixins.scss` para facilitar el uso de media queries:
+
+```scss
+// Archivo: cofira/src/styles/01-tools/_mixins.scss
+
+// Mixin para media queries responsive (mobile-first: min-width)
+// Este mixin lo uso muy poco, solo cuando necesito añadir algo específico para pantallas grandes
+@mixin responsive($breakpoint) {
+  @if $breakpoint == 'xs' {
+    @media (min-width: $breakpoint-xs) { @content; }
+  } @else if $breakpoint == 'sm' {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (min-width: $breakpoint-xl) { @content; }
+  } @else if $breakpoint == 'xxl' {
+    @media (min-width: $breakpoint-xxl) { @content; }
+  }
+}
+
+// Mixin para media queries responsive (desktop-first: max-width)
+// Este es el mixin principal que uso en todo el proyecto
+@mixin responsive-down($breakpoint) {
+  @if $breakpoint == 'xs' {
+    @media (max-width: $breakpoint-xs) { @content; }
+  } @else if $breakpoint == 'sm' {
+    @media (max-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == 'xl' {
+    @media (max-width: $breakpoint-xl) { @content; }
+  } @else if $breakpoint == 'xxl' {
+    @media (max-width: $breakpoint-xxl) { @content; }
+  }
+}
+```
+
+**Ejemplo de uso en un componente real:**
+
+```scss
+// Archivo: cofira/src/app/pages/gimnasio/gimnasio.scss
+
+.gimnasio {
+  // Estilos base para desktop
+  @include flex-columna(var(--spacing-size-xxl));
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-size-xxxl) 0;
+
+  // Adaptación para tablets y móviles (900px o menos)
+  @include responsive-down('md') {
+    gap: var(--spacing-size-l);
+    padding: var(--spacing-size-xl) var(--spacing-size-m);
+  }
+}
+
+.gimnasio__titulo {
+  @include titulo-seccion(var(--negro-normal), var(--font-size-4xl), 0);
+
+  // Tablets grandes (1024px o menos)
+  @include responsive-down('lg') {
+    font-size: var(--font-size-3xl);
+  }
+
+  // Tablets y móviles (900px o menos)
+  @include responsive-down('md') {
+    font-size: var(--font-size-2xl);
+  }
+}
+```
+
+Como se puede ver, primero defino los estilos para desktop y luego voy reduciendo tamaños y espaciados para pantallas más pequeñas.
+
+---
+
+## 4.3 Container Queries
+
+He implementado Container Queries en el componente de **pricing cards** para que las tarjetas se adapten al espacio disponible en su contenedor, no al viewport. Esto hace que las cards sean verdaderamente reutilizables y se adapten automáticamente cuando las pongo en diferentes contextos.
+
+**¿Qué son las Container Queries?**
+
+Las Container Queries permiten aplicar estilos a un elemento basándose en el tamaño de su contenedor padre en lugar del viewport. Esto es muy útil cuando tienes componentes que se usan en diferentes lugares de la web y necesitan adaptarse al espacio disponible.
+
+**¿Por qué las usé en las pricing cards?**
+
+Las pricing cards se muestran en la página home dentro de un grid de 3 columnas en desktop, pero en tablet pasan a 2 columnas y en móvil a 1 columna. Con Container Queries puedo hacer que la card adapte su tipografía y espaciado según el ancho que tenga disponible, sin importar en qué página o contexto esté.
+
+**Implementación en el componente Card:**
+
+```scss
+// Archivo: cofira/src/app/components/shared/card/card.scss
+
+.pricing-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 28.125rem;
+  padding: var(--spacing-size-xxl) var(--spacing-size-m);
+  text-align: center;
+  background: var(--gris-normal);
+  border-radius: var(--radius-xs);
+  box-shadow: var(--shadow-xl);
+
+  // Habilitar Container Queries en este componente
+  container-type: inline-size;
+  container-name: pricing-card;
+}
+```
+
+**Implementación en la página Home:**
+
+```scss
+// Archivo: cofira/src/app/pages/home/home.scss
+
+// Wrapper que habilita Container Queries para las pricing-cards
+.home__card-wrapper {
+  width: 100%;
+  max-width: 28rem;
+
+  // Habilitar Container Queries
+  container-type: inline-size;
+  container-name: card-container;
+
+  @include responsive-down('md') {
+    max-width: 100%;
+    justify-self: center;
+  }
+}
+
+// Container Query: Card compacta (contenedor menor a 640px)
+@container card-container (max-width: 640px) {
+  .pricing-card__titulo {
+    margin-bottom: var(--spacing-size-l);
+    font-size: var(--font-size-2xl);
+  }
+
+  .pricing-card__ventaja {
+    font-size: var(--font-size-base);
+  }
+
+  .pricing-card__precio {
+    font-size: var(--font-size-base);
+  }
+
+  .pricing-card__lista {
+    margin-bottom: var(--spacing-size-l);
+  }
+}
+
+// Container Query: Card expandida (contenedor mayor a 400px)
+@container card-container (min-width: 400px) {
+  .pricing-card__titulo {
+    font-size: var(--font-size-5xl);
+  }
+
+  .pricing-card__ventaja {
+    font-size: var(--font-size-xl);
+  }
+
+  .pricing-card__precio {
+    font-size: var(--font-size-xl);
+  }
+
+  .pricing-card__lista {
+    gap: var(--spacing-size-m);
+  }
+}
+```
+
+**Diferencia entre Media Queries y Container Queries:**
+
+| Aspecto | Media Queries | Container Queries |
+|---------|---------------|-------------------|
+| Se basa en | Tamaño del viewport (pantalla) | Tamaño del contenedor padre |
+| Útil para | Layouts de página completa | Componentes reutilizables |
+| Ejemplo de uso | Cambiar de 3 columnas a 1 columna | Ajustar tipografía de una card |
+
+---
+
+## 4.4 Adaptaciones principales
+
+A continuación muestro cómo se adaptan las principales secciones de la aplicación en los tres breakpoints principales:
+
+**Tabla de adaptaciones:**
+
+| Componente/Sección | Mobile (375px) | Tablet (768px) | Desktop (1280px) |
+|-------------------|----------------|----------------|------------------|
+| **Header** | Menú hamburguesa, logo reducido | Menú hamburguesa, logo normal | Navegación completa horizontal |
+| **Hero (Intro)** | Texto centrado, botones en columna | Texto alineado izquierda, botones en fila | Layout completo con imagen de fondo |
+| **Sección Planes** | Cards en 1 columna, apiladas | Cards en 2 columnas centradas | Grid de 3 columnas con info lateral |
+| **Funcionalidades** | Grid de 1 columna | Grid de 2 columnas | Grid auto-fit (3-4 columnas) |
+| **FAQ** | Padding reducido, tipografía menor | Padding medio | Padding amplio, max-width 800px |
+| **Footer** | Enlaces en columna, centrado | Enlaces en 2 columnas | Enlaces en fila horizontal |
+| **Gimnasio** | Tabla con scroll horizontal | Tabla adaptada | Tabla completa |
+| **Onboarding** | Formularios a ancho completo | Formularios centrados | Formularios con max-width |
+
+**Ejemplo de adaptación del Header:**
+
+```scss
+// Archivo: cofira/src/app/components/layout/header/header.scss
+
+.header {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.5rem;
+  padding: 0 6rem;
+
+  // Laptop (1200px o menos)
+  @include responsive-down('xl') {
+    padding: 0 3rem;
+  }
+
+  // Tablet grande (1024px o menos)
+  @include responsive-down('lg') {
+    padding: 0 2rem;
+  }
+
+  // Tablet/Móvil (900px o menos)
+  @include responsive-down('md') {
+    height: 4rem;
+    padding: 0 1.5rem;
+  }
+}
+
+// Navegación desktop: se oculta en móvil
+.header__nav--desktop {
+  @include responsive-down('md') {
+    display: none;
+  }
+}
+
+// Botones de acción desktop: se ocultan en móvil
+.header__actions--desktop {
+  @include responsive-down('md') {
+    display: none;
+  }
+}
+
+// Hamburguesa: solo visible en móvil
+.header__hamburguesa {
+  display: none;
+
+  @include responsive-down('md') {
+    display: flex;
+  }
+}
+```
+
+---
+
+## 4.5 Páginas implementadas
+
+He implementado responsive design en todas las páginas de la aplicación. A continuación listo cada página con una breve descripción de sus adaptaciones:
+
+**Páginas principales:**
+
+- **Home (`/`):** Hero con imagen de fondo adaptativo, sección de planes con grid responsive, funcionalidades con auto-fit grid, y FAQ con accordion responsive.
+
+- **Gimnasio (`/gimnasio`):** Tabla de ejercicios con scroll horizontal en móvil, navegación de días simplificada, y formulario de feedback adaptativo.
+
+- **Alimentación (`/alimentacion`):** Cards de comidas adaptativas, menú del día en columna para móvil, y calendario responsive.
+
+- **Seguimiento (`/seguimiento`):** Gráficas responsive, cards de progreso en grid adaptativo.
+
+- **Login (`/login`):** Formulario centrado con max-width, adaptación de padding en móvil.
+
+- **Onboarding (`/onboarding`):** Los 16 steps tienen formularios adaptativos con inputs a ancho completo en móvil.
+
+**Páginas informativas:**
+
+- **Blog (`/blog`):** Grid de artículos adaptativo (3 → 2 → 1 columnas).
+
+- **Sobre nosotros (`/sobre-nosotros`):** Secciones de texto con tipografía adaptativa.
+
+- **Contacto (`/contacto`):** Formulario responsive con validación visual.
+
+- **Carreras (`/carreras`):** Cards de ofertas en grid adaptativo.
+
+**Páginas legales:**
+
+- **Privacidad (`/privacidad`):** Texto legal con max-width y padding adaptativo.
+
+- **Términos (`/terminos`):** Mismo layout que privacidad.
+
+- **Cookies (`/cookies`):** Mismo layout que privacidad.
+
+- **Licencias (`/licencias`):** Mismo layout que privacidad.
+
+**Página de desarrollo:**
+
+- **Style Guide (`/style-guide`):** Documentación visual de todos los componentes con sus variantes, adaptada para móvil.
+
+---
+
+## 4.6 Screenshots comparativos
+
+A continuación muestro capturas de pantalla de 3 páginas principales en los viewports de mobile (375px), tablet (768px) y desktop (1280px):
+
+**Página Home:**
+
+*Mobile (375px):*
+![responsive_home_mobile.png](../assets/responsive_home_mobile.png)
+
+*Tablet (768px):*
+![responsive_home_tablet.png](../assets/responsive_home_tablet.png)
+
+*Desktop (1280px):*
+![responsive_home_desktop.png](../assets/responsive_home_desktop.png)
+
+---
+
+**Página Gimnasio:**
+
+*Mobile (375px):*
+![responsive_gimnasio_mobile.png](../assets/responsive_gimnasio_mobile.png)
+
+*Tablet (768px):*
+![responsive_gimnasio_tablet.png](../assets/responsive_gimnasio_tablet.png)
+
+*Desktop (1280px):*
+![responsive_gimnasio_desktop.png](../assets/responsive_gimnasio_desktop.png)
+
+---
+
+**Página Login:**
+
+*Mobile (375px):*
+![responsive_login_mobile.png](../assets/responsive_login_mobile.png)
+
+*Tablet (768px):*
+![responsive_login_tablet.png](../assets/responsive_login_tablet.png)
+
+*Desktop (1280px):*
+![responsive_login_desktop.png](../assets/responsive_login_desktop.png)
+
+---
+
+## 4.7 Testing responsive
+
+He verificado la aplicación en los siguientes viewports usando Chrome DevTools y Firefox Developer Tools:
+
+**Viewports testeados:**
+
+| Viewport | Dispositivo de referencia | Resultado |
+|----------|---------------------------|-----------|
+| 320px | iPhone SE / Móvil pequeño | Todos los elementos visibles y funcionales |
+| 375px | iPhone 12/13/14 | Layout móvil correcto |
+| 768px | iPad Mini / Tablet | Transición a layout tablet correcta |
+| 1024px | iPad Pro / Desktop pequeño | Navegación desktop visible |
+| 1280px | Desktop estándar | Layout completo sin problemas |
+
+**Herramientas utilizadas:**
+
+- **Chrome DevTools:** Device Mode para simular diferentes dispositivos y viewports.
+- **Firefox Developer Tools:** Responsive Design Mode para verificar compatibilidad cross-browser.
+
+**Aspectos verificados:**
+
+- El menú hamburguesa aparece correctamente en móvil y desaparece en desktop.
+- Las cards de planes se reorganizan de 3 columnas a 1 columna según el viewport.
+- Los formularios son usables en todos los tamaños de pantalla.
+- La tipografía es legible en todos los dispositivos.
+- No hay overflow horizontal en ningún viewport.
+- Los elementos interactivos son accesibles con touch en móvil.

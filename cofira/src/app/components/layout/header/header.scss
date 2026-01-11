@@ -354,18 +354,20 @@
   background: var(--blanco-normal);
   border-bottom: 1px solid var(--blanco-dark);
 
-  h2 {
-    // 2. MODELO DE CAJA
-    margin: 0;
+}
 
-    // 3. TIPOGRAFÍA
-    font-family: var(--font-secondary);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-bold);
+/* Título del menú móvil - acceso directo con clase BEM */
+.menu-movil__titulo {
+  // 2. MODELO DE CAJA
+  margin: 0;
 
-    // 4. VISUAL
-    color: var(--negro-normal);
-  }
+  // 3. TIPOGRAFÍA
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+
+  // 4. VISUAL
+  color: var(--negro-normal);
 }
 
 .menu-movil__cerrar {

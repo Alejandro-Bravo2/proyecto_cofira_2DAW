@@ -1,7 +1,17 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Button} from '../button/button';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Button } from '../button/button';
+import { NotificacionService } from '../../../services/notificacion.service';
 
+/**
+ * ═══════════════════════════════════════════════════════════════════════════
+ * COMPONENTE: FormContact
+ * ═══════════════════════════════════════════════════════════════════════════
+ *
+ * Formulario de contacto reutilizable con validaciones.
+ *
+ * ═══════════════════════════════════════════════════════════════════════════
+ */
 @Component({
   selector: 'app-contact-form',
   standalone: true,
@@ -10,9 +20,22 @@ import {Button} from '../button/button';
   styleUrls: ['./form-contact.scss']
 })
 export class FormContact implements OnInit {
+  // ─────────────────────────────────────────────────────────────────────────
+  // INYECCIÓN DE DEPENDENCIAS
+  // ─────────────────────────────────────────────────────────────────────────
+
+  private fb = inject(FormBuilder);
+  private notificacion = inject(NotificacionService);
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // PROPIEDADES
+  // ─────────────────────────────────────────────────────────────────────────
+
   contactForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  // ─────────────────────────────────────────────────────────────────────────
+  // CICLO DE VIDA
+  // ─────────────────────────────────────────────────────────────────────────
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
@@ -22,14 +45,18 @@ export class FormContact implements OnInit {
     });
   }
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // MÉTODOS
+  // ─────────────────────────────────────────────────────────────────────────
+
   onSubmit(): void {
     if (this.contactForm.valid) {
       console.log('Formulario enviado:', this.contactForm.value);
-      alert('¡Formulario enviado correctamente!');
+      this.notificacion.exito('¡Formulario enviado correctamente!');
       this.contactForm.reset();
     } else {
       this.contactForm.markAllAsTouched();
-      alert('Por favor, completa todos los campos correctamente');
+      this.notificacion.advertencia('Por favor, completa todos los campos correctamente');
     }
   }
 }

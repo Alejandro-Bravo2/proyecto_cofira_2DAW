@@ -101,7 +101,7 @@ body.modo-oscuro {
      ═══════════════════════════════════════════════════════════════════════════
 
      Componente: app-header
-     Archivo original: components/layaout/header/header.scss
+     Archivo original: components/layout/header/header.scss
 
      ┌──────────────────────────────────────────────────────────────────────────┐
      │ [Logo]  [Enlaces]  [=Buscador=]  [Inscríbete] [Cuenta]  [≡ Hamburguesa] │
@@ -149,7 +149,7 @@ body.modo-oscuro {
   }
 
   app-header .header__link::after {
-    background: var(--oscuro-cabecera-enlace-hover) !important;
+    background: var(--oscuro-cabecera-enlace-hover);
   }
 
   /* --- Botón de perfil de usuario --- */
@@ -276,7 +276,7 @@ body.modo-oscuro {
     border-bottom-color: rgba(255, 255, 255, 0.08);
   }
 
-  app-header .menu-movil__header h2 {
+  app-header .menu-movil__titulo {
     color: #f5f5f5;
   }
 
@@ -346,7 +346,7 @@ body.modo-oscuro {
      ═══════════════════════════════════════════════════════════════════════════
 
      Componente: app-footer
-     Archivo original: components/layaout/footer/footer.scss
+     Archivo original: components/layout/footer/footer.scss
 
      ┌──────────────────────────────────────────────────────────────────────────┐
      │ [Condiciones de uso]      © Copyright Cofira      [YT][FB][TW][IG][LI]  │
@@ -1246,7 +1246,7 @@ body.modo-oscuro {
   }
 
   app-home .faq__item:hover .faq__icono::after {
-    border-color: var(--amarillo-normal) !important;
+    border-color: var(--amarillo-normal);
   }
 
   app-home .faq__item[open] {
@@ -1273,7 +1273,7 @@ body.modo-oscuro {
   }
 
   app-home .faq__icono::after {
-    border-color: var(--amarillo-normal) !important;
+    border-color: var(--amarillo-normal);
   }
 
   app-home .faq__contacto {
@@ -1530,14 +1530,21 @@ body.modo-oscuro {
     color: var(--blanco-normal);
   }
 
-  app-gimnasio .gimnasio__tabla th {
+  app-gimnasio .gimnasio__tabla th,
+  app-gimnasio .gimnasio__tabla thead th {
     background-color: var(--oscuro-hover-fondo);
     color: var(--blanco-normal);
+    border-color: var(--oscuro-borde-color);
   }
 
-  app-gimnasio .gimnasio__tabla td {
+  app-gimnasio .gimnasio__tabla td,
+  app-gimnasio .gimnasio__tabla tbody td {
     background-color: var(--oscuro-superficie-fondo);
     color: var(--blanco-normal);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-gimnasio .gimnasio__tabla tr {
     border-color: var(--oscuro-borde-color);
   }
 
@@ -1692,6 +1699,7 @@ body.modo-oscuro {
   /* Menu del dia - CORREGIDO con selectores reales */
   app-alimentacion .alimentacion__menu-dia {
     background-color: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-color);
   }
 
   /* Comidas (Desayuno, Almuerzo, etc.) */
@@ -1732,10 +1740,12 @@ body.modo-oscuro {
   }
 
   app-alimentacion .alimentacion__btn-info {
-    color: var(--oscuro-texto-secundario);
+    background-color: var(--oscuro-hover-fondo);
+    color: var(--blanco-normal);
 
     &:hover {
-      color: var(--oscuro-texto-principal);
+      background-color: var(--amarillo-normal);
+      color: var(--negro-normal);
     }
   }
 
@@ -1754,6 +1764,21 @@ body.modo-oscuro {
 
   app-alimentacion .alimentacion__fecha-texto {
     color: var(--oscuro-texto-principal);
+  }
+
+  /* Iconos de comida (desayuno, almuerzo, etc.) */
+  app-alimentacion .alimentacion__comida-icono {
+    color: var(--blanco-normal);
+  }
+
+  /* Icono del calendario */
+  app-alimentacion .alimentacion__icono-calendario {
+    color: var(--blanco-normal);
+  }
+
+  /* Icono del costo */
+  app-alimentacion .alimentacion__comida-costo svg {
+    color: var(--blanco-normal);
   }
 
 
@@ -1823,6 +1848,15 @@ body.modo-oscuro {
 
   app-seguimiento .seguimiento__chart-grid {
     stroke: var(--oscuro-seguimiento-grafico-grid);
+  }
+
+  /* Labels del gráfico de fuerza */
+  app-seguimiento .seguimiento__chart-label {
+    fill: var(--blanco-normal);
+  }
+
+  app-seguimiento .seguimiento__chart-label-axis {
+    fill: var(--blanco-dark);
   }
 
   /* Calendario */

@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    LAYOUT: Grid & Flex utilities
-   Sistema de layout reutilizable
+   Sistema de layout reutilizable - MOBILE FIRST
    ═══════════════════════════════════════════════════════════════════════════
 
    ESTRUCTURA BEM
@@ -17,6 +17,12 @@
      <article class="col col--span-1">...</article>
    </section>
 
+   FILOSOFÍA MOBILE-FIRST
+   ─────────────────────────────────────────────────────────────────────────────
+   1. Estilos base = móvil (pantallas pequeñas)
+   2. @include responsive('sm') = tablet y más grande
+   3. @include responsive('md') = desktop y más grande
+
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -31,36 +37,60 @@
 
 /* ─────────────────────────────────────────────────────────────────────────────
    BLOCK: Grid container
+   Base: 1 columna en móvil
    ───────────────────────────────────────────────────────────────────────────── */
 
 .grid {
   display: grid;
-  gap: var(--spacing-4);
+  grid-template-columns: 1fr; // Móvil: 1 columna
+  gap: var(--spacing-size-m);
   width: 100%;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    MODIFIERS: Grid columns (2, 3, 4, 6)
+   Mobile-first: solo aplican en pantallas >= 768px (tablet)
    ───────────────────────────────────────────────────────────────────────────── */
 
+// 2 columnas: activas desde tablet (768px)
 .grid--cols-2 {
-  grid-template-columns: repeat(2, 1fr);
+  @include responsive('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
+// 3 columnas: activas desde tablet (768px)
 .grid--cols-3 {
-  grid-template-columns: repeat(3, 1fr);
+  @include responsive('sm') {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
+// 4 columnas: activas desde desktop (900px)
 .grid--cols-4 {
-  grid-template-columns: repeat(4, 1fr);
+  @include responsive('sm') {
+    grid-template-columns: repeat(2, 1fr); // Tablet: 2 columnas
+  }
+
+  @include responsive('md') {
+    grid-template-columns: repeat(4, 1fr); // Desktop: 4 columnas
+  }
 }
 
+// 6 columnas: activas desde desktop (900px)
 .grid--cols-6 {
-  grid-template-columns: repeat(6, 1fr);
+  @include responsive('sm') {
+    grid-template-columns: repeat(3, 1fr); // Tablet: 3 columnas
+  }
+
+  @include responsive('md') {
+    grid-template-columns: repeat(6, 1fr); // Desktop: 6 columnas
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    BLOCK: Column with span modifiers
+   Nota: Los spans funcionan cuando hay suficientes columnas disponibles
    ───────────────────────────────────────────────────────────────────────────── */
 
 .col--span-1 {
@@ -85,17 +115,4 @@
 
 .col--span-12 {
   grid-column: span 12;
-}
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   RESPONSIVE: Mobile (1 column)
-   ───────────────────────────────────────────────────────────────────────────── */
-
-@media (max-width: 48rem) {
-  .grid--cols-2,
-  .grid--cols-3,
-  .grid--cols-4,
-  .grid--cols-6 {
-    grid-template-columns: 1fr;
-  }
 }

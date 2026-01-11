@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 // Layout
-import { Header } from '../../components/layaout/header/header';
-import { Footer } from '../../components/layaout/footer/footer';
+import { Header } from '../../components/layout/header/header';
+import { Footer } from '../../components/layout/footer/footer';
 // Shared Components
 import { Button } from '../../components/shared/button/button';
 import { Card } from '../../components/shared/card/card';

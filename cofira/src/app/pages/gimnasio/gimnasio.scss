@@ -146,6 +146,11 @@
       padding: var(--spacing-size-xs);
       font-size: 0.8125rem;
     }
+
+    // Modo oscuro
+    :host-context(body.modo-oscuro) & {
+      color: var(--blanco-normal);
+    }
   }
 
   th {
@@ -306,7 +311,9 @@
 
 .gimnasio__progreso-info {
   @include flex-columna(var(--spacing-size-xl));
-  flex: 0 0 21.75rem;
+  // Ancho fijo que no se estira ni encoge
+  width: 21.75rem;
+  flex-shrink: 0;
   padding: var(--spacing-size-xxl) var(--spacing-size-xl);
 
   @include responsive-down('lg') {
