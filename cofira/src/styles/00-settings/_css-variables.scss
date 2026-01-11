@@ -11,7 +11,7 @@
 // ========================================
 // Los breakpoints DEBEN ser variables SCSS porque
 // las media queries no soportan CSS Custom Properties
-// Uso: @include responsive('md') { ... }
+// Uso: @include responsive-down('md') { ... }  (desktop-first)
 // ========================================
 $breakpoint-xs: 40rem;    // 640px - Móviles pequeños
 $breakpoint-sm: 48rem;    // 768px - Móviles grandes / Tablets pequeñas

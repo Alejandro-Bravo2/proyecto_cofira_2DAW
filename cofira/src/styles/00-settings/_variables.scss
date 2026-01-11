@@ -95,7 +95,8 @@
 
 
   /* ============================================
-     BOTONES
+     BOTONES (legacy - preferir variables de colores base)
+     Ejemplo: usar var(--amarillo-normal) en lugar de var(--button-yellow)
      ============================================ */
   --button-red: #FF3434;
   --button-red-hover: #910505;

@@ -144,8 +144,9 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
    RESPONSIVE MIXINS
    ============================================ */
 
-// Mixin para media queries responsive (mobile-first: min-width)
-// Uso: @include responsive('md') { width: 50%; }
+// Mixin auxiliar para media queries (min-width) - USO LIMITADO
+// El proyecto usa principalmente responsive-down() (desktop-first)
+// Solo usar este mixin cuando necesites añadir algo específico para pantallas grandes
 // Breakpoints: 'xs' (640px), 'sm' (768px), 'md' (900px), 'lg' (1024px), 'xl' (1200px), 'xxl' (1400px)
 @mixin responsive($breakpoint) {
   @if $breakpoint == 'xs' {

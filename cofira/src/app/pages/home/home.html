@@ -31,26 +31,29 @@
     </article>
 
     <!-- Cards a la derecha -->
-    <article class="home__card-wrapper">
-      <app-card [ventajas]="[
+    <section class="home__card--container">
+      <article class="home__card-wrapper">
+        <app-card [ventajas]="[
             'Máximo de 7 comidas diarias',
             'Rutinas de ejercicios hasta 7 días',
             'Seguimiento avanzado con gráficos',
             'Asesoría nutricional personalizada',
             'Acceso a contenido exclusivo'
           ]" precio="19.99€ + IVA al mes" texto_boton="Inscríbete" title="Cuota mensual"></app-card>
-    </article>
+      </article>
 
-    <article class="home__card-wrapper">
-      <app-card [deshabilitada]="false" [ventajas]="[
+      <article class="home__card-wrapper">
+        <app-card [deshabilitada]="false" [ventajas]="[
             'Máximo de 7 comidas diarias',
             'Rutinas de ejercicios hasta 7 días',
             'Seguimiento avanzado con gráficos',
             'Asesoría nutricional personalizada',
             'Acceso a contenido exclusivo'
           ]" precio="15.99€ + IVA al año" texto_boton="Inscríbete"
-                title="Cuota anual"></app-card>
-    </article>
+                  title="Cuota anual"></app-card>
+      </article>
+    </section>
+
   </section>
 </section>
 

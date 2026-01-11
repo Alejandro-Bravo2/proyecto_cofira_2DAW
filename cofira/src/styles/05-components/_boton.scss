@@ -6,7 +6,7 @@
    ESTRUCTURA BEM
    ─────────────────────────────────────────────────────────────────────────────
    Block:     .boton
-   Elements:  .boton__icono, .boton__texto
+   Elements:  .boton__icono
    Modifiers: .boton--primario, .boton--secundario, .boton--fantasma,
               .boton--peligro, .boton--pequeno, .boton--mediano,
               .boton--grande, .boton--completo, .boton__icono--derecha
@@ -15,7 +15,7 @@
    ─────────────────────────────────────────────────────────────────────────────
    <button class="boton boton--primario boton--mediano">
      <span class="boton__icono">...</span>
-     <span class="boton__texto">Enviar</span>
+     Enviar
    </button>
 
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -186,6 +186,4 @@
   margin-left: var(--spacing-size-xss);
 }
 
-.boton__texto {
-  /* Espacio para texto si se necesita estilizar separadamente */
-}
+// .boton__texto eliminado - no tenía estilos definidos

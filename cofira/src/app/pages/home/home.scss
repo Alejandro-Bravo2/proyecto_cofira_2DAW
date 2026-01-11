@@ -173,13 +173,19 @@
 }
 
 .boton__primary--planes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   ::ng-deep .button {
     min-width: 170px;
     padding: 0.75rem 1rem;
+    height: 4rem;
 
-    color: var(--negro-normal);
+
+    color: var(--blanco-normal);
     background: transparent;
-    border: var(--negro-normal) solid var(--radius-xsss);
+    border: var(--blanco-normal) solid var(--radius-xsss);
 
     &:hover:not(:disabled) {
       color: var(--blanco-normal);
@@ -256,29 +262,22 @@
 .planes__contenido {
   // 2. MODELO DE CAJA
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-size-xl);
-  align-items: start;
+  grid-template-columns: auto 1fr; // Info a la izquierda, cards a la derecha
+  gap: var(--spacing-size-xxxl);
+  align-items: center;
 
-  // RESPONSIVE: Tablet (2 columnas centradas) - a partir de 1300px
-  @media (max-width: 1300px) {
-    grid-template-columns: repeat(2, minmax(auto, 320px));
-    justify-content: center;
-    column-gap: 5rem;
-    row-gap: var(--spacing-size-xl);
+  // RESPONSIVE: Tablet y móvil - apilar verticalmente
+  @include responsive-down('lg') {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-size-xl);
 
-    // Info ocupa las 2 columnas
     .planes__info {
-      grid-column: 1 / -1;
       max-width: 100%;
       text-align: center;
     }
-  }
-
-  // RESPONSIVE: Móvil (1 columna)
-  @include responsive-down('md') {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-size-l);
   }
 }
 
@@ -617,6 +616,24 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 // ─────────────────────────────────────────────────────────────────────────────
+// Contenedor de cards - Layout responsive
+// ─────────────────────────────────────────────────────────────────────────────
+.home__card--container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4rem; // 64px de separación entre cards
+  width: 100%;
+
+  // RESPONSIVE: Móvil - apilar cards verticalmente
+  @include responsive-down('sm') {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-size-xxl); // Menos gap en móvil (40px)
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
 // Wrapper que habilita Container Queries para las pricing-cards
 // ─────────────────────────────────────────────────────────────────────────────
 .home__card-wrapper {
@@ -724,7 +741,7 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9.1 TABLET/MÓVIL: Breakpoint MD (900px)
+// 9.1 TABLET Y MENOR: Breakpoint MD (≤900px)
 // ─────────────────────────────────────────────────────────────────────────────
 @include responsive-down('md') {
   // Planes Section

@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    LAYOUT: Grid & Flex utilities
-   Sistema de layout reutilizable - MOBILE FIRST
+   Sistema de layout reutilizable - DESKTOP FIRST
    ═══════════════════════════════════════════════════════════════════════════
 
    ESTRUCTURA BEM
@@ -17,11 +17,11 @@
      <article class="col col--span-1">...</article>
    </section>
 
-   FILOSOFÍA MOBILE-FIRST
+   FILOSOFÍA DESKTOP-FIRST
    ─────────────────────────────────────────────────────────────────────────────
-   1. Estilos base = móvil (pantallas pequeñas)
-   2. @include responsive('sm') = tablet y más grande
-   3. @include responsive('md') = desktop y más grande
+   1. Estilos base = desktop (pantallas grandes)
+   2. @include responsive-down('md') = tablet y más pequeño
+   3. @include responsive-down('sm') = móvil
 
    ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -37,54 +37,62 @@
 
 /* ─────────────────────────────────────────────────────────────────────────────
    BLOCK: Grid container
-   Base: 1 columna en móvil
+   Base: 1 columna (sin modificadores)
    ───────────────────────────────────────────────────────────────────────────── */
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr; // Móvil: 1 columna
+  grid-template-columns: 1fr; // Base: 1 columna (sin modificadores)
   gap: var(--spacing-size-m);
   width: 100%;
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
    MODIFIERS: Grid columns (2, 3, 4, 6)
-   Mobile-first: solo aplican en pantallas >= 768px (tablet)
+   Desktop-first: base son las columnas máximas, se reducen en pantallas pequeñas
    ───────────────────────────────────────────────────────────────────────────── */
 
-// 2 columnas: activas desde tablet (768px)
+// 2 columnas: base desktop, 1 columna en móvil
 .grid--cols-2 {
-  @include responsive('sm') {
-    grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+
+  @include responsive-down('sm') {
+    grid-template-columns: 1fr;
   }
 }
 
-// 3 columnas: activas desde tablet (768px)
+// 3 columnas: base desktop, 1 columna en móvil
 .grid--cols-3 {
-  @include responsive('sm') {
-    grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+
+  @include responsive-down('sm') {
+    grid-template-columns: 1fr;
   }
 }
 
-// 4 columnas: activas desde desktop (900px)
+// 4 columnas: base desktop, 2 en tablet, 1 en móvil
 .grid--cols-4 {
-  @include responsive('sm') {
+  grid-template-columns: repeat(4, 1fr);
+
+  @include responsive-down('md') {
     grid-template-columns: repeat(2, 1fr); // Tablet: 2 columnas
   }
 
-  @include responsive('md') {
-    grid-template-columns: repeat(4, 1fr); // Desktop: 4 columnas
+  @include responsive-down('sm') {
+    grid-template-columns: 1fr; // Móvil: 1 columna
   }
 }
 
-// 6 columnas: activas desde desktop (900px)
+// 6 columnas: base desktop, 3 en tablet, 1 en móvil
 .grid--cols-6 {
-  @include responsive('sm') {
+  grid-template-columns: repeat(6, 1fr);
+
+  @include responsive-down('md') {
     grid-template-columns: repeat(3, 1fr); // Tablet: 3 columnas
   }
 
-  @include responsive('md') {
-    grid-template-columns: repeat(6, 1fr); // Desktop: 6 columnas
+  @include responsive-down('sm') {
+    grid-template-columns: 1fr; // Móvil: 1 columna
   }
 }
 

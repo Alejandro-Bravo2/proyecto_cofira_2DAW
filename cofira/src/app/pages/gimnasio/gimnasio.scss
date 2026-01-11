@@ -44,12 +44,15 @@
   @include flex-columna(var(--spacing-size-xxl));
   align-items: center;
   width: 100%;
-  padding: var(--spacing-size-xxxl) 0;
+  box-sizing: border-box; // Incluir padding en el width para evitar overflow
+  // Padding: top (header 4.5rem + espacio), horizontal, bottom
+  padding: calc(4.5rem + var(--spacing-size-xxl)) var(--spacing-size-xl) var(--spacing-size-xxxl);
   background-color: var(--blanco-normal-hover);
 
   @include responsive-down('md') {
     gap: var(--spacing-size-l);
-    padding: var(--spacing-size-xl) var(--spacing-size-m);
+    // Padding: top (header móvil 4rem + espacio), horizontal, bottom
+    padding: calc(4rem + var(--spacing-size-l)) var(--spacing-size-m) var(--spacing-size-xl);
   }
 }
 
@@ -125,6 +128,7 @@
 .gimnasio__tabla-section {
   width: 100%;
   max-width: var(--contenido-max-width);
+  margin: 0 auto;
 }
 
 .gimnasio__tabla {
@@ -218,7 +222,9 @@
 
 .gimnasio__feedback {
   @include caja-contenido;
+  width: 100%;
   max-width: var(--contenido-max-width);
+  margin: 0 auto;
   padding: var(--spacing-size-xxl) var(--spacing-size-xl);
 
   @include responsive-down('md') {
@@ -285,7 +291,7 @@
   margin-top: var(--spacing-size-m);
 
   @include responsive-down('md') {
-    flex-direction: column;
+    flex-direction: row;
     gap: var(--spacing-size-s);
   }
 }
@@ -297,10 +303,15 @@
 .gimnasio__progreso {
   width: 100%;
   max-width: var(--contenido-max-width);
+  margin: 0 auto;
 }
 
 .gimnasio__progreso-contenido {
-  @include caja-contenido;
+  width: 100%;
+  background-color: var(--oscuro-superficie-fondo);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  box-sizing: border-box;
   display: flex;
   overflow: hidden;
 

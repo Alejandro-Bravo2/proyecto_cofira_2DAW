@@ -14,9 +14,9 @@
    │  Ejemplo: Para cambiar el fondo de las tarjetas en modo oscuro:        │
    │  --oscuro-tarjeta-fondo: #\{$gris-normal};  ← Cambia esto              │
    │                                                                         │
-   │  IMPORTANTE: Usamos variables SCSS (#\{$variable}) en lugar de         │
-   │  CSS Custom Properties (var(--variable)) para evitar conflictos        │
-   │  con la inversión de colores del tema claro/oscuro.                    │
+   │  IMPORTANTE: Este archivo usa tanto interpolación SCSS (#\{$variable})  │
+   │  como valores hexadecimales directos según el contexto.                │
+   │                                                                         │
    │                                                                         │
    └─────────────────────────────────────────────────────────────────────────┘
 
@@ -87,8 +87,8 @@ body.modo-oscuro {
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 1: FONDOS PRINCIPALES (REFINADOS)
      ═══════════════════════════════════════════════════════════════════════════
-     Paleta premium con escala jerarquica clara.
-     Base: #1e2227 (gris oscuro suave, facil a la vista)
+     Paleta premium con escala jerárquica clara.
+     Base: #1e2227 (gris oscuro suave, fácil a la vista)
      ═══════════════════════════════════════════════════════════════════════════ */
 
   /* Fondo principal del body/pagina - Base mas profundo */
