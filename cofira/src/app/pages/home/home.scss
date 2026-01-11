@@ -625,11 +625,11 @@
   gap: 4rem; // 64px de separación entre cards
   width: 100%;
 
-  // RESPONSIVE: Móvil - apilar cards verticalmente
-  @include responsive-down('sm') {
+  // RESPONSIVE: Tablet y móvil (<900px) - apilar cards verticalmente
+  @include responsive-down('md') {
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-size-xxl); // Menos gap en móvil (40px)
+    gap: var(--spacing-size-xxl); // Menos gap (40px)
   }
 }
 

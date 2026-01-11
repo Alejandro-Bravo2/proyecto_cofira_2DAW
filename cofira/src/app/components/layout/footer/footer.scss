@@ -292,21 +292,28 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9.1 LAPTOP/TABLET GRANDE: Breakpoint LG (≤1024px)
+// 9.1 LAPTOP/TABLET GRANDE: Breakpoint LG (≤1024px) - Stack Centrado
 // ─────────────────────────────────────────────────────────────────────────────
 @include responsive-down('lg') {
   .footer {
     padding: var(--spacing-size-xxl) var(--spacing-size-xl);
   }
 
+  // Grid con áreas: Brand arriba (full width), 3 navs en fila abajo
   .footer__main {
-    grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "brand brand brand"
+      "nav1 nav2 nav3";
     gap: var(--spacing-size-xl);
+    justify-items: center;
   }
 
+  // Brand centrado arriba
   .footer__brand {
-    grid-column: 1 / -1;
-    max-width: 100%;
+    grid-area: brand;
+    max-width: 500px;
     text-align: center;
   }
 
@@ -320,6 +327,11 @@
     justify-content: center;
   }
 
+  // 3 columnas de navegación en fila
+  .footer__nav:nth-of-type(1) { grid-area: nav1; }
+  .footer__nav:nth-of-type(2) { grid-area: nav2; }
+  .footer__nav:nth-of-type(3) { grid-area: nav3; }
+
   .footer__nav {
     text-align: center;
   }
@@ -327,30 +339,80 @@
   .footer__nav-lista {
     align-items: center;
   }
+
+  // Bottom centrado
+  .footer__bottom {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-size-m);
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// 9.2 TABLET Y MENOR: Breakpoint SM (≤768px)
+// 9.2 MÓVIL: Breakpoint SM (≤768px) - Grid 2x2 Compacto
 // ─────────────────────────────────────────────────────────────────────────────
 @include responsive-down('sm') {
   .footer {
     padding: var(--spacing-size-xl) var(--spacing-size-m);
   }
 
+  // Grid: Brand arriba, PRODUCTO y COMPAÑÍA en 2 cols centradas, LEGAL abajo
   .footer__main {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-size-xl);
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      "brand brand"
+      "nav1 nav2"
+      "nav3 nav3";
+    gap: var(--spacing-size-l) 2rem; // gap vertical | gap horizontal (2rem entre columnas)
+    justify-content: center;
   }
 
-  .footer__bottom {
-    flex-direction: column;
-    gap: var(--spacing-size-m);
+  // Ocultar descripción larga para ahorrar espacio
+  .footer__descripcion {
+    display: none;
+  }
+
+  // PRODUCTO (nav1) y COMPAÑÍA (nav2) lado a lado, alineados a izquierda
+  .footer__nav:nth-of-type(1) {
+    grid-area: nav1;
+    text-align: left;
+  }
+
+  .footer__nav:nth-of-type(2) {
+    grid-area: nav2;
+    text-align: left;
+  }
+
+  .footer__nav:nth-of-type(1) .footer__nav-lista,
+  .footer__nav:nth-of-type(2) .footer__nav-lista {
+    align-items: flex-start;
+  }
+
+  // LEGAL (nav3) ocupa todo el ancho, links en línea horizontal
+  .footer__nav:nth-of-type(3) {
+    grid-area: nav3;
     text-align: center;
   }
 
-  .footer__legal {
+  .footer__nav:nth-of-type(3) .footer__nav-lista {
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    gap: var(--spacing-size-xs) var(--spacing-size-m);
+  }
+
+  // Bottom compacto
+  .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-size-s);
+    text-align: center;
+  }
+
+  // Ocultar links legales duplicados del bottom (ya están en nav3)
+  .footer__legal {
+    display: none;
   }
 }
 

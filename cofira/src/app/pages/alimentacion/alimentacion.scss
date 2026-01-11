@@ -19,9 +19,10 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .alimentacion {
+  // 2. MODELO DE CAJA
+  box-sizing: border-box; // Evita overflow horizontal con padding
   width: 100%;
   max-width: 100%;
-  background-color: var(--blanco-normal-hover);
   padding: var(--spacing-size-xxxl) 0;
   display: flex;
   flex-direction: column;
@@ -29,8 +30,15 @@
   gap: var(--spacing-size-xl);
   min-height: calc(100vh - 10.5rem);
 
+  // 4. VISUAL
+  background-color: var(--blanco-normal-hover);
+
+  // RESPONSIVE: Tablet y móvil (<900px)
   @include responsive-down('md') {
-    padding: var(--spacing-size-xl) var(--spacing-size-m);
+    padding-top: calc(4rem + var(--spacing-size-xl)); // Header fijo (4rem) + espaciado
+    padding-left: var(--spacing-size-m);
+    padding-right: var(--spacing-size-m);
+    padding-bottom: var(--spacing-size-xl);
     gap: var(--spacing-size-l);
   }
 }
@@ -137,6 +145,7 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .alimentacion__menu-dia {
+  box-sizing: border-box; // Evita overflow horizontal con padding
   width: 100%;
   max-width: 60.625rem;
   background-color: var(--blanco-normal);
@@ -214,14 +223,14 @@
   svg {
     width: 1.5rem;
     height: 1.5rem;
-    color: var(--negro-normal);
+    color: var(--blanco-normal);
   }
 
   span {
     font-family: var(--font-primary);
     font-size: var(--font-size-xl);
     font-weight: var(--font-weight-regular);
-    color: var(--negro-normal);
+    color: var(--blanco-normal);
 
     @include responsive-down('md') {
       font-size: var(--font-size-lg);

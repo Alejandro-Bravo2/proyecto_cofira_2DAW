@@ -297,7 +297,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Sección progreso
+   ELEMENT: Sección progreso - Split Diagonal
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .gimnasio__progreso {
@@ -307,39 +307,53 @@
 }
 
 .gimnasio__progreso-contenido {
-  width: 100%;
-  background-color: var(--oscuro-superficie-fondo);
-  border: 0.0625rem solid var(--blanco-dark);
-  border-radius: var(--radius-xss);
-  box-sizing: border-box;
+  position: relative;
   display: flex;
+  width: 100%;
+  min-height: 20rem;
+  border-radius: var(--radius-xss);
   overflow: hidden;
 
-  @include responsive-down('lg') {
+  @include responsive-down('md') {
     flex-direction: column;
+    min-height: auto;
   }
 }
 
-.gimnasio__progreso-info {
-  @include flex-columna(var(--spacing-size-xl));
-  // Ancho fijo que no se estira ni encoge
-  width: 21.75rem;
-  flex-shrink: 0;
-  padding: var(--spacing-size-xxl) var(--spacing-size-xl);
+// Panel izquierdo con contenido y diagonal
+.gimnasio__progreso-panel {
+  @include flex-columna(var(--spacing-size-l));
+  position: relative;
+  z-index: 2;
+  width: 45%; // Reducido para dar más espacio a la imagen
+  padding: var(--spacing-size-xxl);
+  background-color: var(--gris-normal);
 
-  @include responsive-down('lg') {
-    flex: none;
+  // Diagonal cortando hacia la derecha
+  clip-path: polygon(
+    0 0,        // Esquina superior izquierda
+    100% 0,     // Esquina superior derecha
+    85% 100%,   // Punto inferior derecho (desplazado para crear diagonal)
+    0 100%      // Esquina inferior izquierda
+  );
+
+  @include responsive-down('md') {
     width: 100%;
-    gap: var(--spacing-size-m);
     padding: var(--spacing-size-l) var(--spacing-size-m);
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 85%,
+      0 100%
+    );
   }
 }
 
 .gimnasio__progreso-titulo {
   font-family: var(--font-secondary);
   font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-semibold);
-  color: var(--negro-normal);
+  font-weight: var(--font-weight-bold);
+  color: var(--blanco-normal);
   margin: 0;
 
   @include responsive-down('md') {
@@ -348,31 +362,40 @@
 }
 
 .gimnasio__progreso-descripcion {
-  @include tipografia-texto;
   font-size: var(--font-size-lg);
-  color: var(--negro-normal);
+  color: var(--blanco-normal);
+  opacity: 0.9;
   margin: 0;
+  line-height: 1.6;
+  max-width: 20rem;
 
   @include responsive-down('md') {
     font-size: var(--font-size-md);
+    max-width: 100%;
   }
 }
 
+// Panel derecho con imagen (detrás del panel diagonal)
 .gimnasio__progreso-imagen {
-  flex: 1;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 70%; // Ampliado para mostrar más de la imagen
+  height: 100%;
   margin: 0;
-  min-height: 26.25rem;
-  background-color: var(--blanco-normal-active);
-  overflow: hidden;
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: right top; // Desplazado a la derecha para centrar al hombre
     display: block;
   }
 
-  @include responsive-down('lg') {
-    min-height: 15rem;
+  @include responsive-down('md') {
+    position: relative;
+    width: 100%;
+    height: 15rem;
+    margin-top: -2rem; // Superponer ligeramente con la diagonal
   }
 }

@@ -19,9 +19,10 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .seguimiento {
+  // 2. MODELO DE CAJA
+  box-sizing: border-box; // Evita overflow horizontal con padding
   width: 100%;
   max-width: 100%;
-  background-color: var(--blanco-normal-hover);
   padding: var(--spacing-size-xxxl) 0;
   display: flex;
   flex-direction: column;
@@ -29,8 +30,15 @@
   gap: var(--spacing-size-xxl);
   min-height: calc(100vh - 10.5rem);
 
+  // 4. VISUAL
+  background-color: var(--blanco-normal-hover);
+
+  // RESPONSIVE: Tablet y móvil (<900px)
   @include responsive-down('md') {
-    padding: var(--spacing-size-xl) var(--spacing-size-m);
+    padding-top: calc(4rem + var(--spacing-size-xl)); // Header fijo (4rem) + espaciado
+    padding-left: var(--spacing-size-m);
+    padding-right: var(--spacing-size-m);
+    padding-bottom: var(--spacing-size-xl);
     gap: var(--spacing-size-l);
   }
 }
@@ -62,6 +70,7 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .seguimiento__macronutrientes {
+  box-sizing: border-box; // Evita overflow horizontal con padding
   width: 100%;
   max-width: 60.625rem;
   padding: 0 var(--spacing-size-m);
@@ -214,6 +223,7 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .seguimiento__fuerza {
+  box-sizing: border-box; // Evita overflow horizontal con padding
   width: 100%;
   max-width: 60.625rem;
   padding: 0 var(--spacing-size-m);
@@ -274,6 +284,7 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .seguimiento__grafico-lineas {
+  box-sizing: border-box; // Evita overflow horizontal con padding
   width: 100%;
   background-color: var(--blanco-normal);
   border: 0.0625rem solid var(--blanco-dark);
