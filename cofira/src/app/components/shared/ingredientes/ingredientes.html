@@ -5,9 +5,9 @@
   [titulo]="alimento?.descripcion || 'Ingredientes'">
 
   @if (alimento) {
-    <div class="ingredientes">
+    <article class="ingredientes">
       <!-- Información del alimento -->
-      <section class="ingredientes__info">
+      <header class="ingredientes__info">
         <figure class="ingredientes__icono">
           @switch (alimento.icono) {
             @case ('pizza') {
@@ -34,12 +34,10 @@
           }
         </figure>
 
-        <div class="ingredientes__resumen">
-          <p class="ingredientes__calorias">
-            <strong>Total de calorías:</strong> {{ caloriasTotal }} kcal
-          </p>
-        </div>
-      </section>
+        <p class="ingredientes__calorias">
+          <strong>Total de calorías:</strong> {{ caloriasTotal }} kcal
+        </p>
+      </header>
 
       <!-- Lista de ingredientes -->
       <section class="ingredientes__lista">
@@ -55,6 +53,6 @@
           }
         </ul>
       </section>
-    </div>
+    </article>
   }
 </app-modal>

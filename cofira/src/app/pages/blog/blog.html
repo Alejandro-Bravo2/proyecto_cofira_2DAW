@@ -1,18 +1,18 @@
 <main class="blog">
   <!-- Hero Section -->
   <header class="blog__header">
-    <div class="blog__header-content">
+    <hgroup class="blog__header-content">
       <h1 class="blog__titulo">Blog de Cofira</h1>
       <p class="blog__subtitulo">
         Consejos, guías y artículos sobre fitness, nutrición y bienestar para ayudarte
         a alcanzar tus objetivos.
       </p>
-    </div>
+    </hgroup>
   </header>
 
   <!-- Filtros -->
   <section class="blog__filtros">
-    <div class="blog__container">
+    <article class="blog__container">
       <nav aria-label="Filtrar por categoría" class="blog__categorias">
         @for (cat of categorias; track cat.id) {
           <button
@@ -24,15 +24,15 @@
           </button>
         }
       </nav>
-    </div>
+    </article>
   </section>
 
   <!-- Grid de Artículos -->
   <section class="blog__contenido">
-    <div class="blog__container">
-      <div class="blog__grid">
+    <article class="blog__container">
+      <ul class="blog__grid">
         @for (articulo of articulosFiltrados; track articulo.titulo) {
-          <article class="blog__articulo">
+          <li class="blog__articulo">
             <figure class="blog__articulo-imagen">
               <img [alt]="articulo.titulo" [src]="articulo.imagen" loading="lazy"/>
               <span
@@ -42,12 +42,12 @@
                 {{ articulo.categoriaLabel }}
               </span>
             </figure>
-            <div class="blog__articulo-contenido">
-              <div class="blog__articulo-meta">
+            <section class="blog__articulo-contenido">
+              <header class="blog__articulo-meta">
                 <span class="blog__articulo-fecha">{{ articulo.fecha }}</span>
                 <span class="blog__articulo-separador">·</span>
                 <span class="blog__articulo-tiempo">{{ articulo.tiempoLectura }} lectura</span>
-              </div>
+              </header>
               <h2 class="blog__articulo-titulo">{{ articulo.titulo }}</h2>
               <p class="blog__articulo-extracto">{{ articulo.extracto }}</p>
               <footer class="blog__articulo-footer">
@@ -61,29 +61,29 @@
                   </svg>
                 </a>
               </footer>
-            </div>
-          </article>
+            </section>
+          </li>
         }
-      </div>
+      </ul>
 
       <!-- Mensaje sin resultados -->
       @if (articulosFiltrados.length === 0) {
         <p class="blog__sin-resultados">No hay artículos en esta categoría todavía.</p>
       }
-    </div>
+    </article>
   </section>
 
   <!-- Newsletter CTA -->
   <section class="blog__newsletter">
-    <div class="blog__container">
+    <article class="blog__container">
       <aside class="blog__newsletter-card">
-        <div class="blog__newsletter-contenido">
+        <hgroup class="blog__newsletter-contenido">
           <h2 class="blog__newsletter-titulo">Mantente al día</h2>
           <p class="blog__newsletter-texto">
             Suscríbete a nuestra newsletter y recibe los mejores consejos de fitness
             y nutrición directamente en tu bandeja de entrada.
           </p>
-        </div>
+        </hgroup>
         <form (submit)="$event.preventDefault()" class="blog__newsletter-form">
           <input
             aria-label="Email para newsletter"
@@ -94,6 +94,6 @@
           <button class="blog__newsletter-btn" type="submit">Suscribirse</button>
         </form>
       </aside>
-    </div>
+    </article>
   </section>
 </main>

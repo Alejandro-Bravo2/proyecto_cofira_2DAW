@@ -82,10 +82,8 @@
 
    ═══════════════════════════════════════════════════════════════════════════ */
 
-
 /* Importar configuración de variables */
 @import 'dark-mode-config';
-
 
 /* ═══════════════════════════════════════════════════════════════════════════
    APLICACIÓN DE ESTILOS MODO OSCURO
@@ -95,7 +93,6 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 body.modo-oscuro {
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-CABECERA: NAVEGACIÓN PRINCIPAL
      ═══════════════════════════════════════════════════════════════════════════
@@ -124,8 +121,7 @@ body.modo-oscuro {
     background: rgba(17, 14, 16, 0.85);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05),
-    0 4px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 20px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(255, 211, 0, 0.1);
   }
 
@@ -192,7 +188,6 @@ body.modo-oscuro {
     background-color: var(--oscuro-hamburguesa-hover);
   }
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-MENU: MENÚ DESPLEGABLE DE CUENTA
      ═══════════════════════════════════════════════════════════════════════════
@@ -215,8 +210,7 @@ body.modo-oscuro {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 211, 0, 0.05);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 211, 0, 0.05);
   }
 
   app-header .header__dropdown-item {
@@ -251,7 +245,6 @@ body.modo-oscuro {
   app-header .header__dropdown-separator {
     background: rgba(255, 255, 255, 0.1);
   }
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-MOVIL: MENÚ MÓVIL (HAMBURGUESA)
@@ -340,7 +333,6 @@ body.modo-oscuro {
     background-color: var(--oscuro-hamburguesa-hover);
   }
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-PIE: PIE DE PÁGINA (FOOTER)
      ═══════════════════════════════════════════════════════════════════════════
@@ -384,7 +376,6 @@ body.modo-oscuro {
     color: var(--oscuro-pie-social-hover-icono);
   }
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-TARJETAS: TARJETAS (CARDS)
      ═══════════════════════════════════════════════════════════════════════════
@@ -424,7 +415,6 @@ body.modo-oscuro {
   .tarjeta--destacada {
     border-color: var(--oscuro-tarjeta-destacada-borde);
   }
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-FORMULARIOS: FORMULARIOS
@@ -471,7 +461,6 @@ body.modo-oscuro {
     color: var(--oscuro-formulario-ayuda-texto);
   }
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-INPUTS: INPUTS GLOBALES (clase .input)
      ═══════════════════════════════════════════════════════════════════════════
@@ -496,7 +485,6 @@ body.modo-oscuro {
     color: var(--oscuro-formulario-placeholder);
   }
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-ALERTAS: ALERTAS Y NOTIFICACIONES
      ═══════════════════════════════════════════════════════════════════════════
@@ -515,7 +503,6 @@ body.modo-oscuro {
     background-color: var(--oscuro-alerta-info-fondo);
     border-color: var(--oscuro-alerta-info-borde);
   }
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-GUIA: PÁGINA GUÍA DE ESTILOS
@@ -561,7 +548,6 @@ body.modo-oscuro {
   }
 
   .style-guide__demo {
-
     border-color: var(--oscuro-guia-demo-borde);
   }
 
@@ -659,7 +645,6 @@ body.modo-oscuro {
     background: var(--gris-dark);
     color: var(--blanco-normal);
   }
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-LEGAL: PÁGINAS LEGALES
@@ -763,7 +748,6 @@ body.modo-oscuro {
     color: var(--oscuro-legal-enlace-hover);
   }
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-ABOUT: PÁGINA SOBRE NOSOTROS
      ═══════════════════════════════════════════════════════════════════════════
@@ -827,7 +811,6 @@ body.modo-oscuro {
   .about__miembro-cargo {
     color: var(--oscuro-info-texto);
   }
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-BLOG: PÁGINA DE BLOG
@@ -899,85 +882,6 @@ body.modo-oscuro {
     background-color: rgba(194, 24, 91, 0.25);
     color: #f48fb1;
   }
-
-
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCION-CARRERAS: PÁGINA DE EMPLEOS
-     ═══════════════════════════════════════════════════════════════════════════
-
-     Página: /carreras
-
-     Secciones: Hero (oscuro), Beneficios, Posiciones, Proceso, CTA (amarillo)
-
-     Variables: --oscuro-info-*, --oscuro-pagina-*
-
-     ═══════════════════════════════════════════════════════════════════════════ */
-
-  /* --- Títulos de sección genéricos --- */
-  .carreras__seccion-titulo {
-    color: var(--oscuro-info-titulo);
-  }
-
-  .carreras__seccion-descripcion {
-    color: var(--oscuro-info-texto);
-  }
-
-  /* --- Sección beneficios --- */
-  app-carreras .carreras__beneficios {
-    background-color: var(--oscuro-pagina-fondo);
-  }
-
-  app-carreras .carreras__beneficio {
-    background-color: var(--oscuro-info-card-fondo);
-  }
-
-  app-carreras .carreras__beneficio-titulo {
-    color: var(--oscuro-info-titulo);
-  }
-
-  app-carreras .carreras__beneficio-descripcion {
-    color: var(--oscuro-info-texto);
-  }
-
-  app-carreras .carreras__beneficio-icono {
-    background-color: var(--gris-dark);
-  }
-
-  /* --- Sección posiciones --- */
-  app-carreras .carreras__posiciones {
-    background-color: var(--oscuro-info-seccion-alt-fondo);
-  }
-
-  app-carreras .carreras__posicion {
-    background-color: var(--oscuro-info-card-fondo);
-  }
-
-  app-carreras .carreras__posicion-titulo {
-    color: var(--oscuro-info-titulo);
-  }
-
-  app-carreras .carreras__posicion-tag {
-    background-color: var(--gris-dark);
-    color: var(--oscuro-info-texto);
-  }
-
-  app-carreras .carreras__posicion-descripcion {
-    color: var(--oscuro-info-texto);
-  }
-
-  /* --- Sección proceso --- */
-  app-carreras .carreras__proceso {
-    background-color: var(--oscuro-pagina-fondo);
-  }
-
-  app-carreras .carreras__paso-titulo {
-    color: var(--oscuro-info-titulo);
-  }
-
-  app-carreras .carreras__paso-descripcion {
-    color: var(--oscuro-info-texto);
-  }
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-CONTACTO: PÁGINA DE CONTACTO
@@ -1101,7 +1005,6 @@ body.modo-oscuro {
   .contacto__faq-respuesta {
     color: var(--blanco-dark);
   }
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-HOME: PÁGINA PRINCIPAL
@@ -1232,7 +1135,7 @@ body.modo-oscuro {
   }
 
   app-home .faq__item:hover {
-    background-color: var(--gris-normal);
+    background-color: var(--negro-normal);
     border-color: var(--amarillo-normal);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   }
@@ -1305,7 +1208,6 @@ body.modo-oscuro {
     color: var(--oscuro-texto-secundario);
   }
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-ONBOARDING: FLUJO DE REGISTRO
      ═══════════════════════════════════════════════════════════════════════════
@@ -1336,14 +1238,14 @@ body.modo-oscuro {
   }
 
   /* Step titles - todos los steps */
-  app-onboarding [class*="step-"] __titulo,
+  app-onboarding [class*='step-'] __titulo,
   app-onboarding .step-register__titulo,
   app-onboarding .step-goal__titulo,
   app-onboarding .step-body__titulo {
     color: var(--oscuro-texto-principal);
   }
 
-  app-onboarding [class*="step-"] __subtitulo,
+  app-onboarding [class*='step-'] __subtitulo,
   app-onboarding .step-register__subtitulo,
   app-onboarding .step-goal__subtitulo {
     color: var(--oscuro-texto-secundario);
@@ -1388,7 +1290,7 @@ body.modo-oscuro {
 
   /* Inputs en onboarding */
   app-onboarding .step-register__input,
-  app-onboarding [class*="step-"] __input {
+  app-onboarding [class*='step-'] __input {
     background-color: var(--oscuro-onboarding-input-fondo);
     border-color: var(--oscuro-onboarding-input-borde);
     color: var(--oscuro-texto-principal);
@@ -1433,7 +1335,6 @@ body.modo-oscuro {
   app-onboarding .step-register__alt-action {
     color: var(--oscuro-texto-secundario);
   }
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-GIMNASIO: PÁGINA DE EJERCICIOS
@@ -1605,7 +1506,6 @@ body.modo-oscuro {
   app-gimnasio .gimnasio__dia--actual {
     color: var(--amarillo-normal);
   }
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-ALIMENTACION: PÁGINA DE NUTRICIÓN
@@ -1782,7 +1682,6 @@ body.modo-oscuro {
     color: var(--blanco-normal);
   }
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-SEGUIMIENTO: PÁGINA DE PROGRESO
      ═══════════════════════════════════════════════════════════════════════════
@@ -1957,7 +1856,6 @@ body.modo-oscuro {
     background-color: var(--oscuro-superficie-fondo);
   }
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCION-SCROLLBAR: SCROLLBAR ESTILIZADO
      ═══════════════════════════════════════════════════════════════════════════ */
@@ -1988,37 +1886,30 @@ body.modo-oscuro {
   }
 }
 
-
 /* ═══════════════════════════════════════════════════════════════════════════
    TRANSICIONES SUAVES PARA CAMBIO DE TEMA
    ═══════════════════════════════════════════════════════════════════════════ */
 
 body {
-  transition: background-color 0.3s ease,
-  color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Elementos principales con transicion */
 body *,
 body.modo-oscuro * {
-  transition: background-color 0.2s ease,
-  border-color 0.2s ease,
-  color 0.2s ease,
-  box-shadow 0.2s ease,
-  fill 0.2s ease,
-  stroke 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease,
+    box-shadow 0.2s ease, fill 0.2s ease, stroke 0.2s ease;
 }
 
 /* Excluir animaciones de transicion para evitar conflictos */
-body [class*="animate"],
-body [class*="spinner"],
-body [class*="loading"],
-body.modo-oscuro [class*="animate"],
-body.modo-oscuro [class*="spinner"],
-body.modo-oscuro [class*="loading"] {
+body [class*='animate'],
+body [class*='spinner'],
+body [class*='loading'],
+body.modo-oscuro [class*='animate'],
+body.modo-oscuro [class*='spinner'],
+body.modo-oscuro [class*='loading'] {
   transition: none;
 }
-
 
 /* ═══════════════════════════════════════════════════════════════════════════
 

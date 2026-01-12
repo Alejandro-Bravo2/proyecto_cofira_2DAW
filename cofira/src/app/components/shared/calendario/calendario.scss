@@ -96,6 +96,13 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: var(--spacing-size-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: contents;
+  }
 }
 
 .calendario__dia {

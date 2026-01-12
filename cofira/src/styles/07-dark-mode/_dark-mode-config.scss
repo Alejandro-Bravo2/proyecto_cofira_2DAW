@@ -41,7 +41,6 @@
 /* Los colores base están en _css-variables.scss */
 @import '../00-settings/css-variables';
 
-
 /* ─────────────────────────────────────────────────────────────────────────────
    PALETA DE COLORES DISPONIBLES (para referencia rápida)
    ─────────────────────────────────────────────────────────────────────────────
@@ -81,9 +80,7 @@
 
    ───────────────────────────────────────────────────────────────────────────── */
 
-
 body.modo-oscuro {
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 1: FONDOS PRINCIPALES (REFINADOS)
      ═══════════════════════════════════════════════════════════════════════════
@@ -106,7 +103,6 @@ body.modo-oscuro {
   /* Fondo alternativo para secciones */
   --oscuro-seccion-alt-fondo: #1a1e22;
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 2: COLORES DE TEXTO (MAYOR CONTRASTE)
      ═══════════════════════════════════════════════════════════════════════════
@@ -128,7 +124,6 @@ body.modo-oscuro {
   /* Texto de enlaces al hacer hover */
   --oscuro-texto-enlace-hover: #{$amarillo-normal};
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 3: BORDES Y SEPARADORES (MAS SUTILES)
      ═══════════════════════════════════════════════════════════════════════════
@@ -144,7 +139,6 @@ body.modo-oscuro {
   /* Borde de foco/activo */
   --oscuro-borde-foco: #{$amarillo-normal};
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 3.5: SOMBRAS (PROFUNDIDAD MEJORADA)
      ═══════════════════════════════════════════════════════════════════════════ */
@@ -155,14 +149,12 @@ body.modo-oscuro {
   --oscuro-sombra-lg: 0 8px 16px rgba(0, 0, 0, 0.45);
   --oscuro-sombra-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 3.6: COLORES DE ACENTO
      ═══════════════════════════════════════════════════════════════════════════ */
 
   --oscuro-acento-primario: #ffda2d;
   --oscuro-acento-hover: #e6c426;
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 4: CABECERA / NAVEGACIÓN
@@ -224,7 +216,6 @@ body.modo-oscuro {
   /* Botón cuenta - hover borde/texto */
   --oscuro-cabecera-boton-secundario-hover-color: #{$amarillo-normal};
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 5: MENÚ DESPLEGABLE DE CUENTA
      ═══════════════════════════════════════════════════════════════════════════
@@ -252,7 +243,6 @@ body.modo-oscuro {
   /* Color de iconos */
   --oscuro-menu-icono: #{$blanco-dark};
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 6: MENÚ MÓVIL
      ═══════════════════════════════════════════════════════════════════════════
@@ -273,7 +263,6 @@ body.modo-oscuro {
 
   /* Hamburguesa hover */
   --oscuro-hamburguesa-hover: #{$amarillo-normal};
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 7: PIE DE PÁGINA (FOOTER)
@@ -310,7 +299,6 @@ body.modo-oscuro {
   /* Color de iconos al hacer hover */
   --oscuro-pie-social-hover-icono: #{$amarillo-normal};
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 8: TARJETAS / CARDS
      ═══════════════════════════════════════════════════════════════════════════
@@ -334,7 +322,6 @@ body.modo-oscuro {
 
   /* Borde de tarjeta destacada */
   --oscuro-tarjeta-destacada-borde: #{$amarillo-normal};
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 9: FORMULARIOS
@@ -366,7 +353,6 @@ body.modo-oscuro {
   /* Placeholder */
   --oscuro-formulario-placeholder: #{$blanco-dark-hover};
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 10: INPUTS GLOBALES
      ═══════════════════════════════════════════════════════════════════════════
@@ -385,7 +371,6 @@ body.modo-oscuro {
   /* Borde al hacer focus */
   --oscuro-input-campo-foco: #{$amarillo-normal};
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 11: ALERTAS
      ═══════════════════════════════════════════════════════════════════════════
@@ -400,7 +385,6 @@ body.modo-oscuro {
 
   /* Alerta info - borde */
   --oscuro-alerta-info-borde: #{$gris-normal-hover};
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 12: PÁGINA GUÍA DE ESTILOS
@@ -431,7 +415,6 @@ body.modo-oscuro {
 
   /* Borde de notas */
   --oscuro-guia-nota-borde: #{$amarillo-normal};
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 13: PÁGINAS LEGALES
@@ -469,7 +452,6 @@ body.modo-oscuro {
   /* Enlaces hover */
   --oscuro-legal-enlace-hover: #{$amarillo-dark};
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 14: PÁGINAS PRINCIPALES (Gimnasio, Alimentación, Seguimiento)
      ═══════════════════════════════════════════════════════════════════════════
@@ -491,9 +473,8 @@ body.modo-oscuro {
   /* Color de bordes */
   --oscuro-pagina-borde: #{$gris-normal-hover};
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 15: PÁGINAS INFORMATIVAS (Sobre Nosotros, Blog, Carreras, Contacto)
+     SECCIÓN 15: PÁGINAS INFORMATIVAS (Sobre Nosotros, Blog, Contacto)
      ═══════════════════════════════════════════════════════════════════════════
      Variables para páginas con headers hero y secciones alternadas.
      ═══════════════════════════════════════════════════════════════════════════ */
@@ -516,7 +497,6 @@ body.modo-oscuro {
   /* Color de bordes */
   --oscuro-info-borde: #{$gris-normal-hover};
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 16: HOME PAGE
      ═══════════════════════════════════════════════════════════════════════════
@@ -530,7 +510,6 @@ body.modo-oscuro {
   --oscuro-home-testimonial-fondo: #282d33;
   --oscuro-home-cta-fondo: linear-gradient(135deg, #2a2510 0%, #1e2227 100%);
   --oscuro-home-stat-fondo: #323840;
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 17: ONBOARDING
@@ -549,7 +528,6 @@ body.modo-oscuro {
   --oscuro-onboarding-input-fondo: #1e2227;
   --oscuro-onboarding-input-borde: #363c45;
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 18: GIMNASIO
      ═══════════════════════════════════════════════════════════════════════════
@@ -565,7 +543,6 @@ body.modo-oscuro {
   --oscuro-gimnasio-detalle-fondo: #282d33;
   --oscuro-gimnasio-video-overlay: rgba(0, 0, 0, 0.6);
 
-
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 19: ALIMENTACIÓN
      ═══════════════════════════════════════════════════════════════════════════
@@ -580,7 +557,6 @@ body.modo-oscuro {
   --oscuro-alimentacion-tab-activa: #{$amarillo-normal};
   --oscuro-alimentacion-macro-fondo: #323840;
   --oscuro-alimentacion-calorias-ring: #{$amarillo-normal};
-
 
   /* ═══════════════════════════════════════════════════════════════════════════
      SECCIÓN 20: SEGUIMIENTO

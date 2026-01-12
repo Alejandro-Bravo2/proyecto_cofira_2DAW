@@ -45,6 +45,8 @@
   align-items: center;
   width: 100%;
   box-sizing: border-box; // Incluir padding en el width para evitar overflow
+  position: relative;
+  z-index: 0; // Mantener por debajo del header
   // Padding: top (header 4.5rem + espacio), horizontal, bottom
   padding: calc(4.5rem + var(--spacing-size-xxl)) var(--spacing-size-xl) var(--spacing-size-xxxl);
   background-color: var(--blanco-normal-hover);
@@ -352,6 +354,13 @@
 .gimnasio__acordeon-acciones {
   @include flex-center;
   gap: var(--spacing-size-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: contents;
+  }
 
   .gimnasio__btn-accion {
     width: 1.75rem;
@@ -379,19 +388,16 @@
 .gimnasio__acordeon-detalles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--spacing-size-s);
+  gap: var(--spacing-size-xxs) var(--spacing-size-s);
   padding-top: var(--spacing-size-s);
   border-top: 1px solid var(--blanco-dark);
+  margin: 0;
+  text-align: center;
 
   // Modo oscuro
   :host-context(body.modo-oscuro) & {
     border-color: var(--oscuro-borde-color);
   }
-}
-
-.gimnasio__acordeon-detalle {
-  @include flex-columna(var(--spacing-size-xxs));
-  text-align: center;
 }
 
 .gimnasio__acordeon-label {
@@ -537,6 +543,8 @@
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .gimnasio__progreso {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: var(--contenido-max-width);
   margin: 0 auto;
@@ -549,6 +557,7 @@
   min-height: 20rem;
   border-radius: var(--radius-xss);
   overflow: hidden;
+  border: 1px solid var(--blanco-dark);
 
   @include responsive-down('md') {
     flex-direction: column;
@@ -590,6 +599,13 @@
     gap: var(--spacing-size-m);
     padding: var(--spacing-size-m) var(--spacing-size-s);
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+
+    #gimnasio__progreso-boton ::ng-deep .button {
+      padding: var(--spacing-size-xss);
+      font-size: var(--font-size-md);
+      min-width: 12rem;
+      height: 2rem;
+    }
   }
 }
 

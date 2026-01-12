@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation} from '@angular/core';
-import {NgClass} from '@angular/common';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { NgClass } from '@angular/common';
 
 interface Articulo {
   id: number;
@@ -25,10 +25,10 @@ export class Blog {
   categoriaActiva: string = 'todos';
 
   readonly categorias = [
-    {id: 'todos', label: 'Todos'},
-    {id: 'ejercicio', label: 'Ejercicio'},
-    {id: 'nutricion', label: 'Nutrición'},
-    {id: 'bienestar', label: 'Bienestar'},
+    { id: 'todos', label: 'Todos' },
+    { id: 'ejercicio', label: 'Ejercicio' },
+    { id: 'nutricion', label: 'Nutrición' },
+    { id: 'bienestar', label: 'Bienestar' },
   ];
 
   readonly articulos: Articulo[] = [
@@ -42,7 +42,7 @@ export class Blog {
       categoriaLabel: 'Ejercicio',
       fecha: '15 Dic 2024',
       tiempoLectura: '5 min',
-      autor: 'Carlos Martínez',
+      autor: 'Alejandro Bravo',
     },
     {
       id: 2,
@@ -54,7 +54,7 @@ export class Blog {
       categoriaLabel: 'Nutrición',
       fecha: '12 Dic 2024',
       tiempoLectura: '8 min',
-      autor: 'Ana Fernández',
+      autor: 'Alejandro Bravo',
     },
     {
       id: 3,
@@ -66,7 +66,7 @@ export class Blog {
       categoriaLabel: 'Bienestar',
       fecha: '8 Dic 2024',
       tiempoLectura: '6 min',
-      autor: 'Laura García',
+      autor: 'Alejandro Bravo',
     },
     {
       id: 4,
@@ -78,7 +78,7 @@ export class Blog {
       categoriaLabel: 'Ejercicio',
       fecha: '5 Dic 2024',
       tiempoLectura: '4 min',
-      autor: 'Miguel Rodríguez',
+      autor: 'Alejandro Bravo',
     },
     {
       id: 5,
@@ -90,7 +90,7 @@ export class Blog {
       categoriaLabel: 'Nutrición',
       fecha: '1 Dic 2024',
       tiempoLectura: '7 min',
-      autor: 'Ana Fernández',
+      autor: 'Alejandro Bravo',
     },
     {
       id: 6,
@@ -102,7 +102,7 @@ export class Blog {
       categoriaLabel: 'Bienestar',
       fecha: '28 Nov 2024',
       tiempoLectura: '9 min',
-      autor: 'Laura García',
+      autor: 'Alejandro Bravo',
     },
   ];
 

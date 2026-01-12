@@ -1,8 +1,8 @@
 <!-- Solo renderizar si está abierto -->
 @if (abierto) {
-  <!-- Overlay con z-index 4 -->
-  <div (click)="cerrarEnOverlay($event)" class="modal-overlay">
-    <!-- Contenedor del modal con z-index 5 -->
+  <!-- Overlay -->
+  <aside (click)="cerrarEnOverlay($event)" class="modal-overlay">
+    <!-- Contenedor del modal -->
     <article
       [attr.aria-labelledby]="titulo ? 'modal-titulo' : null"
       [style.max-width.px]="anchoPX"
@@ -31,9 +31,9 @@
       </header>
 
       <!-- Contenido proyectado -->
-      <article class="modal__contenido">
+      <section class="modal__contenido">
         <ng-content></ng-content>
-      </article>
+      </section>
     </article>
-  </div>
+  </aside>
 }

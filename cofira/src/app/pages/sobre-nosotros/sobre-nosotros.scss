@@ -70,11 +70,7 @@
 .about__hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.5) 100%
-  );
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
 }
 
 .about__hero-content {
@@ -300,22 +296,13 @@
 }
 
 .about__equipo-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: center;
   gap: var(--spacing-size-xl);
   list-style: none;
   padding: 0;
   margin: 0;
-
-  @include responsive-down('lg') {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include responsive-down('sm') {
-    grid-template-columns: 1fr;
-    max-width: 300px;
-    margin: 0 auto;
-  }
+  flex-wrap: wrap;
 }
 
 .about__miembro {
@@ -323,8 +310,8 @@
 }
 
 .about__miembro-foto {
-  width: 180px;
-  height: 180px;
+  width: 220px;
+  height: 220px;
   margin: 0 auto var(--spacing-size-m); // Reset figure with auto horizontal
   border-radius: 50%;
   overflow: hidden;

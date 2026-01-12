@@ -98,51 +98,49 @@
     <article class="gimnasio__acordeon-item" [class.gimnasio__acordeon-item--expandido]="ejercicio.expandido">
       <!-- Cabecera del acordeón (siempre visible) -->
       <header class="gimnasio__acordeon-header" (click)="toggleEjercicio(ejercicio)">
-        <div class="gimnasio__acordeon-info">
+        <hgroup class="gimnasio__acordeon-info">
           <button aria-label="Expandir ejercicio" class="gimnasio__acordeon-toggle">
             <svg [class.rotated]="ejercicio.expandido" viewBox="0 0 24 24">
               <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor" />
             </svg>
           </button>
           <span class="gimnasio__acordeon-nombre">{{ ejercicio.nombre }}</span>
-        </div>
-        <div class="gimnasio__acordeon-acciones">
-          <button (click)="marcarRealizado(ejercicio, true); $event.stopPropagation()"
-            [class.activo]="ejercicio.realizado === true" aria-label="Marcar como realizado"
-            class="gimnasio__btn-accion gimnasio__btn-accion--ok">
-            <svg viewBox="0 0 24 24">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor" />
-            </svg>
-          </button>
-          <button (click)="marcarRealizado(ejercicio, false); $event.stopPropagation()"
-            [class.activo]="ejercicio.realizado === false" aria-label="Marcar como no realizado"
-            class="gimnasio__btn-accion gimnasio__btn-accion--no">
-            <svg viewBox="0 0 24 24">
-              <path
-                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                fill="currentColor" />
-            </svg>
-          </button>
-        </div>
+        </hgroup>
+        <menu class="gimnasio__acordeon-acciones">
+          <li>
+            <button (click)="marcarRealizado(ejercicio, true); $event.stopPropagation()"
+              [class.activo]="ejercicio.realizado === true" aria-label="Marcar como realizado"
+              class="gimnasio__btn-accion gimnasio__btn-accion--ok">
+              <svg viewBox="0 0 24 24">
+                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor" />
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button (click)="marcarRealizado(ejercicio, false); $event.stopPropagation()"
+              [class.activo]="ejercicio.realizado === false" aria-label="Marcar como no realizado"
+              class="gimnasio__btn-accion gimnasio__btn-accion--no">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                  fill="currentColor" />
+              </svg>
+            </button>
+          </li>
+        </menu>
       </header>
 
       <!-- Contenido expandible -->
-      <div class="gimnasio__acordeon-contenido">
-        <div class="gimnasio__acordeon-detalles">
-          <div class="gimnasio__acordeon-detalle">
-            <span class="gimnasio__acordeon-label">Repeticiones</span>
-            <span class="gimnasio__acordeon-valor">{{ ejercicio.repeticiones }}</span>
-          </div>
-          <div class="gimnasio__acordeon-detalle">
-            <span class="gimnasio__acordeon-label">Descanso</span>
-            <span class="gimnasio__acordeon-valor">{{ ejercicio.descanso }}</span>
-          </div>
-          <div class="gimnasio__acordeon-detalle">
-            <span class="gimnasio__acordeon-label">Series</span>
-            <span class="gimnasio__acordeon-valor">{{ ejercicio.series }}</span>
-          </div>
-        </div>
-      </div>
+      <section class="gimnasio__acordeon-contenido">
+        <dl class="gimnasio__acordeon-detalles">
+          <dt class="gimnasio__acordeon-label">Repeticiones</dt>
+          <dd class="gimnasio__acordeon-valor">{{ ejercicio.repeticiones }}</dd>
+          <dt class="gimnasio__acordeon-label">Descanso</dt>
+          <dd class="gimnasio__acordeon-valor">{{ ejercicio.descanso }}</dd>
+          <dt class="gimnasio__acordeon-label">Series</dt>
+          <dd class="gimnasio__acordeon-valor">{{ ejercicio.series }}</dd>
+        </dl>
+      </section>
     </article>
     }
   </section>
@@ -187,15 +185,15 @@
   <section class="gimnasio__progreso">
     <article class="gimnasio__progreso-contenido">
       <!-- Panel izquierdo con contenido y diagonal -->
-      <div class="gimnasio__progreso-panel">
+      <header class="gimnasio__progreso-panel">
         <h2 class="gimnasio__progreso-titulo">Ver mi progreso</h2>
         <p class="gimnasio__progreso-descripcion">
           ¿Quieres ver tu progreso y cómo has evolucionado durante toda tu estancia en Cofira?
         </p>
-        <app-button enlace="/seguimiento" tamanio="lg" variante="primary">
+        <app-button enlace="/seguimiento" tamanio="lg" variante="primary" id="gimnasio__progreso-boton">
           Ver estadísticas
         </app-button>
-      </div>
+      </header>
       <!-- Imagen posicionada detrás del panel -->
       <figure class="gimnasio__progreso-imagen">
         <picture>

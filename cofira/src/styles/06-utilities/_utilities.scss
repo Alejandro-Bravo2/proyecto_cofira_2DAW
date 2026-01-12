@@ -7,12 +7,13 @@
    DISPLAY
    -------------------------------------------- */
 
-.oculto {
-  display: none !important;
+
+.oculto.oculto {
+  display: none;
 }
 
-.visible {
-  display: block !important;
+.visible.visible {
+  display: block;
 }
 
 .invisible {

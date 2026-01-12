@@ -14,7 +14,7 @@
 
 **Ejemplos de implementación:**
 
-*Botón de acción principal:*
+_Botón de acción principal:_
 
 - Color amarillo brillante para máximo contraste
 - Jerarquía visual: Botón → Imagen → Título
@@ -22,7 +22,7 @@
 Ejemplo:
 ![img.png](../assets/img.png)
 
-*Cabecera de navegación:*
+_Cabecera de navegación:_
 
 - Colores consistentes en elementos de navegación
 - Botón "Inscríbete" en color destacado para llamar la atención
@@ -30,7 +30,7 @@ Ejemplo:
 Ejemplo:
 ![img_1.png](../assets/img_1.png)
 
-*Separación entre secciones:*
+_Separación entre secciones:_
 
 - Espaciado amplio entre secciones principales
 - Cambio de fondo para delimitar áreas
@@ -52,7 +52,7 @@ Ejemplo:
 
 **Ejemplos de implementación:**
 
-*Formulario:*
+_Formulario:_
 
 - Coherencia visual en campos de entrada
 - Botón "Enviar" en amarillo para destacar la acción principal
@@ -60,7 +60,7 @@ Ejemplo:
 Ejemplo:
 ![img_3.png](../assets/img_3.png)
 
-*Organización de horarios:*
+_Organización de horarios:_
 
 - **Título:** Elemento más grande y con mayor peso
 - **Días (Lunes, Miércoles):** Tamaño medio, peso moderado
@@ -96,7 +96,7 @@ Ejemplos:
 
 **Ejemplos de implementación:**
 
-*Menú diario:*
+_Menú diario:_
 
 - Separación mínima entre alimentos de la misma comida
 - Mayor separación entre diferentes comidas del día
@@ -117,7 +117,7 @@ Ejemplo:
 - **Familiaridad:** Patrones repetitivos que facilitan la navegación
 
 **Ejemplos de implementación:**
-*Páginas de configuración:*
+_Páginas de configuración:_
 
 - Colores, espaciados y tamaños consistentes
 - Iconos con estilo uniforme para acciones similares
@@ -128,7 +128,7 @@ Ejemplos:
 ![img_9.png](../assets/img_9.png)
 ![img_11.png](../assets/img_11.png)
 
-### 1.2 Metodología CSS Explica qué metodología usas (BEM recomendado) y por qué. Muestra ejemplos de tu nomenclatura. Si usas BEM, explica que usarás bloques (.card), elementos (.card__title), y modificadores (.card--featured).
+### 1.2 Metodología CSS Explica qué metodología usas (BEM recomendado) y por qué. Muestra ejemplos de tu nomenclatura. Si usas BEM, explica que usarás bloques (.card), elementos (.card\_\_title), y modificadores (.card--featured).
 
 He usado la metología BEM porque me permite organizar el código por componentes, además de permitirme reutilizar estilos
 en diferentes partes sin tener problemas de especificidad. El principal mótivo por lo que lo he usado es por la especifidad ya que al estar trabajando con componentes
@@ -139,39 +139,58 @@ clase.
 Ejemplos de nomenclatura BEM usada en el proyecto:
 
 ```css
+/* BLOQUE: Contenedor principal del componente */
 
-/* BLOQUE: Contenedor principal del componente */ 
-
-.button { }          
-.alert { }          
-.pricing-card { }    
-.menu-movil { }      
-
+.button {
+}
+.alert {
+}
+.pricing-card {
+}
+.menu-movil {
+}
 
 /* ELEMENTO: Parte interna del bloque (usa __) */
 
-.button__icono { }        
-.button__texto { }         
-.alert__mensaje { }         
-.alert__cerrar { }        
-.pricing-card__titulo { } 
-.pricing-card__lista { }     
-.pricing-card__boton { }   
-.menu-movil__contenido { }
-.menu-movil__link { }     
-
+.button__icono {
+}
+.button__texto {
+}
+.alert__mensaje {
+}
+.alert__cerrar {
+}
+.pricing-card__titulo {
+}
+.pricing-card__lista {
+}
+.pricing-card__boton {
+}
+.menu-movil__contenido {
+}
+.menu-movil__link {
+}
 
 /* MODIFICADOR: Variante del bloque/elemento (usa --) */
 
-.button--primary { }       
-.button--secondary { }   
-.button--danger { }    
-.button--sm { }
-.button--lg { }            
-.alert--success { }       
-.alert--error { }          
-.pricing-card--planes { }  
-.menu-movil--abierto { }   
+.button--primary {
+}
+.button--secondary {
+}
+.button--danger {
+}
+.button--sm {
+}
+.button--lg {
+}
+.alert--success {
+}
+.alert--error {
+}
+.pricing-card--planes {
+}
+.menu-movil--abierto {
+}
 ```
 
 ### 1.3 Organización de archivos: Documenta tu estructura ITCSS. Explica por qué cada carpeta está en ese orden (de menor a mayor especificidad). Muestra el árbol de carpetas completo.
@@ -249,12 +268,11 @@ styles/
 - **Propósito:** Estilos de componentes reutilizables
 - **Ejemplo:** Inputs, cards, botones
 
-**06-utilities/**  - Clases unitarias
+**06-utilities/** - Clases unitarias
 
 - **Especificidad:** Muy alta ya que aqui definiremos los componentes de forma individual.
 - **Propósito:** Clases de una sola responsabilidad que sobrescriben otros estilos.
 - **Ejemplo:** `.text-center`, `.m-2`, `.hidden`
-
 
 **07-dark-mode/** - Dark mode
 
@@ -268,12 +286,14 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
 ### 1.4 Sistema de Design Tokens: Documenta todas tus variables. Para cada grupo (colores, tipografía, espaciado, etc.) explica las decisiones:
 
 - Por qué elegiste esos colores
-    - Elegí esos colores porque quería usar una paleta que comunicara energía y positividad además de esfuerzo y
-      dedicación, por eso usé el amarillo brillante como color principal. Además de que el amarillo es un color que
-      llama mucho la atención y es perfecto para botones de llamada a la acción. Los colores neutros los elegí para que
-      no compitieran con el amarillo y dejaran que este resaltara más.
+
+  - Elegí esos colores porque quería usar una paleta que comunicara energía y positividad además de esfuerzo y
+    dedicación, por eso usé el amarillo brillante como color principal. Además de que el amarillo es un color que
+    llama mucho la atención y es perfecto para botones de llamada a la acción. Los colores neutros los elegí para que
+    no compitieran con el amarillo y dejaran que este resaltara más.
+
   ```css
-    /* ============================================
+  /* ============================================
      COLORES - NEGRO
      ============================================ */
 
@@ -286,7 +306,6 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --negro-dark: #0d0b0c;
   --negro-dark-hover: #0a080a;
   --negro-dark-active: #080607; /* FONDO */
-
 
   /* ============================================
      COLORES - AMARILLO
@@ -302,7 +321,6 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --amarillo-dark-hover: #997f00;
   --amarillo-dark-active: #735f00;
 
-
   /* ============================================
      COLORES - BLANCO
      ============================================ */
@@ -316,7 +334,6 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --blanco-dark: #b8b8b8;
   --blanco-dark-hover: #939393;
   --blanco-dark-active: #6e6e6e;
-
 
   /* ============================================
      COLORES - GRIS
@@ -332,36 +349,33 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --gris-dark-hover: #26292e;
   --gris-dark-active: #1c1f22;
 
-
   /*Textos*/
   --text-light: #110e10;
   --text-dark: #f5f5f5;
 
   /*Background gris transparente*/
-  --background-light-gray: #3F454C;
-
+  --background-light-gray: #3f454c;
 
   /*Botones*/
-  --button-red: #FF3434;
+  --button-red: #ff3434;
   --button-red-hover: #910505;
-
 
   --button-gray: #3f454c;
   --buton-gray-hover: #2f3439;
 
+  --button-yellow: #ffd300;
+  --button-yellow-hover: #594a00;
 
-  --button-yellow: #FFD300;
-  --button-yellow-hover: #594A00;
-
-
-  --button-darker: #32373D;
-  --button-darker-hover: #26292E;
+  --button-darker: #32373d;
+  --button-darker-hover: #26292e;
   ```
+
 - ¿Por qué esa escala tipográfica?
-    - He usado esta escala de tipografía porque es una escala muy ajustable a cualquier diseño que quieras hacer además de que es la más usada en diseño
-      web, ya que permite crear jerarquías visuales claras y consistentes.
+
+  - He usado esta escala de tipografía porque es una escala muy ajustable a cualquier diseño que quieras hacer además de que es la más usada en diseño
+    web, ya que permite crear jerarquías visuales claras y consistentes.
+
   ```css
-  
   /* Tamaños de la tipografía */
   --font-size-xs: 0.64rem; /* 10.24px */
   --font-size-sm: 0.8rem; /* 12.8px  */
@@ -373,22 +387,23 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --font-size-4xl: 3.052rem; /* 48.8px */
   --font-size-5xl: 3.815rem; /* 61px */
   ```
-- ¿Por qué esos breakpoints?
-    - He usado estos breakpoints porque son los más comunes entre dispositivos y permiten que el diseño sea responsive en la mayoría de dispositivos.
-  ```css
-    
-    // Mobile Grande / Phablets
-    $breakpoint-xs: 640px;
-    
-    // Tablets
-    $breakpoint-s: 768px;
-    
-    // Desktop / Tablets (Landscape)
-    $breakpoint-M: 1024px;
-    
-    // Desktop Grande
-    $breakpoint-L: 1280px;
 
+- ¿Por qué esos breakpoints?
+
+  - He usado estos breakpoints porque son los más comunes entre dispositivos y permiten que el diseño sea responsive en la mayoría de dispositivos.
+
+  ```css
+  // Mobile Grande / Phablets
+  $breakpoint-xs: 640px;
+
+  // Tablets
+  $breakpoint-s: 768px;
+
+  // Desktop / Tablets (Landscape)
+  $breakpoint-M: 1024px;
+
+  // Desktop Grande
+  $breakpoint-L: 1280px;
   ```
 
 ### 1.5 Mixins y funciones: Documenta cada mixin que creaste, para qué sirve, y muestra un ejemplo de uso.
@@ -421,9 +436,9 @@ Cree estos mixins para facilitar la creación de layouts flexibles y reutilizabl
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
 }
-    
-    
-    
+
+
+
 // Mixin para labels de formulario
 
 @mixin form-label {
@@ -440,15 +455,14 @@ Ejemplo de uso:
 
 ```css
 nav {
-    @include flex-full;
-    background: var(--gris-normal);
-    height: 4.4rem;
-    align-items: center;
-    box-sizing: border-box;
-    justify-content: space-between;
-    padding: 0 6rem;
+  @include flex-full;
+  background: var(--gris-normal);
+  height: 4.4rem;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: space-between;
+  padding: 0 6rem;
 }
-
 ```
 
 ### 1.6 ViewEncapsulation en Angular: Explica qué estrategia de encapsulación usarás. Angular por defecto usa Emulated (estilos encapsulados por componente). Documenta si mantendrás esto o usarás None (estilos globales). Justifica tu decisión.
@@ -464,122 +478,210 @@ estilos globales en muchas partes y agilizar el proceso y por que es mucho mas m
 ### 2.1 Elementos semánticos utilizados: Explica qué elementos semánticos usas y cuándo: header, nav, main, article, section, aside, footer. Muestra ejemplos de tu código.
 
 Uso los siguientes elementos:
+
 - header: Lo uso para declarar la cabecera por ejemplo aqui:
+
 ```html
 <header>
-  <img alt="Cofira Logo" class="cabecera__logo" routerLink="/home" src="assets/images/cofiraLogoPng.png">
+  <img
+    alt="Cofira Logo"
+    class="cabecera__logo"
+    routerLink="/home"
+    src="assets/images/cofiraLogoPng.png"
+  />
   <ul class="enlaces">
     <li><a routerLink="/gimnasio">Entrenamiento</a></li>
     <li><a routerLink="/alimentacion">Alimentación</a></li>
     <li><a routerLink="/seguimiento">Seguimiento</a></li>
   </ul>
-
+</header>
 ```
+
 - nav: Lo uso para declarar el menú de navegación, por ejemplo aqui:
+
 ```html
-  <!-- Sección derecha: Redes sociales -->
-  <nav class="footer__right">
-    <ul class="footer__social-list">
-      
-      <li class="footer__social-item">
-        <a aria-label="YouTube" class="footer__social" href="https://youtube.com" rel="noopener" target="_blank">
-          <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-          </svg>
-        </a>
-      </li>
+<!-- Sección derecha: Redes sociales -->
+<nav class="footer__right">
+  <ul class="footer__social-list">
+    <li class="footer__social-item">
+      <a
+        aria-label="YouTube"
+        class="footer__social"
+        href="https://youtube.com"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+          />
+        </svg>
+      </a>
+    </li>
 
-      <li class="footer__social-item">
-        <a aria-label="Facebook" class="footer__social" href="https://facebook.com" rel="noopener" target="_blank">
-          <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-        </a>
-      </li>
+    <li class="footer__social-item">
+      <a
+        aria-label="Facebook"
+        class="footer__social"
+        href="https://facebook.com"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+          />
+        </svg>
+      </a>
+    </li>
 
-      <li class="footer__social-item">
-        <a aria-label="Twitter" class="footer__social" href="https://twitter.com" rel="noopener" target="_blank">
-          <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        </a>
-      </li>
+    <li class="footer__social-item">
+      <a
+        aria-label="Twitter"
+        class="footer__social"
+        href="https://twitter.com"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+          />
+        </svg>
+      </a>
+    </li>
 
-      <li class="footer__social-item">
-        <a aria-label="Instagram" class="footer__social" href="https://instagram.com" rel="noopener" target="_blank">
-          <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-          </svg>
-        </a>
-      </li>
+    <li class="footer__social-item">
+      <a
+        aria-label="Instagram"
+        class="footer__social"
+        href="https://instagram.com"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+          />
+        </svg>
+      </a>
+    </li>
 
-      <li class="footer__social-item">
-        <a aria-label="LinkedIn" class="footer__social" href="https://linkedin.com" rel="noopener" target="_blank">
-          <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-        </a>
-      </li>
-
-    </ul>
-  </nav>
+    <li class="footer__social-item">
+      <a
+        aria-label="LinkedIn"
+        class="footer__social"
+        href="https://linkedin.com"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+          />
+        </svg>
+      </a>
+    </li>
+  </ul>
+</nav>
 ```
 
-- main: El main lo utilizo para indicar el contenido principal de la página web y lo indico unicamente en el index.html ya que luego con el router-outlet indico que ese contenido va a ser reemplazable por los componentes, de esta forma hago que la cabecera y pie de página nunca desaparezca y no tenga que estar usandola por cada página. 
+- main: El main lo utilizo para indicar el contenido principal de la página web y lo indico unicamente en el index.html ya que luego con el router-outlet indico que ese contenido va a ser reemplazable por los componentes, de esta forma hago que la cabecera y pie de página nunca desaparezca y no tenga que estar usandola por cada página.
+
 ```html
 <main class="main-content">
   <router-outlet></router-outlet>
 </main>
-
 ```
 
 - article: Este elemento lo utilizo para agrupar elementos semanticamente iguales, por ejemplo un grupo de cards o un grupo de enlaces. Por ejemplo un buscador:
+
 ```html
-  <article class="buscador">
-    <svg class="buscador__icono" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5
-  6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5" fill="currentColor"/>
-    </svg>
-    <input class="buscador__input" placeholder="¿Que buscas?" type="text">
-  </article>
+<article class="buscador">
+  <svg
+    class="buscador__icono"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5
+  6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5"
+      fill="currentColor"
+    />
+  </svg>
+  <input class="buscador__input" placeholder="¿Que buscas?" type="text" />
+</article>
 ```
 
 - section: El section lo utilizo para cuando agrupar muchos grupos de elementos por ejemplo, un ejemplo podría ser los botones de la cabecera:
+
 ```html
 <section class="cabecera__botones">
+  <button class="boton_inscribete">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="m77.492 18.457l-17.726 3.127L69.09 74.47a1631 1631 0 0 0-15.8 2.54l-6.503-36.89l-17.726 3.124l6.49 36.795a1878 1878 0 0 0-17.196 3.112l3.292 17.696c5.728-1.066 11.397-2.09 17.028-3.084l7.056 40.02l17.727-3.124l-7.04-39.93q7.956-1.319 15.798-2.54l9.777 55.45l17.727-3.126l-9.697-54.99a1416 1416 0 0 1 25.18-3.38c15.54 46.39 34.697 99.995 66.936 134.448C190.86 250.992 192 268 214.56 310C192 348 176 412 167.21 471l-48 6v15H192c16-48 64-144 64-144s48 96 64 144h72.79v-15l-48-6C336 412 320 348 294 310c26-42 24.175-59.585 35.83-89.377c32.25-34.452 51.42-88.075 66.967-134.478c8.314 1.04 16.697 2.16 25.18 3.38l-9.696 54.99l17.728 3.124l9.777-55.45q7.843 1.221 15.8 2.54l-7.042 39.93l17.727 3.125l7.056-40.02c5.63.993 11.3 2.017 17.028 3.083l3.292-17.696c-5.78-1.075-11.507-2.11-17.195-3.113l6.49-36.796l-17.727-3.125l-6.504 36.89a1565 1565 0 0 0-15.8-2.54l9.324-52.886l-17.726-3.127l-9.406 53.35C365.982 63.31 310.982 59.04 256 59.04c-54.98 0-109.983 4.27-169.102 12.767zM256 76.98c35.53 0 71.07 1.83 107.822 5.463c-14.082 34.858-38.454 73.504-63.203 101.967C290.293 199.27 274.35 209 256 209s-34.294-9.73-44.62-24.59c-24.748-28.463-49.12-67.11-63.202-101.967c36.75-3.633 72.29-5.463 107.822-5.463M256 97c-20.835 0-39 20.24-39 47s18.165 47 39 47s39-20.24 39-47s-18.165-47-39-47"
+        fill="currentColor"
+      />
+    </svg>
 
+    <span>Inscribete</span>
+  </button>
 
-    <button class="boton_inscribete">
-      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="m77.492 18.457l-17.726 3.127L69.09 74.47a1631 1631 0 0 0-15.8 2.54l-6.503-36.89l-17.726 3.124l6.49 36.795a1878 1878 0 0 0-17.196 3.112l3.292 17.696c5.728-1.066 11.397-2.09 17.028-3.084l7.056 40.02l17.727-3.124l-7.04-39.93q7.956-1.319 15.798-2.54l9.777 55.45l17.727-3.126l-9.697-54.99a1416 1416 0 0 1 25.18-3.38c15.54 46.39 34.697 99.995 66.936 134.448C190.86 250.992 192 268 214.56 310C192 348 176 412 167.21 471l-48 6v15H192c16-48 64-144 64-144s48 96 64 144h72.79v-15l-48-6C336 412 320 348 294 310c26-42 24.175-59.585 35.83-89.377c32.25-34.452 51.42-88.075 66.967-134.478c8.314 1.04 16.697 2.16 25.18 3.38l-9.696 54.99l17.728 3.124l9.777-55.45q7.843 1.221 15.8 2.54l-7.042 39.93l17.727 3.125l7.056-40.02c5.63.993 11.3 2.017 17.028 3.083l3.292-17.696c-5.78-1.075-11.507-2.11-17.195-3.113l6.49-36.796l-17.727-3.125l-6.504 36.89a1565 1565 0 0 0-15.8-2.54l9.324-52.886l-17.726-3.127l-9.406 53.35C365.982 63.31 310.982 59.04 256 59.04c-54.98 0-109.983 4.27-169.102 12.767zM256 76.98c35.53 0 71.07 1.83 107.822 5.463c-14.082 34.858-38.454 73.504-63.203 101.967C290.293 199.27 274.35 209 256 209s-34.294-9.73-44.62-24.59c-24.748-28.463-49.12-67.11-63.202-101.967c36.75-3.633 72.29-5.463 107.822-5.463M256 97c-20.835 0-39 20.24-39 47s18.165 47 39 47s39-20.24 39-47s-18.165-47-39-47"
-          fill="currentColor"/>
-      </svg>
-
-      <span>Inscribete</span>
-    </button>
-
-
-    <button class="boton__cuenta">
-
-      <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"
-          fill="currentColor"/>
-      </svg>
-      <span>Cuenta</span>
-    </button>
-  </section>
+  <button class="boton__cuenta">
+    <svg
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"
+        fill="currentColor"
+      />
+    </svg>
+    <span>Cuenta</span>
+  </button>
+</section>
 ```
-
 
 - aside: El aside se utiliza para declarar contenido secundario como menus de navegación a la izquierda o derecha en toda la página, osea como el menú hamburguesa de móvil o los tipicos menús desplegables de filtrado que tienen muchas páginas webs, pero yo no lo he utilizado porque mi web no tiene filtrado o contenido para filtrar.
 
-
 - footer: El footer se utiliza para indicar el pie de página como el elemento header pero en el pie de página. En el footer declaramos todos los elementos que vamos a tener en el pie de página por ejemplo los iconos, enlaces y los textos que tendremos. Por ejemplo mi footer:
+
 ```
 <footer class="footer">
-  
+
   <!-- Sección izquierda: Condiciones de uso -->
   <nav class="footer__left">
     <a class="footer__link" routerLink="/condiciones">
@@ -593,7 +695,7 @@ Uso los siguientes elementos:
   <!-- Sección derecha: Redes sociales -->
   <nav class="footer__right">
     <ul class="footer__social-list">
-      
+
       <li class="footer__social-item">
         <a aria-label="YouTube" class="footer__social" href="https://youtube.com" rel="noopener" target="_blank">
           <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -645,8 +747,7 @@ Uso los siguientes elementos:
 
 Mi estrategia ha sido siempre empezar usando los h1 y ir escalando para los elementos de esa página, siempre empezando por un h1 y ir escalando un diagrama que demuestre la jerarquía sería el siguiente:
 
-
- Página: "Home"
+Página: "Home"
 
 ├─ H1: Tu entrenamiento, nutrición y progreso en un solo lugar
 │
@@ -655,8 +756,7 @@ Mi estrategia ha sido siempre empezar usando los h1 y ir escalando para los elem
 ├─ H2: Cuota mensual
 │
 └─ H2: ¿Quieres estar al tanto de todas las noticias?
-   ├─ H3: Contactoss
-
+├─ H3: Contactoss
 
 ### 2.3 Estructura de formularios: Muestra tu estructura de formularios explicando el uso de fieldset, legend, y la asociación de labels con inputs (for e id) o como hemos visto en clase. Incluye un ejemplo de código de tu componente form-input.
 
@@ -666,45 +766,41 @@ Mi estrategia ha sido siempre empezar usando los h1 y ir escalando para los elem
 - Input: El input es usado para que el usuario pueda escribir en la página web, lo he asociado con el label a través del id.
 
 ```html
-    <fieldset class="form__fieldset">
-      <legend class="form__legend">Datos de contacto</legend>
+<fieldset class="form__fieldset">
+  <legend class="form__legend">Datos de contacto</legend>
 
+  <label for="nombre" class="form__label">Escribe tu nombre:</label>
+  <input
+    type="text"
+    id="nombre"
+    formControlName="nombre"
+    class="form__input"
+    placeholder="Escriba su nombre..."
+  />
 
-      <label for="nombre" class="form__label">Escribe tu nombre:</label>
-      <input
-        type="text"
-        id="nombre"
-        formControlName="nombre"
-        class="form__input"
-        placeholder="Escriba su nombre...">
+  <label for="apellido" class="form__label">Escribe tu apellido:</label>
+  <input
+    type="text"
+    id="apellido"
+    formControlName="apellido"
+    class="form__input"
+    placeholder="Escriba su apellido..."
+  />
 
+  <label for="email" class="form__label">Escribe tu email:</label>
+  <input
+    type="email"
+    id="email"
+    formControlName="email"
+    class="form__input"
+    placeholder="Escriba su email..."
+  />
+</fieldset>
 
-      <label for="apellido" class="form__label">Escribe tu apellido:</label>
-      <input
-        type="text"
-        id="apellido"
-        formControlName="apellido"
-        class="form__input"
-        placeholder="Escriba su apellido...">
-
-
-      <label for="email" class="form__label">Escribe tu email:</label>
-      <input
-        type="email"
-        id="email"
-        formControlName="email"
-        class="form__input"
-        placeholder="Escriba su email...">
-
-    </fieldset>
-
-
-    <button type="submit" class="form__button" [disabled]="contactForm.invalid">
-      Enviar
-    </button>
-
+<button type="submit" class="form__button" [disabled]="contactForm.invalid">
+  Enviar
+</button>
 ```
-
 
 ### 3.1 Componentes implementados: Lista TODOS los componentes creados. Para cada uno documenta: - Nombre del componente - Propósito - Variantes disponibles - Tamaños disponibles - Estados que maneja - Ejemplo de uso (código)
 
@@ -715,31 +811,31 @@ Mi estrategia ha sido siempre empezar usando los h1 y ir escalando para los elem
 ---
 
 - **Header**
-    - Propósito: Su propósito es definir la cabecera, he creado este componente en vez de hacerlo directamente en cada página porque como voy a tener siempre páginas que usen la cabecera pues creo que la cabecera debería ser un componente si o si ya se va a reutilizar muchas veces.
-    - Variantes: Actualmente la cabecera no cuenta con variantes.
-    - Tamaños disponibles: La cabecera tiene 2 tamaños, su primer tamaño es el de desktop que es la cabecera completa, la que vemos en un ordenador y su segundo tamaño es el de los dispositivos móviles, este tamaño es una versión muy recortada de la cabecera de ordenador ya que esta cabecera solo cuenta con el menú de hamburguesa y el logo.
-    - Estados que maneja:
-        - `menuAbierto`: Este estado indica si el menú en su modo hamburguesa ha sido clickeado y está visible su contenido o no.
-        - `menuCuentaAbierto`: Este estado indica si el menú de la cuenta ha sido clickeado o no y por lo tanto si está visible su contenido o no.
-        - `modoOscuro`: Este estado hace referencia al modo oscuro / modo claro de la web, si este estado está activo indica que la web está en modo oscuro.
-    - Ejemplo de uso:
-    ```html
-    <app-header></app-header>
-    ```
+  - Propósito: Su propósito es definir la cabecera, he creado este componente en vez de hacerlo directamente en cada página porque como voy a tener siempre páginas que usen la cabecera pues creo que la cabecera debería ser un componente si o si ya se va a reutilizar muchas veces.
+  - Variantes: Actualmente la cabecera no cuenta con variantes.
+  - Tamaños disponibles: La cabecera tiene 2 tamaños, su primer tamaño es el de desktop que es la cabecera completa, la que vemos en un ordenador y su segundo tamaño es el de los dispositivos móviles, este tamaño es una versión muy recortada de la cabecera de ordenador ya que esta cabecera solo cuenta con el menú de hamburguesa y el logo.
+  - Estados que maneja:
+    - `menuAbierto`: Este estado indica si el menú en su modo hamburguesa ha sido clickeado y está visible su contenido o no.
+    - `menuCuentaAbierto`: Este estado indica si el menú de la cuenta ha sido clickeado o no y por lo tanto si está visible su contenido o no.
+    - `modoOscuro`: Este estado hace referencia al modo oscuro / modo claro de la web, si este estado está activo indica que la web está en modo oscuro.
+  - Ejemplo de uso:
+  ```html
+  <app-header></app-header>
+  ```
 
 ---
 
 - **Footer**
-    - Propósito: Su propósito es definir el pie de página de la aplicación, he decidido crear este componente porque al igual que la cabecera, el footer va a estar presente en todas las páginas de la aplicación por lo que tiene sentido que sea un componente reutilizable. El footer contiene los enlaces a las redes sociales, el copyright y el enlace a las condiciones de uso.
-    - Variantes: Actualmente el footer no cuenta con variantes.
-    - Tamaños disponibles: El footer tiene un único tamaño que se adapta a todos los dispositivos mediante responsive, manteniendo la misma estructura pero reorganizando los elementos según el espacio disponible.
-    - Estados que maneja:
-        - `currentYear`: Este estado almacena el año actual para mostrarlo en el copyright, se calcula automáticamente al cargar el componente.
-        - `socialLinks`: Este estado es un array que contiene todos los enlaces a las redes sociales con su nombre, URL e icono.
-    - Ejemplo de uso:
-    ```html
-    <app-footer></app-footer>
-    ```
+  - Propósito: Su propósito es definir el pie de página de la aplicación, he decidido crear este componente porque al igual que la cabecera, el footer va a estar presente en todas las páginas de la aplicación por lo que tiene sentido que sea un componente reutilizable. El footer contiene los enlaces a las redes sociales, el copyright y el enlace a las condiciones de uso.
+  - Variantes: Actualmente el footer no cuenta con variantes.
+  - Tamaños disponibles: El footer tiene un único tamaño que se adapta a todos los dispositivos mediante responsive, manteniendo la misma estructura pero reorganizando los elementos según el espacio disponible.
+  - Estados que maneja:
+    - `currentYear`: Este estado almacena el año actual para mostrarlo en el copyright, se calcula automáticamente al cargar el componente.
+    - `socialLinks`: Este estado es un array que contiene todos los enlaces a las redes sociales con su nombre, URL e icono.
+  - Ejemplo de uso:
+  ```html
+  <app-footer></app-footer>
+  ```
 
 ---
 
@@ -748,97 +844,111 @@ Mi estrategia ha sido siempre empezar usando los h1 y ir escalando para los elem
 ---
 
 - **Button**
-    - Propósito: Su propósito es crear un componente de botón reutilizable que mantenga la consistencia visual en toda la aplicación. He creado este componente porque los botones se utilizan en muchas partes de la web y quería tener un único lugar donde gestionar todos los estilos y comportamientos de los botones para evitar repetir código y mantener la coherencia visual.
-    - Variantes: El botón cuenta con 4 variantes diferentes:
-        - `primary`: Es el botón principal, el que se usa para las acciones más importantes como "Inscríbete" o "Enviar". Tiene el color amarillo característico de la marca.
-        - `secondary`: Es el botón secundario, se usa para acciones menos importantes o alternativas. Tiene un estilo más neutro.
-        - `ghost`: Es el botón fantasma, no tiene fondo y solo muestra el texto con un borde. Se usa para acciones terciarias o cuando no quieres que el botón destaque mucho.
-        - `danger`: Es el botón de peligro, se usa para acciones destructivas como eliminar o cancelar. Tiene color rojo para alertar al usuario.
-    - Tamaños disponibles: El botón tiene 3 tamaños:
-        - `sm`: Tamaño pequeño, ideal para espacios reducidos o acciones secundarias.
-        - `md`: Tamaño mediano, es el tamaño por defecto y el más utilizado.
-        - `lg`: Tamaño grande, se usa para botones de llamada a la acción importantes.
-    - Estados que maneja:
-        - `habilitado`: Este estado indica si el botón está habilitado o deshabilitado. Cuando está deshabilitado el botón se muestra con opacidad reducida y no permite interacción.
-    - Ejemplo de uso:
-    ```html
-    <app-button variante="primary" tamanio="md">Inscríbete</app-button>
-    <app-button variante="secondary" tamanio="sm">Cancelar</app-button>
-    <app-button variante="danger" tamanio="lg" [habilitado]="true">Eliminar</app-button>
-    <app-button variante="ghost" tipo="submit">Enviar</app-button>
-    ```
+  - Propósito: Su propósito es crear un componente de botón reutilizable que mantenga la consistencia visual en toda la aplicación. He creado este componente porque los botones se utilizan en muchas partes de la web y quería tener un único lugar donde gestionar todos los estilos y comportamientos de los botones para evitar repetir código y mantener la coherencia visual.
+  - Variantes: El botón cuenta con 4 variantes diferentes:
+    - `primary`: Es el botón principal, el que se usa para las acciones más importantes como "Inscríbete" o "Enviar". Tiene el color amarillo característico de la marca.
+    - `secondary`: Es el botón secundario, se usa para acciones menos importantes o alternativas. Tiene un estilo más neutro.
+    - `ghost`: Es el botón fantasma, no tiene fondo y solo muestra el texto con un borde. Se usa para acciones terciarias o cuando no quieres que el botón destaque mucho.
+    - `danger`: Es el botón de peligro, se usa para acciones destructivas como eliminar o cancelar. Tiene color rojo para alertar al usuario.
+  - Tamaños disponibles: El botón tiene 3 tamaños:
+    - `sm`: Tamaño pequeño, ideal para espacios reducidos o acciones secundarias.
+    - `md`: Tamaño mediano, es el tamaño por defecto y el más utilizado.
+    - `lg`: Tamaño grande, se usa para botones de llamada a la acción importantes.
+  - Estados que maneja:
+    - `habilitado`: Este estado indica si el botón está habilitado o deshabilitado. Cuando está deshabilitado el botón se muestra con opacidad reducida y no permite interacción.
+  - Ejemplo de uso:
+  ```html
+  <app-button variante="primary" tamanio="md">Inscríbete</app-button>
+  <app-button variante="secondary" tamanio="sm">Cancelar</app-button>
+  <app-button variante="danger" tamanio="lg" [habilitado]="true"
+    >Eliminar</app-button
+  >
+  <app-button variante="ghost" tipo="submit">Enviar</app-button>
+  ```
 
 ---
 
 - **Card**
-    - Propósito: Su propósito es mostrar información de los planes de suscripción de forma visual y atractiva. He creado este componente porque necesitaba mostrar los diferentes planes de pago (mensual y anual) con sus ventajas y precios, y quería que fuera un componente reutilizable para poder usarlo en diferentes partes de la web sin repetir código.
-    - Variantes: La card cuenta con 2 variantes:
-        - `planes`: Es la variante principal, diseñada específicamente para mostrar los planes de suscripción con título, lista de ventajas, precio y botón de inscripción.
-        - `info`: Es una variante más simple pensada para mostrar información general sin el formato de plan de precios.
-    - Tamaños disponibles: La card tiene 3 tamaños:
-        - `sm`: Tamaño pequeño, útil para grids con muchas cards.
-        - `md`: Tamaño mediano, es el tamaño por defecto.
-        - `lg`: Tamaño grande, para destacar un plan específico.
-    - Estados que maneja:
-        - `deshabilitada`: Este estado indica si la card está deshabilitada. Cuando está deshabilitada la card se muestra con opacidad reducida y el botón no permite interacción.
-    - Ejemplo de uso:
-    ```html
-    <app-card
-      title="Cuota mensual"
-      [ventajas]="['Acceso completo', 'Soporte 24/7', 'Sin permanencia']"
-      texto_boton="Suscríbete"
-      precio="15.99€ + IVA al mes"
-      variante="planes"
-      tamanio="md"
-      (subscribe)="onSubscribe()">
-    </app-card>
-    ```
+  - Propósito: Su propósito es mostrar información de los planes de suscripción de forma visual y atractiva. He creado este componente porque necesitaba mostrar los diferentes planes de pago (mensual y anual) con sus ventajas y precios, y quería que fuera un componente reutilizable para poder usarlo en diferentes partes de la web sin repetir código.
+  - Variantes: La card cuenta con 2 variantes:
+    - `planes`: Es la variante principal, diseñada específicamente para mostrar los planes de suscripción con título, lista de ventajas, precio y botón de inscripción.
+    - `info`: Es una variante más simple pensada para mostrar información general sin el formato de plan de precios.
+  - Tamaños disponibles: La card tiene 3 tamaños:
+    - `sm`: Tamaño pequeño, útil para grids con muchas cards.
+    - `md`: Tamaño mediano, es el tamaño por defecto.
+    - `lg`: Tamaño grande, para destacar un plan específico.
+  - Estados que maneja:
+    - `deshabilitada`: Este estado indica si la card está deshabilitada. Cuando está deshabilitada la card se muestra con opacidad reducida y el botón no permite interacción.
+  - Ejemplo de uso:
+  ```html
+  <app-card
+    title="Cuota mensual"
+    [ventajas]="['Acceso completo', 'Soporte 24/7', 'Sin permanencia']"
+    texto_boton="Suscríbete"
+    precio="15.99€ + IVA al mes"
+    variante="planes"
+    tamanio="md"
+    (subscribe)="onSubscribe()"
+  >
+  </app-card>
+  ```
 
 ---
 
 - **Alert**
-    - Propósito: Su propósito es mostrar mensajes de alerta al usuario de forma visual y clara. He creado este componente porque necesitaba una forma de comunicar al usuario diferentes tipos de mensajes como éxitos, errores, advertencias o información general, y quería que todos estos mensajes tuvieran un estilo consistente.
-    - Variantes: La alerta cuenta con 4 variantes según el tipo de mensaje:
-        - `success`: Se usa para mensajes de éxito, como cuando una acción se ha completado correctamente. Tiene color verde.
-        - `error`: Se usa para mensajes de error, como cuando algo ha fallado. Tiene color rojo.
-        - `warning`: Se usa para mensajes de advertencia, como cuando el usuario debe prestar atención a algo. Tiene color naranja/amarillo.
-        - `info`: Se usa para mensajes informativos generales. Tiene color azul. Es la variante por defecto.
-    - Tamaños disponibles: Actualmente la alerta no tiene variantes de tamaño, tiene un tamaño único que se adapta al contenido del mensaje.
-    - Estados que maneja:
-        - `visible`: Este estado indica si la alerta está visible o no. Cuando el usuario cierra la alerta este estado cambia a false y la alerta desaparece.
-        - `closable`: Este estado indica si la alerta puede ser cerrada por el usuario. Si está en true muestra el botón de cerrar.
-    - Ejemplo de uso:
-    ```html
-    <app-alert type="success" message="¡Registro completado correctamente!" [closable]="true"></app-alert>
-    <app-alert type="error" message="Ha ocurrido un error, inténtalo de nuevo"></app-alert>
-    <app-alert type="warning" message="Tu sesión expirará en 5 minutos"></app-alert>
-    <app-alert type="info" message="Recuerda completar tu perfil"></app-alert>
-    ```
+  - Propósito: Su propósito es mostrar mensajes de alerta al usuario de forma visual y clara. He creado este componente porque necesitaba una forma de comunicar al usuario diferentes tipos de mensajes como éxitos, errores, advertencias o información general, y quería que todos estos mensajes tuvieran un estilo consistente.
+  - Variantes: La alerta cuenta con 4 variantes según el tipo de mensaje:
+    - `success`: Se usa para mensajes de éxito, como cuando una acción se ha completado correctamente. Tiene color verde.
+    - `error`: Se usa para mensajes de error, como cuando algo ha fallado. Tiene color rojo.
+    - `warning`: Se usa para mensajes de advertencia, como cuando el usuario debe prestar atención a algo. Tiene color naranja/amarillo.
+    - `info`: Se usa para mensajes informativos generales. Tiene color azul. Es la variante por defecto.
+  - Tamaños disponibles: Actualmente la alerta no tiene variantes de tamaño, tiene un tamaño único que se adapta al contenido del mensaje.
+  - Estados que maneja:
+    - `visible`: Este estado indica si la alerta está visible o no. Cuando el usuario cierra la alerta este estado cambia a false y la alerta desaparece.
+    - `closable`: Este estado indica si la alerta puede ser cerrada por el usuario. Si está en true muestra el botón de cerrar.
+  - Ejemplo de uso:
+  ```html
+  <app-alert
+    type="success"
+    message="¡Registro completado correctamente!"
+    [closable]="true"
+  ></app-alert>
+  <app-alert
+    type="error"
+    message="Ha ocurrido un error, inténtalo de nuevo"
+  ></app-alert>
+  <app-alert
+    type="warning"
+    message="Tu sesión expirará en 5 minutos"
+  ></app-alert>
+  <app-alert type="info" message="Recuerda completar tu perfil"></app-alert>
+  ```
 
 ---
 
 - **Notification**
-    - Propósito: Su propósito es mostrar notificaciones temporales al usuario que desaparecen automáticamente después de un tiempo. He creado este componente porque necesitaba una forma de mostrar mensajes que no requieran acción del usuario y que no interrumpan su flujo de navegación, como confirmaciones de acciones o recordatorios breves.
-    - Variantes: La notificación cuenta con 4 variantes según el tipo de mensaje:
-        - `success`: Se usa para notificar acciones exitosas. Tiene color verde.
-        - `error`: Se usa para notificar errores. Tiene color rojo.
-        - `warning`: Se usa para advertencias. Tiene color naranja/amarillo.
-        - `info`: Se usa para información general. Tiene color azul. Es la variante por defecto.
-    - Tamaños disponibles: Actualmente la notificación no tiene variantes de tamaño, tiene un tamaño único optimizado para ser visible sin ser intrusiva.
-    - Estados que maneja:
-        - `closing`: Este estado indica si la notificación está en proceso de cerrarse. Se usa para activar la animación de salida antes de que la notificación desaparezca completamente.
-        - `duration`: Este estado indica cuánto tiempo (en milisegundos) permanecerá visible la notificación antes de cerrarse automáticamente. Por defecto son 3000ms (3 segundos).
-        - `closable`: Este estado indica si el usuario puede cerrar manualmente la notificación.
-    - Ejemplo de uso:
-    ```html
-    <app-notification
-      type="success"
-      message="¡Cambios guardados correctamente!"
-      [duration]="3000"
-      [closable]="true"
-      (onClose)="eliminarNotificacion(notif.id)">
-    </app-notification>
-    ```
+  - Propósito: Su propósito es mostrar notificaciones temporales al usuario que desaparecen automáticamente después de un tiempo. He creado este componente porque necesitaba una forma de mostrar mensajes que no requieran acción del usuario y que no interrumpan su flujo de navegación, como confirmaciones de acciones o recordatorios breves.
+  - Variantes: La notificación cuenta con 4 variantes según el tipo de mensaje:
+    - `success`: Se usa para notificar acciones exitosas. Tiene color verde.
+    - `error`: Se usa para notificar errores. Tiene color rojo.
+    - `warning`: Se usa para advertencias. Tiene color naranja/amarillo.
+    - `info`: Se usa para información general. Tiene color azul. Es la variante por defecto.
+  - Tamaños disponibles: Actualmente la notificación no tiene variantes de tamaño, tiene un tamaño único optimizado para ser visible sin ser intrusiva.
+  - Estados que maneja:
+    - `closing`: Este estado indica si la notificación está en proceso de cerrarse. Se usa para activar la animación de salida antes de que la notificación desaparezca completamente.
+    - `duration`: Este estado indica cuánto tiempo (en milisegundos) permanecerá visible la notificación antes de cerrarse automáticamente. Por defecto son 3000ms (3 segundos).
+    - `closable`: Este estado indica si el usuario puede cerrar manualmente la notificación.
+  - Ejemplo de uso:
+  ```html
+  <app-notification
+    type="success"
+    message="¡Cambios guardados correctamente!"
+    [duration]="3000"
+    [closable]="true"
+    (onClose)="eliminarNotificacion(notif.id)"
+  >
+  </app-notification>
+  ```
 
 ---
 
@@ -847,86 +957,90 @@ Mi estrategia ha sido siempre empezar usando los h1 y ir escalando para los elem
 ---
 
 - **FormInput**
-    - Propósito: Su propósito es crear un componente de campo de entrada reutilizable que incluya la etiqueta, el input y los mensajes de error/ayuda todo en uno. He creado este componente porque los inputs se usan en todos los formularios de la aplicación y quería evitar repetir el mismo código HTML una y otra vez, además de mantener la consistencia visual entre todos los campos de entrada.
-    - Variantes: Actualmente el input no tiene variantes de estilo, pero soporta diferentes tipos de input a través del atributo `type` (text, email, password, number, etc.).
-    - Tamaños disponibles: Actualmente el input tiene un tamaño único que se adapta al ancho del contenedor padre.
-    - Estados que maneja:
-        - `control`: Este estado es el FormControl de Angular que gestiona el valor del input y sus validaciones.
-        - `required`: Este estado indica si el campo es obligatorio o no.
-        - `errorMessage`: Este estado contiene el mensaje de error que se muestra cuando el campo no es válido.
-        - `helpText`: Este estado contiene un texto de ayuda que se muestra debajo del input para guiar al usuario.
-    - Ejemplo de uso:
-    ```html
-    <app-form-input
-      label="Nombre"
-      name="nombre"
-      type="text"
-      placeholder="Escribe tu nombre..."
-      [required]="true"
-      errorMessage="El nombre es obligatorio"
-      helpText="Introduce tu nombre completo"
-      [control]="nombreControl">
-    </app-form-input>
-    ```
+  - Propósito: Su propósito es crear un componente de campo de entrada reutilizable que incluya la etiqueta, el input y los mensajes de error/ayuda todo en uno. He creado este componente porque los inputs se usan en todos los formularios de la aplicación y quería evitar repetir el mismo código HTML una y otra vez, además de mantener la consistencia visual entre todos los campos de entrada.
+  - Variantes: Actualmente el input no tiene variantes de estilo, pero soporta diferentes tipos de input a través del atributo `type` (text, email, password, number, etc.).
+  - Tamaños disponibles: Actualmente el input tiene un tamaño único que se adapta al ancho del contenedor padre.
+  - Estados que maneja:
+    - `control`: Este estado es el FormControl de Angular que gestiona el valor del input y sus validaciones.
+    - `required`: Este estado indica si el campo es obligatorio o no.
+    - `errorMessage`: Este estado contiene el mensaje de error que se muestra cuando el campo no es válido.
+    - `helpText`: Este estado contiene un texto de ayuda que se muestra debajo del input para guiar al usuario.
+  - Ejemplo de uso:
+  ```html
+  <app-form-input
+    label="Nombre"
+    name="nombre"
+    type="text"
+    placeholder="Escribe tu nombre..."
+    [required]="true"
+    errorMessage="El nombre es obligatorio"
+    helpText="Introduce tu nombre completo"
+    [control]="nombreControl"
+  >
+  </app-form-input>
+  ```
 
 ---
 
 - **FormTextarea**
-    - Propósito: Su propósito es crear un componente de área de texto reutilizable para cuando necesito que el usuario introduzca textos más largos como descripciones, comentarios o mensajes. He creado este componente siguiendo la misma filosofía que el FormInput, para mantener la consistencia y evitar repetir código.
-    - Variantes: Actualmente el textarea no tiene variantes de estilo.
-    - Tamaños disponibles: Actualmente el textarea tiene un tamaño único que se adapta al contenedor, aunque se puede redimensionar verticalmente.
-    - Estados que maneja:
-        - `control`: Este estado es el FormControl de Angular que gestiona el valor del textarea y sus validaciones.
-        - `required`: Este estado indica si el campo es obligatorio o no.
-        - `errorMessage`: Este estado contiene el mensaje de error que se muestra cuando el campo no es válido.
-        - `helpText`: Este estado contiene un texto de ayuda que se muestra debajo del textarea.
-    - Ejemplo de uso:
-    ```html
-    <app-form-textarea
-      label="Mensaje"
-      name="mensaje"
-      placeholder="Escribe tu mensaje..."
-      [required]="true"
-      errorMessage="El mensaje es obligatorio"
-      [control]="mensajeControl">
-    </app-form-textarea>
-    ```
+  - Propósito: Su propósito es crear un componente de área de texto reutilizable para cuando necesito que el usuario introduzca textos más largos como descripciones, comentarios o mensajes. He creado este componente siguiendo la misma filosofía que el FormInput, para mantener la consistencia y evitar repetir código.
+  - Variantes: Actualmente el textarea no tiene variantes de estilo.
+  - Tamaños disponibles: Actualmente el textarea tiene un tamaño único que se adapta al contenedor, aunque se puede redimensionar verticalmente.
+  - Estados que maneja:
+    - `control`: Este estado es el FormControl de Angular que gestiona el valor del textarea y sus validaciones.
+    - `required`: Este estado indica si el campo es obligatorio o no.
+    - `errorMessage`: Este estado contiene el mensaje de error que se muestra cuando el campo no es válido.
+    - `helpText`: Este estado contiene un texto de ayuda que se muestra debajo del textarea.
+  - Ejemplo de uso:
+  ```html
+  <app-form-textarea
+    label="Mensaje"
+    name="mensaje"
+    placeholder="Escribe tu mensaje..."
+    [required]="true"
+    errorMessage="El mensaje es obligatorio"
+    [control]="mensajeControl"
+  >
+  </app-form-textarea>
+  ```
 
 ---
 
 - **FormCheckbox**
-    - Propósito: Su propósito es crear un componente de checkbox reutilizable que incluya la etiqueta asociada. He creado este componente porque los checkboxes se usan en formularios para aceptar términos y condiciones, suscripciones a newsletters, etc., y quería tener un componente consistente con el resto de campos de formulario.
-    - Variantes: Actualmente el checkbox no tiene variantes de estilo.
-    - Tamaños disponibles: Actualmente el checkbox tiene un tamaño único.
-    - Estados que maneja:
-        - `control`: Este estado es el FormControl de Angular que gestiona el valor del checkbox (true/false).
-        - `required`: Este estado indica si el checkbox debe estar marcado obligatoriamente (útil para términos y condiciones).
-    - Ejemplo de uso:
-    ```html
-    <app-form-checkbox
-      label="Acepto los términos y condiciones"
-      name="terminos"
-      [required]="true"
-      [control]="terminosControl">
-    </app-form-checkbox>
-    ```
+  - Propósito: Su propósito es crear un componente de checkbox reutilizable que incluya la etiqueta asociada. He creado este componente porque los checkboxes se usan en formularios para aceptar términos y condiciones, suscripciones a newsletters, etc., y quería tener un componente consistente con el resto de campos de formulario.
+  - Variantes: Actualmente el checkbox no tiene variantes de estilo.
+  - Tamaños disponibles: Actualmente el checkbox tiene un tamaño único.
+  - Estados que maneja:
+    - `control`: Este estado es el FormControl de Angular que gestiona el valor del checkbox (true/false).
+    - `required`: Este estado indica si el checkbox debe estar marcado obligatoriamente (útil para términos y condiciones).
+  - Ejemplo de uso:
+  ```html
+  <app-form-checkbox
+    label="Acepto los términos y condiciones"
+    name="terminos"
+    [required]="true"
+    [control]="terminosControl"
+  >
+  </app-form-checkbox>
+  ```
 
 ---
 
 - **FormSelect**
-    - Propósito: Su propósito es crear un componente de selector desplegable reutilizable. He creado este componente porque necesitaba selectores en varios formularios para que el usuario pueda elegir entre opciones predefinidas, como el objetivo de entrenamiento o los días de ejercicio.
-    - Variantes: Actualmente el select no tiene variantes de estilo.
-    - Tamaños disponibles: Actualmente el select tiene un tamaño único que se adapta al contenedor.
-    - Estados que maneja:
-        - `options`: Este estado es un array de strings que contiene todas las opciones disponibles en el selector.
-    - Ejemplo de uso:
-    ```html
-    <app-form-select
-      label="Objetivo"
-      name="objetivo"
-      [options]="['Perder peso', 'Ganar músculo', 'Mantener peso', 'Definir']">
-    </app-form-select>
-    ```
+  - Propósito: Su propósito es crear un componente de selector desplegable reutilizable. He creado este componente porque necesitaba selectores en varios formularios para que el usuario pueda elegir entre opciones predefinidas, como el objetivo de entrenamiento o los días de ejercicio.
+  - Variantes: Actualmente el select no tiene variantes de estilo.
+  - Tamaños disponibles: Actualmente el select tiene un tamaño único que se adapta al contenedor.
+  - Estados que maneja:
+    - `options`: Este estado es un array de strings que contiene todas las opciones disponibles en el selector.
+  - Ejemplo de uso:
+  ```html
+  <app-form-select
+    label="Objetivo"
+    name="objetivo"
+    [options]="['Perder peso', 'Ganar músculo', 'Mantener peso', 'Definir']"
+  >
+  </app-form-select>
+  ```
 
 ---
 
@@ -935,49 +1049,49 @@ Mi estrategia ha sido siempre empezar usando los h1 y ir escalando para los elem
 ---
 
 - **FormLogin**
-    - Propósito: Su propósito es proporcionar un formulario completo de inicio de sesión. He creado este componente porque el login es una funcionalidad que voy a necesitar en la aplicación y quería tener un formulario preparado con todos los campos necesarios (email y contraseña) ya estructurado.
-    - Variantes: Actualmente el formulario de login no tiene variantes.
-    - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
-    - Estados que maneja: Actualmente el componente está en desarrollo y no tiene estados implementados.
-    - Ejemplo de uso:
-    ```html
-    <app-form-login></app-form-login>
-    ```
+  - Propósito: Su propósito es proporcionar un formulario completo de inicio de sesión. He creado este componente porque el login es una funcionalidad que voy a necesitar en la aplicación y quería tener un formulario preparado con todos los campos necesarios (email y contraseña) ya estructurado.
+  - Variantes: Actualmente el formulario de login no tiene variantes.
+  - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
+  - Estados que maneja: Actualmente el componente está en desarrollo y no tiene estados implementados.
+  - Ejemplo de uso:
+  ```html
+  <app-form-login></app-form-login>
+  ```
 
 ---
 
 - **FormRegister**
-    - Propósito: Su propósito es proporcionar un formulario completo de registro de usuarios. He creado este componente porque el registro es esencial para la aplicación y necesitaba un formulario con validaciones avanzadas como verificación de contraseñas coincidentes y aceptación de términos.
-    - Variantes: Actualmente el formulario de registro no tiene variantes.
-    - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
-    - Estados que maneja:
-        - `registerForm`: Este estado es el FormGroup que contiene todos los campos del formulario (nombre, apellido, email, password, confirmPassword, terminos).
-        - Validaciones implementadas:
-            - Nombre y apellido: Obligatorios con mínimo 2 caracteres.
-            - Email: Obligatorio y debe ser un email válido.
-            - Password: Obligatorio con mínimo 6 caracteres.
-            - ConfirmPassword: Obligatorio y debe coincidir con el password.
-            - Términos: Obligatorio y debe estar marcado.
-    - Ejemplo de uso:
-    ```html
-    <app-form-register></app-form-register>
-    ```
+  - Propósito: Su propósito es proporcionar un formulario completo de registro de usuarios. He creado este componente porque el registro es esencial para la aplicación y necesitaba un formulario con validaciones avanzadas como verificación de contraseñas coincidentes y aceptación de términos.
+  - Variantes: Actualmente el formulario de registro no tiene variantes.
+  - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
+  - Estados que maneja:
+    - `registerForm`: Este estado es el FormGroup que contiene todos los campos del formulario (nombre, apellido, email, password, confirmPassword, terminos).
+    - Validaciones implementadas:
+      - Nombre y apellido: Obligatorios con mínimo 2 caracteres.
+      - Email: Obligatorio y debe ser un email válido.
+      - Password: Obligatorio con mínimo 6 caracteres.
+      - ConfirmPassword: Obligatorio y debe coincidir con el password.
+      - Términos: Obligatorio y debe estar marcado.
+  - Ejemplo de uso:
+  ```html
+  <app-form-register></app-form-register>
+  ```
 
 ---
 
 - **FormContact**
-    - Propósito: Su propósito es proporcionar un formulario de contacto para que los usuarios puedan comunicarse con nosotros. He creado este componente porque quería tener una forma de que los usuarios pudieran enviar mensajes o suscribirse a las novedades de la aplicación.
-    - Variantes: Actualmente el formulario de contacto no tiene variantes.
-    - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
-    - Estados que maneja:
-        - `contactForm`: Este estado es el FormGroup que contiene los campos del formulario (nombre, apellido, email).
-        - Validaciones implementadas:
-            - Nombre y apellido: Obligatorios con mínimo 2 caracteres.
-            - Email: Obligatorio y debe ser un email válido.
-    - Ejemplo de uso:
-    ```html
-    <app-contact-form></app-contact-form>
-    ```
+  - Propósito: Su propósito es proporcionar un formulario de contacto para que los usuarios puedan comunicarse con nosotros. He creado este componente porque quería tener una forma de que los usuarios pudieran enviar mensajes o suscribirse a las novedades de la aplicación.
+  - Variantes: Actualmente el formulario de contacto no tiene variantes.
+  - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
+  - Estados que maneja:
+    - `contactForm`: Este estado es el FormGroup que contiene los campos del formulario (nombre, apellido, email).
+    - Validaciones implementadas:
+      - Nombre y apellido: Obligatorios con mínimo 2 caracteres.
+      - Email: Obligatorio y debe ser un email válido.
+  - Ejemplo de uso:
+  ```html
+  <app-contact-form></app-contact-form>
+  ```
 
 ## 3.2 Nomenclatura y metodología: Muestra ejemplos reales de tu nomenclatura BEM aplicada en los componentes. Explica tu estrategia: qué es block vs element, cuándo usas modificadores vs clases de estado.
 
@@ -1028,7 +1142,6 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
   animation: alertSlideIn var(--duration-base) ease;
 }
 
-
 // Archivo: cofira/src/app/components/layaout/header/header.scss
 // El bloque .hamburguesa es el botón del menú móvil
 .hamburguesa {
@@ -1043,7 +1156,7 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
   padding: 0;
   z-index: 200;
 
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: flex;
   }
 }
@@ -1076,7 +1189,7 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
 
 #### ¿Qué es un Element?
 
-Un **Element** es una parte interna del bloque que no tiene sentido por sí sola, siempre depende del bloque padre. Lo identifico con doble guión bajo **__** después del nombre del bloque.
+Un **Element** es una parte interna del bloque que no tiene sentido por sí sola, siempre depende del bloque padre. Lo identifico con doble guión bajo **\_\_** después del nombre del bloque.
 
 **Ejemplos de Elements en mi proyecto:**
 
@@ -1186,8 +1299,6 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   margin: 0;
 }
 
-
-
 // Elementos del bloque .menu-movil
 .menu-movil__overlay {
   position: absolute;
@@ -1231,8 +1342,7 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   text-decoration: none;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
-  transition: background-color 0.15s ease-out,
-              transform 0.15s ease-out;
+  transition: background-color 0.15s ease-out, transform 0.15s ease-out;
   border-left: 4px solid transparent;
   position: relative;
 }
@@ -1423,13 +1533,13 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
 
 // Modificadores de visibilidad para desktop/móvil
 .enlaces--desktop {
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: none;
   }
 }
 
 .buscador--desktop {
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: none;
   }
 }
@@ -1565,7 +1675,6 @@ Son estados que se activan automáticamente por el navegador cuando el usuario i
   outline-offset: 2px;
 }
 ```
-
 
 ### 3.3 Style Guide: Incluye capturas de pantalla de tu página de Style Guide mostrando los componentes. Explica para qué sirve (documentación visual, testing, referencia).
 
@@ -1765,25 +1874,25 @@ He definido 6 breakpoints principales para adaptar la aplicación a diferentes t
 
 **Breakpoints del proyecto:**
 
-| Nombre | Valor | Dispositivo objetivo |
-|--------|-------|---------------------|
-| `$breakpoint-xs` | 40rem (640px) | Móviles pequeños |
-| `$breakpoint-sm` | 48rem (768px) | Móviles grandes / Tablets pequeñas |
-| `$breakpoint-md` | 56.25rem (900px) | Tablets |
-| `$breakpoint-lg` | 64rem (1024px) | Tablets grandes / Laptops pequeños |
-| `$breakpoint-xl` | 75rem (1200px) | Laptops |
-| `$breakpoint-xxl` | 87.5rem (1400px) | Escritorios grandes |
+| Nombre            | Valor            | Dispositivo objetivo               |
+| ----------------- | ---------------- | ---------------------------------- |
+| `$breakpoint-xs`  | 40rem (640px)    | Móviles pequeños                   |
+| `$breakpoint-sm`  | 48rem (768px)    | Móviles grandes / Tablets pequeñas |
+| `$breakpoint-md`  | 56.25rem (900px) | Tablets                            |
+| `$breakpoint-lg`  | 64rem (1024px)   | Tablets grandes / Laptops pequeños |
+| `$breakpoint-xl`  | 75rem (1200px)   | Laptops                            |
+| `$breakpoint-xxl` | 87.5rem (1400px) | Escritorios grandes                |
 
 **Código de los breakpoints:**
 
 ```scss
 // Archivo: cofira/src/styles/00-settings/_css-variables.scss
 
-$breakpoint-xs: 40rem;    // 640px - Móviles pequeños
-$breakpoint-sm: 48rem;    // 768px - Móviles grandes / Tablets pequeñas
+$breakpoint-xs: 40rem; // 640px - Móviles pequeños
+$breakpoint-sm: 48rem; // 768px - Móviles grandes / Tablets pequeñas
 $breakpoint-md: 56.25rem; // 900px - Tablets
-$breakpoint-lg: 64rem;    // 1024px - Tablets grandes / Laptops pequeños
-$breakpoint-xl: 75rem;    // 1200px - Laptops
+$breakpoint-lg: 64rem; // 1024px - Tablets grandes / Laptops pequeños
+$breakpoint-xl: 75rem; // 1200px - Laptops
 $breakpoint-xxl: 87.5rem; // 1400px - Escritorios grandes
 ```
 
@@ -1822,18 +1931,30 @@ He creado dos mixins en `cofira/src/styles/01-tools/_mixins.scss` para facilitar
 // Mixin para media queries responsive (desktop-first: max-width)
 // Este es el mixin principal que uso en todo el proyecto
 @mixin responsive-down($breakpoint) {
-  @if $breakpoint == 'xs' {
-    @media (max-width: $breakpoint-xs) { @content; }
-  } @else if $breakpoint == 'sm' {
-    @media (max-width: $breakpoint-sm) { @content; }
-  } @else if $breakpoint == 'md' {
-    @media (max-width: $breakpoint-md) { @content; }
-  } @else if $breakpoint == 'lg' {
-    @media (max-width: $breakpoint-lg) { @content; }
-  } @else if $breakpoint == 'xl' {
-    @media (max-width: $breakpoint-xl) { @content; }
-  } @else if $breakpoint == 'xxl' {
-    @media (max-width: $breakpoint-xxl) { @content; }
+  @if $breakpoint == "xs" {
+    @media (max-width: $breakpoint-xs) {
+      @content;
+    }
+  } @else if $breakpoint == "sm" {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == "md" {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == "lg" {
+    @media (max-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == "xl" {
+    @media (max-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == "xxl" {
+    @media (max-width: $breakpoint-xxl) {
+      @content;
+    }
   }
 }
 ```
@@ -1851,7 +1972,7 @@ He creado dos mixins en `cofira/src/styles/01-tools/_mixins.scss` para facilitar
   padding: var(--spacing-size-xxxl) 0;
 
   // Adaptación para tablets y móviles (900px o menos)
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     gap: var(--spacing-size-l);
     padding: var(--spacing-size-xl) var(--spacing-size-m);
   }
@@ -1861,12 +1982,12 @@ He creado dos mixins en `cofira/src/styles/01-tools/_mixins.scss` para facilitar
   @include titulo-seccion(var(--negro-normal), var(--font-size-4xl), 0);
 
   // Tablets grandes (1024px o menos)
-  @include responsive-down('lg') {
+  @include responsive-down("lg") {
     font-size: var(--font-size-3xl);
   }
 
   // Tablets y móviles (900px o menos)
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     font-size: var(--font-size-2xl);
   }
 }
@@ -1925,7 +2046,7 @@ Las pricing cards se muestran en la página home dentro de un grid de 3 columnas
   container-type: inline-size;
   container-name: card-container;
 
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     max-width: 100%;
     justify-self: center;
   }
@@ -1979,16 +2100,16 @@ A continuación muestro cómo se adaptan las principales secciones de la aplicac
 
 **Tabla de adaptaciones:**
 
-| Componente/Sección          | Mobile (375px) | Tablet (768px) | Desktop (1280px) |
-|-----------------------------|----------------|----------------|------------------|
-| **Header**                  | Menú hamburguesa, logo reducido | Menú hamburguesa, logo normal | Navegación completa horizontal |
+| Componente/Sección          | Mobile (375px)                     | Tablet (768px)                            | Desktop (1280px)                    |
+| --------------------------- | ---------------------------------- | ----------------------------------------- | ----------------------------------- |
+| **Header**                  | Menú hamburguesa, logo reducido    | Menú hamburguesa, logo normal             | Navegación completa horizontal      |
 | **Intro(Home)**             | Texto centrado, botones en columna | Texto alineado izquierda, botones en fila | Layout completo con imagen de fondo |
-| **Sección Planes**          | Cards en 1 columna, apiladas | Cards en 2 columnas centradas | Grid de 3 columnas con info lateral |
-| **Funcionalidades**         | Grid de 1 columna | Grid de 2 columnas | Grid auto-fit (3-4 columnas) |
-| **FAQ**                     | Padding reducido, tipografía menor | Padding medio | Padding amplio, max-width 800px |
-| **Footer**                  | Enlaces en columna, centrado | Enlaces en 2 columnas | Enlaces en fila horizontal |
-| **Gimnasio**                | Tabla con scroll horizontal | Tabla adaptada | Tabla completa |
-| **Formularios de registro** | Formularios a ancho completo | Formularios centrados | Formularios con max-width |
+| **Sección Planes**          | Cards en 1 columna, apiladas       | Cards en 2 columnas centradas             | Grid de 3 columnas con info lateral |
+| **Funcionalidades**         | Grid de 1 columna                  | Grid de 2 columnas                        | Grid auto-fit (3-4 columnas)        |
+| **FAQ**                     | Padding reducido, tipografía menor | Padding medio                             | Padding amplio, max-width 800px     |
+| **Footer**                  | Enlaces en columna, centrado       | Enlaces en 2 columnas                     | Enlaces en fila horizontal          |
+| **Gimnasio**                | Tabla con scroll horizontal        | Tabla adaptada                            | Tabla completa                      |
+| **Formularios de registro** | Formularios a ancho completo       | Formularios centrados                     | Formularios con max-width           |
 
 **Ejemplo de adaptación del Header:**
 
@@ -2004,17 +2125,17 @@ A continuación muestro cómo se adaptan las principales secciones de la aplicac
   padding: 0 6rem;
 
   // Laptop (1200px o menos)
-  @include responsive-down('xl') {
+  @include responsive-down("xl") {
     padding: 0 3rem;
   }
 
   // Tablet grande (1024px o menos)
-  @include responsive-down('lg') {
+  @include responsive-down("lg") {
     padding: 0 2rem;
   }
 
   // Tablet/Móvil (900px o menos)
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     height: 4rem;
     padding: 0 1.5rem;
   }
@@ -2022,14 +2143,14 @@ A continuación muestro cómo se adaptan las principales secciones de la aplicac
 
 // Navegación desktop: se oculta en móvil
 .header__nav--desktop {
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: none;
   }
 }
 
 // Botones de acción desktop: se ocultan en móvil
 .header__actions--desktop {
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: none;
   }
 }
@@ -2038,12 +2159,11 @@ A continuación muestro cómo se adaptan las principales secciones de la aplicac
 .header__hamburguesa {
   display: none;
 
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: flex;
   }
 }
 ```
-
 
 **Ejemplo de adaptación de la cabecera:**
 
@@ -2058,10 +2178,10 @@ Cabecera en móvil:
 
 Podemos apreciar como la cabecera va adapántando distintos tamaños tanto de texto como de padding para adaptarse al dispositivo permitiendo que el contenido se pueda visualizar bien y sin ser molestado por otros elementos.
 
-
 ---
 
 ## 4.5 Páginas implementadas
+
 # Sección 1: Arquitectura CSS y Comunicación Visual
 
 ## 1.1 Principios de Comunicación Visual
@@ -2078,7 +2198,7 @@ Podemos apreciar como la cabecera va adapántando distintos tamaños tanto de te
 
 **Ejemplos de implementación:**
 
-*Botón de acción principal:*
+_Botón de acción principal:_
 
 - Color amarillo brillante para máximo contraste
 - Jerarquía visual: Botón → Imagen → Título
@@ -2086,7 +2206,7 @@ Podemos apreciar como la cabecera va adapántando distintos tamaños tanto de te
 Ejemplo:
 ![img.png](../assets/img.png)
 
-*Cabecera de navegación:*
+_Cabecera de navegación:_
 
 - Colores consistentes en elementos de navegación
 - Botón "Inscríbete" en color destacado para llamar la atención
@@ -2094,7 +2214,7 @@ Ejemplo:
 Ejemplo:
 ![img_1.png](../assets/img_1.png)
 
-*Separación entre secciones:*
+_Separación entre secciones:_
 
 - Espaciado amplio entre secciones principales
 - Cambio de fondo para delimitar áreas
@@ -2116,7 +2236,7 @@ Ejemplo:
 
 **Ejemplos de implementación:**
 
-*Formulario:*
+_Formulario:_
 
 - Coherencia visual en campos de entrada
 - Botón "Enviar" en amarillo para destacar la acción principal
@@ -2124,7 +2244,7 @@ Ejemplo:
 Ejemplo:
 ![img_3.png](../assets/img_3.png)
 
-*Organización de horarios:*
+_Organización de horarios:_
 
 - **Título:** Elemento más grande y con mayor peso
 - **Días (Lunes, Miércoles):** Tamaño medio, peso moderado
@@ -2160,7 +2280,7 @@ Ejemplos:
 
 **Ejemplos de implementación:**
 
-*Menú diario:*
+_Menú diario:_
 
 - Separación mínima entre alimentos de la misma comida
 - Mayor separación entre diferentes comidas del día
@@ -2181,7 +2301,7 @@ Ejemplo:
 - **Familiaridad:** Patrones repetitivos que facilitan la navegación
 
 **Ejemplos de implementación:**
-*Páginas de configuración:*
+_Páginas de configuración:_
 
 - Colores, espaciados y tamaños consistentes
 - Iconos con estilo uniforme para acciones similares
@@ -2192,7 +2312,7 @@ Ejemplos:
 ![img_9.png](../assets/img_9.png)
 ![img_11.png](../assets/img_11.png)
 
-### 1.2 Metodología CSS Explica qué metodología usas (BEM recomendado) y por qué. Muestra ejemplos de tu nomenclatura. Si usas BEM, explica que usarás bloques (.card), elementos (.card__title), y modificadores (.card--featured).
+### 1.2 Metodología CSS Explica qué metodología usas (BEM recomendado) y por qué. Muestra ejemplos de tu nomenclatura. Si usas BEM, explica que usarás bloques (.card), elementos (.card\_\_title), y modificadores (.card--featured).
 
 He usado la metología BEM porque me permite organizar el código por componentes, además de permitirme reutilizar estilos
 en diferentes partes sin tener problemas de especificidad. El principal mótivo por lo que lo he usado es por la especifidad ya que al estar trabajando con componentes
@@ -2203,39 +2323,58 @@ clase.
 Ejemplos de nomenclatura BEM usada en el proyecto:
 
 ```css
+/* BLOQUE: Contenedor principal del componente */
 
-/* BLOQUE: Contenedor principal del componente */ 
-
-.button { }          
-.alert { }          
-.pricing-card { }    
-.menu-movil { }      
-
+.button {
+}
+.alert {
+}
+.pricing-card {
+}
+.menu-movil {
+}
 
 /* ELEMENTO: Parte interna del bloque (usa __) */
 
-.button__icono { }        
-.button__texto { }         
-.alert__mensaje { }         
-.alert__cerrar { }        
-.pricing-card__titulo { } 
-.pricing-card__lista { }     
-.pricing-card__boton { }   
-.menu-movil__contenido { }
-.menu-movil__link { }     
-
+.button__icono {
+}
+.button__texto {
+}
+.alert__mensaje {
+}
+.alert__cerrar {
+}
+.pricing-card__titulo {
+}
+.pricing-card__lista {
+}
+.pricing-card__boton {
+}
+.menu-movil__contenido {
+}
+.menu-movil__link {
+}
 
 /* MODIFICADOR: Variante del bloque/elemento (usa --) */
 
-.button--primary { }       
-.button--secondary { }   
-.button--danger { }    
-.button--sm { }
-.button--lg { }            
-.alert--success { }       
-.alert--error { }          
-.pricing-card--planes { }  
-.menu-movil--abierto { }   
+.button--primary {
+}
+.button--secondary {
+}
+.button--danger {
+}
+.button--sm {
+}
+.button--lg {
+}
+.alert--success {
+}
+.alert--error {
+}
+.pricing-card--planes {
+}
+.menu-movil--abierto {
+}
 ```
 
 ### 1.3 Organización de archivos: Documenta tu estructura ITCSS. Explica por qué cada carpeta está en ese orden (de menor a mayor especificidad). Muestra el árbol de carpetas completo.
@@ -2313,12 +2452,11 @@ styles/
 - **Propósito:** Estilos de componentes reutilizables
 - **Ejemplo:** Inputs, cards, botones
 
-**06-utilities/**  - Clases unitarias
+**06-utilities/** - Clases unitarias
 
 - **Especificidad:** Muy alta ya que aqui definiremos los componentes de forma individual.
 - **Propósito:** Clases de una sola responsabilidad que sobrescriben otros estilos.
 - **Ejemplo:** `.text-center`, `.m-2`, `.hidden`
-
 
 **07-dark-mode/** - Dark mode
 
@@ -2332,12 +2470,14 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
 ### 1.4 Sistema de Design Tokens: Documenta todas tus variables. Para cada grupo (colores, tipografía, espaciado, etc.) explica las decisiones:
 
 - Por qué elegiste esos colores
-    - Elegí esos colores porque quería usar una paleta que comunicara energía y positividad además de esfuerzo y
-      dedicación, por eso usé el amarillo brillante como color principal. Además de que el amarillo es un color que
-      llama mucho la atención y es perfecto para botones de llamada a la acción. Los colores neutros los elegí para que
-      no compitieran con el amarillo y dejaran que este resaltara más.
+
+  - Elegí esos colores porque quería usar una paleta que comunicara energía y positividad además de esfuerzo y
+    dedicación, por eso usé el amarillo brillante como color principal. Además de que el amarillo es un color que
+    llama mucho la atención y es perfecto para botones de llamada a la acción. Los colores neutros los elegí para que
+    no compitieran con el amarillo y dejaran que este resaltara más.
+
   ```css
-    /* ============================================
+  /* ============================================
      COLORES - NEGRO
      ============================================ */
 
@@ -2350,7 +2490,6 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --negro-dark: #0d0b0c;
   --negro-dark-hover: #0a080a;
   --negro-dark-active: #080607; /* FONDO */
-
 
   /* ============================================
      COLORES - AMARILLO
@@ -2366,7 +2505,6 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --amarillo-dark-hover: #997f00;
   --amarillo-dark-active: #735f00;
 
-
   /* ============================================
      COLORES - BLANCO
      ============================================ */
@@ -2380,7 +2518,6 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --blanco-dark: #b8b8b8;
   --blanco-dark-hover: #939393;
   --blanco-dark-active: #6e6e6e;
-
 
   /* ============================================
      COLORES - GRIS
@@ -2396,36 +2533,33 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --gris-dark-hover: #26292e;
   --gris-dark-active: #1c1f22;
 
-
   /*Textos*/
   --text-light: #110e10;
   --text-dark: #f5f5f5;
 
   /*Background gris transparente*/
-  --background-light-gray: #3F454C;
-
+  --background-light-gray: #3f454c;
 
   /*Botones*/
-  --button-red: #FF3434;
+  --button-red: #ff3434;
   --button-red-hover: #910505;
-
 
   --button-gray: #3f454c;
   --buton-gray-hover: #2f3439;
 
+  --button-yellow: #ffd300;
+  --button-yellow-hover: #594a00;
 
-  --button-yellow: #FFD300;
-  --button-yellow-hover: #594A00;
-
-
-  --button-darker: #32373D;
-  --button-darker-hover: #26292E;
+  --button-darker: #32373d;
+  --button-darker-hover: #26292e;
   ```
+
 - ¿Por qué esa escala tipográfica?
-    - He usado esta escala de tipografía porque es una escala muy ajustable a cualquier diseño que quieras hacer además de que es la más usada en diseño
-      web, ya que permite crear jerarquías visuales claras y consistentes.
+
+  - He usado esta escala de tipografía porque es una escala muy ajustable a cualquier diseño que quieras hacer además de que es la más usada en diseño
+    web, ya que permite crear jerarquías visuales claras y consistentes.
+
   ```css
-  
   /* Tamaños de la tipografía */
   --font-size-xs: 0.64rem; /* 10.24px */
   --font-size-sm: 0.8rem; /* 12.8px  */
@@ -2437,22 +2571,23 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   --font-size-4xl: 3.052rem; /* 48.8px */
   --font-size-5xl: 3.815rem; /* 61px */
   ```
-- ¿Por qué esos breakpoints?
-    - He usado estos breakpoints porque son los más comunes entre dispositivos y permiten que el diseño sea responsive en la mayoría de dispositivos.
-  ```css
-    
-    // Mobile Grande / Phablets
-    $breakpoint-xs: 640px;
-    
-    // Tablets
-    $breakpoint-s: 768px;
-    
-    // Desktop / Tablets (Landscape)
-    $breakpoint-M: 1024px;
-    
-    // Desktop Grande
-    $breakpoint-L: 1280px;
 
+- ¿Por qué esos breakpoints?
+
+  - He usado estos breakpoints porque son los más comunes entre dispositivos y permiten que el diseño sea responsive en la mayoría de dispositivos.
+
+  ```css
+  // Mobile Grande / Phablets
+  $breakpoint-xs: 640px;
+
+  // Tablets
+  $breakpoint-s: 768px;
+
+  // Desktop / Tablets (Landscape)
+  $breakpoint-M: 1024px;
+
+  // Desktop Grande
+  $breakpoint-L: 1280px;
   ```
 
 ### 1.5 Mixins y funciones: Documenta cada mixin que creaste, para qué sirve, y muestra un ejemplo de uso.
@@ -2485,9 +2620,9 @@ Cree estos mixins para facilitar la creación de layouts flexibles y reutilizabl
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
 }
-    
-    
-    
+
+
+
 // Mixin para labels de formulario
 
 @mixin form-label {
@@ -2504,15 +2639,14 @@ Ejemplo de uso:
 
 ```css
 nav {
-    @include flex-full;
-    background: var(--gris-normal);
-    height: 4.4rem;
-    align-items: center;
-    box-sizing: border-box;
-    justify-content: space-between;
-    padding: 0 6rem;
+  @include flex-full;
+  background: var(--gris-normal);
+  height: 4.4rem;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: space-between;
+  padding: 0 6rem;
 }
-
 ```
 
 ### 1.6 ViewEncapsulation en Angular: Explica qué estrategia de encapsulación usarás. Angular por defecto usa Emulated (estilos encapsulados por componente). Documenta si mantendrás esto o usarás None (estilos globales). Justifica tu decisión.
@@ -2528,122 +2662,210 @@ estilos globales en muchas partes y agilizar el proceso y por que es mucho mas m
 ### 2.1 Elementos semánticos utilizados: Explica qué elementos semánticos usas y cuándo: header, nav, main, article, section, aside, footer. Muestra ejemplos de tu código.
 
 Uso los siguientes elementos:
+
 - header: Lo uso para declarar la cabecera por ejemplo aqui:
+
 ```html
 <header>
-  <img alt="Cofira Logo" class="cabecera__logo" routerLink="/home" src="assets/images/cofiraLogoPng.png">
+  <img
+    alt="Cofira Logo"
+    class="cabecera__logo"
+    routerLink="/home"
+    src="assets/images/cofiraLogoPng.png"
+  />
   <ul class="enlaces">
     <li><a routerLink="/gimnasio">Entrenamiento</a></li>
     <li><a routerLink="/alimentacion">Alimentación</a></li>
     <li><a routerLink="/seguimiento">Seguimiento</a></li>
   </ul>
-
+</header>
 ```
+
 - nav: Lo uso para declarar el menú de navegación, por ejemplo aqui:
+
 ```html
-  <!-- Sección derecha: Redes sociales -->
-  <nav class="footer__right">
-    <ul class="footer__social-list">
-      
-      <li class="footer__social-item">
-        <a aria-label="YouTube" class="footer__social" href="https://youtube.com" rel="noopener" target="_blank">
-          <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-          </svg>
-        </a>
-      </li>
+<!-- Sección derecha: Redes sociales -->
+<nav class="footer__right">
+  <ul class="footer__social-list">
+    <li class="footer__social-item">
+      <a
+        aria-label="YouTube"
+        class="footer__social"
+        href="https://youtube.com"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"
+          />
+        </svg>
+      </a>
+    </li>
 
-      <li class="footer__social-item">
-        <a aria-label="Facebook" class="footer__social" href="https://facebook.com" rel="noopener" target="_blank">
-          <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-          </svg>
-        </a>
-      </li>
+    <li class="footer__social-item">
+      <a
+        aria-label="Facebook"
+        class="footer__social"
+        href="https://facebook.com"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+          />
+        </svg>
+      </a>
+    </li>
 
-      <li class="footer__social-item">
-        <a aria-label="Twitter" class="footer__social" href="https://twitter.com" rel="noopener" target="_blank">
-          <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-          </svg>
-        </a>
-      </li>
+    <li class="footer__social-item">
+      <a
+        aria-label="Twitter"
+        class="footer__social"
+        href="https://twitter.com"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+          />
+        </svg>
+      </a>
+    </li>
 
-      <li class="footer__social-item">
-        <a aria-label="Instagram" class="footer__social" href="https://instagram.com" rel="noopener" target="_blank">
-          <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-          </svg>
-        </a>
-      </li>
+    <li class="footer__social-item">
+      <a
+        aria-label="Instagram"
+        class="footer__social"
+        href="https://instagram.com"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+          />
+        </svg>
+      </a>
+    </li>
 
-      <li class="footer__social-item">
-        <a aria-label="LinkedIn" class="footer__social" href="https://linkedin.com" rel="noopener" target="_blank">
-          <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-          </svg>
-        </a>
-      </li>
-
-    </ul>
-  </nav>
+    <li class="footer__social-item">
+      <a
+        aria-label="LinkedIn"
+        class="footer__social"
+        href="https://linkedin.com"
+        rel="noopener"
+        target="_blank"
+      >
+        <svg
+          fill="currentColor"
+          height="24"
+          viewBox="0 0 24 24"
+          width="24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+          />
+        </svg>
+      </a>
+    </li>
+  </ul>
+</nav>
 ```
 
 - main: El main lo utilizo para indicar el contenido principal de la página web y lo indico unicamente en el index.html ya que luego con el router-outlet indico que ese contenido va a ser reemplazable por los componentes, de esta forma hago que la cabecera y pie de página nunca desaparezca y no tenga que estar usandola por cada página.
+
 ```html
 <main class="main-content">
   <router-outlet></router-outlet>
 </main>
-
 ```
 
 - article: Este elemento lo utilizo para agrupar elementos semanticamente iguales, por ejemplo un grupo de cards o un grupo de enlaces. Por ejemplo un buscador:
+
 ```html
-  <article class="buscador">
-    <svg class="buscador__icono" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5
-  6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5" fill="currentColor"/>
-    </svg>
-    <input class="buscador__input" placeholder="¿Que buscas?" type="text">
-  </article>
+<article class="buscador">
+  <svg
+    class="buscador__icono"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5l-1.5 1.5l-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16A6.5 6.5 0 0 1 3 9.5A6.5
+  6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14S14 12 14 9.5S12 5 9.5 5"
+      fill="currentColor"
+    />
+  </svg>
+  <input class="buscador__input" placeholder="¿Que buscas?" type="text" />
+</article>
 ```
 
 - section: El section lo utilizo para cuando agrupar muchos grupos de elementos por ejemplo, un ejemplo podría ser los botones de la cabecera:
+
 ```html
 <section class="cabecera__botones">
+  <button class="boton_inscribete">
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="m77.492 18.457l-17.726 3.127L69.09 74.47a1631 1631 0 0 0-15.8 2.54l-6.503-36.89l-17.726 3.124l6.49 36.795a1878 1878 0 0 0-17.196 3.112l3.292 17.696c5.728-1.066 11.397-2.09 17.028-3.084l7.056 40.02l17.727-3.124l-7.04-39.93q7.956-1.319 15.798-2.54l9.777 55.45l17.727-3.126l-9.697-54.99a1416 1416 0 0 1 25.18-3.38c15.54 46.39 34.697 99.995 66.936 134.448C190.86 250.992 192 268 214.56 310C192 348 176 412 167.21 471l-48 6v15H192c16-48 64-144 64-144s48 96 64 144h72.79v-15l-48-6C336 412 320 348 294 310c26-42 24.175-59.585 35.83-89.377c32.25-34.452 51.42-88.075 66.967-134.478c8.314 1.04 16.697 2.16 25.18 3.38l-9.696 54.99l17.728 3.124l9.777-55.45q7.843 1.221 15.8 2.54l-7.042 39.93l17.727 3.125l7.056-40.02c5.63.993 11.3 2.017 17.028 3.083l3.292-17.696c-5.78-1.075-11.507-2.11-17.195-3.113l6.49-36.796l-17.727-3.125l-6.504 36.89a1565 1565 0 0 0-15.8-2.54l9.324-52.886l-17.726-3.127l-9.406 53.35C365.982 63.31 310.982 59.04 256 59.04c-54.98 0-109.983 4.27-169.102 12.767zM256 76.98c35.53 0 71.07 1.83 107.822 5.463c-14.082 34.858-38.454 73.504-63.203 101.967C290.293 199.27 274.35 209 256 209s-34.294-9.73-44.62-24.59c-24.748-28.463-49.12-67.11-63.202-101.967c36.75-3.633 72.29-5.463 107.822-5.463M256 97c-20.835 0-39 20.24-39 47s18.165 47 39 47s39-20.24 39-47s-18.165-47-39-47"
+        fill="currentColor"
+      />
+    </svg>
 
+    <span>Inscribete</span>
+  </button>
 
-    <button class="boton_inscribete">
-      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="m77.492 18.457l-17.726 3.127L69.09 74.47a1631 1631 0 0 0-15.8 2.54l-6.503-36.89l-17.726 3.124l6.49 36.795a1878 1878 0 0 0-17.196 3.112l3.292 17.696c5.728-1.066 11.397-2.09 17.028-3.084l7.056 40.02l17.727-3.124l-7.04-39.93q7.956-1.319 15.798-2.54l9.777 55.45l17.727-3.126l-9.697-54.99a1416 1416 0 0 1 25.18-3.38c15.54 46.39 34.697 99.995 66.936 134.448C190.86 250.992 192 268 214.56 310C192 348 176 412 167.21 471l-48 6v15H192c16-48 64-144 64-144s48 96 64 144h72.79v-15l-48-6C336 412 320 348 294 310c26-42 24.175-59.585 35.83-89.377c32.25-34.452 51.42-88.075 66.967-134.478c8.314 1.04 16.697 2.16 25.18 3.38l-9.696 54.99l17.728 3.124l9.777-55.45q7.843 1.221 15.8 2.54l-7.042 39.93l17.727 3.125l7.056-40.02c5.63.993 11.3 2.017 17.028 3.083l3.292-17.696c-5.78-1.075-11.507-2.11-17.195-3.113l6.49-36.796l-17.727-3.125l-6.504 36.89a1565 1565 0 0 0-15.8-2.54l9.324-52.886l-17.726-3.127l-9.406 53.35C365.982 63.31 310.982 59.04 256 59.04c-54.98 0-109.983 4.27-169.102 12.767zM256 76.98c35.53 0 71.07 1.83 107.822 5.463c-14.082 34.858-38.454 73.504-63.203 101.967C290.293 199.27 274.35 209 256 209s-34.294-9.73-44.62-24.59c-24.748-28.463-49.12-67.11-63.202-101.967c36.75-3.633 72.29-5.463 107.822-5.463M256 97c-20.835 0-39 20.24-39 47s18.165 47 39 47s39-20.24 39-47s-18.165-47-39-47"
-          fill="currentColor"/>
-      </svg>
-
-      <span>Inscribete</span>
-    </button>
-
-
-    <button class="boton__cuenta">
-
-      <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"
-          fill="currentColor"/>
-      </svg>
-      <span>Cuenta</span>
-    </button>
-  </section>
+  <button class="boton__cuenta">
+    <svg
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"
+        fill="currentColor"
+      />
+    </svg>
+    <span>Cuenta</span>
+  </button>
+</section>
 ```
-
 
 - aside: El aside se utiliza para declarar contenido secundario como menus de navegación a la izquierda o derecha en toda la página, osea como el menú hamburguesa de móvil o los tipicos menús desplegables de filtrado que tienen muchas páginas webs, pero yo no lo he utilizado porque mi web no tiene filtrado o contenido para filtrar.
 
-
 - footer: El footer se utiliza para indicar el pie de página como el elemento header pero en el pie de página. En el footer declaramos todos los elementos que vamos a tener en el pie de página por ejemplo los iconos, enlaces y los textos que tendremos. Por ejemplo mi footer:
+
 ```
 <footer class="footer">
-  
+
   <!-- Sección izquierda: Condiciones de uso -->
   <nav class="footer__left">
     <a class="footer__link" routerLink="/condiciones">
@@ -2657,7 +2879,7 @@ Uso los siguientes elementos:
   <!-- Sección derecha: Redes sociales -->
   <nav class="footer__right">
     <ul class="footer__social-list">
-      
+
       <li class="footer__social-item">
         <a aria-label="YouTube" class="footer__social" href="https://youtube.com" rel="noopener" target="_blank">
           <svg fill="currentColor" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -2709,7 +2931,6 @@ Uso los siguientes elementos:
 
 Mi estrategia ha sido siempre empezar usando los h1 y ir escalando para los elementos de esa página, siempre empezando por un h1 y ir escalando un diagrama que demuestre la jerarquía sería el siguiente:
 
-
 Página: "Home"
 
 ├─ H1: Tu entrenamiento, nutrición y progreso en un solo lugar
@@ -2721,7 +2942,6 @@ Página: "Home"
 └─ H2: ¿Quieres estar al tanto de todas las noticias?
 ├─ H3: Contactoss
 
-
 ### 2.3 Estructura de formularios: Muestra tu estructura de formularios explicando el uso de fieldset, legend, y la asociación de labels con inputs (for e id) o como hemos visto en clase. Incluye un ejemplo de código de tu componente form-input.
 
 - Fieldset: He usado el fieldset para agrupar todo el formulario en un mismo contenedor ya que fieldset es la etiqueta que se utiliza para agrupar todo el contenido de un formulario.
@@ -2730,45 +2950,41 @@ Página: "Home"
 - Input: El input es usado para que el usuario pueda escribir en la página web, lo he asociado con el label a través del id.
 
 ```html
-    <fieldset class="form__fieldset">
-      <legend class="form__legend">Datos de contacto</legend>
+<fieldset class="form__fieldset">
+  <legend class="form__legend">Datos de contacto</legend>
 
+  <label for="nombre" class="form__label">Escribe tu nombre:</label>
+  <input
+    type="text"
+    id="nombre"
+    formControlName="nombre"
+    class="form__input"
+    placeholder="Escriba su nombre..."
+  />
 
-      <label for="nombre" class="form__label">Escribe tu nombre:</label>
-      <input
-        type="text"
-        id="nombre"
-        formControlName="nombre"
-        class="form__input"
-        placeholder="Escriba su nombre...">
+  <label for="apellido" class="form__label">Escribe tu apellido:</label>
+  <input
+    type="text"
+    id="apellido"
+    formControlName="apellido"
+    class="form__input"
+    placeholder="Escriba su apellido..."
+  />
 
+  <label for="email" class="form__label">Escribe tu email:</label>
+  <input
+    type="email"
+    id="email"
+    formControlName="email"
+    class="form__input"
+    placeholder="Escriba su email..."
+  />
+</fieldset>
 
-      <label for="apellido" class="form__label">Escribe tu apellido:</label>
-      <input
-        type="text"
-        id="apellido"
-        formControlName="apellido"
-        class="form__input"
-        placeholder="Escriba su apellido...">
-
-
-      <label for="email" class="form__label">Escribe tu email:</label>
-      <input
-        type="email"
-        id="email"
-        formControlName="email"
-        class="form__input"
-        placeholder="Escriba su email...">
-
-    </fieldset>
-
-
-    <button type="submit" class="form__button" [disabled]="contactForm.invalid">
-      Enviar
-    </button>
-
+<button type="submit" class="form__button" [disabled]="contactForm.invalid">
+  Enviar
+</button>
 ```
-
 
 ### 3.1 Componentes implementados: Lista TODOS los componentes creados. Para cada uno documenta: - Nombre del componente - Propósito - Variantes disponibles - Tamaños disponibles - Estados que maneja - Ejemplo de uso (código)
 
@@ -2779,31 +2995,31 @@ Página: "Home"
 ---
 
 - **Header**
-    - Propósito: Su propósito es definir la cabecera, he creado este componente en vez de hacerlo directamente en cada página porque como voy a tener siempre páginas que usen la cabecera pues creo que la cabecera debería ser un componente si o si ya se va a reutilizar muchas veces.
-    - Variantes: Actualmente la cabecera no cuenta con variantes.
-    - Tamaños disponibles: La cabecera tiene 2 tamaños, su primer tamaño es el de desktop que es la cabecera completa, la que vemos en un ordenador y su segundo tamaño es el de los dispositivos móviles, este tamaño es una versión muy recortada de la cabecera de ordenador ya que esta cabecera solo cuenta con el menú de hamburguesa y el logo.
-    - Estados que maneja:
-        - `menuAbierto`: Este estado indica si el menú en su modo hamburguesa ha sido clickeado y está visible su contenido o no.
-        - `menuCuentaAbierto`: Este estado indica si el menú de la cuenta ha sido clickeado o no y por lo tanto si está visible su contenido o no.
-        - `modoOscuro`: Este estado hace referencia al modo oscuro / modo claro de la web, si este estado está activo indica que la web está en modo oscuro.
-    - Ejemplo de uso:
-    ```html
-    <app-header></app-header>
-    ```
+  - Propósito: Su propósito es definir la cabecera, he creado este componente en vez de hacerlo directamente en cada página porque como voy a tener siempre páginas que usen la cabecera pues creo que la cabecera debería ser un componente si o si ya se va a reutilizar muchas veces.
+  - Variantes: Actualmente la cabecera no cuenta con variantes.
+  - Tamaños disponibles: La cabecera tiene 2 tamaños, su primer tamaño es el de desktop que es la cabecera completa, la que vemos en un ordenador y su segundo tamaño es el de los dispositivos móviles, este tamaño es una versión muy recortada de la cabecera de ordenador ya que esta cabecera solo cuenta con el menú de hamburguesa y el logo.
+  - Estados que maneja:
+    - `menuAbierto`: Este estado indica si el menú en su modo hamburguesa ha sido clickeado y está visible su contenido o no.
+    - `menuCuentaAbierto`: Este estado indica si el menú de la cuenta ha sido clickeado o no y por lo tanto si está visible su contenido o no.
+    - `modoOscuro`: Este estado hace referencia al modo oscuro / modo claro de la web, si este estado está activo indica que la web está en modo oscuro.
+  - Ejemplo de uso:
+  ```html
+  <app-header></app-header>
+  ```
 
 ---
 
 - **Footer**
-    - Propósito: Su propósito es definir el pie de página de la aplicación, he decidido crear este componente porque al igual que la cabecera, el footer va a estar presente en todas las páginas de la aplicación por lo que tiene sentido que sea un componente reutilizable. El footer contiene los enlaces a las redes sociales, el copyright y el enlace a las condiciones de uso.
-    - Variantes: Actualmente el footer no cuenta con variantes.
-    - Tamaños disponibles: El footer tiene un único tamaño que se adapta a todos los dispositivos mediante responsive, manteniendo la misma estructura pero reorganizando los elementos según el espacio disponible.
-    - Estados que maneja:
-        - `currentYear`: Este estado almacena el año actual para mostrarlo en el copyright, se calcula automáticamente al cargar el componente.
-        - `socialLinks`: Este estado es un array que contiene todos los enlaces a las redes sociales con su nombre, URL e icono.
-    - Ejemplo de uso:
-    ```html
-    <app-footer></app-footer>
-    ```
+  - Propósito: Su propósito es definir el pie de página de la aplicación, he decidido crear este componente porque al igual que la cabecera, el footer va a estar presente en todas las páginas de la aplicación por lo que tiene sentido que sea un componente reutilizable. El footer contiene los enlaces a las redes sociales, el copyright y el enlace a las condiciones de uso.
+  - Variantes: Actualmente el footer no cuenta con variantes.
+  - Tamaños disponibles: El footer tiene un único tamaño que se adapta a todos los dispositivos mediante responsive, manteniendo la misma estructura pero reorganizando los elementos según el espacio disponible.
+  - Estados que maneja:
+    - `currentYear`: Este estado almacena el año actual para mostrarlo en el copyright, se calcula automáticamente al cargar el componente.
+    - `socialLinks`: Este estado es un array que contiene todos los enlaces a las redes sociales con su nombre, URL e icono.
+  - Ejemplo de uso:
+  ```html
+  <app-footer></app-footer>
+  ```
 
 ---
 
@@ -2812,97 +3028,111 @@ Página: "Home"
 ---
 
 - **Button**
-    - Propósito: Su propósito es crear un componente de botón reutilizable que mantenga la consistencia visual en toda la aplicación. He creado este componente porque los botones se utilizan en muchas partes de la web y quería tener un único lugar donde gestionar todos los estilos y comportamientos de los botones para evitar repetir código y mantener la coherencia visual.
-    - Variantes: El botón cuenta con 4 variantes diferentes:
-        - `primary`: Es el botón principal, el que se usa para las acciones más importantes como "Inscríbete" o "Enviar". Tiene el color amarillo característico de la marca.
-        - `secondary`: Es el botón secundario, se usa para acciones menos importantes o alternativas. Tiene un estilo más neutro.
-        - `ghost`: Es el botón fantasma, no tiene fondo y solo muestra el texto con un borde. Se usa para acciones terciarias o cuando no quieres que el botón destaque mucho.
-        - `danger`: Es el botón de peligro, se usa para acciones destructivas como eliminar o cancelar. Tiene color rojo para alertar al usuario.
-    - Tamaños disponibles: El botón tiene 3 tamaños:
-        - `sm`: Tamaño pequeño, ideal para espacios reducidos o acciones secundarias.
-        - `md`: Tamaño mediano, es el tamaño por defecto y el más utilizado.
-        - `lg`: Tamaño grande, se usa para botones de llamada a la acción importantes.
-    - Estados que maneja:
-        - `habilitado`: Este estado indica si el botón está habilitado o deshabilitado. Cuando está deshabilitado el botón se muestra con opacidad reducida y no permite interacción.
-    - Ejemplo de uso:
-    ```html
-    <app-button variante="primary" tamanio="md">Inscríbete</app-button>
-    <app-button variante="secondary" tamanio="sm">Cancelar</app-button>
-    <app-button variante="danger" tamanio="lg" [habilitado]="true">Eliminar</app-button>
-    <app-button variante="ghost" tipo="submit">Enviar</app-button>
-    ```
+  - Propósito: Su propósito es crear un componente de botón reutilizable que mantenga la consistencia visual en toda la aplicación. He creado este componente porque los botones se utilizan en muchas partes de la web y quería tener un único lugar donde gestionar todos los estilos y comportamientos de los botones para evitar repetir código y mantener la coherencia visual.
+  - Variantes: El botón cuenta con 4 variantes diferentes:
+    - `primary`: Es el botón principal, el que se usa para las acciones más importantes como "Inscríbete" o "Enviar". Tiene el color amarillo característico de la marca.
+    - `secondary`: Es el botón secundario, se usa para acciones menos importantes o alternativas. Tiene un estilo más neutro.
+    - `ghost`: Es el botón fantasma, no tiene fondo y solo muestra el texto con un borde. Se usa para acciones terciarias o cuando no quieres que el botón destaque mucho.
+    - `danger`: Es el botón de peligro, se usa para acciones destructivas como eliminar o cancelar. Tiene color rojo para alertar al usuario.
+  - Tamaños disponibles: El botón tiene 3 tamaños:
+    - `sm`: Tamaño pequeño, ideal para espacios reducidos o acciones secundarias.
+    - `md`: Tamaño mediano, es el tamaño por defecto y el más utilizado.
+    - `lg`: Tamaño grande, se usa para botones de llamada a la acción importantes.
+  - Estados que maneja:
+    - `habilitado`: Este estado indica si el botón está habilitado o deshabilitado. Cuando está deshabilitado el botón se muestra con opacidad reducida y no permite interacción.
+  - Ejemplo de uso:
+  ```html
+  <app-button variante="primary" tamanio="md">Inscríbete</app-button>
+  <app-button variante="secondary" tamanio="sm">Cancelar</app-button>
+  <app-button variante="danger" tamanio="lg" [habilitado]="true"
+    >Eliminar</app-button
+  >
+  <app-button variante="ghost" tipo="submit">Enviar</app-button>
+  ```
 
 ---
 
 - **Card**
-    - Propósito: Su propósito es mostrar información de los planes de suscripción de forma visual y atractiva. He creado este componente porque necesitaba mostrar los diferentes planes de pago (mensual y anual) con sus ventajas y precios, y quería que fuera un componente reutilizable para poder usarlo en diferentes partes de la web sin repetir código.
-    - Variantes: La card cuenta con 2 variantes:
-        - `planes`: Es la variante principal, diseñada específicamente para mostrar los planes de suscripción con título, lista de ventajas, precio y botón de inscripción.
-        - `info`: Es una variante más simple pensada para mostrar información general sin el formato de plan de precios.
-    - Tamaños disponibles: La card tiene 3 tamaños:
-        - `sm`: Tamaño pequeño, útil para grids con muchas cards.
-        - `md`: Tamaño mediano, es el tamaño por defecto.
-        - `lg`: Tamaño grande, para destacar un plan específico.
-    - Estados que maneja:
-        - `deshabilitada`: Este estado indica si la card está deshabilitada. Cuando está deshabilitada la card se muestra con opacidad reducida y el botón no permite interacción.
-    - Ejemplo de uso:
-    ```html
-    <app-card
-      title="Cuota mensual"
-      [ventajas]="['Acceso completo', 'Soporte 24/7', 'Sin permanencia']"
-      texto_boton="Suscríbete"
-      precio="15.99€ + IVA al mes"
-      variante="planes"
-      tamanio="md"
-      (subscribe)="onSubscribe()">
-    </app-card>
-    ```
+  - Propósito: Su propósito es mostrar información de los planes de suscripción de forma visual y atractiva. He creado este componente porque necesitaba mostrar los diferentes planes de pago (mensual y anual) con sus ventajas y precios, y quería que fuera un componente reutilizable para poder usarlo en diferentes partes de la web sin repetir código.
+  - Variantes: La card cuenta con 2 variantes:
+    - `planes`: Es la variante principal, diseñada específicamente para mostrar los planes de suscripción con título, lista de ventajas, precio y botón de inscripción.
+    - `info`: Es una variante más simple pensada para mostrar información general sin el formato de plan de precios.
+  - Tamaños disponibles: La card tiene 3 tamaños:
+    - `sm`: Tamaño pequeño, útil para grids con muchas cards.
+    - `md`: Tamaño mediano, es el tamaño por defecto.
+    - `lg`: Tamaño grande, para destacar un plan específico.
+  - Estados que maneja:
+    - `deshabilitada`: Este estado indica si la card está deshabilitada. Cuando está deshabilitada la card se muestra con opacidad reducida y el botón no permite interacción.
+  - Ejemplo de uso:
+  ```html
+  <app-card
+    title="Cuota mensual"
+    [ventajas]="['Acceso completo', 'Soporte 24/7', 'Sin permanencia']"
+    texto_boton="Suscríbete"
+    precio="15.99€ + IVA al mes"
+    variante="planes"
+    tamanio="md"
+    (subscribe)="onSubscribe()"
+  >
+  </app-card>
+  ```
 
 ---
 
 - **Alert**
-    - Propósito: Su propósito es mostrar mensajes de alerta al usuario de forma visual y clara. He creado este componente porque necesitaba una forma de comunicar al usuario diferentes tipos de mensajes como éxitos, errores, advertencias o información general, y quería que todos estos mensajes tuvieran un estilo consistente.
-    - Variantes: La alerta cuenta con 4 variantes según el tipo de mensaje:
-        - `success`: Se usa para mensajes de éxito, como cuando una acción se ha completado correctamente. Tiene color verde.
-        - `error`: Se usa para mensajes de error, como cuando algo ha fallado. Tiene color rojo.
-        - `warning`: Se usa para mensajes de advertencia, como cuando el usuario debe prestar atención a algo. Tiene color naranja/amarillo.
-        - `info`: Se usa para mensajes informativos generales. Tiene color azul. Es la variante por defecto.
-    - Tamaños disponibles: Actualmente la alerta no tiene variantes de tamaño, tiene un tamaño único que se adapta al contenido del mensaje.
-    - Estados que maneja:
-        - `visible`: Este estado indica si la alerta está visible o no. Cuando el usuario cierra la alerta este estado cambia a false y la alerta desaparece.
-        - `closable`: Este estado indica si la alerta puede ser cerrada por el usuario. Si está en true muestra el botón de cerrar.
-    - Ejemplo de uso:
-    ```html
-    <app-alert type="success" message="¡Registro completado correctamente!" [closable]="true"></app-alert>
-    <app-alert type="error" message="Ha ocurrido un error, inténtalo de nuevo"></app-alert>
-    <app-alert type="warning" message="Tu sesión expirará en 5 minutos"></app-alert>
-    <app-alert type="info" message="Recuerda completar tu perfil"></app-alert>
-    ```
+  - Propósito: Su propósito es mostrar mensajes de alerta al usuario de forma visual y clara. He creado este componente porque necesitaba una forma de comunicar al usuario diferentes tipos de mensajes como éxitos, errores, advertencias o información general, y quería que todos estos mensajes tuvieran un estilo consistente.
+  - Variantes: La alerta cuenta con 4 variantes según el tipo de mensaje:
+    - `success`: Se usa para mensajes de éxito, como cuando una acción se ha completado correctamente. Tiene color verde.
+    - `error`: Se usa para mensajes de error, como cuando algo ha fallado. Tiene color rojo.
+    - `warning`: Se usa para mensajes de advertencia, como cuando el usuario debe prestar atención a algo. Tiene color naranja/amarillo.
+    - `info`: Se usa para mensajes informativos generales. Tiene color azul. Es la variante por defecto.
+  - Tamaños disponibles: Actualmente la alerta no tiene variantes de tamaño, tiene un tamaño único que se adapta al contenido del mensaje.
+  - Estados que maneja:
+    - `visible`: Este estado indica si la alerta está visible o no. Cuando el usuario cierra la alerta este estado cambia a false y la alerta desaparece.
+    - `closable`: Este estado indica si la alerta puede ser cerrada por el usuario. Si está en true muestra el botón de cerrar.
+  - Ejemplo de uso:
+  ```html
+  <app-alert
+    type="success"
+    message="¡Registro completado correctamente!"
+    [closable]="true"
+  ></app-alert>
+  <app-alert
+    type="error"
+    message="Ha ocurrido un error, inténtalo de nuevo"
+  ></app-alert>
+  <app-alert
+    type="warning"
+    message="Tu sesión expirará en 5 minutos"
+  ></app-alert>
+  <app-alert type="info" message="Recuerda completar tu perfil"></app-alert>
+  ```
 
 ---
 
 - **Notification**
-    - Propósito: Su propósito es mostrar notificaciones temporales al usuario que desaparecen automáticamente después de un tiempo. He creado este componente porque necesitaba una forma de mostrar mensajes que no requieran acción del usuario y que no interrumpan su flujo de navegación, como confirmaciones de acciones o recordatorios breves.
-    - Variantes: La notificación cuenta con 4 variantes según el tipo de mensaje:
-        - `success`: Se usa para notificar acciones exitosas. Tiene color verde.
-        - `error`: Se usa para notificar errores. Tiene color rojo.
-        - `warning`: Se usa para advertencias. Tiene color naranja/amarillo.
-        - `info`: Se usa para información general. Tiene color azul. Es la variante por defecto.
-    - Tamaños disponibles: Actualmente la notificación no tiene variantes de tamaño, tiene un tamaño único optimizado para ser visible sin ser intrusiva.
-    - Estados que maneja:
-        - `closing`: Este estado indica si la notificación está en proceso de cerrarse. Se usa para activar la animación de salida antes de que la notificación desaparezca completamente.
-        - `duration`: Este estado indica cuánto tiempo (en milisegundos) permanecerá visible la notificación antes de cerrarse automáticamente. Por defecto son 3000ms (3 segundos).
-        - `closable`: Este estado indica si el usuario puede cerrar manualmente la notificación.
-    - Ejemplo de uso:
-    ```html
-    <app-notification
-      type="success"
-      message="¡Cambios guardados correctamente!"
-      [duration]="3000"
-      [closable]="true"
-      (onClose)="eliminarNotificacion(notif.id)">
-    </app-notification>
-    ```
+  - Propósito: Su propósito es mostrar notificaciones temporales al usuario que desaparecen automáticamente después de un tiempo. He creado este componente porque necesitaba una forma de mostrar mensajes que no requieran acción del usuario y que no interrumpan su flujo de navegación, como confirmaciones de acciones o recordatorios breves.
+  - Variantes: La notificación cuenta con 4 variantes según el tipo de mensaje:
+    - `success`: Se usa para notificar acciones exitosas. Tiene color verde.
+    - `error`: Se usa para notificar errores. Tiene color rojo.
+    - `warning`: Se usa para advertencias. Tiene color naranja/amarillo.
+    - `info`: Se usa para información general. Tiene color azul. Es la variante por defecto.
+  - Tamaños disponibles: Actualmente la notificación no tiene variantes de tamaño, tiene un tamaño único optimizado para ser visible sin ser intrusiva.
+  - Estados que maneja:
+    - `closing`: Este estado indica si la notificación está en proceso de cerrarse. Se usa para activar la animación de salida antes de que la notificación desaparezca completamente.
+    - `duration`: Este estado indica cuánto tiempo (en milisegundos) permanecerá visible la notificación antes de cerrarse automáticamente. Por defecto son 3000ms (3 segundos).
+    - `closable`: Este estado indica si el usuario puede cerrar manualmente la notificación.
+  - Ejemplo de uso:
+  ```html
+  <app-notification
+    type="success"
+    message="¡Cambios guardados correctamente!"
+    [duration]="3000"
+    [closable]="true"
+    (onClose)="eliminarNotificacion(notif.id)"
+  >
+  </app-notification>
+  ```
 
 ---
 
@@ -2911,86 +3141,90 @@ Página: "Home"
 ---
 
 - **FormInput**
-    - Propósito: Su propósito es crear un componente de campo de entrada reutilizable que incluya la etiqueta, el input y los mensajes de error/ayuda todo en uno. He creado este componente porque los inputs se usan en todos los formularios de la aplicación y quería evitar repetir el mismo código HTML una y otra vez, además de mantener la consistencia visual entre todos los campos de entrada.
-    - Variantes: Actualmente el input no tiene variantes de estilo, pero soporta diferentes tipos de input a través del atributo `type` (text, email, password, number, etc.).
-    - Tamaños disponibles: Actualmente el input tiene un tamaño único que se adapta al ancho del contenedor padre.
-    - Estados que maneja:
-        - `control`: Este estado es el FormControl de Angular que gestiona el valor del input y sus validaciones.
-        - `required`: Este estado indica si el campo es obligatorio o no.
-        - `errorMessage`: Este estado contiene el mensaje de error que se muestra cuando el campo no es válido.
-        - `helpText`: Este estado contiene un texto de ayuda que se muestra debajo del input para guiar al usuario.
-    - Ejemplo de uso:
-    ```html
-    <app-form-input
-      label="Nombre"
-      name="nombre"
-      type="text"
-      placeholder="Escribe tu nombre..."
-      [required]="true"
-      errorMessage="El nombre es obligatorio"
-      helpText="Introduce tu nombre completo"
-      [control]="nombreControl">
-    </app-form-input>
-    ```
+  - Propósito: Su propósito es crear un componente de campo de entrada reutilizable que incluya la etiqueta, el input y los mensajes de error/ayuda todo en uno. He creado este componente porque los inputs se usan en todos los formularios de la aplicación y quería evitar repetir el mismo código HTML una y otra vez, además de mantener la consistencia visual entre todos los campos de entrada.
+  - Variantes: Actualmente el input no tiene variantes de estilo, pero soporta diferentes tipos de input a través del atributo `type` (text, email, password, number, etc.).
+  - Tamaños disponibles: Actualmente el input tiene un tamaño único que se adapta al ancho del contenedor padre.
+  - Estados que maneja:
+    - `control`: Este estado es el FormControl de Angular que gestiona el valor del input y sus validaciones.
+    - `required`: Este estado indica si el campo es obligatorio o no.
+    - `errorMessage`: Este estado contiene el mensaje de error que se muestra cuando el campo no es válido.
+    - `helpText`: Este estado contiene un texto de ayuda que se muestra debajo del input para guiar al usuario.
+  - Ejemplo de uso:
+  ```html
+  <app-form-input
+    label="Nombre"
+    name="nombre"
+    type="text"
+    placeholder="Escribe tu nombre..."
+    [required]="true"
+    errorMessage="El nombre es obligatorio"
+    helpText="Introduce tu nombre completo"
+    [control]="nombreControl"
+  >
+  </app-form-input>
+  ```
 
 ---
 
 - **FormTextarea**
-    - Propósito: Su propósito es crear un componente de área de texto reutilizable para cuando necesito que el usuario introduzca textos más largos como descripciones, comentarios o mensajes. He creado este componente siguiendo la misma filosofía que el FormInput, para mantener la consistencia y evitar repetir código.
-    - Variantes: Actualmente el textarea no tiene variantes de estilo.
-    - Tamaños disponibles: Actualmente el textarea tiene un tamaño único que se adapta al contenedor, aunque se puede redimensionar verticalmente.
-    - Estados que maneja:
-        - `control`: Este estado es el FormControl de Angular que gestiona el valor del textarea y sus validaciones.
-        - `required`: Este estado indica si el campo es obligatorio o no.
-        - `errorMessage`: Este estado contiene el mensaje de error que se muestra cuando el campo no es válido.
-        - `helpText`: Este estado contiene un texto de ayuda que se muestra debajo del textarea.
-    - Ejemplo de uso:
-    ```html
-    <app-form-textarea
-      label="Mensaje"
-      name="mensaje"
-      placeholder="Escribe tu mensaje..."
-      [required]="true"
-      errorMessage="El mensaje es obligatorio"
-      [control]="mensajeControl">
-    </app-form-textarea>
-    ```
+  - Propósito: Su propósito es crear un componente de área de texto reutilizable para cuando necesito que el usuario introduzca textos más largos como descripciones, comentarios o mensajes. He creado este componente siguiendo la misma filosofía que el FormInput, para mantener la consistencia y evitar repetir código.
+  - Variantes: Actualmente el textarea no tiene variantes de estilo.
+  - Tamaños disponibles: Actualmente el textarea tiene un tamaño único que se adapta al contenedor, aunque se puede redimensionar verticalmente.
+  - Estados que maneja:
+    - `control`: Este estado es el FormControl de Angular que gestiona el valor del textarea y sus validaciones.
+    - `required`: Este estado indica si el campo es obligatorio o no.
+    - `errorMessage`: Este estado contiene el mensaje de error que se muestra cuando el campo no es válido.
+    - `helpText`: Este estado contiene un texto de ayuda que se muestra debajo del textarea.
+  - Ejemplo de uso:
+  ```html
+  <app-form-textarea
+    label="Mensaje"
+    name="mensaje"
+    placeholder="Escribe tu mensaje..."
+    [required]="true"
+    errorMessage="El mensaje es obligatorio"
+    [control]="mensajeControl"
+  >
+  </app-form-textarea>
+  ```
 
 ---
 
 - **FormCheckbox**
-    - Propósito: Su propósito es crear un componente de checkbox reutilizable que incluya la etiqueta asociada. He creado este componente porque los checkboxes se usan en formularios para aceptar términos y condiciones, suscripciones a newsletters, etc., y quería tener un componente consistente con el resto de campos de formulario.
-    - Variantes: Actualmente el checkbox no tiene variantes de estilo.
-    - Tamaños disponibles: Actualmente el checkbox tiene un tamaño único.
-    - Estados que maneja:
-        - `control`: Este estado es el FormControl de Angular que gestiona el valor del checkbox (true/false).
-        - `required`: Este estado indica si el checkbox debe estar marcado obligatoriamente (útil para términos y condiciones).
-    - Ejemplo de uso:
-    ```html
-    <app-form-checkbox
-      label="Acepto los términos y condiciones"
-      name="terminos"
-      [required]="true"
-      [control]="terminosControl">
-    </app-form-checkbox>
-    ```
+  - Propósito: Su propósito es crear un componente de checkbox reutilizable que incluya la etiqueta asociada. He creado este componente porque los checkboxes se usan en formularios para aceptar términos y condiciones, suscripciones a newsletters, etc., y quería tener un componente consistente con el resto de campos de formulario.
+  - Variantes: Actualmente el checkbox no tiene variantes de estilo.
+  - Tamaños disponibles: Actualmente el checkbox tiene un tamaño único.
+  - Estados que maneja:
+    - `control`: Este estado es el FormControl de Angular que gestiona el valor del checkbox (true/false).
+    - `required`: Este estado indica si el checkbox debe estar marcado obligatoriamente (útil para términos y condiciones).
+  - Ejemplo de uso:
+  ```html
+  <app-form-checkbox
+    label="Acepto los términos y condiciones"
+    name="terminos"
+    [required]="true"
+    [control]="terminosControl"
+  >
+  </app-form-checkbox>
+  ```
 
 ---
 
 - **FormSelect**
-    - Propósito: Su propósito es crear un componente de selector desplegable reutilizable. He creado este componente porque necesitaba selectores en varios formularios para que el usuario pueda elegir entre opciones predefinidas, como el objetivo de entrenamiento o los días de ejercicio.
-    - Variantes: Actualmente el select no tiene variantes de estilo.
-    - Tamaños disponibles: Actualmente el select tiene un tamaño único que se adapta al contenedor.
-    - Estados que maneja:
-        - `options`: Este estado es un array de strings que contiene todas las opciones disponibles en el selector.
-    - Ejemplo de uso:
-    ```html
-    <app-form-select
-      label="Objetivo"
-      name="objetivo"
-      [options]="['Perder peso', 'Ganar músculo', 'Mantener peso', 'Definir']">
-    </app-form-select>
-    ```
+  - Propósito: Su propósito es crear un componente de selector desplegable reutilizable. He creado este componente porque necesitaba selectores en varios formularios para que el usuario pueda elegir entre opciones predefinidas, como el objetivo de entrenamiento o los días de ejercicio.
+  - Variantes: Actualmente el select no tiene variantes de estilo.
+  - Tamaños disponibles: Actualmente el select tiene un tamaño único que se adapta al contenedor.
+  - Estados que maneja:
+    - `options`: Este estado es un array de strings que contiene todas las opciones disponibles en el selector.
+  - Ejemplo de uso:
+  ```html
+  <app-form-select
+    label="Objetivo"
+    name="objetivo"
+    [options]="['Perder peso', 'Ganar músculo', 'Mantener peso', 'Definir']"
+  >
+  </app-form-select>
+  ```
 
 ---
 
@@ -2999,49 +3233,49 @@ Página: "Home"
 ---
 
 - **FormLogin**
-    - Propósito: Su propósito es proporcionar un formulario completo de inicio de sesión. He creado este componente porque el login es una funcionalidad que voy a necesitar en la aplicación y quería tener un formulario preparado con todos los campos necesarios (email y contraseña) ya estructurado.
-    - Variantes: Actualmente el formulario de login no tiene variantes.
-    - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
-    - Estados que maneja: Actualmente el componente está en desarrollo y no tiene estados implementados.
-    - Ejemplo de uso:
-    ```html
-    <app-form-login></app-form-login>
-    ```
+  - Propósito: Su propósito es proporcionar un formulario completo de inicio de sesión. He creado este componente porque el login es una funcionalidad que voy a necesitar en la aplicación y quería tener un formulario preparado con todos los campos necesarios (email y contraseña) ya estructurado.
+  - Variantes: Actualmente el formulario de login no tiene variantes.
+  - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
+  - Estados que maneja: Actualmente el componente está en desarrollo y no tiene estados implementados.
+  - Ejemplo de uso:
+  ```html
+  <app-form-login></app-form-login>
+  ```
 
 ---
 
 - **FormRegister**
-    - Propósito: Su propósito es proporcionar un formulario completo de registro de usuarios. He creado este componente porque el registro es esencial para la aplicación y necesitaba un formulario con validaciones avanzadas como verificación de contraseñas coincidentes y aceptación de términos.
-    - Variantes: Actualmente el formulario de registro no tiene variantes.
-    - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
-    - Estados que maneja:
-        - `registerForm`: Este estado es el FormGroup que contiene todos los campos del formulario (nombre, apellido, email, password, confirmPassword, terminos).
-        - Validaciones implementadas:
-            - Nombre y apellido: Obligatorios con mínimo 2 caracteres.
-            - Email: Obligatorio y debe ser un email válido.
-            - Password: Obligatorio con mínimo 6 caracteres.
-            - ConfirmPassword: Obligatorio y debe coincidir con el password.
-            - Términos: Obligatorio y debe estar marcado.
-    - Ejemplo de uso:
-    ```html
-    <app-form-register></app-form-register>
-    ```
+  - Propósito: Su propósito es proporcionar un formulario completo de registro de usuarios. He creado este componente porque el registro es esencial para la aplicación y necesitaba un formulario con validaciones avanzadas como verificación de contraseñas coincidentes y aceptación de términos.
+  - Variantes: Actualmente el formulario de registro no tiene variantes.
+  - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
+  - Estados que maneja:
+    - `registerForm`: Este estado es el FormGroup que contiene todos los campos del formulario (nombre, apellido, email, password, confirmPassword, terminos).
+    - Validaciones implementadas:
+      - Nombre y apellido: Obligatorios con mínimo 2 caracteres.
+      - Email: Obligatorio y debe ser un email válido.
+      - Password: Obligatorio con mínimo 6 caracteres.
+      - ConfirmPassword: Obligatorio y debe coincidir con el password.
+      - Términos: Obligatorio y debe estar marcado.
+  - Ejemplo de uso:
+  ```html
+  <app-form-register></app-form-register>
+  ```
 
 ---
 
 - **FormContact**
-    - Propósito: Su propósito es proporcionar un formulario de contacto para que los usuarios puedan comunicarse con nosotros. He creado este componente porque quería tener una forma de que los usuarios pudieran enviar mensajes o suscribirse a las novedades de la aplicación.
-    - Variantes: Actualmente el formulario de contacto no tiene variantes.
-    - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
-    - Estados que maneja:
-        - `contactForm`: Este estado es el FormGroup que contiene los campos del formulario (nombre, apellido, email).
-        - Validaciones implementadas:
-            - Nombre y apellido: Obligatorios con mínimo 2 caracteres.
-            - Email: Obligatorio y debe ser un email válido.
-    - Ejemplo de uso:
-    ```html
-    <app-contact-form></app-contact-form>
-    ```
+  - Propósito: Su propósito es proporcionar un formulario de contacto para que los usuarios puedan comunicarse con nosotros. He creado este componente porque quería tener una forma de que los usuarios pudieran enviar mensajes o suscribirse a las novedades de la aplicación.
+  - Variantes: Actualmente el formulario de contacto no tiene variantes.
+  - Tamaños disponibles: El formulario tiene un tamaño único que se adapta al contenedor.
+  - Estados que maneja:
+    - `contactForm`: Este estado es el FormGroup que contiene los campos del formulario (nombre, apellido, email).
+    - Validaciones implementadas:
+      - Nombre y apellido: Obligatorios con mínimo 2 caracteres.
+      - Email: Obligatorio y debe ser un email válido.
+  - Ejemplo de uso:
+  ```html
+  <app-contact-form></app-contact-form>
+  ```
 
 ## 3.2 Nomenclatura y metodología: Muestra ejemplos reales de tu nomenclatura BEM aplicada en los componentes. Explica tu estrategia: qué es block vs element, cuándo usas modificadores vs clases de estado.
 
@@ -3092,7 +3326,6 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
   animation: alertSlideIn var(--duration-base) ease;
 }
 
-
 // Archivo: cofira/src/app/components/layaout/header/header.scss
 // El bloque .hamburguesa es el botón del menú móvil
 .hamburguesa {
@@ -3107,7 +3340,7 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
   padding: 0;
   z-index: 200;
 
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: flex;
   }
 }
@@ -3140,7 +3373,7 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
 
 #### ¿Qué es un Element?
 
-Un **Element** es una parte interna del bloque que no tiene sentido por sí sola, siempre depende del bloque padre. Lo identifico con doble guión bajo **__** después del nombre del bloque.
+Un **Element** es una parte interna del bloque que no tiene sentido por sí sola, siempre depende del bloque padre. Lo identifico con doble guión bajo **\_\_** después del nombre del bloque.
 
 **Ejemplos de Elements en mi proyecto:**
 
@@ -3250,8 +3483,6 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   margin: 0;
 }
 
-
-
 // Elementos del bloque .menu-movil
 .menu-movil__overlay {
   position: absolute;
@@ -3295,8 +3526,7 @@ Un **Element** es una parte interna del bloque que no tiene sentido por sí sola
   text-decoration: none;
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-medium);
-  transition: background-color 0.15s ease-out,
-              transform 0.15s ease-out;
+  transition: background-color 0.15s ease-out, transform 0.15s ease-out;
   border-left: 4px solid transparent;
   position: relative;
 }
@@ -3487,13 +3717,13 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
 
 // Modificadores de visibilidad para desktop/móvil
 .enlaces--desktop {
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: none;
   }
 }
 
 .buscador--desktop {
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: none;
   }
 }
@@ -3629,7 +3859,6 @@ Son estados que se activan automáticamente por el navegador cuando el usuario i
   outline-offset: 2px;
 }
 ```
-
 
 ### 3.3 Style Guide: Incluye capturas de pantalla de tu página de Style Guide mostrando los componentes. Explica para qué sirve (documentación visual, testing, referencia).
 
@@ -3829,25 +4058,25 @@ He definido 6 breakpoints principales para adaptar la aplicación a diferentes t
 
 **Breakpoints del proyecto:**
 
-| Nombre | Valor | Dispositivo objetivo |
-|--------|-------|---------------------|
-| `$breakpoint-xs` | 40rem (640px) | Móviles pequeños |
-| `$breakpoint-sm` | 48rem (768px) | Móviles grandes / Tablets pequeñas |
-| `$breakpoint-md` | 56.25rem (900px) | Tablets |
-| `$breakpoint-lg` | 64rem (1024px) | Tablets grandes / Laptops pequeños |
-| `$breakpoint-xl` | 75rem (1200px) | Laptops |
-| `$breakpoint-xxl` | 87.5rem (1400px) | Escritorios grandes |
+| Nombre            | Valor            | Dispositivo objetivo               |
+| ----------------- | ---------------- | ---------------------------------- |
+| `$breakpoint-xs`  | 40rem (640px)    | Móviles pequeños                   |
+| `$breakpoint-sm`  | 48rem (768px)    | Móviles grandes / Tablets pequeñas |
+| `$breakpoint-md`  | 56.25rem (900px) | Tablets                            |
+| `$breakpoint-lg`  | 64rem (1024px)   | Tablets grandes / Laptops pequeños |
+| `$breakpoint-xl`  | 75rem (1200px)   | Laptops                            |
+| `$breakpoint-xxl` | 87.5rem (1400px) | Escritorios grandes                |
 
 **Código de los breakpoints:**
 
 ```scss
 // Archivo: cofira/src/styles/00-settings/_css-variables.scss
 
-$breakpoint-xs: 40rem;    // 640px - Móviles pequeños
-$breakpoint-sm: 48rem;    // 768px - Móviles grandes / Tablets pequeñas
+$breakpoint-xs: 40rem; // 640px - Móviles pequeños
+$breakpoint-sm: 48rem; // 768px - Móviles grandes / Tablets pequeñas
 $breakpoint-md: 56.25rem; // 900px - Tablets
-$breakpoint-lg: 64rem;    // 1024px - Tablets grandes / Laptops pequeños
-$breakpoint-xl: 75rem;    // 1200px - Laptops
+$breakpoint-lg: 64rem; // 1024px - Tablets grandes / Laptops pequeños
+$breakpoint-xl: 75rem; // 1200px - Laptops
 $breakpoint-xxl: 87.5rem; // 1400px - Escritorios grandes
 ```
 
@@ -3886,18 +4115,30 @@ He creado dos mixins en `cofira/src/styles/01-tools/_mixins.scss` para facilitar
 // Mixin para media queries responsive (desktop-first: max-width)
 // Este es el mixin principal que uso en todo el proyecto
 @mixin responsive-down($breakpoint) {
-  @if $breakpoint == 'xs' {
-    @media (max-width: $breakpoint-xs) { @content; }
-  } @else if $breakpoint == 'sm' {
-    @media (max-width: $breakpoint-sm) { @content; }
-  } @else if $breakpoint == 'md' {
-    @media (max-width: $breakpoint-md) { @content; }
-  } @else if $breakpoint == 'lg' {
-    @media (max-width: $breakpoint-lg) { @content; }
-  } @else if $breakpoint == 'xl' {
-    @media (max-width: $breakpoint-xl) { @content; }
-  } @else if $breakpoint == 'xxl' {
-    @media (max-width: $breakpoint-xxl) { @content; }
+  @if $breakpoint == "xs" {
+    @media (max-width: $breakpoint-xs) {
+      @content;
+    }
+  } @else if $breakpoint == "sm" {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == "md" {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == "lg" {
+    @media (max-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == "xl" {
+    @media (max-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == "xxl" {
+    @media (max-width: $breakpoint-xxl) {
+      @content;
+    }
   }
 }
 ```
@@ -3915,7 +4156,7 @@ He creado dos mixins en `cofira/src/styles/01-tools/_mixins.scss` para facilitar
   padding: var(--spacing-size-xxxl) 0;
 
   // Adaptación para tablets y móviles (900px o menos)
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     gap: var(--spacing-size-l);
     padding: var(--spacing-size-xl) var(--spacing-size-m);
   }
@@ -3925,12 +4166,12 @@ He creado dos mixins en `cofira/src/styles/01-tools/_mixins.scss` para facilitar
   @include titulo-seccion(var(--negro-normal), var(--font-size-4xl), 0);
 
   // Tablets grandes (1024px o menos)
-  @include responsive-down('lg') {
+  @include responsive-down("lg") {
     font-size: var(--font-size-3xl);
   }
 
   // Tablets y móviles (900px o menos)
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     font-size: var(--font-size-2xl);
   }
 }
@@ -3989,7 +4230,7 @@ Las pricing cards se muestran en la página home dentro de un grid de 3 columnas
   container-type: inline-size;
   container-name: card-container;
 
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     max-width: 100%;
     justify-self: center;
   }
@@ -4043,16 +4284,16 @@ A continuación muestro cómo se adaptan las principales secciones de la aplicac
 
 **Tabla de adaptaciones:**
 
-| Componente/Sección          | Mobile (375px) | Tablet (768px) | Desktop (1280px) |
-|-----------------------------|----------------|----------------|------------------|
-| **Header**                  | Menú hamburguesa, logo reducido | Menú hamburguesa, logo normal | Navegación completa horizontal |
+| Componente/Sección          | Mobile (375px)                     | Tablet (768px)                            | Desktop (1280px)                    |
+| --------------------------- | ---------------------------------- | ----------------------------------------- | ----------------------------------- |
+| **Header**                  | Menú hamburguesa, logo reducido    | Menú hamburguesa, logo normal             | Navegación completa horizontal      |
 | **Intro(Home)**             | Texto centrado, botones en columna | Texto alineado izquierda, botones en fila | Layout completo con imagen de fondo |
-| **Sección Planes**          | Cards en 1 columna, apiladas | Cards en 2 columnas centradas | Grid de 3 columnas con info lateral |
-| **Funcionalidades**         | Grid de 1 columna | Grid de 2 columnas | Grid auto-fit (3-4 columnas) |
-| **FAQ**                     | Padding reducido, tipografía menor | Padding medio | Padding amplio, max-width 800px |
-| **Footer**                  | Enlaces en columna, centrado | Enlaces en 2 columnas | Enlaces en fila horizontal |
-| **Gimnasio**                | Tabla con scroll horizontal | Tabla adaptada | Tabla completa |
-| **Formularios de registro** | Formularios a ancho completo | Formularios centrados | Formularios con max-width |
+| **Sección Planes**          | Cards en 1 columna, apiladas       | Cards en 2 columnas centradas             | Grid de 3 columnas con info lateral |
+| **Funcionalidades**         | Grid de 1 columna                  | Grid de 2 columnas                        | Grid auto-fit (3-4 columnas)        |
+| **FAQ**                     | Padding reducido, tipografía menor | Padding medio                             | Padding amplio, max-width 800px     |
+| **Footer**                  | Enlaces en columna, centrado       | Enlaces en 2 columnas                     | Enlaces en fila horizontal          |
+| **Gimnasio**                | Tabla con scroll horizontal        | Tabla adaptada                            | Tabla completa                      |
+| **Formularios de registro** | Formularios a ancho completo       | Formularios centrados                     | Formularios con max-width           |
 
 **Ejemplo de adaptación del Header:**
 
@@ -4068,17 +4309,17 @@ A continuación muestro cómo se adaptan las principales secciones de la aplicac
   padding: 0 6rem;
 
   // Laptop (1200px o menos)
-  @include responsive-down('xl') {
+  @include responsive-down("xl") {
     padding: 0 3rem;
   }
 
   // Tablet grande (1024px o menos)
-  @include responsive-down('lg') {
+  @include responsive-down("lg") {
     padding: 0 2rem;
   }
 
   // Tablet/Móvil (900px o menos)
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     height: 4rem;
     padding: 0 1.5rem;
   }
@@ -4086,14 +4327,14 @@ A continuación muestro cómo se adaptan las principales secciones de la aplicac
 
 // Navegación desktop: se oculta en móvil
 .header__nav--desktop {
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: none;
   }
 }
 
 // Botones de acción desktop: se ocultan en móvil
 .header__actions--desktop {
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: none;
   }
 }
@@ -4102,12 +4343,11 @@ A continuación muestro cómo se adaptan las principales secciones de la aplicac
 .header__hamburguesa {
   display: none;
 
-  @include responsive-down('md') {
+  @include responsive-down("md") {
     display: flex;
   }
 }
 ```
-
 
 **Ejemplo de adaptación de la cabecera:**
 
@@ -4121,7 +4361,6 @@ Cabecera en móvil:
 ![img_2.png](../assets/movil_header.png)
 
 Podemos apreciar como la cabecera va adapántando distintos tamaños tanto de texto como de padding para adaptarse al dispositivo permitiendo que el contenido se pueda visualizar bien y sin ser molestado por otros elementos.
-
 
 ---
 
@@ -4151,8 +4390,6 @@ He implementado responsive design en todas las páginas de la aplicación. A con
 
 - **Contacto (`/contacto`):** Formulario responsive con validación visual.
 
-- **Carreras (`/carreras`):** Cards de ofertas en grid adaptativo.
-
 **Páginas legales:**
 
 - **Privacidad (`/privacidad`):** Texto legal con max-width y padding adaptativo.
@@ -4175,78 +4412,75 @@ A continuación muestro capturas de pantalla de 3 páginas principales en los vi
 
 **Página Home:**
 
-*Mobile (375px):*
+_Mobile (375px):_
 
-![img.png](movil_home.png)
+![img.png](home_movil.png)
 
-*Tablet (768px):*
-![img.png](tablet_home.png)
+_Tablet (768px):_
 
-*Desktop (1280px):*
-![img.png](escritorio_home.png)
+![img.png](home_tablet.png)
+
+_Desktop (1280px):_
+![img.png](home_desktop.png)
 
 ---
 
 **Página Alimentacion:**
 
-*Mobile (375px):*
+_Mobile (375px):_
+![img.png](alimentacion_home.png)
 
-![img.png](movil_alimentacion.png)
+_Tablet (768px):_
+![img.png](alimentacion_tablet.png)
 
-*Tablet (768px):*
-![img.png](tablet_alimentacion.png)
-
-*Desktop (1280px):*
-![img.png](escritorio_alimentacion.png)
+_Desktop (1280px):_
+![img.png](alimentacion_desktop.png)
 
 ---
 
 **Página Gimnasio:**
 
-*Mobile (375px):*
-![responsive_login_mobile.png](../assets/responsive_login_mobile.png)
+_Mobile (375px):_
+![img.png](gimnasio_movil.png)
 
-*Tablet (768px):*
-![img.png](tablet_gimnasio.png)
+_Tablet (768px):_
+![img.png](gimnasio_tablet.png)
 
-
-*Desktop (1280px):*
-![img.png](escritorio_gimnasio.png)
+_Desktop (1280px):_
+![img.png](gimnasio_desktop.png)
 
 ---
 
-
 **Página Segumiento:**
 
-*Mobile (375px):*
+_Mobile (375px):_
 
+![img.png](seguimiento_movil.png)
 
+_Tablet (768px):_
+![img.png](seguimiento_tablet.png)
 
-*Tablet (768px):*
-![img.png](tablet_segumiento.png)
+_Desktop (1280px):_
 
-*Desktop (1280px):*
-
-![img.png](escritorio_seguimiento.png)
+![img.png](seguimiento_desktop.png)
 
 ## 4.7 Testing responsive
 
-He verificado la aplicación en los siguientes viewports usando Chrome DevTools y Firefox Developer Tools:
+He verificado la aplicación en los siguientes viewports usando Chrome DevTools:
+
 
 **Viewports testeados:**
 
-| Viewport | Dispositivo de referencia | Resultado |
-|----------|---------------------------|-----------|
-| 320px | iPhone SE / Móvil pequeño | Todos los elementos visibles y funcionales |
-| 375px | iPhone 12/13/14 | Layout móvil correcto |
-| 768px | iPad Mini / Tablet | Transición a layout tablet correcta |
-| 1024px | iPad Pro / Desktop pequeño | Navegación desktop visible |
-| 1280px | Desktop estándar | Layout completo sin problemas |
+| Viewport | Dispositivo de referencia  | Resultado                           |
+| -------- | -------------------------- | ----------------------------------- |
+| 375px    | iPhone 12                  | Layout móvil correcto               |
+| 768px    | iPad Mini                  | Transición a layout tablet correcta |
+| 1024px   | iPad Pro / Desktop pequeño | Navegación desktop visible          |
+| 1280px   | Desktop estándar           | Layout completo sin problemas       |
 
 **Herramientas utilizadas:**
 
-- **Chrome DevTools:** Device Mode para simular diferentes dispositivos y viewports.
-- **Firefox Developer Tools:** Responsive Design Mode para verificar compatibilidad cross-browser.
+**Chrome DevTools:** Device Mode para simular diferentes dispositivos y viewports.
 
 **Aspectos verificados:**
 
@@ -4256,11 +4490,12 @@ He verificado la aplicación en los siguientes viewports usando Chrome DevTools 
 - La tipografía es legible en todos los dispositivos.
 - No hay overflow horizontal en ningún viewport.
 - Los elementos interactivos son accesibles con touch en móvil.
-He implementado responsive design en todas las páginas de la aplicación. A continuación listo cada página con una breve descripción de sus adaptaciones:
+  He implementado responsive design en todas las páginas de la aplicación. A continuación listo cada página con una breve descripción de sus adaptaciones:
 
 **Páginas principales:**
 
-- **Home (`/`):** Hero con imagen de fondo adaptativo, sección de planes con grid responsive, funcionalidades con auto-fit grid, y FAQ con accordion responsive.
+
+- **Home (`/`):** Página de inicio, muestra los planes y funcionalidades, además de una sección FAQ con acordeones.
 
 - **Gimnasio (`/gimnasio`):** Tabla de ejercicios con scroll horizontal en móvil, navegación de días simplificada, y formulario de feedback adaptativo.
 
@@ -4268,19 +4503,17 @@ He implementado responsive design en todas las páginas de la aplicación. A con
 
 - **Seguimiento (`/seguimiento`):** Gráficas responsive, cards de progreso en grid adaptativo.
 
-- **Login (`/login`):** Formulario centrado con max-width, adaptación de padding en móvil.
+- **Login (`/login`):** Formulario de registro y inicio de sesión.
 
-- **Onboarding (`/onboarding`):** Los 16 steps tienen formularios adaptativos con inputs a ancho completo en móvil.
+- **Onboarding (`/onboarding`):** Los 16 pasos tienen formularios con preguntas relacionadas al perfil del usuario, todos adaptativos con inputs a ancho completo en móvil.
 
 **Páginas informativas:**
 
-- **Blog (`/blog`):** Grid de artículos adaptativo (3 → 2 → 1 columnas).
+- **Blog (`/blog`):** Grid de artículos
 
-- **Sobre nosotros (`/sobre-nosotros`):** Secciones de texto con tipografía adaptativa.
+- **Sobre nosotros (`/sobre-nosotros`):** Pagina explicativa sobre la empresa y el proyecto.
 
-- **Contacto (`/contacto`):** Formulario responsive con validación visual.
-
-- **Carreras (`/carreras`):** Cards de ofertas en grid adaptativo.
+- **Contacto (`/contacto`):** Formulario responsive con validación para reclamaciones y sugerencias.
 
 **Páginas legales:**
 
@@ -4288,83 +4521,12 @@ He implementado responsive design en todas las páginas de la aplicación. A con
 
 - **Términos (`/terminos`):** Mismo layout que privacidad.
 
-- **Cookies (`/cookies`):** Mismo layout que privacidad.
+- **Cookies (`/cookies`):** Página con las cookies y como se usara la información.
 
-- **Licencias (`/licencias`):** Mismo layout que privacidad.
+- **Licencias (`/licencias`):** Página con información sobre la licencia MIT de la web.
 
 **Página de desarrollo:**
 
 - **Style Guide (`/style-guide`):** Documentación visual de todos los componentes con sus variantes, adaptada para móvil.
 
 ---
-
-## 4.6 Screenshots comparativos
-
-A continuación muestro capturas de pantalla de 3 páginas principales en los viewports de mobile (375px), tablet (768px) y desktop (1280px):
-
-**Página Home:**
-
-*Mobile (375px):*
-![responsive_home_mobile.png](../assets/responsive_home_mobile.png)
-
-*Tablet (768px):*
-![responsive_home_tablet.png](../assets/responsive_home_tablet.png)
-
-*Desktop (1280px):*
-![responsive_home_desktop.png](../assets/responsive_home_desktop.png)
-
----
-
-**Página Gimnasio:**
-
-*Mobile (375px):*
-![responsive_gimnasio_mobile.png](../assets/responsive_gimnasio_mobile.png)
-
-*Tablet (768px):*
-![responsive_gimnasio_tablet.png](../assets/responsive_gimnasio_tablet.png)
-
-*Desktop (1280px):*
-![responsive_gimnasio_desktop.png](../assets/responsive_gimnasio_desktop.png)
-
----
-
-**Página Login:**
-
-*Mobile (375px):*
-![responsive_login_mobile.png](../assets/responsive_login_mobile.png)
-
-*Tablet (768px):*
-![responsive_login_tablet.png](../assets/responsive_login_tablet.png)
-
-*Desktop (1280px):*
-![responsive_login_desktop.png](../assets/responsive_login_desktop.png)
-
----
-
-## 4.7 Testing responsive
-
-He verificado la aplicación en los siguientes viewports usando Chrome DevTools y Firefox Developer Tools:
-
-**Viewports testeados:**
-
-| Viewport | Dispositivo de referencia | Resultado |
-|----------|---------------------------|-----------|
-| 320px | iPhone SE / Móvil pequeño | Todos los elementos visibles y funcionales |
-| 375px | iPhone 12/13/14 | Layout móvil correcto |
-| 768px | iPad Mini / Tablet | Transición a layout tablet correcta |
-| 1024px | iPad Pro / Desktop pequeño | Navegación desktop visible |
-| 1280px | Desktop estándar | Layout completo sin problemas |
-
-**Herramientas utilizadas:**
-
-- **Chrome DevTools:** Device Mode para simular diferentes dispositivos y viewports.
-- **Firefox Developer Tools:** Responsive Design Mode para verificar compatibilidad cross-browser.
-
-**Aspectos verificados:**
-
-- El menú hamburguesa aparece correctamente en móvil y desaparece en desktop.
-- Las cards de planes se reorganizan de 3 columnas a 1 columna según el viewport.
-- Los formularios son usables en todos los tamaños de pantalla.
-- La tipografía es legible en todos los dispositivos.
-- No hay overflow horizontal en ningún viewport.
-- Los elementos interactivos son accesibles con touch en móvil.

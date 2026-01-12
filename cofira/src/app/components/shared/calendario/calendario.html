@@ -4,7 +4,7 @@
   [anchoPX]="450"
   titulo="Seleccionar fecha">
 
-  <div class="calendario">
+  <section class="calendario">
     <!-- Navegación de mes -->
     <nav class="calendario__navegacion">
       <button (click)="mesAnterior()" aria-label="Mes anterior" class="calendario__btn">
@@ -32,19 +32,21 @@
     </ul>
 
     <!-- Grid de días -->
-    <div class="calendario__grid">
+    <ol class="calendario__grid">
       @for (dia of diasDelMes; track $index) {
         @if (dia === null) {
-          <div class="calendario__dia calendario__dia--vacio"></div>
+          <li class="calendario__dia calendario__dia--vacio"></li>
         } @else {
-          <button
-            (click)="seleccionarDia(dia)"
-            [class.calendario__dia--seleccionado]="esDiaSeleccionado(dia)"
-            class="calendario__dia">
-            {{ dia }}
-          </button>
+          <li>
+            <button
+              (click)="seleccionarDia(dia)"
+              [class.calendario__dia--seleccionado]="esDiaSeleccionado(dia)"
+              class="calendario__dia">
+              {{ dia }}
+            </button>
+          </li>
         }
       }
-    </div>
-  </div>
+    </ol>
+  </section>
 </app-modal>

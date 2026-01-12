@@ -125,6 +125,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--spacing-size-xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 
   @include responsive-down('lg') {
     grid-template-columns: repeat(2, 1fr);
