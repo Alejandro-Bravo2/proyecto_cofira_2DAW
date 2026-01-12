@@ -25,11 +25,11 @@
     </nav>
 
     <!-- Días de la semana -->
-    <div class="calendario__dias-semana">
+    <ul class="calendario__dias-semana">
       @for (dia of diasSemana; track dia) {
-        <span class="calendario__dia-semana">{{ dia }}</span>
+        <li class="calendario__dia-semana">{{ dia }}</li>
       }
-    </div>
+    </ul>
 
     <!-- Grid de días -->
     <div class="calendario__grid">

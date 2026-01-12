@@ -1,5 +1,4 @@
 import { Component, ViewEncapsulation, inject } from '@angular/core';
-import { NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NotificacionService } from '../../services/notificacion.service';
 
@@ -37,7 +36,7 @@ interface InfoContacto {
 @Component({
   selector: 'app-contacto',
   standalone: true,
-  imports: [NgFor, FormsModule],
+  imports: [FormsModule],
   templateUrl: './contacto.html',
   styleUrl: './contacto.scss',
   encapsulation: ViewEncapsulation.None,

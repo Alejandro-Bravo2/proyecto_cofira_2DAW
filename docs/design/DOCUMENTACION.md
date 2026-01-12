@@ -4177,41 +4177,57 @@ A continuación muestro capturas de pantalla de 3 páginas principales en los vi
 
 *Mobile (375px):*
 
-CAPTURA
+![img.png](movil_home.png)
 
 *Tablet (768px):*
-![responsive_home_tablet.png](../assets/responsive_home_tablet.png)
+![img.png](tablet_home.png)
 
 *Desktop (1280px):*
-![img.png](home_desktop.png)
+![img.png](escritorio_home.png)
+
+---
+
+**Página Alimentacion:**
+
+*Mobile (375px):*
+
+![img.png](movil_alimentacion.png)
+
+*Tablet (768px):*
+![img.png](tablet_alimentacion.png)
+
+*Desktop (1280px):*
+![img.png](escritorio_alimentacion.png)
 
 ---
 
 **Página Gimnasio:**
 
 *Mobile (375px):*
-![responsive_gimnasio_mobile.png](../assets/responsive_gimnasio_mobile.png)
-
-*Tablet (768px):*
-![responsive_gimnasio_tablet.png](../assets/responsive_gimnasio_tablet.png)
-
-*Desktop (1280px):*
-![responsive_gimnasio_desktop.png](../assets/responsive_gimnasio_desktop.png)
-
----
-
-**Página Login:**
-
-*Mobile (375px):*
 ![responsive_login_mobile.png](../assets/responsive_login_mobile.png)
 
 *Tablet (768px):*
-![responsive_login_tablet.png](../assets/responsive_login_tablet.png)
+![img.png](tablet_gimnasio.png)
+
 
 *Desktop (1280px):*
-![responsive_login_desktop.png](../assets/responsive_login_desktop.png)
+![img.png](escritorio_gimnasio.png)
 
 ---
+
+
+**Página Segumiento:**
+
+*Mobile (375px):*
+
+
+
+*Tablet (768px):*
+![img.png](tablet_segumiento.png)
+
+*Desktop (1280px):*
+
+![img.png](escritorio_seguimiento.png)
 
 ## 4.7 Testing responsive
 

@@ -1,5 +1,5 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {NgClass, NgFor} from '@angular/common';
+import {NgClass} from '@angular/common';
 
 interface Articulo {
   id: number;
@@ -16,7 +16,7 @@ interface Articulo {
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [NgFor, NgClass],
+  imports: [NgClass],
   templateUrl: './blog.html',
   styleUrl: './blog.scss',
   encapsulation: ViewEncapsulation.None,

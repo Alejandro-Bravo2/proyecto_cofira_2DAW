@@ -14,14 +14,15 @@
   <section class="blog__filtros">
     <div class="blog__container">
       <nav aria-label="Filtrar por categoría" class="blog__categorias">
-        <button
-          (click)="filtrarPorCategoria(cat.id)"
-          *ngFor="let cat of categorias"
-          [ngClass]="{'blog__categoria-btn--activo': categoriaActiva === cat.id}"
-          class="blog__categoria-btn"
-        >
-          {{ cat.label }}
-        </button>
+        @for (cat of categorias; track cat.id) {
+          <button
+            (click)="filtrarPorCategoria(cat.id)"
+            [ngClass]="{'blog__categoria-btn--activo': categoriaActiva === cat.id}"
+            class="blog__categoria-btn"
+          >
+            {{ cat.label }}
+          </button>
+        }
       </nav>
     </div>
   </section>
@@ -30,50 +31,52 @@
   <section class="blog__contenido">
     <div class="blog__container">
       <div class="blog__grid">
-        <article *ngFor="let articulo of articulosFiltrados" class="blog__articulo">
-          <div class="blog__articulo-imagen">
-            <img [alt]="articulo.titulo" [src]="articulo.imagen" loading="lazy"/>
-            <span
-              [ngClass]="'blog__articulo-categoria--' + articulo.categoria"
-              class="blog__articulo-categoria"
-            >
-              {{ articulo.categoriaLabel }}
-            </span>
-          </div>
-          <div class="blog__articulo-contenido">
-            <div class="blog__articulo-meta">
-              <span class="blog__articulo-fecha">{{ articulo.fecha }}</span>
-              <span class="blog__articulo-separador">·</span>
-              <span class="blog__articulo-tiempo">{{ articulo.tiempoLectura }} lectura</span>
+        @for (articulo of articulosFiltrados; track articulo.titulo) {
+          <article class="blog__articulo">
+            <figure class="blog__articulo-imagen">
+              <img [alt]="articulo.titulo" [src]="articulo.imagen" loading="lazy"/>
+              <span
+                [ngClass]="'blog__articulo-categoria--' + articulo.categoria"
+                class="blog__articulo-categoria"
+              >
+                {{ articulo.categoriaLabel }}
+              </span>
+            </figure>
+            <div class="blog__articulo-contenido">
+              <div class="blog__articulo-meta">
+                <span class="blog__articulo-fecha">{{ articulo.fecha }}</span>
+                <span class="blog__articulo-separador">·</span>
+                <span class="blog__articulo-tiempo">{{ articulo.tiempoLectura }} lectura</span>
+              </div>
+              <h2 class="blog__articulo-titulo">{{ articulo.titulo }}</h2>
+              <p class="blog__articulo-extracto">{{ articulo.extracto }}</p>
+              <footer class="blog__articulo-footer">
+                <span class="blog__articulo-autor">Por {{ articulo.autor }}</span>
+                <a class="blog__articulo-leer" href="#">
+                  Leer más
+                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                       stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12h14"/>
+                    <path d="m12 5 7 7-7 7"/>
+                  </svg>
+                </a>
+              </footer>
             </div>
-            <h2 class="blog__articulo-titulo">{{ articulo.titulo }}</h2>
-            <p class="blog__articulo-extracto">{{ articulo.extracto }}</p>
-            <div class="blog__articulo-footer">
-              <span class="blog__articulo-autor">Por {{ articulo.autor }}</span>
-              <a class="blog__articulo-leer" href="#">
-                Leer más
-                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                     stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M5 12h14"/>
-                  <path d="m12 5 7 7-7 7"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </article>
+          </article>
+        }
       </div>
 
       <!-- Mensaje sin resultados -->
-      <div *ngIf="articulosFiltrados.length === 0" class="blog__sin-resultados">
-        <p>No hay artículos en esta categoría todavía.</p>
-      </div>
+      @if (articulosFiltrados.length === 0) {
+        <p class="blog__sin-resultados">No hay artículos en esta categoría todavía.</p>
+      }
     </div>
   </section>
 
   <!-- Newsletter CTA -->
   <section class="blog__newsletter">
     <div class="blog__container">
-      <div class="blog__newsletter-card">
+      <aside class="blog__newsletter-card">
         <div class="blog__newsletter-contenido">
           <h2 class="blog__newsletter-titulo">Mantente al día</h2>
           <p class="blog__newsletter-texto">
@@ -90,7 +93,7 @@
           />
           <button class="blog__newsletter-btn" type="submit">Suscribirse</button>
         </form>
-      </div>
+      </aside>
     </div>
   </section>
 </main>

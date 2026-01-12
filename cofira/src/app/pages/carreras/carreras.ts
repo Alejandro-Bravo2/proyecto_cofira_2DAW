@@ -1,5 +1,4 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {NgFor, NgIf} from '@angular/common';
 
 interface Beneficio {
   icono: string;
@@ -25,7 +24,7 @@ interface PasoSeleccion {
 @Component({
   selector: 'app-carreras',
   standalone: true,
-  imports: [NgFor, NgIf],
+  imports: [],
   templateUrl: './carreras.html',
   styleUrl: './carreras.scss',
   encapsulation: ViewEncapsulation.None,

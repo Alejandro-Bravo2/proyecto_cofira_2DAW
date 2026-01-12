@@ -204,7 +204,20 @@
 // 6.2 TAMAÑO --md: Mediano (por defecto)
 // ─────────────────────────────────────────────────────────────────────────────
 .pricing-card--md {
-  max-width: 28rem;
+    width: 75%;
+  .pricing-card__titulo{
+    font-size: var(--font-size-lg);
+  }
+  .pricing-card__ventaja{
+    font-size: var(--font-size-md);
+  }
+  .pricing-card__precio{
+    font-size: var(--font-size-md);
+  }
+
+
+
+
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

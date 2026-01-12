@@ -18,46 +18,62 @@
       <p class="carreras__seccion-descripcion">
         Creemos que un equipo feliz crea mejores productos. Por eso cuidamos de nuestra gente.
       </p>
-      <div class="carreras__beneficios-grid">
-        <article *ngFor="let beneficio of beneficios" class="carreras__beneficio">
-          <div class="carreras__beneficio-icono">
-            <svg *ngIf="beneficio.icono === 'clock'" fill="none" stroke="currentColor" stroke-linecap="round"
-                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="10"/>
-              <polyline points="12 6 12 12 16 14"/>
-            </svg>
-            <svg *ngIf="beneficio.icono === 'home'" fill="none" stroke="currentColor" stroke-linecap="round"
-                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
-              <path
-                d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-            </svg>
-            <svg *ngIf="beneficio.icono === 'heart'" fill="none" stroke="currentColor" stroke-linecap="round"
-                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-            </svg>
-            <svg *ngIf="beneficio.icono === 'book'" fill="none" stroke="currentColor" stroke-linecap="round"
-                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>
-            </svg>
-            <svg *ngIf="beneficio.icono === 'trending'" fill="none" stroke="currentColor"
-                 stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-              <polyline points="16 7 22 7 22 13"/>
-            </svg>
-            <svg *ngIf="beneficio.icono === 'users'" fill="none" stroke="currentColor" stroke-linecap="round"
-                 stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-              <circle cx="9" cy="7" r="4"/>
-              <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-          </div>
+      <ul class="carreras__beneficios-grid">
+        @for (beneficio of beneficios; track beneficio.titulo) {
+        <li class="carreras__beneficio">
+          <figure class="carreras__beneficio-icono">
+            @switch (beneficio.icono) {
+              @case ('clock') {
+                <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              }
+              @case ('home') {
+                <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/>
+                  <path
+                    d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                </svg>
+              }
+              @case ('heart') {
+                <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              }
+              @case ('book') {
+                <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/>
+                </svg>
+              }
+              @case ('trending') {
+                <svg fill="none" stroke="currentColor"
+                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                  <polyline points="16 7 22 7 22 13"/>
+                </svg>
+              }
+              @case ('users') {
+                <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                  <circle cx="9" cy="7" r="4"/>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              }
+            }
+          </figure>
           <h3 class="carreras__beneficio-titulo">{{ beneficio.titulo }}</h3>
           <p class="carreras__beneficio-descripcion">{{ beneficio.descripcion }}</p>
-        </article>
-      </div>
+        </li>
+        }
+      </ul>
     </div>
   </section>
 
@@ -68,8 +84,9 @@
       <p class="carreras__seccion-descripcion">
         Encuentra tu próximo reto profesional en Cofira.
       </p>
-      <div class="carreras__posiciones-lista">
-        <article *ngFor="let posicion of posiciones" class="carreras__posicion">
+      <ul class="carreras__posiciones-lista">
+        @for (posicion of posiciones; track posicion.titulo) {
+        <li class="carreras__posicion">
           <div class="carreras__posicion-info">
             <h3 class="carreras__posicion-titulo">{{ posicion.titulo }}</h3>
             <div class="carreras__posicion-detalles">
@@ -80,8 +97,9 @@
             <p class="carreras__posicion-descripcion">{{ posicion.descripcion }}</p>
           </div>
           <a class="carreras__posicion-btn" href="#">Aplicar</a>
-        </article>
-      </div>
+        </li>
+        }
+      </ul>
     </div>
   </section>
 
@@ -92,13 +110,15 @@
       <p class="carreras__seccion-descripcion">
         Transparente, rápido y humano. Así es nuestro proceso.
       </p>
-      <div class="carreras__proceso-pasos">
-        <div *ngFor="let paso of pasosSeleccion" class="carreras__paso">
-          <div class="carreras__paso-numero">{{ paso.numero }}</div>
+      <ol class="carreras__proceso-pasos">
+        @for (paso of pasosSeleccion; track paso.numero) {
+        <li class="carreras__paso">
+          <span class="carreras__paso-numero">{{ paso.numero }}</span>
           <h3 class="carreras__paso-titulo">{{ paso.titulo }}</h3>
           <p class="carreras__paso-descripcion">{{ paso.descripcion }}</p>
-        </div>
-      </div>
+        </li>
+        }
+      </ol>
     </div>
   </section>
 

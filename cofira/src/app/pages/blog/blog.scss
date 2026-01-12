@@ -140,12 +140,10 @@
 .blog__sin-resultados {
   text-align: center;
   padding: var(--spacing-size-xxl);
-
-  p {
-    font-family: var(--font-primary);
-    font-size: var(--font-size-lg);
-    color: var(--gris-normal);
-  }
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  color: var(--gris-normal);
+  margin: 0;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -173,6 +171,7 @@
   position: relative;
   aspect-ratio: 16 / 10;
   overflow: hidden;
+  margin: 0; // Reset figure
 
   img {
     width: 100%;

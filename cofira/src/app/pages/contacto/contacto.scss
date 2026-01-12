@@ -188,6 +188,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-m);
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .contacto__info-item {
@@ -199,6 +202,7 @@
 .contacto__info-icono {
   width: 48px;
   height: 48px;
+  margin: 0; // Reset figure
   background-color: var(--amarillo-light);
   border-radius: 50%;
   display: flex;
@@ -217,6 +221,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-xxs);
+  font-style: normal; // Reset address italic
 }
 
 .contacto__info-titulo {
@@ -261,15 +266,10 @@
 }
 
 .contacto__horarios-lista {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-size-s);
-}
-
-.contacto__horario {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--spacing-size-s) var(--spacing-size-m);
+  margin: 0; // Reset dl
 }
 
 .contacto__horario-dia {
@@ -283,6 +283,8 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--gris-normal);
+  margin: 0; // Reset dd
+  text-align: right;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -307,6 +309,9 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--spacing-size-l);
+  list-style: none;
+  padding: 0;
+  margin: 0;
 
   @include responsive-down('md') {
     grid-template-columns: 1fr;

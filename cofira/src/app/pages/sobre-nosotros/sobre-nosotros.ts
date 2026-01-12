@@ -1,5 +1,4 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {NgFor} from '@angular/common';
 
 interface TeamMember {
   nombre: string;
@@ -22,7 +21,7 @@ interface Estadistica {
 @Component({
   selector: 'app-sobre-nosotros',
   standalone: true,
-  imports: [NgFor],
+  imports: [],
   templateUrl: './sobre-nosotros.html',
   styleUrl: './sobre-nosotros.scss',
   encapsulation: ViewEncapsulation.None,

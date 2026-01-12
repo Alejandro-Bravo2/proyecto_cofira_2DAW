@@ -1350,19 +1350,17 @@ body.modo-oscuro {
   }
 
   /* Option cards */
-  app-onboarding .option-card,
-  app-onboarding [class*="option-card"] {
+  app-onboarding .option-card {
     background-color: var(--oscuro-onboarding-option-fondo);
     border-color: var(--oscuro-borde-color);
   }
 
-  app-onboarding .option-card:hover,
-  app-onboarding [class*="option-card"]:hover {
+  app-onboarding .option-card:hover {
     background-color: var(--oscuro-onboarding-option-hover);
   }
 
   app-onboarding .option-card--selected,
-  app-onboarding [class*="option-card--selected"],
+  app-onboarding .option-card--seleccionado,
   app-onboarding .option-card--activa {
     background-color: var(--oscuro-onboarding-option-selected);
     border-color: var(--oscuro-onboarding-option-borde-selected);
@@ -1377,12 +1375,15 @@ body.modo-oscuro {
   }
 
   app-onboarding .option-card__icono {
-    color: var(--oscuro-texto-secundario);
+    background-color: rgba(255, 211, 0, 0.15);
+    color: var(--amarillo-normal);
   }
 
   app-onboarding .option-card--selected .option-card__icono,
+  app-onboarding .option-card--seleccionado .option-card__icono,
   app-onboarding .option-card--activa .option-card__icono {
-    color: var(--amarillo-normal);
+    background-color: var(--amarillo-normal);
+    color: var(--negro-normal);
   }
 
   /* Inputs en onboarding */

@@ -80,54 +80,69 @@
         </div>
 
         <!-- Información de contacto -->
-        <div class="contacto__info-wrapper">
+        <aside class="contacto__info-wrapper">
           <h2 class="contacto__seccion-titulo">Información de contacto</h2>
-          <div class="contacto__info-lista">
-            <div *ngFor="let info of infoContacto" class="contacto__info-item">
-              <div class="contacto__info-icono">
-                <svg *ngIf="info.icono === 'mail'" fill="none" stroke="currentColor" stroke-linecap="round"
-                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <rect height="16" rx="2" width="20" x="2" y="4"/>
-                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
-                </svg>
-                <svg *ngIf="info.icono === 'headphones'" fill="none" stroke="currentColor"
-                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
-                </svg>
-                <svg *ngIf="info.icono === 'phone'" fill="none" stroke="currentColor" stroke-linecap="round"
-                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                </svg>
-                <svg *ngIf="info.icono === 'map'" fill="none" stroke="currentColor" stroke-linecap="round"
-                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
-                  <circle cx="12" cy="10" r="3"/>
-                </svg>
-              </div>
-              <div class="contacto__info-texto">
+          <ul class="contacto__info-lista">
+            @for (info of infoContacto; track info.titulo) {
+            <li class="contacto__info-item">
+              <figure class="contacto__info-icono">
+                @switch (info.icono) {
+                  @case ('mail') {
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <rect height="16" rx="2" width="20" x="2" y="4"/>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                    </svg>
+                  }
+                  @case ('headphones') {
+                    <svg fill="none" stroke="currentColor"
+                         stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>
+                    </svg>
+                  }
+                  @case ('phone') {
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  }
+                  @case ('map') {
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round"
+                         stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                  }
+                }
+              </figure>
+              <address class="contacto__info-texto">
                 <span class="contacto__info-titulo">{{ info.titulo }}</span>
-                <a *ngIf="info.enlace" [href]="info.enlace" class="contacto__info-valor contacto__info-valor--enlace">
-                  {{ info.valor }}
-                </a>
-                <span *ngIf="!info.enlace" class="contacto__info-valor">{{ info.valor }}</span>
-              </div>
-            </div>
-          </div>
+                @if (info.enlace) {
+                  <a [href]="info.enlace" class="contacto__info-valor contacto__info-valor--enlace">
+                    {{ info.valor }}
+                  </a>
+                } @else {
+                  <span class="contacto__info-valor">{{ info.valor }}</span>
+                }
+              </address>
+            </li>
+            }
+          </ul>
 
           <!-- Horarios -->
-          <div class="contacto__horarios">
+          <aside class="contacto__horarios">
             <h3 class="contacto__horarios-titulo">Horario de atención</h3>
-            <div class="contacto__horarios-lista">
-              <div *ngFor="let h of horarios" class="contacto__horario">
-                <span class="contacto__horario-dia">{{ h.dia }}</span>
-                <span class="contacto__horario-hora">{{ h.horario }}</span>
-              </div>
-            </div>
-          </div>
-        </div>
+            <dl class="contacto__horarios-lista">
+              @for (h of horarios; track h.dia) {
+                <dt class="contacto__horario-dia">{{ h.dia }}</dt>
+                <dd class="contacto__horario-hora">{{ h.horario }}</dd>
+              }
+            </dl>
+          </aside>
+        </aside>
       </div>
     </div>
   </section>
@@ -136,12 +151,14 @@
   <section class="contacto__faq">
     <div class="contacto__container">
       <h2 class="contacto__faq-titulo">Preguntas Frecuentes</h2>
-      <div class="contacto__faq-grid">
-        <div *ngFor="let faq of faqs" class="contacto__faq-item">
+      <ul class="contacto__faq-grid">
+        @for (faq of faqs; track faq.pregunta) {
+        <li class="contacto__faq-item">
           <h3 class="contacto__faq-pregunta">{{ faq.pregunta }}</h3>
           <p class="contacto__faq-respuesta">{{ faq.respuesta }}</p>
-        </div>
-      </div>
+        </li>
+        }
+      </ul>
     </div>
   </section>
 </main>

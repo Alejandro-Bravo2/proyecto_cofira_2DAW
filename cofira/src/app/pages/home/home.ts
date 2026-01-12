@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {Card} from '../../components/shared/card/card';
 import {Button} from '../../components/shared/button/button';
 
@@ -11,6 +11,7 @@ import {Button} from '../../components/shared/button/button';
   ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
+  encapsulation: ViewEncapsulation.None,
 })
 export class Home {
   notificaciones: Array<{
