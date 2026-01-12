@@ -197,8 +197,30 @@
       <!-- Imagen posicionada detrás del panel -->
       <figure class="gimnasio__progreso-imagen">
         <picture>
-          <source media="(max-width: 900px)" srcset="assets/images/imagen_progreso_mobile.jpg" />
-          <img alt="Persona entrenando en el gimnasio" loading="lazy" src="assets/images/imagen_progreso.jpg" />
+          <!-- Versión móvil: imagen vertical optimizada para pantallas pequeñas -->
+          <source
+            media="(max-width: 900px)"
+            type="image/webp"
+            srcset="
+              assets/images/imagen_progreso_mobile-400w.webp 400w,
+              assets/images/imagen_progreso_mobile-600w.webp 600w,
+              assets/images/imagen_progreso_mobile-900w.webp 900w"
+            sizes="(max-width: 600px) 100vw, 80vw" />
+          <!-- Versión desktop: imagen horizontal para pantallas grandes -->
+          <source
+            type="image/webp"
+            srcset="
+              assets/images/imagen_progreso-600w.webp 600w,
+              assets/images/imagen_progreso-900w.webp 900w,
+              assets/images/imagen_progreso-1200w.webp 1200w"
+            sizes="(max-width: 1200px) 50vw, 600px" />
+          <!-- Fallback para navegadores sin soporte WebP -->
+          <img
+            alt="Persona entrenando en el gimnasio"
+            loading="lazy"
+            src="assets/images/imagen_progreso.jpg"
+            width="1200"
+            height="800" />
         </picture>
       </figure>
     </article>

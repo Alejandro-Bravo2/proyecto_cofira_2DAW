@@ -19,6 +19,9 @@ import { SobreNosotros } from './pages/sobre-nosotros/sobre-nosotros';
 import { Blog } from './pages/blog/blog';
 import { Contacto } from './pages/contacto/contacto';
 
+// Páginas de demostración
+import { Pruebas } from './pages/pruebas/pruebas';
+
 export const routes: Routes = [
   // Páginas principales
   { path: '', component: Home },
@@ -39,6 +42,9 @@ export const routes: Routes = [
   { path: 'sobre-nosotros', component: SobreNosotros },
   { path: 'blog', component: Blog },
   { path: 'contacto', component: Contacto },
+
+  // Páginas de demostración
+  { path: 'pruebas', component: Pruebas },
 
   // 404 redirige a home
   { path: '**', redirectTo: '' },

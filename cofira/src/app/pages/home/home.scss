@@ -117,12 +117,35 @@
   min-height: 600px;
   padding: var(--spacing-size-xxxl) var(--spacing-size-xl);
 
-  // 4. VISUAL
+  // 4. VISUAL - Imágenes responsive con WebP y fallback JPG
+  // Desktop: imagen grande (1920px)
   background-image: url('/assets/images/heroFitnessNutricion.jpg');
+  background-image: image-set(
+    url('/assets/images/heroFitnessNutricion-1920w.webp') type('image/webp'),
+    url('/assets/images/heroFitnessNutricion.jpg') type('image/jpeg')
+  );
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+
+  // Tablet: imagen mediana (1024px)
+  @include responsive-down('lg') {
+    background-image: url('/assets/images/heroFitnessNutricion.jpg');
+    background-image: image-set(
+      url('/assets/images/heroFitnessNutricion-1024w.webp') type('image/webp'),
+      url('/assets/images/heroFitnessNutricion.jpg') type('image/jpeg')
+    );
+  }
+
+  // Móvil: imagen pequeña (640px)
+  @include responsive-down('sm') {
+    background-image: url('/assets/images/heroFitnessNutricion.jpg');
+    background-image: image-set(
+      url('/assets/images/heroFitnessNutricion-640w.webp') type('image/webp'),
+      url('/assets/images/heroFitnessNutricion.jpg') type('image/jpeg')
+    );
+  }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

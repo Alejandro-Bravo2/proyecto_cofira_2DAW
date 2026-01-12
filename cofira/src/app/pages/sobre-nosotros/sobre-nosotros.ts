@@ -4,6 +4,11 @@ interface TeamMember {
   nombre: string;
   cargo: string;
   foto: string;
+  fotoWebp: {
+    small: string;
+    medium: string;
+    large: string;
+  };
   linkedin?: string;
 }
 
@@ -32,6 +37,11 @@ export class SobreNosotros {
       nombre: 'Alejandro Bravo',
       cargo: 'CEO & Fundador',
       foto: '/assets/images/soyYo.jpg',
+      fotoWebp: {
+        small: '/assets/images/soyYo-200w.webp',
+        medium: '/assets/images/soyYo-400w.webp',
+        large: '/assets/images/soyYo-600w.webp',
+      },
       linkedin: '#',
     },
   ];

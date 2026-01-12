@@ -118,7 +118,20 @@
         @for (miembro of equipo; track miembro.nombre) {
         <li class="about__miembro">
           <figure class="about__miembro-foto">
-            <img [alt]="miembro.nombre" [src]="miembro.foto" loading="lazy" />
+            <picture>
+              <!-- Versiones WebP optimizadas con srcset -->
+              <source
+                type="image/webp"
+                [srcset]="miembro.fotoWebp.small + ' 200w, ' + miembro.fotoWebp.medium + ' 400w, ' + miembro.fotoWebp.large + ' 600w'"
+                sizes="(max-width: 640px) 200px, (max-width: 900px) 300px, 400px" />
+              <!-- Fallback JPG para navegadores sin soporte WebP -->
+              <img
+                [alt]="miembro.nombre"
+                [src]="miembro.foto"
+                loading="lazy"
+                width="400"
+                height="400" />
+            </picture>
           </figure>
           <h3 class="about__miembro-nombre">{{ miembro.nombre }}</h3>
           <p class="about__miembro-cargo">{{ miembro.cargo }}</p>

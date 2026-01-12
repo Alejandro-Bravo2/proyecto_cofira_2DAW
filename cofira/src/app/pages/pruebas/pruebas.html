@@ -1,0 +1,139 @@
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     PÁGINA DE PRUEBAS - Demostración de SVGs Optimizados
+     ═══════════════════════════════════════════════════════════════════════════
+     Página para demostrar la optimización de SVGs con SVGO
+
+     NOMENCLATURA BEM:
+     Block: .pruebas
+     Elements: __header, __titulo, __descripcion, __seccion, __grid, __icono, __tabla
+     ═══════════════════════════════════════════════════════════════════════════ -->
+
+<main class="pruebas">
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <header class="pruebas__header">
+    <h1 class="pruebas__titulo">Demostración de SVGs Optimizados</h1>
+    <p class="pruebas__descripcion">
+      Esta página demuestra el proceso de optimización de iconos SVG usando SVGO.
+      Los iconos se han extraído del código inline y guardado como archivos .svg
+      independientes para facilitar su reutilización y optimización.
+    </p>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECCIÓN: GALERÍA DE ICONOS
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="pruebas__seccion">
+    <h2 class="pruebas__seccion-titulo">Galería de Iconos SVG</h2>
+    <p class="pruebas__seccion-descripcion">
+      Todos estos iconos están cargados desde archivos <code>.svg</code> externos
+      ubicados en <code>/assets/icons_optimizados/</code>. Se cargan usando la etiqueta
+      <code>&lt;img&gt;</code> con el atributo <code>loading="lazy"</code>.
+    </p>
+
+    <ul class="pruebas__grid">
+      @for (icono of iconos; track icono.nombre) {
+        <li class="pruebas__icono-card">
+          <figure class="pruebas__icono-figura">
+            <img
+              [alt]="icono.descripcion"
+              [src]="'/assets/icons_optimizados/' + icono.nombre + '.svg'"
+              class="pruebas__icono-img"
+              loading="lazy"
+              width="48"
+              height="48">
+          </figure>
+          <h3 class="pruebas__icono-nombre">{{ icono.nombre }}</h3>
+          <p class="pruebas__icono-descripcion">{{ icono.descripcion }}</p>
+          <code class="pruebas__icono-path">/assets/icons_optimizados/{{ icono.nombre }}.svg</code>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECCIÓN: TABLA DE OPTIMIZACIÓN
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="pruebas__seccion">
+    <h2 class="pruebas__seccion-titulo">Resultados de Optimización</h2>
+    <p class="pruebas__seccion-descripcion">
+      Los SVGs fueron procesados usando <a href="https://jakearchibald.github.io/svgomg/" target="_blank" rel="noopener">SVGOMG</a>,
+      la versión web de SVGO. Los iconos originales provenían de Heroicons, una librería que ya
+      genera SVGs muy optimizados, por lo que la reducción adicional es mínima.
+    </p>
+    <p class="pruebas__seccion-descripcion">
+      <strong>Nota:</strong> En proyectos con SVGs de herramientas como Illustrator o Figma,
+      la reducción puede ser del 40-60% ya que estos suelen incluir metadatos innecesarios.
+    </p>
+
+    <figure class="pruebas__tabla-wrapper">
+      <table class="pruebas__tabla">
+        <thead>
+          <tr>
+            <th>Archivo</th>
+            <th>Tamaño Original</th>
+            <th>Tamaño Optimizado</th>
+            <th>Reducción</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (opt of optimizaciones; track opt.archivo) {
+            <tr>
+              <td><code>{{ opt.archivo }}</code></td>
+              <td>{{ opt.original }}</td>
+              <td>{{ opt.optimizado }}</td>
+              <td class="pruebas__reduccion">{{ opt.reduccion }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </figure>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECCIÓN: CÓDIGO DE EJEMPLO
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="pruebas__seccion">
+    <h2 class="pruebas__seccion-titulo">Ejemplo de Uso</h2>
+    <p class="pruebas__seccion-descripcion">
+      Así es como se implementan los iconos SVG optimizados en el HTML:
+    </p>
+
+    <pre class="pruebas__codigo"><code>&lt;!-- Carga de SVG como imagen con lazy loading --&gt;
+&lt;img
+  src="/assets/icons_optimizados/check-circle_opt.svg"
+  alt="Icono de verificación"
+  loading="lazy"
+  width="24"
+  height="24"&gt;
+
+&lt;!-- Dentro de Angular con binding dinámico --&gt;
+&lt;img
+  [src]="'/assets/icons_optimizados/' + iconName + '.svg'"
+  [alt]="iconDescription"
+  loading="lazy"
+  width="24"
+  height="24"&gt;</code></pre>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════════
+       SECCIÓN: NOTAS TÉCNICAS
+       ═══════════════════════════════════════════════════════════════════════ -->
+  <section class="pruebas__seccion pruebas__seccion--nota">
+    <h2 class="pruebas__seccion-titulo">Nota sobre SVGs inline vs externos</h2>
+    <p class="pruebas__seccion-descripcion">
+      En el resto de la aplicación, los iconos se mantienen como SVG inline porque
+      utilizan <code>currentColor</code> para heredar el color del texto CSS padre.
+      Esto permite que los iconos cambien de color automáticamente según el contexto
+      (modo oscuro, estados hover, etc.).
+    </p>
+    <p class="pruebas__seccion-descripcion">
+      Los SVGs externos mostrados aquí demuestran el conocimiento de la técnica de
+      optimización y extracción, pero no se aplican globalmente para no perder la
+      funcionalidad de colores dinámicos.
+    </p>
+  </section>
+
+</main>

@@ -4530,3 +4530,464 @@ He verificado la aplicación en los siguientes viewports usando Chrome DevTools:
 - **Style Guide (`/style-guide`):** Documentación visual de todos los componentes con sus variantes, adaptada para móvil.
 
 ---
+
+# Sección 5: Optimización Multimedia
+
+## 5.1 Formatos elegidos
+
+### Formatos de imagen utilizados
+
+He utilizado principalmente el formato **WebP** para todas las imágenes optimizadas del proyecto, manteniendo los formatos originales (JPG/PNG) como fallback para navegadores antiguos.
+
+**¿Por qué WebP?**
+
+- **Mejor compresión:** WebP ofrece una compresión entre un 25-35% mejor que JPEG con la misma calidad visual.
+- **Soporte amplio:** A día de hoy, WebP tiene soporte en todos los navegadores modernos (Chrome, Firefox, Safari, Edge).
+- **Transparencia:** A diferencia de JPEG, WebP soporta transparencia como PNG pero con mejor compresión.
+- **Balance perfecto:** Ofrece el mejor equilibrio entre calidad, tamaño de archivo y compatibilidad.
+
+**¿Por qué no AVIF?**
+
+Aunque AVIF ofrece mejor compresión que WebP, decidí no usarlo porque:
+
+- El soporte en navegadores aún no es universal (Safari lo soportó recientemente).
+- El tiempo de codificación es mucho mayor.
+- WebP ya ofrece una reducción de tamaño suficiente para mis necesidades.
+
+**Cuándo uso cada formato:**
+
+| Formato | Uso                                      | Motivo                                        |
+| ------- | ---------------------------------------- | --------------------------------------------- |
+| WebP    | Imágenes principales (hero, fotos, logo) | Mejor compresión con calidad visual excelente |
+| JPG     | Fallback para navegadores antiguos       | Compatibilidad universal                      |
+| PNG     | Logos con transparencia (fallback)       | Mantiene transparencia en navegadores viejos  |
+| SVG     | Iconos e ilustraciones vectoriales       | Escalable sin pérdida de calidad              |
+
+---
+
+## 5.2 Herramientas utilizadas
+
+### Para optimización de imágenes rasterizadas
+
+**Squoosh (https://squoosh.app/)**
+
+He utilizado Squoosh como herramienta principal para optimizar todas las imágenes del proyecto. La elegí porque:
+
+- Es mucho más fácil de usar que otras herramientas.
+- Ofrece muchas más opciones de compresión y permite ajustar la calidad en tiempo real.
+- Permite comparar visualmente la imagen original con la optimizada antes de descargar.
+- Soporta múltiples formatos de salida (WebP, AVIF, JPG, PNG).
+- Permite redimensionar las imágenes directamente, lo cual fue muy útil para crear las versiones responsive (400w, 600w, 800w, etc.).
+- Es una herramienta web, no requiere instalación.
+
+### Para optimización de SVGs
+
+**SVGOMG (https://jakearchibald.github.io/svgomg/)**
+
+He utilizado SVGOMG (la versión web de SVGO) para optimizar los iconos SVG del proyecto. Mi opinión sobre esta herramienta:
+
+- Es un buen programa y muy intuitivo de usar.
+- La interfaz muestra claramente todas las opciones de optimización disponibles.
+- Permite ver el código SVG resultante en tiempo real.
+
+**Nota importante sobre SVGs:** Al usar SVGOMG me di cuenta de que, a diferencia de las imágenes JPG o PNG que pueden reducirse varios megabytes, los SVGs al ser cuentas matemáticas (vectores) no tienen tanta reducción. En mi caso, la diferencia era de apenas 4-10 bytes por archivo. Esto contrasta con las imágenes rasterizadas donde conseguí reducciones de más de 6MB en algunos casos.
+
+Los SVGs de mi proyecto provienen de Heroicons, que ya genera SVGs bastante optimizados. En proyectos donde los SVGs vengan de herramientas como Illustrator o Figma, la reducción puede ser del 40-60% ya que estos suelen incluir metadatos innecesarios.
+
+---
+
+## 5.3 Resultados de optimización
+
+### Tabla de optimización de imágenes
+
+| Nombre del archivo           | Tamaño original | Tamaño optimizado (WebP) | Reducción |
+| ---------------------------- | --------------- | ------------------------ | --------- |
+| `imagen_progreso_mobile.jpg` | 7.0 MB          | 391 KB (900w)            | 94.5%     |
+| `soyYo.jpg`                  | 1.8 MB          | 139 KB (600w)            | 92.3%     |
+| `imagen_progreso.jpg`        | 909 KB          | 241 KB (1200w)           | 73.5%     |
+| `cofiraLogoPng.png`          | 518 KB          | 14 KB                    | 97.3%     |
+| `heroFitnessNutricion.jpg`   | 387 KB          | 117 KB (640w)            | 69.8%     |
+
+**Resumen de resultados:**
+
+- **Total original:** ~10.6 MB
+- **Total optimizado:** ~902 KB
+- **Reducción total:** ~91.5%
+
+### Tabla de optimización de SVGs
+
+| Archivo                    | Tamaño Original | Tamaño Optimizado | Reducción |
+| -------------------------- | --------------- | ----------------- | --------- |
+| `arrow-left.svg`           | 157 bytes       | 149 bytes         | 8 bytes   |
+| `check-circle.svg`         | 234 bytes       | 226 bytes         | 8 bytes   |
+| `check.svg`                | 202 bytes       | 197 bytes         | 5 bytes   |
+| `clock.svg`                | 180 bytes       | 172 bytes         | 8 bytes   |
+| `exclamation-circle.svg`   | 255 bytes       | 246 bytes         | 9 bytes   |
+| `exclamation-triangle.svg` | 359 bytes       | 335 bytes         | 24 bytes  |
+| `eye.svg`                  | 459 bytes       | 455 bytes         | 4 bytes   |
+| `eye-off.svg`              | 508 bytes       | 507 bytes         | 1 byte    |
+| `lock.svg`                 | 351 bytes       | 352 bytes         | -1 byte   |
+| `shield-check.svg`         | 389 bytes       | 387 bytes         | 2 bytes   |
+| `spinner.svg`              | 198 bytes       | 195 bytes         | 3 bytes   |
+| `user.svg`                 | 327 bytes       | 327 bytes         | 0 bytes   |
+| `x-circle-solid.svg`       | 358 bytes       | 350 bytes         | 8 bytes   |
+
+**Nota:** Como se puede observar, la reducción en SVGs es mínima (entre 0-24 bytes) porque ya estaban bastante optimizados de origen. En algunos casos como `lock.svg`, el archivo optimizado es incluso 1 byte mayor debido a cómo SVGO reformatea ciertas propiedades.
+
+---
+
+## 5.4 Tecnologías implementadas
+
+### 5.4.1 Elemento `<picture>` - Art Direction
+
+He implementado el elemento `<picture>` en 2 lugares del proyecto para proporcionar "art direction" (imágenes diferentes según el dispositivo):
+
+**1. Página Gimnasio (`gimnasio.html`) - Imagen de progreso:**
+
+```html
+<figure class="gimnasio__progreso-imagen">
+  <picture>
+    <!-- Versión móvil: imagen vertical optimizada para pantallas pequeñas -->
+    <source
+      media="(max-width: 900px)"
+      type="image/webp"
+      srcset="
+        assets/images/imagen_progreso_mobile-400w.webp 400w,
+        assets/images/imagen_progreso_mobile-600w.webp 600w,
+        assets/images/imagen_progreso_mobile-900w.webp 900w"
+      sizes="(max-width: 600px) 100vw, 80vw" />
+    <!-- Versión desktop: imagen horizontal para pantallas grandes -->
+    <source
+      type="image/webp"
+      srcset="
+        assets/images/imagen_progreso-600w.webp 600w,
+        assets/images/imagen_progreso-900w.webp 900w,
+        assets/images/imagen_progreso-1200w.webp 1200w"
+      sizes="(max-width: 1200px) 50vw, 600px" />
+    <!-- Fallback para navegadores sin soporte WebP -->
+    <img
+      alt="Persona entrenando en el gimnasio"
+      loading="lazy"
+      src="assets/images/imagen_progreso.jpg"
+      width="1200"
+      height="800" />
+  </picture>
+</figure>
+```
+
+**2. Página Sobre Nosotros (`sobre-nosotros.html`) - Foto del equipo:**
+
+```html
+<figure class="about__miembro-foto">
+  <picture>
+    <!-- Versiones WebP optimizadas con srcset -->
+    <source
+      type="image/webp"
+      [srcset]="miembro.fotoWebp.small + ' 200w, ' + miembro.fotoWebp.medium + ' 400w, ' + miembro.fotoWebp.large + ' 600w'"
+      sizes="(max-width: 640px) 200px, (max-width: 900px) 300px, 400px" />
+    <!-- Fallback JPG para navegadores sin soporte WebP -->
+    <img
+      [alt]="miembro.nombre"
+      [src]="miembro.foto"
+      loading="lazy"
+      width="400"
+      height="400" />
+  </picture>
+</figure>
+```
+
+### 5.4.2 Atributos `srcset` y `sizes`
+
+**¿Qué es `srcset`?**
+
+El atributo `srcset` permite al navegador elegir la imagen más apropiada según la resolución de pantalla del dispositivo.
+
+**¿Qué es `sizes`?**
+
+El atributo `sizes` indica al navegador el tamaño que ocupará la imagen en el viewport, ayudándole a elegir la mejor opción del `srcset`.
+
+**Ejemplo de implementación:**
+
+```html
+<source
+  type="image/webp"
+  srcset="
+    assets/images/imagen_progreso-600w.webp 600w,
+    assets/images/imagen_progreso-900w.webp 900w,
+    assets/images/imagen_progreso-1200w.webp 1200w"
+  sizes="(max-width: 1200px) 50vw, 600px" />
+```
+
+**Explicación del `sizes`:**
+
+- `(max-width: 1200px) 50vw`: En pantallas hasta 1200px, la imagen ocupa el 50% del viewport.
+- `600px`: En pantallas más grandes, la imagen tiene un ancho fijo de 600px.
+
+### 5.4.3 CSS `image-set()` para backgrounds
+
+Para imágenes de fondo en CSS, he utilizado `image-set()` que permite ofrecer WebP con fallback automático:
+
+**Implementación en `home.scss`:**
+
+```scss
+.home__seccion-intro {
+  // Fallback para navegadores sin soporte image-set
+  background-image: url('/assets/images/heroFitnessNutricion.jpg');
+
+  // Desktop: imagen grande (1920px)
+  background-image: image-set(
+    url('/assets/images/heroFitnessNutricion-1920w.webp') type('image/webp'),
+    url('/assets/images/heroFitnessNutricion.jpg') type('image/jpeg')
+  );
+
+  // Tablet: imagen mediana (1024px)
+  @include responsive-down('lg') {
+    background-image: image-set(
+      url('/assets/images/heroFitnessNutricion-1024w.webp') type('image/webp'),
+      url('/assets/images/heroFitnessNutricion.jpg') type('image/jpeg')
+    );
+  }
+
+  // Móvil: imagen pequeña (640px)
+  @include responsive-down('sm') {
+    background-image: image-set(
+      url('/assets/images/heroFitnessNutricion-640w.webp') type('image/webp'),
+      url('/assets/images/heroFitnessNutricion.jpg') type('image/jpeg')
+    );
+  }
+}
+```
+
+### 5.4.4 Atributo `loading="lazy"`
+
+He implementado lazy loading en todas las imágenes que no son críticas para el renderizado inicial:
+
+```html
+<!-- Imagen con lazy loading -->
+<img alt="Descripción" loading="lazy" src="imagen.webp" />
+
+<!-- Imagen crítica sin lazy loading (hero/above the fold) -->
+<img alt="Hero image" loading="eager" src="hero.webp" />
+```
+
+**Dónde se usa `loading="lazy"`:**
+
+- Imágenes de la sección de progreso en gimnasio.
+- Fotos del equipo en sobre nosotros.
+- Imágenes de artículos en el blog.
+- Iconos SVG en la página de pruebas.
+
+**Dónde se usa `loading="eager"`:**
+
+- Imagen hero del onboarding (debe cargar inmediatamente).
+- Logo del header (siempre visible).
+
+---
+
+## 5.5 Animaciones CSS
+
+### Animaciones implementadas
+
+He creado **11 animaciones CSS** diferentes usando `@keyframes`:
+
+| Nombre de animación         | Ubicación           | Tipo              | Duración               |
+| --------------------------- | ------------------- | ----------------- | ---------------------- |
+| `notificacion-entrada`      | `_alerta.scss`      | Entrada lateral   | `var(--duration-base)` |
+| `notificacion-salida`       | `_alerta.scss`      | Salida lateral    | `var(--duration-base)` |
+| `spin`                      | `autocomplete.scss` | Rotación infinita | 1s linear infinite     |
+| `notificationSlideInRight`  | `notification.scss` | Entrada lateral   | `var(--duration-base)` |
+| `notificationSlideOutRight` | `notification.scss` | Salida lateral    | `var(--duration-slow)` |
+| `alertSlideIn`              | `alert.scss`        | Entrada vertical  | `var(--duration-base)` |
+| `fadeIn`                    | `modal.scss`        | Desvanecimiento   | `var(--duration-base)` |
+| `slideUp`                   | `modal.scss`        | Deslizamiento     | `var(--duration-base)` |
+| `login-spin`                | `login.scss`        | Rotación spinner  | 1s linear infinite     |
+| `fadeIn`                    | `step-register.scss`| Desvanecimiento   | `var(--duration-base)` |
+| `register-spin`             | `step-register.scss`| Rotación spinner  | 1s linear infinite     |
+
+### Ejemplos de código
+
+**1. Loading Spinner:**
+
+```scss
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+```
+
+**2. Entrada de notificación (slide-in):**
+
+```scss
+@keyframes notificationSlideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.notification--entering {
+  animation: notificationSlideInRight var(--duration-base) ease-out forwards;
+}
+```
+
+**3. Modal fade-in con slide-up:**
+
+```scss
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal__overlay {
+  animation: fadeIn var(--duration-base) ease-out;
+}
+
+.modal__contenido {
+  animation: slideUp var(--duration-base) ease-out;
+}
+```
+
+### Transiciones hover/focus
+
+He implementado **49 transiciones CSS** en diferentes componentes:
+
+**Ejemplos de transiciones en botones:**
+
+```scss
+.button {
+  transition: all var(--duration-base) ease;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-0.125rem);
+    box-shadow: var(--shadow-md);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+}
+```
+
+**Ejemplos de transiciones en cards:**
+
+```scss
+.funcionalidades__item {
+  transition: all var(--duration-base) ease;
+
+  &:hover {
+    border-color: var(--amarillo-normal);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-0.25rem);
+  }
+}
+```
+
+**Ejemplos de transiciones en inputs:**
+
+```scss
+.input {
+  transition: border-color var(--duration-fast) ease,
+              box-shadow var(--duration-fast) ease;
+
+  &:focus {
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 0 0 3px rgba(255, 211, 0, 0.2);
+  }
+}
+```
+
+### ¿Por qué solo animo `transform` y `opacity`?
+
+Solo animo las propiedades `transform` y `opacity` porque son las únicas propiedades CSS que el navegador puede animar sin provocar **reflow** o **repaint** del DOM.
+
+**Propiedades que provocan reflow (evitar animar):**
+
+- `width`, `height`
+- `margin`, `padding`
+- `top`, `left`, `right`, `bottom`
+- `font-size`
+
+**Propiedades que provocan repaint (evitar animar):**
+
+- `color`
+- `background-color`
+- `border-color`
+- `box-shadow`
+
+**Propiedades optimizadas (usar siempre):**
+
+- `transform` (translateX, translateY, scale, rotate)
+- `opacity`
+
+Estas dos propiedades son manejadas por el **compositor** del navegador en una capa separada, lo que significa que no afectan al resto del documento y se renderizan a 60fps sin problemas.
+
+**Ejemplo de animación optimizada:**
+
+```scss
+// ✅ CORRECTO - Solo transform y opacity
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// ❌ INCORRECTO - Provoca reflow
+@keyframes slideInBad {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 0;
+  }
+}
+```
+
+### Duraciones utilizadas
+
+Todas las animaciones usan variables CSS para mantener consistencia:
+
+```scss
+// Variables de duración
+--duration-fast: 150ms;   // Micro-interacciones (hover, focus)
+--duration-base: 300ms;   // Transiciones estándar
+--duration-slow: 500ms;   // Animaciones de salida
+```
+
+Las duraciones están entre **150ms y 500ms** como recomienda la especificación, ya que:
+
+- Menos de 150ms: Se percibe como instantáneo, no da feedback visual.
+- Más de 500ms: Se percibe como lento y frustrante para el usuario.
+
+---

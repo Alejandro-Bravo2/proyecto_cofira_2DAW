@@ -1,0 +1,262 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// PRUEBAS PAGE STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+// Estilos para la página de demostración de SVGs optimizados
+// ═══════════════════════════════════════════════════════════════════════════
+
+@use '../../../styles/01-tools/mixins' as *;
+
+.pruebas {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xxl);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-size-xxxl) var(--spacing-size-l);
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-xl) var(--spacing-size-m);
+    gap: var(--spacing-size-xl);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HEADER
+// ─────────────────────────────────────────────────────────────────────────────
+
+.pruebas__header {
+  text-align: center;
+  padding-bottom: var(--spacing-size-xl);
+  border-bottom: 2px solid var(--amarillo-normal);
+}
+
+.pruebas__titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-m) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+.pruebas__descripcion {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
+  color: var(--gris-normal);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: var(--line-height-relaxed);
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-md);
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SECCIONES
+// ─────────────────────────────────────────────────────────────────────────────
+
+.pruebas__seccion {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-l);
+}
+
+.pruebas__seccion--nota {
+  background-color: var(--amarillo-normal);
+  padding: var(--spacing-size-l);
+  border-radius: var(--radius-xs);
+  border-left: 4px solid var(--amarillo-dark);
+}
+
+.pruebas__seccion-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-xl);
+  }
+}
+
+.pruebas__seccion-descripcion {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--gris-normal);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+
+  code {
+    background-color: var(--gris-normal);
+    color: var(--blanco-normal);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-xss);
+    font-size: var(--font-size-sm);
+  }
+
+  a {
+    color: var(--amarillo-dark);
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--amarillo-darker);
+    }
+  }
+}
+
+.pruebas__seccion--nota .pruebas__seccion-descripcion {
+  color: var(--negro-normal);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// GRID DE ICONOS
+// ─────────────────────────────────────────────────────────────────────────────
+
+.pruebas__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--spacing-size-m);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pruebas__icono-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-xs);
+  padding: var(--spacing-size-m);
+  background-color: var(--blanco-normal);
+  border: 1px solid var(--blanco-dark);
+  border-radius: var(--radius-xs);
+  transition: all var(--duration-fast) ease;
+
+  &:hover {
+    border-color: var(--amarillo-normal);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+}
+
+.pruebas__icono-figura {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background-color: var(--gris-dark);
+  border-radius: var(--radius-xss);
+  margin: 0;
+}
+
+.pruebas__icono-img {
+  width: 48px;
+  height: 48px;
+  // Invertir colores para que se vean bien sobre fondo oscuro
+  filter: invert(1);
+}
+
+.pruebas__icono-nombre {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0;
+  text-align: center;
+}
+
+.pruebas__icono-descripcion {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-normal);
+  margin: 0;
+  text-align: center;
+  line-height: var(--line-height-normal);
+}
+
+.pruebas__icono-path {
+  font-size: var(--font-size-xs);
+  background-color: var(--gris-normal);
+  color: var(--blanco-normal);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-xss);
+  word-break: break-all;
+  text-align: center;
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// TABLA DE OPTIMIZACIÓN
+// ─────────────────────────────────────────────────────────────────────────────
+
+.pruebas__tabla-wrapper {
+  overflow-x: auto;
+  margin: 0;
+}
+
+.pruebas__tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+
+  th,
+  td {
+    padding: var(--spacing-size-s) var(--spacing-size-m);
+    text-align: left;
+    border-bottom: 1px solid var(--blanco-dark);
+  }
+
+  th {
+    background-color: var(--gris-dark);
+    color: var(--blanco-normal);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  td {
+    color: var(--negro-normal);
+  }
+
+  tbody tr:hover {
+    background-color: var(--blanco-normal-hover);
+  }
+
+  code {
+    background-color: var(--gris-normal);
+    color: var(--blanco-normal);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--radius-xss);
+    font-size: var(--font-size-sm);
+  }
+}
+
+.pruebas__reduccion {
+  color: var(--amarillo-darker);
+  font-weight: var(--font-weight-semibold);
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// CÓDIGO DE EJEMPLO
+// ─────────────────────────────────────────────────────────────────────────────
+
+.pruebas__codigo {
+  background-color: var(--gris-dark);
+  color: var(--blanco-normal);
+  padding: var(--spacing-size-m);
+  border-radius: var(--radius-xs);
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Monaco', 'Consolas', monospace;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-relaxed);
+  margin: 0;
+
+  code {
+    background: transparent;
+    padding: 0;
+  }
+}
