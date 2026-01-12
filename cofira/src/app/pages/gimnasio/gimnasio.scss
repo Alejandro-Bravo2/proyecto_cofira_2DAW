@@ -54,6 +54,11 @@
     // Padding: top (header móvil 4rem + espacio), horizontal, bottom
     padding: calc(4rem + var(--spacing-size-l)) var(--spacing-size-m) var(--spacing-size-xl);
   }
+
+  @include responsive-down('xs') {
+    gap: var(--spacing-size-m);
+    padding: calc(4rem + var(--spacing-size-m)) var(--spacing-size-s) var(--spacing-size-l);
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -70,6 +75,9 @@
   @include responsive-down('md') {
     font-size: var(--font-size-2xl);
   }
+  @include responsive-down('xs') {
+    font-size: var(--font-size-xl);
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -85,6 +93,10 @@
   @include responsive-down('md') {
     gap: var(--spacing-size-m);
   }
+
+  @include responsive-down('xs') {
+    gap: var(--spacing-size-s);
+  }
 }
 
 .gimnasio__dias-btn {
@@ -93,6 +105,11 @@
 
   &:hover {
     color: var(--amarillo-dark);
+  }
+
+  @include responsive-down('xs') {
+    width: 1.25rem;
+    height: 1.25rem;
   }
 }
 
@@ -118,17 +135,30 @@
     @include responsive-down('md') {
       font-size: var(--font-size-xl);
     }
+
+    @include responsive-down('xs') {
+      font-size: var(--font-size-lg);
+    }
   }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Tabla de ejercicios
+   ELEMENT: Tabla de ejercicios (Desktop)
    ═══════════════════════════════════════════════════════════════════════════ */
 
 .gimnasio__tabla-section {
   width: 100%;
   max-width: var(--contenido-max-width);
   margin: 0 auto;
+
+  // Ocultar tabla en móvil, mostrar acordeón
+  &--desktop {
+    display: block;
+
+    @include responsive-down('xs') {
+      display: none;
+    }
+  }
 }
 
 .gimnasio__tabla {
@@ -136,15 +166,18 @@
   border-collapse: separate;
   border-spacing: 0;
   overflow: hidden;
+  width: 100%;
 
   // Celdas base
-  th, td {
+  th,
+  td {
     font-family: var(--font-primary);
     font-size: 0.9375rem;
     font-weight: var(--font-weight-regular);
     color: var(--negro-normal);
     padding: var(--spacing-size-s) var(--spacing-size-m);
     text-align: center;
+    white-space: nowrap;
 
     @include responsive-down('md') {
       padding: var(--spacing-size-xs);
@@ -155,6 +188,13 @@
     :host-context(body.modo-oscuro) & {
       color: var(--blanco-normal);
     }
+  }
+
+  // Primera columna (Ejercicio) con ancho flexible
+  th:first-child,
+  td:first-child {
+    text-align: left;
+    min-width: 100px;
   }
 
   th {
@@ -183,6 +223,7 @@
 
 .gimnasio__ejercicio-toggle {
   @include boton-icono(1rem);
+  flex-shrink: 0;
 
   svg {
     transform: rotate(270deg);
@@ -217,6 +258,170 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════
+   ELEMENT: Acordeón de ejercicios (Móvil)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.gimnasio__acordeon {
+  @include flex-columna(var(--spacing-size-s));
+  width: 100%;
+  max-width: var(--contenido-max-width);
+
+  // Ocultar acordeón en desktop, mostrar solo en móvil
+  &--mobile {
+    display: none;
+
+    @include responsive-down('xs') {
+      display: flex;
+    }
+  }
+}
+
+.gimnasio__acordeon-item {
+  background-color: var(--blanco-normal);
+  border-radius: var(--radius-s);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  @include transicion-suave(box-shadow);
+
+  &:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  // Modo oscuro
+  :host-context(body.modo-oscuro) & {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+}
+
+.gimnasio__acordeon-header {
+  @include flex-between;
+  padding: var(--spacing-size-m) var(--spacing-size-s);
+  cursor: pointer;
+  user-select: none;
+  @include transicion-suave(background-color);
+
+  &:hover {
+    background-color: var(--blanco-normal-hover);
+  }
+
+  // Modo oscuro
+  :host-context(body.modo-oscuro) & {
+    &:hover {
+      background-color: var(--oscuro-hover-fondo);
+    }
+  }
+}
+
+.gimnasio__acordeon-info {
+  @include flex-center;
+  gap: var(--spacing-size-xs);
+}
+
+.gimnasio__acordeon-toggle {
+  @include boton-icono(1.25rem);
+  flex-shrink: 0;
+  color: var(--negro-normal);
+
+  svg {
+    transform: rotate(0deg);
+    @include transicion-suave(transform);
+
+    &.rotated {
+      transform: rotate(90deg);
+    }
+  }
+
+  // Modo oscuro
+  :host-context(body.modo-oscuro) & {
+    color: var(--blanco-normal);
+  }
+}
+
+.gimnasio__acordeon-nombre {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+
+  // Modo oscuro
+  :host-context(body.modo-oscuro) & {
+    color: var(--blanco-normal);
+  }
+}
+
+.gimnasio__acordeon-acciones {
+  @include flex-center;
+  gap: var(--spacing-size-xs);
+
+  .gimnasio__btn-accion {
+    width: 1.75rem;
+    height: 1.75rem;
+
+    svg {
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+}
+
+.gimnasio__acordeon-contenido {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--duration-base) ease, padding var(--duration-base) ease;
+
+  // Estado expandido
+  .gimnasio__acordeon-item--expandido & {
+    max-height: 200px;
+    padding: 0 var(--spacing-size-s) var(--spacing-size-m);
+  }
+}
+
+.gimnasio__acordeon-detalles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-size-s);
+  padding-top: var(--spacing-size-s);
+  border-top: 1px solid var(--blanco-dark);
+
+  // Modo oscuro
+  :host-context(body.modo-oscuro) & {
+    border-color: var(--oscuro-borde-color);
+  }
+}
+
+.gimnasio__acordeon-detalle {
+  @include flex-columna(var(--spacing-size-xxs));
+  text-align: center;
+}
+
+.gimnasio__acordeon-label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  // Modo oscuro
+  :host-context(body.modo-oscuro) & {
+    color: var(--oscuro-texto-secundario);
+  }
+}
+
+.gimnasio__acordeon-valor {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+
+  // Modo oscuro
+  :host-context(body.modo-oscuro) & {
+    color: var(--blanco-normal);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
    ELEMENT: Retroalimentación
    ═══════════════════════════════════════════════════════════════════════════ */
 
@@ -226,9 +431,14 @@
   max-width: var(--contenido-max-width);
   margin: 0 auto;
   padding: var(--spacing-size-xxl) var(--spacing-size-xl);
+  box-sizing: border-box;
 
   @include responsive-down('md') {
     padding: var(--spacing-size-l) var(--spacing-size-m);
+  }
+
+  @include responsive-down('xs') {
+    padding: var(--spacing-size-m) var(--spacing-size-s);
   }
 }
 
@@ -243,10 +453,19 @@
     font-size: var(--font-size-xl);
     margin-bottom: var(--spacing-size-m);
   }
+
+  @include responsive-down('xs') {
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-size-s);
+  }
 }
 
 .gimnasio__feedback-form {
   @include flex-columna(var(--spacing-size-l));
+
+  @include responsive-down('xs') {
+    gap: var(--spacing-size-m);
+  }
 }
 
 .gimnasio__feedback-field {
@@ -262,14 +481,20 @@
   font-weight: var(--font-weight-medium);
   color: var(--negro-normal);
   margin-bottom: var(--spacing-size-s);
+
+  @include responsive-down('xs') {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-size-xs);
+  }
 }
 
 .gimnasio__feedback-textarea {
   @include input-base;
-  width: 90%;
+  width: 100%; // Cambiado de 90% a 100% para móviles
   min-height: 8.9375rem;
   border: 0.0625rem solid var(--blanco-dark);
   resize: vertical;
+  box-sizing: border-box;
 
   &::placeholder {
     color: var(--negro-normal);
@@ -283,6 +508,11 @@
   @include responsive-down('md') {
     min-height: 6.25rem;
   }
+
+  @include responsive-down('xs') {
+    min-height: 5rem;
+    font-size: var(--font-size-sm);
+  }
 }
 
 .gimnasio__feedback-acciones {
@@ -293,6 +523,12 @@
   @include responsive-down('md') {
     flex-direction: row;
     gap: var(--spacing-size-s);
+  }
+
+  @include responsive-down('xs') {
+    flex-direction: row;
+    gap: var(--spacing-size-xs);
+    margin-top: var(--spacing-size-s);
   }
 }
 
@@ -318,6 +554,10 @@
     flex-direction: column;
     min-height: auto;
   }
+
+  @include responsive-down('xs') {
+    min-height: auto;
+  }
 }
 
 // Panel izquierdo con contenido y diagonal
@@ -331,21 +571,25 @@
 
   // Diagonal cortando hacia la derecha
   clip-path: polygon(
-    0 0,        // Esquina superior izquierda
-    100% 0,     // Esquina superior derecha
-    85% 100%,   // Punto inferior derecho (desplazado para crear diagonal)
-    0 100%      // Esquina inferior izquierda
+    0 0,
+    // Esquina superior izquierda
+    100% 0,
+    // Esquina superior derecha
+    85% 100%,
+    // Punto inferior derecho (desplazado para crear diagonal)
+    0 100% // Esquina inferior izquierda
   );
 
   @include responsive-down('md') {
     width: 100%;
     padding: var(--spacing-size-l) var(--spacing-size-m);
-    clip-path: polygon(
-      0 0,
-      100% 0,
-      100% 85%,
-      0 100%
-    );
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+
+  @include responsive-down('xs') {
+    gap: var(--spacing-size-m);
+    padding: var(--spacing-size-m) var(--spacing-size-s);
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
   }
 }
 
@@ -358,6 +602,10 @@
 
   @include responsive-down('md') {
     font-size: var(--font-size-2xl);
+  }
+
+  @include responsive-down('xs') {
+    font-size: var(--font-size-xl);
   }
 }
 
@@ -372,6 +620,11 @@
   @include responsive-down('md') {
     font-size: var(--font-size-md);
     max-width: 100%;
+  }
+
+  @include responsive-down('xs') {
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
   }
 }
 
@@ -406,6 +659,15 @@
 
     img {
       object-position: center calc(50% + 3rem); // Mover imagen hacia abajo
+    }
+  }
+
+  @include responsive-down('xs') {
+    height: 10rem;
+    margin-top: -1.5rem;
+
+    img {
+      object-position: center calc(50% + 2rem);
     }
   }
 }
