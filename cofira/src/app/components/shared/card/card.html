@@ -1,15 +1,16 @@
 <article [class]="obtenerClasesCard()">
 
-  <h2 class="pricing-card__titulo">{{ title }}</h2>
+  <h2 [class]="obtenerClasesTitulo()">{{ titulo }}</h2>
 
   <ul class="pricing-card__lista">
     @for (ventaja of ventajas; track ventaja) {
-    <li class="pricing-card__ventaja">{{ ventaja }}</li>
+    <li [class]="obtenerClasesVentaja()">{{ ventaja }}</li>
     }
   </ul>
 
   <app-button
-    (click)="onSubscribe()"
+    class="pricing-card__app-button"
+    (click)="alSuscribirse()"
     [fullWidth]="true"
     [habilitado]="deshabilitada"
     tamanio="lg"
@@ -17,6 +18,6 @@
     {{ texto_boton }}
   </app-button>
 
-  <p class="pricing-card__precio">{{ precio }}</p>
+  <p [class]="obtenerClasesPrecio()">{{ precio }}</p>
 
 </article>

@@ -21,6 +21,14 @@ export class Home {
   }> = [];
   notifId = 0;
 
+  // Estado de FAQs abiertos (por índice)
+  estadoFaqAbierto: Record<number, boolean> = {};
+
+  // Toggle del estado del FAQ
+  alternarEstadoFaq(indiceFaq: number): void {
+    this.estadoFaqAbierto[indiceFaq] = !this.estadoFaqAbierto[indiceFaq];
+  }
+
   mostrarNotif() {
     const id = ++this.notifId;
     this.notificaciones.push({

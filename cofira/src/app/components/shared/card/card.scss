@@ -138,20 +138,20 @@
 
   // 4. VISUAL
   color: var(--text-dark);
+}
 
-  // Checkmark decorativo antes de cada ventaja
-  &::before {
-    content: '✓';
-    font-weight: var(--font-weight-bold);
-    color: var(--amarillo-normal);
-    flex-shrink: 0;
-  }
+// Checkmark decorativo antes de cada ventaja
+.pricing-card__ventaja::before {
+  content: '✓';
+  font-weight: var(--font-weight-bold);
+  color: var(--amarillo-normal);
+  flex-shrink: 0;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 3.5 BOTÓN: Ajustes para app-button en el contexto de la card
 // ─────────────────────────────────────────────────────────────────────────────
-.pricing-card app-button {
+.pricing-card__app-button {
   margin-bottom: var(--spacing-size-m);
 }
 
@@ -186,38 +186,37 @@
 .pricing-card--sm {
   max-width: 21rem;
   padding: var(--spacing-size-l) var(--spacing-size-s);
+}
 
-  .pricing-card__titulo {
-    font-size: var(--font-size-2xl);
-  }
+.pricing-card__titulo--sm {
+  font-size: var(--font-size-2xl);
+}
 
-  .pricing-card__ventaja {
-    font-size: var(--font-size-base);
-  }
+.pricing-card__ventaja--sm {
+  font-size: var(--font-size-base);
+}
 
-  .pricing-card__precio {
-    font-size: var(--font-size-base);
-  }
+.pricing-card__precio--sm {
+  font-size: var(--font-size-base);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 // 6.2 TAMAÑO --md: Mediano (por defecto)
 // ─────────────────────────────────────────────────────────────────────────────
 .pricing-card--md {
-    width: 75%;
-  .pricing-card__titulo{
-    font-size: var(--font-size-lg);
-  }
-  .pricing-card__ventaja{
-    font-size: var(--font-size-md);
-  }
-  .pricing-card__precio{
-    font-size: var(--font-size-md);
-  }
+  width: 75%;
+}
 
+.pricing-card__titulo--md {
+  font-size: var(--font-size-lg);
+}
 
+.pricing-card__ventaja--md {
+  font-size: var(--font-size-md);
+}
 
-
+.pricing-card__precio--md {
+  font-size: var(--font-size-md);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -226,16 +225,16 @@
 .pricing-card--lg {
   max-width: 34rem;
   padding: var(--spacing-size-3xl) var(--spacing-size-xl);
+}
 
-  .pricing-card__titulo {
-    font-size: var(--font-size-5xl);
-  }
+.pricing-card__titulo--lg {
+  font-size: var(--font-size-5xl);
+}
 
-  .pricing-card__ventaja {
-    font-size: var(--font-size-xl);
-  }
+.pricing-card__ventaja--lg {
+  font-size: var(--font-size-xl);
+}
 
-  .pricing-card__precio {
-    font-size: var(--font-size-xl);
-  }
+.pricing-card__precio--lg {
+  font-size: var(--font-size-xl);
 }

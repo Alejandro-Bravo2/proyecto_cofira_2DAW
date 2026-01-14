@@ -160,7 +160,7 @@
   flex-direction: row;
 }
 
-.tarjeta--horizontal .tarjeta__imagen {
+.tarjeta__imagen--horizontal {
   width: 40%;
   margin-bottom: 0;
   margin-right: var(--spacing-size-m);
@@ -190,19 +190,19 @@
   text-align: center;
 }
 
-.tarjeta--precios .tarjeta__titulo {
+.tarjeta__titulo--precios {
   font-size: var(--font-size-2xl);
 }
 
-.tarjeta--precios .tarjeta__precio {
+.tarjeta__precio--precios {
   font-size: var(--font-size-3xl);
   margin: var(--spacing-size-m) 0;
 }
 
-.tarjeta--precios .tarjeta__lista {
+.tarjeta__lista--precios {
   text-align: left;
 }
 
-.tarjeta--precios .tarjeta__acciones {
+.tarjeta__acciones--precios {
   justify-content: center;
 }

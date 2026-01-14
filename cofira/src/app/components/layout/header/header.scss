@@ -98,14 +98,14 @@
   // 5. MISCELÁNEA
   transition: opacity var(--duration-fast) ease;
 
-  &:hover {
-    opacity: 0.8;
-  }
-
   @include responsive-down('md') {
     width: 6rem;
     height: 6rem;
   }
+}
+
+.header__logo:hover {
+  opacity: 0.8;
 }
 
 
@@ -166,14 +166,13 @@
   // Línea inferior animada
   @include enlace-subrayado-animado(var(--amarillo-normal), 2px);
 
-  &:hover {
-    color: var(--negro-dark);
-  }
-
-
   @include responsive-down('lg') {
     font-size: var(--font-size-sm);
   }
+}
+
+.header__link:hover {
+  color: var(--negro-dark);
 }
 
 
@@ -385,17 +384,16 @@
   // 5. MISCELÁNEA
   cursor: pointer;
   transition: transform 0.2s ease;
+}
 
-  &:hover {
-    transform: rotate(90deg);
-  }
+.menu-movil__cerrar:hover {
+  transform: rotate(90deg);
+}
 
-
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: var(--negro-normal);
-  }
+.menu-movil__cerrar__icono {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--negro-normal);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

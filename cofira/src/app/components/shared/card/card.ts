@@ -11,7 +11,7 @@ import {Button} from '../button/button';
 export class Card {
   private readonly router = inject(Router);
 
-  @Input() title: string = 'Cuota anual';
+  @Input() titulo: string = 'Cuota anual';
   @Input() ventajas: string[] = [
     'Máximo de 7 comidas diarias',
     'Rutina de ejercicios hasta 7 días',
@@ -23,13 +23,25 @@ export class Card {
   @Input() variante: 'info' | 'planes'  = 'planes';
   @Input() tamanio: 'sm' | 'md' | 'lg' = 'md';
   @Input() deshabilitada: boolean = false;
-  @Output() subscribe = new EventEmitter<void>();
+  @Output() suscribirse = new EventEmitter<void>();
 
   obtenerClasesCard(): string {
     return `pricing-card pricing-card--${this.variante} pricing-card--${this.tamanio}`;
   }
 
-  onSubscribe(): void {
+  obtenerClasesTitulo(): string {
+    return `pricing-card__titulo pricing-card__titulo--${this.tamanio}`;
+  }
+
+  obtenerClasesVentaja(): string {
+    return `pricing-card__ventaja pricing-card__ventaja--${this.tamanio}`;
+  }
+
+  obtenerClasesPrecio(): string {
+    return `pricing-card__precio pricing-card__precio--${this.tamanio}`;
+  }
+
+  alSuscribirse(): void {
     this.router.navigate(['/onboarding']);
   }
 }

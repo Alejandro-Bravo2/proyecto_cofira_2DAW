@@ -147,9 +147,13 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 // Mixin auxiliar para media queries (min-width) - USO LIMITADO
 // El proyecto usa principalmente responsive-down() (desktop-first)
 // Solo usar este mixin cuando necesites añadir algo específico para pantallas grandes
-// Breakpoints: 'xs' (640px), 'sm' (768px), 'md' (900px), 'lg' (1024px), 'xl' (1200px), 'xxl' (1400px)
+// Breakpoints: 'xxs' (400px), 'xs' (640px), 'sm' (768px), 'md' (900px), 'lg' (1024px), 'xl' (1200px), 'xxl' (1400px)
 @mixin responsive($breakpoint) {
-  @if $breakpoint == 'xs' {
+  @if $breakpoint == 'xxs' {
+    @media (min-width: $breakpoint-xxs) {
+      @content;
+    }
+  } @else if $breakpoint == 'xs' {
     @media (min-width: $breakpoint-xs) {
       @content;
     }
@@ -179,7 +183,11 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 // Mixin para media queries responsive (desktop-first: max-width)
 // Uso: @include responsive-down('lg') { font-size: 14px; }
 @mixin responsive-down($breakpoint) {
-  @if $breakpoint == 'xs' {
+  @if $breakpoint == 'xxs' {
+    @media (max-width: $breakpoint-xxs) {
+      @content;
+    }
+  } @else if $breakpoint == 'xs' {
     @media (max-width: $breakpoint-xs) {
       @content;
     }

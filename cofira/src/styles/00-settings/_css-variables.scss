@@ -13,6 +13,7 @@
 // las media queries no soportan CSS Custom Properties
 // Uso: @include responsive-down('md') { ... }  (desktop-first)
 // ========================================
+$breakpoint-xxs: 25rem;   // 400px - Móviles muy pequeños (iPhone SE, Galaxy S8)
 $breakpoint-xs: 40rem;    // 640px - Móviles pequeños
 $breakpoint-sm: 48rem;    // 768px - Móviles grandes / Tablets pequeñas
 $breakpoint-md: 56.25rem; // 900px - Tablets

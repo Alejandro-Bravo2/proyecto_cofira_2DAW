@@ -1,20 +1,17 @@
 <section class="home__seccion-intro">
 
+  <h1 class="home__seccion-intro__titulo">Tu entrenamiento, nutrición y progreso en un solo lugar</h1>
 
-  <h1>Tu entrenamiento, nutrición y progreso en un solo lugar</h1>
-
-
-  <h2>Inscríbete hoy y empieza tu cambio</h2>
+  <h2 class="home__seccion-intro__subtitulo">Inscríbete hoy y empieza tu cambio</h2>
 
   <article class="boton__primary">
-    <app-button class="boton__primary--inscripcion" enlace="/onboarding" tamanio="lg" variante="primary">
+    <app-button class="boton__primary--inscripcion home__seccion-intro__boton" enlace="/onboarding" tamanio="lg" variante="primary">
       Inscríbete
     </app-button>
 
-    <app-button class="boton__primary--planes" tamanio="lg" variante="secondary">
+    <app-button class="boton__primary--planes home__seccion-intro__boton" tamanio="lg" variante="secondary">
       Ver planes
     </app-button>
-
   </article>
 
 </section>
@@ -24,12 +21,12 @@
 
   <section class="planes__contenido">
     <!-- Texto a la izquierda -->
-    <article class="planes__info">
+    <article class="planes__info planes__info--responsive">
       <h3 class="planes__subtitulo">
         Elige tu cuota <span class="planes__destacado">individual</span>
       </h3>
-      <p>Profesionales 24/7 listos para atenderte y resolverte las dudas.</p>
-      <p>Si quieres lograrlo porque no intentarlo.</p>
+      <p class="planes__info__texto">Profesionales 24/7 listos para atenderte y resolverte las dudas.</p>
+      <p class="planes__info__texto">Si quieres lograrlo porque no intentarlo.</p>
     </article>
 
     <!-- Cards a la derecha -->
@@ -41,7 +38,7 @@
             'Seguimiento avanzado con gráficos',
             'Asesoría nutricional personalizada',
             'Acceso a contenido exclusivo'
-          ]" precio="19.99€ + IVA al mes" texto_boton="Inscríbete" title="Cuota mensual"></app-card>
+          ]" precio="19.99€ + IVA al mes" texto_boton="Inscríbete" titulo="Cuota mensual"></app-card>
       </article>
 
       <article class="home__card-wrapper">
@@ -52,7 +49,7 @@
             'Asesoría nutricional personalizada',
             'Acceso a contenido exclusivo'
           ]" precio="15.99€ + IVA al año" texto_boton="Inscríbete"
-                  title="Cuota anual"></app-card>
+                  titulo="Cuota anual"></app-card>
       </article>
     </section>
 
@@ -101,10 +98,10 @@
   <h2 class="faq__titulo">Preguntas frecuentes</h2>
 
   <article class="faq__contenedor">
-    <details class="faq__item">
+    <details class="faq__item" (toggle)="alternarEstadoFaq(0)">
       <summary class="faq__pregunta">
         <span>¿Qué incluye la cuota mensual de Cofira?</span>
-        <span class="faq__icono"></span>
+        <span class="faq__icono" [class.faq__icono--abierto]="estadoFaqAbierto[0]"></span>
       </summary>
       <p class="faq__respuesta">
         La cuota mensual incluye acceso completo a todas las funcionalidades: planificación de hasta 7 comidas diarias,
@@ -113,10 +110,10 @@
       </p>
     </details>
 
-    <details class="faq__item">
+    <details class="faq__item" (toggle)="alternarEstadoFaq(1)">
       <summary class="faq__pregunta">
         <span>¿Puedo cancelar mi suscripción en cualquier momento?</span>
-        <span class="faq__icono"></span>
+        <span class="faq__icono" [class.faq__icono--abierto]="estadoFaqAbierto[1]"></span>
       </summary>
       <p class="faq__respuesta">
         Sí, puedes cancelar tu suscripción cuando quieras desde la configuración de tu cuenta. No hay permanencia mínima
@@ -125,10 +122,10 @@
     </details>
 
 
-    <details class="faq__item">
+    <details class="faq__item" (toggle)="alternarEstadoFaq(2)">
       <summary class="faq__pregunta">
         <span>¿Cómo funciona el seguimiento de progreso?</span>
-        <span class="faq__icono"></span>
+        <span class="faq__icono" [class.faq__icono--abierto]="estadoFaqAbierto[2]"></span>
       </summary>
       <p class="faq__respuesta">
         Cofira registra tu peso, medidas corporales y fotos de progreso. Genera gráficos detallados que te muestran tu

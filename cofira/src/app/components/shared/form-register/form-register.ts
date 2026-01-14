@@ -94,7 +94,7 @@ export class FormRegister implements OnInit {
   // ─────────────────────────────────────────────────────────────────────────
 
   /** Acceso rápido a los controles del formulario */
-  get f() {
+  get controlesDelFormulario() {
     return this.registerForm.controls;
   }
 
