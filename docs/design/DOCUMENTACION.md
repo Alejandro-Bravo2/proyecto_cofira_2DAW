@@ -1,3 +1,11 @@
+# IMPORTANTE
+
+En el punto 5.1 se habla sobre la compresión de las imágenes svg y yo he usado los svg en línea porque me permitía usar el atributo fill y eso me ha ayudado a cambiarlos de color, pero para demostrarte que he comprimido los svg, te he creado una página llamada pruebas que contiene los svg en ficheros comprimidas y se muestra una tabla de comparativas de la diferencia de tamaño sin comprimir y luego de comprimir.
+
+Puedes acceder a ella buscando: **https://cofira.app/pruebas*+
+
+
+
 # Sección 1: Arquitectura CSS y Comunicación Visual
 
 ## 1.1 Principios de Comunicación Visual
@@ -4537,31 +4545,21 @@ He verificado la aplicación en los siguientes viewports usando Chrome DevTools:
 
 ### Formatos de imagen utilizados
 
-He utilizado principalmente el formato **WebP** para todas las imágenes optimizadas del proyecto, manteniendo los formatos originales (JPG/PNG) como fallback para navegadores antiguos.
+He utilizado principalmente el formato **WebP** para todas las imágenes optimizadas del proyecto, antes todo el proyecto usaba imágenes jpg o png pero vi todo lo que pesaban incluso llegando a 8MB y lueo de otpimizarlas a webp se ha compromido a 140Kb.
 
 **¿Por qué WebP?**
 
-- **Mejor compresión:** WebP ofrece una compresión entre un 25-35% mejor que JPEG con la misma calidad visual.
-- **Soporte amplio:** A día de hoy, WebP tiene soporte en todos los navegadores modernos (Chrome, Firefox, Safari, Edge).
-- **Transparencia:** A diferencia de JPEG, WebP soporta transparencia como PNG pero con mejor compresión.
-- **Balance perfecto:** Ofrece el mejor equilibrio entre calidad, tamaño de archivo y compatibilidad.
+- **Mejor compresión:** WebP ofrece una compresión muchísimo mejor que JPEG con la misma calidad de imágen o un poco peor en caso de querer comprimirla mucho la imágen.
+- **Soporte amplio:** Lo bueno del foramto webp es que la mayoria de navegadores pueden usarlo a diferencias de otros formatos que podrían dar más problemas en cuanto a compatiblidad.
+- **Transparencia:** A diferencia de JPEG, WebP soporta transparencia como PNG pero con mejor compresión por lo que tambien por esto fue que me decanté por usar webp.
 
-**¿Por qué no AVIF?**
+**¿Y para los iconos?**
 
-Aunque AVIF ofrece mejor compresión que WebP, decidí no usarlo porque:
+He usado svg para los iconos y los he comprimido con la web **https://jakearchibald.github.io/svgomg**, pero al final acabé usando los svg en línea en el html porque de esta forma me permitía usar la propiedad fill para cambiarle los colores  y eso me ha ayudado bastante para cambiar los colores entre modo claro y oscuro.
 
-- El soporte en navegadores aún no es universal (Safari lo soportó recientemente).
-- El tiempo de codificación es mucho mayor.
-- WebP ya ofrece una reducción de tamaño suficiente para mis necesidades.
+Pero para demostrarte que lo he hecho y optimizado los svg, te he una página llamada **pruebas** que contiene ejemplos de los svg usando las imágenes svg directamente y con tablas que muestran compartivas entre sin optimizar y optimizadas.
 
-**Cuándo uso cada formato:**
 
-| Formato | Uso                                      | Motivo                                        |
-| ------- | ---------------------------------------- | --------------------------------------------- |
-| WebP    | Imágenes principales (hero, fotos, logo) | Mejor compresión con calidad visual excelente |
-| JPG     | Fallback para navegadores antiguos       | Compatibilidad universal                      |
-| PNG     | Logos con transparencia (fallback)       | Mantiene transparencia en navegadores viejos  |
-| SVG     | Iconos e ilustraciones vectoriales       | Escalable sin pérdida de calidad              |
 
 ---
 
@@ -4573,26 +4571,23 @@ Aunque AVIF ofrece mejor compresión que WebP, decidí no usarlo porque:
 
 He utilizado Squoosh como herramienta principal para optimizar todas las imágenes del proyecto. La elegí porque:
 
-- Es mucho más fácil de usar que otras herramientas.
-- Ofrece muchas más opciones de compresión y permite ajustar la calidad en tiempo real.
+- Fue la primera que probé y me gustó lo sencillo que era usarla aunque no me gustó que aveces la web se detenía.
+- Me gustó que se pudiera comprimmir en tiempo real y mostrara las diferencias visuales entre sin comprimir y comprimida la imágen.
 - Permite comparar visualmente la imagen original con la optimizada antes de descargar.
-- Soporta múltiples formatos de salida (WebP, AVIF, JPG, PNG).
-- Permite redimensionar las imágenes directamente, lo cual fue muy útil para crear las versiones responsive (400w, 600w, 800w, etc.).
-- Es una herramienta web, no requiere instalación.
+- Permite redimensionar las imágenes directamente, lo cual fue muy útil para crear las versiones responsive (400w, 600w, 800w).
+- Es una herramienta web, no requiere instalación y como estoy en mac pues solo podría usar una que era **ImageOptim** pero la descarga era de páginas raras y no la descargue porque no encontre una página fiable.
 
 ### Para optimización de SVGs
 
-**SVGOMG (https://jakearchibald.github.io/svgomg/)**
+**Svgomg (https://jakearchibald.github.io/svgomg/)**
 
-He utilizado SVGOMG (la versión web de SVGO) para optimizar los iconos SVG del proyecto. Mi opinión sobre esta herramienta:
+He utilizado Svgomg para optimizar los iconos SVG del proyecto. Mi opinión sobre esta herramienta:
 
 - Es un buen programa y muy intuitivo de usar.
-- La interfaz muestra claramente todas las opciones de optimización disponibles.
+- No me gusta que no pueda importar muchas imágenes a la vez para hacer la misma compresión para todas.
 - Permite ver el código SVG resultante en tiempo real.
 
-**Nota importante sobre SVGs:** Al usar SVGOMG me di cuenta de que, a diferencia de las imágenes JPG o PNG que pueden reducirse varios megabytes, los SVGs al ser cuentas matemáticas (vectores) no tienen tanta reducción. En mi caso, la diferencia era de apenas 4-10 bytes por archivo. Esto contrasta con las imágenes rasterizadas donde conseguí reducciones de más de 6MB en algunos casos.
-
-Los SVGs de mi proyecto provienen de Heroicons, que ya genera SVGs bastante optimizados. En proyectos donde los SVGs vengan de herramientas como Illustrator o Figma, la reducción puede ser del 40-60% ya que estos suelen incluir metadatos innecesarios.
+**Nota importante sobre los svg:** Al usar svgomg me di cuenta de que, a diferencia de las imágenes jpg o png que pueden reducirse varios mb o bastantes kb, los svg al ser cuentas matemáticas no tienen tanta reducción. En mi caso, la diferencia era de apenas 4-10 bytes por archivo. Esto es una gran diferencia en comparación con las compresiones de las imágenes jpg por la diferencia de tamaños.
 
 ---
 
@@ -4632,7 +4627,7 @@ Los SVGs de mi proyecto provienen de Heroicons, que ya genera SVGs bastante opti
 | `user.svg`                 | 327 bytes       | 327 bytes         | 0 bytes   |
 | `x-circle-solid.svg`       | 358 bytes       | 350 bytes         | 8 bytes   |
 
-**Nota:** Como se puede observar, la reducción en SVGs es mínima (entre 0-24 bytes) porque ya estaban bastante optimizados de origen. En algunos casos como `lock.svg`, el archivo optimizado es incluso 1 byte mayor debido a cómo SVGO reformatea ciertas propiedades.
+Como se puede observar, la reducción en svg es mínima (entre 0-24 bytes) porque ya estaban bastante optimizados de origen.
 
 ---
 
