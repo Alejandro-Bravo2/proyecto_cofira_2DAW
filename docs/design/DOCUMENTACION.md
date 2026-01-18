@@ -5570,7 +5570,7 @@ He desplegado la aplicación en un vps de ionos para que esté accesible públic
 
 Prueba de que funciona en producción:
 
-![prueba](image.png)
+![prueba](../assets/prueba_COFIRA_FUNCIONA.png)
 
 
 
