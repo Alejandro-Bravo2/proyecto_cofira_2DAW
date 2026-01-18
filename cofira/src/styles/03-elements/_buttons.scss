@@ -1,7 +1,4 @@
-/* ============================================
-   03-ELEMENTS: Buttons
-   Estilos base para el elemento button
-   ============================================ */
+
 
 button {
   font-family: var(--font-primary);
@@ -16,7 +13,6 @@ button {
   line-height: inherit;
 }
 
-// Reset para botones dentro de formularios
 button[type="submit"],
 button[type="reset"],
 button[type="button"] {

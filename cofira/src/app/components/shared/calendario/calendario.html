@@ -5,10 +5,9 @@
   titulo="Seleccionar fecha">
 
   <section class="calendario">
-    <!-- Navegación de mes -->
     <nav class="calendario__navegacion">
       <button (click)="mesAnterior()" aria-label="Mes anterior" class="calendario__btn">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="calendario__btn-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
         </svg>
       </button>
@@ -18,26 +17,24 @@
       </h3>
 
       <button (click)="mesSiguiente()" aria-label="Mes siguiente" class="calendario__btn">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="calendario__btn-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/>
         </svg>
       </button>
     </nav>
 
-    <!-- Días de la semana -->
     <ul class="calendario__dias-semana">
       @for (dia of diasSemana; track dia) {
         <li class="calendario__dia-semana">{{ dia }}</li>
       }
     </ul>
 
-    <!-- Grid de días -->
     <ol class="calendario__grid">
       @for (dia of diasDelMes; track $index) {
         @if (dia === null) {
           <li class="calendario__dia calendario__dia--vacio"></li>
         } @else {
-          <li>
+          <li class="calendario__grid-item">
             <button
               (click)="seleccionarDia(dia)"
               [class.calendario__dia--seleccionado]="esDiaSeleccionado(dia)"

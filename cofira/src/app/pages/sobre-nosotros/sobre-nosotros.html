@@ -1,65 +1,65 @@
-<main class="about">
-  <!-- Hero Section -->
-  <section class="about__hero">
-    <span class="about__hero-overlay" aria-hidden="true"></span>
-    <hgroup class="about__hero-content">
-      <h1 class="about__hero-titulo">Transformamos vidas a través del fitness</h1>
-      <p class="about__hero-subtitulo">
+<main class="sobre-nosotros">
+  
+  <section class="sobre-nosotros__hero">
+    <span class="sobre-nosotros__hero-overlay" aria-hidden="true"></span>
+    <hgroup class="sobre-nosotros__hero-contenido">
+      <h1 class="sobre-nosotros__hero-titulo">Transformamos vidas a través del fitness</h1>
+      <p class="sobre-nosotros__hero-subtitulo">
         En Cofira creemos que cada persona merece las herramientas necesarias para alcanzar
         su mejor versión física y mental.
       </p>
     </hgroup>
   </section>
 
-  <!-- Historia Section -->
-  <section class="about__historia">
-    <article class="about__container">
-      <h2 class="about__seccion-titulo">Nuestra Historia</h2>
-      <section class="about__historia-contenido">
-        <article class="about__historia-texto">
-          <p>
+  
+  <section class="sobre-nosotros__historia">
+    <article class="sobre-nosotros__contenedor">
+      <h2 class="sobre-nosotros__seccion-titulo">Nuestra Historia</h2>
+      <section class="sobre-nosotros__historia-contenido">
+        <article class="sobre-nosotros__historia-texto">
+          <p class="sobre-nosotros__historia-parrafo">
             Cofira nació en 2023 de una idea simple: hacer el fitness accesible y personalizado
             para todos. Creado por Alejandro Bravo, estudiante de Desarrollo de Aplicaciones Web,
             este proyecto surgió como trabajo de fin de ciclo con la visión de ayudar a las personas
             a alcanzar sus objetivos de fitness.
           </p>
-          <p>
+          <p class="sobre-nosotros__historia-parrafo">
             Hoy, Cofira es una plataforma integral que combina planificación de entrenamientos,
             gestión nutricional y seguimiento de progreso en una sola aplicación. Nuestro
             equipo de desarrolladores, nutricionistas y entrenadores trabaja cada día para
             ofrecerte la mejor experiencia posible.
           </p>
-          <p>
+          <p class="sobre-nosotros__historia-parrafo">
             Nuestra misión es clara: democratizar el acceso a planes de fitness y nutrición
             de calidad profesional, adaptados a las necesidades únicas de cada usuario.
           </p>
         </article>
-        <figure class="about__historia-imagen">
-          <img alt="Gimnasio moderno con equipamiento de fitness" loading="lazy"
+        <figure class="sobre-nosotros__historia-imagen">
+          <img class="sobre-nosotros__historia-imagen-foto" alt="Gimnasio moderno con equipamiento de fitness" loading="lazy"
             src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop" />
         </figure>
       </section>
     </article>
   </section>
 
-  <!-- Valores Section -->
-  <section class="about__valores">
-    <article class="about__container">
-      <h2 class="about__seccion-titulo">Nuestros Valores</h2>
-      <ul class="about__valores-grid">
+  
+  <section class="sobre-nosotros__valores">
+    <article class="sobre-nosotros__contenedor">
+      <h2 class="sobre-nosotros__seccion-titulo">Nuestros Valores</h2>
+      <ul class="sobre-nosotros__valores-grid">
         @for (valor of valores; track valor.titulo) {
-        <li class="about__valor">
-          <figure class="about__valor-icono">
+        <li class="sobre-nosotros__valor">
+          <figure class="sobre-nosotros__valor-icono">
             @switch (valor.icono) {
             @case ('heart') {
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            <svg class="sobre-nosotros__valor-icono-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
             </svg>
             }
             @case ('users') {
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            <svg class="sobre-nosotros__valor-icono-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
               <circle cx="9" cy="7" r="4" />
@@ -68,7 +68,7 @@
             </svg>
             }
             @case ('target') {
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            <svg class="sobre-nosotros__valor-icono-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="10" />
               <circle cx="12" cy="12" r="6" />
@@ -76,7 +76,7 @@
             </svg>
             }
             @case ('shield') {
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            <svg class="sobre-nosotros__valor-icono-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
@@ -85,47 +85,48 @@
             }
             }
           </figure>
-          <h3 class="about__valor-titulo">{{ valor.titulo }}</h3>
-          <p class="about__valor-descripcion">{{ valor.descripcion }}</p>
+          <h3 class="sobre-nosotros__valor-titulo">{{ valor.titulo }}</h3>
+          <p class="sobre-nosotros__valor-descripcion">{{ valor.descripcion }}</p>
         </li>
         }
       </ul>
     </article>
   </section>
 
-  <!-- Estadísticas Section -->
-  <section class="about__estadisticas">
-    <article class="about__container">
-      <ul class="about__estadisticas-grid">
+  
+  <section class="sobre-nosotros__estadisticas">
+    <article class="sobre-nosotros__contenedor">
+      <ul class="sobre-nosotros__estadisticas-grid">
         @for (stat of estadisticas; track stat.etiqueta) {
-        <li class="about__estadistica">
-          <span class="about__estadistica-valor">{{ stat.valor }}</span>
-          <span class="about__estadistica-etiqueta">{{ stat.etiqueta }}</span>
+        <li class="sobre-nosotros__estadistica">
+          <span class="sobre-nosotros__estadistica-valor">{{ stat.valor }}</span>
+          <span class="sobre-nosotros__estadistica-etiqueta">{{ stat.etiqueta }}</span>
         </li>
         }
       </ul>
     </article>
   </section>
 
-  <!-- Equipo Section -->
-  <section class="about__equipo">
-    <article class="about__container">
-      <h2 class="about__seccion-titulo">El Creador</h2>
-      <p class="about__seccion-descripcion">
+  
+  <section class="sobre-nosotros__equipo">
+    <article class="sobre-nosotros__contenedor">
+      <h2 class="sobre-nosotros__seccion-titulo">El Creador</h2>
+      <p class="sobre-nosotros__seccion-descripcion">
         Desarrollador Full Stack apasionado por el fitness y la tecnología.
       </p>
-      <ul class="about__equipo-grid">
+      <ul class="sobre-nosotros__equipo-grid">
         @for (miembro of equipo; track miembro.nombre) {
-        <li class="about__miembro">
-          <figure class="about__miembro-foto">
+        <li class="sobre-nosotros__miembro">
+          <figure class="sobre-nosotros__miembro-foto">
             <picture>
-              <!-- Versiones WebP optimizadas con srcset -->
+              
               <source
                 type="image/webp"
                 [srcset]="miembro.fotoWebp.small + ' 200w, ' + miembro.fotoWebp.medium + ' 400w, ' + miembro.fotoWebp.large + ' 600w'"
                 sizes="(max-width: 640px) 200px, (max-width: 900px) 300px, 400px" />
-              <!-- Fallback JPG para navegadores sin soporte WebP -->
+              
               <img
+                class="sobre-nosotros__miembro-foto-img"
                 [alt]="miembro.nombre"
                 [src]="miembro.foto"
                 loading="lazy"
@@ -133,22 +134,22 @@
                 height="400" />
             </picture>
           </figure>
-          <h3 class="about__miembro-nombre">{{ miembro.nombre }}</h3>
-          <p class="about__miembro-cargo">{{ miembro.cargo }}</p>
+          <h3 class="sobre-nosotros__miembro-nombre">{{ miembro.nombre }}</h3>
+          <p class="sobre-nosotros__miembro-cargo">{{ miembro.cargo }}</p>
         </li>
         }
       </ul>
     </article>
   </section>
 
-  <!-- CTA Section -->
-  <section class="about__cta">
-    <article class="about__container">
-      <h2 class="about__cta-titulo">¿Listo para empezar tu transformación?</h2>
-      <p class="about__cta-texto">
+  
+  <section class="sobre-nosotros__cta">
+    <article class="sobre-nosotros__contenedor">
+      <h2 class="sobre-nosotros__cta-titulo">¿Listo para empezar tu transformación?</h2>
+      <p class="sobre-nosotros__cta-texto">
         Únete a miles de usuarios que ya están alcanzando sus objetivos con Cofira.
       </p>
-      <a class="about__cta-boton" href="/registro">Comenzar gratis</a>
+      <a class="sobre-nosotros__cta-boton" href="/registro">Comenzar gratis</a>
     </article>
   </section>
 </main>

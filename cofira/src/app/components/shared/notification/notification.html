@@ -1,37 +1,34 @@
-<article class="notification notification--{{ type }}" [class.notification--closing]="closing">
-          <!-- Icono según el tipo -->
+<article class="notification notification--{{ tipo }}" [class.notification--closing]="estaCerrando">
           <figure class="notification__icono">
-                    @if (type === 'success') {
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    @if (tipo === 'success') {
+                    <svg class="notification__icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z" fill="currentColor" />
                     </svg>
                     }
-                    @if (type === 'error') {
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    @if (tipo === 'error') {
+                    <svg class="notification__icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m1 15h-2v-2h2zm0-4h-2V7h2z"
                                         fill="currentColor" />
                     </svg>
                     }
-                    @if (type === 'warning') {
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    @if (tipo === 'warning') {
+                    <svg class="notification__icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path d="M1 21h22L12 2zm12-3h-2v-2h2zm0-4h-2v-4h2z" fill="currentColor" />
                     </svg>
                     }
-                    @if (type === 'info') {
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    @if (tipo === 'info') {
+                    <svg class="notification__icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m1 15h-2v-6h2zm0-8h-2V7h2z"
                                         fill="currentColor" />
                     </svg>
                     }
           </figure>
 
-          <!-- Mensaje -->
-          <p class="notification__mensaje">{{ message }}</p>
+          <p class="notification__mensaje">{{ mensaje }}</p>
 
-          <!-- Botón cerrar (opcional) -->
-          @if (closable) {
-          <button class="notification__cerrar" (click)="close()" aria-label="Cerrar notificación">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          @if (puedeCerrarse) {
+          <button class="notification__cerrar" (click)="cerrar()" aria-label="Cerrar notificación">
+                    <svg class="notification__cerrar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                               <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"
                                         fill="currentColor" />
                     </svg>

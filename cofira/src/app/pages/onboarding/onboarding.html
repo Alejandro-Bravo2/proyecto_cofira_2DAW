@@ -1,18 +1,5 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     ONBOARDING PAGE
-     ═══════════════════════════════════════════════════════════════════════════
-     Pagina principal del flujo de onboarding
-
-     NOMENCLATURA BEM:
-     Block: .onboarding
-     Elements: __header, __progress, __content, __navigation
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
 <main class="onboarding">
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       HEADER CON PROGRESO
-       ═══════════════════════════════════════════════════════════════════════ -->
   @if (showProgress()) {
     <header class="onboarding__header">
       <nav class="onboarding__nav">
@@ -22,7 +9,7 @@
             aria-label="Volver al paso anterior"
             class="onboarding__btn-back"
             type="button">
-            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg class="onboarding__btn-back-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M19 12H5M12 19l-7-7 7-7"/>
             </svg>
           </button>
@@ -31,16 +18,13 @@
 
       <section class="onboarding__progress">
         <app-progress-bar
-          [currentStep]="currentStep()"
-          [totalSteps]="totalSteps()">
+          [pasoActual]="currentStep()"
+          [totalPasos]="totalSteps()">
         </app-progress-bar>
       </section>
     </header>
   }
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       CONTENIDO DEL PASO ACTUAL
-       ═══════════════════════════════════════════════════════════════════════ -->
   <section class="onboarding__content">
     @switch (currentStep()) {
       @case (0) {

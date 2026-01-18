@@ -2,14 +2,11 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
-/**
- * API SERVICE
- * Servicio base para comunicacion con el backend
- */
+
 @Injectable({providedIn: 'root'})
 export class ApiService {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = 'http://localhost:8080/api';
+  private readonly baseUrl = 'http://localhost:3000/api';
 
   get<T>(endpoint: string, params?: Record<string, string>): Observable<T> {
     let httpParams = new HttpParams();

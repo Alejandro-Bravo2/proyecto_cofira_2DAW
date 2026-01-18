@@ -1,59 +1,29 @@
-/**
- * GIMNASIO PAGE STYLES
- * ═══════════════════════════════════════════════════════════════════════════
- *
- * Página de gestión de rutina de ejercicios semanal.
- *
- * ESTRUCTURA:
- * - Título principal
- * - Navegación de días (carrusel)
- * - Tabla de ejercicios
- * - Formulario de retroalimentación
- * - CTA de progreso
- *
- * NOMENCLATURA BEM:
- * Block: .gimnasio
- * Elements: __titulo, __dias, __tabla, __feedback, __progreso
- */
-
 @import '../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CONFIGURACIÓN LOCAL
-   Variables CSS específicas de esta página
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .gimnasio {
-  // Anchos
   --contenido-max-width: 970px;
-
-  // Colores semánticos
   --color-exito: #4caf50;
   --color-error: #f44336;
-
-  // Tamaños de elementos
   --btn-accion-size: 1.875rem;
   --btn-nav-size: 1.5rem;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BLOCK: Contenedor principal
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .gimnasio {
   @include flex-columna(var(--spacing-size-xxl));
   align-items: center;
   width: 100%;
-  box-sizing: border-box; // Incluir padding en el width para evitar overflow
+  box-sizing: border-box;
   position: relative;
-  z-index: 0; // Mantener por debajo del header
-  // Padding: top (header 4.5rem + espacio), horizontal, bottom
+  z-index: 0;
   padding: calc(4.5rem + var(--spacing-size-xxl)) var(--spacing-size-xl) var(--spacing-size-xxxl);
   background-color: var(--blanco-normal-hover);
 
   @include responsive-down('md') {
     gap: var(--spacing-size-l);
-    // Padding: top (header móvil 4rem + espacio), horizontal, bottom
     padding: calc(4rem + var(--spacing-size-l)) var(--spacing-size-m) var(--spacing-size-xl);
   }
 
@@ -63,9 +33,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Título
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .gimnasio__titulo {
   @include titulo-seccion(var(--negro-normal), var(--font-size-4xl), 0);
@@ -82,9 +50,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Navegación de días
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .gimnasio__dias {
   @include flex-center;
@@ -144,23 +110,16 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Tabla de ejercicios (Desktop)
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .gimnasio__tabla-section {
   width: 100%;
   max-width: var(--contenido-max-width);
   margin: 0 auto;
+}
 
-  // Ocultar tabla en móvil, mostrar acordeón
-  &--desktop {
-    display: block;
-
-    @include responsive-down('xs') {
-      display: none;
-    }
-  }
+.gimnasio__tabla-section--escritorio {
+  display: block;
 }
 
 .gimnasio__tabla {
@@ -169,51 +128,63 @@
   border-spacing: 0;
   overflow: hidden;
   width: 100%;
+}
 
-  // Celdas base
-  th,
-  td {
-    font-family: var(--font-primary);
-    font-size: 0.9375rem;
-    font-weight: var(--font-weight-regular);
-    color: var(--negro-normal);
-    padding: var(--spacing-size-s) var(--spacing-size-m);
-    text-align: center;
-    white-space: nowrap;
 
-    @include responsive-down('md') {
-      padding: var(--spacing-size-xs);
-      font-size: 0.8125rem;
-    }
+.gimnasio__tabla-celda {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+  text-align: center;
+  white-space: nowrap;
+}
 
-    // Modo oscuro
-    :host-context(body.modo-oscuro) & {
-      color: var(--blanco-normal);
-    }
-  }
+.gimnasio__tabla-celda:first-child {
+  text-align: left;
+  min-width: 100px;
+}
 
-  // Primera columna (Ejercicio) con ancho flexible
-  th:first-child,
-  td:first-child {
-    text-align: left;
-    min-width: 100px;
-  }
 
-  th {
-    border-bottom: 0.0625rem solid var(--blanco-dark);
-  }
+.gimnasio__tabla-cabecera {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+  text-align: center;
+  border-bottom: 0.0625rem solid var(--blanco-dark);
+}
 
-  tbody tr {
-    border-bottom: 0.0625rem solid var(--blanco-dark);
+.gimnasio__tabla-cabecera:first-child {
+  text-align: left;
+}
 
-    &:last-child {
-      border-bottom: none;
-    }
-  }
 
-  td {
-    vertical-align: middle;
-  }
+.gimnasio__tabla-fila {
+  border-bottom: 0.0625rem solid var(--blanco-dark);
+  transition: background-color var(--duration-fast) ease;
+}
+
+.gimnasio__tabla-fila:last-child {
+  border-bottom: none;
+}
+
+
+
+.gimnasio__tabla-dato {
+  font-family: var(--font-primary);
+  font-size: 0.9375rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.gimnasio__tabla-dato:first-child {
+  text-align: left;
 }
 
 .gimnasio__ejercicio {
@@ -226,15 +197,15 @@
 .gimnasio__ejercicio-toggle {
   @include boton-icono(1rem);
   flex-shrink: 0;
+}
 
-  svg {
-    transform: rotate(270deg);
-    @include transicion-suave(transform);
+.gimnasio__ejercicio-toggle-svg {
+  transform: rotate(270deg);
+  transition: transform var(--duration-base) ease;
+}
 
-    &.rotated {
-      transform: rotate(90deg);
-    }
-  }
+.gimnasio__ejercicio-toggle-svg--rotado {
+  transform: rotate(90deg);
 }
 
 .gimnasio__acciones {
@@ -243,38 +214,77 @@
 }
 
 .gimnasio__btn-accion {
-  @include boton-circular(var(--btn-accion-size));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--btn-accion-size);
+  height: var(--btn-accion-size);
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--duration-fast) ease, opacity var(--duration-fast) ease;
   opacity: 0.5;
+}
 
-  &.activo {
-    opacity: 1;
+.gimnasio__btn-accion:hover {
+  transform: scale(1.1);
+}
+
+.gimnasio__btn-accion--activo {
+  opacity: 1;
+}
+
+.gimnasio__btn-accion--ok {
+  background-color: var(--color-exito);
+  color: white;
+}
+
+.gimnasio__btn-accion--no {
+  background-color: var(--color-error);
+  color: white;
+}
+
+.gimnasio__btn-accion-svg {
+  width: 50%;
+  height: 50%;
+}
+
+
+
+.gimnasio__acordeon {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-s);
+  width: 100%;
+  max-width: var(--contenido-max-width);
+}
+
+.gimnasio__acordeon--movil {
+  display: none;
+}
+
+
+
+@media (max-width: 56.25rem) {
+  .gimnasio__tabla-cabecera {
+    padding: var(--spacing-size-xs) var(--spacing-size-s);
+    font-size: 0.875rem;
   }
 
-  &--ok {
-    background-color: var(--color-exito);
-  }
-
-  &--no {
-    background-color: var(--color-error);
+  .gimnasio__tabla-dato {
+    padding: var(--spacing-size-xs) var(--spacing-size-s);
+    font-size: 0.875rem;
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Acordeón de ejercicios (Móvil)
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.gimnasio__acordeon {
-  @include flex-columna(var(--spacing-size-s));
-  width: 100%;
-  max-width: var(--contenido-max-width);
-
-  // Ocultar acordeón en desktop, mostrar solo en móvil
-  &--mobile {
+@media (max-width: 40rem) {
+  .gimnasio__tabla-section--escritorio {
     display: none;
+  }
 
-    @include responsive-down('xs') {
-      display: flex;
-    }
+  .gimnasio__acordeon--movil {
+    display: flex;
   }
 }
 
@@ -283,35 +293,25 @@
   border-radius: var(--radius-s);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
-  @include transicion-suave(box-shadow);
+  transition: box-shadow var(--duration-base) ease;
+}
 
-  &:hover {
-    box-shadow: var(--shadow-md);
-  }
-
-  // Modo oscuro
-  :host-context(body.modo-oscuro) & {
-    background-color: var(--oscuro-superficie-fondo);
-  }
+.gimnasio__acordeon-item:hover {
+  box-shadow: var(--shadow-md);
 }
 
 .gimnasio__acordeon-header {
-  @include flex-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: var(--spacing-size-m) var(--spacing-size-s);
   cursor: pointer;
   user-select: none;
-  @include transicion-suave(background-color);
+  transition: background-color var(--duration-base) ease;
+}
 
-  &:hover {
-    background-color: var(--blanco-normal-hover);
-  }
-
-  // Modo oscuro
-  :host-context(body.modo-oscuro) & {
-    &:hover {
-      background-color: var(--oscuro-hover-fondo);
-    }
-  }
+.gimnasio__acordeon-header:hover {
+  background-color: var(--blanco-normal-hover);
 }
 
 .gimnasio__acordeon-info {
@@ -320,23 +320,29 @@
 }
 
 .gimnasio__acordeon-toggle {
-  @include boton-icono(1.25rem);
-  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
   color: var(--negro-normal);
+  flex-shrink: 0;
+  transition: color var(--duration-fast) ease;
+}
 
-  svg {
-    transform: rotate(0deg);
-    @include transicion-suave(transform);
+.gimnasio__acordeon-toggle-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(0deg);
+  transition: transform var(--duration-base) ease;
+}
 
-    &.rotated {
-      transform: rotate(90deg);
-    }
-  }
-
-  // Modo oscuro
-  :host-context(body.modo-oscuro) & {
-    color: var(--blanco-normal);
-  }
+.gimnasio__acordeon-toggle-svg--rotado {
+  transform: rotate(90deg);
 }
 
 .gimnasio__acordeon-nombre {
@@ -344,11 +350,6 @@
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   color: var(--negro-normal);
-
-  // Modo oscuro
-  :host-context(body.modo-oscuro) & {
-    color: var(--blanco-normal);
-  }
 }
 
 .gimnasio__acordeon-acciones {
@@ -357,32 +358,31 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
 
-  li {
-    display: contents;
-  }
+.gimnasio__acordeon-acciones-item {
+  display: contents;
+}
 
-  .gimnasio__btn-accion {
-    width: 1.75rem;
-    height: 1.75rem;
+.gimnasio__btn-accion--acordeon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
 
-    svg {
-      width: 1rem;
-      height: 1rem;
-    }
-  }
+.gimnasio__btn-accion-svg {
+  width: 1rem;
+  height: 1rem;
 }
 
 .gimnasio__acordeon-contenido {
   max-height: 0;
   overflow: hidden;
   transition: max-height var(--duration-base) ease, padding var(--duration-base) ease;
+}
 
-  // Estado expandido
-  .gimnasio__acordeon-item--expandido & {
-    max-height: 200px;
-    padding: 0 var(--spacing-size-s) var(--spacing-size-m);
-  }
+.gimnasio__acordeon-contenido--expandido {
+  max-height: 200px;
+  padding: 0 var(--spacing-size-s) var(--spacing-size-m);
 }
 
 .gimnasio__acordeon-detalles {
@@ -393,11 +393,6 @@
   border-top: 1px solid var(--blanco-dark);
   margin: 0;
   text-align: center;
-
-  // Modo oscuro
-  :host-context(body.modo-oscuro) & {
-    border-color: var(--oscuro-borde-color);
-  }
 }
 
 .gimnasio__acordeon-label {
@@ -408,11 +403,6 @@
   opacity: 0.6;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-
-  // Modo oscuro
-  :host-context(body.modo-oscuro) & {
-    color: var(--oscuro-texto-secundario);
-  }
 }
 
 .gimnasio__acordeon-valor {
@@ -420,16 +410,9 @@
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
   color: var(--negro-normal);
-
-  // Modo oscuro
-  :host-context(body.modo-oscuro) & {
-    color: var(--blanco-normal);
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Retroalimentación
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .gimnasio__feedback {
   @include caja-contenido;
@@ -496,7 +479,7 @@
 
 .gimnasio__feedback-textarea {
   @include input-base;
-  width: 100%; // Cambiado de 90% a 100% para móviles
+  width: 100%;
   min-height: 8.9375rem;
   border: 0.0625rem solid var(--blanco-dark);
   resize: vertical;
@@ -538,9 +521,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Sección progreso - Split Diagonal
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .gimnasio__progreso {
   position: relative;
@@ -569,24 +550,18 @@
   }
 }
 
-// Panel izquierdo con contenido y diagonal
 .gimnasio__progreso-panel {
   @include flex-columna(var(--spacing-size-l));
   position: relative;
   z-index: 2;
-  width: 45%; // Reducido para dar más espacio a la imagen
+  width: 45%;
   padding: var(--spacing-size-xxl);
   background-color: var(--gris-normal);
-
-  // Diagonal cortando hacia la derecha
   clip-path: polygon(
     0 0,
-    // Esquina superior izquierda
     100% 0,
-    // Esquina superior derecha
     85% 100%,
-    // Punto inferior derecho (desplazado para crear diagonal)
-    0 100% // Esquina inferior izquierda
+    0 100%
   );
 
   @include responsive-down('md') {
@@ -644,46 +619,47 @@
   }
 }
 
-// Panel derecho con imagen (detrás del panel diagonal)
 .gimnasio__progreso-imagen {
   position: absolute;
   right: 0;
   top: 0;
-  width: 70%; // Ampliado para mostrar más de la imagen
+  width: 70%;
   height: 100%;
   margin: 0;
-
-  picture {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center; // Centrado horizontal y vertical
-    display: block;
-  }
 
   @include responsive-down('md') {
     position: relative;
     width: 100%;
     height: 15rem;
-    margin-top: -2rem; // Superponer ligeramente con la diagonal
-
-    img {
-      object-position: center calc(50% + 3rem); // Mover imagen hacia abajo
-    }
+    margin-top: -2rem;
   }
 
   @include responsive-down('xs') {
     height: 10rem;
     margin-top: -1.5rem;
+  }
+}
 
-    img {
-      object-position: center calc(50% + 2rem);
-    }
+
+.gimnasio__progreso-imagen-contenedor {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+
+.gimnasio__progreso-imagen-foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+
+  @include responsive-down('md') {
+    object-position: center calc(50% + 3rem);
+  }
+
+  @include responsive-down('xs') {
+    object-position: center calc(50% + 2rem);
   }
 }

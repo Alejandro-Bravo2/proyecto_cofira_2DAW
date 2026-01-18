@@ -1,16 +1,3 @@
-/**
- * MODAL CALENDARIO COMPONENT STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos del modal de selección de calendario
- *
- * ESTRUCTURA BEM:
- * Block: .calendario
- * Elements: __navegacion, __btn, __mes-anio, __dias-semana, __dia-semana,
- *          __grid, __dia
- * Modifiers: --vacio, --seleccionado
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
 
@@ -20,9 +7,7 @@
   gap: var(--spacing-size-l);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   NAVEGACIÓN
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .calendario__navegacion {
   display: flex;
@@ -49,11 +34,11 @@
     background-color: var(--blanco-normal-hover);
     color: var(--negro-normal);
   }
+}
 
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
+.calendario__btn-svg {
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .calendario__mes-anio {
@@ -66,9 +51,7 @@
   flex: 1;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   DÍAS DE LA SEMANA
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .calendario__dias-semana {
   display: grid;
@@ -88,9 +71,7 @@
   padding: var(--spacing-size-xxs);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   GRID DE DÍAS
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .calendario__grid {
   display: grid;
@@ -99,10 +80,10 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
 
-  li {
-    display: contents;
-  }
+.calendario__grid-item {
+  display: contents;
 }
 
 .calendario__dia {

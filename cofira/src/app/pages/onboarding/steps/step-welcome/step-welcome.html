@@ -1,18 +1,5 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     STEP WELCOME - Landing Page
-     ═══════════════════════════════════════════════════════════════════════════
-     Pagina de bienvenida con layout 60/40 inspirado en Fitia
-
-     NOMENCLATURA BEM:
-     Block: .welcome
-     Elements: __hero, __image, __content, __header, __titulo, __subtitulo, __features
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
 <section class="welcome">
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       HERO IMAGE (60%)
-       ═══════════════════════════════════════════════════════════════════════ -->
   <figure class="welcome__hero">
     <img
       alt="Plato saludable con verduras frescas y coloridas"
@@ -21,9 +8,6 @@
       src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&h=1600&fit=crop">
   </figure>
 
-  <!-- ═══════════════════════════════════════════════════════════════════════
-       CONTENIDO (40%)
-       ═══════════════════════════════════════════════════════════════════════ -->
   <article class="welcome__content">
 
     <header class="welcome__header">
@@ -37,7 +21,7 @@
     <ul class="welcome__features">
       <li class="welcome__feature">
         <figure class="welcome__feature-icono">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg class="welcome__feature-icono-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
             <path d="m9 12 2 2 4-4"/>
           </svg>
@@ -46,7 +30,7 @@
       </li>
       <li class="welcome__feature">
         <figure class="welcome__feature-icono">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg class="welcome__feature-icono-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
             <path d="m9 12 2 2 4-4"/>
           </svg>
@@ -55,7 +39,7 @@
       </li>
       <li class="welcome__feature">
         <figure class="welcome__feature-icono">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg class="welcome__feature-icono-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
             <path d="m9 12 2 2 4-4"/>
           </svg>
@@ -67,14 +51,14 @@
     <footer class="welcome__footer">
       <app-button
         (click)="onContinue()"
-        [fullWidth]="true"
-        tamanio="lg"
-        variante="primary">
+        [anchoCompleto]="true"
+        tamanio="grande"
+        variante="primario">
         Comenzar ahora
       </app-button>
 
       <p class="welcome__tiempo">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg class="welcome__tiempo-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10"/>
           <path d="M12 6v6l4 2"/>
         </svg>

@@ -1,14 +1,3 @@
-/**
- * STEP ACTIVITY LEVEL STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos del paso de nivel de actividad
- *
- * NOMENCLATURA BEM:
- * Block: .step-activity-level
- * Elements: __header, __titulo, __subtitulo, __opciones, __footer
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../../../styles/00-settings/css-variables';
 @import '../../../../../styles/01-tools/mixins';
 
@@ -22,9 +11,7 @@
   padding: var(--spacing-size-xl);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HEADER
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-activity-level__header {
   text-align: center;
@@ -50,9 +37,7 @@
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   OPCIONES
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-activity-level__opciones {
   display: flex;
@@ -62,15 +47,13 @@
   margin: 0;
   padding: 0;
   list-style: none;
-
-  li {
-    width: 100%;
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════════════════════════════════════ */
+.step-activity-level__opcion-item {
+  width: 100%;
+}
+
+
 
 .step-activity-level__footer {
   display: flex;

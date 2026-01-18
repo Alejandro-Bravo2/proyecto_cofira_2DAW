@@ -1,26 +1,15 @@
-/* ============================================
-   STYLES.SCSS - Archivo principal de estilos
-   Arquitectura ITCSS (Inverted Triangle CSS)
-   ============================================ */
 
-/* --------------------------------------------
-   00-SETTINGS: Variables y configuracion
-   -------------------------------------------- */
+
+
 @import 'styles/00-settings/variables';
 
-/* --------------------------------------------
-   01-TOOLS: Mixins y funciones
-   -------------------------------------------- */
+
 @import 'styles/01-tools/mixins';
 
-/* --------------------------------------------
-   02-GENERIC: Reset y normalize
-   -------------------------------------------- */
+
 @import 'styles/02-generic/reset';
 
-/* --------------------------------------------
-   03-ELEMENTS: Estilos base de elementos HTML
-   -------------------------------------------- */
+
 @import 'styles/03-elements/elements';
 @import 'styles/03-elements/typography';
 @import 'styles/03-elements/links';
@@ -28,15 +17,11 @@
 @import 'styles/03-elements/forms';
 @import 'styles/03-elements/lists';
 
-/* --------------------------------------------
-   04-LAYOUT: Grid y estructura
-   -------------------------------------------- */
+
 @import 'styles/04-layout/grid';
 @import 'styles/04-layout/layout';
 
-/* --------------------------------------------
-   05-COMPONENTS: Componentes reutilizables
-   -------------------------------------------- */
+
 @import 'styles/05-components/inputs';
 @import 'styles/05-components/boton';
 @import 'styles/05-components/tarjeta';
@@ -44,12 +29,8 @@
 @import 'styles/05-components/navegacion';
 @import 'styles/05-components/alerta';
 
-/* --------------------------------------------
-   06-UTILITIES: Clases utilitarias
-   -------------------------------------------- */
+
 @import 'styles/06-utilities/utilities';
 
-/* --------------------------------------------
-   07-DARK-MODE: Estilos para modo oscuro
-   -------------------------------------------- */
+
 @import 'styles/07-dark-mode/dark-mode';

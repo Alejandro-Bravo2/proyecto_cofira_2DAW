@@ -7,18 +7,18 @@ import {Component, computed, input} from '@angular/core';
   styleUrl: './progress-bar.scss'
 })
 export class ProgressBar {
-  readonly currentStep = input<number>(0);
-  readonly totalSteps = input<number>(1);
-  readonly showLabel = input<boolean>(true);
+  readonly pasoActual = input<number>(0);
+  readonly totalPasos = input<number>(1);
+  readonly mostrarEtiqueta = input<boolean>(true);
 
-  readonly progress = computed(() => {
-    const total = this.totalSteps();
-    const current = this.currentStep();
+  readonly progreso = computed(() => {
+    const total = this.totalPasos();
+    const actual = this.pasoActual();
     if (total <= 0) return 0;
-    return Math.round((current / total) * 100);
+    return Math.round((actual / total) * 100);
   });
 
-  readonly stepText = computed(() => {
-    return `Paso ${this.currentStep() + 1} de ${this.totalSteps()}`;
+  readonly textoDelPaso = computed(() => {
+    return `Paso ${this.pasoActual() + 1} de ${this.totalPasos()}`;
   });
 }

@@ -9,9 +9,9 @@ import {RouterLink} from '@angular/router';
   styleUrl: './button.scss',
 })
 export class Button {
-  @Input() variante: 'primary' | 'secondary' | 'ghost' | 'danger' = 'primary';
+  @Input() variante: 'primario' | 'secundario' | 'fantasma' | 'peligro' = 'primario';
 
-  @Input() tamanio: 'sm' | 'md' | 'lg' = 'md';
+  @Input() tamanio: 'pequeno' | 'mediano' | 'grande' = 'mediano';
 
   @Input() habilitado: boolean = false;
 
@@ -21,14 +21,14 @@ export class Button {
 
   @Input() href: string | null = null;
 
-  @Input() fullWidth: boolean = false;
+  @Input() anchoCompleto: boolean = false;
 
   @Output() clicked = new EventEmitter<void>();
 
   obtenerClasesBoton(): string {
-    let clases = `button button--${this.variante} button--${this.tamanio}`;
-    if (this.fullWidth) {
-      clases += ' button--full-width';
+    let clases = `boton boton--${this.variante} boton--${this.tamanio}`;
+    if (this.anchoCompleto) {
+      clases += ' boton--completo';
     }
     return clases;
   }

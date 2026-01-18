@@ -1,35 +1,6 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   NAVEGACION COMPONENT (Global)
-   Componentes de navegación reutilizables
-   ═══════════════════════════════════════════════════════════════════════════
-
-   ESTRUCTURA BEM
-   ─────────────────────────────────────────────────────────────────────────────
-   Block:     .navegacion, .navegacion-movil, .pie
-   Elements:  .navegacion__logo, .navegacion__contenido, .navegacion__lista,
-              .navegacion__item, .navegacion__enlace, .navegacion__acciones,
-              .navegacion__buscador, .navegacion__buscador-input,
-              .navegacion__buscador-icono, .navegacion__hamburguesa
-   Modifiers: .navegacion__enlace--activo, .navegacion-movil--abierto
-
-   USO
-   ─────────────────────────────────────────────────────────────────────────────
-   <nav class="navegacion">
-     <a class="navegacion__logo" href="/">Logo</a>
-     <ul class="navegacion__lista">
-       <li class="navegacion__item">
-         <a class="navegacion__enlace navegacion__enlace--activo">Inicio</a>
-       </li>
-     </ul>
-   </nav>
-
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 @import '../01-tools/mixins';
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Navigation bar
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .navegacion {
   display: flex;
@@ -39,9 +10,7 @@
   background-color: var(--gris-normal);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Navigation components
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .navegacion__logo {
   @include tipografia-titulo;
@@ -74,7 +43,6 @@
 }
 
 .navegacion__item {
-  /* Para estilos específicos de items si es necesario */
 }
 
 .navegacion__enlace {
@@ -107,19 +75,21 @@
   gap: var(--spacing-size-s);
 }
 
+
+
 .navegacion__buscador {
   position: relative;
 }
 
 .navegacion__buscador-input {
   @include input-base;
-  width: 18.75rem;  // Base: desktop
+  width: 18.75rem;
   padding-left: var(--spacing-size-l);
   border-radius: var(--radius-l);
   border: none;
 
   @include responsive-down('md') {
-    width: 12.5rem;  // Tablet/móvil: más pequeño
+    width: 12.5rem;
   }
 }
 
@@ -133,12 +103,10 @@
   color: var(--gris-normal);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Hamburger menu button
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .navegacion__hamburguesa {
-  display: none;  // Base: desktop (oculto)
+  display: none;
   flex-direction: column;
   gap: 0.25rem;
   padding: var(--spacing-size-xss);
@@ -147,7 +115,7 @@
   cursor: pointer;
 
   @include responsive-down('md') {
-    display: flex;  // Tablet/móvil: visible
+    display: flex;
   }
 }
 
@@ -164,9 +132,7 @@
   transition: all var(--duration-base);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   NAVEGACION-MOVIL COMPONENT (Mobile menu)
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .navegacion-movil {
   position: fixed;
@@ -248,9 +214,7 @@
   outline-offset: -0.125rem;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   PIE COMPONENT (Footer)
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .pie {
   display: flex;
@@ -304,6 +268,8 @@
   color: var(--blanco-dark);
 }
 
+
+
 .pie__redes {
   display: flex;
   gap: var(--spacing-size-s);
@@ -332,7 +298,7 @@
   outline-offset: 0.125rem;
 }
 
-.pie__red-social svg {
+.pie__red-social-svg {
   width: 1.25rem;
   height: 1.25rem;
 }

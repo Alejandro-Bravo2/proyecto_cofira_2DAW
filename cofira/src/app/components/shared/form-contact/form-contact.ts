@@ -3,15 +3,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Button } from '../button/button';
 import { NotificacionService } from '../../../services/notificacion.service';
 
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * COMPONENTE: FormContact
- * ═══════════════════════════════════════════════════════════════════════════
- *
- * Formulario de contacto reutilizable con validaciones.
- *
- * ═══════════════════════════════════════════════════════════════════════════
- */
 @Component({
   selector: 'app-contact-form',
   standalone: true,
@@ -20,42 +11,26 @@ import { NotificacionService } from '../../../services/notificacion.service';
   styleUrls: ['./form-contact.scss']
 })
 export class FormContact implements OnInit {
-  // ─────────────────────────────────────────────────────────────────────────
-  // INYECCIÓN DE DEPENDENCIAS
-  // ─────────────────────────────────────────────────────────────────────────
-
   private fb = inject(FormBuilder);
   private notificacion = inject(NotificacionService);
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // PROPIEDADES
-  // ─────────────────────────────────────────────────────────────────────────
-
-  contactForm!: FormGroup;
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // CICLO DE VIDA
-  // ─────────────────────────────────────────────────────────────────────────
+  formularioContacto!: FormGroup;
 
   ngOnInit(): void {
-    this.contactForm = this.fb.group({
+    this.formularioContacto = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(2)]],
       apellido: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]]
     });
   }
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // MÉTODOS
-  // ─────────────────────────────────────────────────────────────────────────
-
-  onSubmit(): void {
-    if (this.contactForm.valid) {
-      console.log('Formulario enviado:', this.contactForm.value);
+  alEnviar(): void {
+    if (this.formularioContacto.valid) {
+      console.log('Formulario enviado:', this.formularioContacto.value);
       this.notificacion.exito('¡Formulario enviado correctamente!');
-      this.contactForm.reset();
+      this.formularioContacto.reset();
     } else {
-      this.contactForm.markAllAsTouched();
+      this.formularioContacto.markAllAsTouched();
       this.notificacion.advertencia('Por favor, completa todos los campos correctamente');
     }
   }

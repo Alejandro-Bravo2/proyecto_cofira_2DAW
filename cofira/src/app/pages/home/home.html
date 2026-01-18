@@ -5,31 +5,31 @@
   <h2 class="home__seccion-intro__subtitulo">Inscríbete hoy y empieza tu cambio</h2>
 
   <article class="boton__primary">
-    <app-button class="boton__primary--inscripcion home__seccion-intro__boton" enlace="/onboarding" tamanio="lg" variante="primary">
+    <app-button class="boton__primary--inscripcion home__seccion-intro__boton" enlace="/onboarding" tamanio="grande" variante="primario">
       Inscríbete
     </app-button>
 
-    <app-button class="boton__primary--planes home__seccion-intro__boton" tamanio="lg" variante="secondary">
+    <app-button (click)="navegarAPlanes()" class="boton__primary--planes home__seccion-intro__boton" tamanio="grande" variante="secundario">
       Ver planes
     </app-button>
   </article>
 
 </section>
 
-<section class="planes__section">
+<section class="planes__section" id="seccion-planes">
   <h2 class="planes__titulo">PLANES</h2>
 
   <section class="planes__contenido">
-    <!-- Texto a la izquierda -->
+    
     <article class="planes__info planes__info--responsive">
       <h3 class="planes__subtitulo">
         Elige tu cuota <span class="planes__destacado">individual</span>
       </h3>
-      <p class="planes__info__texto">Profesionales 24/7 listos para atenderte y resolverte las dudas.</p>
-      <p class="planes__info__texto">Si quieres lograrlo porque no intentarlo.</p>
+      <p class="planes__info-texto">Profesionales 24/7 listos para atenderte y resolverte las dudas.</p>
+      <p class="planes__info-texto">Si quieres lograrlo porque no intentarlo.</p>
     </article>
 
-    <!-- Cards a la derecha -->
+    
     <section class="home__card--container">
       <article class="home__card-wrapper">
         <app-card [ventajas]="[

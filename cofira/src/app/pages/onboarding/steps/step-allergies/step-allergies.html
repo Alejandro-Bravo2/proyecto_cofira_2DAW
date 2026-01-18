@@ -1,13 +1,3 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     STEP ALLERGIES - Alergias alimentarias
-     ═══════════════════════════════════════════════════════════════════════════
-     Paso para seleccionar alergias alimentarias
-
-     NOMENCLATURA BEM:
-     Block: .step-allergies
-     Elements: __header, __titulo, __subtitulo, __grid, __footer, __actions
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
 <article class="step-allergies">
 
   <header class="step-allergies__header">
@@ -31,16 +21,16 @@
     <nav class="step-allergies__actions">
       <app-button
         (clicked)="onSkip()"
-        tamanio="lg"
-        variante="secondary">
+        tamanio="grande"
+        variante="secundario">
         No tengo alergias
       </app-button>
 
       @if (selectedAllergies().length > 0) {
         <app-button
           (clicked)="onContinue()"
-          tamanio="lg"
-          variante="primary">
+          tamanio="grande"
+          variante="primario">
           Continuar ({{ selectedAllergies().length }} seleccionadas)
         </app-button>
       }

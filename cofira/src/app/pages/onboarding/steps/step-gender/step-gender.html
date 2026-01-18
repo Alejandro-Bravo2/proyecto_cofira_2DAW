@@ -1,13 +1,3 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     STEP GENDER - Seleccion de genero
-     ═══════════════════════════════════════════════════════════════════════════
-     Paso para seleccionar el genero del usuario
-
-     NOMENCLATURA BEM:
-     Block: .step-gender
-     Elements: __header, __titulo, __subtitulo, __opciones, __footer
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
 <article class="step-gender">
 
   <header class="step-gender__header">
@@ -19,7 +9,7 @@
 
   <ul class="step-gender__opciones">
     @for (gender of genders; track gender.value) {
-      <li>
+      <li class="step-gender__opcion-item">
         <app-option-card
           (seleccionar)="selectGender($event)"
           [icono]="gender.icon || ''"
@@ -35,8 +25,8 @@
     <app-button
       (click)="onContinue()"
       [habilitado]="!canContinue()"
-      tamanio="lg"
-      variante="primary">
+      tamanio="grande"
+      variante="primario">
       Continuar
     </app-button>
   </footer>

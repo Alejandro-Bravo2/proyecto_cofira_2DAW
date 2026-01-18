@@ -1,0 +1,122 @@
+
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.npm
+.yarn
+
+
+dist/
+.angular/
+.angular/cache/
+cofira/dist/
+cofira/.angular/
+
+# -------------------------------------
+# ANGULAR - ARCHIVOS DE CONFIGURACION
+# -------------------------------------
+.env
+
+# -------------------------------------
+# GRADLE (BACKEND)
+# -------------------------------------
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+# -------------------------------------
+# JAVA/SPRING BOOT
+# -------------------------------------
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+*.class
+*.log
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+hs_err_pid*
+
+# -------------------------------------
+# ARCHIVOS DE IDE
+# -------------------------------------
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.idea_modules/
+
+# Eclipse
+.project
+.classpath
+.settings/
+.metadata
+
+# NetBeans
+nb-configuration.xml
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+.history/
+
+# -------------------------------------
+# SPRING BOOT
+# -------------------------------------
+application-local.properties
+application-dev.properties
+target/
+
+# -------------------------------------
+# LOGS Y TEMPORALES
+# -------------------------------------
+logs/
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# -------------------------------------
+# ARCHIVOS DE TESTING
+# -------------------------------------
+coverage/
+.nyc_output/
+*.lcov
+
+# -------------------------------------
+# ARCHIVOS DE DOCKER 
+# -------------------------------------
+.dockerignore
+
+# -------------------------------------
+# ARCHIVOS DE BASE DE DATOS
+# -------------------------------------
+*.db
+*.sqlite
+*.sqlite3

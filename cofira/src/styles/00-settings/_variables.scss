@@ -1,23 +1,6 @@
-// ========================================
-// CSS CUSTOM PROPERTIES
-// ========================================
-// Este archivo contiene todas las CSS Custom Properties
-// definidas directamente en :root (sin interpolación SCSS)
-// ========================================
-
-// Importar solo los breakpoints (necesarios para mixins)
 @import 'css-variables';
 
-
-// ========================================
-// TEMA CLARO (por defecto)
-// ========================================
-
 :root {
-
-  /* ============================================
-     COLORES - NEGRO
-     ============================================ */
   --negro-normal: #110e10;
   --negro-normal-hover: #0f0d0e;
   --negro-normal-active: #0e0b0d;
@@ -25,10 +8,6 @@
   --negro-dark-hover: #0a080a;
   --negro-dark-active: #080607;
 
-
-  /* ============================================
-     COLORES - AMARILLO
-     ============================================ */
   --amarillo-normal: #ffd300;
   --amarillo-normal-hover: #e6be00;
   --amarillo-normal-active: #cca900;
@@ -37,10 +16,6 @@
   --amarillo-dark-active: #735f00;
   --amarillo-darker: #594A00;
 
-
-  /* ============================================
-     COLORES - BLANCO
-     ============================================ */
   --blanco-normal: #f5f5f5;
   --blanco-normal-hover: #dddddd;
   --blanco-normal-active: #c4c4c4;
@@ -49,9 +24,7 @@
   --blanco-dark-active: #6e6e6e;
 
 
-  /* ============================================
-     COLORES - GRIS
-     ============================================ */
+  
   --gris-normal: #3f454c;
   --gris-normal-hover: #393e44;
   --gris-normal-active: #32373d;
@@ -61,9 +34,7 @@
   --gris-light: #b8b8b8;
 
 
-  /* ============================================
-     COLORES - VERDE
-     ============================================ */
+  
   --verde-normal: #22c55e;
   --verde-normal-hover: #16a34a;
   --verde-normal-active: #15803d;
@@ -71,9 +42,7 @@
   --verde-light: #86efac;
 
 
-  /* ============================================
-     COLORES - ROJO
-     ============================================ */
+  
   --rojo-normal: #ef4444;
   --rojo-normal-hover: #dc2626;
   --rojo-normal-active: #b91c1c;
@@ -81,23 +50,16 @@
   --rojo-light: #fca5a5;
 
 
-  /* ============================================
-     TEXTOS
-     ============================================ */
+  
   --text-light: #110e10;
   --text-dark: #f5f5f5;
 
 
-  /* ============================================
-     BACKGROUNDS
-     ============================================ */
+  
   --background-light-gray: #3F454C;
 
 
-  /* ============================================
-     BOTONES (legacy - preferir variables de colores base)
-     Ejemplo: usar var(--amarillo-normal) en lugar de var(--button-yellow)
-     ============================================ */
+  
   --button-red: #FF3434;
   --button-red-hover: #910505;
   --button-gray: #3f454c;
@@ -107,56 +69,46 @@
   --button-darker: #32373D;
   --button-darker-hover: #26292E;
 
-  /* ============================================
-     TIPOGRAFIA - Tamaños
-     ============================================ */
-  --font-size-xs: 0.64rem; /* 10.24px - Extra pequeño (etiquetas, badges) */
-  --font-size-sm: 0.8rem; /* 12.8px - Pequeño (texto secundario, footnotes) */
-  --font-size-md: 1rem; /* 16px - Tamaño base/estándar (cuerpo de texto) */
-  --font-size-lg: 1.25rem; /* 20px - Grande (subtítulos, destacados) */
-  --font-size-xl: 1.563rem; /* 25px - Extra grande (títulos de sección) */
-  --font-size-2xl: 1.953rem; /* 31.25px - 2XL (títulos principales) */
-  --font-size-3xl: 2.441rem; /* 39px - 3XL (encabezados de página) */
-  --font-size-4xl: 3.052rem; /* 48.83px - 4XL (hero headings) */
-  --font-size-5xl: 3.815rem; /* 61.04px - 5XL (displays, landing pages) */
+  
+  --font-size-xs: 0.64rem;
+  --font-size-sm: 0.8rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.563rem;
+  --font-size-2xl: 1.953rem;
+  --font-size-3xl: 2.441rem;
+  --font-size-4xl: 3.052rem;
+  --font-size-5xl: 3.815rem;
 
 
-  /* ============================================
-     ESPACIADO
-     ============================================ */
-  --spacing-size-xss: 0.5rem; /* 8px - Micro spacing (gaps internos, padding mínimo) */
-  --spacing-size-xs: 1.1875rem; /* 19px - Extra pequeño (espaciado entre íconos) */
-  --spacing-size-s: 1.3125rem; /* 21px - Pequeño (padding de botones) */
-  --spacing-size-m: 1.5625rem; /* 25px - Mediano (márgenes entre elementos) */
-  --spacing-size-l: 2.0625rem; /* 33px - Grande (secciones de cards) */
-  --spacing-size-xl: 2.1875rem; /* 35px - Extra grande (separación entre bloques) */
-  --spacing-size-xxl: 2.5rem; /* 40px - 2XL (padding de containers) */
-  --spacing-size-xxxl: 5.625rem; /* 90px - 3XL (márgenes de sección principales) */
-  --spacing-size-xxxxl: 7.75rem; /* 124px - 4XL (espacios hero, headers grandes) */
-  --spacing-size-xxxxxl: 8.75rem; /* 140px - 5XL (márgenes máximos, layouts amplios) */
+  
+  --spacing-size-xss: 0.5rem;
+  --spacing-size-xs: 1.1875rem;
+  --spacing-size-s: 1.3125rem;
+  --spacing-size-m: 1.5625rem;
+  --spacing-size-l: 2.0625rem;
+  --spacing-size-xl: 2.1875rem;
+  --spacing-size-xxl: 2.5rem;
+  --spacing-size-xxxl: 5.625rem;
+  --spacing-size-xxxxl: 7.75rem;
+  --spacing-size-xxxxxl: 8.75rem;
 
 
-  /* ============================================
-     BORDER RADIUS
-     ============================================ */
-  --radius-xsss: 0.125rem; /* 2px - Muy sutil (líneas, bordes finos) */
-  --radius-xss: 0.5rem; /* 8px - Mínimo redondeado (chips, pills) */
-  --radius-xs: 1.1875rem; /* 19px - Pequeño (botones estándar) */
-  --radius-s: 1.3125rem; /* 21px - Mediano (inputs, cards pequeñas) */
-  --radius-m: 2.5rem; /* 40px - Grande (cards destacadas, modales) */
-  --radius-l: 5.625rem; /* 90px - Completo (botones circulares, avatares) */
+  
+  --radius-xsss: 0.125rem;
+  --radius-xss: 0.5rem;
+  --radius-xs: 1.1875rem;
+  --radius-s: 1.3125rem;
+  --radius-m: 2.5rem;
+  --radius-l: 5.625rem;
 
 
-  /* ============================================
-     FUENTES
-     ============================================ */
+  
   --font-primary: 'Montserrat', sans-serif;
   --font-secondary: 'Poppins', sans-serif;
 
 
-  /* ============================================
-     PESOS TIPOGRAFICOS
-     ============================================ */
+  
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -164,17 +116,13 @@
   --font-weight-bold: 700;
 
 
-  /* ============================================
-     LINE HEIGHT
-     ============================================ */
+  
   --line-height-tight: 1.2;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.75;
 
 
-  /* ============================================
-     SOMBRAS
-     ============================================ */
+  
   --shadow-xs: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.05);
   --shadow-sm: 0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.1), 0 0.0625rem 0.125rem -0.0625rem rgba(0, 0, 0, 0.1);
   --shadow-md: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0 0.125rem 0.25rem -0.125rem rgba(0, 0, 0, 0.1);
@@ -187,34 +135,26 @@
   --shadow-danger: 0 0.625rem 0.9375rem -0.1875rem rgba(239, 68, 68, 0.3), 0 0.25rem 0.375rem -0.25rem rgba(239, 68, 68, 0.3);
 
 
-  /* ============================================
-     DURACIONES
-     ============================================ */
+  
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --duration-slow: 500ms;
   --duration-slower: 700ms;
 
 
-  /* ============================================
-     BORDES
-     ============================================ */
+  
   --border-width-fino: 0.0625rem;
   --border-width-normal: 0.125rem;
   --border-width-grueso: 0.1875rem;
 
 
-  /* ============================================
-     FORM INPUTS
-     ============================================ */
+  
   --input-padding-vertical: 0.875rem;
   --input-padding-horizontal: 1.25rem;
   --input-margin-bottom: 0.25rem;
 
 
-  /* ============================================
-     TAMANIOS BOTONES
-     ============================================ */
+  
   --width-estandar: 17rem;
   --width-grande: 21rem;
   --width-mediano: 9.125rem;
@@ -222,9 +162,7 @@
   --width-muy-pequenio: 6.75rem;
 
 
-  /* ============================================
-     Z-INDEX - Escala semántica
-     ============================================ */
+  
   --z-header: 1;
   --z-header-controls: 2;
   --z-dropdown: 3;
@@ -234,9 +172,7 @@
   --z-tooltip: 11;
 
 
-  /* ============================================
-     VARIABLES SEMANTICAS - TEMA CLARO
-     ============================================ */
+  
   --bg-body: #f5f5f5;
   --bg-card: #f5f5f5;
   --bg-card-alt: #dddddd;
@@ -249,21 +185,15 @@
   --border-color: #b8b8b8;
   --border-color-light: #dddddd;
 
-  /* ============================================
-     RADIUS ADICIONALES
-     ============================================ */
+  
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
 }
 
 
-// ========================================
-// TEMA OSCURO
-// ========================================
 
-body.modo-oscuro {
-  /* Variables semanticas - Tema Oscuro */
+[data-theme="dark"] {
   --bg-body: #2f3439;
   --bg-card: #3f454c;
   --bg-card-alt: #26292e;
@@ -275,4 +205,41 @@ body.modo-oscuro {
   --text-muted: #939393;
   --border-color: #393e44;
   --border-color-light: #26292e;
+
+
+  --negro-normal-transparente-085: rgba(17, 14, 16, 0.85);
+  --negro-normal-transparente-098: rgba(17, 14, 16, 0.98);
+  --negro-oscuro-variante-transparente-095: rgba(25, 22, 24, 0.95);
+  --negro-oscuro-variante-transparente-090: rgba(30, 27, 29, 0.9);
+  --negro-puro-transparente-030: rgba(0, 0, 0, 0.3);
+  --negro-puro-transparente-040: rgba(0, 0, 0, 0.4);
+  --negro-puro-transparente-050: rgba(0, 0, 0, 0.5);
+
+
+  --blanco-normal-transparente-005: rgba(245, 245, 245, 0.05);
+  --blanco-normal-transparente-008: rgba(245, 245, 245, 0.08);
+  --blanco-normal-transparente-010: rgba(245, 245, 245, 0.1);
+  --blanco-normal-transparente-015: rgba(245, 245, 245, 0.15);
+  --blanco-normal-transparente-050: rgba(245, 245, 245, 0.5);
+  --blanco-normal-transparente-070: rgba(245, 245, 245, 0.7);
+
+
+  --amarillo-normal-transparente-005: rgba(255, 211, 0, 0.05);
+  --amarillo-normal-transparente-008: rgba(255, 211, 0, 0.08);
+  --amarillo-normal-transparente-010: rgba(255, 211, 0, 0.1);
+  --amarillo-normal-transparente-015: rgba(255, 211, 0, 0.15);
+  --amarillo-normal-transparente-020: rgba(255, 211, 0, 0.2);
+
+
+  --rojo-normal-transparente-010: rgba(239, 68, 68, 0.1);
+  --rojo-normal-transparente-015: rgba(239, 68, 68, 0.15);
+  --rojo-normal-transparente-040: rgba(239, 68, 68, 0.4);
+
+
+  --blog-categoria-ejercicio-fondo: rgba(21, 101, 192, 0.25);
+  --blog-categoria-ejercicio-texto: #64b5f6;
+  --blog-categoria-nutricion-fondo: rgba(46, 125, 50, 0.25);
+  --blog-categoria-nutricion-texto: #81c784;
+  --blog-categoria-bienestar-fondo: rgba(194, 24, 91, 0.25);
+  --blog-categoria-bienestar-texto: #f48fb1;
 }

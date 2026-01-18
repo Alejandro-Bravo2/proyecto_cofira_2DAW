@@ -1,35 +1,17 @@
-// ========================================
-// VARIABLES SCSS (Solo las necesarias)
-// ========================================
-// Este archivo SOLO contiene variables SCSS que no pueden
-// ser CSS Custom Properties (como breakpoints para media queries)
-// ========================================
 
 
-// ========================================
-// BREAKPOINTS
-// ========================================
-// Los breakpoints DEBEN ser variables SCSS porque
-// las media queries no soportan CSS Custom Properties
-// Uso: @include responsive-down('md') { ... }  (desktop-first)
-// ========================================
-$breakpoint-xxs: 25rem;   // 400px - Móviles muy pequeños (iPhone SE, Galaxy S8)
-$breakpoint-xs: 40rem;    // 640px - Móviles pequeños
-$breakpoint-sm: 48rem;    // 768px - Móviles grandes / Tablets pequeñas
-$breakpoint-md: 56.25rem; // 900px - Tablets
-$breakpoint-lg: 64rem;    // 1024px - Tablets grandes / Laptops pequeños
-$breakpoint-xl: 75rem;    // 1200px - Laptops
-$breakpoint-xxl: 87.5rem; // 1400px - Escritorios grandes
 
 
-// ========================================
-// COLORES BASE (para modo oscuro)
-// ========================================
-// Estos valores se usan en _dark-mode-config.scss
-// para la interpolación #{$variable}
-// ========================================
+$breakpoint-xxs: 25rem;
+$breakpoint-xs: 40rem;
+$breakpoint-sm: 48rem;
+$breakpoint-md: 56.25rem;
+$breakpoint-lg: 64rem;
+$breakpoint-xl: 75rem;
+$breakpoint-xxl: 87.5rem;
 
-// NEGRO
+
+
 $negro-normal: #110e10;
 $negro-normal-hover: #0f0d0e;
 $negro-normal-active: #0e0b0d;
@@ -37,7 +19,6 @@ $negro-dark: #0d0b0c;
 $negro-dark-hover: #0a080a;
 $negro-dark-active: #080607;
 
-// AMARILLO
 $amarillo-normal: #ffd300;
 $amarillo-normal-hover: #e6be00;
 $amarillo-normal-active: #cca900;
@@ -46,7 +27,6 @@ $amarillo-dark-hover: #997f00;
 $amarillo-dark-active: #735f00;
 $amarillo-darker: #594A00;
 
-// BLANCO
 $blanco-normal: #f5f5f5;
 $blanco-normal-hover: #dddddd;
 $blanco-normal-active: #c4c4c4;
@@ -54,7 +34,6 @@ $blanco-dark: #b8b8b8;
 $blanco-dark-hover: #939393;
 $blanco-dark-active: #6e6e6e;
 
-// GRIS
 $gris-normal: #3f454c;
 $gris-normal-hover: #393e44;
 $gris-normal-active: #32373d;

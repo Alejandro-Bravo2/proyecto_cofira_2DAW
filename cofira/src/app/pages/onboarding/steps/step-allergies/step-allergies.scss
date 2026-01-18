@@ -1,14 +1,3 @@
-/**
- * STEP ALLERGIES STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos del paso de alergias alimentarias
- *
- * NOMENCLATURA BEM:
- * Block: .step-allergies
- * Elements: __header, __titulo, __subtitulo, __grid, __footer, __actions
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../../../styles/00-settings/css-variables';
 @import '../../../../../styles/01-tools/mixins';
 
@@ -22,9 +11,7 @@
   padding: var(--spacing-size-xl);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HEADER
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-allergies__header {
   text-align: center;
@@ -50,9 +37,7 @@
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   GRID DE CHIPS
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-allergies__grid {
   display: flex;
@@ -62,9 +47,7 @@
   justify-content: center;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-allergies__footer {
   display: flex;

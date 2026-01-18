@@ -1,10 +1,9 @@
 <section class="register-form">
-          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
+          <form [formGroup]="formularioRegistro" (ngSubmit)="alEnviar()" class="form">
 
                     <fieldset class="form__fieldset">
                               <legend class="form__legend">Crea tu cuenta</legend>
 
-                              <!-- Campo Nombre -->
                               <fieldset class="form__group">
                                         <legend class="form__label">Nombre:</legend>
                                         <input type="text" id="nombre" formControlName="nombre" class="form__input"
@@ -15,7 +14,6 @@
                                         }
                               </fieldset>
 
-                              <!-- Campo Apellido -->
                               <fieldset class="form__group">
                                         <legend class="form__label">Apellido:</legend>
                                         <input type="text" id="apellido" formControlName="apellido" class="form__input"
@@ -27,7 +25,6 @@
                                         }
                               </fieldset>
 
-                              <!-- Campo Email -->
                               <fieldset class="form__group">
                                         <legend class="form__label">Email:</legend>
                                         <input type="email" id="email" formControlName="email" class="form__input"
@@ -38,7 +35,6 @@
                                         }
                               </fieldset>
 
-                              <!-- Campo Contraseña -->
                               <fieldset class="form__group">
                                         <legend class="form__label">Contraseña:</legend>
                                         <input type="password" id="password" formControlName="password"
@@ -50,7 +46,6 @@
                                         }
                               </fieldset>
 
-                              <!-- Campo Confirmar Contraseña -->
                               <fieldset class="form__group">
                                         <legend class="form__label">Confirmar Contraseña:</legend>
                                         <input type="password" id="confirmPassword" formControlName="confirmPassword"
@@ -62,9 +57,8 @@
                                         }
                               </fieldset>
 
-                              <!-- Checkbox Términos y Condiciones -->
-                              <app-form-checkbox label="Acepto los términos y condiciones" name="terminos"
-                                        [required]="true" [control]="terminosControl">
+                              <app-form-checkbox etiqueta="Acepto los términos y condiciones" nombre="terminos"
+                                        [requerido]="true" [controlDelFormulario]="terminosControl">
                               </app-form-checkbox>
                               @if (controlesDelFormulario['terminos'].invalid && controlesDelFormulario['terminos'].touched) {
                               <small class="form__error">Debes aceptar los términos y condiciones</small>
@@ -72,9 +66,8 @@
 
                     </fieldset>
 
-                    <!-- Botón Enviar -->
-            <app-button [fullWidth]="true" [habilitado]="registerForm.invalid" tamanio="lg" tipo="submit"
-                        variante="primary">
+            <app-button [anchoCompleto]="true" [habilitado]="formularioRegistro.invalid" tamanio="grande" tipo="submit"
+                        variante="primario">
                               Registrarse
             </app-button>
 

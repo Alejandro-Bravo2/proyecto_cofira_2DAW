@@ -5,40 +5,22 @@ import {catchError, tap} from 'rxjs/operators';
 import {ApiService} from './api.service';
 import {AuthResponse, LoginRequest, RegisterRequest, User} from '../models/auth.model';
 
-/**
- * AUTH SERVICE
- * Gestiona autenticacion, registro y sesion de usuario
- */
 @Injectable({providedIn: 'root'})
 export class AuthService {
   readonly currentUser = signal<User | null>(null);
   readonly isLoading = signal(false);
   readonly error = signal<string | null>(null);
 
-  // ================================================================
-  // SIGNALS - Estado reactivo
-  // ================================================================
   readonly isAuthenticated = computed(() => !!this.currentUser());
   readonly userNombre = computed(() => this.currentUser()?.nombre ?? '');
   private readonly api = inject(ApiService);
 
-  // ================================================================
-  // COMPUTED - Valores derivados
-  // ================================================================
   private readonly TOKEN_KEY = 'cofira_token';
   private readonly USER_KEY = 'cofira_user';
-
-  // ================================================================
-  // CONSTRUCTOR - Cargar sesion guardada
-  // ================================================================
 
   constructor() {
     this.loadSession();
   }
-
-  // ================================================================
-  // AUTENTICACION - Registro y Login
-  // ================================================================
 
   register(data: RegisterRequest): Observable<AuthResponse> {
     this.isLoading.set(true);
@@ -82,17 +64,9 @@ export class AuthService {
     this.currentUser.set(null);
   }
 
-  // ================================================================
-  // VALIDACION - Verificar disponibilidad de email
-  // ================================================================
-
   checkEmailAvailable(email: string): Observable<{ available: boolean }> {
     return this.api.get<{ available: boolean }>('/auth/check-email', {email});
   }
-
-  // ================================================================
-  // SESION - Token y persistencia
-  // ================================================================
 
   getToken(): string | null {
     return localStorage.getItem(this.TOKEN_KEY);
@@ -101,10 +75,6 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
-
-  // ================================================================
-  // METODOS PRIVADOS
-  // ================================================================
 
   private handleAuthSuccess(response: AuthResponse): void {
     localStorage.setItem(this.TOKEN_KEY, response.token);

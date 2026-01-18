@@ -1,5 +1,5 @@
 <main class="blog">
-  <!-- Hero Section -->
+  
   <header class="blog__header">
     <hgroup class="blog__header-content">
       <h1 class="blog__titulo">Blog de Cofira</h1>
@@ -10,7 +10,7 @@
     </hgroup>
   </header>
 
-  <!-- Filtros -->
+  
   <section class="blog__filtros">
     <article class="blog__container">
       <nav aria-label="Filtrar por categoría" class="blog__categorias">
@@ -27,14 +27,14 @@
     </article>
   </section>
 
-  <!-- Grid de Artículos -->
+  
   <section class="blog__contenido">
     <article class="blog__container">
       <ul class="blog__grid">
         @for (articulo of articulosFiltrados; track articulo.titulo) {
           <li class="blog__articulo">
             <figure class="blog__articulo-imagen">
-              <img [alt]="articulo.titulo" [src]="articulo.imagen" loading="lazy"/>
+              <img [alt]="articulo.titulo" [src]="articulo.imagen" class="blog__articulo-imagen-img" loading="lazy"/>
               <span
                 [ngClass]="'blog__articulo-categoria--' + articulo.categoria"
                 class="blog__articulo-categoria"
@@ -54,7 +54,7 @@
                 <span class="blog__articulo-autor">Por {{ articulo.autor }}</span>
                 <a class="blog__articulo-leer" href="#">
                   Leer más
-                  <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  <svg class="blog__articulo-leer-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                        stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 12h14"/>
                     <path d="m12 5 7 7-7 7"/>
@@ -66,14 +66,14 @@
         }
       </ul>
 
-      <!-- Mensaje sin resultados -->
+      
       @if (articulosFiltrados.length === 0) {
         <p class="blog__sin-resultados">No hay artículos en esta categoría todavía.</p>
       }
     </article>
   </section>
 
-  <!-- Newsletter CTA -->
+  
   <section class="blog__newsletter">
     <article class="blog__container">
       <aside class="blog__newsletter-card">

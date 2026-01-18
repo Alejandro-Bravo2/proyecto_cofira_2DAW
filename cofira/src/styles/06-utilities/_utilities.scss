@@ -1,11 +1,6 @@
-/* ============================================
-   06-UTILITIES: Clases utilitarias
-   Clases de una sola propiedad para ajustes rapidos
-   ============================================ */
 
-/* --------------------------------------------
-   DISPLAY
-   -------------------------------------------- */
+
+
 
 
 .oculto.oculto {
@@ -20,9 +15,7 @@
   visibility: hidden;
 }
 
-/* --------------------------------------------
-   TEXTO
-   -------------------------------------------- */
+
 
 .texto-centrado {
   text-align: center;
@@ -44,9 +37,7 @@
   text-transform: capitalize;
 }
 
-/* --------------------------------------------
-   ESPACIADO - MARGENES
-   -------------------------------------------- */
+
 
 .sin-margen {
   margin: 0;
@@ -80,9 +71,7 @@
   margin-bottom: var(--spacing-size-l);
 }
 
-/* --------------------------------------------
-   ESPACIADO - PADDING
-   -------------------------------------------- */
+
 
 .sin-padding {
   padding: 0;
@@ -100,9 +89,7 @@
   padding: var(--spacing-size-l);
 }
 
-/* --------------------------------------------
-   ANCHO
-   -------------------------------------------- */
+
 
 .ancho-completo {
   width: 100%;
@@ -116,9 +103,7 @@
   max-width: 100%;
 }
 
-/* --------------------------------------------
-   FLEXBOX UTILIDADES
-   -------------------------------------------- */
+
 
 .flex {
   display: flex;
@@ -168,9 +153,7 @@
   align-items: flex-end;
 }
 
-/* --------------------------------------------
-   GAP (Espaciado flex/grid)
-   -------------------------------------------- */
+
 
 .gap-xs {
   gap: var(--spacing-size-xss);
@@ -188,9 +171,7 @@
   gap: var(--spacing-size-l);
 }
 
-/* --------------------------------------------
-   COLORES DE FONDO
-   -------------------------------------------- */
+
 
 .fondo-primario {
   background-color: var(--amarillo-normal);
@@ -208,9 +189,7 @@
   background-color: var(--blanco-normal);
 }
 
-/* --------------------------------------------
-   COLORES DE TEXTO
-   -------------------------------------------- */
+
 
 .color-primario {
   color: var(--amarillo-normal);
@@ -224,11 +203,9 @@
   color: var(--text-light);
 }
 
-/* --------------------------------------------
-   ACCESIBILIDAD
-   -------------------------------------------- */
 
-/* Ocultar visualmente pero mantener accesible */
+
+
 .sr-only {
   position: absolute;
   width: 0.0625rem;
@@ -241,7 +218,7 @@
   border: 0;
 }
 
-/* Skip link para navegación por teclado */
+
 .skip-link {
   position: absolute;
   top: -2.5rem;
@@ -256,9 +233,7 @@
   top: 0;
 }
 
-/* --------------------------------------------
-   CURSORES
-   -------------------------------------------- */
+
 
 .cursor-pointer {
   cursor: pointer;
@@ -268,9 +243,7 @@
   cursor: not-allowed;
 }
 
-/* --------------------------------------------
-   OVERFLOW
-   -------------------------------------------- */
+
 
 .overflow-oculto {
   overflow: hidden;
@@ -288,9 +261,7 @@
   overflow-y: auto;
 }
 
-/* --------------------------------------------
-   POSICION
-   -------------------------------------------- */
+
 
 .relativo {
   position: relative;
@@ -309,9 +280,7 @@
   top: 0;
 }
 
-/* --------------------------------------------
-   CONTENEDORES DE CONTENIDO
-   -------------------------------------------- */
+
 
 .contenedor-demo {
   max-width: 50rem;

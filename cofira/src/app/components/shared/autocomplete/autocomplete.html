@@ -1,24 +1,13 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     AUTOCOMPLETE COMPONENT
-     ═══════════════════════════════════════════════════════════════════════════
-     Input con sugerencias de busqueda
-
-     NOMENCLATURA BEM:
-     Block: .autocomplete
-     Elements: __input-wrapper, __input, __icono, __resultados, __item, __empty
-     Modifiers: --destacado, --loading
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
-<search [attr.aria-expanded]="isOpen()" class="autocomplete" role="combobox">
+<search [attr.aria-expanded]="estaAbierto()" class="autocomplete" role="combobox">
   <label class="autocomplete__input-wrapper">
     <figure class="autocomplete__icono">
-      @if (isLoading()) {
-        <svg class="autocomplete__icono--loading" fill="none" stroke="currentColor" stroke-width="2"
+      @if (estaCargando()) {
+        <svg class="autocomplete__icono-svg autocomplete__icono-svg--loading" fill="none" stroke="currentColor" stroke-width="2"
              viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="32"/>
         </svg>
       } @else {
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg class="autocomplete__icono-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="8"/>
           <path d="m21 21-4.3-4.3"/>
         </svg>
@@ -26,27 +15,27 @@
     </figure>
 
     <input
-      (blur)="onBlur()"
-      (focus)="onFocus()"
-      (input)="onInputChange($any($event.target).value)"
-      (keydown)="onKeyDown($event)"
-      [attr.aria-activedescendant]="highlightedIndex() >= 0 ? 'result-' + highlightedIndex() : null"
+      (blur)="alPerderFoco()"
+      (focus)="alObtenerFoco()"
+      (input)="alCambiarInput($any($event.target).value)"
+      (keydown)="alPresionarTecla($event)"
+      [attr.aria-activedescendant]="indiceResaltado() >= 0 ? 'result-' + indiceResaltado() : null"
       [attr.aria-controls]="'autocomplete-results'"
       [placeholder]="placeholder()"
-      [value]="query()"
+      [value]="consulta()"
       autocomplete="off"
       class="autocomplete__input"
       role="searchbox"
       type="search">
   </label>
 
-  @if (isOpen()) {
+  @if (estaAbierto()) {
     <menu class="autocomplete__resultados" id="autocomplete-results" role="listbox">
-      @for (item of results(); track item.id; let i = $index) {
+      @for (item of resultados(); track item.id; let i = $index) {
         <li
-          (click)="onSelect(item)"
-          [attr.aria-selected]="highlightedIndex() === i"
-          [class.autocomplete__item--destacado]="highlightedIndex() === i"
+          (click)="alSeleccionar(item)"
+          [attr.aria-selected]="indiceResaltado() === i"
+          [class.autocomplete__item--destacado]="indiceResaltado() === i"
           [id]="'result-' + i"
           class="autocomplete__item"
           role="option">

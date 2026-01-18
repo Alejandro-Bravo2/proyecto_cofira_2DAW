@@ -1,93 +1,56 @@
-/**
- * ALERT COMPONENT
- * ─────────────────────────────────────────────────────────────────────────
- * Block: .alert
- *
- * Elements:
- * - .alert__icono: Icono de la alerta (obligatorio)
- * - .alert__mensaje: Texto del mensaje (obligatorio)
- * - .alert__cerrar: Botón para cerrar la alerta (opcional)
- *
- * Modifiers:
- * - TYPE: --success | --error | --warning | --info
- * - STATE: :hover
- *
- * HTML Example:
- * <div class="alert alert--success">
- *   <figure class="alert__icono">✓</figure>
- *   <p class="alert__mensaje">Operación completada</p>
- *   <button class="alert__cerrar">×</button>
- * </div>
- */
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BLOCK: Contenedor de la alerta
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 .alert {
-  display: flex; /* Estructura horizontal */
-  align-items: center; /* Centra verticalmente */
-  gap: var(--spacing-size-s); /* Espacio entre elementos */
+  --alert-icono-color: currentColor;
+  --alert-cerrar-color: currentColor;
+  --alert-cerrar-hover-fondo: rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
   padding: var(--spacing-size-s) var(--spacing-size-m);
   margin-bottom: var(--spacing-size-s);
   border-radius: var(--radius-xss);
-  border-left: 0.25rem solid; /* Borde izquierdo como indicador de tipo */
+  border-left: 0.25rem solid;
   box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   transition: all var(--duration-base) ease;
-  animation: alertSlideIn var(--duration-base) ease;
+  animation: alerta-deslizar-entrada var(--duration-base) ease;
 }
 
-/* Efecto hover en la alerta */
 .alert:hover {
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
   transform: translateY(-0.125rem);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENTS: Partes internas de la alerta
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-/**
- * .alert__icono
- * Icono de la alerta. Debe ser un emoji, <i>, o SVG
- * flex-shrink: 0 es CRÍTICO para mantener el tamaño original
- */
+
 .alert__icono {
-  flex-shrink: 0; /* CLAVE: No se encoge aunque falte espacio */
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 1.5rem;
   height: 1.5rem;
-  margin: 0; /* Resetear estilos de figure */
+  margin: 0;
 }
 
-.alert__icono svg {
+.alert__icono-svg {
   width: 100%;
   height: 100%;
+  fill: var(--alert-icono-color);
 }
 
-/**
- * .alert__mensaje
- * Texto principal de la alerta
- * flex: 1 hace que ocupe todo el espacio disponible
- */
 .alert__mensaje {
-  flex: 1; /* Crece para llenar el espacio disponible */
+  flex: 1;
   line-height: var(--line-height-normal);
   font-weight: var(--font-weight-medium);
   margin: 0;
 }
 
-/**
- * .alert__cerrar
- * Botón para cerrar la alerta
- * Propósito: Permite al usuario descartar la alerta manualmente
- */
 .alert__cerrar {
-  flex-shrink: 0; /* CLAVE: No se encoge */
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -100,14 +63,15 @@
   transition: all var(--duration-fast) ease;
 }
 
-.alert__cerrar svg {
+.alert__cerrar-svg {
   width: 1.25rem;
   height: 1.25rem;
+  fill: var(--alert-cerrar-color);
 }
 
 .alert__cerrar:hover {
   opacity: 1;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--alert-cerrar-hover-fondo);
   transform: rotate(90deg);
 }
 
@@ -116,99 +80,49 @@
   outline-offset: 0.125rem;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   MODIFIERS DE TIPO
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-/**
- * .alert--success
- * Tipo éxito - Para confirmaciones y operaciones exitosas
- * Color: Amarillo (siguiendo el sistema de diseño)
- */
+
 .alert--success {
+  --alert-icono-color: var(--amarillo-darker);
+  --alert-cerrar-color: var(--negro-normal);
+
   background-color: var(--amarillo-normal);
   border-left-color: var(--amarillo-dark);
   color: var(--negro-normal);
 }
 
-.alert--success .alert__icono svg {
-  fill: var(--amarillo-darker);
-}
-
-.alert--success .alert__cerrar svg {
-  fill: var(--negro-normal);
-}
-
-/**
- * .alert--error
- * Tipo error - Para errores y fallos críticos
- * Color: Rojo
- */
 .alert--error {
+  --alert-icono-color: var(--blanco-normal);
+  --alert-cerrar-color: var(--blanco-normal);
+  --alert-cerrar-hover-fondo: rgba(255, 255, 255, 0.2);
+
   background-color: var(--button-red);
   border-left-color: var(--button-red-hover);
   color: var(--blanco-normal);
 }
 
-.alert--error .alert__icono svg {
-  fill: var(--blanco-normal);
-}
-
-.alert--error .alert__cerrar svg {
-  fill: var(--blanco-normal);
-}
-
-.alert--error:hover .alert__cerrar {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/**
- * .alert--warning
- * Tipo advertencia - Para avisos importantes
- * Color: Amarillo claro
- */
 .alert--warning {
+  --alert-icono-color: var(--amarillo-dark);
+  --alert-cerrar-color: var(--negro-normal);
+
   background-color: var(--amarillo-normal-hover);
   border-left-color: var(--amarillo-normal);
   color: var(--negro-normal);
 }
 
-.alert--warning .alert__icono svg {
-  fill: var(--amarillo-dark);
-}
-
-.alert--warning .alert__cerrar svg {
-  fill: var(--negro-normal);
-}
-
-/**
- * .alert--info
- * Tipo información - Para mensajes informativos neutrales
- * Color: Gris
- */
 .alert--info {
+  --alert-icono-color: var(--blanco-normal);
+  --alert-cerrar-color: var(--blanco-normal);
+  --alert-cerrar-hover-fondo: rgba(255, 255, 255, 0.2);
+
   background-color: var(--gris-normal);
   border-left-color: var(--gris-dark);
   color: var(--blanco-normal);
 }
 
-.alert--info .alert__icono svg {
-  fill: var(--blanco-normal);
-}
 
-.alert--info .alert__cerrar svg {
-  fill: var(--blanco-normal);
-}
 
-.alert--info:hover .alert__cerrar {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   ANIMACIONES
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-@keyframes alertSlideIn {
+@keyframes alerta-deslizar-entrada {
   from {
     opacity: 0;
     transform: translateY(-0.625rem);

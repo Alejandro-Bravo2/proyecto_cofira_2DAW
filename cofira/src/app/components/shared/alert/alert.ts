@@ -7,13 +7,13 @@ import { Component, Input } from '@angular/core';
   styleUrl: './alert.scss',
 })
 export class Alert {
-  @Input() type: 'success' | 'error' | 'warning' | 'info' = 'info';
-  @Input() message: string = '';
-  @Input() closable: boolean = true;
+  @Input() tipo: 'success' | 'error' | 'warning' | 'info' = 'info';
+  @Input() mensaje: string = '';
+  @Input() puedeCerrarse: boolean = true;
 
-  visible: boolean = true;
+  esVisible: boolean = true;
 
-  close() {
-    this.visible = false;
+  cerrar() {
+    this.esVisible = false;
   }
 }

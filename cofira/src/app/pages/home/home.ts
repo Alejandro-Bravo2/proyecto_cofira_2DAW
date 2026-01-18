@@ -21,12 +21,21 @@ export class Home {
   }> = [];
   notifId = 0;
 
-  // Estado de FAQs abiertos (por índice)
   estadoFaqAbierto: Record<number, boolean> = {};
 
-  // Toggle del estado del FAQ
   alternarEstadoFaq(indiceFaq: number): void {
     this.estadoFaqAbierto[indiceFaq] = !this.estadoFaqAbierto[indiceFaq];
+  }
+
+  navegarAPlanes(): void {
+    const seccionPlanes = document.getElementById('seccion-planes');
+
+    if (seccionPlanes) {
+      seccionPlanes.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
   }
 
   mostrarNotif() {

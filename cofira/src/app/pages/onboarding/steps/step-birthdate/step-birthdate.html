@@ -1,13 +1,3 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     STEP BIRTHDATE - Fecha de nacimiento
-     ═══════════════════════════════════════════════════════════════════════════
-     Paso para ingresar la fecha de nacimiento
-
-     NOMENCLATURA BEM:
-     Block: .step-birthdate
-     Elements: __header, __titulo, __subtitulo, __form, __input-wrapper, __label, __input, __footer
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
 <article class="step-birthdate">
 
   <header class="step-birthdate__header">
@@ -35,8 +25,8 @@
     <app-button
       (click)="onContinue()"
       [habilitado]="!canContinue()"
-      tamanio="lg"
-      variante="primary">
+      tamanio="grande"
+      variante="primario">
       Continuar
     </app-button>
   </footer>

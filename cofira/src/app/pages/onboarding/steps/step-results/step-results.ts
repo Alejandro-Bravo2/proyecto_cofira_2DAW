@@ -38,7 +38,7 @@ export class StepResults implements OnInit {
   }
 
   onComplete(): void {
-    // Emitir evento para pasar al paso de registro
+    
     this.continuar.emit();
   }
 
@@ -46,10 +46,10 @@ export class StepResults implements OnInit {
     this.isLoading.set(true);
     this.error.set(null);
 
-    // Calculos locales mientras no hay backend conectado
+    
     const data = this.formData();
 
-    // Calculo de edad
+    
     const birthDate = data.birthDate ? new Date(data.birthDate) : new Date();
     const today = new Date();
     let age = today.getFullYear() - birthDate.getFullYear();
@@ -58,7 +58,7 @@ export class StepResults implements OnInit {
       age--;
     }
 
-    // BMR usando Mifflin-St Jeor
+    
     const weight = data.currentWeightKg || 70;
     const height = data.heightCm || 170;
     const isMale = data.gender === 'MALE';
@@ -70,7 +70,7 @@ export class StepResults implements OnInit {
       bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
     }
 
-    // Multiplicador de actividad
+    
     const activityMultipliers: Record<string, number> = {
       'SEDENTARY': 1.2,
       'LIGHTLY_ACTIVE': 1.375,
@@ -82,24 +82,24 @@ export class StepResults implements OnInit {
     const activityLevel = data.activityLevel || 'SEDENTARY';
     const multiplier = activityMultipliers[activityLevel] || 1.2;
 
-    // TDEE
+    
     let tdee = Math.round(bmr * multiplier);
 
-    // Ajuste segun objetivo
+    
     const goal = data.primaryGoal;
     let dailyCalories = tdee;
 
     if (goal === 'LOSE_WEIGHT') {
-      dailyCalories = Math.round(tdee * 0.80); // Deficit del 20%
+      dailyCalories = Math.round(tdee * 0.80); 
     } else if (goal === 'GAIN_MUSCLE') {
-      dailyCalories = Math.round(tdee * 1.10); // Superavit del 10%
+      dailyCalories = Math.round(tdee * 1.10); 
     }
 
-    // Macros basados en calorias
-    const proteinGrams = Math.round((dailyCalories * 0.30) / 4); // 30% proteina
-    const fatGrams = Math.round((dailyCalories * 0.25) / 9); // 25% grasa
-    const carbsGrams = Math.round((dailyCalories * 0.45) / 4); // 45% carbos
-    const fiberGrams = Math.round(dailyCalories / 100); // ~25-35g aproximado
+    
+    const proteinGrams = Math.round((dailyCalories * 0.30) / 4); 
+    const fatGrams = Math.round((dailyCalories * 0.25) / 9); 
+    const carbsGrams = Math.round((dailyCalories * 0.45) / 4); 
+    const fiberGrams = Math.round(dailyCalories / 100); 
 
     this.results.set({
       calculatedBMR: Math.round(bmr),

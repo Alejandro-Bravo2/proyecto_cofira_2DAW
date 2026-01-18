@@ -1,8 +1,5 @@
-<!-- Solo renderizar si está abierto -->
 @if (abierto) {
-  <!-- Overlay -->
   <aside (click)="cerrarEnOverlay($event)" class="modal-overlay">
-    <!-- Contenedor del modal -->
     <article
       [attr.aria-labelledby]="titulo ? 'modal-titulo' : null"
       [style.max-width.px]="anchoPX"
@@ -10,7 +7,6 @@
       class="modal"
       role="dialog">
 
-      <!-- Header -->
       <header class="modal__header">
         @if (titulo) {
           <h2 class="modal__titulo" id="modal-titulo">{{ titulo }}</h2>
@@ -21,7 +17,7 @@
             (click)="cerrarModal()"
             aria-label="Cerrar modal"
             class="modal__cerrar">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg class="modal__cerrar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"
                 fill="currentColor"/>
@@ -30,7 +26,6 @@
         }
       </header>
 
-      <!-- Contenido proyectado -->
       <section class="modal__contenido">
         <ng-content></ng-content>
       </section>

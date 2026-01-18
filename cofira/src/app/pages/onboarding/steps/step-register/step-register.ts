@@ -17,12 +17,12 @@ import {emailAvailableValidator} from '../../../../validators/email.validator';
 })
 export class StepRegister {
   @Output() continuar = new EventEmitter<void>();
-  readonly isLoading = signal(false);
+  readonly estaCargando = signal(false);
   readonly error = signal<string | null>(null);
-  readonly showPassword = signal(false);
-  readonly showConfirmPassword = signal(false);
+  readonly mostrarContrasena = signal(false);
+  readonly mostrarConfirmacionContrasena = signal(false);
   private readonly authService = inject(AuthService);
-  readonly registerForm = new FormGroup({
+  readonly formularioRegistro = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('',
       [Validators.required, Validators.email],
@@ -34,24 +34,21 @@ export class StepRegister {
   private readonly onboardingService = inject(OnboardingService);
   private readonly router = inject(Router);
 
-  // Obtiene el valor actual de la contraseña
-  get passwordValue(): string {
-    return this.registerForm.get('password')?.value || '';
+  get valorContrasena(): string {
+    return this.formularioRegistro.get('password')?.value || '';
   }
 
-  // Requisitos de contraseña (calculados directamente)
-  get passwordRequirements() {
-    return checkPasswordRequirements(this.passwordValue);
+  get requisitosContrasena() {
+    return checkPasswordRequirements(this.valorContrasena);
   }
 
-  get allRequirementsMet(): boolean {
-    const req = this.passwordRequirements;
+  get todosRequisitosCompletados(): boolean {
+    const req = this.requisitosContrasena;
     return req.hasUpperCase && req.hasLowerCase && req.hasNumeric && req.hasSpecial && req.isLongEnough;
   }
 
-  // Estado de validacion del email
-  get emailStatus(): 'valid' | 'invalid-format' | 'taken' | 'checking' | null {
-    const emailControl = this.registerForm.get('email');
+  get estadoEmail(): 'valid' | 'invalid-format' | 'taken' | 'checking' | null {
+    const emailControl = this.formularioRegistro.get('email');
     if (!emailControl?.value) return null;
     if (emailControl.pending) return 'checking';
     if (emailControl.hasError('email')) return 'invalid-format';
@@ -60,59 +57,56 @@ export class StepRegister {
     return null;
   }
 
-  togglePassword(): void {
-    this.showPassword.update(v => !v);
+  alternarContrasena(): void {
+    this.mostrarContrasena.update(v => !v);
   }
 
-  toggleConfirmPassword(): void {
-    this.showConfirmPassword.update(v => !v);
+  alternarConfirmacionContrasena(): void {
+    this.mostrarConfirmacionContrasena.update(v => !v);
   }
 
-  passwordsMatch(): boolean {
-    const password = this.registerForm.get('password')?.value;
-    const confirm = this.registerForm.get('confirmPassword')?.value;
+  contrasenasCoinciden(): boolean {
+    const password = this.formularioRegistro.get('password')?.value;
+    const confirm = this.formularioRegistro.get('confirmPassword')?.value;
     return password === confirm;
   }
 
-  canSubmit(): boolean {
-    // El validador passwordStrengthValidator ya verifica los requisitos
-    return this.registerForm.valid && this.passwordsMatch() && !this.isLoading();
+  puedeEnviar(): boolean {
+    return this.formularioRegistro.valid && this.contrasenasCoinciden() && !this.estaCargando();
   }
 
-  onSubmit(): void {
-    if (!this.canSubmit()) {
+  alEnviar(): void {
+    if (!this.puedeEnviar()) {
       return;
     }
 
-    this.isLoading.set(true);
+    this.estaCargando.set(true);
     this.error.set(null);
 
-    const formValue = this.registerForm.value;
+    const valorFormulario = this.formularioRegistro.value;
 
     this.authService.register({
-      nombre: formValue.nombre!,
-      username: formValue.email!,
-      email: formValue.email!,
-      password: formValue.password!
+      nombre: valorFormulario.nombre!,
+      username: valorFormulario.email!,
+      email: valorFormulario.email!,
+      password: valorFormulario.password!
     }).subscribe({
       next: () => {
-        this.completeOnboarding();
+        this.completarOnboarding();
       },
       error: (err) => {
-        this.isLoading.set(false);
+        this.estaCargando.set(false);
         this.error.set(err.error?.message || 'Error al crear la cuenta');
       }
     });
   }
 
-  private completeOnboarding(): void {
-    // Verificar si hay datos de onboarding validos antes de intentar completar
-    const onboardingData = this.onboardingService.formData();
-    const hasRequiredData = this.hasMinimumOnboardingData(onboardingData);
+  private completarOnboarding(): void {
+    const datosOnboarding = this.onboardingService.formData();
+    const tieneDataRequerida = this.tieneDataMinimaOnboarding(datosOnboarding);
 
-    if (!hasRequiredData) {
-      // Si no hay datos de onboarding, solo redirigir sin intentar completar
-      this.isLoading.set(false);
+    if (!tieneDataRequerida) {
+      this.estaCargando.set(false);
       this.onboardingService.clearProgress();
       this.router.navigate(['/']);
       return;
@@ -120,19 +114,18 @@ export class StepRegister {
 
     this.onboardingService.completeOnboarding().subscribe({
       next: () => {
-        this.isLoading.set(false);
+        this.estaCargando.set(false);
         this.onboardingService.clearProgress();
         this.router.navigate(['/']);
       },
       error: (err) => {
-        this.isLoading.set(false);
+        this.estaCargando.set(false);
         this.error.set(err.error?.message || 'Error al guardar los datos');
       }
     });
   }
 
-  private hasMinimumOnboardingData(data: Partial<import('../../../../models/onboarding.model').OnboardingData>): boolean {
-    // Campos minimos requeridos para el calculo nutricional
+  private tieneDataMinimaOnboarding(data: Partial<import('../../../../models/onboarding.model').OnboardingData>): boolean {
     return !!(
       data.gender &&
       data.currentWeightKg &&

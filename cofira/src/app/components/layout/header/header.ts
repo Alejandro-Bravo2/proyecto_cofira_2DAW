@@ -2,6 +2,7 @@ import {Component, inject, ViewEncapsulation} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {Button} from '../../shared/button/button';
 import {AuthService} from '../../../services/auth.service';
+import {ThemeService} from '../../../services/theme.service';
 
 @Component({
   selector: 'app-header',
@@ -12,14 +13,13 @@ import {AuthService} from '../../../services/auth.service';
 })
 export class Header {
   private readonly authService = inject(AuthService);
+  private readonly themeService = inject(ThemeService);
 
-  // Signals de autenticación
   readonly isAuthenticated = this.authService.isAuthenticated;
   readonly userNombre = this.authService.userNombre;
 
   menuAbierto = false;
   menuCuentaAbierto = false;
-  modoOscuro = false;
 
   toggleMenu() {
     this.menuAbierto = !this.menuAbierto;
@@ -37,9 +37,13 @@ export class Header {
     this.menuCuentaAbierto = false;
   }
 
-  toggleModoOscuro() {
-    this.modoOscuro = !this.modoOscuro;
-    document.body.classList.toggle('modo-oscuro', this.modoOscuro);
+  
+  get modoOscuro(): boolean {
+    return this.themeService.isDarkMode();
+  }
+
+  toggleTema(): void {
+    this.themeService.toggle();
   }
 
   logout(): void {

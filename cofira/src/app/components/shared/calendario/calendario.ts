@@ -38,12 +38,10 @@ export class Calendario implements OnInit {
 
     this.diasDelMes = [];
 
-    // Agregar días vacíos al inicio
     for (let i = 0; i < primerDia; i++) {
       this.diasDelMes.push(null);
     }
 
-    // Agregar días del mes
     for (let dia = 1; dia <= ultimoDia; dia++) {
       this.diasDelMes.push(dia);
     }

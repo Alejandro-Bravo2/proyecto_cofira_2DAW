@@ -12,19 +12,13 @@ import {
   OnboardingResponse
 } from '../models/onboarding.model';
 
-/**
- * ONBOARDING SERVICE
- * Gestiona el estado del onboarding, persistencia en localStorage y comunicacion con API
- */
+
 @Injectable({providedIn: 'root'})
 export class OnboardingService {
   readonly currentStep = signal(0);
   readonly formData = signal<Partial<OnboardingData>>(DEFAULT_ONBOARDING_DATA);
   readonly completedSteps = signal<number[]>([]);
 
-  // ================================================================
-  // SIGNALS - Estado reactivo
-  // ================================================================
   readonly isLoading = signal(false);
   readonly error = signal<string | null>(null);
   readonly canGoBack = computed(() => {
@@ -33,9 +27,6 @@ export class OnboardingService {
   private readonly api = inject(ApiService);
   private readonly STORAGE_KEY = 'cofira_onboarding_progress';
 
-  // ================================================================
-  // COMPUTED - Valores derivados
-  // ================================================================
   private readonly TOTAL_STEPS = 15;
   readonly progress = computed(() => {
     return Math.round((this.completedSteps().length / this.TOTAL_STEPS) * 100);
@@ -47,17 +38,9 @@ export class OnboardingService {
     return this.currentStep() < this.TOTAL_STEPS - 1;
   });
 
-  // ================================================================
-  // CONSTRUCTOR - Cargar progreso guardado
-  // ================================================================
-
   constructor() {
     this.loadProgress();
   }
-
-  // ================================================================
-  // NAVEGACION
-  // ================================================================
 
   goToStep(step: number): void {
     if (step >= 0 && step < this.TOTAL_STEPS) {
@@ -90,10 +73,6 @@ export class OnboardingService {
     });
   }
 
-  // ================================================================
-  // ACTUALIZACION DE DATOS
-  // ================================================================
-
   updateData(data: Partial<OnboardingData>): void {
     this.formData.update(current => ({
       ...current,
@@ -112,10 +91,6 @@ export class OnboardingService {
     }));
     this.saveProgress();
   }
-
-  // ================================================================
-  // PERSISTENCIA - LocalStorage
-  // ================================================================
 
   saveProgress(): void {
     const progress: OnboardingProgress = {
@@ -153,10 +128,6 @@ export class OnboardingService {
     this.completedSteps.set([]);
     this.formData.set(DEFAULT_ONBOARDING_DATA);
   }
-
-  // ================================================================
-  // API - Comunicacion con backend
-  // ================================================================
 
   searchAlimentos(query: string): Observable<Alimento[]> {
     if (!query || query.length < 2) {
@@ -199,10 +170,6 @@ export class OnboardingService {
   checkOnboardingStatus(): Observable<boolean> {
     return this.api.get<boolean>('/onboarding/status');
   }
-
-  // ================================================================
-  // UTILIDADES
-  // ================================================================
 
   getTotalSteps(): number {
     return this.TOTAL_STEPS;

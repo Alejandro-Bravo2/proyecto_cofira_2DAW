@@ -1,34 +1,6 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   TARJETA COMPONENT (Global)
-   Componentes de tarjeta/card reutilizables
-   ═══════════════════════════════════════════════════════════════════════════
-
-   ESTRUCTURA BEM
-   ─────────────────────────────────────────────────────────────────────────────
-   Block:     .tarjeta
-   Elements:  .tarjeta__imagen, .tarjeta__encabezado, .tarjeta__titulo,
-              .tarjeta__subtitulo, .tarjeta__contenido, .tarjeta__precio,
-              .tarjeta__precio-periodo, .tarjeta__lista, .tarjeta__item,
-              .tarjeta__acciones, .tarjeta__pie
-   Modifiers: .tarjeta--destacada, .tarjeta--horizontal, .tarjeta--pequena,
-              .tarjeta--mediana, .tarjeta--grande, .tarjeta--precios
-
-   USO
-   ─────────────────────────────────────────────────────────────────────────────
-   <article class="tarjeta tarjeta--mediana">
-     <img class="tarjeta__imagen" src="..." alt="...">
-     <h3 class="tarjeta__titulo">Título</h3>
-     <p class="tarjeta__contenido">Contenido</p>
-     <footer class="tarjeta__acciones">...</footer>
-   </article>
-
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 @import '../01-tools/mixins';
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Card base
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .tarjeta {
   @include tarjeta-base;
@@ -36,9 +8,7 @@
   flex-direction: column;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Card components
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .tarjeta__imagen {
   width: 100%;
@@ -129,9 +99,7 @@
   margin-top: var(--spacing-size-s);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   MODIFIER: Featured card
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .tarjeta--destacada {
   border: 0.125rem solid var(--amarillo-normal);
@@ -152,9 +120,7 @@
   font-weight: var(--font-weight-bold);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   MODIFIER: Horizontal layout
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .tarjeta--horizontal {
   flex-direction: row;
@@ -166,9 +132,7 @@
   margin-right: var(--spacing-size-m);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   MODIFIERS: Sizes
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .tarjeta--pequena {
   padding: var(--spacing-size-s);
@@ -182,9 +146,7 @@
   padding: var(--spacing-size-l);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   MODIFIER: Pricing card
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .tarjeta--precios {
   text-align: center;

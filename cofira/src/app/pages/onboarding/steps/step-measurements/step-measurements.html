@@ -1,13 +1,3 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     STEP MEASUREMENTS - Altura y peso actual
-     ═══════════════════════════════════════════════════════════════════════════
-     Paso para ingresar medidas corporales
-
-     NOMENCLATURA BEM:
-     Block: .step-measurements
-     Elements: __header, __titulo, __subtitulo, __form, __input-group, __input-wrapper, __label, __input, __unit, __footer
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
 <article class="step-measurements">
 
   <header class="step-measurements__header">
@@ -60,8 +50,8 @@
     <app-button
       (click)="onContinue()"
       [habilitado]="!canContinue()"
-      tamanio="lg"
-      variante="primary">
+      tamanio="grande"
+      variante="primario">
       Continuar
     </app-button>
   </footer>

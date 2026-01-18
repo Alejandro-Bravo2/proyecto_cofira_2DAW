@@ -1,26 +1,11 @@
-/**
- * LOGIN PAGE STYLES - Estilo Onboarding
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos limpios como el onboarding (sin tarjeta flotante)
- *
- * NOMENCLATURA BEM:
- * Block: .login
- * Elements: __header, __titulo, __subtitulo, __form, __fieldset, __field,
- *           __field-icon, __input, __toggle-password, __error, __footer
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../styles/00-settings/css-variables';
 @import '../../../styles/01-tools/mixins';
 
-// Variables específicas
-$login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+$acceso-transicion: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CONTAINER
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.login {
+
+.acceso {
   @include flex-center;
   flex-direction: column;
   gap: var(--spacing-size-2xl);
@@ -31,11 +16,9 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   min-height: calc(100vh - 10rem);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HEADER
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.login__header {
+
+.acceso__cabecera {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +27,7 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   margin-bottom: 1rem;
 }
 
-.login__titulo {
+.acceso__titulo {
   font-family: var(--font-secondary);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
@@ -57,7 +40,7 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-.login__subtitulo {
+.acceso__subtitulo {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
@@ -65,18 +48,16 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FORM
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.login__form {
+
+.acceso__formulario {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-l);
   width: 100%;
 }
 
-.login__fieldset {
+.acceso__grupo-campos {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-m);
@@ -85,34 +66,38 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FIELDS - Con iconos integrados
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.login__field {
+
+.acceso__campo {
+  --campo-icono-color: var(--gris-normal);
+
   position: relative;
   display: flex;
   align-items: center;
 }
 
-.login__field-icon {
+.acceso__campo:focus-within {
+  --campo-icono-color: var(--amarillo-dark);
+}
+
+.acceso__campo-icono {
   position: absolute;
   left: var(--spacing-size-m);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gris-normal);
-  transition: color $login-transition;
+  color: var(--campo-icono-color);
+  transition: color $acceso-transicion;
   pointer-events: none;
   z-index: 1;
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
 }
 
-.login__input {
+.acceso__campo-icono-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.acceso__entrada {
   width: 100%;
   padding: var(--spacing-size-m) var(--spacing-size-m) var(--spacing-size-m) 3rem;
   font-family: var(--font-primary);
@@ -121,7 +106,7 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--bg-surface);
   border: 1.5px solid transparent;
   border-radius: var(--radius-lg);
-  transition: all $login-transition;
+  transition: all $acceso-transicion;
 
   &::placeholder {
     color: var(--gris-normal);
@@ -140,22 +125,14 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 0 0 4px rgba(255, 211, 0, 0.12);
   }
 
-  // Input de password con espacio para toggle
-  &--password {
+  &--contrasena {
     padding-right: 3rem;
   }
 }
 
-// Cuando el input tiene focus, activar icono
-.login__field:focus-within .login__field-icon {
-  color: var(--amarillo-dark);
-}
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   TOGGLE PASSWORD
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.login__toggle-password {
+.acceso__alternar-contrasena {
   position: absolute;
   right: var(--spacing-size-s);
   display: flex;
@@ -169,7 +146,7 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   color: var(--gris-normal);
   padding: 0;
-  transition: all $login-transition;
+  transition: all $acceso-transicion;
   z-index: 1;
 
   &:hover {
@@ -181,34 +158,32 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     outline: none;
     color: var(--amarillo-dark);
   }
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ERROR
-   ═══════════════════════════════════════════════════════════════════════════ */
+.acceso__alternar-contrasena-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
 
-.login__error {
+
+
+.acceso__error {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-s);
   padding: var(--spacing-size-m);
   background-color: rgba(239, 68, 68, 0.06);
   border-radius: var(--radius-lg);
-
-  svg {
-    flex-shrink: 0;
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--rojo-normal);
-  }
 }
 
-.login__error-text {
+.acceso__error-svg {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--rojo-normal);
+}
+
+.acceso__error-texto {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
@@ -216,11 +191,9 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.login__footer {
+
+.acceso__pie {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -228,7 +201,7 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
 }
 
-.login__alt-action {
+.acceso__accion-alternativa {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   color: var(--gris-normal);
@@ -236,11 +209,11 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
 }
 
-.login__link {
+.acceso__enlace {
   color: var(--amarillo-dark);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
-  transition: color $login-transition;
+  transition: color $acceso-transicion;
   margin-left: var(--spacing-size-xs);
 
   &:hover {
@@ -254,23 +227,21 @@ $login-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   LOADING SPINNER
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.login__loading {
+
+.acceso__cargando {
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-size-s);
 }
 
-.login__spinner {
+.acceso__indicador {
   width: 1.25rem;
   height: 1.25rem;
-  animation: login-spin 0.8s linear infinite;
+  animation: acceso-girar 0.8s linear infinite;
 }
 
-@keyframes login-spin {
+@keyframes acceso-girar {
   from {
     transform: rotate(0deg);
   }

@@ -1,18 +1,6 @@
-/**
- * CONTACTO PAGE STYLES
- * ═══════════════════════════════════════════════════════════════════════════
- * Página de contacto con formulario e información
- *
- * NOMENCLATURA BEM:
- * Block: .contacto
- * Elements: __header, __formulario, __info, __faq
- */
-
 @import '../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BLOCK: Contenedor principal
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .contacto {
   width: 100%;
@@ -25,9 +13,7 @@
   padding: 0 var(--spacing-size-m);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Header
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .contacto__header {
   background-color: var(--negro-normal);
@@ -64,9 +50,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Contenido Principal
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .contacto__contenido {
   padding: var(--spacing-size-xxxl) 0;
@@ -90,9 +74,7 @@
   margin: 0 0 var(--spacing-size-l) 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Formulario
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .contacto__formulario-wrapper {
   background-color: var(--blanco-normal);
@@ -174,9 +156,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Información de Contacto
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .contacto__info-wrapper {
   display: flex;
@@ -202,26 +182,26 @@
 .contacto__info-icono {
   width: 48px;
   height: 48px;
-  margin: 0; // Reset figure
+  margin: 0;
   background-color: var(--amarillo-light);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
 
-  svg {
-    width: 24px;
-    height: 24px;
-    color: var(--amarillo-dark);
-  }
+.contacto__info-icono-svg {
+  width: 24px;
+  height: 24px;
+  color: var(--amarillo-dark);
 }
 
 .contacto__info-texto {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-xxs);
-  font-style: normal; // Reset address italic
+  font-style: normal;
 }
 
 .contacto__info-titulo {
@@ -246,9 +226,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Horarios
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .contacto__horarios {
   background-color: var(--blanco-normal);
@@ -269,7 +247,7 @@
   display: grid;
   grid-template-columns: 1fr auto;
   gap: var(--spacing-size-s) var(--spacing-size-m);
-  margin: 0; // Reset dl
+  margin: 0;
 }
 
 .contacto__horario-dia {
@@ -283,13 +261,11 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
   color: var(--gris-normal);
-  margin: 0; // Reset dd
+  margin: 0;
   text-align: right;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: FAQ
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .contacto__faq {
   padding: var(--spacing-size-xxxl) 0;

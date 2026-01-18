@@ -1,46 +1,10 @@
-/* ─────────────────────────────────────────────────────────────────────────────
-   COMPONENT: Form Register
-   ─────────────────────────────────────────────────────────────────────────────
-
-   BLOCK: .form
-
-   ELEMENTS:
-   - .form__fieldset     → Fieldset principal
-   - .form__legend       → Título del formulario
-   - .form__group        → Grupo de campo individual
-   - .form__label        → Etiqueta de campo
-   - .form__input        → Campo de entrada
-   - .form__error        → Mensaje de error
-
-   MODIFIERS:
-   - .form__input--error → Input con estado de error
-
-   STATES:
-   - :focus, :hover, :active, :disabled
-
-   USAGE:
-   <form class="form">
-     <fieldset class="form__fieldset">
-       <legend class="form__legend">Registro</legend>
-       <fieldset class="form__group">
-         <legend class="form__label">Email</legend>
-         <input class="form__input form__input--error" />
-         <span class="form__error">Email inválido</span>
-       </fieldset>
-     </fieldset>
-     <app-button tipo="submit" variante="primary" tamanio="lg" [fullWidth]="true">Registrarse</app-button>
-   </form>
-   ───────────────────────────────────────────────────────────────────────────── */
-
 .register-form {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Form
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .form {
   background-color: var(--gris-normal);
@@ -51,14 +15,12 @@
   box-shadow: var(--shadow-lg);
 }
 
-/* Fieldset principal */
 .form__fieldset {
   border: none;
   padding: 0;
   margin: 0 0 var(--spacing-size-xl) 0;
 }
 
-/* Legend principal (título del formulario) */
 .form__legend {
   color: var(--text-dark);
   font-family: var(--font-secondary);
@@ -70,7 +32,6 @@
   text-align: center;
 }
 
-/* Grupo de campo (fieldset individual) */
 .form__group {
   border: none;
   padding: 0;
@@ -81,7 +42,6 @@
   margin-bottom: 0;
 }
 
-/* Label (legend de cada campo) */
 .form__label {
   display: block;
   color: var(--text-dark);
@@ -93,9 +53,7 @@
   line-height: var(--line-height-normal);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Input
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .form__input {
   width: 100%;
@@ -125,7 +83,8 @@
   background-color: var(--blanco-normal-active);
 }
 
-/* Estado de error */
+
+
 .form__input--error {
   border: 0.125rem solid var(--button-red);
 }
@@ -135,9 +94,7 @@
   box-shadow: 0 0 0 0.1875rem rgba(255, 52, 52, 0.2);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Error Message
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .form__error {
   display: block;
@@ -147,4 +104,3 @@
   margin-top: var(--spacing-size-xss);
   margin-left: var(--spacing-size-s);
 }
-

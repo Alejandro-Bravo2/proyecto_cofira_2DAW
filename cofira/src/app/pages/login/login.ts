@@ -13,40 +13,40 @@ import {Button} from '../../components/shared/button/button';
   styleUrl: './login.scss'
 })
 export class Login {
-  readonly loginForm = new FormGroup({
+  readonly formularioLogin = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   });
-  readonly isLoading = signal(false);
+  readonly estaCargando = signal(false);
   readonly error = signal<string | null>(null);
-  readonly showPassword = signal(false);
+  readonly mostrarContrasena = signal(false);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
 
-  togglePassword(): void {
-    this.showPassword.update(v => !v);
+  alternarContrasena(): void {
+    this.mostrarContrasena.update(v => !v);
   }
 
-  onSubmit(): void {
-    if (this.loginForm.invalid || this.isLoading()) {
+  alEnviar(): void {
+    if (this.formularioLogin.invalid || this.estaCargando()) {
       return;
     }
 
-    this.isLoading.set(true);
+    this.estaCargando.set(true);
     this.error.set(null);
 
-    const formValue = this.loginForm.value;
+    const valorFormulario = this.formularioLogin.value;
 
     this.authService.login({
-      username: formValue.email!,
-      password: formValue.password!
+      username: valorFormulario.email!,
+      password: valorFormulario.password!
     }).subscribe({
       next: () => {
-        this.isLoading.set(false);
+        this.estaCargando.set(false);
         this.router.navigate(['/']);
       },
       error: (err) => {
-        this.isLoading.set(false);
+        this.estaCargando.set(false);
         this.error.set(err.error?.message || 'Credenciales incorrectas');
       }
     });

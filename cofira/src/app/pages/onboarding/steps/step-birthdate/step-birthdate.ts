@@ -42,13 +42,13 @@ export class StepBirthdate {
 
   private getMaxDate(): string {
     const today = new Date();
-    today.setFullYear(today.getFullYear() - 14); // Minimo 14 anios
+    today.setFullYear(today.getFullYear() - 14); 
     return today.toISOString().split('T')[0];
   }
 
   private getMinDate(): string {
     const date = new Date();
-    date.setFullYear(date.getFullYear() - 100); // Maximo 100 anios
+    date.setFullYear(date.getFullYear() - 100); 
     return date.toISOString().split('T')[0];
   }
 }

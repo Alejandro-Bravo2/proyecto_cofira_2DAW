@@ -1,14 +1,3 @@
-/**
- * STEP DIET TYPE STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos del paso de tipo de dieta
- *
- * NOMENCLATURA BEM:
- * Block: .step-diet-type
- * Elements: __header, __titulo, __subtitulo, __opciones, __footer
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../../../styles/00-settings/css-variables';
 @import '../../../../../styles/01-tools/mixins';
 
@@ -22,9 +11,7 @@
   padding: var(--spacing-size-xl);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HEADER
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-diet-type__header {
   text-align: center;
@@ -50,9 +37,7 @@
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   OPCIONES
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-diet-type__opciones {
   display: flex;
@@ -62,15 +47,13 @@
   margin: 0;
   padding: 0;
   list-style: none;
-
-  li {
-    width: 100%;
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════════════════════════════════════ */
+.step-diet-type__opcion-item {
+  width: 100%;
+}
+
+
 
 .step-diet-type__footer {
   display: flex;

@@ -1,15 +1,3 @@
-/**
- * PROGRESS BAR COMPONENT STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos de la barra de progreso del onboarding
- *
- * NOMENCLATURA BEM:
- * Block: .progress-bar
- * Elements: __track, __fill, __label
- * Modifiers: --hidden
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
 
@@ -21,34 +9,30 @@
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   LABEL
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .progress-bar__label {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--gris-normal);
+  color: var(--amarillo-dark);
   text-align: center;
   margin: 0;
-
-  &--hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   TRACK (Contenedor de la barra)
-   ═══════════════════════════════════════════════════════════════════════════ */
+.progress-bar__label--hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
 
 .progress-bar__track {
   position: relative;
@@ -57,29 +41,25 @@
   background-color: var(--blanco-dark);
   border-radius: var(--radius-full);
   overflow: hidden;
-
-  /* Reset del elemento meter */
   appearance: none;
   border: none;
-
-  &::-webkit-meter-bar {
-    background: transparent;
-  }
-
-  &::-webkit-meter-optimum-value,
-  &::-webkit-meter-suboptimum-value,
-  &::-webkit-meter-even-less-good-value {
-    background: transparent;
-  }
-
-  &::-moz-meter-bar {
-    background: transparent;
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FILL (Relleno de progreso)
-   ═══════════════════════════════════════════════════════════════════════════ */
+.progress-bar__track::-webkit-meter-bar {
+  background: transparent;
+}
+
+.progress-bar__track::-webkit-meter-optimum-value,
+.progress-bar__track::-webkit-meter-suboptimum-value,
+.progress-bar__track::-webkit-meter-even-less-good-value {
+  background: transparent;
+}
+
+.progress-bar__track::-moz-meter-bar {
+  background: transparent;
+}
+
+
 
 .progress-bar__fill {
   position: absolute;

@@ -14,22 +14,20 @@ import {ThemeService} from '../../../services/theme.service';
 export class Footer {
   private readonly themeService = inject(ThemeService);
 
-  currentYear = new Date().getFullYear();
+  anioActual = new Date().getFullYear();
 
   socialLinks = [
-    {name: 'YouTube', url: 'https://youtube.com/@cofira', icon: 'youtube'},
-    {name: 'Facebook', url: 'https://facebook.com/cofira', icon: 'facebook'},
-    {name: 'Twitter', url: 'https://twitter.com/cofira', icon: 'twitter'},
-    {name: 'Instagram', url: 'https://instagram.com/cofira', icon: 'instagram'},
-    {name: 'LinkedIn', url: 'https://linkedin.com/company/cofira', icon: 'linkedin'}
+    {name: 'YouTube', url: 'https://youtube.com/cofira'},
+    {name: 'Facebook', url: 'https://facebook.com/cofira'},
+    {name: 'Twitter', url: 'https://twitter.com/cofira'},
+    {name: 'Instagram', url: 'https://instagram.com/cofira'},
+    {name: 'LinkedIn', url: 'https://linkedin.com/company/cofira'},
   ];
 
-  // Selector de idiomas
   idiomaActual = 'ES';
   idiomas = ['ES', 'EN', 'FR', 'DE'];
   mostrarIdiomas = false;
 
-  // Getter para el estado del tema (usa el servicio)
   get modoOscuro(): boolean {
     return this.themeService.isDarkMode();
   }

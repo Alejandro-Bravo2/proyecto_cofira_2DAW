@@ -1,54 +1,13 @@
 @import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HEADER COMPONENT - Minimalista y Fijo
-   Cabecera principal con navegación y acciones
-   ═══════════════════════════════════════════════════════════════════════════
-
-   TABLA DE CONTENIDOS
-   ─────────────────────────────────────────────────────────────────────────────
-   1. IMPORTS
-   2. BLOCK: Header principal
-   3. ELEMENTS
-      3.1 Logo
-      3.2 Navegación central (desktop)
-      3.3 Botones de acción (desktop)
-      3.4 Hamburguesa (móvil)
-   4. MENU-MOVIL COMPONENT
-      4.1 Contenedor principal
-      4.2 Overlay
-      4.3 Contenido del menú
-      4.4 Header del menú
-      4.5 Navegación móvil
-      4.6 Botones de acción móvil
-   5. RESPONSIVE
-
-   ESTRUCTURA BEM
-   ─────────────────────────────────────────────────────────────────────────────
-   Block:     .header
-   Elements:  .header__logo-link, .header__logo, .header__nav, .header__menu,
-              .header__link, .header__actions, .header__btn, .header__hamburguesa
-   Modifiers: .header__nav--desktop, .header__actions--desktop,
-              .header__btn--primary, .header__btn--secondary,
-              .header__hamburguesa--abierto
-
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   2. BLOCK: Header principal - Fijo con transparencia
-   ───────────────────────────────────────────────────────────────────────────── */
-
-.header {
-  // 1. POSICIONAMIENTO
+.cabecera {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: var(--z-header);
 
-  // 2. MODELO DE CAJA
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,157 +15,135 @@
   padding: 0 6rem;
   box-sizing: border-box;
 
-  // 4. VISUAL - Efecto glassmorphism
   @include efecto-glass(rgba(245, 245, 245, 0.85), 12px);
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05);
-
-  // RESPONSIVE
-  @include responsive-down('xl') {
-    padding: 0 3rem;
-  }
-
-  @include responsive-down('lg') {
-    padding: 0 2rem;
-  }
-
-  @include responsive-down('md') {
-    height: 4rem;
-    padding: 0 1.5rem;
-  }
 }
 
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   3.1 ELEMENT: Logo
-   ───────────────────────────────────────────────────────────────────────────── */
-
-.header__logo-link {
-  // 2. MODELO DE CAJA
+.cabecera__logo-enlace {
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  z-index: 2;
 
-  // 3. TIPOGRAFÍA
   text-decoration: none;
 }
 
-.header__logo {
-  // 2. MODELO DE CAJA
+.cabecera__logo {
   width: 8rem;
   height: 8rem;
 
-  // 5. MISCELÁNEA
   transition: opacity var(--duration-fast) ease;
-
-  @include responsive-down('md') {
-    width: 6rem;
-    height: 6rem;
-  }
 }
 
-.header__logo:hover {
+.cabecera__logo:hover {
   opacity: 0.8;
 }
 
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   3.2 ELEMENT: Navegación central
-   ───────────────────────────────────────────────────────────────────────────── */
-
-.header__nav {
-  // 1. POSICIONAMIENTO
-  position: absolute;
-  left: 50%;
-
-  // 5. MISCELÁNEA
-  transform: translateX(-50%);
+.cabecera__navegacion {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 40rem;
 }
 
-.header__nav--desktop {
-  @include responsive-down('md') {
-    display: none;
-  }
+.cabecera__navegacion--escritorio {
+  display: flex;
 }
 
-.header__menu {
-  // 2. MODELO DE CAJA
+.cabecera__navegacion--oculto-movil {
+  display: none;
+}
+
+.cabecera__menu {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-xxl);
   margin: 0;
   padding: 0;
 
-  // 4. VISUAL
   list-style: none;
-
-  @include responsive-down('lg') {
-    gap: var(--spacing-size-xl);
-  }
 }
 
-.header__link {
-  // 1. POSICIONAMIENTO
+.cabecera__enlace {
   position: relative;
 
-  // 2. MODELO DE CAJA
   padding: var(--spacing-size-xss) 0;
 
-  // 3. TIPOGRAFÍA
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   text-decoration: none;
 
-  // 4. VISUAL
   color: var(--negro-normal);
 
-  // 5. MISCELÁNEA
   transition: color var(--duration-fast) ease;
 
-  // Línea inferior animada
   @include enlace-subrayado-animado(var(--amarillo-normal), 2px);
-
-  @include responsive-down('lg') {
-    font-size: var(--font-size-sm);
-  }
 }
 
-.header__link:hover {
+.cabecera__enlace:hover {
   color: var(--negro-dark);
 }
 
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   3.3 ELEMENT: Botones de acción
-   ───────────────────────────────────────────────────────────────────────────── */
-
-.header__actions {
-  // 1. POSICIONAMIENTO
+.cabecera__acciones {
   position: relative;
 
-  // 2. MODELO DE CAJA
   display: flex;
   align-items: center;
   gap: var(--spacing-size-s);
   flex-shrink: 0;
+  z-index: 2;
 }
 
-.header__actions--desktop {
-  @include responsive-down('md') {
-    display: none;
-  }
+.cabecera__acciones--escritorio {
+  display: flex;
+}
+
+.cabecera__acciones--oculto-movil {
+  display: none;
+}
+
+.cabecera__tema-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--negro-normal);
+  cursor: pointer;
+  transition: all var(--duration-base) ease;
+}
+
+.cabecera__tema-btn:hover {
+  background: var(--amarillo-normal);
+  color: var(--negro-normal);
+  transform: scale(1.1);
+}
+
+.cabecera__tema-btn:active {
+  transform: scale(1);
+}
+
+.cabecera__tema-btn:focus {
+  outline: 0.125rem solid var(--amarillo-normal);
+  outline-offset: 0.125rem;
+}
+
+.cabecera__tema-btn-icono {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   3.4 ELEMENT: Hamburguesa (solo móvil)
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.header__hamburguesa {
-  // 1. POSICIONAMIENTO
+
+.cabecera__hamburguesa {
   z-index: var(--z-header-controls);
 
-  // 2. MODELO DE CAJA
   display: none;
   flex-direction: column;
   justify-content: space-around;
@@ -214,74 +151,54 @@
   height: 1.5rem;
   padding: 0;
 
-  // 4. VISUAL
   background: transparent;
   border: none;
 
-  // 5. MISCELÁNEA
   cursor: pointer;
-
-  @include responsive-down('md') {
-    display: flex;
-  }
-
 }
 
-.header__hamburguesa-linea {
-  // 2. MODELO DE CAJA
+.cabecera__hamburguesa-linea {
   width: 100%;
   height: 2px;
 
-  // 4. VISUAL
   background-color: var(--negro-normal);
   border-radius: 2px;
 
-  // 5. MISCELÁNEA
   transform-origin: center;
   transition: transform 0.25s ease, opacity 0.2s ease;
 }
 
-// Estado abierto - Animación de la hamburguesa
-.header__hamburguesa--abierto .header__hamburguesa-linea:nth-child(1) {
+
+.cabecera__hamburguesa-linea--primera-abierta {
   transform: rotate(45deg) translateY(0.5rem);
 }
 
-.header__hamburguesa--abierto .header__hamburguesa-linea:nth-child(2) {
+.cabecera__hamburguesa-linea--segunda-abierta {
   opacity: 0;
 }
 
-.header__hamburguesa--abierto .header__hamburguesa-linea:nth-child(3) {
+.cabecera__hamburguesa-linea--tercera-abierta {
   transform: rotate(-45deg) translateY(-0.5rem);
 }
 
-.header__hamburguesa:hover .header__hamburguesa-linea {
+.cabecera__hamburguesa-linea--hover {
   background-color: var(--amarillo-dark);
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   4. MENU-MOVIL COMPONENT
-   Panel lateral de navegación para dispositivos móviles
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4.1 Contenedor principal
-// ─────────────────────────────────────────────────────────────────────────────
+
 .menu-movil {
-  // 1. POSICIONAMIENTO
   position: fixed;
   top: 0;
   left: 0;
   z-index: var(--z-modal);
 
-  // 2. MODELO DE CAJA
   width: 100%;
   height: 100vh;
 
-  // 4. VISUAL
   visibility: hidden;
 
-  // 5. MISCELÁNEA
   pointer-events: none;
 }
 
@@ -290,35 +207,24 @@
   pointer-events: auto;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4.2 Overlay oscuro
-// ─────────────────────────────────────────────────────────────────────────────
 .menu-movil__overlay {
-  // 1. POSICIONAMIENTO
   position: absolute;
   inset: 0;
 
-  // 4. VISUAL
   background-color: rgba(0, 0, 0, 0);
 
-  // 5. MISCELÁNEA
   transition: background-color 0.25s ease-out;
 }
 
-.menu-movil--abierto .menu-movil__overlay {
+.menu-movil__overlay--visible {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4.3 Contenido del menú
-// ─────────────────────────────────────────────────────────────────────────────
 .menu-movil__contenido {
-  // 1. POSICIONAMIENTO
   position: absolute;
   top: 0;
   right: 0;
 
-  // 2. MODELO DE CAJA
   display: flex;
   flex-direction: column;
   width: 85%;
@@ -326,62 +232,47 @@
   height: 100%;
   overflow-y: auto;
 
-  // 4. VISUAL
   background: var(--blanco-normal);
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
 
-  // 5. MISCELÁNEA
   transform: translateX(100%);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.menu-movil--abierto .menu-movil__contenido {
+.menu-movil__contenido--visible {
   transform: translateX(0);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4.4 Header del menú
-// ─────────────────────────────────────────────────────────────────────────────
-.menu-movil__header {
-  // 2. MODELO DE CAJA
+.menu-movil__cabecera {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1.25rem 1.5rem;
 
-  // 4. VISUAL
   background: var(--blanco-normal);
   border-bottom: 1px solid var(--blanco-dark);
-
 }
 
-/* Título del menú móvil - acceso directo con clase BEM */
 .menu-movil__titulo {
-  // 2. MODELO DE CAJA
   margin: 0;
 
-  // 3. TIPOGRAFÍA
   font-family: var(--font-secondary);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
 
-  // 4. VISUAL
   color: var(--negro-normal);
 }
 
 .menu-movil__cerrar {
-  // 2. MODELO DE CAJA
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.5rem;
 
-  // 4. VISUAL
   background: transparent;
   border: none;
   border-radius: var(--radius-xss);
 
-  // 5. MISCELÁNEA
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -390,79 +281,60 @@
   transform: rotate(90deg);
 }
 
-.menu-movil__cerrar__icono {
+.menu-movil__cerrar-icono {
   width: 1.5rem;
   height: 1.5rem;
   color: var(--negro-normal);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4.5 Navegación móvil
-// ─────────────────────────────────────────────────────────────────────────────
-.menu-movil__nav {
-  // 2. MODELO DE CAJA
+.menu-movil__navegacion {
   display: flex;
   flex-direction: column;
   flex: 1;
   padding: 1rem 0;
 }
 
-.menu-movil__link {
-  // 2. MODELO DE CAJA
+.menu-movil__enlace {
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 1rem 1.5rem;
 
-  // 3. TIPOGRAFÍA
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   text-decoration: none;
 
-  // 4. VISUAL
   color: var(--negro-normal);
   border-left: 3px solid transparent;
 
-  // 5. MISCELÁNEA
   transition: background-color 0.15s ease, transform 0.15s ease;
-
-  &:hover {
-    background: var(--blanco-normal-hover);
-    border-left-color: var(--amarillo-normal);
-    transform: translateX(0.25rem);
-  }
-
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    flex-shrink: 0;
-    fill: var(--amarillo-dark);
-  }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4.6 Botones de acción móvil
-// ─────────────────────────────────────────────────────────────────────────────
-.menu-movil__actions {
-  // 2. MODELO DE CAJA
+.menu-movil__enlace:hover {
+  background: var(--blanco-normal-hover);
+  border-left-color: var(--amarillo-normal);
+  transform: translateX(0.25rem);
+}
+
+.menu-movil__enlace-icono {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  fill: var(--amarillo-dark);
+}
+
+.menu-movil__acciones {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
   margin-top: auto;
   padding: 1.5rem;
 
-  // 4. VISUAL
   border-top: 1px solid var(--blanco-dark);
 }
 
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   5. PERFIL BUTTON - Botón de usuario logueado
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.header__perfil {
+.cabecera__perfil {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-xs);
@@ -472,20 +344,20 @@
   border-radius: var(--radius-full);
   cursor: pointer;
   transition: all 0.2s ease;
-
-  &:hover {
-    background: var(--bg-surface);
-    border-color: var(--amarillo-normal);
-  }
 }
 
-.header__perfil-icono {
+.cabecera__perfil:hover {
+  background: var(--bg-surface);
+  border-color: var(--amarillo-normal);
+}
+
+.cabecera__perfil-icono {
   width: 1.5rem;
   height: 1.5rem;
   color: var(--gris-normal);
 }
 
-.header__perfil-nombre {
+.cabecera__perfil-nombre {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
@@ -496,23 +368,18 @@
   white-space: nowrap;
 }
 
-.header__perfil-chevron {
+.cabecera__perfil-chevron {
   width: 1rem;
   height: 1rem;
   color: var(--gris-normal);
   transition: transform 0.2s ease;
-
-  .header__perfil:hover & {
-    transform: translateY(2px);
-  }
 }
 
+.cabecera__perfil-chevron--hover {
+  transform: translateY(2px);
+}
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   6. DROPDOWN - Menú desplegable de cuenta
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-.header__dropdown {
+.cabecera__desplegable {
   position: absolute;
   top: calc(100% + var(--spacing-size-xs));
   right: 0;
@@ -526,19 +393,19 @@
   transform: translateY(-8px);
   transition: all 0.2s ease;
   z-index: 100;
-
-  &--abierto {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
 }
 
-.header__dropdown-nav {
+.cabecera__desplegable--abierto {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.cabecera__desplegable-navegacion {
   padding: var(--spacing-size-xs);
 }
 
-.header__dropdown-item {
+.cabecera__desplegable-item {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-s);
@@ -554,48 +421,43 @@
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   transition: background 0.15s ease;
-
-  &:hover {
-    background: var(--bg-surface);
-  }
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--gris-normal);
-    flex-shrink: 0;
-  }
-
-  &--logout {
-    color: var(--rojo-normal);
-
-    svg {
-      color: var(--rojo-normal);
-    }
-
-    &:hover {
-      background: rgba(239, 68, 68, 0.06);
-    }
-  }
 }
 
-.header__dropdown-separator {
+.cabecera__desplegable-item:hover {
+  background: var(--bg-surface);
+}
+
+.cabecera__desplegable-item-icono {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--gris-normal);
+  flex-shrink: 0;
+}
+
+.cabecera__desplegable-item--cerrar-sesion {
+  color: var(--rojo-normal);
+}
+
+.cabecera__desplegable-item-icono--cerrar-sesion {
+  color: var(--rojo-normal);
+}
+
+.cabecera__desplegable-item--cerrar-sesion:hover {
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.cabecera__desplegable-separador {
   border: none;
   height: 1px;
   background: var(--gris-light);
   margin: var(--spacing-size-xs) 0;
 }
 
-.header__dropdown-overlay {
+.cabecera__desplegable-overlay {
   position: fixed;
   inset: 0;
   z-index: 99;
 }
-
-
-/* ═══════════════════════════════════════════════════════════════════════════
-   7. MENU MOVIL - Usuario logueado
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 .menu-movil__usuario {
   display: flex;
@@ -605,22 +467,22 @@
   margin-bottom: var(--spacing-size-s);
   background: var(--bg-surface);
   border-radius: var(--radius-lg);
-
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: var(--amarillo-dark);
-  }
-
-  span {
-    font-family: var(--font-primary);
-    font-size: var(--font-size-md);
-    font-weight: var(--font-weight-semibold);
-    color: var(--negro-normal);
-  }
 }
 
-.menu-movil__logout {
+.menu-movil__usuario-icono {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--amarillo-dark);
+}
+
+.menu-movil__usuario-nombre {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+}
+
+.menu-movil__cerrar-sesion {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-s);
@@ -636,14 +498,94 @@
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
   transition: all 0.2s ease;
+}
 
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
+.menu-movil__cerrar-sesion-icono {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.menu-movil__cerrar-sesion:hover {
+  background: rgba(239, 68, 68, 0.06);
+}
+
+@include responsive-down('lg') {
+  .cabecera {
+    padding: 0 3rem;
   }
 
-  &:hover {
-    background: rgba(239, 68, 68, 0.06);
+  .cabecera__menu {
+    gap: var(--spacing-size-xl);
+  }
+
+  .cabecera__enlace {
+    font-size: var(--font-size-sm);
+  }
+
+  .cabecera__acciones {
+    gap: var(--spacing-size-xs);
   }
 }
 
+@include responsive-down('md') {
+  .cabecera {
+    padding: 0 2rem;
+    height: 4rem;
+  }
+
+  .cabecera__logo {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .cabecera__menu {
+    gap: var(--spacing-size-l);
+  }
+
+  .cabecera__enlace {
+    font-size: 0.875rem;
+  }
+
+  .cabecera__perfil-nombre {
+    max-width: 6rem;
+    font-size: 0.75rem;
+  }
+}
+
+@include responsive-down('sm') {
+  .cabecera {
+    padding: 0 1.5rem;
+    height: 4rem;
+  }
+
+  .cabecera__logo {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .cabecera__navegacion--escritorio {
+    display: none;
+  }
+
+  .cabecera__acciones--escritorio {
+    display: none;
+  }
+
+  .cabecera__hamburguesa {
+    display: flex;
+  }
+}
+
+@media (min-width: $breakpoint-sm) {
+  .cabecera__hamburguesa {
+    display: none;
+  }
+
+  .cabecera__navegacion--escritorio {
+    display: block;
+  }
+
+  .cabecera__acciones--escritorio {
+    display: flex;
+  }
+}

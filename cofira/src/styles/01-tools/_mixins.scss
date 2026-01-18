@@ -1,47 +1,34 @@
-/*
-La capa Tools está diseñada exclusivamente para funciones y mixins reutilizables que sirven como herramientas genéricas para otras capas.
-*/
+
 
 @import '../00-settings/css-variables';
 
-/* ============================================
-   FLEXBOX MIXINS
-   ============================================ */
 
 
-// Centrado perfecto (horizontal y vertical)
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-// Distribuir espacio entre elementos
 @mixin flex-between {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-// Flex con wrap (cuando los elementos no caben)
 @mixin flex-wrap($gap: 1rem) {
   display: flex;
   flex-wrap: wrap;
   gap: $gap;
 }
 
-// Flex completo (ocupa todo el ancho)
 @mixin flex-full {
   display: flex;
   width: 100%;
 }
 
 
-/* ============================================
-   FORM INPUT MIXINS
-   ============================================ */
 
-// Mixin para inputs básicos
 @mixin input-base {
   width: 100%;
   padding: var(--input-padding-vertical) var(--input-padding-horizontal);
@@ -54,29 +41,22 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   transition: all var(--duration-fast);
 }
 
-// Mixin para placeholder de inputs
 @mixin input-placeholder {
   color: var(--negro-normal);
 }
 
-// Mixin para estado focus de inputs
 @mixin input-focus {
   background-color: var(--blanco-normal-hover);
   box-shadow: var(--shadow-sm);
 }
 
-// Mixin para estado hover de inputs
 @mixin input-hover {
   background-color: var(--amarillo-normal-hover);
   border-color: var(--negro-normal);
 }
 
 
-/* ============================================
-   FORM CONTAINER MIXINS
-   ============================================ */
 
-// Mixin para contenedor de formulario
 @mixin form-container {
   display: flex;
   flex-direction: column;
@@ -89,7 +69,6 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   width: 100%;
 }
 
-// Mixin para inputs de formulario de contacto
 @mixin form-contact-input {
   background-color: var(--form-input-background);
   color: var(--text-dark);
@@ -106,7 +85,6 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   }
 }
 
-// Mixin para labels de formulario
 @mixin form-label {
   color: var(--blanco-normal);
   font-size: var(--font-size-md);
@@ -115,7 +93,6 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   margin-bottom: var(--spacing-size-xss);
 }
 
-// Mixin para botón de formulario
 @mixin form-button {
   width: 100%;
   padding: var(--spacing-size-s);
@@ -140,14 +117,7 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 }
 
 
-/* ============================================
-   RESPONSIVE MIXINS
-   ============================================ */
 
-// Mixin auxiliar para media queries (min-width) - USO LIMITADO
-// El proyecto usa principalmente responsive-down() (desktop-first)
-// Solo usar este mixin cuando necesites añadir algo específico para pantallas grandes
-// Breakpoints: 'xxs' (400px), 'xs' (640px), 'sm' (768px), 'md' (900px), 'lg' (1024px), 'xl' (1200px), 'xxl' (1400px)
 @mixin responsive($breakpoint) {
   @if $breakpoint == 'xxs' {
     @media (min-width: $breakpoint-xxs) {
@@ -180,8 +150,6 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   }
 }
 
-// Mixin para media queries responsive (desktop-first: max-width)
-// Uso: @include responsive-down('lg') { font-size: 14px; }
 @mixin responsive-down($breakpoint) {
   @if $breakpoint == 'xxs' {
     @media (max-width: $breakpoint-xxs) {
@@ -215,20 +183,13 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 }
 
 
-/* ============================================
-   LAYOUT ADICIONALES
-   ============================================ */
 
-// Flexbox en columna con gap opcional
-// Uso: @include flex-columna(var(--spacing-size-m));
 @mixin flex-columna($gap: 0) {
   display: flex;
   flex-direction: column;
   gap: $gap;
 }
 
-// Flexbox en fila con gap opcional
-// Uso: @include flex-fila(var(--spacing-size-m));
 @mixin flex-fila($gap: 0) {
   display: flex;
   flex-direction: row;
@@ -236,13 +197,7 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 }
 
 
-/* ============================================
-   TIPOGRAFIA MIXINS
-   ============================================ */
 
-// Tipografia para titulos (h1-h6)
-// Usa --font-secondary (Poppins)
-// Uso: @include tipografia-titulo;
 @mixin tipografia-titulo {
   font-family: var(--font-secondary);
   font-weight: var(--font-weight-bold);
@@ -250,9 +205,6 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   color: var(--text-light);
 }
 
-// Tipografia para textos (p, span, etc)
-// Usa --font-primary (Montserrat)
-// Uso: @include tipografia-texto;
 @mixin tipografia-texto {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
@@ -260,12 +212,7 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 }
 
 
-/* ============================================
-   COMPONENTES BASE MIXINS
-   ============================================ */
 
-// Base para botones reutilizables
-// Uso: @include boton-base;
 @mixin boton-base {
   display: inline-flex;
   align-items: center;
@@ -286,8 +233,6 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   }
 }
 
-// Base para tarjetas/cards
-// Uso: @include tarjeta-base;
 @mixin tarjeta-base {
   background-color: var(--gris-normal);
   border-radius: var(--radius-s);
@@ -300,8 +245,6 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   }
 }
 
-// Base para alertas/notificaciones
-// Uso: @include alerta-base;
 @mixin alerta-base {
   display: flex;
   align-items: center;
@@ -313,20 +256,13 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 }
 
 
-/* ============================================
-   UTILIDADES MIXINS
-   ============================================ */
 
-// Texto truncado con ellipsis
-// Uso: @include texto-truncado;
 @mixin texto-truncado {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-// Texto truncado multilínea
-// Uso: @include texto-truncado-lineas(3);
 @mixin texto-truncado-lineas($lineas: 2) {
   display: -webkit-box;
   -webkit-line-clamp: $lineas;
@@ -334,8 +270,6 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   overflow: hidden;
 }
 
-// Centrar con position absolute
-// Uso: @include centrar-absoluto;
 @mixin centrar-absoluto {
   position: absolute;
   top: 50%;
@@ -343,14 +277,10 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   transform: translate(-50%, -50%);
 }
 
-// Transicion suave estandar
-// Uso: @include transicion-suave;
 @mixin transicion-suave($propiedad: all) {
   transition: $propiedad var(--duration-base) ease;
 }
 
-// Ocultar visualmente pero accesible para screen readers
-// Uso: @include sr-only;
 @mixin sr-only {
   position: absolute;
   width: 0.0625rem;
@@ -364,114 +294,61 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   LAYOUT AVANZADO MIXINS
-   Mixins para patrones de layout complejos y reutilizables
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ============================================
-// Sección a ancho completo (Full-Width)
-// ============================================
-// Expande una sección al ancho completo del viewport
-// rompiendo el contenedor padre. Útil para secciones
-// con fondos que deben llegar de borde a borde.
-//
-// @param $padding-h - Padding horizontal (default: 6rem)
-// @param $padding-v - Padding vertical (default: var(--spacing-size-xxxl))
-//
-// Uso: @include seccion-full-width;
-// Uso: @include seccion-full-width(4rem, var(--spacing-size-xxl));
-// ============================================
 @mixin seccion-full-width($padding-h: 6rem, $padding-v: var(--spacing-size-xxxl)) {
-  // 1. POSICIONAMIENTO
   position: relative;
   left: 50%;
-
-  // 2. MODELO DE CAJA
   width: 100vw;
   padding: $padding-v $padding-h;
   box-sizing: border-box;
-
-  // 5. MISCELÁNEA
   transform: translateX(-50%);
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   EFECTOS VISUALES MIXINS
-   Mixins para efectos visuales modernos
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ============================================
-// Efecto Glassmorphism (Cristal esmerilado)
-// ============================================
-// Crea un efecto de cristal esmerilado con fondo
-// semi-transparente y desenfoque. Incluye prefijo
-// webkit para compatibilidad con Safari.
-//
-// @param $bg - Color de fondo con alpha (default: rgba(245, 245, 245, 0.85))
-// @param $blur - Intensidad del desenfoque (default: 12px)
-//
-// Uso: @include efecto-glass;
-// Uso: @include efecto-glass(rgba(0, 0, 0, 0.8), 20px);
-// ============================================
 @mixin efecto-glass($bg: rgba(245, 245, 245, 0.85), $blur: 12px) {
-  // 4. VISUAL
   background: $bg;
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur($blur);
 }
 
-
-// ============================================
-// Título de Sección
-// ============================================
-// Estilo estándar para títulos principales de sección.
-// Usa la fuente secundaria (Poppins) con peso bold
-// y alineación centrada.
-//
-// @param $color - Color del texto (default: var(--negro-normal))
-// @param $size - Tamaño de fuente (default: var(--font-size-4xl))
-// @param $margin-bottom - Margen inferior (default: var(--spacing-size-xxl))
-//
-// Uso: @include titulo-seccion;
-// Uso: @include titulo-seccion(var(--blanco-normal), var(--font-size-5xl));
-// ============================================
 @mixin titulo-seccion($color: var(--negro-normal), $size: var(--font-size-4xl), $margin-bottom: var(--spacing-size-xxl)) {
-  // 2. MODELO DE CAJA
   margin: 0 0 $margin-bottom 0;
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-secondary);
   font-size: $size;
   font-weight: var(--font-weight-bold);
   text-align: center;
-
-  // 4. VISUAL
   color: $color;
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   INTERACCIONES MIXINS
-   Mixins para estados hover, focus y animaciones
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ============================================
-// Efecto Hover con Elevación
-// ============================================
-// Añade una animación de elevación sutil al hacer hover.
-// El elemento se desplaza hacia arriba y aumenta su sombra.
-// Patrón común para cards y elementos interactivos.
-//
-// @param $distancia - Desplazamiento vertical (default: -0.25rem)
-// @param $sombra - Sombra en hover (default: var(--shadow-lg))
-//
-// Uso: @include hover-elevacion;
-// Uso: @include hover-elevacion(-0.5rem, var(--shadow-2xl));
-// ============================================
+
+@mixin hover-activo {
+  &:hover:not(:disabled) {
+    @content;
+  }
+}
+
+@mixin click-activo {
+  &:active:not(:disabled) {
+    @content;
+  }
+}
+
+@mixin focus-activo {
+  &:focus:not(:disabled) {
+    @content;
+  }
+}
+
+@mixin focus-visible-activo {
+  &:focus-visible:not(:disabled) {
+    @content;
+  }
+}
+
 @mixin hover-elevacion($distancia: -0.25rem, $sombra: var(--shadow-lg)) {
-  // 5. MISCELÁNEA
   transition: transform var(--duration-base) ease,
   box-shadow var(--duration-base) ease;
 
@@ -481,21 +358,6 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   }
 }
 
-
-// ============================================
-// Anillo de Foco (Accesibilidad)
-// ============================================
-// Indicador de foco estandarizado para navegación
-// por teclado. Mejora la accesibilidad siguiendo
-// las pautas WCAG.
-//
-// @param $color - Color del anillo (default: var(--amarillo-normal))
-// @param $ancho - Grosor del anillo (default: 2px)
-// @param $offset - Separación del elemento (default: 2px)
-//
-// Uso: @include focus-anillo;
-// Uso: @include focus-anillo(var(--negro-normal), 3px, 4px);
-// ============================================
 @mixin focus-anillo($color: var(--amarillo-normal), $ancho: 2px, $offset: 2px) {
   &:focus {
     outline: $ancho solid $color;
@@ -503,39 +365,17 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   }
 }
 
-
-// ============================================
-// Enlace con Subrayado Animado
-// ============================================
-// Crea un efecto de subrayado que se expande de
-// izquierda a derecha al hacer hover. La línea
-// comienza con ancho 0 y se expande al 100%.
-//
-// @param $color - Color de la línea (default: var(--amarillo-normal))
-// @param $altura - Grosor de la línea (default: 2px)
-//
-// Uso: @include enlace-subrayado-animado;
-// Uso: @include enlace-subrayado-animado(var(--negro-normal), 3px);
-// ============================================
 @mixin enlace-subrayado-animado($color: var(--amarillo-normal), $altura: 2px) {
-  // 1. POSICIONAMIENTO
   position: relative;
 
   &::after {
-    // 1. POSICIONAMIENTO
     position: absolute;
     bottom: 0;
     left: 0;
-
-    // 2. MODELO DE CAJA
     width: 0;
     height: $altura;
-
-    // 4. VISUAL
     content: '';
     background: $color;
-
-    // 5. MISCELÁNEA
     transition: width var(--duration-base) ease;
   }
 
@@ -545,19 +385,7 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   SECCIONES Y CONTENEDORES
-   Mixins para secciones de página y contenedores de contenido
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ============================================
-// Caja de Contenido (Content Box)
-// ============================================
-// Base para cajas blancas con borde sutil.
-// Uso común: formularios, tablas, cards de sección.
-//
-// Uso: @include caja-contenido;
-// ============================================
 @mixin caja-contenido {
   width: 100%;
   background-color: var(--blanco-normal);
@@ -566,17 +394,6 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   box-sizing: border-box;
 }
 
-// ============================================
-// Botón de Icono (Icon Button)
-// ============================================
-// Botón transparente que solo muestra un icono.
-// Reset completo de estilos de botón nativo.
-//
-// @param $size - Tamaño del botón (default: 1.5rem)
-//
-// Uso: @include boton-icono;
-// Uso: @include boton-icono(2rem);
-// ============================================
 @mixin boton-icono($size: 1.5rem) {
   @include flex-center;
   width: $size;
@@ -587,23 +404,13 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   cursor: pointer;
   color: inherit;
   transition: color var(--duration-fast) ease;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
 }
 
-// ============================================
-// Botón Circular de Acción
-// ============================================
-// Botón redondo para acciones (check, close, etc).
-//
-// @param $size - Tamaño del botón (default: 1.875rem)
-// @param $bg-color - Color de fondo
-//
-// Uso: @include boton-circular(1.875rem, #4caf50);
-// ============================================
+@mixin boton-icono-svg {
+  width: 100%;
+  height: 100%;
+}
+
 @mixin boton-circular($size: 1.875rem, $bg-color: var(--gris-normal)) {
   @include flex-center;
   width: $size;
@@ -619,9 +426,9 @@ La capa Tools está diseñada exclusivamente para funciones y mixins reutilizabl
   &:hover {
     transform: scale(1.1);
   }
+}
 
-  svg {
-    width: 50%;
-    height: 50%;
-  }
+@mixin boton-circular-svg {
+  width: 50%;
+  height: 50%;
 }

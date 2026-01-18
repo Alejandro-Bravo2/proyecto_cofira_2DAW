@@ -2,19 +2,19 @@
 
   <h2 [class]="obtenerClasesTitulo()">{{ titulo }}</h2>
 
-  <ul class="pricing-card__lista">
+  <ul class="tarjeta-precios__lista">
     @for (ventaja of ventajas; track ventaja) {
     <li [class]="obtenerClasesVentaja()">{{ ventaja }}</li>
     }
   </ul>
 
   <app-button
-    class="pricing-card__app-button"
+    class="tarjeta-precios__app-boton"
     (click)="alSuscribirse()"
-    [fullWidth]="true"
+    [anchoCompleto]="true"
     [habilitado]="deshabilitada"
-    tamanio="lg"
-    variante="primary">
+    tamanio="grande"
+    variante="primario">
     {{ texto_boton }}
   </app-button>
 

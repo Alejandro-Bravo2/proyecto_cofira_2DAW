@@ -11,16 +11,16 @@ import {debounceTime, distinctUntilChanged, Observable, Subject, switchMap, take
 })
 export class Autocomplete<T extends { id: number | string; nombre: string }> implements OnDestroy {
   readonly placeholder = input<string>('Buscar...');
-  readonly minChars = input<number>(2);
-  @Input() searchFn!: (query: string) => Observable<T[]>;
+  readonly caracteresMinimos = input<number>(2);
+  @Input() funcionBusqueda!: (consulta: string) => Observable<T[]>;
 
   @Output() seleccionar = new EventEmitter<T>();
 
-  readonly query = signal('');
-  readonly results = signal<T[]>([]);
-  readonly isOpen = signal(false);
-  readonly isLoading = signal(false);
-  readonly highlightedIndex = signal(-1);
+  readonly consulta = signal('');
+  readonly resultados = signal<T[]>([]);
+  readonly estaAbierto = signal(false);
+  readonly estaCargando = signal(false);
+  readonly indiceResaltado = signal(-1);
 
   private readonly searchSubject = new Subject<string>();
   private readonly destroy$ = new Subject<void>();
@@ -29,21 +29,21 @@ export class Autocomplete<T extends { id: number | string; nombre: string }> imp
     this.searchSubject.pipe(
       debounceTime(300),
       distinctUntilChanged(),
-      switchMap(query => {
-        if (query.length < this.minChars()) {
-          this.results.set([]);
-          this.isOpen.set(false);
+      switchMap(textoConsulta => {
+        if (textoConsulta.length < this.caracteresMinimos()) {
+          this.resultados.set([]);
+          this.estaAbierto.set(false);
           return [];
         }
-        this.isLoading.set(true);
-        return this.searchFn(query);
+        this.estaCargando.set(true);
+        return this.funcionBusqueda(textoConsulta);
       }),
       takeUntil(this.destroy$)
-    ).subscribe(results => {
-      this.results.set(results);
-      this.isOpen.set(results.length > 0);
-      this.isLoading.set(false);
-      this.highlightedIndex.set(-1);
+    ).subscribe(listaResultados => {
+      this.resultados.set(listaResultados);
+      this.estaAbierto.set(listaResultados.length > 0);
+      this.estaCargando.set(false);
+      this.indiceResaltado.set(-1);
     });
   }
 
@@ -52,53 +52,52 @@ export class Autocomplete<T extends { id: number | string; nombre: string }> imp
     this.destroy$.complete();
   }
 
-  onInputChange(value: string): void {
-    this.query.set(value);
-    this.searchSubject.next(value);
+  alCambiarInput(valor: string): void {
+    this.consulta.set(valor);
+    this.searchSubject.next(valor);
   }
 
-  onSelect(item: T): void {
+  alSeleccionar(item: T): void {
     this.seleccionar.emit(item);
-    this.query.set('');
-    this.results.set([]);
-    this.isOpen.set(false);
+    this.consulta.set('');
+    this.resultados.set([]);
+    this.estaAbierto.set(false);
   }
 
-  onKeyDown(event: KeyboardEvent): void {
-    const resultsLength = this.results().length;
+  alPresionarTecla(evento: KeyboardEvent): void {
+    const longitudResultados = this.resultados().length;
 
-    switch (event.key) {
+    switch (evento.key) {
       case 'ArrowDown':
-        event.preventDefault();
-        this.highlightedIndex.update(i => Math.min(i + 1, resultsLength - 1));
+        evento.preventDefault();
+        this.indiceResaltado.update(i => Math.min(i + 1, longitudResultados - 1));
         break;
       case 'ArrowUp':
-        event.preventDefault();
-        this.highlightedIndex.update(i => Math.max(i - 1, 0));
+        evento.preventDefault();
+        this.indiceResaltado.update(i => Math.max(i - 1, 0));
         break;
       case 'Enter':
-        event.preventDefault();
-        const index = this.highlightedIndex();
-        if (index >= 0 && index < resultsLength) {
-          this.onSelect(this.results()[index]);
+        evento.preventDefault();
+        const indice = this.indiceResaltado();
+        if (indice >= 0 && indice < longitudResultados) {
+          this.alSeleccionar(this.resultados()[indice]);
         }
         break;
       case 'Escape':
-        this.isOpen.set(false);
+        this.estaAbierto.set(false);
         break;
     }
   }
 
-  onBlur(): void {
-    // Delay to allow click events on results
+  alPerderFoco(): void {
     setTimeout(() => {
-      this.isOpen.set(false);
+      this.estaAbierto.set(false);
     }, 200);
   }
 
-  onFocus(): void {
-    if (this.results().length > 0) {
-      this.isOpen.set(true);
+  alObtenerFoco(): void {
+    if (this.resultados().length > 0) {
+      this.estaAbierto.set(true);
     }
   }
 }

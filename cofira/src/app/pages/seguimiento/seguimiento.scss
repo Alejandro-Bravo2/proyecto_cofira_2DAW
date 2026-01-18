@@ -1,26 +1,10 @@
-/**
- * SEGUIMIENTO PAGE STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos de la página de contador de nutrientes
- *
- * ESTRUCTURA BEM:
- * Block: .seguimiento
- * Elements: __titulo, __macronutrientes, __grafico-fuerza
- *
- * ESTRATEGIA RESPONSIVE: Desktop-first
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../styles/00-settings/css-variables';
 @import '../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BLOCK: Seguimiento page container
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .seguimiento {
-  // 2. MODELO DE CAJA
-  box-sizing: border-box; // Evita overflow horizontal con padding
+  box-sizing: border-box;
   width: 100%;
   max-width: 100%;
   padding: var(--spacing-size-xxxl) 0;
@@ -29,13 +13,10 @@
   align-items: center;
   gap: var(--spacing-size-xxl);
   min-height: calc(100vh - 10.5rem);
-
-  // 4. VISUAL
   background-color: var(--blanco-normal-hover);
 
-  // RESPONSIVE: Tablet y móvil (<900px)
   @include responsive-down('md') {
-    padding-top: calc(4rem + var(--spacing-size-xl)); // Header fijo (4rem) + espaciado
+    padding-top: calc(4rem + var(--spacing-size-xl));
     padding-left: var(--spacing-size-m);
     padding-right: var(--spacing-size-m);
     padding-bottom: var(--spacing-size-xl);
@@ -43,9 +24,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Título Principal
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .seguimiento__titulo {
   font-family: var(--font-secondary);
@@ -65,12 +44,10 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Sección de Macronutrientes
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .seguimiento__macronutrientes {
-  box-sizing: border-box; // Evita overflow horizontal con padding
+  box-sizing: border-box;
   width: 100%;
   max-width: 60.625rem;
   padding: 0 var(--spacing-size-m);
@@ -186,9 +163,7 @@
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Gráfico Circular
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .seguimiento__grafico-circular {
   flex-shrink: 0;
@@ -218,12 +193,10 @@
   height: 100%;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Sección de Ganancia de Fuerza
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .seguimiento__fuerza {
-  box-sizing: border-box; // Evita overflow horizontal con padding
+  box-sizing: border-box;
   width: 100%;
   max-width: 60.625rem;
   padding: 0 var(--spacing-size-m);
@@ -263,7 +236,7 @@
   border-radius: var(--radius-xss);
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23110e10'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 0.75rem center;
   background-size: 1.25rem;
@@ -279,12 +252,10 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Gráfico de Líneas
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .seguimiento__grafico-lineas {
-  box-sizing: border-box; // Evita overflow horizontal con padding
+  box-sizing: border-box;
   width: 100%;
   background-color: var(--blanco-normal);
   border: 0.0625rem solid var(--blanco-dark);

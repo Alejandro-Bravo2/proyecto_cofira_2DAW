@@ -1,11 +1,8 @@
-/**
- * ONBOARDING MODELS
- * Interfaces y tipos para el sistema de onboarding
- */
 
-// ================================================================
-// ENUMS - Tipos de datos del onboarding
-// ================================================================
+
+
+
+
 
 export type PrimaryGoal = 'LOSE_WEIGHT' | 'GAIN_MUSCLE' | 'MAINTAIN' | 'IMPROVE_HEALTH';
 
@@ -42,39 +39,39 @@ export type DietType =
 
 export type TrainingLocation = 'HOME' | 'GYM' | 'OUTDOOR' | 'MIXED';
 
-// ================================================================
-// INTERFACES - Datos del onboarding
-// ================================================================
+
+
+
 
 export interface OnboardingData {
-  // Paso 1: Objetivo principal
+  
   primaryGoal: PrimaryGoal | null;
 
-  // Paso 2-3: Datos fisicos basicos
+  
   gender: Gender | null;
   birthDate: string | null;
   heightCm: number | null;
   currentWeightKg: number | null;
   targetWeightKg: number | null;
 
-  // Paso 4-5: Actividad y estilo de vida
+  
   activityLevel: ActivityLevel | null;
   workType: WorkType | null;
   sleepHoursAverage: number | null;
 
-  // Paso 6-8: Entrenamiento
+  
   fitnessLevel: FitnessLevel | null;
   trainingDaysPerWeek: number | null;
   sessionDurationMinutes: number | null;
   preferredTrainingTime: string | null;
   trainingLocation: TrainingLocation | null;
 
-  // Paso 9-11: Nutricion
+  
   dietType: DietType | null;
   mealsPerDay: number | null;
   favoriteAlimentos: number[];
 
-  // Paso 12-14: Alergias y salud
+  
   allergies: string[];
   medicalConditions: string[];
   injuries: string[];
@@ -82,7 +79,7 @@ export interface OnboardingData {
   isPregnant: boolean;
   isBreastfeeding: boolean;
 
-  // Paso 15: Equipamiento
+  
   equipment: string[];
 }
 
@@ -93,9 +90,9 @@ export interface OnboardingProgress {
   lastUpdated: string;
 }
 
-// ================================================================
-// INTERFACES - Respuestas del API
-// ================================================================
+
+
+
 
 export interface NutritionTargets {
   calculatedBMR: number;
@@ -115,9 +112,9 @@ export interface OnboardingResponse {
   nutritionTargets: NutritionTargets;
 }
 
-// ================================================================
-// INTERFACES - Alimentos
-// ================================================================
+
+
+
 
 export interface Alimento {
   id: number;
@@ -125,9 +122,9 @@ export interface Alimento {
   ingredientes?: string[];
 }
 
-// ================================================================
-// CONSTANTES - Opciones para seleccion
-// ================================================================
+
+
+
 
 export interface SelectOption {
   value: string;
@@ -276,9 +273,9 @@ export const TRAINING_LOCATION_OPTIONS: SelectOption[] = [
   }
 ];
 
-// ================================================================
-// VALORES POR DEFECTO
-// ================================================================
+
+
+
 
 export const DEFAULT_ONBOARDING_DATA: OnboardingData = {
   primaryGoal: null,

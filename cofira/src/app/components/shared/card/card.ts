@@ -21,28 +21,27 @@ export class Card {
   @Input() texto_boton: string = 'Inscríbete';
   @Input() precio: string = '15.99€ + IVA al mes';
   @Input() variante: 'info' | 'planes'  = 'planes';
-  @Input() tamanio: 'sm' | 'md' | 'lg' = 'md';
+  @Input() tamanio: 'pequena' | 'mediana' | 'grande' = 'mediana';
   @Input() deshabilitada: boolean = false;
   @Output() suscribirse = new EventEmitter<void>();
 
   obtenerClasesCard(): string {
-    return `pricing-card pricing-card--${this.variante} pricing-card--${this.tamanio}`;
+    return `tarjeta-precios tarjeta-precios--${this.variante} tarjeta-precios--${this.tamanio}`;
   }
 
   obtenerClasesTitulo(): string {
-    return `pricing-card__titulo pricing-card__titulo--${this.tamanio}`;
+    return `tarjeta-precios__titulo tarjeta-precios__titulo--${this.tamanio}`;
   }
 
   obtenerClasesVentaja(): string {
-    return `pricing-card__ventaja pricing-card__ventaja--${this.tamanio}`;
+    return `tarjeta-precios__ventaja tarjeta-precios__ventaja--${this.tamanio}`;
   }
 
   obtenerClasesPrecio(): string {
-    return `pricing-card__precio pricing-card__precio--${this.tamanio}`;
+    return `tarjeta-precios__precio tarjeta-precios__precio--${this.tamanio}`;
   }
 
   alSuscribirse(): void {
     this.router.navigate(['/onboarding']);
   }
 }
-

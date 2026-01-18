@@ -1,31 +1,6 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   INPUT COMPONENT (Global)
-   Componentes de inputs reutilizables en toda la aplicación
-   ═══════════════════════════════════════════════════════════════════════════
-
-   ESTRUCTURA BEM
-   ─────────────────────────────────────────────────────────────────────────────
-   Block:     .input, .input-group, .textarea, .select
-   Elements:  .input-group__icon
-   Modifiers: .input--search, .input--error, .input--success,
-              .input-group__icon--right, .input-group--icon-right
-
-   USO
-   ─────────────────────────────────────────────────────────────────────────────
-   <input class="input" type="text" placeholder="Texto...">
-   <input class="input input--error" type="text">
-   <p class="input-group">
-     <span class="input-group__icon">...</span>
-     <input class="input" type="text">
-   </p>
-
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 @import '../01-tools/mixins';
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Input base
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .input {
   width: 100%;
@@ -54,42 +29,38 @@
   background: var(--gris-dark);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   MODIFIERS: Input variants
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.input--search {
+
+.entrada--busqueda {
   padding-left: 3rem;
   border-radius: var(--radius-l);
   border: 0;
 }
 
-.input--error {
+.entrada--error {
   border-color: var(--button-red);
 }
 
-.input--error:focus {
+.entrada--error:focus {
   border-color: var(--button-red-hover);
 }
 
-.input--success {
+.entrada--exito {
   border-color: var(--amarillo-normal);
 }
 
-.input--success:focus {
+.entrada--exito:focus {
   border-color: var(--amarillo-normal-hover);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Input group (with icon)
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.input-group {
+
+.grupo-entrada {
   position: relative;
   width: 100%;
 }
 
-.input-group__icon {
+.grupo-entrada__icono {
   position: absolute;
   left: 1rem;
   top: 50%;
@@ -100,23 +71,21 @@
   pointer-events: none;
 }
 
-.input-group__icon--right {
+.grupo-entrada__icono--derecha {
   left: auto;
   right: 1rem;
 }
 
-.input-group .input {
+.entrada--con-icono {
   padding-left: 3rem;
 }
 
-.input-group--icon-right .input {
+.entrada--con-icono-derecha {
   padding-left: 1rem;
   padding-right: 3rem;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Textarea
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .textarea {
   @extend .input;
@@ -124,15 +93,13 @@
   resize: vertical;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Select
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .select {
   @extend .input;
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233f454c' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1rem;

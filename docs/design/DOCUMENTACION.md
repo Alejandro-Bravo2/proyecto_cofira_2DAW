@@ -810,7 +810,37 @@ Página: "Home"
 </button>
 ```
 
-### 3.1 Componentes implementados: Lista TODOS los componentes creados. Para cada uno documenta: - Nombre del componente - Propósito - Variantes disponibles - Tamaños disponibles - Estados que maneja - Ejemplo de uso (código)
+### 3.1 Componentes implementados
+
+He creado 19 componentes reutilizables organizados por categoría. Todos siguen la metodología BEM con nombres en español y están pensados para ser usados en múltiples páginas:
+
+**Componentes de notificación y mensajes:**
+- **alert** - Alertas inline persistentes (success, error, warning, info)
+- **notification** - Notificaciones toast temporales que aparecen y desaparecen
+- **modal** - Modales con overlay oscuro y animaciones de entrada
+
+**Componentes de formulario:**
+- **form-input** - Campos de entrada de texto con validación en tiempo real
+- **form-select** - Selectores desplegables personalizados
+- **form-textarea** - Áreas de texto expandibles
+- **form-checkbox** - Casillas de verificación con label
+- **autocomplete** - Campo con autocompletado y búsqueda
+
+**Componentes de UI:**
+- **button** - Botones con 4 variantes (primario, secundario, fantasma, peligro) y 3 tamaños
+- **card** - Tarjetas reutilizables para planes, información, etc.
+- **chip** - Etiquetas pequeñas para categorías o tags
+- **progress-bar** - Barra de progreso animada
+- **option-card** - Tarjetas seleccionables para el onboarding
+- **calendario** - Componente de calendario para seleccionar fechas
+- **ingredientes** - Lista de ingredientes con cantidades
+
+**Componentes especializados:**
+- **form-contact** - Formulario completo de contacto
+- **form-login** - Formulario de inicio de sesión
+- **form-register** - Formulario de registro con validación compleja
+
+Todos los componentes usan CSS Custom Properties para adaptarse automáticamente al tema claro/oscuro
 
 ---
 
@@ -2994,7 +3024,37 @@ Página: "Home"
 </button>
 ```
 
-### 3.1 Componentes implementados: Lista TODOS los componentes creados. Para cada uno documenta: - Nombre del componente - Propósito - Variantes disponibles - Tamaños disponibles - Estados que maneja - Ejemplo de uso (código)
+### 3.1 Componentes implementados
+
+He creado 19 componentes reutilizables organizados por categoría. Todos siguen la metodología BEM con nombres en español y están pensados para ser usados en múltiples páginas:
+
+**Componentes de notificación y mensajes:**
+- **alert** - Alertas inline persistentes (success, error, warning, info)
+- **notification** - Notificaciones toast temporales que aparecen y desaparecen
+- **modal** - Modales con overlay oscuro y animaciones de entrada
+
+**Componentes de formulario:**
+- **form-input** - Campos de entrada de texto con validación en tiempo real
+- **form-select** - Selectores desplegables personalizados
+- **form-textarea** - Áreas de texto expandibles
+- **form-checkbox** - Casillas de verificación con label
+- **autocomplete** - Campo con autocompletado y búsqueda
+
+**Componentes de UI:**
+- **button** - Botones con 4 variantes (primario, secundario, fantasma, peligro) y 3 tamaños
+- **card** - Tarjetas reutilizables para planes, información, etc.
+- **chip** - Etiquetas pequeñas para categorías o tags
+- **progress-bar** - Barra de progreso animada
+- **option-card** - Tarjetas seleccionables para el onboarding
+- **calendario** - Componente de calendario para seleccionar fechas
+- **ingredientes** - Lista de ingredientes con cantidades
+
+**Componentes especializados:**
+- **form-contact** - Formulario completo de contacto
+- **form-login** - Formulario de inicio de sesión
+- **form-register** - Formulario de registro con validación compleja
+
+Todos los componentes usan CSS Custom Properties para adaptarse automáticamente al tema claro/oscuro
 
 ---
 
@@ -4422,40 +4482,40 @@ A continuación muestro capturas de pantalla de 3 páginas principales en los vi
 
 _Mobile (375px):_
 
-![img.png](home_movil.png)
+![img.png](../assets/2_assets/home_movil.png)
 
 _Tablet (768px):_
 
-![img.png](home_tablet.png)
+![img.png](../assets/2_assets/home_tablet.png)
 
 _Desktop (1280px):_
-![img.png](home_desktop.png)
+![img.png](../assets/2_assets/home_desktop.png)
 
 ---
 
 **Página Alimentacion:**
 
 _Mobile (375px):_
-![img.png](alimentacion_home.png)
+![img.png](../assets/2_assets/alimentacion_home.png)
 
 _Tablet (768px):_
-![img.png](alimentacion_tablet.png)
+![img.png](../assets/2_assets/alimentacion_tablet.png)
 
 _Desktop (1280px):_
-![img.png](alimentacion_desktop.png)
+![img.png](../assets/2_assets/alimentacion_desktop.png)
 
 ---
 
 **Página Gimnasio:**
 
 _Mobile (375px):_
-![img.png](gimnasio_movil.png)
+![img.png](../assets/2_assets/gimnasio_movil.png)
 
 _Tablet (768px):_
-![img.png](gimnasio_tablet.png)
+![img.png](../assets/2_assets/gimnasio_tablet.png)
 
 _Desktop (1280px):_
-![img.png](gimnasio_desktop.png)
+![img.png](../assets/2_assets/gimnasio_desktop.png)
 
 ---
 
@@ -4463,14 +4523,14 @@ _Desktop (1280px):_
 
 _Mobile (375px):_
 
-![img.png](seguimiento_movil.png)
+![img.png](../assets/2_assets/seguimiento_movil.png)
 
 _Tablet (768px):_
-![img.png](seguimiento_tablet.png)
+![img.png](../assets/2_assets/seguimiento_tablet.png)
 
 _Desktop (1280px):_
 
-![img.png](seguimiento_desktop.png)
+![img.png](../assets/2_assets/seguimiento_desktop.png)
 
 ## 4.7 Testing responsive
 
@@ -4673,7 +4733,7 @@ He implementado el elemento `<picture>` en 2 lugares del proyecto para proporcio
 **2. Página Sobre Nosotros (`sobre-nosotros.html`) - Foto del equipo:**
 
 ```html
-<figure class="about__miembro-foto">
+<figure class="sobre-nosotros__miembro-foto">
   <picture>
     <!-- Versiones WebP optimizadas con srcset -->
     <source
@@ -4682,6 +4742,7 @@ He implementado el elemento `<picture>` en 2 lugares del proyecto para proporcio
       sizes="(max-width: 640px) 200px, (max-width: 900px) 300px, 400px" />
     <!-- Fallback JPG para navegadores sin soporte WebP -->
     <img
+      class="sobre-nosotros__miembro-foto-img"
       [alt]="miembro.nombre"
       [src]="miembro.foto"
       loading="lazy"
@@ -4699,7 +4760,7 @@ El atributo `srcset` permite al navegador elegir la imagen más apropiada según
 
 **¿Qué es `sizes`?**
 
-El atributo `sizes` indica al navegador el tamaño que ocupará la imagen en el viewport, ayudándole a elegir la mejor opción del `srcset`.
+El atributo `sizes` indica al navegador el tamaño que ocupará la imagen en el viewport.
 
 **Ejemplo de implementación:**
 
@@ -4761,8 +4822,6 @@ He implementado lazy loading en todas las imágenes que no son críticas para el
 <!-- Imagen con lazy loading -->
 <img alt="Descripción" loading="lazy" src="imagen.webp" />
 
-<!-- Imagen crítica sin lazy loading (hero/above the fold) -->
-<img alt="Hero image" loading="eager" src="hero.webp" />
 ```
 
 **Dónde se usa `loading="lazy"`:**
@@ -4772,11 +4831,6 @@ He implementado lazy loading en todas las imágenes que no son críticas para el
 - Imágenes de artículos en el blog.
 - Iconos SVG en la página de pruebas.
 
-**Dónde se usa `loading="eager"`:**
-
-- Imagen hero del onboarding (debe cargar inmediatamente).
-- Logo del header (siempre visible).
-
 ---
 
 ## 5.5 Animaciones CSS
@@ -4785,26 +4839,67 @@ He implementado lazy loading en todas las imágenes que no son críticas para el
 
 He creado **11 animaciones CSS** diferentes usando `@keyframes`:
 
-| Nombre de animación         | Ubicación           | Tipo              | Duración               |
-| --------------------------- | ------------------- | ----------------- | ---------------------- |
-| `notificacion-entrada`      | `_alerta.scss`      | Entrada lateral   | `var(--duration-base)` |
-| `notificacion-salida`       | `_alerta.scss`      | Salida lateral    | `var(--duration-base)` |
-| `spin`                      | `autocomplete.scss` | Rotación infinita | 1s linear infinite     |
-| `notificationSlideInRight`  | `notification.scss` | Entrada lateral   | `var(--duration-base)` |
-| `notificationSlideOutRight` | `notification.scss` | Salida lateral    | `var(--duration-slow)` |
-| `alertSlideIn`              | `alert.scss`        | Entrada vertical  | `var(--duration-base)` |
-| `fadeIn`                    | `modal.scss`        | Desvanecimiento   | `var(--duration-base)` |
-| `slideUp`                   | `modal.scss`        | Deslizamiento     | `var(--duration-base)` |
-| `login-spin`                | `login.scss`        | Rotación spinner  | 1s linear infinite     |
-| `fadeIn`                    | `step-register.scss`| Desvanecimiento   | `var(--duration-base)` |
-| `register-spin`             | `step-register.scss`| Rotación spinner  | 1s linear infinite     |
+1. **`notificacion-entrada`** (`_alerta.scss`)
+   - **Qué hace:** Animación de entrada para las alertas del sistema, deslizándolas desde la derecha hacia su posición final.
+   - **Propiedades:** `opacity` (0 → 1) y `transform: translateX(100% → 0)`
+   - **Duración:** `var(--duration-base)` (300ms)
+
+2. **`notificacion-salida`** (`_alerta.scss`)
+   - **Qué hace:** Animación de salida para las alertas, deslizándolas de vuelta hacia la derecha hasta desaparecer.
+   - **Propiedades:** `opacity` (1 → 0) y `transform: translateX(0 → 100%)`
+   - **Duración:** `var(--duration-base)` (300ms)
+
+3. **`girar-infinito`** (`autocomplete.scss`)
+   - **Qué hace:** Rotación continua para el spinner de carga del componente autocomplete.
+   - **Propiedades:** `transform: rotate(0deg → 360deg)`
+   - **Duración:** 1s linear infinite
+
+4. **`notificacion-deslizar-derecha`** (`notification.scss`)
+   - **Qué hace:** Animación de entrada para notificaciones toast, deslizándolas desde fuera de la pantalla (derecha) hacia su posición final.
+   - **Propiedades:** `opacity` (0 → 1) y `transform: translateX(120% → 0)`
+   - **Duración:** `var(--duration-base)` (300ms)
+
+5. **`notificacion-deslizar-salida-derecha`** (`notification.scss`)
+   - **Qué hace:** Animación de salida para notificaciones toast, deslizándolas hacia la derecha mientras se reducen ligeramente de tamaño.
+   - **Propiedades:** `opacity` (1 → 0), `transform: translateX(0 → 150%)` y `scale(1 → 0.9)`
+   - **Duración:** `var(--duration-slow)` (500ms)
+
+6. **`alerta-deslizar-entrada`** (`alert.scss`)
+   - **Qué hace:** Animación de entrada para alertas inline, deslizándolas desde arriba con un pequeño desplazamiento vertical.
+   - **Propiedades:** `opacity` (0 → 1) y `transform: translateY(-10px → 0)`
+   - **Duración:** `var(--duration-base)` (300ms)
+
+7. **`aparecer-gradual`** (`modal.scss`)
+   - **Qué hace:** Fade in suave para el overlay oscuro del modal, creando la transición del fondo.
+   - **Propiedades:** `opacity` (0 → 1)
+   - **Duración:** `var(--duration-base)` (300ms)
+
+8. **`deslizar-arriba`** (`modal.scss`)
+   - **Qué hace:** Animación de entrada para el contenedor del modal, deslizándolo desde abajo hacia arriba mientras aparece.
+   - **Propiedades:** `opacity` (0 → 1) y `transform: translateY(2rem → 0)`
+   - **Duración:** `var(--duration-base)` (300ms)
+
+9. **`acceso-girar`** (`login.scss`)
+   - **Qué hace:** Rotación infinita para el spinner de carga durante el proceso de login.
+   - **Propiedades:** `transform: rotate(0deg → 360deg)`
+   - **Duración:** 0.8s linear infinite
+
+10. **`aparecer-gradual`** (`step-register.scss`)
+    - **Qué hace:** Fade in rápido para mensajes de error y requisitos de contraseña en el formulario de registro, con un ligero desplazamiento vertical.
+    - **Propiedades:** `opacity` (0 → 1) y `transform: translateY(-4px → 0)`
+    - **Duración:** 0.2s ease-out
+
+11. **`registro-girar`** (`step-register.scss`)
+    - **Qué hace:** Rotación continua para el spinner de carga durante la validación del formulario de registro.
+    - **Propiedades:** `transform: rotate(0deg → 360deg)`
+    - **Duración:** 0.8s linear infinite
 
 ### Ejemplos de código
 
-**1. Loading Spinner:**
+**1. Carga usando animación tipo spinner:**
 
 ```scss
-@keyframes spin {
+@keyframes girar-infinito {
   from {
     transform: rotate(0deg);
   }
@@ -4813,18 +4908,18 @@ He creado **11 animaciones CSS** diferentes usando `@keyframes`:
   }
 }
 
-.spinner {
-  animation: spin 1s linear infinite;
+.autocomplete__icono-svg--loading {
+  animation: girar-infinito 1s linear infinite;
 }
 ```
 
-**2. Entrada de notificación (slide-in):**
+**2. Entrada de notificación:**
 
 ```scss
-@keyframes notificationSlideInRight {
+@keyframes notificacion-deslizar-derecha {
   from {
     opacity: 0;
-    transform: translateX(100%);
+    transform: translateX(120%);
   }
   to {
     opacity: 1;
@@ -4832,15 +4927,15 @@ He creado **11 animaciones CSS** diferentes usando `@keyframes`:
   }
 }
 
-.notification--entering {
-  animation: notificationSlideInRight var(--duration-base) ease-out forwards;
+.notification {
+  animation: notificacion-deslizar-derecha var(--duration-base) ease;
 }
 ```
 
-**3. Modal fade-in con slide-up:**
+**3. Modal con animaciones de entrada:**
 
 ```scss
-@keyframes fadeIn {
+@keyframes aparecer-gradual {
   from {
     opacity: 0;
   }
@@ -4849,10 +4944,10 @@ He creado **11 animaciones CSS** diferentes usando `@keyframes`:
   }
 }
 
-@keyframes slideUp {
+@keyframes deslizar-arriba {
   from {
     opacity: 0;
-    transform: translateY(1rem);
+    transform: translateY(2rem);
   }
   to {
     opacity: 1;
@@ -4860,12 +4955,12 @@ He creado **11 animaciones CSS** diferentes usando `@keyframes`:
   }
 }
 
-.modal__overlay {
-  animation: fadeIn var(--duration-base) ease-out;
+.modal-overlay {
+  animation: aparecer-gradual var(--duration-base) ease;
 }
 
-.modal__contenido {
-  animation: slideUp var(--duration-base) ease-out;
+.modal {
+  animation: deslizar-arriba var(--duration-base) ease;
 }
 ```
 
@@ -4875,32 +4970,53 @@ He implementado **49 transiciones CSS** en diferentes componentes:
 
 **Ejemplos de transiciones en botones:**
 
-```scss
-.button {
-  transition: all var(--duration-base) ease;
+He creado mixins reutilizables para los estados interactivos que evitan repetir `:not(:disabled)` en cada selector:
 
-  &:hover:not(:disabled) {
+```scss
+.boton--primario {
+  background-color: var(--button-yellow);
+  color: var(--negro-normal);
+  box-shadow: var(--shadow-md);
+
+
+  @include hover-activo {
+    background-color: var(--button-yellow-hover);
     transform: translateY(-0.125rem);
-    box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-lg);
   }
 
-  &:active:not(:disabled) {
+
+  @include click-activo {
     transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+
+  @include focus-activo {
+    outline: 0.1875rem solid var(--amarillo-normal);
+    outline-offset: 0.125rem;
   }
 }
 ```
-
 **Ejemplos de transiciones en cards:**
 
 ```scss
 .funcionalidades__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-size-xl);
+  background-color: var(--blanco-normal-hover);
+  border: 1px solid var(--blanco-dark);
+  border-radius: var(--radius-xs);
   transition: all var(--duration-base) ease;
+}
 
-  &:hover {
-    border-color: var(--amarillo-normal);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-0.25rem);
-  }
+.funcionalidades__item:hover {
+  border-color: var(--amarillo-normal);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-0.25rem);
 }
 ```
 
@@ -4908,81 +5024,582 @@ He implementado **49 transiciones CSS** en diferentes componentes:
 
 ```scss
 .input {
-  transition: border-color var(--duration-fast) ease,
-              box-shadow var(--duration-fast) ease;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 0.0625rem solid var(--gris-normal);
+  border-radius: var(--radius-xss);
+  background: var(--background-secondary);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  transition: border-color var(--duration-fast);
+}
 
-  &:focus {
-    border-color: var(--amarillo-normal);
-    box-shadow: 0 0 0 3px rgba(255, 211, 0, 0.2);
-  }
+.input:focus {
+  outline: none;
+  border-color: var(--amarillo-normal);
 }
 ```
 
 ### ¿Por qué solo animo `transform` y `opacity`?
 
-Solo animo las propiedades `transform` y `opacity` porque son las únicas propiedades CSS que el navegador puede animar sin provocar **reflow** o **repaint** del DOM.
-
-**Propiedades que provocan reflow (evitar animar):**
-
-- `width`, `height`
-- `margin`, `padding`
-- `top`, `left`, `right`, `bottom`
-- `font-size`
-
-**Propiedades que provocan repaint (evitar animar):**
-
-- `color`
-- `background-color`
-- `border-color`
-- `box-shadow`
-
-**Propiedades optimizadas (usar siempre):**
-
-- `transform` (translateX, translateY, scale, rotate)
-- `opacity`
-
-Estas dos propiedades son manejadas por el **compositor** del navegador en una capa separada, lo que significa que no afectan al resto del documento y se renderizan a 60fps sin problemas.
-
-**Ejemplo de animación optimizada:**
-
-```scss
-// ✅ CORRECTO - Solo transform y opacity
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-// ❌ INCORRECTO - Provoca reflow
-@keyframes slideInBad {
-  from {
-    left: -100%;
-  }
-  to {
-    left: 0;
-  }
-}
-```
-
-### Duraciones utilizadas
-
-Todas las animaciones usan variables CSS para mantener consistencia:
-
-```scss
-// Variables de duración
---duration-fast: 150ms;   // Micro-interacciones (hover, focus)
---duration-base: 300ms;   // Transiciones estándar
---duration-slow: 500ms;   // Animaciones de salida
-```
-
-Las duraciones están entre **150ms y 500ms** como recomienda la especificación, ya que:
-
-- Menos de 150ms: Se percibe como instantáneo, no da feedback visual.
-- Más de 500ms: Se percibe como lento y frustrante para el usuario.
+Solo animo las propiedades `transform` y `opacity` porque son las únicas propiedades CSS que el navegador puede animar sin provocar que se tengan que volver a cargar los valores. La gran ventaja del transform y opacity es que el navegador haría este proceso solamente una vez.
 
 ---
+
+# Sección 6: Sistema de Temas
+
+## 6.1 Variables de tema
+
+He implementado un sistema de modo claro y oscuro usando **CSS Custom Properties**. Al principio pensé en usar clases CSS en el body, pero investigando descubrí que lo más estándar y profesional es usar el atributo `data-theme` en el elemento `<html>`, así que decidí implementarlo de esa forma.
+
+### ¿Cómo organicé los archivos?
+
+Dividí el sistema de temas en tres archivos para mantener todo organizado y no tener un archivo gigante de miles de líneas:
+
+1. **`_dark-mode-config.scss`** - Solo las variables específicas del modo oscuro en `[data-theme="dark"]`
+2. **`_dark-mode.scss`** - Los estilos que se aplican a cada componente cuando está en modo oscuro
+
+Me gustó esta separación porque es mucho más fácil encontrar lo que necesito. Si quiero cambiar un color del tema oscuro, voy directo a `_dark-mode-config.scss` sin tener que buscar entre miles de líneas.
+
+### Variables del tema claro
+
+Para el tema claro definí todas las variables en `_variables.scss`. Aqui definí todas las variables tanto de colores como de animaciones, tamaños, fuentes... :
+
+Claro ejemplo de colores configurados en el fichero _variables.scss:
+```css
+
+  --negro-normal: #110e10;
+  --negro-normal-hover: #0f0d0e;
+  --negro-normal-active: #0e0b0d;
+  --negro-dark: #0d0b0c;
+  --negro-dark-hover: #0a080a;
+  --negro-dark-active: #080607;
+
+
+  
+  --amarillo-normal: #ffd300;
+  --amarillo-normal-hover: #e6be00;
+  --amarillo-normal-active: #cca900;
+  --amarillo-dark: #bf9e00;
+  --amarillo-dark-hover: #997f00;
+  --amarillo-dark-active: #735f00;
+  --amarillo-darker: #594A00;
+
+
+  
+  --blanco-normal: #f5f5f5;
+  --blanco-normal-hover: #dddddd;
+  --blanco-normal-active: #c4c4c4;
+  --blanco-dark: #b8b8b8;
+  --blanco-dark-hover: #939393;
+  --blanco-dark-active: #6e6e6e;
+
+
+  
+  --gris-normal: #3f454c;
+  --gris-normal-hover: #393e44;
+  --gris-normal-active: #32373d;
+  --gris-dark: #2f3439;
+  --gris-dark-hover: #26292e;
+  --gris-dark-active: #1c1f22;
+  --gris-light: #b8b8b8;
+
+
+  
+  --verde-normal: #22c55e;
+  --verde-normal-hover: #16a34a;
+  --verde-normal-active: #15803d;
+  --verde-dark: #166534;
+  --verde-light: #86efac;
+
+
+  
+  --rojo-normal: #ef4444;
+  --rojo-normal-hover: #dc2626;
+  --rojo-normal-active: #b91c1c;
+  --rojo-dark: #991b1b;
+  --rojo-light: #fca5a5;
+```
+
+### Variables del tema oscuro
+
+Para el modo oscuro lo configuré en los archivos `_dark-mode-config.scss` y `_dark-mode.scss`, lo hice de esta forma porque me parecía la forma más sencilla de ir cambiando los colores del dark mode sin tener que tener en un solo fichero o todo dividio en cada componente. La gran ventaja de esto es que si hay algun color que no me guste simplemente me tendré que ir a este fichero y lo puedo cambiar y no tengo que ir revisando cada componente ni nada de eso.
+
+```scss
+[data-theme="dark"] {
+  
+
+  .animation-item-codigo {
+    color: var(--oscuro-texto-secundario);
+    background: var(--oscuro-pagina-fondo);
+  }
+
+  
+  .radius-item {
+    background: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  .radius-item-texto {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  
+  .guia-estilos__nota {
+    background-color: var(--oscuro-guia-nota-fondo);
+    border-left-color: var(--oscuro-guia-nota-borde);
+    color: var(--oscuro-texto-principal);
+  }
+```
+
+---
+
+## 6.2 Implementación del Theme Switcher
+
+### ¿Cómo funciona el cambio de tema?
+
+Para manejar la lógica del cambio del tema lo he hecho en un fichero typescript que es que maneja toda la lógica del cambio de tema. Para permitir que el usuario pueda cambiar entre modos lo que implementé fueron dos botones uno en el header y otro en el footer y con iconos muy claros.
+
+
+### ThemeService - Cómo hice el sistema de temas
+
+Creé un servicio llamado `ThemeService` que se encarga de gestionar todo el tema de la aplicación. Lo hice en un servicio separado en vez de meterlo directo en el header porque así puedo usarlo desde cualquier componente y no tengo que repetir código.
+
+**¿Qué hace?**
+
+Pues básicamente cuatro cosas:
+
+1. **Guarda tu preferencia en el navegador** - Usa `localStorage` para que cuando recargues la página no se te olvide si elegiste modo claro u oscuro
+2. **Mira si tu sistema ya está en modo oscuro** - Si es la primera vez que entras y tu ordenador ya tiene el modo oscuro activado, pues lo activa automáticamente
+3. **Está pendiente de si cambias el tema del sistema** - Si cambias el tema de tu ordenador, la web también cambia (solo si no has elegido uno manual)
+4. **Cambia el atributo del HTML** - Pone `data-theme="dark"` o `data-theme="light"` en el `<html>` y el CSS hace el resto
+
+**La función clave que cambia el tema:**
+
+```typescript
+private setTheme(dark: boolean): void {
+  this.isDarkMode.set(dark);
+  const temaActual = dark ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', temaActual);
+}
+```
+
+Lo que hace esta función es muy simple: le pone un atributo al `<html>` que dice si estamos en modo `dark` o `light`. Luego el CSS detecta ese atributo y aplica los colores correspondientes. Así de sencillo.
+
+**¿Cómo sabe qué tema usar al cargar la página?**
+
+Pues tiene una prioridad que programé así:
+
+1. **Primero mira** si ya elegiste un tema antes (lo busca en `localStorage`)
+2. **Si no hay nada guardado**, pregunta al sistema operativo si está en modo oscuro con `prefers-color-scheme`
+3. **Si no encuentra nada**, pues usa el modo claro por defecto
+
+Me pareció la forma más lógica de hacerlo porque así respetas lo que el usuario haya elegido antes, pero si es nuevo pues le pones lo que ya tiene en su sistema.
+
+**Una cosa que me mola de cómo lo hice:**
+
+Si no has elegido manualmente un tema, el servicio se queda "escuchando" cambios en el tema de tu sistema. Por ejemplo, si es de noche y tu pc cambia automáticamente a modo oscuro, la web también cambia. Pero si YA elegiste modo claro a propósito, pues respeta tu decisión y no cambia aunque el sistema cambie. Esto lo hice porque me parece que la elección manual del usuario debe tener más peso que la automática
+
+### El botón para cambiar el tema
+
+Puse el botón para cambiar el tema en la cabecera (header) para que siempre esté visible. El botón muestra un sol ☀️ cuando estás en modo claro y una luna 🌙 cuando estás en modo oscuro.
+
+**¿Por qué puse el botón en el header y no en el footer?**
+
+Probé poniéndolo solo en el footer, pero me di cuenta de que si estás arriba de la página tienes que hacer scroll hasta abajo para cambiar el tema, y eso es molesto y además para usuarios nuevos que entren a la página y no les guste el modo blanco pues les podría costar imaginar donde he dejado el botón, aunque intenté que fuera lo más intuitivo posible. En el header está siempre visible, así que es mucho más cómodo para el usuario.
+
+
+### Las transiciones entre temas
+
+Una cosa que me parecía super importante era que cuando el usuario cambie de tema, el cambio sea suave y no un "flash" que moleste la vista. Entonces implementé transiciones CSS para todos los colores:
+
+```scss
+body * {
+  transition: background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              box-shadow 0.2s ease;
+}
+```
+
+Usé **200ms** porque probé con 100ms y se sentía demasiado brusco, y con 500ms se sentía lento. 200ms es el punto perfecto donde se ve fluido pero no lento.
+
+---
+
+## 6.3 Capturas de pantalla
+
+Aquí te muestro cómo se ven las páginas principales de la aplicación en modo claro y en modo oscuro. Tomé capturas de las 4 páginas más importantes para que veas que el sistema de temas funciona en toda la aplicación, no solo en algunas partes:
+
+### Página Home
+
+**Modo claro:**
+
+![img.png](../assets/2_assets/home_claro.png)
+
+**Modo oscuro:**
+
+![img.png](../assets/2_assets/home_oscuro.png)
+
+---
+
+### Página Gimnasio
+
+**Modo claro:**
+
+![img.png](../assets/2_assets/gimnasio_claro.png)
+
+**Modo oscuro:**
+
+![img.png](../assets/2_assets/gimnasio_oscuro.png)
+
+---
+
+### Página Alimentación
+
+**Modo claro:**
+
+![img.png](../assets/2_assets/img.png)
+
+
+
+**Modo oscuro:**
+
+![img_2.png](../assets/2_assets/img_2.png)
+
+
+---
+
+### Página Seguimiento
+
+**Modo claro:**
+
+![img_3.png](../assets/2_assets/img_3.png)
+
+
+**Modo oscuro:**
+
+![img_4.png](../assets/2_assets/img_4.png)
+
+---
+
+# Sección 7: Aplicación Completa y Despliegue
+
+## 7.1 Estado final de la aplicación
+
+Pues después de meses de trabajo, la aplicación está completamente terminada tanto en diseño como en funcionalidad. Aquí te cuento todo lo que he implementado:
+
+### Páginas implementadas (15 páginas)
+
+**Páginas principales:**
+1. **Home** - Página de inicio con hero section, características y call-to-action
+2. **Gimnasio** - Gestión de rutinas y ejercicios
+3. **Alimentación** - Planificación de menús y recetas
+4. **Seguimiento** - Gráficas de progreso y métricas
+5. **Login** - Acceso a la aplicación
+6. **Onboarding** - Proceso de registro en 14 pasos
+7. **Sobre nosotros** - Información del equipo
+8. **Blog** - Artículos y noticias
+9. **Contacto** - Formulario de contacto
+
+**Páginas legales y utilidades:**
+10. **Privacidad** - Política de privacidad
+11. **Cookies** - Política de cookies
+12. **Términos** - Términos y condiciones
+13. **Licencias** - Información de licencias MIT
+14. **Style Guide** - Guía visual de componentes
+15. **Pruebas** - Página de testing de SVG optimizados
+
+### Componentes reutilizables (19 componentes)
+
+He creado 19 componentes shared que se pueden usar en toda la aplicación:
+
+**Componentes de UI:**
+- `alert` - Alertas inline (success, error, warning, info)
+- `notification` - Notificaciones toast temporales
+- `button` - Botones con 4 variantes (primario, secundario, fantasma, peligro)
+- `card` - Tarjetas reutilizables
+- `modal` - Modales con overlay
+
+**Componentes de formulario:**
+- `form-input` - Campos de entrada de texto
+- `form-select` - Selectores desplegables
+- `form-textarea` - Áreas de texto
+- `form-checkbox` - Casillas de verificación
+- `autocomplete` - Campo de autocompletado
+
+**Componentes de layout:**
+- `header` - Cabecera con navegación y theme switcher
+- `footer` - Pie de página con enlaces y controles
+
+**Componentes especializados:**
+- `form-contact` - Formulario completo de contacto
+- `form-login` - Formulario de inicio de sesión
+- `form-register` - Formulario de registro con validación compleja
+- `option-card` - Tarjetas seleccionables para el onboarding
+- `calendario` - Componente de calendario para seleccionar fechas
+- `ingredientes` - Lista de ingredientes con cantidades
+- `chip` - Etiquetas pequeñas para categorías o tags
+- `progress-bar` - Barra de progreso animada
+
+
+### Sistema de diseño CSS
+
+**Arquitectura ITCSS completa:**
+- `00-settings/` - Variables CSS (+500 custom properties)
+- `01-tools/` - Mixins reutilizables (40+ mixins)
+- `02-generic/` - Reset y normalización
+- `03-elements/` - Estilos base HTML
+- `04-layout/` - Grid y estructura
+- `05-components/` - Componentes BEM
+- `06-utilities/` - Clases utilitarias
+- `07-dark-mode/` - Sistema de temas
+
+**Metodología BEM:**
+- Hasta 4 niveles de `__` cuando es necesario
+- Sin anidación de selectores (100% planos)
+- Variables intermedias siempre
+
+### Responsive Design
+
+La aplicación funciona perfectamente en:
+- **Mobile pequeño (320px)** - iPhone SE
+- **Mobile (375px)** - iPhone estándar
+- **Mobile grande (640px)** - Phablets
+- **Tablet (768px)** - iPad
+- **Tablet landscape (900px)** - iPad horizontal
+- **Desktop (1024px)** - Portátiles
+- **Desktop grande (1280px+)** - Monitores grandes
+
+### Funcionalidades implementadas
+
+**Autenticación:**
+- Login con validación en tiempo real
+- Registro de usuarios
+- Persistencia de sesión con localStorage
+- Cierre de sesión
+
+**Onboarding personalizado:**
+- 14 pasos para conocer al usuario
+- Cálculo de calorías según objetivos
+- Validación de formularios en cada paso
+- Barra de progreso visual
+
+**Sistema de temas:**
+- Modo claro/oscuro con más de 100 variables CSS
+- Detección automática de preferencia del sistema
+- Persistencia de preferencia del usuario
+- Transiciones suaves entre temas (200ms)
+- Theme switcher en header y footer
+
+**Optimización multimedia:**
+- Imágenes en WebP con múltiples tamaños comprimidas
+- SVGs optimizados con SVGOMG
+- 11 animaciones CSS
+
+---
+
+## 7.2 Testing multi-dispositivo
+
+Probé la aplicación en los 5 viewports que pedía la especificación usando Chrome DevTools. Aquí están los resultados:
+
+| Viewport | Ancho | Dispositivo de referencia | Estado | Observaciones |
+|----------|-------|---------------------------|--------|---------------|
+| **320px** | 320px | iPhone SE (1ª gen) | Funciona | Todo se ve bien, texto legible, botones accesibles |
+| **375px** | 375px | iPhone 12/13/14 | Funciona | Perfecto, es el viewport más común de mobile |
+| **768px** | 768px | iPad vertical | Funciona | Layout adapta a 2 columnas en algunas secciones |
+| **1024px** | 1024px | iPad horizontal | Funciona | Navegación cambia a horizontal, todo fluido |
+| **1280px** | 1280px | Desktop estándar | Funciona | Layout completo, todo el espacio aprovechado |
+
+**Problemas encontrados y solucionados:**
+
+- **320px:** Al principio el footer se veía apretado. Lo arreglé reduciendo el padding y usando flexbox columna en móvil.
+- **375px:** Los botones del onboarding se salían en horizontal. Cambié a layout vertical con `flex-direction: column`.
+- **768px:** El menú de navegación se veía raro a medio camino entre móvil y desktop. Ajusté el breakpoint a 900px para que el menú móvil se mantenga hasta ahí.
+
+---
+
+## 7.3 Testing en dispositivos reales
+
+También probé la aplicación en dispositivos físicos reales para asegurarme de que funciona bien fuera del navegador de escritorio:
+
+| Dispositivo | Sistema | Navegador | Resolución | Estado | Observaciones |
+|-------------|---------|-----------|------------|--------|---------------|
+| **iPad Air** | iPadOS 17 | Safari | 820×1180 | ✅ Funciona | Los gestos táctiles van perfectos, el menú desplegable se cierra bien al tocar fuera |
+| **Samsung Galaxy** | Android 13 | Chrome - Brave | 360×740 | ✅ Funciona | Todo se ve bien, el botón de tema cambia sin problemas |
+| **MacBook Pro** | macOS Sonoma | Brave | 1440×900 | ✅ Funciona | Los hover funcionan genial |
+
+
+---
+
+## 7.4 Verificación multi-navegador
+
+Probé la aplicación en los cuatro navegadores principales para asegurarme de que funciona en todos:
+
+| Navegador | Versión | Sistema | Compatibilidad | Problemas encontrados |
+|-----------|---------|---------|----------------|----------------------|
+| **Brave** | 1.86.140 | macOS Sonoma | 100% | Ninguno, funciona perfecto |
+| **Safari** | 26.0 | macOS Sonoma | 100% | Funciona bien aunque estaría chulo añadir el estilo nuevo de apple para que se viera nativo|
+| **Chrome** | 144.0.7559.60 | macOS Sonoma | 100% | Ninguno  |
+| **Firefox** | 147.0 | macOS Sonoma | 100% | Ninguo |
+
+---
+
+## 7.5 Capturas finales
+
+Aquí te muestro capturas de las páginas principales en los tres tamaños más representativos (mobile, tablet, desktop) y en ambos modos (claro y oscuro):
+
+### Home
+
+**Mobile (375px):**
+
+![Home Mobile](../assets/2_assets/home_movil.png)
+
+**Mobile - Modo claro:**
+
+![Home Mobile Claro](../assets/2_assets/img_5.png)
+
+**Tablet (768px):**
+
+![Home Tablet](../assets/2_assets/home_tablet.png)
+
+**Tablet - Modo claro:**
+
+![Home Tablet Claro](../assets/2_assets/img_9.png)
+
+**Desktop (1280px):**
+
+![Home Desktop](../assets/2_assets/home_desktop.png)
+
+**Desktop - Modo claro:**
+
+![Home Desktop Claro](../assets/2_assets/img_13.png)
+
+---
+
+### Gimnasio
+
+**Mobile (375px):**
+
+![Gimnasio Mobile](../assets/2_assets/gimnasio_movil.png)
+
+**Mobile - Modo claro:**
+
+![Gimnasio Mobile Claro](../assets/2_assets/img_7.png)
+
+**Tablet (768px):**
+
+![Gimnasio Tablet](../assets/2_assets/gimnasio_tablet.png)
+
+**Tablet - Modo claro:**
+
+![Gimnasio Tablet Claro](../assets/2_assets/img_11.png)
+
+**Desktop (1280px):**
+
+![Gimnasio Desktop](../assets/2_assets/gimnasio_desktop.png)
+
+**Desktop - Modo claro:**
+
+![Gimnasio Desktop Claro](../assets/2_assets/img_14.png)
+
+---
+
+### Seguimiento
+
+**Mobile (375px):**
+
+![Seguimiento Mobile](../assets/2_assets/seguimiento_movil.png)
+
+**Mobile - Modo claro:**
+
+![Seguimiento Mobile Claro](../assets/2_assets/img_8.png)
+
+**Tablet (768px):**
+
+![Seguimiento Tablet](../assets/2_assets/seguimiento_tablet.png)
+
+**Tablet - Modo claro:**
+
+![Seguimiento Tablet Claro](../assets/2_assets/img_12.png)
+
+**Desktop (1280px):**
+
+![Seguimiento Desktop](../assets/2_assets/seguimiento_desktop.png)
+
+**Desktop - Modo claro:**
+
+![Seguimiento Desktop Claro](../assets/2_assets/img_16.png)
+
+---
+
+### Alimentación
+
+**Mobile (375px) - Modo claro:**
+
+![Alimentación Mobile Claro](../assets/2_assets/img_6.png)
+
+**Mobile (375px) - Modo oscuro:**
+
+![Alimentación Mobile Oscuro](../assets/2_assets/img_19.png)
+
+**Tablet (768px) - Modo claro:**
+
+![Alimentación Tablet Claro](../assets/2_assets/img_10.png)
+
+**Tablet (768px) - Modo oscuro:**
+
+![Alimentación Tablet Oscuro](../assets/2_assets/img_18.png)
+
+**Desktop (1280px) - Modo claro:**
+
+![Alimentación Desktop Claro](../assets/2_assets/img_15.png)
+
+**Desktop (1280px) - Modo oscuro:**
+
+![Alimentación Desktop Oscuro](../assets/2_assets/img_17.png)
+
+---
+
+## 7.6 Despliegue
+
+He desplegado la aplicación en un vps de ionos para que esté accesible públicamente.
+
+**URL de producción:** [https://cofira.app](https://cofira.app)
+
+
+
+
+---
+
+## 7.7 Problemas conocidos y mejoras futuras
+
+### Problemas conocidos (menores)
+
+Estos son problemas pequeños que no afectan la funcionalidad pero que me gustaría mejorar en el futuro:
+
+1. No me gusta que en la página antes del onboarding no esté centrado el botón con el texto.
+
+2. Quiero agregar el efecto glass de apple
+
+3.  Quiero usar modelos en ollama en local para que funcione la web
+
+
+
+### Mejoras futuras
+
+Cosas que me gustaría añadir cuando tenga tiempo:
+
+**Funcionalidad:**
+- **Conexión con backend real** - Ahora mismo uso datos de prueba hardcodeados
+- **Autenticación con JWT** - Implementar autenticación real con tokens
+- **PWA (Progressive Web App)** - Convertirla en app instalable con Service Workers
+- **Notificaciones push** - Para recordar entrenamientos o comidas
+
+**Diseño:**
+- **Más animaciones** - Animaciones de transición entre páginas
+- **Apple design** - Compatibilidad con el tema glass de apple para safari
+- **Tema personalizable** - Permitir al usuario elegir su color de acento favorito
+
+
+

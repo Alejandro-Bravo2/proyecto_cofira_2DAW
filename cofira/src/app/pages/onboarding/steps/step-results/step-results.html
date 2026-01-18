@@ -1,13 +1,3 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     STEP RESULTS - Resultados del onboarding
-     ═══════════════════════════════════════════════════════════════════════════
-     Paso final mostrando resultados calculados (BMR, TDEE, macros)
-
-     NOMENCLATURA BEM:
-     Block: .step-results
-     Elements: __header, __titulo, __subtitulo, __content, __card, __label, __value, __unit, __macros, __macro, __footer
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
 <article class="step-results">
 
   @if (isLoading()) {
@@ -86,8 +76,8 @@
 
     <footer class="step-results__footer">
       <app-button
-        variante="primary"
-        tamanio="lg"
+        variante="primario"
+        tamanio="grande"
         (clicked)="onComplete()">
         Crear cuenta
       </app-button>

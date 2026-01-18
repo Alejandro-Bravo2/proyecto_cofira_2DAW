@@ -1,48 +1,9 @@
 @import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   PRICING-CARD COMPONENT
-   Tarjeta de precios reutilizable con variantes y tamaños
-   ═══════════════════════════════════════════════════════════════════════════
-
-   TABLA DE CONTENIDOS
-   ─────────────────────────────────────────────────────────────────────────────
-   1. IMPORTS
-   2. BLOCK: Base de pricing-card
-   3. ELEMENTS: Partes internas
-      3.1 Título
-      3.2 Precio
-      3.3 Lista de ventajas
-      3.4 Ventaja individual
-      3.5 Botón de acción
-   4. STATES: Estados del botón
-   5. MODIFIERS: Variantes
-      5.1 Variante --info
-      5.2 Variante --planes
-   6. MODIFIERS: Tamaños
-      6.1 Tamaño --sm
-      6.2 Tamaño --md
-      6.3 Tamaño --lg
-
-   ESTRUCTURA BEM
-   ─────────────────────────────────────────────────────────────────────────────
-   Block:     .pricing-card
-   Elements:  .pricing-card__titulo, .pricing-card__precio,
-              .pricing-card__lista, .pricing-card__ventaja,
-              .pricing-card__boton
-   Modifiers: --info, --planes (variante)
-              --sm, --md, --lg (tamaño)
-
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   2. BLOCK: Base de la pricing-card
-   ───────────────────────────────────────────────────────────────────────────── */
-
-.pricing-card {
-  // 2. MODELO DE CAJA
+.tarjeta-precios {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,63 +11,44 @@
   max-width: 28.125rem;
   padding: var(--spacing-size-xxl) var(--spacing-size-m);
 
-  // 3. TIPOGRAFÍA
   text-align: center;
 
-  // 4. VISUAL
   background: var(--gris-normal);
   border-radius: var(--radius-xs);
   box-shadow: var(--shadow-xl);
 
-  // 5. MISCELÁNEA
   container-type: inline-size;
-  container-name: pricing-card;
+  container-name: tarjeta-precios;
 
-  // Efecto hover con elevación
   @include hover-elevacion(-0.25rem, var(--shadow-2xl));
 }
 
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   3. ELEMENTS: Partes internas de la pricing-card
-   ───────────────────────────────────────────────────────────────────────────── */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3.1 TÍTULO: Encabezado principal de la tarjeta
-// ─────────────────────────────────────────────────────────────────────────────
-.pricing-card__titulo {
-  // 2. MODELO DE CAJA
+
+
+.tarjeta-precios__titulo {
   margin: 0 0 var(--spacing-size-xxl) 0;
 
-  // 3. TIPOGRAFÍA
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
 
-  // 4. VISUAL
   color: var(--text-dark);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3.2 PRECIO: Muestra el coste del plan
-// ─────────────────────────────────────────────────────────────────────────────
-.pricing-card__precio {
-  // 2. MODELO DE CAJA
+
+.tarjeta-precios__precio {
   margin: 0;
 
-  // 3. TIPOGRAFÍA
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
 
-  // 4. VISUAL
   color: var(--text-dark);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3.3 LISTA: Contenedor de ventajas
-// ─────────────────────────────────────────────────────────────────────────────
-.pricing-card__lista {
-  // 2. MODELO DE CAJA
+
+.tarjeta-precios__lista {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-s);
@@ -114,127 +56,103 @@
   margin: 0 0 var(--spacing-size-xxl) 0;
   padding: 0;
 
-  // 4. VISUAL
   list-style: none;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3.4 VENTAJA: Cada ítem de la lista
-// ─────────────────────────────────────────────────────────────────────────────
-.pricing-card__ventaja {
-  // 1. POSICIONAMIENTO
+
+.tarjeta-precios__ventaja {
   position: relative;
 
-  // 2. MODELO DE CAJA
   display: flex;
   align-items: center;
   gap: var(--spacing-size-xs);
   padding-left: var(--spacing-size-s);
 
-  // 3. TIPOGRAFÍA
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-normal);
   text-align: left;
 
-  // 4. VISUAL
   color: var(--text-dark);
 }
 
-// Checkmark decorativo antes de cada ventaja
-.pricing-card__ventaja::before {
+.tarjeta-precios__ventaja::before {
   content: '✓';
   font-weight: var(--font-weight-bold);
   color: var(--amarillo-normal);
   flex-shrink: 0;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3.5 BOTÓN: Ajustes para app-button en el contexto de la card
-// ─────────────────────────────────────────────────────────────────────────────
-.pricing-card__app-button {
+
+.tarjeta-precios__app-boton {
   margin-bottom: var(--spacing-size-m);
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   5. MODIFIERS: Variantes de estilo
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 5.1 VARIANTE --info: Estilo informativo básico
-// ─────────────────────────────────────────────────────────────────────────────
-.pricing-card--info {
+
+
+.tarjeta-precios--info {
   background: var(--gris-normal);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 5.2 VARIANTE --planes: Énfasis visual para página de planes
-// ─────────────────────────────────────────────────────────────────────────────
-.pricing-card--planes {
+
+.tarjeta-precios--planes {
   background: var(--gris-normal);
   box-shadow: var(--shadow-2xl);
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   6. MODIFIERS: Tamaños
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 6.1 TAMAÑO --sm: Pequeño para espacios reducidos
-// ─────────────────────────────────────────────────────────────────────────────
-.pricing-card--sm {
+
+
+.tarjeta-precios--pequena {
   max-width: 21rem;
   padding: var(--spacing-size-l) var(--spacing-size-s);
 }
 
-.pricing-card__titulo--sm {
+.tarjeta-precios__titulo--pequena {
   font-size: var(--font-size-2xl);
 }
 
-.pricing-card__ventaja--sm {
+.tarjeta-precios__ventaja--pequena {
   font-size: var(--font-size-base);
 }
 
-.pricing-card__precio--sm {
+.tarjeta-precios__precio--pequena {
   font-size: var(--font-size-base);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 6.2 TAMAÑO --md: Mediano (por defecto)
-// ─────────────────────────────────────────────────────────────────────────────
-.pricing-card--md {
+
+.tarjeta-precios--mediana {
   width: 75%;
 }
 
-.pricing-card__titulo--md {
+.tarjeta-precios__titulo--mediana {
   font-size: var(--font-size-lg);
 }
 
-.pricing-card__ventaja--md {
+.tarjeta-precios__ventaja--mediana {
   font-size: var(--font-size-md);
 }
 
-.pricing-card__precio--md {
+.tarjeta-precios__precio--mediana {
   font-size: var(--font-size-md);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 6.3 TAMAÑO --lg: Grande para destacar planes premium
-// ─────────────────────────────────────────────────────────────────────────────
-.pricing-card--lg {
+
+.tarjeta-precios--grande {
   max-width: 34rem;
   padding: var(--spacing-size-3xl) var(--spacing-size-xl);
 }
 
-.pricing-card__titulo--lg {
+.tarjeta-precios__titulo--grande {
   font-size: var(--font-size-5xl);
 }
 
-.pricing-card__ventaja--lg {
+.tarjeta-precios__ventaja--grande {
   font-size: var(--font-size-xl);
 }
 
-.pricing-card__precio--lg {
+.tarjeta-precios__precio--grande {
   font-size: var(--font-size-xl);
 }

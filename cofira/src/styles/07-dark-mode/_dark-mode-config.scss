@@ -1,147 +1,46 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-
-   CONFIGURACIÓN DE MODO OSCURO - VARIABLES CENTRALIZADAS
-   ═══════════════════════════════════════════════════════════════════════════
-
-   ┌─────────────────────────────────────────────────────────────────────────┐
-   │  GUÍA RÁPIDA: ¿Cómo cambiar colores del modo oscuro?                   │
-   ├─────────────────────────────────────────────────────────────────────────┤
-   │                                                                         │
-   │  1. Busca la sección del componente que quieres modificar              │
-   │  2. Cambia el valor de la variable SCSS (ej: $blanco-normal)           │
-   │  3. Guarda y recarga - ¡Listo!                                         │
-   │                                                                         │
-   │  Ejemplo: Para cambiar el fondo de las tarjetas en modo oscuro:        │
-   │  --oscuro-tarjeta-fondo: #\{$gris-normal};  ← Cambia esto              │
-   │                                                                         │
-   │  IMPORTANTE: Este archivo usa tanto interpolación SCSS (#\{$variable})  │
-   │  como valores hexadecimales directos según el contexto.                │
-   │                                                                         │
-   │                                                                         │
-   └─────────────────────────────────────────────────────────────────────────┘
-
-   ┌─────────────────────────────────────────────────────────────────────────┐
-   │  NOMENCLATURA DE VARIABLES                                             │
-   ├─────────────────────────────────────────────────────────────────────────┤
-   │                                                                         │
-   │  Todas las variables siguen este patrón:                               │
-   │                                                                         │
-   │  --oscuro-[componente]-[elemento]-[propiedad]                          │
-   │                                                                         │
-   │  Ejemplos:                                                              │
-   │  --oscuro-cabecera-fondo         → Fondo de la cabecera                │
-   │  --oscuro-cabecera-enlace-hover  → Hover de enlaces en cabecera        │
-   │  --oscuro-tarjeta-titulo         → Color del título en tarjetas        │
-   │                                                                         │
-   └─────────────────────────────────────────────────────────────────────────┘
-
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* Importar variables SCSS para usar interpolación */
-/* Los colores base están en _css-variables.scss */
 @import '../00-settings/css-variables';
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   PALETA DE COLORES DISPONIBLES (para referencia rápida)
-   ─────────────────────────────────────────────────────────────────────────────
+[data-theme="dark"] {
 
-   NEGROS (más oscuros → más claros):
-   - $negro-dark-active     │ #080607  │ Muy muy oscuro
-   - $negro-dark-hover      │ #0a080a  │ Muy oscuro
-   - $negro-dark            │ #0d0b0c  │ Oscuro
-   - $negro-normal-active   │ #0e0b0d  │ Normal activo
-   - $negro-normal-hover    │ #0f0d0e  │ Normal hover
-   - $negro-normal          │ #110e10  │ Negro base
 
-   GRISES (más oscuros → más claros):
-   - $gris-dark-active      │ #1c1f22  │ Gris muy oscuro
-   - $gris-dark-hover       │ #26292e  │ Gris oscuro hover
-   - $gris-dark             │ #2f3439  │ Gris oscuro
-   - $gris-normal-active    │ #32373d  │ Gris normal activo
-   - $gris-normal-hover     │ #393e44  │ Gris normal hover
-   - $gris-normal           │ #3f454c  │ Gris base
-
-   BLANCOS (más oscuros → más claros):
-   - $blanco-dark-active    │ #6e6e6e  │ Gris claro
-   - $blanco-dark-hover     │ #939393  │ Gris medio
-   - $blanco-dark           │ #b8b8b8  │ Gris suave
-   - $blanco-normal-active  │ #c4c4c4  │ Casi blanco activo
-   - $blanco-normal-hover   │ #dddddd  │ Casi blanco hover
-   - $blanco-normal         │ #f5f5f5  │ Blanco base
-
-   AMARILLOS (más oscuros → más claros):
-   - $amarillo-darker       │ #594A00  │ Amarillo muy oscuro
-   - $amarillo-dark-active  │ #735f00  │ Amarillo oscuro activo
-   - $amarillo-dark-hover   │ #997f00  │ Amarillo oscuro hover
-   - $amarillo-dark         │ #bf9e00  │ Amarillo oscuro
-   - $amarillo-normal-active│ #cca900  │ Amarillo activo
-   - $amarillo-normal-hover │ #e6be00  │ Amarillo hover
-   - $amarillo-normal       │ #ffd300  │ Amarillo base (marca)
-
-   ───────────────────────────────────────────────────────────────────────────── */
-
-body.modo-oscuro {
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 1: FONDOS PRINCIPALES (REFINADOS)
-     ═══════════════════════════════════════════════════════════════════════════
-     Paleta premium con escala jerárquica clara.
-     Base: #1e2227 (gris oscuro suave, fácil a la vista)
-     ═══════════════════════════════════════════════════════════════════════════ */
-
-  /* Fondo principal del body/pagina - Base mas profundo */
   --oscuro-pagina-fondo: #1e2227;
 
-  /* Fondo de secciones elevadas (cards, modales, etc.) */
+
   --oscuro-superficie-fondo: #282d33;
 
-  /* Fondo de elementos interactivos (inputs, selects) */
+
   --oscuro-input-fondo: #1e2227;
 
-  /* Fondo al hacer hover en elementos */
+
   --oscuro-hover-fondo: #323840;
 
-  /* Fondo alternativo para secciones */
+
   --oscuro-seccion-alt-fondo: #1a1e22;
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 2: COLORES DE TEXTO (MAYOR CONTRASTE)
-     ═══════════════════════════════════════════════════════════════════════════
-     Colores optimizados para WCAG AA (4.5:1 ratio minimo)
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Texto principal (titulos, contenido importante) - Mas blanco */
   --oscuro-texto-principal: #f0f2f5;
 
-  /* Texto secundario (descripciones, ayudas) - Gris mas calido */
+
   --oscuro-texto-secundario: #a8b3c4;
 
-  /* Texto deshabilitado o muy sutil */
+
   --oscuro-texto-suave: #6b7a90;
 
-  /* Texto de enlaces */
+
   --oscuro-texto-enlace: #f0f2f5;
 
-  /* Texto de enlaces al hacer hover */
+
   --oscuro-texto-enlace-hover: #{$amarillo-normal};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 3: BORDES Y SEPARADORES (MAS SUTILES)
-     ═══════════════════════════════════════════════════════════════════════════
-     Bordes refinados para mejor integracion visual.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Borde principal (inputs, cards) */
   --oscuro-borde-color: #363c45;
 
-  /* Borde mas sutil (separadores) */
+
   --oscuro-borde-suave: #2a3038;
 
-  /* Borde de foco/activo */
+
   --oscuro-borde-foco: #{$amarillo-normal};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 3.5: SOMBRAS (PROFUNDIDAD MEJORADA)
-     ═══════════════════════════════════════════════════════════════════════════ */
 
   --oscuro-sombra-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
   --oscuro-sombra-sm: 0 2px 4px rgba(0, 0, 0, 0.35);
@@ -149,359 +48,268 @@ body.modo-oscuro {
   --oscuro-sombra-lg: 0 8px 16px rgba(0, 0, 0, 0.45);
   --oscuro-sombra-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 3.6: COLORES DE ACENTO
-     ═══════════════════════════════════════════════════════════════════════════ */
 
   --oscuro-acento-primario: #ffda2d;
   --oscuro-acento-hover: #e6c426;
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 4: CABECERA / NAVEGACIÓN
-     ═══════════════════════════════════════════════════════════════════════════
-     Colores específicos para la cabecera de la página.
 
-     ┌─ ESTRUCTURA DE LA CABECERA ────────────────────────────────────────────┐
-     │  ┌──────────────────────────────────────────────────────────────────┐   │
-     │  │ [Logo]  [Enlaces]  [Buscador]  [Btn Inscríbete] [Btn Cuenta]    │   │
-     │  └──────────────────────────────────────────────────────────────────┘   │
-     └─────────────────────────────────────────────────────────────────────────┘
-     ═══════════════════════════════════════════════════════════════════════════ */
-
-  /* Fondo de la cabecera */
   --oscuro-cabecera-fondo: #{$gris-dark};
 
-  /* Borde inferior de la cabecera */
+
   --oscuro-cabecera-borde: #{$gris-normal};
 
-  /* Color de los enlaces de navegación */
+
   --oscuro-cabecera-enlace: #{$blanco-normal};
 
-  /* Color de enlaces al hacer hover */
+
   --oscuro-cabecera-enlace-hover: #{$amarillo-normal};
 
-  /* Fondo del buscador */
+
   --oscuro-cabecera-buscador-fondo: #{$gris-normal};
 
-  /* Texto del buscador */
+
   --oscuro-cabecera-buscador-texto: #{$blanco-normal};
 
-  /* Placeholder del buscador */
+
   --oscuro-cabecera-buscador-placeholder: #{$blanco-dark};
 
-  /* Icono del buscador */
+
   --oscuro-cabecera-buscador-icono: #{$blanco-dark};
 
-  /* Botón inscríbete - fondo */
+
   --oscuro-cabecera-boton-primario-fondo: #{$amarillo-normal};
 
-  /* Botón inscríbete - texto */
+
   --oscuro-cabecera-boton-primario-texto: #{$negro-normal};
 
-  /* Botón inscríbete - hover */
+
   --oscuro-cabecera-boton-primario-hover: #{$amarillo-dark};
 
-  /* Botón cuenta - fondo */
+
   --oscuro-cabecera-boton-secundario-fondo: transparent;
 
-  /* Botón cuenta - borde */
+
   --oscuro-cabecera-boton-secundario-borde: #{$blanco-dark};
 
-  /* Botón cuenta - texto */
+
   --oscuro-cabecera-boton-secundario-texto: #{$blanco-normal};
 
-  /* Botón cuenta - hover fondo */
+
   --oscuro-cabecera-boton-secundario-hover-fondo: #{$gris-normal};
 
-  /* Botón cuenta - hover borde/texto */
+
   --oscuro-cabecera-boton-secundario-hover-color: #{$amarillo-normal};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 5: MENÚ DESPLEGABLE DE CUENTA
-     ═══════════════════════════════════════════════════════════════════════════
-     El menú que aparece al hacer clic en "Cuenta".
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Fondo del menú */
   --oscuro-menu-fondo: #{$gris-dark};
 
-  /* Borde del menú */
+
   --oscuro-menu-borde: #{$gris-normal};
 
-  /* Sombra del menú */
+
   --oscuro-menu-sombra: rgba(0, 0, 0, 0.4);
 
-  /* Color de los items */
+
   --oscuro-menu-item-texto: #{$blanco-normal};
 
-  /* Fondo de item al hacer hover */
+
   --oscuro-menu-item-hover-fondo: #{$gris-normal};
 
-  /* Color de item al hacer hover */
+
   --oscuro-menu-item-hover-texto: #{$amarillo-normal};
 
-  /* Color de iconos */
+
   --oscuro-menu-icono: #{$blanco-dark};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 6: MENÚ MÓVIL
-     ═══════════════════════════════════════════════════════════════════════════
-     El menú lateral que aparece en dispositivos móviles.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Fondo del panel del menú */
   --oscuro-menu-movil-fondo: #{$negro-dark};
 
-  /* Fondo del header del menú */
+
   --oscuro-menu-movil-cabecera-fondo: #{$gris-dark};
 
-  /* Fondo de link al hacer hover */
+
   --oscuro-menu-movil-enlace-hover: #{$gris-dark};
 
-  /* Color de las líneas de la hamburguesa */
+
   --oscuro-hamburguesa-color: #{$blanco-normal};
 
-  /* Hamburguesa hover */
+
   --oscuro-hamburguesa-hover: #{$amarillo-normal};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 7: PIE DE PÁGINA (FOOTER)
-     ═══════════════════════════════════════════════════════════════════════════
 
-     ┌─ ESTRUCTURA DEL PIE DE PÁGINA ─────────────────────────────────────────┐
-     │  ┌──────────────────────────────────────────────────────────────────┐   │
-     │  │ [Link Condiciones]    [Copyright]    [Iconos Redes Sociales]    │   │
-     │  └──────────────────────────────────────────────────────────────────┘   │
-     └─────────────────────────────────────────────────────────────────────────┘
-     ═══════════════════════════════════════════════════════════════════════════ */
-
-  /* Fondo del pie de página */
   --oscuro-pie-fondo: #{$negro-dark};
 
-  /* Borde superior del pie de página */
+
   --oscuro-pie-borde: #{$gris-normal};
 
-  /* Color del texto (copyright, links) */
+
   --oscuro-pie-texto: #{$blanco-dark};
 
-  /* Color de links al hacer hover */
+
   --oscuro-pie-enlace-hover: #{$amarillo-normal};
 
-  /* Fondo de botones de redes sociales */
+
   --oscuro-pie-social-fondo: #{$gris-dark};
 
-  /* Color de iconos de redes sociales */
+
   --oscuro-pie-social-icono: #{$blanco-normal};
 
-  /* Hover de botones de redes sociales */
+
   --oscuro-pie-social-hover-fondo: #{$gris-normal};
 
-  /* Color de iconos al hacer hover */
+
   --oscuro-pie-social-hover-icono: #{$amarillo-normal};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 8: TARJETAS / CARDS
-     ═══════════════════════════════════════════════════════════════════════════
-     Todas las tarjetas de la aplicación.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Fondo de la tarjeta */
   --oscuro-tarjeta-fondo: #{$gris-normal};
 
-  /* Borde de la tarjeta */
+
   --oscuro-tarjeta-borde: #{$gris-normal-hover};
 
-  /* Título de la tarjeta */
+
   --oscuro-tarjeta-titulo: #{$blanco-normal};
 
-  /* Contenido/descripción de la tarjeta */
+
   --oscuro-tarjeta-contenido: #{$blanco-dark};
 
-  /* Borde del pie de tarjeta */
+
   --oscuro-tarjeta-pie-borde: #{$gris-dark};
 
-  /* Borde de tarjeta destacada */
+
   --oscuro-tarjeta-destacada-borde: #{$amarillo-normal};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 9: FORMULARIOS
-     ═══════════════════════════════════════════════════════════════════════════
-     Todos los elementos de formularios.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Color de etiquetas (labels) */
   --oscuro-formulario-etiqueta: #{$blanco-normal};
 
-  /* Fondo de campos de texto */
+
   --oscuro-formulario-campo-fondo: #{$gris-dark};
 
-  /* Color de texto en campos */
+
   --oscuro-formulario-campo-texto: #{$blanco-normal};
 
-  /* Borde de campos */
+
   --oscuro-formulario-campo-borde: #{$gris-normal};
 
-  /* Borde al hacer focus */
+
   --oscuro-formulario-campo-foco-borde: #{$amarillo-normal};
 
-  /* Fondo al hacer focus */
+
   --oscuro-formulario-campo-foco-fondo: #{$gris-dark-hover};
 
-  /* Texto de ayuda */
+
   --oscuro-formulario-ayuda-texto: #{$blanco-dark-hover};
 
-  /* Placeholder */
+
   --oscuro-formulario-placeholder: #{$blanco-dark-hover};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 10: INPUTS GLOBALES
-     ═══════════════════════════════════════════════════════════════════════════
-     Inputs que usan la clase .input directamente.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Fondo del input */
   --oscuro-input-campo-fondo: #{$gris-dark};
 
-  /* Texto del input */
+
   --oscuro-input-campo-texto: #{$blanco-normal};
 
-  /* Borde del input */
+
   --oscuro-input-campo-borde: #{$gris-normal};
 
-  /* Borde al hacer focus */
+
   --oscuro-input-campo-foco: #{$amarillo-normal};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 11: ALERTAS
-     ═══════════════════════════════════════════════════════════════════════════
-     Mensajes de alerta y notificaciones.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Borde general de alertas */
   --oscuro-alerta-borde: #{$gris-normal};
 
-  /* Alerta info - fondo */
+
   --oscuro-alerta-info-fondo: #{$gris-normal};
 
-  /* Alerta info - borde */
+
   --oscuro-alerta-info-borde: #{$gris-normal-hover};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 12: PÁGINA GUÍA DE ESTILOS
-     ═══════════════════════════════════════════════════════════════════════════
-     Estilos específicos para la página de guía de estilos.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Fondo principal */
   --oscuro-guia-fondo: #{$gris-dark};
 
-  /* Título principal */
+
   --oscuro-guia-titulo: #{$amarillo-normal};
 
-  /* Subtítulos */
+
   --oscuro-guia-subtitulo: #{$blanco-normal};
 
-  /* Descripciones */
+
   --oscuro-guia-descripcion: #{$blanco-dark};
 
-  /* Fondo de demos */
+
   --oscuro-guia-demo-fondo: #{$gris-normal};
 
-  /* Borde de demos */
+
   --oscuro-guia-demo-borde: #{$gris-normal-hover};
 
-  /* Fondo de notas */
+
   --oscuro-guia-nota-fondo: #{$gris-normal};
 
-  /* Borde de notas */
+
   --oscuro-guia-nota-borde: #{$amarillo-normal};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 13: PÁGINAS LEGALES
-     ═══════════════════════════════════════════════════════════════════════════
-     Estilos para páginas: Privacidad, Términos, Cookies, Licencias
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Fondo principal de la página */
   --oscuro-legal-fondo: #{$gris-dark};
 
-  /* Fondo del contenido/card */
+
   --oscuro-legal-contenido-fondo: #{$gris-normal};
 
-  /* Sombra del contenido */
+
   --oscuro-legal-contenido-sombra: rgba(0, 0, 0, 0.3);
 
-  /* Título principal */
+
   --oscuro-legal-titulo: #{$blanco-normal};
 
-  /* Fecha de actualización */
+
   --oscuro-legal-fecha: #{$blanco-dark};
 
-  /* Subtítulos */
+
   --oscuro-legal-subtitulo: #{$blanco-normal};
 
-  /* Texto de párrafos y listas */
+
   --oscuro-legal-texto: #{$blanco-dark};
 
-  /* Borde entre secciones */
+
   --oscuro-legal-borde: #{$gris-normal-hover};
 
-  /* Enlaces */
+
   --oscuro-legal-enlace: #{$amarillo-normal};
 
-  /* Enlaces hover */
+
   --oscuro-legal-enlace-hover: #{$amarillo-dark};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 14: PÁGINAS PRINCIPALES (Gimnasio, Alimentación, Seguimiento)
-     ═══════════════════════════════════════════════════════════════════════════
-     Variables compartidas para las páginas principales de la aplicación.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Fondo principal de las páginas */
   --oscuro-pagina-fondo-principal: #{$gris-dark-active};
 
-  /* Fondo de cards y contenedores */
+
   --oscuro-pagina-card-fondo: #{$gris-normal};
 
-  /* Color de títulos */
+
   --oscuro-pagina-titulo: #{$blanco-normal};
 
-  /* Color de texto secundario */
+
   --oscuro-pagina-texto: #{$blanco-dark};
 
-  /* Color de bordes */
+
   --oscuro-pagina-borde: #{$gris-normal-hover};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 15: PÁGINAS INFORMATIVAS (Sobre Nosotros, Blog, Contacto)
-     ═══════════════════════════════════════════════════════════════════════════
-     Variables para páginas con headers hero y secciones alternadas.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
-  /* Fondo de headers hero (negro sólido) */
   --oscuro-info-header-fondo: #{$negro-normal};
 
-  /* Fondo de secciones alternativas */
+
   --oscuro-info-seccion-alt-fondo: #{$gris-dark};
 
-  /* Fondo de cards de contenido */
+
   --oscuro-info-card-fondo: #{$gris-normal};
 
-  /* Color de títulos */
+
   --oscuro-info-titulo: #{$blanco-normal};
 
-  /* Color de texto */
+
   --oscuro-info-texto: #{$blanco-dark};
 
-  /* Color de bordes */
+
   --oscuro-info-borde: #{$gris-normal-hover};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 16: HOME PAGE
-     ═══════════════════════════════════════════════════════════════════════════
-     Variables especificas para la pagina principal.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
   --oscuro-home-hero-fondo: linear-gradient(135deg, #1e2227 0%, #282d33 100%);
   --oscuro-home-seccion-alt: #1a1e22;
@@ -511,11 +319,6 @@ body.modo-oscuro {
   --oscuro-home-cta-fondo: linear-gradient(135deg, #2a2510 0%, #1e2227 100%);
   --oscuro-home-stat-fondo: #323840;
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 17: ONBOARDING
-     ═══════════════════════════════════════════════════════════════════════════
-     Flujo de registro y configuracion inicial del usuario.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
   --oscuro-onboarding-fondo: #1e2227;
   --oscuro-onboarding-card-fondo: #282d33;
@@ -528,11 +331,6 @@ body.modo-oscuro {
   --oscuro-onboarding-input-fondo: #1e2227;
   --oscuro-onboarding-input-borde: #363c45;
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 18: GIMNASIO
-     ═══════════════════════════════════════════════════════════════════════════
-     Pagina de ejercicios y rutinas.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
   --oscuro-gimnasio-fondo: #1e2227;
   --oscuro-gimnasio-sidebar-fondo: #282d33;
@@ -543,11 +341,6 @@ body.modo-oscuro {
   --oscuro-gimnasio-detalle-fondo: #282d33;
   --oscuro-gimnasio-video-overlay: rgba(0, 0, 0, 0.6);
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 19: ALIMENTACIÓN
-     ═══════════════════════════════════════════════════════════════════════════
-     Pagina de nutricion, recetas y planes alimenticios.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
   --oscuro-alimentacion-fondo: #1e2227;
   --oscuro-alimentacion-receta-fondo: #282d33;
@@ -558,11 +351,6 @@ body.modo-oscuro {
   --oscuro-alimentacion-macro-fondo: #323840;
   --oscuro-alimentacion-calorias-ring: #{$amarillo-normal};
 
-  /* ═══════════════════════════════════════════════════════════════════════════
-     SECCIÓN 20: SEGUIMIENTO
-     ═══════════════════════════════════════════════════════════════════════════
-     Pagina de progreso, estadisticas y graficos.
-     ═══════════════════════════════════════════════════════════════════════════ */
 
   --oscuro-seguimiento-fondo: #1e2227;
   --oscuro-seguimiento-card-fondo: #282d33;

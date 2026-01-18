@@ -1,26 +1,10 @@
-/**
- * ALIMENTACIÓN PAGE STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos de la página de menú diario de alimentación
- *
- * ESTRUCTURA BEM:
- * Block: .alimentacion
- * Elements: __titulo, __navegacion-fecha, __menu-dia, __comida
- *
- * ESTRATEGIA RESPONSIVE: Desktop-first
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../styles/00-settings/css-variables';
 @import '../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BLOCK: Alimentación page container
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .alimentacion {
-  // 2. MODELO DE CAJA
-  box-sizing: border-box; // Evita overflow horizontal con padding
+  box-sizing: border-box;
   width: 100%;
   max-width: 100%;
   padding: var(--spacing-size-xxxl) 0;
@@ -29,13 +13,10 @@
   align-items: center;
   gap: var(--spacing-size-xl);
   min-height: calc(100vh - 10.5rem);
-
-  // 4. VISUAL
   background-color: var(--blanco-normal-hover);
 
-  // RESPONSIVE: Tablet y móvil (<900px)
   @include responsive-down('md') {
-    padding-top: calc(4rem + var(--spacing-size-xl)); // Header fijo (4rem) + espaciado
+    padding-top: calc(4rem + var(--spacing-size-xl));
     padding-left: var(--spacing-size-m);
     padding-right: var(--spacing-size-m);
     padding-bottom: var(--spacing-size-xl);
@@ -43,9 +24,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Título Principal
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .alimentacion__titulo {
   font-family: var(--font-secondary);
@@ -65,9 +44,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Navegación de Fecha
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .alimentacion__navegacion-fecha {
   display: flex;
@@ -96,11 +73,11 @@
   &:hover {
     color: var(--amarillo-dark);
   }
+}
 
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+.alimentacion__btn-fecha-svg {
+  width: 100%;
+  height: 100%;
 }
 
 .alimentacion__selector-fecha {
@@ -140,12 +117,10 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Menú del Día
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .alimentacion__menu-dia {
-  box-sizing: border-box; // Evita overflow horizontal con padding
+  box-sizing: border-box;
   width: 100%;
   max-width: 60.625rem;
   background-color: var(--blanco-normal);
@@ -172,9 +147,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Comida (Desayuno, Almuerzo, etc.)
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .alimentacion__comida {
   display: flex;
@@ -194,11 +167,11 @@
   height: 1.875rem;
   margin: 0;
   color: var(--negro-normal);
+}
 
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+.alimentacion__comida-icono-svg {
+  width: 100%;
+  height: 100%;
 }
 
 .alimentacion__comida-titulo {
@@ -219,28 +192,26 @@
   align-items: center;
   gap: var(--spacing-size-xs);
   margin-left: auto;
+}
 
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-    color: var(--blanco-normal);
-  }
+.alimentacion__comida-costo-svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--blanco-normal);
+}
 
-  span {
-    font-family: var(--font-primary);
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-regular);
-    color: var(--blanco-normal);
+.alimentacion__comida-costo-texto {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-regular);
+  color: var(--blanco-normal);
 
-    @include responsive-down('md') {
-      font-size: var(--font-size-lg);
-    }
+  @include responsive-down('md') {
+    font-size: var(--font-size-lg);
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Lista de Alimentos
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .alimentacion__alimentos {
   list-style: none;
@@ -267,11 +238,11 @@
   height: 1.5rem;
   margin: 0;
   color: var(--amarillo-normal);
+}
 
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+.alimentacion__alimento-icono-svg {
+  width: 100%;
+  height: 100%;
 }
 
 .alimentacion__alimento-nombre {
@@ -302,9 +273,9 @@
     background-color: var(--gris-normal-hover);
     transform: scale(1.1);
   }
+}
 
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
+.alimentacion__btn-info-svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }

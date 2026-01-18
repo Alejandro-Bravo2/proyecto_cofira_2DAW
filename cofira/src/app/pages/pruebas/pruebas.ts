@@ -9,7 +9,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './pruebas.scss',
 })
 export class Pruebas {
-  // Lista de iconos SVG optimizados disponibles
   iconos = [
     { nombre: 'arrow-left_opt', descripcion: 'Flecha izquierda para navegación' },
     { nombre: 'check', descripcion: 'Marca de verificación simple' },
@@ -28,7 +27,6 @@ export class Pruebas {
     { nombre: 'x-circle-solid', descripcion: 'X en círculo sólido (error)' },
   ];
 
-  // Información de optimización de cada SVG (original vs optimizado con SVGO)
   optimizaciones = [
     {
       archivo: 'arrow-left_opt.svg',

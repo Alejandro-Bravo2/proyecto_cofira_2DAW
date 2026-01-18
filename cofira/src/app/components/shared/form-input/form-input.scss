@@ -1,50 +1,18 @@
-/**
- * FORM-INPUT COMPONENT
- * ─────────────────────────────────────────────────────────────────────────
- * Block: .form-input
- *
- * Elements:
- * - .form-input__label: Etiqueta del campo
- * - .form-input__required: Indicador de campo requerido (*)
- * - .form-input__field: Campo de entrada
- * - .form-input__error: Mensaje de error de validación
- * - .form-input__help: Texto de ayuda
- *
- * Modifiers:
- * - STATE: :focus | :hover | --error | --valid
- *
- * HTML Example:
- * <article class="form-input">
- *   <label class="form-input__label">
- *     Nombre <span class="form-input__required">*</span>
- *   </label>
- *   <input class="form-input__field" type="text">
- *   <span class="form-input__error">Este campo es requerido</span>
- * </article>
- */
-
 @import '../../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BLOCK: Contenedor del input
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.form-input {
+
+.campo-entrada {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-xss);
   width: var(--width-estandar);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENTS: Partes internas del form-input
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-/**
- * .form-input__label
- * Etiqueta del campo de entrada
- */
-.form-input__label {
+
+
+.campo-entrada__etiqueta {
   color: var(--text-light);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-regular);
@@ -52,53 +20,41 @@
   margin-bottom: var(--input-margin-bottom);
 }
 
-/**
- * .form-input__required
- * Indicador de campo requerido (asterisco rojo)
- */
-.form-input__required {
+
+.campo-entrada__requerido {
   color: var(--button-red);
 }
 
-/**
- * .form-input__field
- * Campo de entrada de texto
- */
-.form-input__field {
+
+.campo-entrada__campo {
   @include input-base;
   background-color: var(--button-yellow);
   transition: all 0.3s ease;
 }
 
-.form-input__field::placeholder {
+.campo-entrada__campo::placeholder {
   @include input-placeholder;
 }
 
-.form-input__field:hover {
+.campo-entrada__campo:hover {
   @include input-hover;
 }
 
-.form-input__field:focus {
+.campo-entrada__campo:focus {
   outline: 0.125rem solid var(--amarillo-dark);
   outline-offset: 0.125rem;
 }
 
-/**
- * .form-input__error
- * Mensaje de error de validación
- */
-.form-input__error {
+
+.campo-entrada__error {
   color: var(--button-red);
   font-size: var(--font-size-sm);
   font-family: var(--font-secondary);
   margin-top: var(--input-margin-bottom);
 }
 
-/**
- * .form-input__help
- * Texto de ayuda descriptivo
- */
-.form-input__help {
+
+.campo-entrada__ayuda {
   color: var(--text-dark);
   font-size: var(--font-size-sm);
   font-family: var(--font-secondary);

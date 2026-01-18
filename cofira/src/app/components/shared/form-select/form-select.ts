@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './form-select.scss',
 })
 export class FormSelect {
-  @Input() label: string = '';
-  @Input() name: string = '';
-  @Input() options: string[] = [];
+  @Input() etiqueta: string = '';
+  @Input() nombre: string = '';
+  @Input() opciones: string[] = [];
 }

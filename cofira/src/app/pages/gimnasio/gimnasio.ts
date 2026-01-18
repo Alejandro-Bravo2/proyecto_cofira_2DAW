@@ -2,10 +2,6 @@ import {Component} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {Button} from '../../components/shared/button/button';
 
-// ═══════════════════════════════════════════════════════════════════════════
-// INTERFACES
-// ═══════════════════════════════════════════════════════════════════════════
-
 interface Ejercicio {
   id: number;
   nombre: string;
@@ -23,10 +19,6 @@ interface Feedback {
 
 type EjerciciosPorDia = Record<string, Ejercicio[]>;
 
-// ═══════════════════════════════════════════════════════════════════════════
-// COMPONENTE
-// ═══════════════════════════════════════════════════════════════════════════
-
 @Component({
   selector: 'app-gimnasio',
   standalone: true,
@@ -35,28 +27,16 @@ type EjerciciosPorDia = Record<string, Ejercicio[]>;
   styleUrl: './gimnasio.scss',
 })
 export class Gimnasio {
-  // ─────────────────────────────────────────────────────────────────────────
-  // CONSTANTES
-  // ─────────────────────────────────────────────────────────────────────────
-
   readonly diasSemana = [
     'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
   ];
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // ESTADO
-  // ─────────────────────────────────────────────────────────────────────────
-
-  diaActualIndex = 1; // Martes por defecto
+  diaActualIndex = 1;
 
   feedback: Feedback = {
     ejerciciosDificiles: '',
     masPeso: '',
   };
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // DATOS
-  // ─────────────────────────────────────────────────────────────────────────
 
   private readonly ejerciciosPorDia: EjerciciosPorDia = {
     Lunes: [
@@ -165,18 +145,10 @@ export class Gimnasio {
     Domingo: [],
   };
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // GETTERS
-  // ─────────────────────────────────────────────────────────────────────────
-
   get ejerciciosDelDia(): Ejercicio[] {
     const dia = this.diasSemana[this.diaActualIndex];
     return this.ejerciciosPorDia[dia] ?? [];
   }
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // NAVEGACIÓN DE DÍAS
-  // ─────────────────────────────────────────────────────────────────────────
 
   diaAnterior(): void {
     if (this.diaActualIndex > 0) {
@@ -190,10 +162,6 @@ export class Gimnasio {
     }
   }
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // EJERCICIOS
-  // ─────────────────────────────────────────────────────────────────────────
-
   toggleEjercicio(ejercicio: Ejercicio): void {
     ejercicio.expandido = !ejercicio.expandido;
   }
@@ -201,10 +169,6 @@ export class Gimnasio {
   marcarRealizado(ejercicio: Ejercicio, realizado: boolean): void {
     ejercicio.realizado = ejercicio.realizado === realizado ? null : realizado;
   }
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // FEEDBACK
-  // ─────────────────────────────────────────────────────────────────────────
 
   enviarFeedback(): void {
     console.log('Feedback enviado:', this.feedback);

@@ -1,248 +1,162 @@
-/**
- * BUTTON COMPONENT
- * ─────────────────────────────────────────────────────────────────────────
- * Block: .button
- *
- * Elements:
- * - .button__icono: Icono dentro del botón (opcional)
- * - .button__texto: Texto del botón (opcional)
- *
- * Modifiers:
- * - TYPE: --primary | --secondary | --ghost | --danger
- * - SIZE: --sm (2rem) | --md (2.75rem) | --lg (3.5rem)
- * - WIDTH: --full-width (100% del contenedor)
- * - STATE: :disabled | :hover | :active | :focus
- *
- * Component Inputs:
- * - variante: 'primary' | 'secondary' | 'ghost' | 'danger'
- * - tamanio: 'sm' | 'md' | 'lg'
- * - habilitado: boolean (disabled state)
- * - tipo: 'button' | 'submit' | 'reset'
- * - enlace: string (para navegación Angular con routerLink)
- * - href: string (para enlaces externos)
- * - fullWidth: boolean (ancho completo)
- *
- * Usage Examples:
- * <app-button variante="primary" tamanio="lg">Inscríbete</app-button>
- * <app-button enlace="/login" variante="secondary" tamanio="sm">Inicia Sesión</app-button>
- * <app-button tipo="submit" variante="primary" [fullWidth]="true">Enviar</app-button>
- */
+@import '../../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BLOCK: Base del botón - propiedades comunes a TODOS los botones
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.button {
-  display: inline-flex; /* Flexbox inline para fluir con el texto */
-  align-items: center; /* Centra elementos verticalmente */
-  justify-content: center; /* Centra elementos horizontalmente */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-primary);
   font-weight: var(--font-weight-semibold);
-  border: none; /* Sin borde por defecto */
+  border: none;
   border-radius: var(--radius-xss);
-  cursor: pointer; /* Indica que es clickeable */
-  transition: all var(--duration-base) ease; /* Transiciones suaves */
-  text-decoration: none; /* Importante si es un <a> en lugar de <button> */
-  user-select: none; /* Evita selección de texto al hacer clic */
-  white-space: nowrap; /* Previene que el texto se rompa en líneas */
+  cursor: pointer;
+  transition: all var(--duration-base) ease;
+  text-decoration: none;
+  user-select: none;
+  white-space: nowrap;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENTS: Partes internas del botón
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-/**
- * .button__icono
- * Icono dentro del botón. Debe ser un <span>, <i>, o SVG
- */
-.button__icono {
-  display: flex; /* Para que SVGs se alineen bien */
+
+.boton__icono {
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 1.5rem;
   height: 1.5rem;
-  flex-shrink: 0; /* CLAVE: No se encoge aunque falte espacio */
+  flex-shrink: 0;
 }
 
-/**
- * .button__texto
- * Texto dentro del botón cuando se combina con icono
- */
-.button__texto {
-  flex: 1; /* Ocupa el espacio disponible */
+.boton__texto {
+  flex: 1;
   font-weight: var(--font-weight-medium);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   MODIFIERS DE TIPO (varían el color y propósito)
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-/**
- * .button--primary
- * Botón principal - El que más destaca, para acciones principales
- * Uso: Enviar formularios, confirmar acciones principales
- */
-.button--primary {
+
+.boton--primario {
   background: var(--button-yellow);
   color: var(--negro-normal);
   box-shadow: var(--shadow-md);
+
+  @include hover-activo {
+    background: var(--amarillo-dark);
+    transform: translateY(-0.125rem);
+    box-shadow: var(--shadow-lg);
+  }
+
+  @include click-activo {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
 }
 
-/**
- * .button--secondary
- * Botón secundario - Menos importante que primary
- * Uso: Acciones complementarias, alternativas
- */
-.button--secondary {
+
+
+.boton--secundario {
   background: var(--button-gray);
   color: var(--text-dark);
   box-shadow: var(--shadow-sm);
+
+  @include hover-activo {
+    background: var(--button-gray-hover);
+    transform: translateY(-0.125rem);
+    box-shadow: var(--shadow-md);
+  }
+
+  @include click-activo {
+    transform: translateY(0);
+  }
+
+  @include focus-activo {
+    outline: 0.1875rem solid var(--gris-normal);
+    outline-offset: 0.125rem;
+  }
 }
 
-/**
- * .button--ghost
- * Botón transparente - El que menos destaca visualmente
- * Uso: Enlaces estilizados como botones, acciones terciarias
- */
-.button--ghost {
+
+
+.boton--fantasma {
   background: transparent;
   color: var(--text-dark);
   border: var(--border-width-normal) solid var(--gris-normal);
+
+  @include hover-activo {
+    background: var(--gris-normal);
+    color: var(--text-dark);
+    border-color: var(--gris-normal-hover);
+  }
+
+  @include click-activo {
+    background: var(--gris-normal-hover);
+  }
+
+  @include focus-activo {
+    outline: 0.1875rem solid var(--gris-normal);
+    outline-offset: 0.125rem;
+  }
 }
 
-/**
- * .button--danger
- * Botón de peligro - Para acciones destructivas
- * Uso: Eliminar, borrar, acciones irreversibles
- */
-.button--danger {
+
+
+.boton--peligro {
   background: var(--button-red);
   color: var(--text-dark);
   box-shadow: var(--shadow-md);
+
+  @include hover-activo {
+    background: var(--button-red-hover);
+    transform: translateY(-0.125rem);
+    box-shadow: var(--shadow-lg);
+  }
+
+  @include click-activo {
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
+  }
+
+  @include focus-activo {
+    outline: 0.1875rem solid var(--button-red);
+    outline-offset: 0.125rem;
+  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   MODIFIERS DE TAMAÑO
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-/**
- * .button--sm
- * Tamaño pequeño - Para botones en espacios reducidos
- * Altura: 2rem (32px)
- */
-.button--sm {
+
+.boton--pequeno {
   padding: var(--spacing-size-xss) var(--spacing-size-s);
   font-size: var(--font-size-sm);
   height: 2rem;
   min-width: var(--width-muy-pequenio);
 }
 
-/**
- * .button--md
- * Tamaño mediano - El tamaño por defecto, recomendado
- * Altura: 2.75rem (44px)
- */
-.button--md {
+.boton--mediano {
   padding: var(--spacing-size-xss) var(--spacing-size-m);
   font-size: var(--font-size-md);
   height: 2.75rem;
   min-width: var(--width-mediano);
 }
 
-/**
- * .button--lg
- * Tamaño grande - Para botones prominentes, llamadas a acción principales
- * Altura: 3.5rem (56px)
- */
-.button--lg {
+.boton--grande {
   padding: var(--spacing-size-s) var(--spacing-size-l);
   font-size: var(--font-size-lg);
   height: 2.5rem;
   min-width: 12rem;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   STATES: Pseudoclases para interacciones del usuario
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ─── HOVER: Cuando el usuario pasa el ratón sobre el botón ─── */
-
-.button--primary:hover:not(:disabled) {
-  background: var(--amarillo-dark);
-  transform: translateY(-0.125rem); /* Se eleva para feedback visual */
-  box-shadow: var(--shadow-lg);
-}
-
-.button--secondary:hover:not(:disabled) {
-  background: var(--button-gray-hover);
-  transform: translateY(-0.125rem);
-  box-shadow: var(--shadow-md);
-}
-
-.button--ghost:hover:not(:disabled) {
-  background: var(--gris-normal);
-  color: var(--text-dark);
-  border-color: var(--gris-normal-hover);
-}
-
-.button--danger:hover:not(:disabled) {
-  background: var(--button-red-hover);
-  transform: translateY(-0.125rem);
-  box-shadow: var(--shadow-lg);
-}
-
-/* ─── ACTIVE: Cuando el usuario está presionando el botón ─── */
-
-.button--primary:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-
-.button--secondary:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.button--ghost:active:not(:disabled) {
-  background: var(--gris-normal-hover);
-}
-
-.button--danger:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-
-/* ─── FOCUS: Para accesibilidad - navegación con teclado ─── */
 
 
-.button--secondary:focus {
-  outline: 0.1875rem solid var(--gris-normal);
-  outline-offset: 0.125rem;
-}
-
-.button--ghost:focus {
-  outline: 0.1875rem solid var(--gris-normal);
-  outline-offset: 0.125rem;
-}
-
-.button--danger:focus {
-  outline: 0.1875rem solid var(--button-red);
-  outline-offset: 0.125rem;
-}
-
-/* ─── DISABLED: Estado deshabilitado ─── */
-
-.button:disabled,
-.button--disabled {
+.boton:disabled,
+.boton--deshabilitado {
   opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
   box-shadow: none;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   MODIFIER DE ANCHO COMPLETO
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.button--full-width {
+
+.boton--completo {
   width: 70%;
 }

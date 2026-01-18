@@ -1,15 +1,3 @@
-/**
- * MODAL INGREDIENTES COMPONENT STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos del modal de ingredientes detallados
- *
- * ESTRUCTURA BEM:
- * Block: .ingredientes
- * Elements: __info, __icono, __resumen, __calorias, __lista, __subtitulo,
- *           __items, __item, __nombre, __cantidad, __calorias-item
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
 
@@ -19,9 +7,7 @@
   gap: var(--spacing-size-xl);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   INFO DEL ALIMENTO
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .ingredientes__info {
   display: flex;
@@ -35,18 +21,18 @@
 .ingredientes__icono {
   width: 4rem;
   height: 4rem;
-  margin: 0; // Reset figure
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: var(--amarillo-normal);
   border-radius: 50%;
   color: var(--negro-normal);
+}
 
-  svg {
-    width: 2.5rem;
-    height: 2.5rem;
-  }
+.ingredientes__icono-svg {
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .ingredientes__resumen {
@@ -60,9 +46,7 @@
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   LISTA DE INGREDIENTES
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .ingredientes__lista {
   display: flex;

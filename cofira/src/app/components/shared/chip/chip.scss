@@ -1,13 +1,4 @@
-/**
- * CHIP COMPONENT STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos de las etiquetas de elementos seleccionados
- *
- * NOMENCLATURA BEM:
- * Block: .chip
- * Elements: __texto, __btn-eliminar
- * ─────────────────────────────────────────────────────────────────────────────
- */
+
 
 @import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
@@ -26,11 +17,11 @@
   color: var(--negro-normal);
   cursor: pointer;
   transition: all var(--duration-fast) ease;
+}
 
-  &:hover {
-    border-color: var(--amarillo-normal);
-    background-color: var(--amarillo-light);
-  }
+.chip:hover {
+  border-color: var(--amarillo-normal);
+  background-color: var(--amarillo-light);
 }
 
 .chip--selected {
@@ -57,19 +48,19 @@
   cursor: pointer;
   color: var(--gris-normal);
   transition: all var(--duration-fast) ease;
+}
 
-  &:hover {
-    background-color: var(--amarillo-normal);
-    color: var(--negro-normal);
-  }
+.chip__btn-eliminar:hover {
+  background-color: var(--amarillo-normal);
+  color: var(--negro-normal);
+}
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 0.125rem var(--amarillo-normal);
-  }
+.chip__btn-eliminar:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.125rem var(--amarillo-normal);
+}
 
-  svg {
-    width: 0.75rem;
-    height: 0.75rem;
-  }
+.chip__btn-eliminar__svg {
+  width: 0.75rem;
+  height: 0.75rem;
 }

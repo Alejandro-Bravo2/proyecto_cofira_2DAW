@@ -1,19 +1,19 @@
-<article class="form-input">
-  <label [for]="inputId()" class="form-input__label">
-    {{ label }}
-    @if (required) {
-    <span class="form-input__required">*</span>
+<article class="campo-entrada">
+  <label [for]="inputId()" class="campo-entrada__etiqueta">
+    {{ etiqueta }}
+    @if (requerido) {
+    <span class="campo-entrada__requerido">*</span>
     }
   </label>
 
-  <input [autocomplete]="autocomplete" [id]="inputId()" [name]="name" [placeholder]="placeholder" [required]="required"
-    [type]="type" [formControl]="control" class="form-input__field">
+  <input [autocomplete]="autocompletado" [id]="inputId()" [name]="nombre" [placeholder]="placeholder" [required]="requerido"
+    [type]="tipo" [formControl]="controlDelFormulario" class="campo-entrada__campo">
 
-  @if (control && control.invalid && (control.dirty || control.touched)) {
-  <span class="form-input__error">{{ errorMessage }}</span>
+  @if (controlDelFormulario && controlDelFormulario.invalid && (controlDelFormulario.dirty || controlDelFormulario.touched)) {
+  <span class="campo-entrada__error">{{ mensajeDeError }}</span>
   }
 
-  @if (helpText) {
-  <span class="form-input__help">{{ helpText }}</span>
+  @if (textoDeAyuda) {
+  <span class="campo-entrada__ayuda">{{ textoDeAyuda }}</span>
   }
 </article>

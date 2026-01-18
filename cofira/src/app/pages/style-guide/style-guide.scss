@@ -1,72 +1,48 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   STYLE GUIDE PAGE
-   Guía de estilos con todos los componentes del sistema de diseño
-   ═══════════════════════════════════════════════════════════════════════════
 
-   ESTRUCTURA BEM
-   ─────────────────────────────────────────────────────────────────────────────
-   Block:     .style-guide
-   Elements:  .style-guide__header, .style-guide__section, .style-guide__title,
-              .style-guide__component, .style-guide__description, .style-guide__note,
-              .style-guide__demo, .style-guide__footer
-   Modifiers: .style-guide__demo--buttons, .style-guide__demo--cards,
-              .style-guide__demo--forms, .style-guide__section:last-of-type
 
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Style guide container
-   ───────────────────────────────────────────────────────────────────────────── */
-
-.style-guide {
+.guia-estilos {
   max-width: 87.5rem;
   margin: 0 auto;
   padding: var(--spacing-size-xl);
   background-color: var(--blanco-normal);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Header
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.style-guide__header {
+
+.guia-estilos__cabecera {
   margin-bottom: var(--spacing-size-xxl);
   padding-bottom: var(--spacing-size-l);
   border-bottom: 0.125rem solid var(--gris-light);
 }
 
-.style-guide__header h1 {
+.guia-estilos__cabecera-titulo {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   color: var(--negro-normal);
   margin: 0 0 var(--spacing-size-s) 0;
 }
 
-.style-guide__header p {
+.guia-estilos__cabecera-descripcion {
   font-size: var(--font-size-lg);
   color: var(--gris-normal);
   margin: 0;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Sections
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.style-guide__section {
+
+.guia-estilos__seccion {
   margin-bottom: var(--spacing-size-xxxl);
   padding-bottom: var(--spacing-size-xl);
   border-bottom: 0.0625rem solid var(--gris-lighter);
 }
 
-.style-guide__section:last-of-type {
+.guia-estilos__seccion:last-of-type {
   border-bottom: none;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Section titles
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.style-guide__title {
+
+.guia-estilos__titulo {
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   color: var(--amarillo-dark);
@@ -75,39 +51,35 @@
   border-bottom: 0.1875rem solid var(--amarillo-normal);
 }
 
-.style-guide__title::before {
+.guia-estilos__titulo::before {
   content: '●';
   color: var(--amarillo-normal);
   margin-right: var(--spacing-size-xs);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Individual components
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.style-guide__component {
+
+.guia-estilos__componente {
   margin-bottom: var(--spacing-size-xxl);
 }
 
-.style-guide__component h3 {
+.guia-estilos__componente-titulo {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
   color: var(--negro-normal);
   margin: 0 0 var(--spacing-size-xs) 0;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Description and notes
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.style-guide__description {
+
+.guia-estilos__descripcion {
   font-size: var(--font-size-md);
   color: var(--gris-dark);
   font-style: italic;
   margin: 0 0 var(--spacing-size-m) 0;
 }
 
-.style-guide__note {
+.guia-estilos__nota {
   font-size: var(--font-size-sm);
   color: var(--gris-normal);
   font-weight: var(--font-weight-medium);
@@ -118,11 +90,9 @@
   border-radius: var(--radius-xss);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Demo area
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.style-guide__demo {
+
+.guia-estilos__demo {
   background-color: var(--gris-lighter);
   padding: var(--spacing-size-l);
   border-radius: var(--radius-xs);
@@ -133,42 +103,38 @@
   gap: var(--spacing-size-m);
 }
 
-.style-guide__demo--buttons {
+.guia-estilos__demo--buttons {
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
 }
 
-.style-guide__demo--cards {
+.guia-estilos__demo--cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(18.75rem, 1fr));
   gap: var(--spacing-size-l);
 }
 
-.style-guide__demo--forms {
+.guia-estilos__demo--forms {
   max-width: 37.5rem;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Footer
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.style-guide__footer {
+
+.guia-estilos__pie {
   margin-top: var(--spacing-size-xxxl);
   padding-top: var(--spacing-size-xl);
   border-top: 0.125rem solid var(--gris-light);
   text-align: center;
 }
 
-.style-guide__footer p {
+.guia-estilos__pie-texto {
   font-size: var(--font-size-md);
   color: var(--gris-normal);
   margin: var(--spacing-size-xs) 0;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Demo buttons (for notifications)
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .demo-btn {
   display: inline-flex;
@@ -238,9 +204,7 @@
   background-color: var(--gris-dark);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Color Grid (Design Tokens)
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .color-grid {
   display: grid;
@@ -248,27 +212,23 @@
   gap: var(--spacing-size-l);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Color Card
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.color-card {
+
+.tarjeta-color {
   background: var(--blanco-normal);
   padding: var(--spacing-size-m);
   border-radius: var(--radius-xs);
   border: 0.0625rem solid var(--gris-light);
 }
 
-.color-card__title {
+.tarjeta-color__titulo {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
   margin: 0 0 var(--spacing-size-m) 0;
   color: var(--negro-normal);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Color Swatches
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .color-swatches {
   display: flex;
@@ -283,9 +243,7 @@
   margin: 0;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Color Circle
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .color-circle {
   width: 3rem;
@@ -299,9 +257,7 @@
   border: 0.0625rem solid var(--gris-light);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Color Name & Value
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .color-name {
   flex: 1;
@@ -320,9 +276,7 @@
   border-radius: var(--radius-xss);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Typography Scale
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .typography-scale {
   display: flex;
@@ -354,7 +308,7 @@
   color: var(--gris-dark);
 }
 
-.typography-info code {
+.typography-info__codigo {
   font-family: 'Courier New', monospace;
   background: var(--amarillo-normal-hover);
   padding: 0.25rem 0.5rem;
@@ -362,9 +316,7 @@
   font-weight: var(--font-weight-semibold);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Font Weights
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .font-weights {
   display: flex;
@@ -385,9 +337,7 @@
   margin-bottom: var(--spacing-size-xs);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Spacing Scale
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .spacing-scale {
   display: flex;
@@ -421,7 +371,7 @@
   gap: var(--spacing-size-m);
 }
 
-.spacing-info code {
+.spacing-info__codigo {
   font-family: 'Courier New', monospace;
   background: var(--gris-lighter);
   padding: 0.25rem 0.5rem;
@@ -430,14 +380,12 @@
   font-weight: var(--font-weight-semibold);
 }
 
-.spacing-info span {
+.spacing-info-texto {
   font-size: var(--font-size-sm);
   color: var(--gris-dark);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Animation Demos
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .animation-demos {
   display: flex;
@@ -458,7 +406,7 @@
   min-width: 12.5rem;
 }
 
-.animation-item code {
+.animation-item__codigo {
   font-family: 'Courier New', monospace;
   font-size: var(--font-size-xs);
   color: var(--gris-dark);
@@ -467,9 +415,7 @@
   border-radius: var(--radius-xss);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Animation Button
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .animation-btn {
   padding: var(--spacing-size-s) var(--spacing-size-m);
@@ -505,9 +451,7 @@
   transition: all var(--duration-slow) ease;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Radius Scale
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .radius-scale {
   display: grid;
@@ -527,7 +471,7 @@
   text-align: center;
 }
 
-.radius-item code {
+.radius-item__codigo {
   font-family: 'Courier New', monospace;
   font-size: var(--font-size-xs);
   background: var(--gris-lighter);
@@ -536,7 +480,7 @@
   font-weight: var(--font-weight-semibold);
 }
 
-.radius-item span {
+.radius-item-texto {
   font-size: var(--font-size-xs);
   color: var(--gris-dark);
 }
@@ -548,11 +492,8 @@
   border: 0.125rem solid var(--amarillo-dark);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   UTILITY: Demo Classes for Colors
-   ───────────────────────────────────────────────────────────────────────────── */
 
-/* Amarillo */
+
 .demo-fondo-amarillo-normal {
   background-color: var(--amarillo-normal);
 }
@@ -575,7 +516,8 @@
   background-color: var(--amarillo-darker);
 }
 
-/* Negro */
+
+
 .demo-fondo-negro-normal {
   background-color: var(--negro-normal);
 }
@@ -595,7 +537,8 @@
   background-color: var(--negro-dark-active);
 }
 
-/* Blanco */
+
+
 .demo-fondo-blanco-normal {
   background-color: var(--blanco-normal);
 }
@@ -615,7 +558,8 @@
   background-color: var(--blanco-dark-active);
 }
 
-/* Gris */
+
+
 .demo-fondo-gris-normal {
   background-color: var(--gris-normal);
 }
@@ -635,7 +579,8 @@
   background-color: var(--gris-dark-active);
 }
 
-/* Botones */
+
+
 .demo-fondo-button-yellow {
   background-color: var(--button-yellow);
 }
@@ -661,7 +606,8 @@
   background-color: var(--button-darker-hover);
 }
 
-/* Texto */
+
+
 .demo-fondo-text-light {
   background-color: var(--text-light);
 }
@@ -669,16 +615,14 @@
   background-color: var(--text-dark);
 }
 
-/* Background */
+
+
 .demo-fondo-background-light-gray {
   background-color: var(--background-light-gray);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   UTILITY: Demo Classes for Typography
-   ───────────────────────────────────────────────────────────────────────────── */
 
-/* Tamaños de fuente */
+
 .demo-texto-xs {
   font-size: var(--font-size-xs);
 }
@@ -707,7 +651,8 @@
   font-size: var(--font-size-5xl);
 }
 
-/* Pesos de fuente */
+
+
 .demo-peso-light {
   font-weight: var(--font-weight-light);
 }
@@ -724,9 +669,7 @@
   font-weight: var(--font-weight-bold);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   UTILITY: Demo Classes for Spacing
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .demo-ancho-xss {
   width: var(--spacing-size-xss);
@@ -753,9 +696,7 @@
   width: var(--spacing-size-xxxl);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   UTILITY: Demo Classes for Border Radius
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .demo-radius-xss {
   border-radius: var(--radius-xss);
@@ -776,29 +717,27 @@
   border-radius: var(--radius-full);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   RESPONSIVE
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 @media (max-width: 48rem) {
-  .style-guide {
+  .guia-estilos {
     padding: var(--spacing-size-m);
   }
 
-  .style-guide__header-title {
+  .guia-estilos__cabecera-titulo {
     font-size: var(--font-size-3xl);
   }
 
-  .style-guide__title {
+  .guia-estilos__titulo {
     font-size: var(--font-size-2xl);
   }
 
-  .style-guide__demo--buttons {
+  .guia-estilos__demo--buttons {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .style-guide__demo--cards {
+  .guia-estilos__demo--cards {
     grid-template-columns: 1fr;
   }
 }

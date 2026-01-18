@@ -1,13 +1,3 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     STEP GOAL - Seleccion de objetivo
-     ═══════════════════════════════════════════════════════════════════════════
-     Paso para seleccionar el objetivo principal del usuario
-
-     NOMENCLATURA BEM:
-     Block: .step-goal
-     Elements: __header, __titulo, __subtitulo, __opciones, __footer
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
 <article class="step-goal">
 
   <header class="step-goal__header">
@@ -19,7 +9,7 @@
 
   <ul class="step-goal__opciones">
     @for (goal of goals; track goal.value) {
-      <li>
+      <li class="step-goal__opcion-item">
         <app-option-card
           (seleccionar)="selectGoal($event)"
           [descripcion]="goal.description || ''"
@@ -36,8 +26,8 @@
     <app-button
       (click)="onContinue()"
       [habilitado]="!canContinue()"
-      tamanio="lg"
-      variante="primary">
+      tamanio="grande"
+      variante="primario">
       Continuar
     </app-button>
   </footer>

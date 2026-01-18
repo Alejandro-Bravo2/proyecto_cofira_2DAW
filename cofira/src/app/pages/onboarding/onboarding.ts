@@ -4,7 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {OnboardingService} from '../../services/onboarding.service';
 import {ProgressBar} from '../../components/shared/progress-bar/progress-bar';
 
-// Step components
+
 import {StepWelcome} from './steps/step-welcome/step-welcome';
 import {StepGoal} from './steps/step-goal/step-goal';
 import {StepGender} from './steps/step-gender/step-gender';

@@ -1,18 +1,8 @@
-/**
- * LEGAL PAGE STYLES
- * ═══════════════════════════════════════════════════════════════════════════
- * Estilos para páginas legales: Privacidad, Términos, Cookies, Licencias
- *
- * NOMENCLATURA BEM:
- * Block: .legal
- * Elements: __header, __titulo, __fecha, __contenido, __seccion, __subtitulo, etc.
- */
+
 
 @import '../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BLOCK: Contenedor principal
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .legal {
   width: 100%;
@@ -25,9 +15,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Header
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .legal__header {
   max-width: 800px;
@@ -58,9 +46,7 @@
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Contenido
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .legal__contenido {
   max-width: 800px;
@@ -75,9 +61,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Secciones
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .legal__seccion {
   margin-bottom: var(--spacing-size-xl);
@@ -115,9 +99,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Texto y listas
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .legal__texto {
   font-family: var(--font-primary);
@@ -146,28 +128,26 @@
   line-height: 1.7;
   margin: 0 0 var(--spacing-size-m) 0;
   padding-left: var(--spacing-size-l);
-
-  li {
-    margin-bottom: var(--spacing-size-xs);
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  strong {
-    font-weight: var(--font-weight-semibold);
-  }
-
-  &--sin-estilo {
-    list-style: none;
-    padding-left: 0;
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENT: Enlaces
-   ═══════════════════════════════════════════════════════════════════════════ */
+.legal__lista-item {
+  margin-bottom: var(--spacing-size-xs);
+}
+
+.legal__lista-item:last-child {
+  margin-bottom: 0;
+}
+
+.legal__lista-strong {
+  font-weight: var(--font-weight-semibold);
+}
+
+.legal__lista--sin-estilo {
+  list-style: none;
+  padding-left: 0;
+}
+
+
 
 .legal__enlace {
   color: var(--amarillo-dark);

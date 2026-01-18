@@ -1,12 +1,12 @@
-<article class="form-select">
-  <label [for]="name" class="form-select__label">
-    {{ label }}
+<article class="formulario-seleccion">
+  <label [for]="nombre" class="formulario-seleccion__etiqueta">
+    {{ etiqueta }}
   </label>
 
-  <select [id]="name" [name]="name" class="form-select__field">
+  <select [id]="nombre" [name]="nombre" class="formulario-seleccion__campo">
     <option value="" disabled selected>Selecciona una opción</option>
-    @for (option of options; track option) {
-    <option [value]="option">{{ option }}</option>
+    @for (opcion of opciones; track opcion) {
+    <option [value]="opcion">{{ opcion }}</option>
     }
   </select>
 </article>

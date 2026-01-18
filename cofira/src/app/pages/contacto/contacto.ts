@@ -2,21 +2,6 @@ import { Component, ViewEncapsulation, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NotificacionService } from '../../services/notificacion.service';
 
-/**
- * ═══════════════════════════════════════════════════════════════════════════
- * PÁGINA: Contacto
- * ═══════════════════════════════════════════════════════════════════════════
- *
- * Página de contacto con formulario, información de contacto,
- * horarios y preguntas frecuentes.
- *
- * ═══════════════════════════════════════════════════════════════════════════
- */
-
-// ─────────────────────────────────────────────────────────────────────────────
-// INTERFACES
-// ─────────────────────────────────────────────────────────────────────────────
-
 interface FAQ {
   pregunta: string;
   respuesta: string;
@@ -29,10 +14,6 @@ interface InfoContacto {
   enlace?: string;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// COMPONENTE
-// ─────────────────────────────────────────────────────────────────────────────
-
 @Component({
   selector: 'app-contacto',
   standalone: true,
@@ -42,15 +23,7 @@ interface InfoContacto {
   encapsulation: ViewEncapsulation.None,
 })
 export class Contacto {
-  // ─────────────────────────────────────────────────────────────────────────
-  // INYECCIÓN DE DEPENDENCIAS
-  // ─────────────────────────────────────────────────────────────────────────
-
   private notificacion = inject(NotificacionService);
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // DATOS DEL FORMULARIO
-  // ─────────────────────────────────────────────────────────────────────────
 
   formulario = {
     nombre: '',
@@ -58,10 +31,6 @@ export class Contacto {
     asunto: '',
     mensaje: '',
   };
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // DATOS ESTÁTICOS
-  // ─────────────────────────────────────────────────────────────────────────
 
   readonly infoContacto: InfoContacto[] = [
     {
@@ -118,13 +87,8 @@ export class Contacto {
     },
   ];
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // MÉTODOS
-  // ─────────────────────────────────────────────────────────────────────────
-
   enviarFormulario(): void {
     console.log('Formulario enviado:', this.formulario);
-    // Aquí iría la lógica de envío real
     this.notificacion.exito('¡Mensaje enviado! Te responderemos pronto.');
     this.formulario = { nombre: '', email: '', asunto: '', mensaje: '' };
   }

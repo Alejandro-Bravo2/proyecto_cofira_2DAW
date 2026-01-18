@@ -1,118 +1,53 @@
 @import '../../../styles/00-settings/css-variables';
 @import '../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HOME PAGE STYLES
-   Estilos específicos de la página de inicio
-   ═══════════════════════════════════════════════════════════════════════════
-
-   TABLA DE CONTENIDOS
-   ─────────────────────────────────────────────────────────────────────────────
-   1. IMPORTS
-   2. UTILIDADES (Style guide link)
-   3. INTRO SECTION
-      3.1 Contenedor principal
-      3.2 Tipografía
-      3.3 Botones de acción
-   4. PLANES SECTION
-      4.1 Contenedor principal
-      4.2 Título
-      4.3 Grid de contenido
-      4.4 Info lateral
-      4.5 Cards wrapper
-   5. FUNCIONALIDADES SECTION
-      5.1 Contenedor principal
-      5.2 Título
-      5.3 Grid de items
-      5.4 Items individuales
-   6. FAQ SECTION
-      6.1 Contenedor principal
-      6.2 Título
-      6.3 Contenedor de items
-      6.4 Items (details/summary)
-      6.5 Contacto
-   7. HOME PLANES (contenedor de cards)
-   8. CONTAINER QUERIES
-   9. RESPONSIVE
-
-   ESTRUCTURA BEM
-   ─────────────────────────────────────────────────────────────────────────────
-   Blocks:    .home, .planes, .funcionalidades, .faq
-   Elements:  Ver cada sección
-
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   2. UTILIDADES
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Style guide link - Enlace a la guía de estilos (selectores planos sin anidación)
-// ─────────────────────────────────────────────────────────────────────────────
 .style-guide-link {
-  // 2. MODELO DE CAJA
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-size-xs);
   margin: var(--spacing-size-m) 0;
   padding: var(--spacing-size-xs) var(--spacing-size-m);
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
-
-  // 4. VISUAL
   color: var(--negro-normal);
   background-color: var(--amarillo-normal);
   border: 0.125rem solid var(--amarillo-dark);
   border-radius: var(--radius-xss);
-
-  // 5. MISCELÁNEA
   transition: all var(--duration-fast) ease;
 }
 
-// Flecha decorativa
 .style-guide-link::before {
   content: '→';
   font-size: var(--font-size-lg);
   transition: transform var(--duration-fast) ease;
 }
 
-// Estado hover
 .style-guide-link:hover {
   background-color: var(--amarillo-normal-hover);
   border-color: var(--amarillo-darker);
   transform: translateX(0.25rem);
 }
 
-// Flecha en hover
 .style-guide-link:hover::before {
   transform: translateX(0.25rem);
 }
 
-// Estado focus
 .style-guide-link:focus {
   @include focus-anillo(var(--amarillo-dark), 0.125rem, 0.125rem);
 }
 
-// Estado active
 .style-guide-link:active {
   transform: translateX(0.125rem);
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   3. INTRO SECTION - Hero con imagen de fondo
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3.1 Contenedor principal
-// ─────────────────────────────────────────────────────────────────────────────
+
 .home__seccion-intro {
-  // 2. MODELO DE CAJA
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -121,9 +56,6 @@
   width: 100vw;
   min-height: 600px;
   padding: var(--spacing-size-xxxl) var(--spacing-size-xl);
-
-  // 4. VISUAL - Imágenes responsive con WebP y fallback JPG
-  // Desktop: imagen grande (1920px)
   background-image: url('/assets/images/heroFitnessNutricion.jpg');
   background-image: image-set(
     url('/assets/images/heroFitnessNutricion-1920w.webp') type('image/webp'),
@@ -134,7 +66,6 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
 
-  // Tablet: imagen mediana (1024px)
   @include responsive-down('lg') {
     background-image: url('/assets/images/heroFitnessNutricion.jpg');
     background-image: image-set(
@@ -143,7 +74,6 @@
     );
   }
 
-  // Móvil: imagen pequeña (640px)
   @include responsive-down('sm') {
     background-image: url('/assets/images/heroFitnessNutricion.jpg');
     background-image: image-set(
@@ -153,42 +83,28 @@
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3.2 Tipografía del hero (clases BEM únicas)
-// ─────────────────────────────────────────────────────────────────────────────
 .home__seccion-intro__titulo {
-  // 2. MODELO DE CAJA
   max-width: var(--home-cta-ancho-maximo, 28rem);
   margin: 0 0 2rem 0;
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-secondary);
   font-size: var(--font-size-4xl);
   text-align: left;
-
-  // 4. VISUAL
   color: var(--blanco-normal);
 }
 
 .home__seccion-intro__subtitulo {
-  // 2. MODELO DE CAJA
   max-width: var(--home-subtitulo-ancho-maximo, 25rem);
-
-  // 3. TIPOGRAFÍA
   font-size: var(--font-size-2xl);
   color: var(--blanco-normal);
 }
 
 .home__seccion-intro__boton {
-  // 1. POSICIONAMIENTO
   z-index: 1;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 3.3 Botones de acción del hero (selectores planos)
-// ─────────────────────────────────────────────────────────────────────────────
+
+
 .boton__primary {
-  // 2. MODELO DE CAJA
   display: flex;
   gap: var(--spacing-size-m);
 }
@@ -199,13 +115,34 @@
   justify-content: center;
 }
 
+.boton__primary--inscripcion .boton {
+  height: 2.75rem;
+  min-height: 2.75rem;
+  max-height: 2.75rem;
+  min-width: 11rem;
+  width: 11rem;
+  padding: var(--spacing-size-s) var(--spacing-size-l);
+  box-sizing: border-box;
+  line-height: 1.2;
+}
+
 .boton__primary--planes {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-// Estilos específicos para el botón secundario de planes en el hero
+.boton__primary--planes .boton {
+  height: 2.75rem;
+  min-height: 2.75rem;
+  max-height: 2.75rem;
+  min-width: 11rem;
+  width: 11rem;
+  padding: var(--spacing-size-s) var(--spacing-size-l);
+  box-sizing: border-box;
+  line-height: 1.2;
+}
+
 .boton__primary--planes--hero {
   min-width: 10.625rem;
   padding: 0.75rem 1rem;
@@ -213,59 +150,42 @@
   color: var(--blanco-normal);
   background: transparent;
   border: var(--blanco-normal) solid var(--radius-xsss);
+
+  @include hover-activo {
+    color: var(--blanco-normal);
+    background: var(--gris-normal-active);
+    transform: translateY(-0.125rem);
+  }
 }
 
-.boton__primary--planes--hero:hover:not(:disabled) {
-  color: var(--blanco-normal);
-  background: var(--gris-normal-active);
-  transform: translateY(-0.125rem);
-}
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   4. PLANES SECTION - Sección de planes de precios
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4.1 Contenedor principal (full-width) - selectores planos
-// ─────────────────────────────────────────────────────────────────────────────
 .planes__section {
-  // Layout full-width usando mixin
   @include seccion-full-width(6rem, var(--spacing-size-xxxl));
-
-  // 4. VISUAL
   background-color: var(--negro-normal);
   color: var(--blanco-normal);
 }
 
-// Contenedor de cards en sección planes
-.planes__section__cards {
+.planes__seccion-cards {
   display: flex;
   justify-content: center;
   flex: 1;
   gap: var(--spacing-size-xl);
 }
 
-// Wrapper de card en sección planes
-.planes__section__card-wrapper {
+.planes__seccion-card-wrapper {
   max-width: 20rem;
 }
 
-// Título de pricing card en sección planes
-.planes__section__pricing-titulo {
+.planes__seccion-pricing-titulo {
   max-width: 10rem;
   text-align: center;
 }
 
-// Título h1 en sección planes
-.planes__section__titulo-principal {
-  // 2. MODELO DE CAJA
+.planes__seccion-titulo-principal {
   margin-top: 5rem;
-
-  // 3. TIPOGRAFÍA
   text-align: center;
-
-  // 4. VISUAL
   color: var(--blanco-normal);
 }
 
@@ -273,25 +193,17 @@
   color: var(--blanco-normal);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4.2 Título de la sección
-// ─────────────────────────────────────────────────────────────────────────────
 .planes__titulo {
   @include titulo-seccion(var(--amarillo-normal), var(--font-size-5xl));
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4.3 Grid de contenido (3 columnas → 1 columna en móvil) - selectores planos
-// ─────────────────────────────────────────────────────────────────────────────
 .planes__contenido {
-  // 2. MODELO DE CAJA
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--spacing-size-xxxl);
   align-items: center;
 }
 
-// RESPONSIVE: Tablet y móvil - apilar verticalmente
 @include responsive-down('lg') {
   .planes__contenido {
     display: flex;
@@ -307,88 +219,54 @@
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 4.4 Info lateral - selectores planos
-// ─────────────────────────────────────────────────────────────────────────────
 .planes__info {
-  // 2. MODELO DE CAJA
   width: 17.5rem;
   flex-shrink: 0;
   max-width: 18.75rem;
 }
 
-// Texto descriptivo en planes info
-.planes__info__texto {
-  // 2. MODELO DE CAJA
+.planes__info-texto {
   margin: 0 0 var(--spacing-size-s) 0;
-
-  // 3. TIPOGRAFÍA
   font-size: var(--font-size-md);
-
-  // 4. VISUAL
   color: var(--blanco-normal);
 }
 
 .planes__subtitulo {
-  // 2. MODELO DE CAJA
   margin: 0 0 var(--spacing-size-m) 0;
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-secondary);
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   line-height: 1.2;
-
-  // 4. VISUAL
   color: var(--blanco-normal);
 }
 
 .planes__destacado {
-  // 3. TIPOGRAFÍA
   text-decoration: underline;
   text-underline-offset: 0.3rem;
   text-decoration-color: var(--amarillo-normal);
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   5. FUNCIONALIDADES SECTION - Grid de características
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 5.1 Contenedor principal (full-width)
-// ─────────────────────────────────────────────────────────────────────────────
+
 .funcionalidades__contenedor {
-  // Layout full-width usando mixin
   @include seccion-full-width(6rem, var(--spacing-size-xxxl));
-
-  // 4. VISUAL
   background-color: var(--blanco-normal);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 5.2 Título de la sección
-// ─────────────────────────────────────────────────────────────────────────────
 .funcionalidades__titulo {
   @include titulo-seccion(var(--negro-normal), var(--font-size-4xl));
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 5.3 Grid de items
-// ─────────────────────────────────────────────────────────────────────────────
 .funcionalidades__grid {
-  // 2. MODELO DE CAJA
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: var(--spacing-size-l);
   max-width: 1200px;
   margin: 0 auto;
   padding: 0;
-
-  // 4. VISUAL
   list-style: none;
 
-  // RESPONSIVE
   @include responsive-down('lg') {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -398,23 +276,15 @@
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 5.4 Items individuales - selectores planos
-// ─────────────────────────────────────────────────────────────────────────────
 .funcionalidades__item {
-  // 2. MODELO DE CAJA
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--spacing-size-xl);
-
-  // 4. VISUAL
   background-color: var(--blanco-normal-hover);
   border: 1px solid var(--blanco-dark);
   border-radius: var(--radius-xs);
-
-  // 5. MISCELÁNEA
   transition: all var(--duration-base) ease;
 }
 
@@ -425,55 +295,32 @@
 }
 
 .funcionalidades__icono {
-  // 2. MODELO DE CAJA
   margin-bottom: var(--spacing-size-m);
-
-  // 3. TIPOGRAFÍA
   font-size: 3.5rem;
   line-height: 1;
 }
 
 .funcionalidades__texto {
-  // 2. MODELO DE CAJA
   margin: 0;
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-primary);
   font-size: var(--font-size-lg);
   text-align: center;
-
-  // 4. VISUAL
   color: var(--negro-normal);
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   6. FAQ SECTION - Preguntas frecuentes
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 6.1 Contenedor principal (full-width)
-// ─────────────────────────────────────────────────────────────────────────────
+
 .faq__section {
-  // Layout full-width usando mixin
   @include seccion-full-width(6rem, var(--spacing-size-xxxl));
-
-  // 4. VISUAL
   background-color: var(--negro-normal);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 6.2 Título de la sección
-// ─────────────────────────────────────────────────────────────────────────────
 .faq__titulo {
   @include titulo-seccion(var(--blanco-normal), var(--font-size-4xl));
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 6.3 Contenedor de items
-// ─────────────────────────────────────────────────────────────────────────────
 .faq__contenedor {
-  // 2. MODELO DE CAJA
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-m);
@@ -481,19 +328,11 @@
   margin: 0 auto;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 6.4 Items (details/summary) - selectores planos
-// ─────────────────────────────────────────────────────────────────────────────
 .faq__item {
-  // 2. MODELO DE CAJA
   overflow: hidden;
-
-  // 4. VISUAL
   background-color: var(--blanco-normal);
   border-radius: var(--radius-xss);
   box-shadow: var(--shadow-sm);
-
-  // 5. MISCELÁNEA
   transition: box-shadow var(--duration-base) ease;
 }
 
@@ -505,29 +344,20 @@
   box-shadow: var(--shadow-lg);
 }
 
-// Icono rotado cuando el item está abierto
-// Clase que se activa via Angular cuando el details está abierto
 .faq__icono--abierto::after {
   transform: rotate(180deg);
 }
 
 .faq__pregunta {
-  // 2. MODELO DE CAJA
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: var(--spacing-size-m) var(--spacing-size-l);
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-primary);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-
-  // 4. VISUAL
   color: var(--negro-normal);
   list-style: none;
-
-  // 5. MISCELÁNEA
   cursor: pointer;
   transition: background-color var(--duration-fast) ease;
 }
@@ -536,13 +366,11 @@
   background-color: var(--gris-normal-hover);
 }
 
-// Quitar marcador por defecto de Safari/Chrome
 .faq__pregunta::-webkit-details-marker {
   display: none;
 }
 
 .faq__icono {
-  // 2. MODELO DE CAJA
   display: flex;
   align-items: center;
   justify-content: center;
@@ -551,7 +379,6 @@
   flex-shrink: 0;
 }
 
-// Flecha animada del icono
 .faq__icono::after {
   content: '';
   width: 0.75rem;
@@ -563,46 +390,28 @@
 }
 
 .faq__respuesta {
-  // 2. MODELO DE CAJA
   margin: 0;
   padding: 0 var(--spacing-size-l) var(--spacing-size-l);
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
-
-  // 4. VISUAL
   color: var(--gris-normal);
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 6.5 Contacto de la sección FAQ
-// ─────────────────────────────────────────────────────────────────────────────
 .faq__contacto {
-  // 2. MODELO DE CAJA
   margin-top: var(--spacing-size-xxl);
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   text-align: center;
-
-  // 4. VISUAL
   color: var(--blanco-normal);
 }
 
 .faq__email {
-  // 3. TIPOGRAFÍA
   font-weight: var(--font-weight-semibold);
   text-decoration: underline;
   text-underline-offset: 0.2rem;
-
-  // 4. VISUAL
   color: var(--blanco-normal);
-
-  // 5. MISCELÁNEA
   transition: color var(--duration-fast) ease;
 }
 
@@ -611,22 +420,16 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   7. HOME PLANES - Contenedor de pricing cards
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .home__titulo-formulario {
-  // 2. MODELO DE CAJA
   margin-bottom: 3rem;
-
-  // 3. TIPOGRAFÍA
   font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   text-align: center;
 }
 
 .home__planes {
-  // 2. MODELO DE CAJA
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -639,140 +442,113 @@
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   8. CONTAINER QUERIES - Cards adaptativas
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Contenedor de cards - Layout responsive
-// ─────────────────────────────────────────────────────────────────────────────
+
 .home__card--container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 4rem; // 64px de separación entre cards
+  gap: 4rem;
   width: 100%;
 
-  // RESPONSIVE: Tablet y móvil (<900px) - apilar cards verticalmente
   @include responsive-down('md') {
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-size-xxl); // Menos gap (40px)
+    gap: var(--spacing-size-xxl);
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Wrapper que habilita Container Queries para las pricing-cards
-// ─────────────────────────────────────────────────────────────────────────────
 .home__card-wrapper {
-  // 2. MODELO DE CAJA
   width: 100%;
   max-width: 28rem;
-
-  // 5. MISCELÁNEA - Container Queries
   container-type: inline-size;
   container-name: card-container;
 
-  // RESPONSIVE: Móvil - centrar cards
   @include responsive-down('md') {
     max-width: 100%;
     justify-self: center;
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Container Query: Card compacta (< 640px)
-// ─────────────────────────────────────────────────────────────────────────────
 @container card-container (max-width: #{$breakpoint-xs}) {
-  .pricing-card__titulo {
+  .tarjeta-precios__titulo {
     margin-bottom: var(--spacing-size-l);
     font-size: var(--font-size-2xl);
   }
 
-  .pricing-card__ventaja {
+  .tarjeta-precios__ventaja {
     font-size: var(--font-size-base);
   }
 
-  .pricing-card__boton {
+  .tarjeta-precios__boton {
     height: 3rem;
     font-size: var(--font-size-lg);
   }
 
-  .pricing-card__precio {
+  .tarjeta-precios__precio {
     font-size: var(--font-size-base);
   }
 
-  .pricing-card__lista {
+  .tarjeta-precios__lista {
     margin-bottom: var(--spacing-size-l);
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Container Query: Card expandida (> 400px)
-// ─────────────────────────────────────────────────────────────────────────────
 @container card-container (min-width: 400px) {
-  .pricing-card__titulo {
+  .tarjeta-precios__titulo {
     font-size: var(--font-size-5xl);
   }
 
-  .pricing-card__ventaja {
+  .tarjeta-precios__ventaja {
     font-size: var(--font-size-xl);
   }
 
-  .pricing-card__boton {
+  .tarjeta-precios__boton {
     height: 5rem;
     font-size: var(--font-size-2xl);
   }
 
-  .pricing-card__precio {
+  .tarjeta-precios__precio {
     font-size: var(--font-size-xl);
   }
 
-  .pricing-card__lista {
+  .tarjeta-precios__lista {
     gap: var(--spacing-size-m);
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Container Query: Card en espacio muy grande (> 1200px)
-// ─────────────────────────────────────────────────────────────────────────────
 @container card-container (min-width: 1200px) {
   .home__card-wrapper {
     flex-direction: row;
   }
 
-  .pricing-card__titulo {
+  .tarjeta-precios__titulo {
     font-size: var(--font-size-5xl);
   }
 
-  .pricing-card__ventaja {
+  .tarjeta-precios__ventaja {
     font-size: var(--font-size-xl);
   }
 
-  .pricing-card__boton {
+  .tarjeta-precios__boton {
     height: 5rem;
     font-size: var(--font-size-2xl);
   }
 
-  .pricing-card__precio {
+  .tarjeta-precios__precio {
     font-size: var(--font-size-xl);
   }
 
-  .pricing-card__lista {
+  .tarjeta-precios__lista {
     gap: var(--spacing-size-m);
   }
 }
 
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   9. RESPONSIVE - Adaptaciones por breakpoint
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 9.1 TABLET Y MENOR: Breakpoint MD (≤900px)
-// ─────────────────────────────────────────────────────────────────────────────
+
+
 @include responsive-down('md') {
-  // Planes Section
   .planes__section {
     padding: var(--spacing-size-xxl) var(--spacing-size-m);
   }
@@ -785,7 +561,6 @@
     font-size: var(--font-size-2xl);
   }
 
-  // FAQ Section
   .faq__section {
     padding: var(--spacing-size-xxl) var(--spacing-size-l);
   }
@@ -805,11 +580,8 @@
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 9.2 MÓVIL PEQUEÑO: Breakpoint XS (≤640px)
-// ─────────────────────────────────────────────────────────────────────────────
+
 @include responsive-down('xs') {
-  // Hero Section
   .home__seccion-intro {
     padding: var(--spacing-size-xxl) var(--spacing-size-m);
     min-height: 758px;
@@ -825,25 +597,25 @@
     max-width: 100%;
   }
 
-  // Botones del hero - Apilar verticalmente
   .boton__primary {
     flex-direction: row;
     width: 100%;
     gap: var(--spacing-size-m);
   }
 
-  .boton__primary--inscripcion,
+  .boton__primary--inscripcion {
+    width: fit-content;
+  }
+
   .boton__primary--planes {
     width: fit-content;
   }
 
-  // Estilos para botones en móvil pequeño (xs)
-  .boton__primary__button--xs {
+  .boton__primario-btn--xs {
     width: auto;
     min-width: unset;
   }
 
-  // Planes Section
   .planes__section {
     padding: var(--spacing-size-xl) var(--spacing-size-s);
   }
@@ -862,11 +634,10 @@
     padding: 0 var(--spacing-size-xs);
   }
 
-  .planes__info__texto--xs {
+  .planes__info-texto--xs {
     font-size: var(--font-size-sm);
   }
 
-  // Cards de planes
   .home__card--container {
     padding: 0;
     gap: var(--spacing-size-l);
@@ -877,7 +648,6 @@
     padding: 0 var(--spacing-size-xs);
   }
 
-  // Funcionalidades
   .funcionalidades__contenedor {
     padding: var(--spacing-size-xl) var(--spacing-size-m);
   }
@@ -898,7 +668,6 @@
     font-size: var(--font-size-md);
   }
 
-  // FAQ
   .faq__section {
     padding: var(--spacing-size-xl) var(--spacing-size-m);
   }
@@ -916,9 +685,7 @@
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 9.3 MÓVIL MUY PEQUEÑO: Breakpoint XXS (≤400px) - iPhone SE, Galaxy S8, etc.
-// ─────────────────────────────────────────────────────────────────────────────
+
 @include responsive-down('xxs') {
   .home__seccion-intro {
     padding: var(--spacing-size-l) var(--spacing-size-m);
@@ -943,21 +710,21 @@
     gap: var(--spacing-size-xs);
   }
 
-  // Botones más pequeños en móvil
-  .boton__primary--inscripcion,
+  .boton__primary--inscripcion {
+    height: auto;
+  }
+
   .boton__primary--planes {
     height: auto;
   }
 
-  // Estilos para app-button en móvil muy pequeño
-  .boton__primary__app-button--xxs {
+  .boton__primario-app-btn--xxs {
     display: block;
     height: auto;
     line-height: 1;
   }
 
-  // Estilos para el botón interno en móvil muy pequeño
-  .boton__primary__button--xxs {
+  .boton__primario-btn--xxs {
     display: flex;
     box-sizing: border-box;
     padding: 0.5rem 1rem;
@@ -978,5 +745,3 @@
     font-size: var(--font-size-lg);
   }
 }
-
-

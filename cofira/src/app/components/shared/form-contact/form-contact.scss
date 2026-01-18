@@ -1,44 +1,10 @@
-/* ─────────────────────────────────────────────────────────────────────────────
-   COMPONENT: Form Contact
-   ─────────────────────────────────────────────────────────────────────────────
-
-   BLOCK: .form
-
-   ELEMENTS:
-   - .form__fieldset     → Fieldset principal
-   - .form__legend       → Título del formulario
-   - .form__group        → Grupo de campo individual
-   - .form__label        → Etiqueta de campo
-   - .form__input        → Campo de entrada
-
-   MODIFIERS:
-   - .form__group--last  → Último grupo (sin margen inferior)
-
-   STATES:
-   - :focus, :hover, :active, :disabled
-
-   USAGE:
-   <form class="form">
-     <fieldset class="form__fieldset">
-       <legend class="form__legend">Contacto</legend>
-       <fieldset class="form__group">
-         <legend class="form__label">Email</legend>
-         <input class="form__input" />
-       </fieldset>
-     </fieldset>
-     <app-button tipo="submit" variante="primary" tamanio="lg" [fullWidth]="true">Enviar</app-button>
-   </form>
-   ───────────────────────────────────────────────────────────────────────────── */
-
 .contact-form {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Form
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .form {
   background-color: var(--gris-normal);
@@ -49,14 +15,12 @@
   box-shadow: var(--shadow-lg);
 }
 
-/* Fieldset principal */
 .form__fieldset {
   border: none;
   padding: 0;
   margin: 0 0 var(--spacing-size-xl) 0;
 }
 
-/* Legend principal (título del formulario) */
 .form__legend {
   color: var(--text-dark);
   font-family: var(--font-secondary);
@@ -68,7 +32,6 @@
   text-align: center;
 }
 
-/* Grupo de campo (fieldset individual) */
 .form__group {
   border: none;
   padding: 0;
@@ -79,7 +42,6 @@
   margin-bottom: 0;
 }
 
-/* Label (legend de cada campo) */
 .form__label {
   display: block;
   color: var(--text-dark);
@@ -91,9 +53,7 @@
   line-height: var(--line-height-normal);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENT: Input
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .form__input {
   width: 100%;
@@ -122,4 +82,3 @@
 .form__input:hover:not(:focus) {
   background-color: var(--blanco-normal-active);
 }
-

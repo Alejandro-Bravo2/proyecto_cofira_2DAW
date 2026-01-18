@@ -1,22 +1,7 @@
-<!--
-  GIMNASIO PAGE
-  ═══════════════════════════════════════════════════════════════════════════
-  Página de gestión de rutina de ejercicios semanal.
-
-  Secciones:
-  1. Título principal
-  2. Navegación de días
-  3. Tabla de ejercicios
-  4. Formulario de retroalimentación
-  5. CTA de progreso
--->
-
 <main class="gimnasio">
 
-  <!-- TÍTULO -->
   <h1 class="gimnasio__titulo">TABLA SEMANAL</h1>
 
-  <!-- NAVEGACIÓN DE DÍAS -->
   <nav aria-label="Navegación de días" class="gimnasio__dias">
     <button (click)="diaAnterior()" aria-label="Día anterior" class="gimnasio__dias-btn">
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -43,43 +28,42 @@
     </button>
   </nav>
 
-  <!-- TABLA DE EJERCICIOS (Desktop) -->
-  <section class="gimnasio__tabla-section gimnasio__tabla-section--desktop">
+  <section class="gimnasio__tabla-section gimnasio__tabla-section--escritorio">
     <table class="gimnasio__tabla">
       <thead>
         <tr>
-          <th>Ejercicio</th>
-          <th>Repeticiones</th>
-          <th>Descanso</th>
-          <th>Series</th>
-          <th>Realizado</th>
+          <th class="gimnasio__tabla-cabecera">Ejercicio</th>
+          <th class="gimnasio__tabla-cabecera">Repeticiones</th>
+          <th class="gimnasio__tabla-cabecera">Descanso</th>
+          <th class="gimnasio__tabla-cabecera">Series</th>
+          <th class="gimnasio__tabla-cabecera">Realizado</th>
         </tr>
       </thead>
       <tbody>
         @for (ejercicio of ejerciciosDelDia; track ejercicio.id) {
-        <tr>
-          <td class="gimnasio__ejercicio">
+        <tr class="gimnasio__tabla-fila">
+          <td class="gimnasio__ejercicio gimnasio__tabla-dato">
             <button (click)="toggleEjercicio(ejercicio)" aria-label="Expandir ejercicio"
               class="gimnasio__ejercicio-toggle">
-              <svg [class.rotated]="ejercicio.expandido" viewBox="0 0 24 24">
+              <svg class="gimnasio__ejercicio-toggle-svg" [class.gimnasio__ejercicio-toggle-svg--rotado]="ejercicio.expandido" viewBox="0 0 24 24">
                 <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor" />
               </svg>
             </button>
             {{ ejercicio.nombre }}
           </td>
-          <td>{{ ejercicio.repeticiones }}</td>
-          <td>{{ ejercicio.descanso }}</td>
-          <td>{{ ejercicio.series }}</td>
-          <td class="gimnasio__acciones">
-            <button (click)="marcarRealizado(ejercicio, true)" [class.activo]="ejercicio.realizado === true"
+          <td class="gimnasio__tabla-dato">{{ ejercicio.repeticiones }}</td>
+          <td class="gimnasio__tabla-dato">{{ ejercicio.descanso }}</td>
+          <td class="gimnasio__tabla-dato">{{ ejercicio.series }}</td>
+          <td class="gimnasio__acciones gimnasio__tabla-dato">
+            <button (click)="marcarRealizado(ejercicio, true)" [class.gimnasio__btn-accion--activo]="ejercicio.realizado === true"
               aria-label="Marcar como realizado" class="gimnasio__btn-accion gimnasio__btn-accion--ok">
-              <svg viewBox="0 0 24 24">
+              <svg class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor" />
               </svg>
             </button>
-            <button (click)="marcarRealizado(ejercicio, false)" [class.activo]="ejercicio.realizado === false"
+            <button (click)="marcarRealizado(ejercicio, false)" [class.gimnasio__btn-accion--activo]="ejercicio.realizado === false"
               aria-label="Marcar como no realizado" class="gimnasio__btn-accion gimnasio__btn-accion--no">
-              <svg viewBox="0 0 24 24">
+              <svg class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
                 <path
                   d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
                   fill="currentColor" />
@@ -92,35 +76,33 @@
     </table>
   </section>
 
-  <!-- ACORDEÓN DE EJERCICIOS (Móvil) -->
-  <section class="gimnasio__acordeon gimnasio__acordeon--mobile">
+  <section class="gimnasio__acordeon gimnasio__acordeon--movil">
     @for (ejercicio of ejerciciosDelDia; track ejercicio.id) {
     <article class="gimnasio__acordeon-item" [class.gimnasio__acordeon-item--expandido]="ejercicio.expandido">
-      <!-- Cabecera del acordeón (siempre visible) -->
       <header class="gimnasio__acordeon-header" (click)="toggleEjercicio(ejercicio)">
         <hgroup class="gimnasio__acordeon-info">
           <button aria-label="Expandir ejercicio" class="gimnasio__acordeon-toggle">
-            <svg [class.rotated]="ejercicio.expandido" viewBox="0 0 24 24">
+            <svg class="gimnasio__acordeon-toggle-svg" [class.gimnasio__ejercicio-toggle-svg--rotado]="ejercicio.expandido" viewBox="0 0 24 24">
               <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor" />
             </svg>
           </button>
           <span class="gimnasio__acordeon-nombre">{{ ejercicio.nombre }}</span>
         </hgroup>
         <menu class="gimnasio__acordeon-acciones">
-          <li>
+          <li class="gimnasio__acordeon-acciones-item">
             <button (click)="marcarRealizado(ejercicio, true); $event.stopPropagation()"
-              [class.activo]="ejercicio.realizado === true" aria-label="Marcar como realizado"
-              class="gimnasio__btn-accion gimnasio__btn-accion--ok">
-              <svg viewBox="0 0 24 24">
+              [class.gimnasio__btn-accion--activo]="ejercicio.realizado === true" aria-label="Marcar como realizado"
+              class="gimnasio__btn-accion gimnasio__btn-accion--ok gimnasio__btn-accion--acordeon">
+              <svg class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
                 <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor" />
               </svg>
             </button>
           </li>
-          <li>
+          <li class="gimnasio__acordeon-acciones-item">
             <button (click)="marcarRealizado(ejercicio, false); $event.stopPropagation()"
-              [class.activo]="ejercicio.realizado === false" aria-label="Marcar como no realizado"
-              class="gimnasio__btn-accion gimnasio__btn-accion--no">
-              <svg viewBox="0 0 24 24">
+              [class.gimnasio__btn-accion--activo]="ejercicio.realizado === false" aria-label="Marcar como no realizado"
+              class="gimnasio__btn-accion gimnasio__btn-accion--no gimnasio__btn-accion--acordeon">
+              <svg class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
                 <path
                   d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
                   fill="currentColor" />
@@ -130,8 +112,7 @@
         </menu>
       </header>
 
-      <!-- Contenido expandible -->
-      <section class="gimnasio__acordeon-contenido">
+      <section class="gimnasio__acordeon-contenido" [class.gimnasio__acordeon-contenido--expandido]="ejercicio.expandido">
         <dl class="gimnasio__acordeon-detalles">
           <dt class="gimnasio__acordeon-label">Repeticiones</dt>
           <dd class="gimnasio__acordeon-valor">{{ ejercicio.repeticiones }}</dd>
@@ -145,7 +126,6 @@
     }
   </section>
 
-  <!-- RETROALIMENTACIÓN -->
   <section class="gimnasio__feedback">
     <h2 class="gimnasio__feedback-titulo">Retroalimentación</h2>
 
@@ -171,33 +151,29 @@
       </fieldset>
 
       <footer class="gimnasio__feedback-acciones">
-        <app-button (click)="cancelarFeedback()" tamanio="md" tipo="button" variante="secondary">
+        <app-button (click)="cancelarFeedback()" tamanio="mediano" tipo="button" variante="secundario">
           Cancelar
         </app-button>
-        <app-button tamanio="md" tipo="submit" variante="primary">
+        <app-button tamanio="mediano" tipo="submit" variante="primario">
           Enviar
         </app-button>
       </footer>
     </form>
   </section>
 
-  <!-- PROGRESO - Split Diagonal -->
   <section class="gimnasio__progreso">
     <article class="gimnasio__progreso-contenido">
-      <!-- Panel izquierdo con contenido y diagonal -->
       <header class="gimnasio__progreso-panel">
         <h2 class="gimnasio__progreso-titulo">Ver mi progreso</h2>
         <p class="gimnasio__progreso-descripcion">
           ¿Quieres ver tu progreso y cómo has evolucionado durante toda tu estancia en Cofira?
         </p>
-        <app-button enlace="/seguimiento" tamanio="lg" variante="primary" id="gimnasio__progreso-boton">
+        <app-button enlace="/seguimiento" tamanio="grande" variante="primario" id="gimnasio__progreso-boton">
           Ver estadísticas
         </app-button>
       </header>
-      <!-- Imagen posicionada detrás del panel -->
       <figure class="gimnasio__progreso-imagen">
-        <picture>
-          <!-- Versión móvil: imagen vertical optimizada para pantallas pequeñas -->
+        <picture class="gimnasio__progreso-imagen-contenedor">
           <source
             media="(max-width: 900px)"
             type="image/webp"
@@ -206,7 +182,6 @@
               assets/images/imagen_progreso_mobile-600w.webp 600w,
               assets/images/imagen_progreso_mobile-900w.webp 900w"
             sizes="(max-width: 600px) 100vw, 80vw" />
-          <!-- Versión desktop: imagen horizontal para pantallas grandes -->
           <source
             type="image/webp"
             srcset="
@@ -214,8 +189,8 @@
               assets/images/imagen_progreso-900w.webp 900w,
               assets/images/imagen_progreso-1200w.webp 1200w"
             sizes="(max-width: 1200px) 50vw, 600px" />
-          <!-- Fallback para navegadores sin soporte WebP -->
           <img
+            class="gimnasio__progreso-imagen-foto"
             alt="Persona entrenando en el gimnasio"
             loading="lazy"
             src="assets/images/imagen_progreso.jpg"

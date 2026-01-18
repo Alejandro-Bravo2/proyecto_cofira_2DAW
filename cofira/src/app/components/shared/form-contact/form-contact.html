@@ -1,10 +1,9 @@
 <article class="contact-form">
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="form">
+  <form [formGroup]="formularioContacto" (ngSubmit)="alEnviar()" class="form">
 
     <fieldset class="form__fieldset">
       <legend class="form__legend">Datos de contacto</legend>
 
-      <!-- Campo Nombre -->
       <p class="form__group">
         <label for="nombre" class="form__label">Escribe tu nombre:</label>
         <input
@@ -15,7 +14,6 @@
           placeholder="">
       </p>
 
-      <!-- Campo Apellido -->
       <p class="form__group">
         <label for="apellido" class="form__label">Escribe tu apellido:</label>
         <input
@@ -26,7 +24,6 @@
           placeholder="">
       </p>
 
-      <!-- Campo Email -->
       <p class="form__group">
         <label for="email" class="form__label">Escribe tu email:</label>
         <input
@@ -39,8 +36,7 @@
 
     </fieldset>
 
-    <!-- Botón Enviar -->
-    <app-button [fullWidth]="true" [habilitado]="contactForm.invalid" tamanio="lg" tipo="submit" variante="primary">
+    <app-button [anchoCompleto]="true" [habilitado]="formularioContacto.invalid" tamanio="grande" tipo="submit" variante="primario">
       Enviar
     </app-button>
 

@@ -1,18 +1,5 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     PÁGINA DE PRUEBAS - Demostración de SVGs Optimizados
-     ═══════════════════════════════════════════════════════════════════════════
-     Página para demostrar la optimización de SVGs con SVGO
-
-     NOMENCLATURA BEM:
-     Block: .pruebas
-     Elements: __header, __titulo, __descripcion, __seccion, __grid, __icono, __tabla
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
 <main class="pruebas">
 
-          <!-- ═══════════════════════════════════════════════════════════════════════
-       HEADER
-       ═══════════════════════════════════════════════════════════════════════ -->
           <header class="pruebas__header">
                     <h1 class="pruebas__titulo">Demostración de SVGs Optimizados</h1>
                     <p class="pruebas__descripcion">
@@ -22,15 +9,12 @@
                     </p>
           </header>
 
-          <!-- ═══════════════════════════════════════════════════════════════════════
-       SECCIÓN: GALERÍA DE ICONOS
-       ═══════════════════════════════════════════════════════════════════════ -->
           <section class="pruebas__seccion">
                     <h2 class="pruebas__seccion-titulo">Galería de Iconos SVG</h2>
                     <p class="pruebas__seccion-descripcion">
-                              Todos estos iconos están cargados desde archivos <code>.svg</code> externos
-                              ubicados en <code>/assets/icons_optimizados/</code>. Se cargan usando la etiqueta
-                              <code>&lt;img&gt;</code> con el atributo <code>loading="lazy"</code>.
+                              Todos estos iconos están cargados desde archivos <code class="pruebas__seccion-descripcion-code">.svg</code> externos
+                              ubicados en <code class="pruebas__seccion-descripcion-code">/assets/icons_optimizados/</code>. Se cargan usando la etiqueta
+                              <code class="pruebas__seccion-descripcion-code">&lt;img&gt;</code> con el atributo <code class="pruebas__seccion-descripcion-code">loading="lazy"</code>.
                     </p>
 
                     <ul class="pruebas__grid">
@@ -51,13 +35,10 @@
                     </ul>
           </section>
 
-          <!-- ═══════════════════════════════════════════════════════════════════════
-       SECCIÓN: TABLA DE OPTIMIZACIÓN
-       ═══════════════════════════════════════════════════════════════════════ -->
           <section class="pruebas__seccion">
                     <h2 class="pruebas__seccion-titulo">Resultados de Optimización</h2>
                     <p class="pruebas__seccion-descripcion">
-                              Los SVGs fueron procesados usando <a href="https://jakearchibald.github.io/svgomg/"
+                              Los SVGs fueron procesados usando <a class="pruebas__seccion-descripcion-enlace" href="https://jakearchibald.github.io/svgomg/"
                                         target="_blank" rel="noopener">SVGOMG</a>,
                               la versión web de SVGO. Los iconos originales provenían de Heroicons, una librería que ya
                               genera SVGs muy optimizados, por lo que la reducción adicional es mínima.
@@ -91,9 +72,6 @@
                     </figure>
           </section>
 
-          <!-- ═══════════════════════════════════════════════════════════════════════
-       SECCIÓN: CÓDIGO DE EJEMPLO
-       ═══════════════════════════════════════════════════════════════════════ -->
           <section class="pruebas__seccion">
                     <h2 class="pruebas__seccion-titulo">Ejemplo de Uso</h2>
                     <p class="pruebas__seccion-descripcion">
@@ -117,18 +95,15 @@
   height="24"&gt;</code></pre>
           </section>
 
-          <!-- ═══════════════════════════════════════════════════════════════════════
-       SECCIÓN: NOTAS TÉCNICAS
-       ═══════════════════════════════════════════════════════════════════════ -->
           <section class="pruebas__seccion pruebas__seccion--nota">
                     <h2 class="pruebas__seccion-titulo">Nota sobre SVGs inline vs externos</h2>
-                    <p class="pruebas__seccion-descripcion">
+                    <p class="pruebas__seccion-descripcion pruebas__seccion-descripcion--nota">
                               En el resto de la aplicación, los iconos se mantienen como SVG inline porque
-                              utilizan <code>currentColor</code> para heredar el color del texto CSS padre.
+                              utilizan <code class="pruebas__seccion-descripcion-code">currentColor</code> para heredar el color del texto CSS padre.
                               Esto permite que los iconos cambien de color automáticamente según el contexto
                               (modo oscuro, estados hover, etc.).
                     </p>
-                    <p class="pruebas__seccion-descripcion">
+                    <p class="pruebas__seccion-descripcion pruebas__seccion-descripcion--nota">
                               Los SVGs externos mostrados aquí demuestran el conocimiento de la técnica de
                               optimización y extracción, pero no se aplican globalmente para no perder la
                               funcionalidad de colores dinámicos.

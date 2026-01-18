@@ -1,24 +1,9 @@
-/**
- * STEP REGISTER STYLES - Premium
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos premium minimalistas para registro
- *
- * NOMENCLATURA BEM:
- * Block: .step-register
- * Elements: __header, __titulo, __subtitulo, __form, __fieldset, __field,
- *           __field-icon, __input, __toggle-password, __error, __footer
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../../../styles/00-settings/css-variables';
 @import '../../../../../styles/01-tools/mixins';
 
-// Variables específicas
 $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CONTAINER
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-register {
   @include flex-center;
@@ -30,9 +15,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   padding: var(--spacing-size-xl);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   HEADER
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-register__header {
   display: flex;
@@ -65,9 +48,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   max-width: 20rem;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FORM
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-register__form {
   display: flex;
@@ -85,14 +66,18 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FIELDS - Con iconos integrados
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-register__field {
+  --field-icon-color: var(--gris-normal);
+
   position: relative;
   display: flex;
   align-items: center;
+}
+
+.step-register__field:focus-within {
+  --field-icon-color: var(--amarillo-dark);
 }
 
 .step-register__field-icon {
@@ -101,15 +86,15 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gris-normal);
+  color: var(--field-icon-color);
   transition: color $register-transition;
   pointer-events: none;
   z-index: 1;
+}
 
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
+.step-register__field-icon-svg {
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .step-register__input {
@@ -140,12 +125,10 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 0 0 4px rgba(255, 211, 0, 0.12);
   }
 
-  // Input de password con espacio para toggle
   &--password {
     padding-right: 3rem;
   }
 
-  // Estado de error (email invalido o en uso)
   &--error {
     border-color: var(--rojo-normal);
     background-color: rgba(239, 68, 68, 0.03);
@@ -156,7 +139,6 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
 
-  // Estado valido (email disponible)
   &--valid {
     border-color: var(--verde-normal);
     background-color: rgba(34, 197, 94, 0.03);
@@ -168,14 +150,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-// Cuando el input tiene focus, activar icono
-.step-register__field:focus-within .step-register__field-icon {
-  color: var(--amarillo-dark);
-}
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FIELD STATUS - Indicadores de estado del email
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 .step-register__field-status {
   position: absolute;
@@ -186,28 +161,26 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   width: 1.25rem;
   height: 1.25rem;
   z-index: 1;
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  &--loading {
-    color: var(--amarillo-dark);
-
-    svg {
-      animation: register-spin 0.8s linear infinite;
-    }
-  }
-
-  &--valid {
-    color: var(--verde-normal);
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FIELD ERROR - Mensajes de error inline
-   ═══════════════════════════════════════════════════════════════════════════ */
+.step-register__field-status-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.step-register__field-status--loading {
+  color: var(--amarillo-dark);
+}
+
+.step-register__field-status-svg--loading {
+  animation: registro-girar 0.8s linear infinite;
+}
+
+.step-register__field-status--valid {
+  color: var(--verde-normal);
+}
+
+
 
 .step-register__field-error {
   display: flex;
@@ -216,32 +189,30 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   padding: var(--spacing-size-xs) var(--spacing-size-s);
   background-color: rgba(239, 68, 68, 0.06);
   border-radius: var(--radius-md);
-  animation: fadeIn 0.2s ease-out;
-
-  svg {
-    flex-shrink: 0;
-    width: 1rem;
-    height: 1rem;
-    color: var(--rojo-normal);
-    margin-top: 0.125rem;
-  }
-
-  span {
-    font-family: var(--font-primary);
-    font-size: var(--font-size-xs);
-    font-weight: var(--font-weight-medium);
-    color: var(--rojo-normal);
-    line-height: 1.4;
-  }
-
-  .step-register__link {
-    margin-left: 0;
-  }
+  animation: aparecer-gradual 0.2s ease-out;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   TOGGLE PASSWORD
-   ═══════════════════════════════════════════════════════════════════════════ */
+.step-register__field-error-icono {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: var(--rojo-normal);
+  margin-top: 0.125rem;
+}
+
+.step-register__field-error-texto {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--rojo-normal);
+  line-height: 1.4;
+}
+
+.step-register__field-error-link {
+  margin-left: 0;
+}
+
+
 
 .step-register__toggle-password {
   position: absolute;
@@ -259,35 +230,33 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0;
   transition: all $register-transition;
   z-index: 1;
-
-  &:hover {
-    color: var(--negro-normal);
-    background-color: var(--bg-surface);
-  }
-
-  &:focus {
-    outline: none;
-    color: var(--amarillo-dark);
-  }
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   PASSWORD REQUIREMENTS
-   ═══════════════════════════════════════════════════════════════════════════ */
+.step-register__toggle-password:hover {
+  color: var(--negro-normal);
+  background-color: var(--bg-surface);
+}
+
+.step-register__toggle-password:focus {
+  outline: none;
+  color: var(--amarillo-dark);
+}
+
+.step-register__toggle-password-svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+
 
 .step-register__requirements {
   padding: var(--spacing-size-s) var(--spacing-size-m);
   background-color: var(--bg-surface);
   border-radius: var(--radius-lg);
-  animation: fadeIn 0.2s ease-out;
+  animation: aparecer-gradual 0.2s ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes aparecer-gradual {
   from {
     opacity: 0;
     transform: translateY(-4px);
@@ -312,6 +281,8 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .step-register__requirement {
+  --requirement-icon-escala: scale(1);
+
   display: flex;
   align-items: center;
   gap: var(--spacing-size-xs);
@@ -320,10 +291,12 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   font-weight: var(--font-weight-medium);
   color: var(--gris-normal);
   transition: color $register-transition;
+}
 
-  &--valid {
-    color: var(--verde-normal);
-  }
+.step-register__requirement--valid {
+  --requirement-icon-escala: scale(1.1);
+
+  color: var(--verde-normal);
 }
 
 .step-register__requirement-icon {
@@ -331,15 +304,10 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   height: 1rem;
   flex-shrink: 0;
   transition: transform 0.2s ease;
-
-  .step-register__requirement--valid & {
-    transform: scale(1.1);
-  }
+  transform: var(--requirement-icon-escala);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ERROR
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-register__error {
   display: flex;
@@ -348,13 +316,13 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   padding: var(--spacing-size-m);
   background-color: rgba(239, 68, 68, 0.06);
   border-radius: var(--radius-lg);
+}
 
-  svg {
-    flex-shrink: 0;
-    width: 1.25rem;
-    height: 1.25rem;
-    color: var(--rojo-normal);
-  }
+.step-register__error-icono {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--rojo-normal);
 }
 
 .step-register__error-text {
@@ -365,9 +333,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   margin: 0;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FOOTER
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-register__footer {
   display: flex;
@@ -403,9 +369,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   LOADING SPINNER
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .step-register__loading {
   display: inline-flex;
@@ -416,10 +380,10 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 .step-register__spinner {
   width: 1.25rem;
   height: 1.25rem;
-  animation: register-spin 0.8s linear infinite;
+  animation: registro-girar 0.8s linear infinite;
 }
 
-@keyframes register-spin {
+@keyframes registro-girar {
   from {
     transform: rotate(0deg);
   }

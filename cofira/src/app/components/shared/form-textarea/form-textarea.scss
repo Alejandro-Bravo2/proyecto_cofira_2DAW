@@ -1,50 +1,17 @@
-/**
- * FORM-TEXTAREA COMPONENT
- * ─────────────────────────────────────────────────────────────────────────
- * Block: .form-textarea
- *
- * Elements:
- * - .form-textarea__label: Etiqueta del campo
- * - .form-textarea__required: Indicador de campo requerido (*)
- * - .form-textarea__field: Campo de texto multilínea
- * - .form-textarea__error: Mensaje de error de validación
- * - .form-textarea__help: Texto de ayuda
- *
- * Modifiers:
- * - STATE: :focus | :hover | --error | --valid
- *
- * HTML Example:
- * <article class="form-textarea">
- *   <label class="form-textarea__label">
- *     Mensaje <span class="form-textarea__required">*</span>
- *   </label>
- *   <textarea class="form-textarea__field"></textarea>
- *   <span class="form-textarea__error">Este campo es requerido</span>
- * </article>
- */
-
 @import '../../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   BLOCK: Contenedor del textarea
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-.form-textarea {
+
+.formulario-textarea {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-xss);
   width: var(--width-estandar);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ELEMENTS: Partes internas del form-textarea
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-/**
- * .form-textarea__label
- * Etiqueta del campo de texto
- */
-.form-textarea__label {
+
+.formulario-textarea__etiqueta {
   color: var(--text-light);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-regular);
@@ -52,55 +19,39 @@
   margin-bottom: var(--input-margin-bottom);
 }
 
-/**
- * .form-textarea__required
- * Indicador de campo requerido (asterisco rojo)
- */
-.form-textarea__required {
+.formulario-textarea__requerido {
   color: var(--button-red);
 }
 
-/**
- * .form-textarea__field
- * Campo de texto multilínea
- */
-.form-textarea__field {
+.formulario-textarea__campo {
   @include input-base;
   background-color: var(--button-yellow);
-  min-height: 7.5rem; /* Altura mínima para textarea (120px) */
-  resize: vertical; /* Solo permite redimensionar verticalmente */
+  min-height: 7.5rem;
+  resize: vertical;
   transition: all 0.3s ease;
 }
 
-.form-textarea__field::placeholder {
+.formulario-textarea__campo::placeholder {
   @include input-placeholder;
 }
 
-.form-textarea__field:hover {
+.formulario-textarea__campo:hover {
   @include input-hover;
 }
 
-.form-textarea__field:focus {
+.formulario-textarea__campo:focus {
   outline: 0.125rem solid var(--amarillo-dark);
   outline-offset: 0.125rem;
 }
 
-/**
- * .form-textarea__error
- * Mensaje de error de validación
- */
-.form-textarea__error {
+.formulario-textarea__error {
   color: var(--button-red);
   font-size: var(--font-size-sm);
   font-family: var(--font-secondary);
   margin-top: var(--input-margin-bottom);
 }
 
-/**
- * .form-textarea__help
- * Texto de ayuda descriptivo
- */
-.form-textarea__help {
+.formulario-textarea__ayuda {
   color: var(--text-dark);
   font-size: var(--font-size-sm);
   font-family: var(--font-secondary);

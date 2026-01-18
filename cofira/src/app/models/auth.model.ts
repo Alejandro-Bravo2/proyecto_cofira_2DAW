@@ -1,11 +1,8 @@
-/**
- * AUTH MODELS
- * Interfaces y tipos para el sistema de autenticación
- */
 
-// ================================================================
-// INTERFACES - Peticiones de autenticación
-// ================================================================
+
+
+
+
 
 export interface RegisterRequest {
   nombre: string;
@@ -19,9 +16,9 @@ export interface LoginRequest {
   password: string;
 }
 
-// ================================================================
-// INTERFACES - Respuestas de autenticación
-// ================================================================
+
+
+
 
 export interface AuthResponse {
   token: string;
@@ -33,9 +30,9 @@ export interface AuthResponse {
   isOnboarded: boolean;
 }
 
-// ================================================================
-// INTERFACES - Usuario
-// ================================================================
+
+
+
 
 export interface User {
   id: number;

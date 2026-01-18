@@ -1,7 +1,4 @@
-/* ============================================
-   03-ELEMENTS: Lists
-   Estilos base para listas (ul, ol, li)
-   ============================================ */
+
 
 ul, ol {
   font-family: var(--font-primary);
@@ -16,8 +13,6 @@ li {
   margin-bottom: var(--spacing-size-xss);
 }
 
-// Listas sin estilo (para navegacion, menus, etc.)
-// Aplica automaticamente cuando tienen una clase
 ul[class],
 ol[class] {
   list-style: none;
@@ -25,7 +20,6 @@ ol[class] {
   margin: 0;
 }
 
-// Listas de definicion
 dl {
   font-family: var(--font-primary);
   margin: 0 0 var(--spacing-size-s) 0;

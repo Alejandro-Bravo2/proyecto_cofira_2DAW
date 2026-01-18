@@ -1,15 +1,3 @@
-/**
- * AUTOCOMPLETE COMPONENT STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos del input de busqueda con sugerencias
- *
- * NOMENCLATURA BEM:
- * Block: .autocomplete
- * Elements: __input-wrapper, __input, __icono, __resultados, __item, __empty
- * Modifiers: --destacado, --loading
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
 
@@ -18,9 +6,7 @@
   width: 100%;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   INPUT WRAPPER
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .autocomplete__input-wrapper {
   display: flex;
@@ -33,15 +19,13 @@
   border-radius: var(--radius-md);
   transition: border-color var(--duration-fast) ease;
   cursor: text;
-
-  &:focus-within {
-    border-color: var(--amarillo-normal);
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ICONO
-   ═══════════════════════════════════════════════════════════════════════════ */
+.autocomplete__input-wrapper:focus-within {
+  border-color: var(--amarillo-normal);
+}
+
+
 
 .autocomplete__icono {
   display: flex;
@@ -52,18 +36,18 @@
   height: 1.25rem;
   margin: 0;
   color: var(--gris-normal);
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
-
-  &--loading {
-    animation: spin 1s linear infinite;
-  }
 }
 
-@keyframes spin {
+.autocomplete__icono-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.autocomplete__icono-svg--loading {
+  animation: girar-infinito 1s linear infinite;
+}
+
+@keyframes girar-infinito {
   from {
     transform: rotate(0deg);
   }
@@ -72,9 +56,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   INPUT
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .autocomplete__input {
   flex: 1;
@@ -87,23 +69,20 @@
   font-weight: var(--font-weight-regular);
   color: var(--negro-normal);
   outline: none;
-
-  &::placeholder {
-    color: var(--gris-light);
-  }
-
-  /* Remove default search input styles */
-  &::-webkit-search-decoration,
-  &::-webkit-search-cancel-button,
-  &::-webkit-search-results-button,
-  &::-webkit-search-results-decoration {
-    display: none;
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   RESULTADOS
-   ═══════════════════════════════════════════════════════════════════════════ */
+.autocomplete__input::placeholder {
+  color: var(--gris-light);
+}
+
+.autocomplete__input::-webkit-search-decoration,
+.autocomplete__input::-webkit-search-cancel-button,
+.autocomplete__input::-webkit-search-results-button,
+.autocomplete__input::-webkit-search-results-decoration {
+  display: none;
+}
+
+
 
 .autocomplete__resultados {
   position: absolute;
@@ -122,9 +101,7 @@
   overflow-y: auto;
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ITEM DE RESULTADO
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .autocomplete__item {
   padding: var(--spacing-size-s) var(--spacing-size-m);
@@ -135,16 +112,17 @@
   border-radius: var(--radius-sm);
   cursor: pointer;
   transition: background-color var(--duration-fast) ease;
-
-  &:hover,
-  &--destacado {
-    background-color: var(--amarillo-light);
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ESTADO VACIO
-   ═══════════════════════════════════════════════════════════════════════════ */
+.autocomplete__item:hover {
+  background-color: var(--amarillo-light);
+}
+
+.autocomplete__item--destacado {
+  background-color: var(--amarillo-light);
+}
+
+
 
 .autocomplete__empty {
   padding: var(--spacing-size-m);

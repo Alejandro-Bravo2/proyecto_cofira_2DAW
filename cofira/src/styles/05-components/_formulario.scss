@@ -1,37 +1,6 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   FORMULARIO COMPONENT (Global)
-   Componentes de formulario reutilizables
-   ═══════════════════════════════════════════════════════════════════════════
-
-   ESTRUCTURA BEM
-   ─────────────────────────────────────────────────────────────────────────────
-   Block:     .formulario
-   Elements:  .formulario__titulo, .formulario__descripcion, .formulario__grupo,
-              .formulario__fila, .formulario__etiqueta, .formulario__requerido,
-              .formulario__campo, .formulario__error, .formulario__ayuda,
-              .formulario__textarea, .formulario__select, .formulario__checkbox,
-              .formulario__checkbox-input, .formulario__checkbox-texto,
-              .formulario__acciones, .formulario__separador, .formulario__enlace
-   Modifiers: .formulario--ancho, .formulario__campo--error, .formulario__campo--valido,
-              .formulario__acciones--centrado, .formulario__acciones--derecha
-
-   USO
-   ─────────────────────────────────────────────────────────────────────────────
-   <form class="formulario">
-     <h2 class="formulario__titulo">Título</h2>
-     <p class="formulario__grupo">
-       <label class="formulario__etiqueta" for="email">Email</label>
-       <input class="formulario__campo" type="email" id="email">
-     </p>
-   </form>
-
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 @import '../01-tools/mixins';
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Form container
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .formulario {
   @include flex-columna(var(--spacing-size-m));
@@ -43,9 +12,7 @@
   max-width: 100%;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Form structure
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .formulario__titulo {
   @include tipografia-titulo;
@@ -70,7 +37,7 @@
   gap: var(--spacing-size-m);
 }
 
-.formulario__fila .formulario__grupo {
+.formulario__grupo--en-fila {
   flex: 1;
 }
 
@@ -87,9 +54,7 @@
   margin-left: var(--spacing-size-xss);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Form fields
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .formulario__campo {
   @include input-base;
@@ -133,9 +98,7 @@
   margin-top: var(--spacing-size-xss);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Textarea
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .formulario__textarea {
   @include input-base;
@@ -150,9 +113,7 @@
   border-color: var(--amarillo-normal);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Select
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .formulario__select {
   @include input-base;
@@ -161,7 +122,7 @@
   border: 0.125rem solid transparent;
   cursor: pointer;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f5f5f5' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1rem;
@@ -172,9 +133,7 @@
   border-color: var(--amarillo-normal);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Checkbox
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .formulario__checkbox {
   display: flex;
@@ -196,9 +155,7 @@
   color: var(--text-dark);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Actions
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .formulario__acciones {
   display: flex;
@@ -214,9 +171,7 @@
   justify-content: flex-end;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Separator
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .formulario__separador {
   display: flex;
@@ -239,9 +194,7 @@
   color: var(--blanco-dark);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Link
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .formulario__enlace {
   color: var(--amarillo-normal);

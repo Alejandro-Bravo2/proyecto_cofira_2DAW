@@ -1,54 +1,49 @@
-<header class="header">
-  <!-- Logo -->
-  <a class="header__logo-link" routerLink="/home">
-    <img alt="Cofira Logo" class="header__logo" src="assets/images/cofira_logo_hombre.png">
+<header class="cabecera">
+  <a class="cabecera__logo-enlace" routerLink="/home">
+    <img alt="Cofira Logo" class="cabecera__logo" src="assets/images/cofira_logo_hombre.png">
   </a>
 
-  <!-- Navegación central (desktop) -->
-  <nav class="header__nav header__nav--desktop">
-    <ul class="header__menu">
-      <li><a class="header__link" routerLink="/alimentacion">Nutrición</a></li>
-      <li><a class="header__link" routerLink="/gimnasio">Ejercicio</a></li>
-      <li><a class="header__link" routerLink="/seguimiento">Seguimiento</a></li>
+  <nav class="cabecera__navegacion cabecera__navegacion--escritorio">
+    <ul class="cabecera__menu">
+      <li><a class="cabecera__enlace" routerLink="/alimentacion">Nutrición</a></li>
+      <li><a class="cabecera__enlace" routerLink="/gimnasio">Ejercicio</a></li>
+      <li><a class="cabecera__enlace" routerLink="/seguimiento">Seguimiento</a></li>
     </ul>
   </nav>
 
-  <!-- Botones de acción (desktop) -->
-  <section class="header__actions header__actions--desktop">
+  <section class="cabecera__acciones cabecera__acciones--escritorio">
     @if (isAuthenticated()) {
-      <!-- Botón de perfil -->
-      <button (click)="toggleMenuCuenta()" class="header__perfil">
-        <svg class="header__perfil-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <button (click)="toggleMenuCuenta()" class="cabecera__perfil">
+        <svg class="cabecera__perfil-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round"
                 stroke-linejoin="round"/>
         </svg>
-        <span class="header__perfil-nombre">{{ userNombre() }}</span>
-        <svg class="header__perfil-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <span class="cabecera__perfil-nombre">{{ userNombre() }}</span>
+        <svg class="cabecera__perfil-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </button>
 
-      <!-- Dropdown de cuenta -->
-      <aside [class.header__dropdown--abierto]="menuCuentaAbierto" class="header__dropdown">
-        <nav class="header__dropdown-nav">
-          <a (click)="cerrarMenuCuenta()" class="header__dropdown-item" routerLink="/perfil">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <aside [class.cabecera__desplegable--abierto]="menuCuentaAbierto" class="cabecera__desplegable">
+        <nav class="cabecera__desplegable-navegacion">
+          <a (click)="cerrarMenuCuenta()" class="cabecera__desplegable-item" routerLink="/perfil">
+            <svg class="cabecera__desplegable-item-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round"
                     stroke-linejoin="round"/>
             </svg>
             <span>Mi perfil</span>
           </a>
-          <a (click)="cerrarMenuCuenta()" class="header__dropdown-item" routerLink="/configuracion">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <a (click)="cerrarMenuCuenta()" class="cabecera__desplegable-item" routerLink="/configuracion">
+            <svg class="cabecera__desplegable-item-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" stroke-linecap="round"
                     stroke-linejoin="round"/>
               <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             <span>Configuración</span>
           </a>
-          <hr class="header__dropdown-separator">
-          <button (click)="logout()" class="header__dropdown-item header__dropdown-item--logout">
-            <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <hr class="cabecera__desplegable-separador">
+          <button (click)="logout()" class="cabecera__desplegable-item cabecera__desplegable-item--cerrar-sesion">
+            <svg class="cabecera__desplegable-item-icono cabecera__desplegable-item-icono--cerrar-sesion" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
               <path d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" stroke-linecap="round"
                     stroke-linejoin="round"/>
             </svg>
@@ -57,36 +52,51 @@
         </nav>
       </aside>
 
-      <!-- Overlay para cerrar dropdown -->
       @if (menuCuentaAbierto) {
-        <span (click)="cerrarMenuCuenta()" class="header__dropdown-overlay"></span>
+        <span (click)="cerrarMenuCuenta()" class="cabecera__desplegable-overlay"></span>
       }
     } @else {
-      <app-button enlace="/onboarding" tamanio="sm" variante="primary">Inscríbete</app-button>
+      <app-button enlace="/onboarding" tamanio="pequeno" variante="primario">Inscríbete</app-button>
     }
+
+    <button (click)="toggleTema()" aria-label="Cambiar tema" class="cabecera__tema-btn">
+      @if (modoOscuro) {
+        <svg class="cabecera__tema-btn-icono" fill="currentColor" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      } @else {
+        <svg class="cabecera__tema-btn-icono" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+             stroke-width="2" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" x2="12" y1="1" y2="3" />
+          <line x1="12" x2="12" y1="21" y2="23" />
+          <line x1="4.22" x2="5.64" y1="4.22" y2="5.64" />
+          <line x1="18.36" x2="19.78" y1="18.36" y2="19.78" />
+          <line x1="1" x2="3" y1="12" y2="12" />
+          <line x1="21" x2="23" y1="12" y2="12" />
+          <line x1="4.22" x2="5.64" y1="19.78" y2="18.36" />
+          <line x1="18.36" x2="19.78" y1="5.64" y2="4.22" />
+        </svg>
+      }
+    </button>
   </section>
 
-  <!-- Botón Hamburguesa (solo móvil) -->
-  <button (click)="toggleMenu()" [class.header__hamburguesa--abierto]="menuAbierto" aria-label="Menú"
-          class="header__hamburguesa">
-    <span class="header__hamburguesa-linea"></span>
-    <span class="header__hamburguesa-linea"></span>
-    <span class="header__hamburguesa-linea"></span>
+  <button (click)="toggleMenu()" [class.cabecera__hamburguesa--abierto]="menuAbierto" aria-label="Menú"
+          class="cabecera__hamburguesa">
+    <span class="cabecera__hamburguesa-linea"></span>
+    <span class="cabecera__hamburguesa-linea"></span>
+    <span class="cabecera__hamburguesa-linea"></span>
   </button>
 </header>
 
-<!-- Menú móvil -->
 <aside class="menu-movil" [class.menu-movil--abierto]="menuAbierto">
-  <!-- Overlay para cerrar al hacer clic fuera -->
-  <span class="menu-movil__overlay" (click)="cerrarMenu()"></span>
+  <span class="menu-movil__overlay" [class.menu-movil__overlay--visible]="menuAbierto" (click)="cerrarMenu()"></span>
 
-  <!-- Contenido del menú -->
-  <section class="menu-movil__contenido">
-    <!-- Header del menú con botón cerrar -->
-    <header class="menu-movil__header">
+  <section class="menu-movil__contenido" [class.menu-movil__contenido--visible]="menuAbierto">
+    <header class="menu-movil__cabecera">
       <h2 class="menu-movil__titulo">Menú</h2>
       <button class="menu-movil__cerrar" (click)="cerrarMenu()" aria-label="Cerrar menú">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg class="menu-movil__cerrar-icono" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"
             fill="currentColor"/>
@@ -94,10 +104,9 @@
       </button>
     </header>
 
-    <!-- Enlaces de navegación móvil -->
-    <nav class="menu-movil__nav">
-      <a (click)="cerrarMenu()" class="menu-movil__link" routerLink="/alimentacion">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <nav class="menu-movil__navegacion">
+      <a (click)="cerrarMenu()" class="menu-movil__enlace" routerLink="/alimentacion">
+        <svg class="menu-movil__enlace-icono" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"
             fill="currentColor"/>
@@ -105,8 +114,8 @@
         <span>Nutrición</span>
       </a>
 
-      <a (click)="cerrarMenu()" class="menu-movil__link" routerLink="/gimnasio">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <a (click)="cerrarMenu()" class="menu-movil__enlace" routerLink="/gimnasio">
+        <svg class="menu-movil__enlace-icono" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M20.57 14.86L22 13.43L20.57 12L17 15.57L8.43 7L12 3.43L10.57 2L9.14 3.43L7.71 2L5.57 4.14L4.14 2.71L2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57L3.43 12L7 8.43L15.57 17L12 20.57L13.43 22l1.43-1.43L16.29 22l2.14-2.14l1.43 1.43l1.43-1.43l-1.43-1.43L22 16.29z"
             fill="currentColor"/>
@@ -114,8 +123,8 @@
         <span>Ejercicio</span>
       </a>
 
-      <a routerLink="/seguimiento" (click)="cerrarMenu()" class="menu-movil__link">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <a routerLink="/seguimiento" (click)="cerrarMenu()" class="menu-movil__enlace">
+        <svg class="menu-movil__enlace-icono" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path
             d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"
             fill="currentColor"/>
@@ -124,41 +133,38 @@
       </a>
     </nav>
 
-    <!-- Botones de acción móvil -->
-    <section class="menu-movil__actions">
+    <section class="menu-movil__acciones">
       @if (isAuthenticated()) {
-        <!-- Info usuario -->
         <aside class="menu-movil__usuario">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <svg class="menu-movil__usuario-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round"
                   stroke-linejoin="round"/>
           </svg>
-          <span>{{ userNombre() }}</span>
+          <span class="menu-movil__usuario-nombre">{{ userNombre() }}</span>
         </aside>
-        <!-- Opciones -->
-        <a (click)="cerrarMenu()" class="menu-movil__link" routerLink="/perfil">
-          <svg fill="currentColor" viewBox="0 0 24 24">
+        <a (click)="cerrarMenu()" class="menu-movil__enlace" routerLink="/perfil">
+          <svg class="menu-movil__enlace-icono" fill="currentColor" viewBox="0 0 24 24">
             <path
               d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
           </svg>
           <span>Mi perfil</span>
         </a>
-        <a (click)="cerrarMenu()" class="menu-movil__link" routerLink="/configuracion">
-          <svg fill="currentColor" viewBox="0 0 24 24">
+        <a (click)="cerrarMenu()" class="menu-movil__enlace" routerLink="/configuracion">
+          <svg class="menu-movil__enlace-icono" fill="currentColor" viewBox="0 0 24 24">
             <path
               d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
           </svg>
           <span>Configuración</span>
         </a>
-        <button (click)="logout(); cerrarMenu()" class="menu-movil__logout">
-          <svg fill="currentColor" viewBox="0 0 24 24">
+        <button (click)="logout(); cerrarMenu()" class="menu-movil__cerrar-sesion">
+          <svg class="menu-movil__cerrar-sesion-icono" fill="currentColor" viewBox="0 0 24 24">
             <path
               d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z"/>
           </svg>
           <span>Cerrar sesión</span>
         </button>
       } @else {
-        <app-button (click)="cerrarMenu()" [fullWidth]="true" enlace="/onboarding" tamanio="md" variante="primary">
+        <app-button (click)="cerrarMenu()" [anchoCompleto]="true" enlace="/onboarding" tamanio="mediano" variante="primario">
           Inscríbete
         </app-button>
       }

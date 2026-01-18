@@ -1,306 +1,228 @@
 @import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   FOOTER COMPONENT
-   Componente de pie de página con enlaces, copyright y redes sociales
-   ═══════════════════════════════════════════════════════════════════════════
-
-   TABLA DE CONTENIDOS
-   ─────────────────────────────────────────────────────────────────────────────
-   1. IMPORTS
-   2. BLOCK: Footer container
-   3. MAIN SECTION (4 columnas)
-   4. BRAND COLUMN (logo, descripción, redes)
-   5. SOCIAL LINKS
-   6. NAVIGATION COLUMNS
-   7. DIVIDER
-   8. BOTTOM SECTION (copyright + legal)
-   9. RESPONSIVE
-
-   ESTRUCTURA BEM
-   ─────────────────────────────────────────────────────────────────────────────
-   Block:     .footer
-   Elements:  .footer__main, .footer__brand, .footer__logo, .footer__descripcion,
-              .footer__social-list, .footer__social, .footer__nav, .footer__nav-titulo,
-              .footer__nav-lista, .footer__nav-link, .footer__divider, .footer__bottom,
-              .footer__copyright, .footer__legal, .footer__legal-link
-   Modifiers: Ninguno
-
-   ═══════════════════════════════════════════════════════════════════════════ */
 
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   2. BLOCK: Footer container
-   ───────────────────────────────────────────────────────────────────────────── */
-
-.footer {
-  // 2. MODELO DE CAJA
+.pie {
   padding: var(--spacing-size-xxxl) 6rem var(--spacing-size-xxl);
   box-sizing: border-box;
-
-  // 4. VISUAL
   background: var(--gris-dark);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   3. MAIN SECTION: Grid de 4 columnas
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.footer__main {
-  // 2. MODELO DE CAJA
+
+.pie__principal {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-areas: "brand nav1 nav2 nav3";
   gap: var(--spacing-size-xxl);
   max-width: 1400px;
   margin: 0 auto;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   4. BRAND COLUMN: Logo, descripción y redes sociales
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.footer__brand {
-  // 2. MODELO DE CAJA
+
+.pie__marca {
+  grid-area: brand;
   max-width: 320px;
 }
 
-.footer__logo {
-  // 2. MODELO DE CAJA
+.pie__logo {
   margin: 0 0 var(--spacing-size-m) 0;
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-secondary);
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   letter-spacing: 0.05em;
-
-  // 4. VISUAL
   color: var(--amarillo-normal);
 }
 
-.footer__descripcion {
-  // 2. MODELO DE CAJA
+.pie__descripcion {
   margin: 0 0 var(--spacing-size-l) 0;
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   line-height: var(--line-height-relaxed);
-
-  // 4. VISUAL
   color: var(--blanco-dark);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   5. SOCIAL LINKS: Enlaces a redes sociales
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.footer__social-list {
-  // 2. MODELO DE CAJA
+
+.pie__sociales-lista {
   display: flex;
   gap: var(--spacing-size-s);
   margin: 0;
   padding: 0;
-
-  // 4. VISUAL
   list-style: none;
 }
 
-.footer__social-item {
-  // 2. MODELO DE CAJA
+.pie__sociales-item {
   margin: 0;
 }
 
-.footer__social {
-  // 2. MODELO DE CAJA
+.pie__social {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-
-  // 3. TIPOGRAFÍA
   text-decoration: none;
-
-  // 4. VISUAL
   color: var(--blanco-normal);
   background: var(--gris-normal);
   border-radius: var(--radius-xss);
-
-  // 5. MISCELÁNEA
   transition: all var(--duration-base) ease;
 
-  // Estados interactivos
-  &:hover {
-    color: var(--negro-normal);
-    background: var(--amarillo-normal);
-    transform: translateY(-0.125rem);
-  }
-
   @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
-
-  &:active {
-    transform: translateY(0);
-  }
 }
 
-.footer__social svg {
-  // 2. MODELO DE CAJA
+.pie__social:hover {
+  color: var(--negro-normal);
+  background: var(--amarillo-normal);
+  transform: translateY(-0.125rem);
+}
+
+.pie__social:active {
+  transform: translateY(0);
+}
+
+.pie__social-icono {
   width: 1.125rem;
   height: 1.125rem;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   6. NAVIGATION COLUMNS: Columnas de enlaces
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.footer__nav {
-  // 2. MODELO DE CAJA
+
+.pie__nav {
   display: flex;
   flex-direction: column;
 }
 
-.footer__nav-titulo {
-  // 2. MODELO DE CAJA
+.pie__nav-titulo {
   margin: 0 0 var(--spacing-size-m) 0;
-
-  // 3. TIPOGRAFÍA
   font-family: var(--font-secondary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-bold);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-
-  // 4. VISUAL
   color: var(--blanco-normal);
 }
 
-.footer__nav-lista {
-  // 2. MODELO DE CAJA
+.pie__nav-lista {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-s);
   margin: 0;
   padding: 0;
-
-  // 4. VISUAL
   list-style: none;
 }
 
-.footer__nav-link {
-  // 3. TIPOGRAFÍA
+.pie__nav-enlace {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   text-decoration: none;
-
-  // 4. VISUAL
   color: var(--blanco-dark);
-
-  // 5. MISCELÁNEA
   transition: color var(--duration-fast) ease;
-
-  // Estados interactivos
-  &:hover {
-    color: var(--amarillo-normal);
-  }
 
   @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   7. DIVIDER: Línea separadora
-   ───────────────────────────────────────────────────────────────────────────── */
+.pie__nav-enlace:hover {
+  color: var(--amarillo-normal);
+}
 
-.footer__divider {
-  // 2. MODELO DE CAJA
+
+
+.pie__nav--producto {
+  grid-area: nav1;
+}
+
+.pie__nav--compania {
+  grid-area: nav2;
+}
+
+.pie__nav--legal {
+  grid-area: nav3;
+}
+
+
+
+.pie__separador {
   max-width: 1400px;
   margin: var(--spacing-size-xxl) auto;
-
-  // 4. VISUAL
   border: none;
   border-top: var(--border-width-fino) solid var(--gris-normal);
 }
 
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   8. BOTTOM SECTION: Copyright y enlaces legales
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.footer__bottom {
-  // 2. MODELO DE CAJA
+.pie__inferior {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  gap: var(--spacing-size-l);
   max-width: 1400px;
   margin: 0 auto;
 }
 
-.footer__copyright {
-  // 2. MODELO DE CAJA
-  margin: 0;
+.pie__inferior-encabezado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-m);
+}
 
-  // 3. TIPOGRAFÍA
+.pie__inferior-separador {
+  width: 100%;
+  margin: 0;
+  border: none;
+  border-top: var(--border-width-fino) solid var(--gris-normal);
+  opacity: 0.5;
+}
+
+.pie__copyright {
+  margin: 0;
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
-
-  // 4. VISUAL
   color: var(--blanco-dark);
+  text-align: center;
 }
 
-.footer__legal {
-  // 2. MODELO DE CAJA
+.pie__legal {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: var(--spacing-size-s);
 }
 
-.footer__legal-link {
-  // 3. TIPOGRAFÍA
+.pie__legal-enlace {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
   text-decoration: none;
-
-  // 4. VISUAL
   color: var(--blanco-dark);
-
-  // 5. MISCELÁNEA
   transition: color var(--duration-fast) ease;
-
-  // Estados interactivos
-  &:hover {
-    color: var(--amarillo-normal);
-  }
 
   @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
 }
 
-.footer__legal-separador {
-  // 3. TIPOGRAFÍA
-  font-size: var(--font-size-sm);
+.pie__legal-enlace:hover {
+  color: var(--amarillo-normal);
+}
 
-  // 4. VISUAL
+.pie__legal-separador {
+  font-size: var(--font-size-sm);
   color: var(--gris-normal);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   9. RESPONSIVE: Adaptaciones para tablet y móvil
-   ═══════════════════════════════════════════════════════════════════════════ */
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 9.1 LAPTOP/TABLET GRANDE: Breakpoint LG (≤1024px) - Stack Centrado
-// ─────────────────────────────────────────────────────────────────────────────
+
 @include responsive-down('lg') {
-  .footer {
+  .pie {
     padding: var(--spacing-size-xxl) var(--spacing-size-xl);
   }
 
-  // Grid con áreas: Brand arriba (full width), 3 navs en fila abajo
-  .footer__main {
+  .pie__principal {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
@@ -310,117 +232,99 @@
     justify-items: center;
   }
 
-  // Brand centrado arriba
-  .footer__brand {
+  .pie__marca {
     grid-area: brand;
     max-width: 500px;
     text-align: center;
   }
 
-  .footer__descripcion {
+  .pie__descripcion {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
   }
 
-  .footer__social-list {
+  .pie__sociales-lista {
     justify-content: center;
   }
 
-  // 3 columnas de navegación en fila
-  .footer__nav:nth-of-type(1) { grid-area: nav1; }
-  .footer__nav:nth-of-type(2) { grid-area: nav2; }
-  .footer__nav:nth-of-type(3) { grid-area: nav3; }
-
-  .footer__nav {
+  .pie__nav {
     text-align: center;
   }
 
-  .footer__nav-lista {
+  .pie__nav-lista {
     align-items: center;
   }
 
-  // Bottom centrado
-  .footer__bottom {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+  .pie__inferior {
     gap: var(--spacing-size-m);
   }
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 9.2 MÓVIL: Breakpoint SM (≤768px) - Grid 2x2 Compacto
-// ─────────────────────────────────────────────────────────────────────────────
+
+
 @include responsive-down('sm') {
-  .footer {
+  .pie {
     padding: var(--spacing-size-xl) var(--spacing-size-m);
   }
 
-  // Grid: Brand arriba, PRODUCTO y COMPAÑÍA en 2 cols centradas, LEGAL abajo
-  .footer__main {
+  .pie__principal {
     grid-template-columns: auto auto;
     grid-template-areas:
       "brand brand"
       "nav1 nav2"
       "nav3 nav3";
-    gap: var(--spacing-size-l) 2rem; // gap vertical | gap horizontal (2rem entre columnas)
+    gap: var(--spacing-size-l) 2rem;
     justify-content: center;
   }
 
-  // Ocultar descripción larga para ahorrar espacio
-  .footer__descripcion {
+  .pie__descripcion {
     display: none;
   }
 
-  // PRODUCTO (nav1) y COMPAÑÍA (nav2) lado a lado, alineados a izquierda
-  .footer__nav:nth-of-type(1) {
-    grid-area: nav1;
-    text-align: left;
-  }
-
-  .footer__nav:nth-of-type(2) {
-    grid-area: nav2;
-    text-align: left;
-  }
-
-  .footer__nav:nth-of-type(1) .footer__nav-lista,
-  .footer__nav:nth-of-type(2) .footer__nav-lista {
-    align-items: flex-start;
-  }
-
-  // LEGAL (nav3) ocupa todo el ancho, links en línea horizontal
-  .footer__nav:nth-of-type(3) {
-    grid-area: nav3;
+  .pie__nav--producto {
     text-align: center;
   }
 
-  .footer__nav:nth-of-type(3) .footer__nav-lista {
+  .pie__nav--compania {
+    text-align: center;
+  }
+
+  .pie__nav-lista--producto {
+    align-items: center;
+  }
+
+  .pie__nav-lista--compania {
+    align-items: center;
+  }
+
+  .pie__nav--legal {
+    text-align: center;
+  }
+
+  .pie__nav-lista--legal {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: var(--spacing-size-xs) var(--spacing-size-m);
   }
 
-  // Bottom compacto
-  .footer__bottom {
-    flex-direction: column;
-    align-items: center;
+  .pie__inferior {
     gap: var(--spacing-size-s);
-    text-align: center;
   }
 
-  // Ocultar links legales duplicados del bottom (ya están en nav3)
-  .footer__legal {
-    display: none;
+  .pie__inferior-encabezado {
+    gap: var(--spacing-size-s);
+  }
+
+  .pie__legal {
+    flex-wrap: wrap;
   }
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   10. CONTROLES: Toggle tema y selector de idioma
-   ───────────────────────────────────────────────────────────────────────────── */
 
-.footer__controles {
+
+.pie__controles {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-m);
@@ -429,7 +333,7 @@
   list-style: none;
 }
 
-.footer__tema-btn {
+.pie__tema-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -443,29 +347,29 @@
   cursor: pointer;
   transition: all var(--duration-base) ease;
 
-  &:hover {
-    background: var(--amarillo-normal);
-    color: var(--negro-normal);
-    transform: translateY(-0.125rem);
-  }
-
   @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
-
-  &:active {
-    transform: translateY(0);
-  }
-
-  svg {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
 }
 
-.footer__idioma {
+.pie__tema-btn:hover {
+  background: var(--amarillo-normal);
+  color: var(--negro-normal);
+  transform: translateY(-0.125rem);
+}
+
+.pie__tema-btn:active {
+  transform: translateY(0);
+}
+
+.pie__tema-btn-icono {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.pie__idioma {
   position: relative;
 }
 
-.footer__idioma-btn {
+.pie__idioma-btn {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-xs);
@@ -480,15 +384,15 @@
   cursor: pointer;
   transition: all var(--duration-base) ease;
 
-  &:hover {
-    background: var(--amarillo-normal);
-    color: var(--negro-normal);
-  }
-
   @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
 }
 
-.footer__idioma-dropdown {
+.pie__idioma-btn:hover {
+  background: var(--amarillo-normal);
+  color: var(--negro-normal);
+}
+
+.pie__idioma-dropdown {
   position: absolute;
   bottom: calc(100% + 0.5rem);
   left: 50%;
@@ -500,13 +404,13 @@
   border-radius: var(--radius-xss);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   z-index: 10;
-
-  li {
-    margin: 0;
-  }
 }
 
-.footer__idioma-opcion {
+.pie__idioma-dropdown-item {
+  margin: 0;
+}
+
+.pie__idioma-opcion {
   display: block;
   width: 100%;
   padding: var(--spacing-size-xs) var(--spacing-size-m);
@@ -518,13 +422,13 @@
   text-align: center;
   cursor: pointer;
   transition: all var(--duration-fast) ease;
+}
 
-  &:hover {
-    background: var(--gris-dark);
-  }
+.pie__idioma-opcion:hover {
+  background: var(--gris-dark);
+}
 
-  &--activo {
-    color: var(--amarillo-normal);
-    font-weight: var(--font-weight-bold);
-  }
+.pie__idioma-opcion--activo {
+  color: var(--amarillo-normal);
+  font-weight: var(--font-weight-bold);
 }

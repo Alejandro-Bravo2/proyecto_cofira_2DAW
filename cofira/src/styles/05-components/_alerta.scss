@@ -1,33 +1,6 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   ALERTA & NOTIFICACION COMPONENTS (Global)
-   Componentes de alerta y notificación reutilizables
-   ═══════════════════════════════════════════════════════════════════════════
-
-   ESTRUCTURA BEM
-   ─────────────────────────────────────────────────────────────────────────────
-   Block:     .alerta, .notificacion
-   Elements:  .alerta__icono, .alerta__contenido, .alerta__titulo,
-              .alerta__mensaje, .alerta__cerrar
-   Modifiers: .alerta--exito, .alerta--error, .alerta--advertencia, .alerta--info
-
-   USO
-   ─────────────────────────────────────────────────────────────────────────────
-   <aside class="alerta alerta--exito" role="alert">
-     <span class="alerta__icono">...</span>
-     <section class="alerta__contenido">
-       <h4 class="alerta__titulo">Éxito</h4>
-       <p class="alerta__mensaje">Operación completada</p>
-     </section>
-     <button class="alerta__cerrar">...</button>
-   </aside>
-
-   ═══════════════════════════════════════════════════════════════════════════ */
-
 @import '../01-tools/mixins';
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   BLOCK: Alert base
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .alerta {
   @include alerta-base;
@@ -35,9 +8,7 @@
   color: var(--text-dark);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Alert components
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .alerta__icono {
   display: flex;
@@ -46,7 +17,7 @@
   flex-shrink: 0;
 }
 
-.alerta__icono svg {
+.alerta__icono-svg {
   width: 1.5rem;
   height: 1.5rem;
 }
@@ -89,21 +60,19 @@
   outline-offset: 0.125rem;
 }
 
-.alerta__cerrar svg {
+.alerta__cerrar-svg {
   width: 1.25rem;
   height: 1.25rem;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   MODIFIERS: Alert types
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .alerta--exito {
   background-color: var(--amarillo-normal);
   color: var(--negro-normal);
 }
 
-.alerta--exito .alerta__cerrar:hover {
+.alerta__cerrar--exito:hover {
   background-color: var(--amarillo-dark);
 }
 
@@ -112,7 +81,7 @@
   color: var(--text-dark);
 }
 
-.alerta--error .alerta__cerrar:hover {
+.alerta__cerrar--error:hover {
   background-color: var(--button-red-hover);
 }
 
@@ -121,7 +90,7 @@
   color: var(--negro-normal);
 }
 
-.alerta--advertencia .alerta__cerrar:hover {
+.alerta__cerrar--advertencia:hover {
   background-color: var(--amarillo-dark-hover);
 }
 
@@ -131,13 +100,11 @@
   border: 0.0625rem solid var(--gris-normal);
 }
 
-.alerta--info .alerta__cerrar:hover {
+.alerta__cerrar--info:hover {
   background-color: var(--gris-normal);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   NOTIFICACION COMPONENT (Toast notifications)
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .notificacion {
   @include alerta-base;
@@ -178,9 +145,7 @@
   }
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   ELEMENTS: Notification components
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .notificacion__icono {
   display: flex;
@@ -189,7 +154,7 @@
   flex-shrink: 0;
 }
 
-.notificacion__icono svg {
+.notificacion__icono-svg {
   width: 1.5rem;
   height: 1.5rem;
 }
@@ -232,14 +197,12 @@
   outline-offset: 0.125rem;
 }
 
-.notificacion__cerrar svg {
+.notificacion__cerrar-svg {
   width: 1.25rem;
   height: 1.25rem;
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   MODIFIERS: Notification types
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .notificacion--exito {
   background-color: var(--amarillo-normal);
@@ -262,9 +225,7 @@
   border: 0.0625rem solid var(--gris-normal);
 }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-   CONTAINER: Stack multiple notifications
-   ───────────────────────────────────────────────────────────────────────────── */
+
 
 .notificaciones-contenedor {
   position: fixed;

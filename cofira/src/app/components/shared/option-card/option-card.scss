@@ -1,19 +1,11 @@
-/**
- * OPTION CARD COMPONENT STYLES
- * ─────────────────────────────────────────────────────────────────────────────
- * Estilos de las tarjetas de opciones seleccionables
- *
- * NOMENCLATURA BEM:
- * Block: .option-card
- * Elements: __icono, __contenido, __titulo, __descripcion, __check
- * Modifiers: --seleccionado, --visible
- * ─────────────────────────────────────────────────────────────────────────────
- */
-
 @import '../../../../styles/00-settings/css-variables';
 @import '../../../../styles/01-tools/mixins';
 
 .option-card {
+  --card-titulo-color: var(--negro-normal);
+  --card-icono-fondo: var(--amarillo-light);
+  --card-icono-color: var(--amarillo-dark);
+
   display: flex;
   align-items: center;
   gap: var(--spacing-size-m);
@@ -25,31 +17,29 @@
   cursor: pointer;
   text-align: left;
   transition: all var(--duration-fast) ease;
-
-  &:hover {
-    border-color: var(--amarillo-normal);
-    background-color: var(--blanco-normal-hover);
-  }
-
-  &:focus {
-    outline: none;
-    border-color: var(--amarillo-normal);
-    box-shadow: 0 0 0 0.1875rem var(--amarillo-light);
-  }
-
-  &--seleccionado {
-    border-color: var(--amarillo-normal);
-    background-color: var(--amarillo-light);
-
-    .option-card__titulo {
-      color: var(--negro-normal);
-    }
-  }
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   ICONO
-   ═══════════════════════════════════════════════════════════════════════════ */
+.option-card:hover {
+  border-color: var(--amarillo-normal);
+  background-color: var(--blanco-normal-hover);
+}
+
+.option-card:focus {
+  outline: none;
+  border-color: var(--amarillo-normal);
+  box-shadow: 0 0 0 0.1875rem var(--amarillo-light);
+}
+
+.option-card--seleccionado {
+  --card-titulo-color: var(--negro-normal);
+  --card-icono-fondo: var(--amarillo-normal);
+  --card-icono-color: var(--negro-normal);
+
+  border-color: var(--amarillo-normal);
+  background-color: var(--amarillo-light);
+}
+
+
 
 .option-card__icono {
   display: flex;
@@ -59,24 +49,17 @@
   width: 3rem;
   height: 3rem;
   margin: 0;
-  background-color: var(--amarillo-light);
+  background-color: var(--card-icono-fondo);
   border-radius: var(--radius-sm);
-  color: var(--amarillo-dark);
-
-  svg {
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-
-  .option-card--seleccionado & {
-    background-color: var(--amarillo-normal);
-    color: var(--negro-normal);
-  }
+  color: var(--card-icono-color);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CONTENIDO
-   ═══════════════════════════════════════════════════════════════════════════ */
+.option-card__icono-svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+
 
 .option-card__contenido {
   flex: 1;
@@ -87,7 +70,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
-  color: var(--negro-normal);
+  color: var(--card-titulo-color);
   margin: 0 0 var(--spacing-size-xxs) 0;
 }
 
@@ -100,9 +83,7 @@
   line-height: var(--line-height-normal);
 }
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   CHECK MARK
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 .option-card__check {
   display: flex;
@@ -118,16 +99,16 @@
   transform: scale(0.8);
   transition: all var(--duration-fast) ease;
 
-  svg {
-    width: 0.875rem;
-    height: 0.875rem;
-    color: var(--blanco-normal);
-  }
-
   &--visible {
     opacity: 1;
     transform: scale(1);
     background-color: var(--amarillo-normal);
     border-color: var(--amarillo-normal);
   }
+}
+
+.option-card__check-svg {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: var(--blanco-normal);
 }

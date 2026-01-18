@@ -4,7 +4,7 @@ services:
   # ════════════════════════════════════════
   postgres:
     image: postgres:16-alpine
-    container_name: cofira-postgres
+    container_name: cofira-postgres_2
     environment:
       POSTGRES_DB: cofira
       POSTGRES_USER: admin
@@ -29,7 +29,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: cofira-backend
+    container_name: cofira-backend_2
     ports:
       - "9002:8080"
     environment:
@@ -60,7 +60,7 @@ services:
       context: ./cofira
       dockerfile: Dockerfile
       target: development
-    container_name: cofira-frontend
+    container_name: cofira-frontend_2
     ports:
       - "4600:4200"
     volumes:
@@ -80,7 +80,7 @@ services:
   # ════════════════════════════════════════
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: cofira-pgadmin
+    container_name: cofira-pgadmin_2
     ports:
       - "5051:80"
     environment:

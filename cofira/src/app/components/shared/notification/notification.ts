@@ -7,28 +7,26 @@ import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
   styleUrl: './notification.scss',
 })
 export class Notification implements OnInit {
-  @Input() type: 'success' | 'error' | 'warning' | 'info' = 'info';
-  @Input() message: string = '';
-  @Input() duration: number = 3000; // 3 segundos por defecto
-  @Input() closable: boolean = true;
-  @Output() onClose = new EventEmitter<void>();
+  @Input() tipo: 'success' | 'error' | 'warning' | 'info' = 'info';
+  @Input() mensaje: string = '';
+  @Input() duracion: number = 3000;
+  @Input() puedeCerrarse: boolean = true;
+  @Output() alCerrar = new EventEmitter<void>();
 
-  closing: boolean = false;
+  estaCerrando: boolean = false;
 
   ngOnInit() {
-    // Auto-cerrar después del duration
-    if (this.duration > 0) {
+    if (this.duracion > 0) {
       setTimeout(() => {
-        this.close();
-      }, this.duration);
+        this.cerrar();
+      }, this.duracion);
     }
   }
 
-  close() {
-    this.closing = true;
-    // Esperar a que termine la animación de salida antes de emitir el evento
+  cerrar() {
+    this.estaCerrando = true;
     setTimeout(() => {
-      this.onClose.emit();
-    }, 500); // Tiempo de la animación
+      this.alCerrar.emit();
+    }, 500);
   }
 }

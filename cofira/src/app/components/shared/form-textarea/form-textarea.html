@@ -1,19 +1,19 @@
-<article class="form-textarea">
-  <label [for]="inputId()" class="form-textarea__label">
-    {{ label }}
-    @if (required) {
-    <span class="form-textarea__required">*</span>
+<article class="formulario-textarea">
+  <label [for]="inputId()" class="formulario-textarea__etiqueta">
+    {{ etiqueta }}
+    @if (requerido) {
+    <span class="formulario-textarea__requerido">*</span>
     }
   </label>
 
-  <textarea [id]="inputId()" [name]="name" [placeholder]="placeholder" [required]="required" [formControl]="control"
-    class="form-textarea__field"></textarea>
+  <textarea [id]="inputId()" [name]="nombre" [placeholder]="placeholder" [required]="requerido" [formControl]="controlDelFormulario"
+    class="formulario-textarea__campo"></textarea>
 
-  @if (control && control.invalid && (control.dirty || control.touched)) {
-  <span class="form-textarea__error">{{ errorMessage }}</span>
+  @if (controlDelFormulario && controlDelFormulario.invalid && (controlDelFormulario.dirty || controlDelFormulario.touched)) {
+  <span class="formulario-textarea__error">{{ mensajeDeError }}</span>
   }
 
-  @if (helpText) {
-  <span class="form-textarea__help">{{ helpText }}</span>
+  @if (textoDeAyuda) {
+  <span class="formulario-textarea__ayuda">{{ textoDeAyuda }}</span>
   }
 </article>

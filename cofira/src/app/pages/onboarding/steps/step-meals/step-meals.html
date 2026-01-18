@@ -1,13 +1,3 @@
-<!-- ═══════════════════════════════════════════════════════════════════════════
-     STEP MEALS - Comidas al dia
-     ═══════════════════════════════════════════════════════════════════════════
-     Paso para seleccionar numero de comidas diarias
-
-     NOMENCLATURA BEM:
-     Block: .step-meals
-     Elements: __header, __titulo, __subtitulo, __opciones, __footer
-     ═══════════════════════════════════════════════════════════════════════════ -->
-
 <article class="step-meals">
 
   <header class="step-meals__header">
@@ -19,7 +9,7 @@
 
   <ul class="step-meals__opciones">
     @for (option of options; track option.value) {
-      <li>
+      <li class="step-meals__opcion-item">
         <app-option-card
           (seleccionar)="onSelect(option.value)"
           [descripcion]="option.description"
@@ -34,8 +24,8 @@
     <app-button
       (click)="onContinue()"
       [habilitado]="!canContinue()"
-      tamanio="lg"
-      variante="primary">
+      tamanio="grande"
+      variante="primario">
       Continuar
     </app-button>
   </footer>

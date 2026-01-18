@@ -1,12 +1,6 @@
-/* ============================================
-   03-ELEMENTS: Typography
-   Estilos base para elementos tipograficos
-   ============================================ */
 
-/* --------------------------------------------
-   TITULOS (h1-h6)
-   Usan --font-secondary (Poppins)
-   -------------------------------------------- */
+
+
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-secondary);
@@ -41,10 +35,7 @@ h6 {
 }
 
 
-/* --------------------------------------------
-   CUERPO Y PARRAFOS
-   Usan --font-primary (Montserrat)
-   -------------------------------------------- */
+
 
 body {
   font-family: var(--font-primary);
@@ -66,9 +57,7 @@ span {
 }
 
 
-/* --------------------------------------------
-   TEXTOS ESPECIALES
-   -------------------------------------------- */
+
 
 small {
   font-family: var(--font-primary);
@@ -117,10 +106,7 @@ blockquote {
 }
 
 
-/* --------------------------------------------
-   ELEMENTOS DE FORMULARIO
-   Heredan Montserrat del body
-   -------------------------------------------- */
+
 
 button,
 input,
@@ -136,9 +122,7 @@ label {
 }
 
 
-/* --------------------------------------------
-   ENLACES Y LISTAS
-   -------------------------------------------- */
+
 
 a {
   font-family: var(--font-primary);
@@ -149,9 +133,7 @@ li {
 }
 
 
-/* --------------------------------------------
-   TABLAS
-   -------------------------------------------- */
+
 
 th {
   font-family: var(--font-secondary);

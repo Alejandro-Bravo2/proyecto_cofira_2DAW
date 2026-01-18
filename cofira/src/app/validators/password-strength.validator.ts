@@ -1,8 +1,5 @@
 import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms';
 
-/**
- * Interface para los requisitos de contraseña
- */
 export interface PasswordRequirements {
   hasUpperCase: boolean;
   hasLowerCase: boolean;
@@ -11,9 +8,6 @@ export interface PasswordRequirements {
   isLongEnough: boolean;
 }
 
-/**
- * Verifica los requisitos individuales de la contraseña
- */
 export function checkPasswordRequirements(value: string): PasswordRequirements {
   return {
     hasUpperCase: /[A-Z]/.test(value),
@@ -24,15 +18,6 @@ export function checkPasswordRequirements(value: string): PasswordRequirements {
   };
 }
 
-/**
- * Validador de fortaleza de contraseña
- * Requiere:
- * - Al menos 8 caracteres
- * - Al menos 1 mayuscula
- * - Al menos 1 minuscula
- * - Al menos 1 numero
- * - Al menos 1 caracter especial
- */
 export function passwordStrengthValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const value = control.value;
