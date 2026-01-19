@@ -4,6 +4,7 @@ import {Router, RouterLink} from '@angular/router';
 
 import {AuthService} from '../../../../services/auth.service';
 import {OnboardingService} from '../../../../services/onboarding.service';
+import {NotificacionService} from '../../../../services/notificacion.service';
 import {Button} from '../../../../components/shared/button/button';
 import {checkPasswordRequirements, passwordStrengthValidator} from '../../../../validators/password-strength.validator';
 import {emailAvailableValidator} from '../../../../validators/email.validator';
@@ -18,10 +19,10 @@ import {emailAvailableValidator} from '../../../../validators/email.validator';
 export class StepRegister {
   @Output() continuar = new EventEmitter<void>();
   readonly estaCargando = signal(false);
-  readonly error = signal<string | null>(null);
   readonly mostrarContrasena = signal(false);
   readonly mostrarConfirmacionContrasena = signal(false);
   private readonly authService = inject(AuthService);
+  private readonly notificacionService = inject(NotificacionService);
   readonly formularioRegistro = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(2)]),
     email: new FormControl('',
@@ -81,7 +82,6 @@ export class StepRegister {
     }
 
     this.estaCargando.set(true);
-    this.error.set(null);
 
     const valorFormulario = this.formularioRegistro.value;
 
@@ -92,11 +92,12 @@ export class StepRegister {
       password: valorFormulario.password!
     }).subscribe({
       next: () => {
+        this.notificacionService.exito('¡Cuenta creada con éxito!');
         this.completarOnboarding();
       },
-      error: (err) => {
+      error: () => {
         this.estaCargando.set(false);
-        this.error.set(err.error?.message || 'Error al crear la cuenta');
+        this.notificacionService.error('No se pudo crear la cuenta. Inténtalo de nuevo.');
       }
     });
   }
@@ -108,7 +109,7 @@ export class StepRegister {
     if (!tieneDataRequerida) {
       this.estaCargando.set(false);
       this.onboardingService.clearProgress();
-      this.router.navigate(['/']);
+      this.router.navigate(['/home']);
       return;
     }
 
@@ -116,17 +117,19 @@ export class StepRegister {
       next: () => {
         this.estaCargando.set(false);
         this.onboardingService.clearProgress();
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']);
       },
-      error: (err) => {
+      error: () => {
         this.estaCargando.set(false);
-        this.error.set(err.error?.message || 'Error al guardar los datos');
+        this.onboardingService.clearProgress();
+        this.notificacionService.error('No se pudieron guardar todos los datos, pero tu cuenta ha sido creada.');
+        this.router.navigate(['/home']);
       }
     });
   }
 
   private tieneDataMinimaOnboarding(data: Partial<import('../../../../models/onboarding.model').OnboardingData>): boolean {
-    return !!(
+    const tieneDataBasica = !!(
       data.gender &&
       data.currentWeightKg &&
       data.heightCm &&
@@ -134,5 +137,15 @@ export class StepRegister {
       data.activityLevel &&
       data.primaryGoal
     );
+
+    const tieneDataEntrenamiento = !!(
+      data.workType &&
+      data.fitnessLevel &&
+      data.trainingDaysPerWeek !== null &&
+      data.trainingDaysPerWeek !== undefined &&
+      data.dietType
+    );
+
+    return tieneDataBasica && tieneDataEntrenamiento;
   }
 }

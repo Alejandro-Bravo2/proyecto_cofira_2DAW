@@ -1,4 +1,4 @@
-<mark [class.chip--selected]="seleccionado()" class="chip">
+<mark [class.chip--selected]="seleccionado()" class="chip" tabindex="0" role="button" (keydown.enter)="onSeleccionarConTeclado($event)" (keydown.space)="onSeleccionarConTeclado($event)">
   <span class="chip__texto">{{ texto() }}</span>
 
   @if (removible()) {

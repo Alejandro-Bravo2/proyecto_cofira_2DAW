@@ -21,7 +21,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   margin: 0 0 var(--spacing-size-s) 0;
 
   @include responsive-down('md') {
@@ -33,7 +33,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-regular);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -57,7 +57,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--negro-normal);
+  color: var(--text-primary);
 }
 
 .step-target-weight__input-container {
@@ -76,29 +76,32 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   transition: border-color var(--duration-fast) ease;
-
-  &:focus {
-    outline: none;
-    border-color: var(--amarillo-normal);
-  }
-
-  &::-webkit-inner-spin-button,
-  &::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
   -moz-appearance: textfield;
+}
+
+.step-target-weight__input:focus {
+  outline: none;
+  border-color: var(--amarillo-normal);
+}
+
+.step-target-weight__input::-webkit-inner-spin-button,
+.step-target-weight__input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .step-target-weight__unit {
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
   min-width: 2rem;
+}
+
+.step-target-weight__input--error {
+  border-color: var(--rojo-normal);
 }
 
 
@@ -124,7 +127,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-semibold);
-  color: var(--negro-normal);
+  color: var(--text-primary);
 }
 
 

@@ -1,6 +1,8 @@
 @import '../../../../styles/01-tools/mixins';
 
-
+:host {
+  display: contents;
+}
 
 .boton {
   display: inline-flex;

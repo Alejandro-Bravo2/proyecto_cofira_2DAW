@@ -126,12 +126,12 @@
   border: 1px solid var(--blanco-dark);
   border-radius: var(--radius-xs);
   transition: all var(--duration-fast) ease;
+}
 
-  &:hover {
-    border-color: var(--amarillo-normal);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-  }
+.pruebas__icono-card:hover {
+  border-color: var(--amarillo-normal);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
 .pruebas__icono-figura {

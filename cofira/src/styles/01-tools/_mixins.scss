@@ -306,7 +306,7 @@
 
 
 
-@mixin efecto-glass($bg: rgba(245, 245, 245, 0.85), $blur: 12px) {
+@mixin efecto-glass($bg: var(--blanco-normal-transparente-085), $blur: 12px) {
   background: $bg;
   backdrop-filter: blur($blur);
   -webkit-backdrop-filter: blur($blur);
@@ -419,7 +419,7 @@
   border-radius: 50%;
   border: none;
   background-color: $bg-color;
-  color: white;
+  color: var(--blanco-normal);
   cursor: pointer;
   transition: transform var(--duration-fast) ease, opacity var(--duration-fast) ease;
 

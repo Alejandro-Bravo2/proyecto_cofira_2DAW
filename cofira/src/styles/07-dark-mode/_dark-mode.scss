@@ -16,11 +16,11 @@
   }
 
   :has(app-onboarding) app-header .cabecera {
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: none;
-    border-bottom: none;
+    background: var(--negro-normal);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 var(--gris-dark);
+    border-bottom: 1px solid var(--amarillo-dark-hover);
   }
 
   app-onboarding .onboarding__header {
@@ -37,7 +37,7 @@
   }
 
   app-onboarding .onboarding__btn-back:hover {
-    background-color: rgba(255, 211, 0, 0.25);
+    background-color: var(--amarillo-normal-transparente-025);
     color: var(--amarillo-normal);
     transform: scale(1.05);
   }
@@ -138,6 +138,10 @@
     color: var(--oscuro-menu-item-hover-texto);
   }
 
+  app-header .cabecera__desplegable-item:hover .cabecera__desplegable-item-icono {
+    color: var(--oscuro-menu-item-hover-texto);
+  }
+
   app-header .cabecera__desplegable-item-icono--hover {
     color: var(--oscuro-menu-item-hover-texto);
   }
@@ -226,6 +230,22 @@
 
   app-header .menu-movil__cerrar-sesion:hover {
     background: var(--rojo-normal-transparente-010);
+  }
+
+  app-header .menu-movil__tema-btn {
+    background: transparent;
+    border-color: var(--blanco-normal-transparente-015);
+    color: var(--blanco-normal);
+  }
+
+  app-header .menu-movil__tema-btn:hover {
+    background: var(--amarillo-normal-transparente-010);
+    border-color: var(--amarillo-normal);
+    color: var(--amarillo-normal);
+  }
+
+  app-header .menu-movil__tema-btn-icono {
+    color: var(--amarillo-normal);
   }
 
 
@@ -638,11 +658,11 @@
   .blog__categoria-btn {
     color: var(--oscuro-info-texto);
     border-color: var(--oscuro-info-borde);
+  }
 
-    &:hover {
-      color: var(--oscuro-info-titulo);
-      border-color: var(--oscuro-info-titulo);
-    }
+  .blog__categoria-btn:hover {
+    color: var(--oscuro-info-titulo);
+    border-color: var(--oscuro-info-titulo);
   }
 
 
@@ -710,14 +730,18 @@
     background-color: var(--oscuro-input-fondo);
     color: var(--oscuro-texto-principal);
     border-color: var(--oscuro-info-borde);
+  }
 
-    &::placeholder {
-      color: var(--oscuro-texto-secundario);
-    }
+  .contacto__input::placeholder,
+  .contacto__select::placeholder,
+  .contacto__textarea::placeholder {
+    color: var(--oscuro-texto-secundario);
+  }
 
-    &:focus {
-      border-color: var(--amarillo-normal);
-    }
+  .contacto__input:focus,
+  .contacto__select:focus,
+  .contacto__textarea:focus {
+    border-color: var(--amarillo-normal);
   }
 
 
@@ -731,10 +755,10 @@
 
   .contacto__info-valor--enlace {
     color: var(--amarillo-normal);
+  }
 
-    &:hover {
-      color: var(--amarillo-dark);
-    }
+  .contacto__info-valor--enlace:hover {
+    color: var(--amarillo-dark);
   }
 
   .contacto__info-icono {
@@ -1007,7 +1031,7 @@
       var(--amarillo-normal) 50%,
       var(--amarillo-dark) 100%
     );
-    box-shadow: 0 0 8px rgba(255, 211, 0, 0.4);
+    box-shadow: 0 0 8px var(--amarillo-normal-transparente-040);
   }
 
 
@@ -1272,10 +1296,10 @@
     background-color: var(--oscuro-input-fondo);
     color: var(--oscuro-texto-principal);
     border-color: var(--oscuro-borde-color);
+  }
 
-    &::placeholder {
-      color: var(--oscuro-texto-suave);
-    }
+  app-gimnasio .gimnasio__feedback-textarea::placeholder {
+    color: var(--oscuro-texto-suave);
   }
 
 
@@ -1433,11 +1457,11 @@
   app-alimentacion .alimentacion__btn-info {
     background-color: var(--oscuro-hover-fondo);
     color: var(--blanco-normal);
+  }
 
-    &:hover {
-      background-color: var(--amarillo-normal);
-      color: var(--negro-normal);
-    }
+  app-alimentacion .alimentacion__btn-info:hover {
+    background-color: var(--amarillo-normal);
+    color: var(--negro-normal);
   }
 
 
@@ -1447,10 +1471,10 @@
 
   app-alimentacion .alimentacion__btn-fecha {
     color: var(--oscuro-texto-secundario);
+  }
 
-    &:hover {
-      color: var(--oscuro-texto-principal);
-    }
+  app-alimentacion .alimentacion__btn-fecha:hover {
+    color: var(--oscuro-texto-principal);
   }
 
   app-alimentacion .alimentacion__fecha-texto {
@@ -1641,6 +1665,232 @@
 
 
 
+  app-perfil .perfil {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  app-perfil .perfil__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-perfil .perfil__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-perfil .perfil__tarjeta {
+    background-color: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-perfil .perfil__tarjeta-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-perfil .perfil__tarjeta-cabecera {
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  app-perfil .perfil__btn-editar {
+    color: var(--amarillo-normal);
+    border-color: var(--amarillo-normal);
+  }
+
+  app-perfil .perfil__btn-editar:hover {
+    background-color: var(--amarillo-normal);
+    color: var(--negro-normal);
+  }
+
+  app-perfil .perfil__etiqueta {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-perfil .perfil__valor {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-perfil .perfil__valor--email {
+    color: var(--amarillo-normal);
+  }
+
+  app-perfil .perfil__input {
+    background-color: var(--oscuro-input-fondo);
+    color: var(--oscuro-texto-principal);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-perfil .perfil__input:focus {
+    border-color: var(--amarillo-normal);
+  }
+
+  app-perfil .perfil__acciones {
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  app-perfil .perfil__salud-item {
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-perfil .perfil__salud-etiqueta {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-perfil .perfil__salud-valor {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-perfil .perfil__actividad {
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-perfil .perfil__actividad-icono {
+    background-color: var(--amarillo-normal-transparente-015);
+  }
+
+  app-perfil .perfil__actividad-icono svg {
+    color: var(--amarillo-normal);
+  }
+
+  app-perfil .perfil__actividad-nivel {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-perfil .perfil__actividad-descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
+
+
+  app-configuracion .configuracion {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  app-configuracion .configuracion__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-configuracion .configuracion__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-configuracion .configuracion__menu {
+    background-color: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-configuracion .configuracion__menu-item {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-configuracion .configuracion__menu-item:hover {
+    color: var(--oscuro-texto-principal);
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-configuracion .configuracion__menu-item--activo {
+    color: var(--amarillo-normal);
+    background-color: var(--amarillo-normal-transparente-012);
+  }
+
+  app-configuracion .configuracion__menu-item--activo:hover {
+    color: var(--amarillo-normal);
+    background-color: var(--amarillo-normal-transparente-012);
+  }
+
+  app-configuracion .configuracion__panel {
+    background-color: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-configuracion .configuracion__seccion-titulo {
+    color: var(--oscuro-texto-principal);
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  app-configuracion .configuracion__grupo-titulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-configuracion .configuracion__label {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-configuracion .configuracion__select {
+    background-color: var(--oscuro-input-fondo);
+    color: var(--oscuro-texto-principal);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-configuracion .configuracion__select:focus {
+    border-color: var(--amarillo-normal);
+  }
+
+  app-configuracion .configuracion__toggle-item {
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-configuracion .configuracion__toggle-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-configuracion .configuracion__toggle-descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-configuracion .configuracion__toggle {
+    background-color: var(--oscuro-borde-color);
+  }
+
+  app-configuracion .configuracion__toggle--activo {
+    background-color: var(--amarillo-normal);
+  }
+
+  app-configuracion .configuracion__toggle-circulo {
+    background-color: var(--blanco-normal);
+  }
+
+  app-configuracion .configuracion__accion-item {
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-configuracion .configuracion__accion-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-configuracion .configuracion__accion-descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-configuracion .configuracion__enlace {
+    color: var(--oscuro-texto-principal);
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-configuracion .configuracion__enlace:hover {
+    color: var(--amarillo-normal);
+    background-color: var(--amarillo-normal-transparente-012);
+  }
+
+  app-configuracion .configuracion__enlace-icono {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-configuracion .configuracion__enlace:hover .configuracion__enlace-icono {
+    color: var(--amarillo-normal);
+  }
+
+  app-configuracion .configuracion__footer {
+    border-color: var(--oscuro-borde-suave);
+  }
+
+  app-configuracion .configuracion__grupo--peligro {
+    background-color: var(--rojo-normal-transparente-005);
+    border-color: var(--rojo-normal-transparente-020);
+  }
+
+  app-configuracion .configuracion__accion-item--peligro {
+    background-color: transparent;
+  }
+
 
   ::-webkit-scrollbar {
     width: 10px;
@@ -1654,10 +1904,10 @@
   ::-webkit-scrollbar-thumb {
     background: var(--oscuro-borde-color);
     border-radius: 5px;
+  }
 
-    &:hover {
-      background: var(--oscuro-texto-suave);
-    }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--oscuro-texto-suave);
   }
 
 

@@ -1,0 +1,38 @@
+{
+  "initialized": true,
+  "topology": "hierarchical",
+  "workers": [
+    "worker-1768843845771-vsup",
+    "worker-1768843845771-mzca",
+    "worker-1768843845771-gfm7",
+    "worker-1768843845771-uitq",
+    "worker-1768843845771-fws5",
+    "worker-1768843845771-f7gf",
+    "worker-1768843845771-o21m",
+    "worker-1768843845771-sej5",
+    "worker-1768843845771-bif7",
+    "worker-1768843845771-f4je"
+  ],
+  "consensus": {
+    "pending": [],
+    "history": []
+  },
+  "sharedMemory": {
+    "broadcasts": [
+      {
+        "messageId": "msg-1768844283462-hjjlyl",
+        "message": "TAREA INICIADA: Revisión exhaustiva del proyecto cofira según CLAUDE.md de Alejandro. 10 agentes trabajando en paralelo revisando: SCSS, TypeScript, HTML, Java backend, servicios Angular, entities/DTOs, validadores, ITCSS, onboarding, y patrones raros.",
+        "priority": "high",
+        "fromId": "claude-queen",
+        "timestamp": "2026-01-19T17:38:03.462Z"
+      }
+    ]
+  },
+  "createdAt": "2026-01-19T17:29:39.084Z",
+  "updatedAt": "2026-01-19T17:38:03.462Z",
+  "queen": {
+    "agentId": "claude-queen",
+    "electedAt": "2026-01-19T17:29:39.084Z",
+    "term": 1
+  }
+}

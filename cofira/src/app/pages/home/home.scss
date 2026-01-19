@@ -84,6 +84,7 @@
 }
 
 .home__seccion-intro__titulo {
+  -webkit-text-stroke: 2px var(--gris-normal);
   max-width: var(--home-cta-ancho-maximo, 28rem);
   margin: 0 0 2rem 0;
   font-family: var(--font-secondary);
@@ -93,6 +94,7 @@
 }
 
 .home__seccion-intro__subtitulo {
+  -webkit-text-stroke: 2px var(--gris-normal);
   max-width: var(--home-subtitulo-ancho-maximo, 25rem);
   font-size: var(--font-size-2xl);
   color: var(--blanco-normal);
@@ -465,8 +467,9 @@
   container-name: card-container;
 
   @include responsive-down('md') {
-    max-width: 100%;
-    justify-self: center;
+    width: 100%;
+    max-width: 21rem;
+    margin: 0 auto;
   }
 }
 
@@ -689,7 +692,7 @@
 @include responsive-down('xxs') {
   .home__seccion-intro {
     padding: var(--spacing-size-l) var(--spacing-size-m);
-    min-height: 747px;
+    min-height: 500px;
     padding-top: 15rem;
     justify-content: start;
     gap: 0rem;

@@ -1,0 +1,356 @@
+@import '../../../styles/00-settings/css-variables';
+@import '../../../styles/01-tools/mixins';
+
+.perfil {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 4.5rem);
+  padding: var(--spacing-size-xxl) var(--spacing-size-xl);
+  padding-top: calc(4.5rem + var(--spacing-size-xxl));
+
+  background-color: var(--bg-body);
+}
+
+.perfil__cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xs);
+  margin-bottom: var(--spacing-size-xl);
+
+  text-align: center;
+}
+
+.perfil__titulo {
+  margin: 0;
+
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+
+  color: var(--text-primary);
+}
+
+.perfil__subtitulo {
+  margin: 0;
+
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+
+  color: var(--text-secondary);
+}
+
+.perfil__contenido {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: var(--spacing-size-l);
+  max-width: 75rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.perfil__tarjeta {
+  display: flex;
+  flex-direction: column;
+
+  padding: var(--spacing-size-l);
+
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color-light);
+  border-radius: var(--radius-lg);
+}
+
+.perfil__tarjeta--info {
+  grid-column: span 2;
+}
+
+.perfil__tarjeta-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-size-m);
+  padding-bottom: var(--spacing-size-s);
+
+  border-bottom: 1px solid var(--border-color-light);
+}
+
+.perfil__tarjeta-titulo {
+  margin: 0;
+
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+
+  color: var(--text-primary);
+}
+
+.perfil__btn-editar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-xss);
+  padding: var(--spacing-size-xss) var(--spacing-size-s);
+
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+
+  color: var(--amarillo-dark);
+  background: transparent;
+  border: 1px solid var(--amarillo-normal);
+  border-radius: var(--radius-md);
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.perfil__btn-editar:hover {
+  color: var(--negro-normal);
+  background: var(--amarillo-normal);
+}
+
+.perfil__btn-editar-icono {
+  width: 1rem;
+  height: 1rem;
+}
+
+.perfil__formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.perfil__campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xss);
+
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.perfil__etiqueta {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+
+  color: var(--text-secondary);
+}
+
+.perfil__valor {
+  margin: 0;
+
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-regular);
+
+  color: var(--text-primary);
+}
+
+.perfil__valor--email {
+  color: var(--amarillo-dark);
+}
+
+.perfil__input {
+  padding: var(--spacing-size-s);
+
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+
+  color: var(--text-primary);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+
+  transition: border-color 0.2s ease;
+}
+
+.perfil__input:focus {
+  border-color: var(--amarillo-normal);
+  outline: none;
+}
+
+.perfil__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-size-s);
+  margin-top: var(--spacing-size-s);
+  padding-top: var(--spacing-size-m);
+
+  border-top: 1px solid var(--border-color-light);
+}
+
+.perfil__salud-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-size-m);
+}
+
+.perfil__salud-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xss);
+  padding: var(--spacing-size-s);
+
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-md);
+}
+
+.perfil__salud-etiqueta {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+
+  color: var(--text-secondary);
+}
+
+.perfil__salud-valor {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-xss);
+
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+
+  color: var(--text-primary);
+}
+
+.perfil__imc-estado {
+  padding: 0.125rem 0.5rem;
+
+  font-family: var(--font-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+
+  border-radius: var(--radius-sm);
+}
+
+.perfil__imc-estado--bajo {
+  color: var(--rojo-dark);
+  background-color: var(--rojo-normal-transparente-010);
+}
+
+.perfil__imc-estado--normal {
+  color: var(--verde-dark);
+  background-color: var(--verde-normal-transparente-010);
+}
+
+.perfil__imc-estado--sobrepeso {
+  color: var(--amarillo-darker);
+  background-color: var(--amarillo-normal-transparente-012);
+}
+
+.perfil__imc-estado--obesidad {
+  color: var(--rojo-dark);
+  background-color: var(--rojo-normal-transparente-010);
+}
+
+.perfil__actividad {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-m);
+  padding: var(--spacing-size-m);
+
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-md);
+}
+
+.perfil__actividad-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  margin: 0;
+
+  background-color: var(--amarillo-normal-transparente-012);
+  border-radius: 50%;
+}
+
+.perfil__actividad-icono svg {
+  width: 1.75rem;
+  height: 1.75rem;
+
+  color: var(--amarillo-dark);
+}
+
+.perfil__actividad-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.perfil__actividad-nivel {
+  margin: 0;
+
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+
+  color: var(--text-primary);
+}
+
+.perfil__actividad-descripcion {
+  margin: 0;
+
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+
+  color: var(--text-secondary);
+}
+
+@include responsive-down('md') {
+  .perfil {
+    padding: var(--spacing-size-l) var(--spacing-size-m);
+    padding-top: calc(4rem + var(--spacing-size-l));
+  }
+
+  .perfil__titulo {
+    font-size: var(--font-size-2xl);
+  }
+
+  .perfil__contenido {
+    grid-template-columns: 1fr;
+  }
+
+  .perfil__tarjeta--info {
+    grid-column: span 1;
+  }
+
+  .perfil__salud-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include responsive-down('sm') {
+  .perfil {
+    padding: var(--spacing-size-m);
+    padding-top: calc(4rem + var(--spacing-size-m));
+  }
+
+  .perfil__titulo {
+    font-size: var(--font-size-xl);
+  }
+
+  .perfil__tarjeta {
+    padding: var(--spacing-size-m);
+  }
+
+  .perfil__tarjeta-cabecera {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-size-s);
+  }
+
+  .perfil__acciones {
+    flex-direction: column;
+  }
+
+  .perfil__actividad {
+    flex-direction: column;
+    text-align: center;
+  }
+}

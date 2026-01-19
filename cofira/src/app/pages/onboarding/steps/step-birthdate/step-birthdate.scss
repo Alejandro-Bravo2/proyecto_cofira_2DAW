@@ -21,7 +21,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   margin: 0 0 var(--spacing-size-s) 0;
 
   @include responsive-down('md') {
@@ -33,7 +33,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-regular);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -57,7 +57,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--negro-normal);
+  color: var(--text-primary);
 }
 
 .step-birthdate__input {
@@ -69,18 +69,18 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-regular);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   transition: border-color var(--duration-fast) ease;
+}
 
-  &:focus {
-    outline: none;
-    border-color: var(--amarillo-normal);
-  }
+.step-birthdate__input:focus {
+  outline: none;
+  border-color: var(--amarillo-normal);
+}
 
-  &::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    filter: invert(0.5);
-  }
+.step-birthdate__input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(0.5);
 }
 
 

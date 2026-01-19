@@ -17,9 +17,6 @@
   border-radius: var(--radius-xs);
   box-shadow: var(--shadow-xl);
 
-  container-type: inline-size;
-  container-name: tarjeta-precios;
-
   @include hover-elevacion(-0.25rem, var(--shadow-2xl));
 }
 

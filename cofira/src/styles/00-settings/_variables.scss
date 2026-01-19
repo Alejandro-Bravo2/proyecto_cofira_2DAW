@@ -189,6 +189,73 @@
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
+
+  /* Categorías del Blog - Modo Claro */
+  --blog-categoria-ejercicio-fondo: #e3f2fd;
+  --blog-categoria-ejercicio-texto: #1565c0;
+  --blog-categoria-nutricion-fondo: #e8f5e9;
+  --blog-categoria-nutricion-texto: #2e7d32;
+  --blog-categoria-bienestar-fondo: #fce4ec;
+  --blog-categoria-bienestar-texto: #c2185b;
+
+  /* Transparencias comunes - Negro */
+  --negro-puro-transparente-005: rgba(0, 0, 0, 0.05);
+  --negro-puro-transparente-008: rgba(0, 0, 0, 0.08);
+  --negro-puro-transparente-010: rgba(0, 0, 0, 0.1);
+  --negro-puro-transparente-015: rgba(0, 0, 0, 0.15);
+  --negro-puro-transparente-025: rgba(0, 0, 0, 0.25);
+  --negro-puro-transparente-030: rgba(0, 0, 0, 0.3);
+  --negro-puro-transparente-035: rgba(0, 0, 0, 0.35);
+  --negro-puro-transparente-040: rgba(0, 0, 0, 0.4);
+  --negro-puro-transparente-045: rgba(0, 0, 0, 0.45);
+  --negro-puro-transparente-050: rgba(0, 0, 0, 0.5);
+  --negro-puro-transparente-060: rgba(0, 0, 0, 0.6);
+  --negro-puro-transparente-070: rgba(0, 0, 0, 0.7);
+
+  /* Transparencias comunes - Blanco */
+  --blanco-puro-transparente-005: rgba(255, 255, 255, 0.05);
+  --blanco-puro-transparente-020: rgba(255, 255, 255, 0.2);
+  --blanco-puro-transparente-090: rgba(255, 255, 255, 0.9);
+  --blanco-normal-transparente-085: rgba(245, 245, 245, 0.85);
+
+  /* Transparencias comunes - Amarillo */
+  --amarillo-normal-transparente-030: rgba(255, 211, 0, 0.3);
+
+  /* Transparencias comunes - Rojo */
+  --rojo-normal-transparente-003: rgba(239, 68, 68, 0.03);
+  --rojo-normal-transparente-006: rgba(239, 68, 68, 0.06);
+  --rojo-normal-transparente-010: rgba(239, 68, 68, 0.1);
+  --rojo-normal-transparente-012: rgba(239, 68, 68, 0.12);
+  --rojo-normal-transparente-020: rgba(255, 52, 52, 0.2);
+  --rojo-normal-transparente-030: rgba(239, 68, 68, 0.3);
+
+  /* Transparencias comunes - Verde */
+  --verde-normal-transparente-003: rgba(34, 197, 94, 0.03);
+  --verde-normal-transparente-010: rgba(34, 197, 94, 0.1);
+  --verde-normal-transparente-012: rgba(34, 197, 94, 0.12);
+
+  /* Transparencias comunes - Azul (macros) */
+  --azul-normal-transparente-010: rgba(59, 130, 246, 0.1);
+
+  /* Transparencias comunes - Dorado (macros) */
+  --dorado-normal-transparente-010: rgba(234, 179, 8, 0.1);
+
+  /* Transparencias comunes - Amarillo (adicionales) */
+  --amarillo-normal-transparente-012: rgba(255, 211, 0, 0.12);
+
+  /* Paleta modo oscuro - Colores base */
+  --oscuro-fondo-muy-oscuro: #1a1e22;
+  --oscuro-fondo-oscuro: #1e2227;
+  --oscuro-fondo-medio: #282d33;
+  --oscuro-fondo-medio-claro: #323840;
+  --oscuro-borde-principal: #363c45;
+  --oscuro-borde-suave: #2a3038;
+  --oscuro-texto-claro: #f0f2f5;
+  --oscuro-texto-medio: #a8b3c4;
+  --oscuro-texto-apagado: #6b7a90;
+  --oscuro-acento-amarillo: #ffda2d;
+  --oscuro-acento-amarillo-hover: #e6c426;
+  --oscuro-cta-gradiente-inicio: #2a2510;
 }
 
 
@@ -221,6 +288,10 @@
   --blanco-normal-transparente-010: rgba(245, 245, 245, 0.1);
   --blanco-normal-transparente-015: rgba(245, 245, 245, 0.15);
   --blanco-normal-transparente-050: rgba(245, 245, 245, 0.5);
+
+  /* Onboarding header dark mode */
+  --onboarding-header-gradient-inicio: rgba(40, 45, 51, 0.75);
+  --onboarding-header-gradient-fin: rgba(30, 34, 39, 0.65);
   --blanco-normal-transparente-070: rgba(245, 245, 245, 0.7);
 
 
@@ -229,6 +300,8 @@
   --amarillo-normal-transparente-010: rgba(255, 211, 0, 0.1);
   --amarillo-normal-transparente-015: rgba(255, 211, 0, 0.15);
   --amarillo-normal-transparente-020: rgba(255, 211, 0, 0.2);
+  --amarillo-normal-transparente-025: rgba(255, 211, 0, 0.25);
+  --amarillo-normal-transparente-040: rgba(255, 211, 0, 0.4);
 
 
   --rojo-normal-transparente-010: rgba(239, 68, 68, 0.1);

@@ -3,54 +3,54 @@
 [data-theme="dark"] {
 
 
-  --oscuro-pagina-fondo: #1e2227;
+  --oscuro-pagina-fondo: var(--oscuro-fondo-oscuro);
 
 
-  --oscuro-superficie-fondo: #282d33;
+  --oscuro-superficie-fondo: var(--oscuro-fondo-medio);
 
 
-  --oscuro-input-fondo: #1e2227;
+  --oscuro-input-fondo: var(--oscuro-fondo-oscuro);
 
 
-  --oscuro-hover-fondo: #323840;
+  --oscuro-hover-fondo: var(--oscuro-fondo-medio-claro);
 
 
-  --oscuro-seccion-alt-fondo: #1a1e22;
+  --oscuro-seccion-alt-fondo: var(--oscuro-fondo-muy-oscuro);
 
 
-  --oscuro-texto-principal: #f0f2f5;
+  --oscuro-texto-principal: var(--oscuro-texto-claro);
 
 
-  --oscuro-texto-secundario: #a8b3c4;
+  --oscuro-texto-secundario: var(--oscuro-texto-medio);
 
 
-  --oscuro-texto-suave: #6b7a90;
+  --oscuro-texto-suave: var(--oscuro-texto-apagado);
 
 
-  --oscuro-texto-enlace: #f0f2f5;
+  --oscuro-texto-enlace: var(--oscuro-texto-claro);
 
 
   --oscuro-texto-enlace-hover: #{$amarillo-normal};
 
 
-  --oscuro-borde-color: #363c45;
+  --oscuro-borde-color: var(--oscuro-borde-principal);
 
 
-  --oscuro-borde-suave: #2a3038;
+  --oscuro-borde-suave: var(--oscuro-borde-suave);
 
 
   --oscuro-borde-foco: #{$amarillo-normal};
 
 
-  --oscuro-sombra-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --oscuro-sombra-sm: 0 2px 4px rgba(0, 0, 0, 0.35);
-  --oscuro-sombra-md: 0 4px 8px rgba(0, 0, 0, 0.4);
-  --oscuro-sombra-lg: 0 8px 16px rgba(0, 0, 0, 0.45);
-  --oscuro-sombra-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
+  --oscuro-sombra-xs: 0 1px 2px var(--negro-puro-transparente-030);
+  --oscuro-sombra-sm: 0 2px 4px var(--negro-puro-transparente-035);
+  --oscuro-sombra-md: 0 4px 8px var(--negro-puro-transparente-040);
+  --oscuro-sombra-lg: 0 8px 16px var(--negro-puro-transparente-045);
+  --oscuro-sombra-xl: 0 12px 24px var(--negro-puro-transparente-050);
 
 
-  --oscuro-acento-primario: #ffda2d;
-  --oscuro-acento-hover: #e6c426;
+  --oscuro-acento-primario: var(--oscuro-acento-amarillo);
+  --oscuro-acento-hover: var(--oscuro-acento-amarillo-hover);
 
 
   --oscuro-cabecera-fondo: #{$gris-dark};
@@ -107,7 +107,7 @@
   --oscuro-menu-borde: #{$gris-normal};
 
 
-  --oscuro-menu-sombra: rgba(0, 0, 0, 0.4);
+  --oscuro-menu-sombra: var(--negro-puro-transparente-040);
 
 
   --oscuro-menu-item-texto: #{$blanco-normal};
@@ -254,7 +254,7 @@
   --oscuro-legal-contenido-fondo: #{$gris-normal};
 
 
-  --oscuro-legal-contenido-sombra: rgba(0, 0, 0, 0.3);
+  --oscuro-legal-contenido-sombra: var(--negro-puro-transparente-030);
 
 
   --oscuro-legal-titulo: #{$blanco-normal};
@@ -311,53 +311,53 @@
   --oscuro-info-borde: #{$gris-normal-hover};
 
 
-  --oscuro-home-hero-fondo: linear-gradient(135deg, #1e2227 0%, #282d33 100%);
-  --oscuro-home-seccion-alt: #1a1e22;
-  --oscuro-home-feature-fondo: #282d33;
-  --oscuro-home-feature-icono-fondo: #323840;
-  --oscuro-home-testimonial-fondo: #282d33;
-  --oscuro-home-cta-fondo: linear-gradient(135deg, #2a2510 0%, #1e2227 100%);
-  --oscuro-home-stat-fondo: #323840;
+  --oscuro-home-hero-fondo: linear-gradient(135deg, var(--oscuro-fondo-oscuro) 0%, var(--oscuro-fondo-medio) 100%);
+  --oscuro-home-seccion-alt: var(--oscuro-fondo-muy-oscuro);
+  --oscuro-home-feature-fondo: var(--oscuro-fondo-medio);
+  --oscuro-home-feature-icono-fondo: var(--oscuro-fondo-medio-claro);
+  --oscuro-home-testimonial-fondo: var(--oscuro-fondo-medio);
+  --oscuro-home-cta-fondo: linear-gradient(135deg, var(--oscuro-cta-gradiente-inicio) 0%, var(--oscuro-fondo-oscuro) 100%);
+  --oscuro-home-stat-fondo: var(--oscuro-fondo-medio-claro);
 
 
-  --oscuro-onboarding-fondo: #1e2227;
-  --oscuro-onboarding-card-fondo: #282d33;
-  --oscuro-onboarding-progress-bg: #363c45;
+  --oscuro-onboarding-fondo: var(--oscuro-fondo-oscuro);
+  --oscuro-onboarding-card-fondo: var(--oscuro-fondo-medio);
+  --oscuro-onboarding-progress-bg: var(--oscuro-borde-principal);
   --oscuro-onboarding-progress-fill: #{$amarillo-normal};
-  --oscuro-onboarding-option-fondo: #282d33;
-  --oscuro-onboarding-option-hover: #323840;
-  --oscuro-onboarding-option-selected: #2a2510;
+  --oscuro-onboarding-option-fondo: var(--oscuro-fondo-medio);
+  --oscuro-onboarding-option-hover: var(--oscuro-fondo-medio-claro);
+  --oscuro-onboarding-option-selected: var(--oscuro-cta-gradiente-inicio);
   --oscuro-onboarding-option-borde-selected: #{$amarillo-normal};
-  --oscuro-onboarding-input-fondo: #1e2227;
-  --oscuro-onboarding-input-borde: #363c45;
+  --oscuro-onboarding-input-fondo: var(--oscuro-fondo-oscuro);
+  --oscuro-onboarding-input-borde: var(--oscuro-borde-principal);
 
 
-  --oscuro-gimnasio-fondo: #1e2227;
-  --oscuro-gimnasio-sidebar-fondo: #282d33;
-  --oscuro-gimnasio-ejercicio-fondo: #282d33;
-  --oscuro-gimnasio-ejercicio-hover: #323840;
-  --oscuro-gimnasio-categoria-fondo: #363c45;
-  --oscuro-gimnasio-badge-fondo: #323840;
-  --oscuro-gimnasio-detalle-fondo: #282d33;
-  --oscuro-gimnasio-video-overlay: rgba(0, 0, 0, 0.6);
+  --oscuro-gimnasio-fondo: var(--oscuro-fondo-oscuro);
+  --oscuro-gimnasio-sidebar-fondo: var(--oscuro-fondo-medio);
+  --oscuro-gimnasio-ejercicio-fondo: var(--oscuro-fondo-medio);
+  --oscuro-gimnasio-ejercicio-hover: var(--oscuro-fondo-medio-claro);
+  --oscuro-gimnasio-categoria-fondo: var(--oscuro-borde-principal);
+  --oscuro-gimnasio-badge-fondo: var(--oscuro-fondo-medio-claro);
+  --oscuro-gimnasio-detalle-fondo: var(--oscuro-fondo-medio);
+  --oscuro-gimnasio-video-overlay: var(--negro-puro-transparente-060);
 
 
-  --oscuro-alimentacion-fondo: #1e2227;
-  --oscuro-alimentacion-receta-fondo: #282d33;
-  --oscuro-alimentacion-nutrientes-fondo: #323840;
-  --oscuro-alimentacion-ingrediente-fondo: #282d33;
-  --oscuro-alimentacion-tab-fondo: #363c45;
+  --oscuro-alimentacion-fondo: var(--oscuro-fondo-oscuro);
+  --oscuro-alimentacion-receta-fondo: var(--oscuro-fondo-medio);
+  --oscuro-alimentacion-nutrientes-fondo: var(--oscuro-fondo-medio-claro);
+  --oscuro-alimentacion-ingrediente-fondo: var(--oscuro-fondo-medio);
+  --oscuro-alimentacion-tab-fondo: var(--oscuro-borde-principal);
   --oscuro-alimentacion-tab-activa: #{$amarillo-normal};
-  --oscuro-alimentacion-macro-fondo: #323840;
+  --oscuro-alimentacion-macro-fondo: var(--oscuro-fondo-medio-claro);
   --oscuro-alimentacion-calorias-ring: #{$amarillo-normal};
 
 
-  --oscuro-seguimiento-fondo: #1e2227;
-  --oscuro-seguimiento-card-fondo: #282d33;
+  --oscuro-seguimiento-fondo: var(--oscuro-fondo-oscuro);
+  --oscuro-seguimiento-card-fondo: var(--oscuro-fondo-medio);
   --oscuro-seguimiento-grafico-linea: #{$amarillo-normal};
-  --oscuro-seguimiento-grafico-grid: #363c45;
-  --oscuro-seguimiento-stat-fondo: #323840;
-  --oscuro-seguimiento-progress-bg: #363c45;
+  --oscuro-seguimiento-grafico-grid: var(--oscuro-borde-principal);
+  --oscuro-seguimiento-stat-fondo: var(--oscuro-fondo-medio-claro);
+  --oscuro-seguimiento-progress-bg: var(--oscuro-borde-principal);
   --oscuro-seguimiento-progress-fill: #{$amarillo-normal};
-  --oscuro-seguimiento-chart-bg: #282d33;
+  --oscuro-seguimiento-chart-bg: var(--oscuro-fondo-medio);
 }

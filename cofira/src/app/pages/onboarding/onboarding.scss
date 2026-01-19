@@ -25,8 +25,8 @@
 :host-context([data-theme="dark"]) .onboarding__header {
   background: linear-gradient(
     135deg,
-    rgba(40, 45, 51, 0.75) 0%,
-    rgba(30, 34, 39, 0.65) 100%
+    var(--onboarding-header-gradient-inicio) 0%,
+    var(--onboarding-header-gradient-fin) 100%
   );
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
@@ -40,8 +40,8 @@
     transparent 100%
   ) 1;
   box-shadow:
-    0 4px 30px rgba(0, 0, 0, 0.3),
-    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+    0 4px 30px var(--negro-puro-transparente-030),
+    0 1px 0 var(--blanco-normal-transparente-005) inset;
 }
 
 .onboarding__nav {
@@ -62,16 +62,16 @@
   color: var(--gris-normal);
   cursor: pointer;
   transition: all var(--duration-fast) ease;
+}
 
-  &:hover {
-    background-color: var(--blanco-normal-hover);
-    color: var(--negro-normal);
-  }
+.onboarding__btn-back:hover {
+  background-color: var(--blanco-normal-hover);
+  color: var(--negro-normal);
+}
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 0.125rem var(--amarillo-normal);
-  }
+.onboarding__btn-back:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.125rem var(--amarillo-normal);
 }
 
 

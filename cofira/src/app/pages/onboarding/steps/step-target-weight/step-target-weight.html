@@ -1,9 +1,18 @@
 <article class="step-target-weight">
 
+  @if (mostrarNotificacion()) {
+    <app-notification
+      (alCerrar)="cerrarNotificacion()"
+      [duracion]="3000"
+      [mensaje]="mensajeNotificacion()"
+      tipo="error">
+    </app-notification>
+  }
+
   <header class="step-target-weight__header">
     <h2 class="step-target-weight__titulo">Cual es tu peso objetivo?</h2>
     <p class="step-target-weight__subtitulo">
-      Tu peso actual es de {{ currentWeight() }} kg
+      Tu peso actual es de {{ pesoActual() }} kg
     </p>
   </header>
 
@@ -12,11 +21,12 @@
       <span class="step-target-weight__label">Peso objetivo</span>
       <span class="step-target-weight__input-container">
         <input
-          (input)="onWeightChange($any($event.target).value)"
-          [value]="targetWeightKg()"
+          (input)="alCambiarPeso($any($event.target).value)"
+          [class.step-target-weight__input--error]="errorPeso()"
+          [value]="pesoObjetivoKg()"
           class="step-target-weight__input"
           max="300"
-          min="30"
+          min="10"
           placeholder="65"
           required
           step="0.1"
@@ -25,19 +35,19 @@
       </span>
     </label>
 
-    @if (targetWeightKg() !== null && weightDifference() !== 0) {
-      <aside [class.step-target-weight__difference--negative]="weightDifference() < 0"
-             [class.step-target-weight__difference--positive]="weightDifference() > 0"
+    @if (pesoObjetivoKg() !== null && diferenciaPeso() !== 0) {
+      <aside [class.step-target-weight__difference--negative]="diferenciaPeso() < 0"
+             [class.step-target-weight__difference--positive]="diferenciaPeso() > 0"
              class="step-target-weight__difference">
-        <span class="step-target-weight__difference-text">{{ differenceText() }}</span>
+        <span class="step-target-weight__difference-text">{{ textoDiferencia() }}</span>
       </aside>
     }
   </fieldset>
 
   <footer class="step-target-weight__footer">
     <app-button
-      (click)="onContinue()"
-      [habilitado]="!canContinue()"
+      (click)="alContinuar()"
+      [habilitado]="!puedeContinuar()"
       tamanio="grande"
       variante="primario">
       Continuar

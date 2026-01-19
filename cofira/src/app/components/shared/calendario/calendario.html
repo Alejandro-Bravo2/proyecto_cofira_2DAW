@@ -7,7 +7,7 @@
   <section class="calendario">
     <nav class="calendario__navegacion">
       <button (click)="mesAnterior()" aria-label="Mes anterior" class="calendario__btn">
-        <svg class="calendario__btn-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg aria-hidden="true" class="calendario__btn-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
         </svg>
       </button>
@@ -17,7 +17,7 @@
       </h3>
 
       <button (click)="mesSiguiente()" aria-label="Mes siguiente" class="calendario__btn">
-        <svg class="calendario__btn-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg aria-hidden="true" class="calendario__btn-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/>
         </svg>
       </button>
@@ -32,7 +32,7 @@
     <ol class="calendario__grid">
       @for (dia of diasDelMes; track $index) {
         @if (dia === null) {
-          <li class="calendario__dia calendario__dia--vacio"></li>
+          <li aria-hidden="true" class="calendario__dia calendario__dia--vacio"></li>
         } @else {
           <li class="calendario__grid-item">
             <button

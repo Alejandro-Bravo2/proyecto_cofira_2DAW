@@ -1,10 +1,16 @@
+# ════════════════════════════════════════════════════════════════
+# DOCKER COMPOSE - PRODUCCIÓN
+# Servidor: 217.160.204.238
+# Uso: docker-compose up -d --build
+# ════════════════════════════════════════════════════════════════
+
 services:
   # ════════════════════════════════════════
   # BASE DE DATOS - PostgreSQL
   # ════════════════════════════════════════
   postgres:
     image: postgres:16-alpine
-    container_name: cofira-postgres_2
+    container_name: cofira-postgres-prod
     environment:
       POSTGRES_DB: cofira
       POSTGRES_USER: admin
@@ -12,9 +18,9 @@ services:
     ports:
       - "6005:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data_prod:/var/lib/postgresql/data
     networks:
-      - cofira-network
+      - cofira-network-prod
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U admin -d cofira" ]
       interval: 10s
@@ -29,7 +35,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: cofira-backend_2
+    container_name: cofira-backend-prod
     ports:
       - "9002:8080"
     environment:
@@ -43,7 +49,7 @@ services:
       postgres:
         condition: service_healthy
     networks:
-      - cofira-network
+      - cofira-network-prod
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
       interval: 30s
@@ -53,48 +59,26 @@ services:
     restart: unless-stopped
 
   # ════════════════════════════════════════
-  # FRONTEND - Angular (Desarrollo)
+  # FRONTEND - Angular (Producción con Nginx)
   # ════════════════════════════════════════
   frontend:
     build:
       context: ./cofira
       dockerfile: Dockerfile
-      target: development
-    container_name: cofira-frontend_2
+      target: production
+    container_name: cofira-frontend-prod
     ports:
-      - "4600:4200"
-    volumes:
-      - ./cofira/src:/app/src
-      - ./cofira/public:/app/public
-    environment:
-      - NODE_ENV=development
+      - "80:80"
     depends_on:
       backend:
         condition: service_healthy
     networks:
-      - cofira-network
-    restart: unless-stopped
-
-  # ════════════════════════════════════════
-  # pgAdmin - Gestión de BD
-  # ════════════════════════════════════════
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: cofira-pgadmin_2
-    ports:
-      - "5051:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@cofira.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
-    depends_on:
-      - postgres
-    networks:
-      - cofira-network
+      - cofira-network-prod
     restart: unless-stopped
 
 volumes:
-  postgres_data:
+  postgres_data_prod:
 
 networks:
-  cofira-network:
+  cofira-network-prod:
     driver: bridge

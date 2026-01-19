@@ -41,4 +41,9 @@ export interface User {
   nombre: string;
   rol: string;
   isOnboarded: boolean;
+  fechaRegistro?: string;
+  peso?: number | null;
+  altura?: number | null;
+  objetivo?: string;
+  nivelActividad?: string;
 }

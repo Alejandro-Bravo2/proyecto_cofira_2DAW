@@ -79,22 +79,22 @@
   padding: var(--spacing-size-xs) var(--spacing-size-m);
   cursor: pointer;
   transition: all var(--duration-fast) ease;
+}
 
-  &:hover {
-    color: var(--negro-normal);
-    border-color: var(--gris-normal);
-  }
+.blog__categoria-btn:hover {
+  color: var(--negro-normal);
+  border-color: var(--gris-normal);
+}
 
-  &--activo {
-    color: var(--negro-normal);
-    background-color: var(--amarillo-normal);
-    border-color: var(--amarillo-normal);
+.blog__categoria-btn--activo {
+  color: var(--negro-normal);
+  background-color: var(--amarillo-normal);
+  border-color: var(--amarillo-normal);
+}
 
-    &:hover {
-      background-color: var(--amarillo-dark);
-      border-color: var(--amarillo-dark);
-    }
-  }
+.blog__categoria-btn--activo:hover {
+  background-color: var(--amarillo-dark);
+  border-color: var(--amarillo-dark);
 }
 
 
@@ -177,21 +177,21 @@
   letter-spacing: 0.05em;
   padding: var(--spacing-size-xxs) var(--spacing-size-s);
   border-radius: var(--radius-xss);
+}
 
-  &--ejercicio {
-    background-color: #e3f2fd;
-    color: #1565c0;
-  }
+.blog__articulo-categoria--ejercicio {
+  background-color: var(--blog-categoria-ejercicio-fondo);
+  color: var(--blog-categoria-ejercicio-texto);
+}
 
-  &--nutricion {
-    background-color: #e8f5e9;
-    color: #2e7d32;
-  }
+.blog__articulo-categoria--nutricion {
+  background-color: var(--blog-categoria-nutricion-fondo);
+  color: var(--blog-categoria-nutricion-texto);
+}
 
-  &--bienestar {
-    background-color: #fce4ec;
-    color: #c2185b;
-  }
+.blog__articulo-categoria--bienestar {
+  background-color: var(--blog-categoria-bienestar-fondo);
+  color: var(--blog-categoria-bienestar-texto);
 }
 
 .blog__articulo-contenido {
@@ -338,15 +338,15 @@
   background-color: var(--blanco-normal);
   min-width: 280px;
 
-  &:focus {
-    outline: none;
-    border-color: var(--negro-normal);
-  }
-
   @include responsive-down('md') {
     min-width: auto;
     width: 100%;
   }
+}
+
+.blog__newsletter-input:focus {
+  outline: none;
+  border-color: var(--negro-normal);
 }
 
 .blog__newsletter-btn {
@@ -361,9 +361,9 @@
   cursor: pointer;
   transition: background-color var(--duration-fast) ease, transform var(--duration-fast) ease;
   white-space: nowrap;
+}
 
-  &:hover {
-    background-color: var(--negro-dark);
-    transform: translateY(-2px);
-  }
+.blog__newsletter-btn:hover {
+  background-color: var(--negro-dark);
+  transform: translateY(-2px);
 }

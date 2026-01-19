@@ -1,0 +1,20 @@
+.notification-container {
+  position: fixed;
+  top: var(--spacing-size-m);
+  right: var(--spacing-size-m);
+  z-index: var(--z-toast);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-s);
+  pointer-events: none;
+}
+
+.notification-container app-notification {
+  pointer-events: auto;
+}
+
+.notification-container .notification {
+  position: relative;
+  top: auto;
+  right: auto;
+}

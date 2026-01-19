@@ -10,17 +10,17 @@
 
         <ul class="seguimiento__macros-lista">
           <li class="seguimiento__macro-item">
-            <span class="seguimiento__macro-indicador seguimiento__macro-indicador--proteinas"></span>
+            <span aria-hidden="true" class="seguimiento__macro-indicador seguimiento__macro-indicador--proteinas"></span>
             <span class="seguimiento__macro-texto">Proteínas: {{ macros.proteinas.gramos }}
               g ({{ macros.proteinas.porcentaje }}%)</span>
           </li>
           <li class="seguimiento__macro-item">
-            <span class="seguimiento__macro-indicador seguimiento__macro-indicador--carbohidratos"></span>
+            <span aria-hidden="true" class="seguimiento__macro-indicador seguimiento__macro-indicador--carbohidratos"></span>
             <span class="seguimiento__macro-texto">Carbohidratos: {{ macros.carbohidratos.gramos }}
               g ({{ macros.carbohidratos.porcentaje }}%)</span>
           </li>
           <li class="seguimiento__macro-item">
-            <span class="seguimiento__macro-indicador seguimiento__macro-indicador--grasas"></span>
+            <span aria-hidden="true" class="seguimiento__macro-indicador seguimiento__macro-indicador--grasas"></span>
             <span class="seguimiento__macro-texto">Grasas: {{ macros.grasas.gramos }}g ({{ macros.grasas.porcentaje }}
               %)</span>
           </li>
@@ -35,7 +35,7 @@
       </header>
 
       <figure class="seguimiento__grafico-circular">
-        <svg class="seguimiento__pie-chart" viewBox="0 0 200 200">
+        <svg aria-label="Gráfico circular de macronutrientes" class="seguimiento__pie-chart" role="img" viewBox="0 0 200 200">
           <circle
             [attr.stroke-dasharray]="calcularDashArray(macros.proteinas.porcentaje)"
             [attr.stroke-dashoffset]="calcularDashOffset(0)"
@@ -90,7 +90,7 @@
 
     <article class="seguimiento__grafico-lineas">
       <figure class="seguimiento__chart-container">
-        <svg class="seguimiento__line-chart" viewBox="-30 0 630 300">
+        <svg aria-label="Gráfico de evolución de fuerza" class="seguimiento__line-chart" role="img" viewBox="-30 0 630 300">
           <line stroke="#b8b8b8" stroke-width="1" x1="50" x2="50" y1="20" y2="250"/>
           <line stroke="#b8b8b8" stroke-width="1" x1="50" x2="580" y1="250" y2="250"/>
 

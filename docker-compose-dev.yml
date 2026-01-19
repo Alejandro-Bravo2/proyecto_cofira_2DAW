@@ -1,0 +1,105 @@
+# ════════════════════════════════════════════════════════════════
+# DOCKER COMPOSE - DESARROLLO LOCAL
+# Uso: docker-compose -f docker-compose-dev.yml up -d
+# ════════════════════════════════════════════════════════════════
+
+services:
+  # ════════════════════════════════════════
+  # BASE DE DATOS - PostgreSQL
+  # ════════════════════════════════════════
+  postgres:
+    image: postgres:16-alpine
+    container_name: cofira-postgres-dev
+    environment:
+      POSTGRES_DB: cofira
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+    ports:
+      - "6005:5432"
+    volumes:
+      - postgres_data_dev:/var/lib/postgresql/data
+    networks:
+      - cofira-network-dev
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d cofira" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ════════════════════════════════════════
+  # BACKEND - Spring Boot
+  # ════════════════════════════════════════
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cofira-backend-dev
+    ports:
+      - "9002:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/cofira
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: admin123
+      SPRING_SQL_INIT_MODE: always
+      SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: "true"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - cofira-network-dev
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    restart: unless-stopped
+
+  # ════════════════════════════════════════
+  # FRONTEND - Angular (Desarrollo con Hot Reload)
+  # ════════════════════════════════════════
+  frontend:
+    build:
+      context: ./cofira
+      dockerfile: Dockerfile
+      target: development
+    container_name: cofira-frontend-dev
+    ports:
+      - "4600:4200"
+    volumes:
+      - ./cofira/src:/app/src
+      - ./cofira/public:/app/public
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      backend:
+        condition: service_healthy
+    networks:
+      - cofira-network-dev
+    restart: unless-stopped
+
+  # ════════════════════════════════════════
+  # pgAdmin - Gestión de BD (Solo desarrollo)
+  # ════════════════════════════════════════
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: cofira-pgadmin-dev
+    ports:
+      - "5051:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@cofira.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    depends_on:
+      - postgres
+    networks:
+      - cofira-network-dev
+    restart: unless-stopped
+
+volumes:
+  postgres_data_dev:
+
+networks:
+  cofira-network-dev:
+    driver: bridge

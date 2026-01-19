@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation} from '@angular/core';
 import {CommonModule} from '@angular/common';
 
 @Component({
@@ -16,6 +16,13 @@ export class Modal {
   @Input() mostrarCerrar: boolean = true;
 
   @Output() cerrar = new EventEmitter<void>();
+
+  @HostListener('document:keydown.escape')
+  cerrarConEscape(): void {
+    if (this.abierto) {
+      this.cerrarModal();
+    }
+  }
 
   cerrarModal(): void {
     this.cerrar.emit();

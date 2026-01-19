@@ -1,5 +1,14 @@
 <article class="step-measurements">
 
+  @if (mostrarNotificacion()) {
+    <app-notification
+      (alCerrar)="cerrarNotificacion()"
+      [duracion]="3000"
+      [mensaje]="mensajeNotificacion()"
+      tipo="error">
+    </app-notification>
+  }
+
   <header class="step-measurements__header">
     <h2 class="step-measurements__titulo">Tus medidas actuales</h2>
     <p class="step-measurements__subtitulo">
@@ -14,8 +23,9 @@
         <span class="step-measurements__label">Altura</span>
         <span class="step-measurements__input-container">
           <input
-            (input)="onHeightChange($any($event.target).value)"
-            [value]="heightCm()"
+            (input)="alCambiarAltura($any($event.target).value)"
+            [class.step-measurements__input--error]="errorAltura()"
+            [value]="alturaCm()"
             class="step-measurements__input"
             max="250"
             min="100"
@@ -30,11 +40,12 @@
         <span class="step-measurements__label">Peso actual</span>
         <span class="step-measurements__input-container">
           <input
-            (input)="onWeightChange($any($event.target).value)"
-            [value]="currentWeightKg()"
+            (input)="alCambiarPeso($any($event.target).value)"
+            [class.step-measurements__input--error]="errorPeso()"
+            [value]="pesoActualKg()"
             class="step-measurements__input"
             max="300"
-            min="30"
+            min="10"
             placeholder="70"
             required
             step="0.1"
@@ -48,8 +59,8 @@
 
   <footer class="step-measurements__footer">
     <app-button
-      (click)="onContinue()"
-      [habilitado]="!canContinue()"
+      (click)="alContinuar()"
+      [habilitado]="!puedeContinuar()"
       tamanio="grande"
       variante="primario">
       Continuar

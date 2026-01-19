@@ -62,33 +62,32 @@
 
   <ul class="funcionalidades__grid">
     <li class="funcionalidades__item">
-      <span class="funcionalidades__icono">📊</span>
+      <fa-icon aria-hidden="true" class="funcionalidades__icono" [icon]="iconoGraficos"></fa-icon>
       <p class="funcionalidades__texto">Gráficos de Progreso</p>
     </li>
 
     <li class="funcionalidades__item">
-      <span class="funcionalidades__icono">🖼️</span>
+      <fa-icon aria-hidden="true" class="funcionalidades__icono" [icon]="iconoFotos"></fa-icon>
       <p class="funcionalidades__texto">Fotos de Progreso</p>
     </li>
 
     <li class="funcionalidades__item">
-      <span class="funcionalidades__icono">⏳</span>
+      <fa-icon aria-hidden="true" class="funcionalidades__icono" [icon]="iconoAyuno"></fa-icon>
       <p class="funcionalidades__texto">Ayuno</p>
     </li>
 
-
     <li class="funcionalidades__item">
-      <span class="funcionalidades__icono">💧</span>
+      <fa-icon aria-hidden="true" class="funcionalidades__icono" [icon]="iconoAgua"></fa-icon>
       <p class="funcionalidades__texto">Registro de Agua</p>
     </li>
 
     <li class="funcionalidades__item">
-      <span class="funcionalidades__icono">🧩</span>
+      <fa-icon aria-hidden="true" class="funcionalidades__icono" [icon]="iconoWidgets"></fa-icon>
       <p class="funcionalidades__texto">Widgets</p>
     </li>
 
     <li class="funcionalidades__item">
-      <span class="funcionalidades__icono">🍎</span>
+      <fa-icon aria-hidden="true" class="funcionalidades__icono" [icon]="iconoComidas"></fa-icon>
       <p class="funcionalidades__texto">Registro de comidas</p>
     </li>
   </ul>
@@ -101,7 +100,7 @@
     <details class="faq__item" (toggle)="alternarEstadoFaq(0)">
       <summary class="faq__pregunta">
         <span>¿Qué incluye la cuota mensual de Cofira?</span>
-        <span class="faq__icono" [class.faq__icono--abierto]="estadoFaqAbierto[0]"></span>
+        <span aria-hidden="true" class="faq__icono" [class.faq__icono--abierto]="estadoFaqAbierto[0]"></span>
       </summary>
       <p class="faq__respuesta">
         La cuota mensual incluye acceso completo a todas las funcionalidades: planificación de hasta 7 comidas diarias,
@@ -113,7 +112,7 @@
     <details class="faq__item" (toggle)="alternarEstadoFaq(1)">
       <summary class="faq__pregunta">
         <span>¿Puedo cancelar mi suscripción en cualquier momento?</span>
-        <span class="faq__icono" [class.faq__icono--abierto]="estadoFaqAbierto[1]"></span>
+        <span aria-hidden="true" class="faq__icono" [class.faq__icono--abierto]="estadoFaqAbierto[1]"></span>
       </summary>
       <p class="faq__respuesta">
         Sí, puedes cancelar tu suscripción cuando quieras desde la configuración de tu cuenta. No hay permanencia mínima
@@ -125,7 +124,7 @@
     <details class="faq__item" (toggle)="alternarEstadoFaq(2)">
       <summary class="faq__pregunta">
         <span>¿Cómo funciona el seguimiento de progreso?</span>
-        <span class="faq__icono" [class.faq__icono--abierto]="estadoFaqAbierto[2]"></span>
+        <span aria-hidden="true" class="faq__icono" [class.faq__icono--abierto]="estadoFaqAbierto[2]"></span>
       </summary>
       <p class="faq__respuesta">
         Cofira registra tu peso, medidas corporales y fotos de progreso. Genera gráficos detallados que te muestran tu
