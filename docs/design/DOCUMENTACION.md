@@ -5568,6 +5568,10 @@ He desplegado la aplicación en un vps de ionos para que esté accesible públic
 **URL de producción:** [https://cofira.app](https://cofira.app)
 
 
+Prueba de que funciona en producción:
+
+![prueba](../assets/prueba_COFIRA_FUNCIONA.png)
+
 
 
 ---

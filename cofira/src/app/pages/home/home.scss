@@ -105,6 +105,7 @@
 
 
 .boton__primary {
+  flex-directorio: column;
   display: flex;
   gap: var(--spacing-size-m);
 }
