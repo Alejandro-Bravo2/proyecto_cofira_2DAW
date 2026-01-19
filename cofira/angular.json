@@ -61,6 +61,9 @@
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "allowedHosts": ["cofira.app", "www.cofira.app", "localhost"]
+          },
           "configurations": {
             "production": {
               "buildTarget": "cofira:build:production"
