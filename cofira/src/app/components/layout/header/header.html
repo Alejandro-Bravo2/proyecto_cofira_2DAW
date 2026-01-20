@@ -13,18 +13,24 @@
 
   <section class="cabecera__acciones cabecera__acciones--escritorio">
     @if (isAuthenticated()) {
-      <button (click)="toggleMenuCuenta()" aria-label="Menú de cuenta" aria-haspopup="true" [attr.aria-expanded]="menuCuentaAbierto" class="cabecera__perfil">
-        <svg aria-hidden="true" class="cabecera__perfil-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-          <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round"
-                stroke-linejoin="round"/>
-        </svg>
-        <span class="cabecera__perfil-nombre">{{ userNombre() }}</span>
-        <svg aria-hidden="true" class="cabecera__perfil-chevron" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+        <article class="cabecera__perfil-contenedor">
+            <button (click)="toggleMenuCuenta()" [attr.aria-expanded]="menuCuentaAbierto" aria-haspopup="true"
+                    aria-label="Menú de cuenta" class="cabecera__perfil">
+                <svg aria-hidden="true" class="cabecera__perfil-icono" fill="none" stroke="currentColor"
+                     stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"/>
+                </svg>
+                <span class="cabecera__perfil-nombre">{{ userNombre() }}</span>
+                <svg aria-hidden="true" class="cabecera__perfil-chevron" fill="none" stroke="currentColor"
+                     stroke-width="2" viewBox="0 0 24 24">
+                    <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
 
-      <aside [class.cabecera__desplegable--abierto]="menuCuentaAbierto" class="cabecera__desplegable" tabindex="-1">
+            <aside [class.cabecera__desplegable--abierto]="menuCuentaAbierto" class="cabecera__desplegable"
+                   tabindex="-1">
         <nav class="cabecera__desplegable-navegacion">
           <a (click)="cerrarMenuCuenta()" class="cabecera__desplegable-item" routerLink="/perfil">
             <svg aria-hidden="true" class="cabecera__desplegable-item-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
@@ -53,8 +59,10 @@
       </aside>
 
       @if (menuCuentaAbierto) {
-        <span (click)="cerrarMenuCuenta()" aria-hidden="true" class="cabecera__desplegable-overlay" tabindex="-1"></span>
+          <span (click)="cerrarMenuCuenta()" aria-hidden="true" class="cabecera__desplegable-overlay"
+                tabindex="-1"></span>
       }
+        </article>
     } @else {
       <app-button enlace="/onboarding" tamanio="pequeno" variante="primario">Inscríbete</app-button>
     }
@@ -124,24 +132,13 @@
       </a>
 
       <a routerLink="/seguimiento" (click)="cerrarMenu()" class="menu-movil__enlace">
-        <svg aria-hidden="true" class="menu-movil__enlace-icono" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path
-            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"
-            fill="currentColor"/>
-        </svg>
+          <fa-icon [icon]="iconoGrafico" class="menu-movil__enlace-icono"></fa-icon>
         <span>Seguimiento</span>
       </a>
     </nav>
 
     <section class="menu-movil__acciones">
       @if (isAuthenticated()) {
-        <aside class="menu-movil__usuario">
-          <svg aria-hidden="true" class="menu-movil__usuario-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
-            <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke-linecap="round"
-                  stroke-linejoin="round"/>
-          </svg>
-          <span class="menu-movil__usuario-nombre">{{ userNombre() }}</span>
-        </aside>
         <a (click)="cerrarMenu()" class="menu-movil__enlace" routerLink="/perfil">
           <svg aria-hidden="true" class="menu-movil__enlace-icono" fill="currentColor" viewBox="0 0 24 24">
             <path
@@ -156,6 +153,10 @@
           </svg>
           <span>Configuración</span>
         </a>
+          <button (click)="toggleTema()" aria-label="Cambiar tema" class="menu-movil__enlace menu-movil__enlace--tema">
+              <fa-icon [icon]="modoOscuro ? iconoSol : iconoLuna" class="menu-movil__enlace-icono"></fa-icon>
+              <span>{{ modoOscuro ? 'Modo claro' : 'Modo oscuro' }}</span>
+          </button>
         <button (click)="logout(); cerrarMenu()" class="menu-movil__cerrar-sesion">
           <svg aria-hidden="true" class="menu-movil__cerrar-sesion-icono" fill="currentColor" viewBox="0 0 24 24">
             <path
@@ -164,9 +165,9 @@
           <span>Cerrar sesión</span>
         </button>
       } @else {
-        <button (click)="toggleTema()" aria-label="Cambiar tema" class="menu-movil__tema-btn">
-          <fa-icon [icon]="modoOscuro ? iconoSol : iconoLuna" class="menu-movil__tema-btn-icono"></fa-icon>
-          <span class="menu-movil__tema-btn-texto">{{ modoOscuro ? 'Modo claro' : 'Modo oscuro' }}</span>
+          <button (click)="toggleTema()" aria-label="Cambiar tema" class="menu-movil__enlace menu-movil__enlace--tema">
+              <fa-icon [icon]="modoOscuro ? iconoSol : iconoLuna" class="menu-movil__enlace-icono"></fa-icon>
+              <span>{{ modoOscuro ? 'Modo claro' : 'Modo oscuro' }}</span>
         </button>
         <app-button (click)="cerrarMenu()" [anchoCompleto]="true" enlace="/onboarding" tamanio="mediano" variante="primario">
           Inscríbete

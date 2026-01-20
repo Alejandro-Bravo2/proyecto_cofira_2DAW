@@ -85,6 +85,20 @@
     border-color: var(--oscuro-cabecera-enlace-hover);
   }
 
+  app-header .cabecera__perfil:focus {
+    outline: none;
+    outline-width: 0;
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
+  }
+
+  app-header .cabecera__perfil:focus-visible {
+    outline: none;
+    outline-width: 0;
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
+  }
+
   app-header .cabecera__perfil-icono {
     color: var(--blanco-normal-transparente-070);
   }
@@ -135,10 +149,6 @@
 
   app-header .cabecera__desplegable-item:hover {
     background: var(--amarillo-normal-transparente-010);
-    color: var(--oscuro-menu-item-hover-texto);
-  }
-
-  app-header .cabecera__desplegable-item:hover .cabecera__desplegable-item-icono {
     color: var(--oscuro-menu-item-hover-texto);
   }
 
@@ -1664,231 +1674,93 @@
   }
 
 
-
-  app-perfil .perfil {
-    background-color: var(--oscuro-pagina-fondo);
+  app-modal .modal {
+    background-color: var(--gris-dark);
+    box-shadow: 0 8px 32px var(--negro-puro-transparente-050);
   }
 
-  app-perfil .perfil__titulo {
-    color: var(--oscuro-texto-principal);
+  app-modal .modal__header {
+    border-bottom-color: var(--gris-normal);
   }
 
-  app-perfil .perfil__subtitulo {
-    color: var(--oscuro-texto-secundario);
+  app-modal .modal__titulo {
+    color: var(--blanco-normal);
   }
 
-  app-perfil .perfil__tarjeta {
-    background-color: var(--oscuro-superficie-fondo);
-    border-color: var(--oscuro-borde-color);
+  app-modal .modal__cerrar {
+    color: var(--blanco-dark);
   }
 
-  app-perfil .perfil__tarjeta-titulo {
-    color: var(--oscuro-texto-principal);
+  app-modal .modal__cerrar:hover {
+    background-color: var(--gris-normal);
+    color: var(--blanco-normal);
   }
 
-  app-perfil .perfil__tarjeta-cabecera {
-    border-color: var(--oscuro-borde-suave);
+
+  app-calendario .calendario__btn {
+    color: var(--blanco-normal);
   }
 
-  app-perfil .perfil__btn-editar {
-    color: var(--amarillo-normal);
+  app-calendario .calendario__btn:hover {
+    background-color: var(--gris-normal);
+    color: var(--blanco-normal);
+  }
+
+  app-calendario .calendario__mes-anio {
+    color: var(--blanco-normal);
+  }
+
+  app-calendario .calendario__dia-semana {
+    color: var(--gris-light);
+  }
+
+  app-calendario .calendario__dia {
+    color: var(--blanco-normal);
+  }
+
+  app-calendario .calendario__dia:hover:not(.calendario__dia--vacio) {
+    background-color: var(--gris-normal);
     border-color: var(--amarillo-normal);
   }
 
-  app-perfil .perfil__btn-editar:hover {
+  app-calendario .calendario__dia--seleccionado {
     background-color: var(--amarillo-normal);
+    border-color: var(--amarillo-dark);
     color: var(--negro-normal);
   }
 
-  app-perfil .perfil__etiqueta {
-    color: var(--oscuro-texto-secundario);
+  app-calendario .calendario__dia--seleccionado:hover {
+    background-color: var(--amarillo-normal-hover);
+    color: var(--blanco-normal);
   }
 
-  app-perfil .perfil__valor {
-    color: var(--oscuro-texto-principal);
+
+  app-ingredientes .ingredientes__info {
+    background-color: var(--gris-normal);
   }
 
-  app-perfil .perfil__valor--email {
+  app-ingredientes .ingredientes__calorias {
+    color: var(--blanco-normal);
+  }
+
+  app-ingredientes .ingredientes__subtitulo {
+    color: var(--blanco-normal);
+  }
+
+  app-ingredientes .ingredientes__item {
+    background-color: var(--gris-normal);
+  }
+
+  app-ingredientes .ingredientes__nombre {
+    color: var(--blanco-normal);
+  }
+
+  app-ingredientes .ingredientes__cantidad {
+    color: var(--gris-light);
+  }
+
+  app-ingredientes .ingredientes__calorias-item {
     color: var(--amarillo-normal);
-  }
-
-  app-perfil .perfil__input {
-    background-color: var(--oscuro-input-fondo);
-    color: var(--oscuro-texto-principal);
-    border-color: var(--oscuro-borde-color);
-  }
-
-  app-perfil .perfil__input:focus {
-    border-color: var(--amarillo-normal);
-  }
-
-  app-perfil .perfil__acciones {
-    border-color: var(--oscuro-borde-suave);
-  }
-
-  app-perfil .perfil__salud-item {
-    background-color: var(--oscuro-hover-fondo);
-  }
-
-  app-perfil .perfil__salud-etiqueta {
-    color: var(--oscuro-texto-secundario);
-  }
-
-  app-perfil .perfil__salud-valor {
-    color: var(--oscuro-texto-principal);
-  }
-
-  app-perfil .perfil__actividad {
-    background-color: var(--oscuro-hover-fondo);
-  }
-
-  app-perfil .perfil__actividad-icono {
-    background-color: var(--amarillo-normal-transparente-015);
-  }
-
-  app-perfil .perfil__actividad-icono svg {
-    color: var(--amarillo-normal);
-  }
-
-  app-perfil .perfil__actividad-nivel {
-    color: var(--oscuro-texto-principal);
-  }
-
-  app-perfil .perfil__actividad-descripcion {
-    color: var(--oscuro-texto-secundario);
-  }
-
-
-
-  app-configuracion .configuracion {
-    background-color: var(--oscuro-pagina-fondo);
-  }
-
-  app-configuracion .configuracion__titulo {
-    color: var(--oscuro-texto-principal);
-  }
-
-  app-configuracion .configuracion__subtitulo {
-    color: var(--oscuro-texto-secundario);
-  }
-
-  app-configuracion .configuracion__menu {
-    background-color: var(--oscuro-superficie-fondo);
-    border-color: var(--oscuro-borde-color);
-  }
-
-  app-configuracion .configuracion__menu-item {
-    color: var(--oscuro-texto-secundario);
-  }
-
-  app-configuracion .configuracion__menu-item:hover {
-    color: var(--oscuro-texto-principal);
-    background-color: var(--oscuro-hover-fondo);
-  }
-
-  app-configuracion .configuracion__menu-item--activo {
-    color: var(--amarillo-normal);
-    background-color: var(--amarillo-normal-transparente-012);
-  }
-
-  app-configuracion .configuracion__menu-item--activo:hover {
-    color: var(--amarillo-normal);
-    background-color: var(--amarillo-normal-transparente-012);
-  }
-
-  app-configuracion .configuracion__panel {
-    background-color: var(--oscuro-superficie-fondo);
-    border-color: var(--oscuro-borde-color);
-  }
-
-  app-configuracion .configuracion__seccion-titulo {
-    color: var(--oscuro-texto-principal);
-    border-color: var(--oscuro-borde-suave);
-  }
-
-  app-configuracion .configuracion__grupo-titulo {
-    color: var(--oscuro-texto-secundario);
-  }
-
-  app-configuracion .configuracion__label {
-    color: var(--oscuro-texto-principal);
-  }
-
-  app-configuracion .configuracion__select {
-    background-color: var(--oscuro-input-fondo);
-    color: var(--oscuro-texto-principal);
-    border-color: var(--oscuro-borde-color);
-  }
-
-  app-configuracion .configuracion__select:focus {
-    border-color: var(--amarillo-normal);
-  }
-
-  app-configuracion .configuracion__toggle-item {
-    background-color: var(--oscuro-hover-fondo);
-  }
-
-  app-configuracion .configuracion__toggle-titulo {
-    color: var(--oscuro-texto-principal);
-  }
-
-  app-configuracion .configuracion__toggle-descripcion {
-    color: var(--oscuro-texto-secundario);
-  }
-
-  app-configuracion .configuracion__toggle {
-    background-color: var(--oscuro-borde-color);
-  }
-
-  app-configuracion .configuracion__toggle--activo {
-    background-color: var(--amarillo-normal);
-  }
-
-  app-configuracion .configuracion__toggle-circulo {
-    background-color: var(--blanco-normal);
-  }
-
-  app-configuracion .configuracion__accion-item {
-    background-color: var(--oscuro-hover-fondo);
-  }
-
-  app-configuracion .configuracion__accion-titulo {
-    color: var(--oscuro-texto-principal);
-  }
-
-  app-configuracion .configuracion__accion-descripcion {
-    color: var(--oscuro-texto-secundario);
-  }
-
-  app-configuracion .configuracion__enlace {
-    color: var(--oscuro-texto-principal);
-    background-color: var(--oscuro-hover-fondo);
-  }
-
-  app-configuracion .configuracion__enlace:hover {
-    color: var(--amarillo-normal);
-    background-color: var(--amarillo-normal-transparente-012);
-  }
-
-  app-configuracion .configuracion__enlace-icono {
-    color: var(--oscuro-texto-secundario);
-  }
-
-  app-configuracion .configuracion__enlace:hover .configuracion__enlace-icono {
-    color: var(--amarillo-normal);
-  }
-
-  app-configuracion .configuracion__footer {
-    border-color: var(--oscuro-borde-suave);
-  }
-
-  app-configuracion .configuracion__grupo--peligro {
-    background-color: var(--rojo-normal-transparente-005);
-    border-color: var(--rojo-normal-transparente-020);
-  }
-
-  app-configuracion .configuracion__accion-item--peligro {
-    background-color: transparent;
   }
 
 

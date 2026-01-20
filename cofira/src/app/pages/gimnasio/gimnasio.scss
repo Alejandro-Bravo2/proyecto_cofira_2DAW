@@ -564,10 +564,24 @@
     0 100%
   );
 
+  #gimnasio__progreso-boton ::ng-deep .boton {
+    max-width: 70%;
+  }
+
+  @include responsive-down('lg') {
+    #gimnasio__progreso-boton ::ng-deep .boton {
+      max-width: 60%;
+    }
+  }
+
   @include responsive-down('md') {
     width: 100%;
     padding: var(--spacing-size-l) var(--spacing-size-m);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+    #gimnasio__progreso-boton ::ng-deep .boton {
+      max-width: 100%;
+    }
   }
 
   @include responsive-down('xs') {
@@ -575,11 +589,12 @@
     padding: var(--spacing-size-m) var(--spacing-size-s);
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
 
-    #gimnasio__progreso-boton ::ng-deep .button {
+    #gimnasio__progreso-boton ::ng-deep .boton {
       padding: var(--spacing-size-xss);
       font-size: var(--font-size-md);
       min-width: 12rem;
       height: 2rem;
+      max-width: 100%;
     }
   }
 }

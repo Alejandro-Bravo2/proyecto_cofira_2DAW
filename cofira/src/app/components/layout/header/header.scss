@@ -322,6 +322,15 @@
   height: 1.25rem;
   flex-shrink: 0;
   fill: var(--amarillo-dark);
+  color: var(--amarillo-dark);
+}
+
+.menu-movil__enlace--tema {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-left: 3px solid transparent;
+  cursor: pointer;
 }
 
 .menu-movil__acciones {
@@ -334,14 +343,18 @@
   border-top: 1px solid var(--blanco-dark);
 }
 
+.cabecera__perfil-contenedor {
+  position: relative;
+}
+
 .cabecera__perfil {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-xs);
-  padding: var(--spacing-size-xs) var(--spacing-size-s);
+  padding: var(--spacing-size-xss) var(--spacing-size-s);
   background: transparent;
   border: 1.5px solid var(--gris-light);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-l);
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -349,6 +362,20 @@
 .cabecera__perfil:hover {
   background: var(--bg-surface);
   border-color: var(--amarillo-normal);
+}
+
+.cabecera__perfil:focus {
+  outline: none;
+  outline-width: 0;
+  border-color: var(--amarillo-normal);
+  box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
+}
+
+.cabecera__perfil:focus-visible {
+  outline: none;
+  outline-width: 0;
+  border-color: var(--amarillo-normal);
+  box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
 }
 
 .cabecera__perfil-icono {
@@ -384,6 +411,7 @@
   top: calc(100% + var(--spacing-size-xs));
   right: 0;
   min-width: 12rem;
+  overflow: hidden;
   background: var(--blanco);
   border: 1px solid var(--gris-light);
   border-radius: var(--radius-lg);
@@ -409,7 +437,6 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-size-s);
-  width: 100%;
   padding: var(--spacing-size-s) var(--spacing-size-m);
   background: transparent;
   border: none;
@@ -425,11 +452,6 @@
 
 .cabecera__desplegable-item:hover {
   background: var(--bg-surface);
-  color: var(--amarillo-dark);
-}
-
-.cabecera__desplegable-item:hover .cabecera__desplegable-item-icono {
-  color: var(--amarillo-dark);
 }
 
 .cabecera__desplegable-item-icono {
@@ -437,7 +459,6 @@
   height: 1.25rem;
   color: var(--gris-normal);
   flex-shrink: 0;
-  transition: color 0.15s ease;
 }
 
 .cabecera__desplegable-item--cerrar-sesion {

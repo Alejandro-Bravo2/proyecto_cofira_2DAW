@@ -56,7 +56,7 @@
 .calendario__dias-semana {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: var(--spacing-size-xs);
+  gap: var(--spacing-size-xss);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -64,11 +64,11 @@
 
 .calendario__dia-semana {
   font-family: var(--font-primary);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   color: var(--gris-normal);
   text-align: center;
-  padding: var(--spacing-size-xxs);
+  padding: var(--spacing-size-xss);
 }
 
 
@@ -76,7 +76,7 @@
 .calendario__grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: var(--spacing-size-xs);
+  gap: var(--spacing-size-xss);
   margin: 0;
   padding: 0;
   list-style: none;

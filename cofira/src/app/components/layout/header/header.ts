@@ -1,7 +1,7 @@
 import {Component, HostListener, inject, ViewEncapsulation} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
-import {faSun, faMoon} from '@fortawesome/free-solid-svg-icons';
+import {faChartLine, faMoon, faSun} from '@fortawesome/free-solid-svg-icons';
 import {Button} from '../../shared/button/button';
 import {AuthService} from '../../../services/auth.service';
 import {ThemeService} from '../../../services/theme.service';
@@ -22,6 +22,7 @@ export class Header {
 
   readonly iconoSol = faSun;
   readonly iconoLuna = faMoon;
+    readonly iconoGrafico = faChartLine;
 
   menuAbierto = false;
   menuCuentaAbierto = false;

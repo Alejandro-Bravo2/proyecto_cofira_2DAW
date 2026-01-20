@@ -101,7 +101,8 @@
 }
 
 .home__seccion-intro__boton {
-  z-index: 1;
+  position: relative;
+  z-index: 0;
 }
 
 

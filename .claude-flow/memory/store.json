@@ -236,6 +236,67 @@
       "storedAt": "2026-01-19T17:40:19.471Z",
       "accessCount": 0,
       "lastAccessed": "2026-01-19T17:40:19.471Z"
+    },
+    "sintesis-final-violaciones": {
+      "key": "sintesis-final-violaciones",
+      "value": {
+        "fecha": "2026-01-19",
+        "proyecto": "proyecto_cofira_2DAW",
+        "totalViolaciones": 512,
+        "desglose": {
+          "scss": {
+            "cantidad": 200,
+            "criticidad": "ALTA",
+            "archivoCritico": "_dark-mode.scss"
+          },
+          "typescript": {
+            "cantidad": 45,
+            "criticidad": "MEDIA"
+          },
+          "html": {
+            "cantidad": 54,
+            "criticidad": "BAJA",
+            "positivo": "0 uso de <div>"
+          },
+          "javaBackend": {
+            "cantidad": 10,
+            "criticidad": "CRITICA",
+            "problema": "@Autowired en campos"
+          },
+          "angularServices": {
+            "cantidad": 36,
+            "criticidad": "MEDIA"
+          },
+          "dtos": {
+            "cantidad": 21,
+            "criticidad": "MEDIA",
+            "problema": "No usan Records"
+          },
+          "validadores": {
+            "cantidad": 39,
+            "criticidad": "MEDIA"
+          },
+          "itcss": {
+            "cantidad": 35,
+            "criticidad": "MEDIA"
+          },
+          "onboarding": {
+            "cantidad": 40,
+            "criticidad": "MEDIA"
+          },
+          "patronesErrores": {
+            "cantidad": 32,
+            "criticidad": "ALTA"
+          }
+        }
+      },
+      "metadata": {
+        "tipo": "sintesis",
+        "agentes": 10
+      },
+      "storedAt": "2026-01-19T17:48:55.042Z",
+      "accessCount": 0,
+      "lastAccessed": "2026-01-19T17:48:55.042Z"
     }
   },
   "version": "3.0.0"
