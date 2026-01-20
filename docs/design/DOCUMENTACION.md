@@ -3644,23 +3644,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   box-shadow: var(--shadow-md);
 }
 
-.button--secondary {
-  background: var(--button-gray);
-  color: var(--text-dark);
-  box-shadow: var(--shadow-sm);
-}
-
-.button--ghost {
-  background: transparent;
-  color: var(--text-dark);
-  border: var(--border-width-normal) solid var(--gris-normal);
-}
-
-.button--danger {
-  background: var(--button-red);
-  color: var(--text-dark);
-  box-shadow: var(--shadow-md);
-}
 
 // Modificadores de TAMAÑO para el bloque .button
 .button--sm {
@@ -3670,55 +3653,19 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   min-width: var(--width-muy-pequenio);
 }
 
-.button--md {
-  padding: var(--spacing-size-xss) var(--spacing-size-m);
-  font-size: var(--font-size-md);
-  height: 2.75rem;
-  min-width: var(--width-mediano);
-}
-
-.button--lg {
-  padding: var(--spacing-size-s) var(--spacing-size-l);
-  font-size: var(--font-size-lg);
-  height: 3.5rem;
-  min-width: var(--width-estandar);
-}
 
 // Archivo: cofira/src/app/components/shared/alert/alert.scss
-// Modificadores de TIPO para el bloque .alert
 .alert--success {
   background-color: var(--amarillo-normal);
   border-left-color: var(--amarillo-dark);
   color: var(--negro-normal);
 }
 
-.alert--error {
-  background-color: var(--button-red);
-  border-left-color: var(--button-red-hover);
-  color: var(--blanco-normal);
-}
-
-.alert--warning {
-  background-color: var(--amarillo-normal-hover);
-  border-left-color: var(--amarillo-normal);
-  color: var(--negro-normal);
-}
-
-.alert--info {
-  background-color: var(--gris-normal);
-  border-left-color: var(--gris-dark);
-  color: var(--blanco-normal);
-}
 
 // Archivo: cofira/src/app/components/shared/card/card.scss
 // Modificadores de VARIANTE para el bloque .pricing-card
 .pricing-card--info {
   background: var(--gris-normal);
-}
-
-.pricing-card--planes {
-  background: var(--gris-normal);
-  box-shadow: var(--shadow-2xl);
 }
 
 // Modificadores de TAMAÑO para el bloque .pricing-card
@@ -3727,74 +3674,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   padding: var(--spacing-size-l) var(--spacing-size-s);
 }
 
-.pricing-card--md {
-  max-width: 28rem;
-}
-
-.pricing-card--lg {
-  max-width: 34rem;
-  padding: var(--spacing-size-3xl) var(--spacing-size-xl);
-}
-
-// Archivo: cofira/src/app/components/layaout/header/header.scss
-// Modificadores de ESTADO para el bloque .menu-movil
-.menu-movil--abierto {
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.menu-movil--abierto .menu-movil__overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-
-.menu-movil--abierto .menu-movil__contenido {
-  transform: translateX(0);
-}
-
-// Modificadores de ESTADO para el bloque .hamburguesa
-.hamburguesa--abierto .hamburguesa__linea:nth-child(1) {
-  transform: rotate(45deg) translateY(10px);
-}
-
-.hamburguesa--abierto .hamburguesa__linea:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
-
-.hamburguesa--abierto .hamburguesa__linea:nth-child(3) {
-  transform: rotate(-45deg) translateY(-10px);
-}
-
-// Modificadores de ELEMENTO (variante de un element)
-.menu-movil__link--perfil {
-  margin-top: auto;
-  border-top: 1px solid var(--gris-normal);
-}
-
-.menu-cuenta__item--modo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-size-xs);
-  margin-top: var(--spacing-size-xs);
-  padding: var(--spacing-size-s);
-  border-top: 1px solid var(--blanco-dark);
-  background: transparent;
-  border-radius: var(--radius-xss);
-}
-
-// Modificadores de visibilidad para desktop/móvil
-.enlaces--desktop {
-  @include responsive-down("md") {
-    display: none;
-  }
-}
-
-.buscador--desktop {
-  @include responsive-down("md") {
-    display: none;
-  }
-}
 ```
 
 ---
@@ -3865,24 +3744,6 @@ Son estados que se activan automáticamente por el navegador cuando el usuario i
   border-color: var(--gris-normal-hover);
 }
 
-.button--danger:hover:not(:disabled) {
-  background: var(--button-red-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-
-// Estados active (cuando el usuario está presionando)
-.button--primary:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow: var(--shadow-sm);
-}
-
-// Estados focus (para accesibilidad - navegación con teclado)
-.button--primary:focus {
-  outline: 3px solid var(--amarillo-normal);
-  outline-offset: 2px;
-}
-
 .button--secondary:focus {
   outline: 3px solid var(--gris-normal);
   outline-offset: 2px;
@@ -3895,26 +3756,6 @@ Son estados que se activan automáticamente por el navegador cuando el usuario i
   transform: translateY(-2px);
 }
 
-// Hover en el botón de cerrar
-.alert__cerrar:hover {
-  opacity: 1;
-  background: rgba(0, 0, 0, 0.1);
-  transform: rotate(90deg);
-}
-
-// Focus para accesibilidad
-.alert__cerrar:focus {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
-}
-
-// Archivo: cofira/src/app/components/layaout/header/header.scss
-// Hover en los enlaces de navegación
-.menu-movil__link:hover {
-  background: var(--gris-normal-hover);
-  border-left-color: var(--amarillo-normal);
-  transform: translateX(0.5rem);
-}
 
 // Hover en la hamburguesa
 .hamburguesa:hover .hamburguesa__linea {
@@ -5087,39 +4928,6 @@ Claro ejemplo de colores configurados en el fichero _variables.scss:
   --amarillo-darker: #594A00;
 
 
-  
-  --blanco-normal: #f5f5f5;
-  --blanco-normal-hover: #dddddd;
-  --blanco-normal-active: #c4c4c4;
-  --blanco-dark: #b8b8b8;
-  --blanco-dark-hover: #939393;
-  --blanco-dark-active: #6e6e6e;
-
-
-  
-  --gris-normal: #3f454c;
-  --gris-normal-hover: #393e44;
-  --gris-normal-active: #32373d;
-  --gris-dark: #2f3439;
-  --gris-dark-hover: #26292e;
-  --gris-dark-active: #1c1f22;
-  --gris-light: #b8b8b8;
-
-
-  
-  --verde-normal: #22c55e;
-  --verde-normal-hover: #16a34a;
-  --verde-normal-active: #15803d;
-  --verde-dark: #166534;
-  --verde-light: #86efac;
-
-
-  
-  --rojo-normal: #ef4444;
-  --rojo-normal-hover: #dc2626;
-  --rojo-normal-active: #b91c1c;
-  --rojo-dark: #991b1b;
-  --rojo-light: #fca5a5;
 ```
 
 ### Variables del tema oscuro
