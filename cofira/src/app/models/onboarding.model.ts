@@ -16,10 +16,9 @@ export type ActivityLevel =
   | 'EXTRA_ACTIVE';
 
 export type WorkType =
-  | 'SEDENTARY'
-  | 'LIGHTLY_ACTIVE'
-  | 'MODERATELY_ACTIVE'
-  | 'VERY_ACTIVE';
+  | 'OFFICE_DESK'
+  | 'STANDING'
+  | 'PHYSICAL_LABOR';
 
 export type FitnessLevel =
   | 'SEDENTARY'

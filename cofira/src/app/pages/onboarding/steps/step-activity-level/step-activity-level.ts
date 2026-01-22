@@ -41,11 +41,11 @@ export class StepActivityLevel {
 
   private derivarTipoTrabajo(nivelActividad: ActivityLevel): WorkType {
     const mapeoNivelATrabajo: Record<ActivityLevel, WorkType> = {
-      'SEDENTARY': 'SEDENTARY',
-      'LIGHTLY_ACTIVE': 'LIGHTLY_ACTIVE',
-      'MODERATELY_ACTIVE': 'MODERATELY_ACTIVE',
-      'VERY_ACTIVE': 'VERY_ACTIVE',
-      'EXTRA_ACTIVE': 'VERY_ACTIVE'
+      'SEDENTARY': 'OFFICE_DESK',
+      'LIGHTLY_ACTIVE': 'OFFICE_DESK',
+      'MODERATELY_ACTIVE': 'STANDING',
+      'VERY_ACTIVE': 'PHYSICAL_LABOR',
+      'EXTRA_ACTIVE': 'PHYSICAL_LABOR'
     };
     return mapeoNivelATrabajo[nivelActividad];
   }

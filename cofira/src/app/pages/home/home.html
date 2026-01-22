@@ -1,17 +1,40 @@
 <section class="home__seccion-intro">
 
-  <h1 class="home__seccion-intro__titulo">Tu entrenamiento, nutrición y progreso en un solo lugar</h1>
+  <picture class="home__seccion-intro__contenedor-imagen">
+    <source
+      media="(max-width: 48rem)"
+      srcset="/assets/images/heroFitnessNutricion-640w.webp"
+      type="image/webp">
+    <source
+      media="(max-width: 56.25rem)"
+      srcset="/assets/images/heroFitnessNutricion-1024w.webp"
+      type="image/webp">
+    <source
+      srcset="/assets/images/heroFitnessNutricion-1920w.webp"
+      type="image/webp">
+    <img
+      alt="Persona entrenando con pesas y preparando comida saludable"
+      class="home__seccion-intro__imagen"
+      fetchpriority="high"
+      height="600"
+      src="/assets/images/heroFitnessNutricion.jpg"
+      width="1920">
+  </picture>
 
-  <h2 class="home__seccion-intro__subtitulo">Inscríbete hoy y empieza tu cambio</h2>
+  <article class="home__seccion-intro__contenido">
+    <h1 class="home__seccion-intro__titulo">Tu entrenamiento, nutrición y progreso en un solo lugar</h1>
 
-  <article class="boton__primary">
-    <app-button class="boton__primary--inscripcion home__seccion-intro__boton" enlace="/onboarding" tamanio="grande" variante="primario">
-      Inscríbete
-    </app-button>
+    <h2 class="home__seccion-intro__subtitulo">Inscríbete hoy y empieza tu cambio</h2>
 
-    <app-button (click)="navegarAPlanes()" class="boton__primary--planes home__seccion-intro__boton" tamanio="grande" variante="secundario">
-      Ver planes
-    </app-button>
+    <article class="boton__primary">
+      <app-button class="boton__primary--inscripcion home__seccion-intro__boton" enlace="/onboarding" tamanio="grande" variante="primario">
+        Inscríbete
+      </app-button>
+
+      <app-button (click)="navegarAPlanes()" class="boton__primary--planes home__seccion-intro__boton" tamanio="grande" variante="secundario">
+        Ver planes
+      </app-button>
+    </article>
   </article>
 
 </section>

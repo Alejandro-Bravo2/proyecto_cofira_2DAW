@@ -109,7 +109,7 @@ export class StepRegister {
     if (!tieneDataRequerida) {
       this.estaCargando.set(false);
       this.onboardingService.clearProgress();
-      this.router.navigate(['/home']);
+      this.router.navigate(['']);
       return;
     }
 
@@ -117,13 +117,16 @@ export class StepRegister {
       next: () => {
         this.estaCargando.set(false);
         this.onboardingService.clearProgress();
-        this.router.navigate(['/home']);
+        this.router.navigate(['']);
       },
-      error: () => {
+      error: (error) => {
         this.estaCargando.set(false);
         this.onboardingService.clearProgress();
+        console.error('Error al completar onboarding:', error);
+        const mensajeError = error?.error?.message || error?.error?.errors || 'Error desconocido';
+        console.error('Detalles del error:', mensajeError);
         this.notificacionService.error('No se pudieron guardar todos los datos, pero tu cuenta ha sido creada.');
-        this.router.navigate(['/home']);
+        this.router.navigate(['']);
       }
     });
   }
