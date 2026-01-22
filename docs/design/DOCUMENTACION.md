@@ -379,16 +379,12 @@ a lo más específico y concreto, evitando problemas de especificidad y facilita
   - He usado estos breakpoints porque son los más comunes entre dispositivos y permiten que el diseño sea responsive en la mayoría de dispositivos.
 
   ```css
-  // Mobile Grande / Phablets
   $breakpoint-xs: 640px;
 
-  // Tablets
   $breakpoint-s: 768px;
 
-  // Desktop / Tablets (Landscape)
   $breakpoint-M: 1024px;
 
-  // Desktop Grande
   $breakpoint-L: 1280px;
   ```
 
@@ -405,26 +401,17 @@ Cree estos mixins para facilitar la creación de layouts flexibles y reutilizabl
     align-items: center;
 }
 
-// Distribuir espacio entre elementos
-
 @mixin flex-between {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-// Tipografia para textos (p, span, etc)
-// Usa --font-primary (Montserrat)
-// Uso: @include tipografia-texto;
 @mixin tipografia-texto {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-regular);
     line-height: var(--line-height-normal);
 }
-
-
-
-// Mixin para labels de formulario
 
 @mixin form-label {
     color: var(--blanco-normal);
@@ -951,7 +938,6 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
 **Ejemplos de Blocks en mi proyecto:**
 
 ```scss
-// El bloque .button es el contenedor principal del botón
 .button {
   display: inline-flex;
   align-items: center;
@@ -967,7 +953,6 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
   white-space: nowrap;
 }
 
-// El bloque .alert es el contenedor principal de las alertas
 .alert {
   display: flex;
   align-items: center;
@@ -983,7 +968,6 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
   animation: alertSlideIn var(--duration-base) ease;
 }
 
-// El bloque .hamburguesa es el botón del menú móvil
 .hamburguesa {
   display: none;
   flex-direction: column;
@@ -1001,7 +985,6 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
   }
 }
 
-// El bloque .menu-movil es el contenedor del menú en móviles
 .menu-movil {
   position: fixed;
   top: 0;
@@ -1013,7 +996,6 @@ Un **Block** es el contenedor principal del componente, es la raíz de la que cu
   pointer-events: none;
 }
 
-// El bloque .buscador es el contenedor del campo de búsqueda
 .buscador {
   position: relative;
   display: flex;
@@ -1090,7 +1072,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
 **Ejemplos de Modificadores en mi proyecto:**
 
 ```scss
-// Modificadores de VARIANTE (tipo) para el bloque .button
 .button--primary {
   background: var(--button-yellow);
   color: var(--negro-normal);
@@ -1115,7 +1096,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   box-shadow: var(--shadow-md);
 }
 
-// Modificadores de TAMAÑO para el bloque .button
 .button--sm {
   padding: var(--spacing-size-xss) var(--spacing-size-s);
   font-size: var(--font-size-sm);
@@ -1137,7 +1117,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   min-width: var(--width-estandar);
 }
 
-// Modificadores de TIPO para el bloque .alert
 .alert--success {
   background-color: var(--amarillo-normal);
   border-left-color: var(--amarillo-dark);
@@ -1162,7 +1141,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   color: var(--blanco-normal);
 }
 
-// Modificadores de VARIANTE para el bloque .pricing-card
 .pricing-card--info {
   background: var(--gris-normal);
 }
@@ -1172,7 +1150,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   box-shadow: var(--shadow-2xl);
 }
 
-// Modificadores de TAMAÑO para el bloque .pricing-card
 .pricing-card--sm {
   max-width: 21rem;
   padding: var(--spacing-size-l) var(--spacing-size-s);
@@ -1187,7 +1164,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   padding: var(--spacing-size-3xl) var(--spacing-size-xl);
 }
 
-// Modificadores de ESTADO para el bloque .menu-movil
 .menu-movil--abierto {
   visibility: visible;
   pointer-events: auto;
@@ -1201,7 +1177,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   transform: translateX(0);
 }
 
-// Modificadores de ESTADO para el bloque .hamburguesa
 .hamburguesa--abierto .hamburguesa__linea:nth-child(1) {
   transform: rotate(45deg) translateY(10px);
 }
@@ -1215,7 +1190,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   transform: rotate(-45deg) translateY(-10px);
 }
 
-// Modificadores de ELEMENTO (variante de un element)
 .menu-movil__link--perfil {
   margin-top: auto;
   border-top: 1px solid var(--gris-normal);
@@ -1233,7 +1207,6 @@ Un **Modifier** es un modificador del bloque o elemento que cambia su apariencia
   border-radius: var(--radius-xss);
 }
 
-// Modificadores de visibilidad para desktop/móvil
 .enlaces--desktop {
   @include responsive-down("md") {
     display: none;
@@ -1258,7 +1231,6 @@ He decidido usar **modificadores BEM** para estados visuales que son parte del d
 Son estados que forman parte del diseño visual del componente y se activan mediante JavaScript (añadiendo/quitando clases).
 
 ```scss
-// Estado deshabilitado como modificador (parte del diseño)
 .button:disabled,
 .button--disabled {
   opacity: 0.5;
@@ -1267,13 +1239,11 @@ Son estados que forman parte del diseño visual del componente y se activan medi
   box-shadow: none;
 }
 
-// Estado abierto del menú móvil (parte del diseño)
 .menu-movil--abierto {
   visibility: visible;
   pointer-events: auto;
 }
 
-// Estado abierto de la hamburguesa (cambia visualmente las líneas)
 .hamburguesa--abierto .hamburguesa__linea:nth-child(1) {
   transform: rotate(45deg) translateY(10px);
 }
@@ -1303,26 +1273,22 @@ Son estados que se activan automáticamente por el navegador cuando el usuario i
   outline-offset: 2px;
 }
 
-// Hover en la alerta completa
 .alert:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
 }
 
-// Hover en el botón de cerrar
 .alert__cerrar:hover {
   opacity: 1;
   background: rgba(0, 0, 0, 0.1);
   transform: rotate(90deg);
 }
 
-// Focus para accesibilidad
 .alert__cerrar:focus {
   outline: 2px solid currentColor;
   outline-offset: 2px;
 }
 
-// Hover en los enlaces de navegación
 .menu-movil__link:hover {
   background: var(--gris-normal-hover);
   border-left-color: var(--amarillo-normal);
@@ -1330,7 +1296,6 @@ Son estados que se activan automáticamente por el navegador cuando el usuario i
 }
 
 
-// Focus para accesibilidad
 .hamburguesa:focus {
   outline: 2px solid var(--amarillo-normal);
   outline-offset: 2px;
@@ -1587,8 +1552,6 @@ He creado dos mixins en `cofira/src/styles/01-tools/_mixins.scss` para facilitar
 
 ```scss
 
-// Mixin para media queries responsive (desktop-first: max-width)
-// Este es el mixin principal que uso en todo el proyecto
 @mixin responsive-down($breakpoint) {
   @if $breakpoint == "xs" {
     @media (max-width: $breakpoint-xs) {
@@ -1623,13 +1586,11 @@ He creado dos mixins en `cofira/src/styles/01-tools/_mixins.scss` para facilitar
 ```scss
 
 .gimnasio {
-  // Estilos base para desktop
   @include flex-columna(var(--spacing-size-xxl));
   align-items: center;
   width: 100%;
   padding: var(--spacing-size-xxxl) 0;
 
-  // Adaptación para tablets y móviles (900px o menos)
   @include responsive-down("md") {
     gap: var(--spacing-size-l);
     padding: var(--spacing-size-xl) var(--spacing-size-m);
@@ -1639,12 +1600,10 @@ He creado dos mixins en `cofira/src/styles/01-tools/_mixins.scss` para facilitar
 .gimnasio__titulo {
   @include titulo-seccion(var(--negro-normal), var(--font-size-4xl), 0);
 
-  // Tablets grandes (1024px o menos)
   @include responsive-down("lg") {
     font-size: var(--font-size-3xl);
   }
 
-  // Tablets y móviles (900px o menos)
   @include responsive-down("md") {
     font-size: var(--font-size-2xl);
   }
@@ -1683,7 +1642,6 @@ Las pricing cards se muestran en la página home dentro de un grid de 3 columnas
   border-radius: var(--radius-xs);
   box-shadow: var(--shadow-xl);
 
-  // Habilitar Container Queries en este componente
   container-type: inline-size;
   container-name: pricing-card;
 }
@@ -1693,12 +1651,10 @@ Las pricing cards se muestran en la página home dentro de un grid de 3 columnas
 
 ```scss
 
-// Wrapper que habilita Container Queries para las pricing-cards
 .home__card-wrapper {
   width: 100%;
   max-width: 28rem;
 
-  // Habilitar Container Queries
   container-type: inline-size;
   container-name: card-container;
 
@@ -1708,7 +1664,6 @@ Las pricing cards se muestran en la página home dentro de un grid de 3 columnas
   }
 }
 
-// Container Query: Card compacta (contenedor menor a 640px)
 @container card-container (max-width: 640px) {
   .pricing-card__titulo {
     margin-bottom: var(--spacing-size-l);
@@ -1728,7 +1683,6 @@ Las pricing cards se muestran en la página home dentro de un grid de 3 columnas
   }
 }
 
-// Container Query: Card expandida (contenedor mayor a 400px)
 @container card-container (min-width: 400px) {
   .pricing-card__titulo {
     font-size: var(--font-size-5xl);
@@ -1779,38 +1733,32 @@ A continuación muestro cómo se adaptan las principales secciones de la aplicac
   height: 4.5rem;
   padding: 0 6rem;
 
-  // Laptop (1200px o menos)
   @include responsive-down("xl") {
     padding: 0 3rem;
   }
 
-  // Tablet grande (1024px o menos)
   @include responsive-down("lg") {
     padding: 0 2rem;
   }
 
-  // Tablet/Móvil (900px o menos)
   @include responsive-down("md") {
     height: 4rem;
     padding: 0 1.5rem;
   }
 }
 
-// Navegación desktop: se oculta en móvil
 .header__nav--desktop {
   @include responsive-down("md") {
     display: none;
   }
 }
 
-// Botones de acción desktop: se ocultan en móvil
 .header__actions--desktop {
   @include responsive-down("md") {
     display: none;
   }
 }
 
-// Hamburguesa: solo visible en móvil
 .header__hamburguesa {
   display: none;
 
@@ -2190,16 +2138,13 @@ Para imágenes de fondo en CSS, he utilizado `image-set()` que permite ofrecer W
 
 ```scss
 .home__seccion-intro {
-  // Fallback para navegadores sin soporte image-set
   background-image: url('/assets/images/heroFitnessNutricion.jpg');
 
-  // Desktop: imagen grande (1920px)
   background-image: image-set(
     url('/assets/images/heroFitnessNutricion-1920w.webp') type('image/webp'),
     url('/assets/images/heroFitnessNutricion.jpg') type('image/jpeg')
   );
 
-  // Tablet: imagen mediana (1024px)
   @include responsive-down('lg') {
     background-image: image-set(
       url('/assets/images/heroFitnessNutricion-1024w.webp') type('image/webp'),
@@ -2207,7 +2152,6 @@ Para imágenes de fondo en CSS, he utilizado `image-set()` que permite ofrecer W
     );
   }
 
-  // Móvil: imagen pequeña (640px)
   @include responsive-down('sm') {
     background-image: image-set(
       url('/assets/images/heroFitnessNutricion-640w.webp') type('image/webp'),
