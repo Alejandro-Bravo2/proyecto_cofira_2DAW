@@ -2888,7 +2888,7 @@ Prueba de que funciona en producción:
 ![prueba](../assets/prueba_COFIRA_FUNCIONA.png)
 
 Prueba de testing usando las chrome devtool:
-![img.png](../assets/pruebas__testing.png)
+![alt text](../assets/pruebaPerformance.png)
 
 ---
 
