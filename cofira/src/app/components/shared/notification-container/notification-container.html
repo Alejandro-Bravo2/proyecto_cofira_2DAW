@@ -1,0 +1,11 @@
+<aside class="notification-container">
+  @for (notificacion of notificaciones(); track notificacion.id) {
+    <app-notification
+      [tipo]="obtenerTipoNotificacion(notificacion.tipo)"
+      [mensaje]="notificacion.mensaje"
+      [duracion]="0"
+      [puedeCerrarse]="true"
+      (alCerrar)="cerrarNotificacion(notificacion.id)">
+    </app-notification>
+  }
+</aside>

@@ -9,13 +9,18 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--negro-puro-transparente-050);
   z-index: var(--z-overlay);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--spacing-size-m);
+  box-sizing: border-box;
   animation: aparecer-gradual var(--duration-base) ease;
+
+  @include responsive-down('sm') {
+    padding: var(--spacing-size-m);
+  }
 }
 
 @keyframes aparecer-gradual {
@@ -32,6 +37,7 @@
 .modal {
   position: relative;
   width: 100%;
+  max-width: calc(100% - var(--spacing-size-m) * 2);
   background-color: var(--blanco-normal);
   border-radius: var(--radius-xss);
   box-shadow: var(--shadow-2xl);
@@ -43,6 +49,10 @@
 
   @include responsive-down('md') {
     max-height: 95vh;
+  }
+
+  @include responsive-down('sm') {
+    max-width: calc(100vw - var(--spacing-size-m) * 2);
   }
 }
 

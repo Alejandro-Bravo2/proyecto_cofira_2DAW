@@ -52,7 +52,7 @@
 }
 
 .alerta__cerrar:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--negro-puro-transparente-010);
 }
 
 .alerta__cerrar:focus {
@@ -189,7 +189,7 @@
 }
 
 .notificacion__cerrar:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--negro-puro-transparente-010);
 }
 
 .notificacion__cerrar:focus {

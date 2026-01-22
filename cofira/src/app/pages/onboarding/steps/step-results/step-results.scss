@@ -23,7 +23,7 @@
 .step-results__loading-text {
   font-family: var(--font-primary);
   font-size: var(--font-size-lg);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
 }
 
 .step-results__error-text {
@@ -42,7 +42,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   margin: 0 0 var(--spacing-size-s) 0;
 
   @include responsive-down('md') {
@@ -54,7 +54,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-regular);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -89,7 +89,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -98,7 +98,7 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   line-height: 1;
 }
 
@@ -110,7 +110,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-medium);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
 }
 
 .step-results__grid {
@@ -131,7 +131,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   margin: 0 0 var(--spacing-size-m) 0;
   text-align: center;
 }
@@ -155,33 +155,33 @@
 }
 
 .step-results__macro--protein {
-  background-color: rgba(239, 68, 68, 0.1);
+  background-color: var(--rojo-normal-transparente-010);
 }
 
 .step-results__macro--carbs {
-  background-color: rgba(59, 130, 246, 0.1);
+  background-color: var(--azul-normal-transparente-010);
 }
 
 .step-results__macro--fat {
-  background-color: rgba(234, 179, 8, 0.1);
+  background-color: var(--dorado-normal-transparente-010);
 }
 
 .step-results__macro--fiber {
-  background-color: rgba(34, 197, 94, 0.1);
+  background-color: var(--verde-normal-transparente-010);
 }
 
 .step-results__macro-label {
   font-family: var(--font-primary);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
 }
 
 .step-results__macro-value {
   font-family: var(--font-secondary);
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  color: var(--negro-normal);
+  color: var(--text-primary);
 }
 
 

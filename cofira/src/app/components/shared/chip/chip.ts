@@ -12,8 +12,14 @@ export class Chip {
   readonly seleccionado = input<boolean>(false);
 
   @Output() eliminar = new EventEmitter<void>();
+  @Output() seleccionar = new EventEmitter<void>();
 
   onRemove(): void {
     this.eliminar.emit();
+  }
+
+  onSeleccionarConTeclado(evento: Event): void {
+    evento.preventDefault();
+    this.seleccionar.emit();
   }
 }

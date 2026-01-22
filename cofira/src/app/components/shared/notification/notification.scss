@@ -15,7 +15,7 @@
   padding: var(--spacing-size-s) var(--spacing-size-m);
   border-radius: var(--radius-xss);
   border-left: 0.25rem solid;
-  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.25rem 1rem var(--negro-puro-transparente-025);
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   animation: notificacion-deslizar-derecha var(--duration-base) ease;
@@ -30,7 +30,7 @@
 }
 
 .notification:hover {
-  box-shadow: 0 0.375rem 1.25rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.375rem 1.25rem var(--negro-puro-transparente-025);
 }
 
 
@@ -86,7 +86,7 @@
 
 .notification__cerrar:hover {
   opacity: 1;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--negro-puro-transparente-010);
   transform: rotate(90deg);
 }
 

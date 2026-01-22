@@ -4,8 +4,8 @@
 
 .gimnasio {
   --contenido-max-width: 970px;
-  --color-exito: #4caf50;
-  --color-error: #f44336;
+  --color-exito: var(--verde-normal);
+  --color-error: var(--rojo-normal);
   --btn-accion-size: 1.875rem;
   --btn-nav-size: 1.5rem;
 }
@@ -37,7 +37,7 @@
 
 .gimnasio__titulo {
   @include titulo-seccion(var(--negro-normal), var(--font-size-4xl), 0);
-  text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  text-shadow: 0 0.25rem 0.25rem var(--negro-puro-transparente-025);
 
   @include responsive-down('lg') {
     font-size: var(--font-size-3xl);
@@ -71,14 +71,14 @@
   @include boton-icono(var(--btn-nav-size));
   color: var(--negro-normal);
 
-  &:hover {
-    color: var(--amarillo-dark);
-  }
-
   @include responsive-down('xs') {
     width: 1.25rem;
     height: 1.25rem;
   }
+}
+
+.gimnasio__dias-btn:hover {
+  color: var(--amarillo-dark);
 }
 
 .gimnasio__dia {
@@ -86,27 +86,27 @@
   font-weight: var(--font-weight-medium);
   color: var(--negro-normal);
   margin: 0;
+}
 
-  &--adyacente {
+.gimnasio__dia--adyacente {
+  font-size: var(--font-size-xl);
+  opacity: 0.6;
+
+  @include responsive-down('md') {
+    display: none;
+  }
+}
+
+.gimnasio__dia--actual {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+
+  @include responsive-down('md') {
     font-size: var(--font-size-xl);
-    opacity: 0.6;
-
-    @include responsive-down('md') {
-      display: none;
-    }
   }
 
-  &--actual {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-semibold);
-
-    @include responsive-down('md') {
-      font-size: var(--font-size-xl);
-    }
-
-    @include responsive-down('xs') {
-      font-size: var(--font-size-lg);
-    }
+  @include responsive-down('xs') {
+    font-size: var(--font-size-lg);
   }
 }
 
@@ -237,12 +237,12 @@
 
 .gimnasio__btn-accion--ok {
   background-color: var(--color-exito);
-  color: white;
+  color: var(--blanco-normal);
 }
 
 .gimnasio__btn-accion--no {
   background-color: var(--color-error);
-  color: white;
+  color: var(--blanco-normal);
 }
 
 .gimnasio__btn-accion-svg {
@@ -485,15 +485,6 @@
   resize: vertical;
   box-sizing: border-box;
 
-  &::placeholder {
-    color: var(--negro-normal);
-    opacity: 0.6;
-  }
-
-  &:focus {
-    border-color: var(--amarillo-normal);
-  }
-
   @include responsive-down('md') {
     min-height: 6.25rem;
   }
@@ -502,6 +493,15 @@
     min-height: 5rem;
     font-size: var(--font-size-sm);
   }
+}
+
+.gimnasio__feedback-textarea::placeholder {
+  color: var(--negro-normal);
+  opacity: 0.6;
+}
+
+.gimnasio__feedback-textarea:focus {
+  border-color: var(--amarillo-normal);
 }
 
 .gimnasio__feedback-acciones {
@@ -564,10 +564,24 @@
     0 100%
   );
 
+  #gimnasio__progreso-boton ::ng-deep .boton {
+    max-width: 70%;
+  }
+
+  @include responsive-down('lg') {
+    #gimnasio__progreso-boton ::ng-deep .boton {
+      max-width: 60%;
+    }
+  }
+
   @include responsive-down('md') {
     width: 100%;
     padding: var(--spacing-size-l) var(--spacing-size-m);
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+    #gimnasio__progreso-boton ::ng-deep .boton {
+      max-width: 100%;
+    }
   }
 
   @include responsive-down('xs') {
@@ -575,11 +589,12 @@
     padding: var(--spacing-size-m) var(--spacing-size-s);
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
 
-    #gimnasio__progreso-boton ::ng-deep .button {
+    #gimnasio__progreso-boton ::ng-deep .boton {
       padding: var(--spacing-size-xss);
       font-size: var(--font-size-md);
       min-width: 12rem;
       height: 2rem;
+      max-width: 100%;
     }
   }
 }

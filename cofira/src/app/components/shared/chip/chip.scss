@@ -14,7 +14,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   cursor: pointer;
   transition: all var(--duration-fast) ease;
 }
@@ -27,7 +27,7 @@
 .chip--selected {
   background-color: var(--amarillo-normal);
   border-color: var(--amarillo-dark);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   font-weight: var(--font-weight-semibold);
 }
 
@@ -52,7 +52,7 @@
 
 .chip__btn-eliminar:hover {
   background-color: var(--amarillo-normal);
-  color: var(--negro-normal);
+  color: var(--text-primary);
 }
 
 .chip__btn-eliminar:focus {

@@ -2,7 +2,7 @@ import {Component, EventEmitter, inject, Output, signal} from '@angular/core';
 import {OnboardingService} from '../../../../services/onboarding.service';
 import {Button} from '../../../../components/shared/button/button';
 import {OptionCard} from '../../../../components/shared/option-card/option-card';
-import type {ActivityLevel} from '../../../../models/onboarding.model';
+import type {ActivityLevel, WorkType} from '../../../../models/onboarding.model';
 import {ACTIVITY_LEVEL_OPTIONS} from '../../../../models/onboarding.model';
 
 @Component({
@@ -30,11 +30,24 @@ export class StepActivityLevel {
   }
 
   onContinue(): void {
-    const level = this.selectedLevel();
-    if (level) {
-      this.onboardingService.setField('activityLevel', level);
+    const nivelActividad = this.selectedLevel();
+    if (nivelActividad) {
+      this.onboardingService.setField('activityLevel', nivelActividad);
+      const tipoTrabajo = this.derivarTipoTrabajo(nivelActividad);
+      this.onboardingService.setField('workType', tipoTrabajo);
       this.continuar.emit();
     }
+  }
+
+  private derivarTipoTrabajo(nivelActividad: ActivityLevel): WorkType {
+    const mapeoNivelATrabajo: Record<ActivityLevel, WorkType> = {
+      'SEDENTARY': 'OFFICE_DESK',
+      'LIGHTLY_ACTIVE': 'OFFICE_DESK',
+      'MODERATELY_ACTIVE': 'STANDING',
+      'VERY_ACTIVE': 'PHYSICAL_LABOR',
+      'EXTRA_ACTIVE': 'PHYSICAL_LABOR'
+    };
+    return mapeoNivelATrabajo[nivelActividad];
   }
 
   canContinue(): boolean {

@@ -48,6 +48,7 @@
 
 
 .home__seccion-intro {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -56,34 +57,35 @@
   width: 100vw;
   min-height: 600px;
   padding: var(--spacing-size-xxxl) var(--spacing-size-xl);
-  background-image: url('/assets/images/heroFitnessNutricion.jpg');
-  background-image: image-set(
-    url('/assets/images/heroFitnessNutricion-1920w.webp') type('image/webp'),
-    url('/assets/images/heroFitnessNutricion.jpg') type('image/jpeg')
-  );
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  overflow: hidden;
+}
 
-  @include responsive-down('lg') {
-    background-image: url('/assets/images/heroFitnessNutricion.jpg');
-    background-image: image-set(
-      url('/assets/images/heroFitnessNutricion-1024w.webp') type('image/webp'),
-      url('/assets/images/heroFitnessNutricion.jpg') type('image/jpeg')
-    );
-  }
+.home__seccion-intro__contenedor-imagen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
 
-  @include responsive-down('sm') {
-    background-image: url('/assets/images/heroFitnessNutricion.jpg');
-    background-image: image-set(
-      url('/assets/images/heroFitnessNutricion-640w.webp') type('image/webp'),
-      url('/assets/images/heroFitnessNutricion.jpg') type('image/jpeg')
-    );
-  }
+.home__seccion-intro__imagen {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.home__seccion-intro__contenido {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
 }
 
 .home__seccion-intro__titulo {
+  -webkit-text-stroke: 2px var(--gris-normal);
   max-width: var(--home-cta-ancho-maximo, 28rem);
   margin: 0 0 2rem 0;
   font-family: var(--font-secondary);
@@ -93,13 +95,15 @@
 }
 
 .home__seccion-intro__subtitulo {
+  -webkit-text-stroke: 2px var(--gris-normal);
   max-width: var(--home-subtitulo-ancho-maximo, 25rem);
   font-size: var(--font-size-2xl);
   color: var(--blanco-normal);
 }
 
 .home__seccion-intro__boton {
-  z-index: 1;
+  position: relative;
+  z-index: 0;
 }
 
 
@@ -465,8 +469,9 @@
   container-name: card-container;
 
   @include responsive-down('md') {
-    max-width: 100%;
-    justify-self: center;
+    width: 100%;
+    max-width: 21rem;
+    margin: 0 auto;
   }
 }
 
@@ -689,7 +694,7 @@
 @include responsive-down('xxs') {
   .home__seccion-intro {
     padding: var(--spacing-size-l) var(--spacing-size-m);
-    min-height: 747px;
+    min-height: 500px;
     padding-top: 15rem;
     justify-content: start;
     gap: 0rem;

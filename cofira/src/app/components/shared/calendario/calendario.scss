@@ -29,11 +29,11 @@
   cursor: pointer;
   color: var(--gris-normal);
   transition: all var(--duration-fast) ease;
+}
 
-  &:hover {
-    background-color: var(--blanco-normal-hover);
-    color: var(--negro-normal);
-  }
+.calendario__btn:hover {
+  background-color: var(--blanco-normal-hover);
+  color: var(--negro-normal);
 }
 
 .calendario__btn-svg {
@@ -56,7 +56,7 @@
 .calendario__dias-semana {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: var(--spacing-size-xs);
+  gap: var(--spacing-size-xss);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -64,11 +64,11 @@
 
 .calendario__dia-semana {
   font-family: var(--font-primary);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   color: var(--gris-normal);
   text-align: center;
-  padding: var(--spacing-size-xxs);
+  padding: var(--spacing-size-xss);
 }
 
 
@@ -76,7 +76,7 @@
 .calendario__grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: var(--spacing-size-xs);
+  gap: var(--spacing-size-xss);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -100,24 +100,24 @@
   border-radius: var(--radius-xss);
   cursor: pointer;
   transition: all var(--duration-fast) ease;
+}
 
-  &:hover:not(.calendario__dia--vacio) {
-    background-color: var(--blanco-normal-hover);
-    border-color: var(--amarillo-normal);
-  }
+.calendario__dia:hover:not(.calendario__dia--vacio) {
+  background-color: var(--blanco-normal-hover);
+  border-color: var(--amarillo-normal);
+}
 
-  &--vacio {
-    cursor: default;
-  }
+.calendario__dia--vacio {
+  cursor: default;
+}
 
-  &--seleccionado {
-    background-color: var(--amarillo-normal);
-    border-color: var(--amarillo-dark);
-    color: var(--negro-normal);
-    font-weight: var(--font-weight-bold);
+.calendario__dia--seleccionado {
+  background-color: var(--amarillo-normal);
+  border-color: var(--amarillo-dark);
+  color: var(--negro-normal);
+  font-weight: var(--font-weight-bold);
+}
 
-    &:hover {
-      background-color: var(--amarillo-normal-hover);
-    }
-  }
+.calendario__dia--seleccionado:hover {
+  background-color: var(--amarillo-normal-hover);
 }

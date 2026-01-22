@@ -56,7 +56,7 @@
 .sobre-nosotros__hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
+  background: linear-gradient(135deg, var(--negro-puro-transparente-070) 0%, var(--negro-puro-transparente-050) 100%);
 }
 
 .sobre-nosotros__hero-contenido {
@@ -87,7 +87,7 @@
 .sobre-nosotros__hero-subtitulo {
   font-family: var(--font-primary);
   font-size: var(--font-size-xl);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--blanco-puro-transparente-090);
   margin: 0;
   line-height: 1.6;
 
@@ -266,7 +266,7 @@
   display: block;
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--blanco-puro-transparente-090);
   margin-top: var(--spacing-size-xs);
 }
 

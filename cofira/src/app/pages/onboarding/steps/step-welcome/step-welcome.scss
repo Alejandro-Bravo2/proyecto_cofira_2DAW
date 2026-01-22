@@ -164,9 +164,9 @@
   text-decoration: none;
   font-weight: var(--font-weight-medium);
   transition: color 0.2s ease;
+}
 
-  &:hover {
-    color: var(--amarillo-dark);
-    text-decoration: underline;
-  }
+.welcome__login-link:hover {
+  color: var(--amarillo-dark);
+  text-decoration: underline;
 }

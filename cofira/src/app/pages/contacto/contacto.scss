@@ -111,15 +111,15 @@
   border-radius: var(--radius-xss);
   padding: var(--spacing-size-m);
   transition: border-color var(--duration-fast) ease;
+}
 
-  &::placeholder {
-    color: var(--gris-normal);
-  }
+.contacto__input::placeholder {
+  color: var(--gris-normal);
+}
 
-  &:focus {
-    outline: none;
-    border-color: var(--amarillo-normal);
-  }
+.contacto__input:focus {
+  outline: none;
+  border-color: var(--amarillo-normal);
 }
 
 .contacto__select {
@@ -149,11 +149,11 @@
   cursor: pointer;
   transition: background-color var(--duration-fast) ease, transform var(--duration-fast) ease;
   margin-top: var(--spacing-size-s);
+}
 
-  &:hover {
-    background-color: var(--amarillo-dark);
-    transform: translateY(-2px);
-  }
+.contacto__btn-enviar:hover {
+  background-color: var(--amarillo-dark);
+  transform: translateY(-2px);
 }
 
 
@@ -215,15 +215,15 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   color: var(--negro-normal);
+}
 
-  &--enlace {
-    text-decoration: none;
-    transition: color var(--duration-fast) ease;
+.contacto__info-valor--enlace {
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
 
-    &:hover {
-      color: var(--amarillo-dark);
-    }
-  }
+.contacto__info-valor--enlace:hover {
+  color: var(--amarillo-dark);
 }
 
 

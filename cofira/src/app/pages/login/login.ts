@@ -3,6 +3,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {Router, RouterLink} from '@angular/router';
 
 import {AuthService} from '../../services/auth.service';
+import {NotificacionService} from '../../services/notificacion.service';
 import {Button} from '../../components/shared/button/button';
 
 @Component({
@@ -18,9 +19,9 @@ export class Login {
     password: new FormControl('', [Validators.required])
   });
   readonly estaCargando = signal(false);
-  readonly error = signal<string | null>(null);
   readonly mostrarContrasena = signal(false);
   private readonly authService = inject(AuthService);
+  private readonly notificacionService = inject(NotificacionService);
   private readonly router = inject(Router);
 
   alternarContrasena(): void {
@@ -33,7 +34,6 @@ export class Login {
     }
 
     this.estaCargando.set(true);
-    this.error.set(null);
 
     const valorFormulario = this.formularioLogin.value;
 
@@ -43,11 +43,12 @@ export class Login {
     }).subscribe({
       next: () => {
         this.estaCargando.set(false);
+        this.notificacionService.exito('¡Sesión iniciada correctamente!');
         this.router.navigate(['/']);
       },
-      error: (err) => {
+      error: () => {
         this.estaCargando.set(false);
-        this.error.set(err.error?.message || 'Credenciales incorrectas');
+        this.notificacionService.error('No se pudo iniciar sesión. Verifica tus credenciales.');
       }
     });
   }

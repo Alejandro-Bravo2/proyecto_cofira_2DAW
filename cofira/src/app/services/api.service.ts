@@ -2,11 +2,13 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
+import {environment} from '../../environments/environment';
+
 
 @Injectable({providedIn: 'root'})
 export class ApiService {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = 'http://localhost:3000/api';
+  private readonly baseUrl = environment.apiUrl;
 
   get<T>(endpoint: string, params?: Record<string, string>): Observable<T> {
     let httpParams = new HttpParams();

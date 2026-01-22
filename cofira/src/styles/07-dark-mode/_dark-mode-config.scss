@@ -1,363 +1,361 @@
-@import '../00-settings/css-variables';
-
 [data-theme="dark"] {
 
 
-  --oscuro-pagina-fondo: #1e2227;
+  --oscuro-pagina-fondo: var(--oscuro-fondo-oscuro);
 
 
-  --oscuro-superficie-fondo: #282d33;
+  --oscuro-superficie-fondo: var(--oscuro-fondo-medio);
 
 
-  --oscuro-input-fondo: #1e2227;
+  --oscuro-input-fondo: var(--oscuro-fondo-oscuro);
 
 
-  --oscuro-hover-fondo: #323840;
+  --oscuro-hover-fondo: var(--oscuro-fondo-medio-claro);
 
 
-  --oscuro-seccion-alt-fondo: #1a1e22;
+  --oscuro-seccion-alt-fondo: var(--oscuro-fondo-muy-oscuro);
 
 
-  --oscuro-texto-principal: #f0f2f5;
+  --oscuro-texto-principal: var(--oscuro-texto-claro);
 
 
-  --oscuro-texto-secundario: #a8b3c4;
+  --oscuro-texto-secundario: var(--oscuro-texto-medio);
 
 
-  --oscuro-texto-suave: #6b7a90;
+  --oscuro-texto-suave: var(--oscuro-texto-apagado);
 
 
-  --oscuro-texto-enlace: #f0f2f5;
+  --oscuro-texto-enlace: var(--oscuro-texto-claro);
 
 
-  --oscuro-texto-enlace-hover: #{$amarillo-normal};
+  --oscuro-texto-enlace-hover: var(--amarillo-normal);
 
 
-  --oscuro-borde-color: #363c45;
+  --oscuro-borde-color: var(--oscuro-borde-principal);
 
 
-  --oscuro-borde-suave: #2a3038;
+  --oscuro-borde-suave: var(--oscuro-borde-suave);
 
 
-  --oscuro-borde-foco: #{$amarillo-normal};
+  --oscuro-borde-foco: var(--amarillo-normal);
 
 
-  --oscuro-sombra-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
-  --oscuro-sombra-sm: 0 2px 4px rgba(0, 0, 0, 0.35);
-  --oscuro-sombra-md: 0 4px 8px rgba(0, 0, 0, 0.4);
-  --oscuro-sombra-lg: 0 8px 16px rgba(0, 0, 0, 0.45);
-  --oscuro-sombra-xl: 0 12px 24px rgba(0, 0, 0, 0.5);
+  --oscuro-sombra-xs: 0 1px 2px var(--negro-puro-transparente-030);
+  --oscuro-sombra-sm: 0 2px 4px var(--negro-puro-transparente-035);
+  --oscuro-sombra-md: 0 4px 8px var(--negro-puro-transparente-040);
+  --oscuro-sombra-lg: 0 8px 16px var(--negro-puro-transparente-045);
+  --oscuro-sombra-xl: 0 12px 24px var(--negro-puro-transparente-050);
 
 
-  --oscuro-acento-primario: #ffda2d;
-  --oscuro-acento-hover: #e6c426;
+  --oscuro-acento-primario: var(--oscuro-acento-amarillo);
+  --oscuro-acento-hover: var(--oscuro-acento-amarillo-hover);
 
 
-  --oscuro-cabecera-fondo: #{$gris-dark};
+  --oscuro-cabecera-fondo: var(--gris-dark);
 
 
-  --oscuro-cabecera-borde: #{$gris-normal};
+  --oscuro-cabecera-borde: var(--gris-normal);
 
 
-  --oscuro-cabecera-enlace: #{$blanco-normal};
+  --oscuro-cabecera-enlace: var(--blanco-normal);
 
 
-  --oscuro-cabecera-enlace-hover: #{$amarillo-normal};
+  --oscuro-cabecera-enlace-hover: var(--amarillo-normal);
 
 
-  --oscuro-cabecera-buscador-fondo: #{$gris-normal};
+  --oscuro-cabecera-buscador-fondo: var(--gris-normal);
 
 
-  --oscuro-cabecera-buscador-texto: #{$blanco-normal};
+  --oscuro-cabecera-buscador-texto: var(--blanco-normal);
 
 
-  --oscuro-cabecera-buscador-placeholder: #{$blanco-dark};
+  --oscuro-cabecera-buscador-placeholder: var(--blanco-dark);
 
 
-  --oscuro-cabecera-buscador-icono: #{$blanco-dark};
+  --oscuro-cabecera-buscador-icono: var(--blanco-dark);
 
 
-  --oscuro-cabecera-boton-primario-fondo: #{$amarillo-normal};
+  --oscuro-cabecera-boton-primario-fondo: var(--amarillo-normal);
 
 
-  --oscuro-cabecera-boton-primario-texto: #{$negro-normal};
+  --oscuro-cabecera-boton-primario-texto: var(--negro-normal);
 
 
-  --oscuro-cabecera-boton-primario-hover: #{$amarillo-dark};
+  --oscuro-cabecera-boton-primario-hover: var(--amarillo-dark);
 
 
   --oscuro-cabecera-boton-secundario-fondo: transparent;
 
 
-  --oscuro-cabecera-boton-secundario-borde: #{$blanco-dark};
+  --oscuro-cabecera-boton-secundario-borde: var(--blanco-dark);
 
 
-  --oscuro-cabecera-boton-secundario-texto: #{$blanco-normal};
+  --oscuro-cabecera-boton-secundario-texto: var(--blanco-normal);
 
 
-  --oscuro-cabecera-boton-secundario-hover-fondo: #{$gris-normal};
+  --oscuro-cabecera-boton-secundario-hover-fondo: var(--gris-normal);
 
 
-  --oscuro-cabecera-boton-secundario-hover-color: #{$amarillo-normal};
+  --oscuro-cabecera-boton-secundario-hover-color: var(--amarillo-normal);
 
 
-  --oscuro-menu-fondo: #{$gris-dark};
+  --oscuro-menu-fondo: var(--gris-dark);
 
 
-  --oscuro-menu-borde: #{$gris-normal};
+  --oscuro-menu-borde: var(--gris-normal);
 
 
-  --oscuro-menu-sombra: rgba(0, 0, 0, 0.4);
+  --oscuro-menu-sombra: var(--negro-puro-transparente-040);
 
 
-  --oscuro-menu-item-texto: #{$blanco-normal};
+  --oscuro-menu-item-texto: var(--blanco-normal);
 
 
-  --oscuro-menu-item-hover-fondo: #{$gris-normal};
+  --oscuro-menu-item-hover-fondo: var(--gris-normal);
 
 
-  --oscuro-menu-item-hover-texto: #{$amarillo-normal};
+  --oscuro-menu-item-hover-texto: var(--amarillo-normal);
 
 
-  --oscuro-menu-icono: #{$blanco-dark};
+  --oscuro-menu-icono: var(--blanco-dark);
 
 
-  --oscuro-menu-movil-fondo: #{$negro-dark};
+  --oscuro-menu-movil-fondo: var(--negro-dark);
 
 
-  --oscuro-menu-movil-cabecera-fondo: #{$gris-dark};
+  --oscuro-menu-movil-cabecera-fondo: var(--gris-dark);
 
 
-  --oscuro-menu-movil-enlace-hover: #{$gris-dark};
+  --oscuro-menu-movil-enlace-hover: var(--gris-dark);
 
 
-  --oscuro-hamburguesa-color: #{$blanco-normal};
+  --oscuro-hamburguesa-color: var(--blanco-normal);
 
 
-  --oscuro-hamburguesa-hover: #{$amarillo-normal};
+  --oscuro-hamburguesa-hover: var(--amarillo-normal);
 
 
-  --oscuro-pie-fondo: #{$negro-dark};
+  --oscuro-pie-fondo: var(--negro-dark);
 
 
-  --oscuro-pie-borde: #{$gris-normal};
+  --oscuro-pie-borde: var(--gris-normal);
 
 
-  --oscuro-pie-texto: #{$blanco-dark};
+  --oscuro-pie-texto: var(--blanco-dark);
 
 
-  --oscuro-pie-enlace-hover: #{$amarillo-normal};
+  --oscuro-pie-enlace-hover: var(--amarillo-normal);
 
 
-  --oscuro-pie-social-fondo: #{$gris-dark};
+  --oscuro-pie-social-fondo: var(--gris-dark);
 
 
-  --oscuro-pie-social-icono: #{$blanco-normal};
+  --oscuro-pie-social-icono: var(--blanco-normal);
 
 
-  --oscuro-pie-social-hover-fondo: #{$gris-normal};
+  --oscuro-pie-social-hover-fondo: var(--gris-normal);
 
 
-  --oscuro-pie-social-hover-icono: #{$amarillo-normal};
+  --oscuro-pie-social-hover-icono: var(--amarillo-normal);
 
 
-  --oscuro-tarjeta-fondo: #{$gris-normal};
+  --oscuro-tarjeta-fondo: var(--gris-normal);
 
 
-  --oscuro-tarjeta-borde: #{$gris-normal-hover};
+  --oscuro-tarjeta-borde: var(--gris-normal-hover);
 
 
-  --oscuro-tarjeta-titulo: #{$blanco-normal};
+  --oscuro-tarjeta-titulo: var(--blanco-normal);
 
 
-  --oscuro-tarjeta-contenido: #{$blanco-dark};
+  --oscuro-tarjeta-contenido: var(--blanco-dark);
 
 
-  --oscuro-tarjeta-pie-borde: #{$gris-dark};
+  --oscuro-tarjeta-pie-borde: var(--gris-dark);
 
 
-  --oscuro-tarjeta-destacada-borde: #{$amarillo-normal};
+  --oscuro-tarjeta-destacada-borde: var(--amarillo-normal);
 
 
-  --oscuro-formulario-etiqueta: #{$blanco-normal};
+  --oscuro-formulario-etiqueta: var(--blanco-normal);
 
 
-  --oscuro-formulario-campo-fondo: #{$gris-dark};
+  --oscuro-formulario-campo-fondo: var(--gris-dark);
 
 
-  --oscuro-formulario-campo-texto: #{$blanco-normal};
+  --oscuro-formulario-campo-texto: var(--blanco-normal);
 
 
-  --oscuro-formulario-campo-borde: #{$gris-normal};
+  --oscuro-formulario-campo-borde: var(--gris-normal);
 
 
-  --oscuro-formulario-campo-foco-borde: #{$amarillo-normal};
+  --oscuro-formulario-campo-foco-borde: var(--amarillo-normal);
 
 
-  --oscuro-formulario-campo-foco-fondo: #{$gris-dark-hover};
+  --oscuro-formulario-campo-foco-fondo: var(--gris-dark-hover);
 
 
-  --oscuro-formulario-ayuda-texto: #{$blanco-dark-hover};
+  --oscuro-formulario-ayuda-texto: var(--blanco-dark-hover);
 
 
-  --oscuro-formulario-placeholder: #{$blanco-dark-hover};
+  --oscuro-formulario-placeholder: var(--blanco-dark-hover);
 
 
-  --oscuro-input-campo-fondo: #{$gris-dark};
+  --oscuro-input-campo-fondo: var(--gris-dark);
 
 
-  --oscuro-input-campo-texto: #{$blanco-normal};
+  --oscuro-input-campo-texto: var(--blanco-normal);
 
 
-  --oscuro-input-campo-borde: #{$gris-normal};
+  --oscuro-input-campo-borde: var(--gris-normal);
 
 
-  --oscuro-input-campo-foco: #{$amarillo-normal};
+  --oscuro-input-campo-foco: var(--amarillo-normal);
 
 
-  --oscuro-alerta-borde: #{$gris-normal};
+  --oscuro-alerta-borde: var(--gris-normal);
 
 
-  --oscuro-alerta-info-fondo: #{$gris-normal};
+  --oscuro-alerta-info-fondo: var(--gris-normal);
 
 
-  --oscuro-alerta-info-borde: #{$gris-normal-hover};
+  --oscuro-alerta-info-borde: var(--gris-normal-hover);
 
 
-  --oscuro-guia-fondo: #{$gris-dark};
+  --oscuro-guia-fondo: var(--gris-dark);
 
 
-  --oscuro-guia-titulo: #{$amarillo-normal};
+  --oscuro-guia-titulo: var(--amarillo-normal);
 
 
-  --oscuro-guia-subtitulo: #{$blanco-normal};
+  --oscuro-guia-subtitulo: var(--blanco-normal);
 
 
-  --oscuro-guia-descripcion: #{$blanco-dark};
+  --oscuro-guia-descripcion: var(--blanco-dark);
 
 
-  --oscuro-guia-demo-fondo: #{$gris-normal};
+  --oscuro-guia-demo-fondo: var(--gris-normal);
 
 
-  --oscuro-guia-demo-borde: #{$gris-normal-hover};
+  --oscuro-guia-demo-borde: var(--gris-normal-hover);
 
 
-  --oscuro-guia-nota-fondo: #{$gris-normal};
+  --oscuro-guia-nota-fondo: var(--gris-normal);
 
 
-  --oscuro-guia-nota-borde: #{$amarillo-normal};
+  --oscuro-guia-nota-borde: var(--amarillo-normal);
 
 
-  --oscuro-legal-fondo: #{$gris-dark};
+  --oscuro-legal-fondo: var(--gris-dark);
 
 
-  --oscuro-legal-contenido-fondo: #{$gris-normal};
+  --oscuro-legal-contenido-fondo: var(--gris-normal);
 
 
-  --oscuro-legal-contenido-sombra: rgba(0, 0, 0, 0.3);
+  --oscuro-legal-contenido-sombra: var(--negro-puro-transparente-030);
 
 
-  --oscuro-legal-titulo: #{$blanco-normal};
+  --oscuro-legal-titulo: var(--blanco-normal);
 
 
-  --oscuro-legal-fecha: #{$blanco-dark};
+  --oscuro-legal-fecha: var(--blanco-dark);
 
 
-  --oscuro-legal-subtitulo: #{$blanco-normal};
+  --oscuro-legal-subtitulo: var(--blanco-normal);
 
 
-  --oscuro-legal-texto: #{$blanco-dark};
+  --oscuro-legal-texto: var(--blanco-dark);
 
 
-  --oscuro-legal-borde: #{$gris-normal-hover};
+  --oscuro-legal-borde: var(--gris-normal-hover);
 
 
-  --oscuro-legal-enlace: #{$amarillo-normal};
+  --oscuro-legal-enlace: var(--amarillo-normal);
 
 
-  --oscuro-legal-enlace-hover: #{$amarillo-dark};
+  --oscuro-legal-enlace-hover: var(--amarillo-dark);
 
 
-  --oscuro-pagina-fondo-principal: #{$gris-dark-active};
+  --oscuro-pagina-fondo-principal: var(--gris-dark-active);
 
 
-  --oscuro-pagina-card-fondo: #{$gris-normal};
+  --oscuro-pagina-card-fondo: var(--gris-normal);
 
 
-  --oscuro-pagina-titulo: #{$blanco-normal};
+  --oscuro-pagina-titulo: var(--blanco-normal);
 
 
-  --oscuro-pagina-texto: #{$blanco-dark};
+  --oscuro-pagina-texto: var(--blanco-dark);
 
 
-  --oscuro-pagina-borde: #{$gris-normal-hover};
+  --oscuro-pagina-borde: var(--gris-normal-hover);
 
 
-  --oscuro-info-header-fondo: #{$negro-normal};
+  --oscuro-info-header-fondo: var(--negro-normal);
 
 
-  --oscuro-info-seccion-alt-fondo: #{$gris-dark};
+  --oscuro-info-seccion-alt-fondo: var(--gris-dark);
 
 
-  --oscuro-info-card-fondo: #{$gris-normal};
+  --oscuro-info-card-fondo: var(--gris-normal);
 
 
-  --oscuro-info-titulo: #{$blanco-normal};
+  --oscuro-info-titulo: var(--blanco-normal);
 
 
-  --oscuro-info-texto: #{$blanco-dark};
+  --oscuro-info-texto: var(--blanco-dark);
 
 
-  --oscuro-info-borde: #{$gris-normal-hover};
+  --oscuro-info-borde: var(--gris-normal-hover);
 
 
-  --oscuro-home-hero-fondo: linear-gradient(135deg, #1e2227 0%, #282d33 100%);
-  --oscuro-home-seccion-alt: #1a1e22;
-  --oscuro-home-feature-fondo: #282d33;
-  --oscuro-home-feature-icono-fondo: #323840;
-  --oscuro-home-testimonial-fondo: #282d33;
-  --oscuro-home-cta-fondo: linear-gradient(135deg, #2a2510 0%, #1e2227 100%);
-  --oscuro-home-stat-fondo: #323840;
+  --oscuro-home-hero-fondo: linear-gradient(135deg, var(--oscuro-fondo-oscuro) 0%, var(--oscuro-fondo-medio) 100%);
+  --oscuro-home-seccion-alt: var(--oscuro-fondo-muy-oscuro);
+  --oscuro-home-feature-fondo: var(--oscuro-fondo-medio);
+  --oscuro-home-feature-icono-fondo: var(--oscuro-fondo-medio-claro);
+  --oscuro-home-testimonial-fondo: var(--oscuro-fondo-medio);
+  --oscuro-home-cta-fondo: linear-gradient(135deg, var(--oscuro-cta-gradiente-inicio) 0%, var(--oscuro-fondo-oscuro) 100%);
+  --oscuro-home-stat-fondo: var(--oscuro-fondo-medio-claro);
 
 
-  --oscuro-onboarding-fondo: #1e2227;
-  --oscuro-onboarding-card-fondo: #282d33;
-  --oscuro-onboarding-progress-bg: #363c45;
-  --oscuro-onboarding-progress-fill: #{$amarillo-normal};
-  --oscuro-onboarding-option-fondo: #282d33;
-  --oscuro-onboarding-option-hover: #323840;
-  --oscuro-onboarding-option-selected: #2a2510;
-  --oscuro-onboarding-option-borde-selected: #{$amarillo-normal};
-  --oscuro-onboarding-input-fondo: #1e2227;
-  --oscuro-onboarding-input-borde: #363c45;
+  --oscuro-onboarding-fondo: var(--oscuro-fondo-oscuro);
+  --oscuro-onboarding-card-fondo: var(--oscuro-fondo-medio);
+  --oscuro-onboarding-progress-bg: var(--oscuro-borde-principal);
+  --oscuro-onboarding-progress-fill: var(--amarillo-normal);
+  --oscuro-onboarding-option-fondo: var(--oscuro-fondo-medio);
+  --oscuro-onboarding-optihover: var(--oscuro-fondo-medio-claro);
+  --oscuro-onboarding-option-selected: var(--oscuro-cta-gradiente-inicio);
+  --oscuro-onboarding-option-borde-selected: var(--amarillo-normal);
+  --oscuro-onboarding-input-fondo: var(--oscuro-fondo-oscuro);
+  --oscuro-onboarding-input-borde: var(--oscuro-borde-principal);
 
 
-  --oscuro-gimnasio-fondo: #1e2227;
-  --oscuro-gimnasio-sidebar-fondo: #282d33;
-  --oscuro-gimnasio-ejercicio-fondo: #282d33;
-  --oscuro-gimnasio-ejercicio-hover: #323840;
-  --oscuro-gimnasio-categoria-fondo: #363c45;
-  --oscuro-gimnasio-badge-fondo: #323840;
-  --oscuro-gimnasio-detalle-fondo: #282d33;
-  --oscuro-gimnasio-video-overlay: rgba(0, 0, 0, 0.6);
+  --oscuro-gimnasio-fondo: var(--oscuro-fondo-oscuro);
+  --oscuro-gimnasio-sidebar-fondo: var(--oscuro-fondo-medio);
+  --oscuro-gimnasio-ejercicio-fondo: var(--oscuro-fondo-medio);
+  --oscuro-gimnasio-ejercicio-hover: var(--oscuro-fondo-medio-claro);
+  --oscuro-gimnasio-categoria-fondo: var(--oscuro-borde-principal);
+  --oscuro-gimnasio-badge-fondo: var(--oscuro-fondo-medio-claro);
+  --oscuro-gimnasio-detalle-fondo: var(--oscuro-fondo-medio);
+  --oscuro-gimnasio-video-overlay: var(--negro-puro-transparente-060);
 
 
-  --oscuro-alimentacion-fondo: #1e2227;
-  --oscuro-alimentacion-receta-fondo: #282d33;
-  --oscuro-alimentacion-nutrientes-fondo: #323840;
-  --oscuro-alimentacion-ingrediente-fondo: #282d33;
-  --oscuro-alimentacion-tab-fondo: #363c45;
-  --oscuro-alimentacion-tab-activa: #{$amarillo-normal};
-  --oscuro-alimentacion-macro-fondo: #323840;
-  --oscuro-alimentacion-calorias-ring: #{$amarillo-normal};
+  --oscuro-alimentacion-fondo: var(--oscuro-fondo-oscuro);
+  --oscuro-alimentacion-receta-fondo: var(--oscuro-fondo-medio);
+  --oscuro-alimentacion-nutrientes-fondo: var(--oscuro-fondo-medio-claro);
+  --oscuro-alimentacion-ingrediente-fondo: var(--oscuro-fondo-medio);
+  --oscuro-alimentacion-tab-fondo: var(--oscuro-borde-principal);
+  --oscuro-alimentacion-tab-activa: var(--amarillo-normal);
+  --oscuro-alimentacion-macro-fondo: var(--oscuro-fondo-medio-claro);
+  --oscuro-alimentacion-calorias-ring: var(--amarillo-normal);
 
 
-  --oscuro-seguimiento-fondo: #1e2227;
-  --oscuro-seguimiento-card-fondo: #282d33;
-  --oscuro-seguimiento-grafico-linea: #{$amarillo-normal};
-  --oscuro-seguimiento-grafico-grid: #363c45;
-  --oscuro-seguimiento-stat-fondo: #323840;
-  --oscuro-seguimiento-progress-bg: #363c45;
-  --oscuro-seguimiento-progress-fill: #{$amarillo-normal};
-  --oscuro-seguimiento-chart-bg: #282d33;
+  --oscuro-seguimiento-fondo: var(--oscuro-fondo-oscuro);
+  --oscuro-seguimiento-card-fondo: var(--oscuro-fondo-medio);
+  --oscuro-seguimiento-grafico-linea: var(--amarillo-normal);
+  --oscuro-seguimiento-grafico-grid: var(--oscuro-borde-principal);
+  --oscuro-seguimiento-stat-fondo: var(--oscuro-fondo-medio-claro);
+  --oscuro-seguimiento-progress-bg: var(--oscuro-borde-principal);
+  --oscuro-seguimiento-progress-fill: var(--amarillo-normal);
+  --oscuro-seguimiento-chart-bg: var(--oscuro-fondo-medio);
 }

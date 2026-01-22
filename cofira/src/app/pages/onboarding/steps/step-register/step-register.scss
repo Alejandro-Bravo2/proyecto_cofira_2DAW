@@ -30,7 +30,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: var(--font-secondary);
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.02em;
 
@@ -102,52 +102,52 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   padding: var(--spacing-size-m) var(--spacing-size-m) var(--spacing-size-m) 3rem;
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
-  color: var(--negro-normal);
+  color: var(--text-primary);
   background-color: var(--bg-surface);
   border: 1.5px solid transparent;
   border-radius: var(--radius-lg);
   transition: all $register-transition;
+}
 
-  &::placeholder {
-    color: var(--gris-normal);
-    font-weight: var(--font-weight-regular);
-  }
+.step-register__input::placeholder {
+  color: var(--gris-normal);
+  font-weight: var(--font-weight-regular);
+}
 
-  &:hover {
-    background-color: var(--blanco);
-    border-color: var(--gris-light);
-  }
+.step-register__input:hover {
+  background-color: var(--bg-input);
+  border-color: var(--gris-light);
+}
 
-  &:focus {
-    outline: none;
-    background-color: var(--blanco);
-    border-color: var(--amarillo-normal);
-    box-shadow: 0 0 0 4px rgba(255, 211, 0, 0.12);
-  }
+.step-register__input:focus {
+  outline: none;
+  background-color: var(--bg-input);
+  border-color: var(--amarillo-normal);
+  box-shadow: 0 0 0 4px var(--amarillo-normal-transparente-012);
+}
 
-  &--password {
-    padding-right: 3rem;
-  }
+.step-register__input--password {
+  padding-right: 3rem;
+}
 
-  &--error {
-    border-color: var(--rojo-normal);
-    background-color: rgba(239, 68, 68, 0.03);
+.step-register__input--error {
+  border-color: var(--rojo-normal);
+  background-color: var(--rojo-normal-transparente-003);
+}
 
-    &:focus {
-      border-color: var(--rojo-normal);
-      box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.12);
-    }
-  }
+.step-register__input--error:focus {
+  border-color: var(--rojo-normal);
+  box-shadow: 0 0 0 4px var(--rojo-normal-transparente-012);
+}
 
-  &--valid {
-    border-color: var(--verde-normal);
-    background-color: rgba(34, 197, 94, 0.03);
+.step-register__input--valid {
+  border-color: var(--verde-normal);
+  background-color: var(--verde-normal-transparente-003);
+}
 
-    &:focus {
-      border-color: var(--verde-normal);
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.12);
-    }
-  }
+.step-register__input--valid:focus {
+  border-color: var(--verde-normal);
+  box-shadow: 0 0 0 4px var(--verde-normal-transparente-012);
 }
 
 
@@ -187,7 +187,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   align-items: flex-start;
   gap: var(--spacing-size-xs);
   padding: var(--spacing-size-xs) var(--spacing-size-s);
-  background-color: rgba(239, 68, 68, 0.06);
+  background-color: var(--rojo-normal-transparente-006);
   border-radius: var(--radius-md);
   animation: aparecer-gradual 0.2s ease-out;
 }
@@ -233,7 +233,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .step-register__toggle-password:hover {
-  color: var(--negro-normal);
+  color: var(--text-primary);
   background-color: var(--bg-surface);
 }
 
@@ -314,7 +314,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   align-items: center;
   gap: var(--spacing-size-s);
   padding: var(--spacing-size-m);
-  background-color: rgba(239, 68, 68, 0.06);
+  background-color: var(--rojo-normal-transparente-006);
   border-radius: var(--radius-lg);
 }
 
@@ -357,16 +357,16 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   transition: color $register-transition;
   margin-left: var(--spacing-size-xs);
+}
 
-  &:hover {
-    color: var(--negro-normal);
-  }
+.step-register__link:hover {
+  color: var(--text-primary);
+}
 
-  &:focus {
-    outline: 2px solid var(--amarillo-normal);
-    outline-offset: 2px;
-    border-radius: var(--radius-sm);
-  }
+.step-register__link:focus {
+  outline: 2px solid var(--amarillo-normal);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
 }
 
 

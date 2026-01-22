@@ -76,7 +76,7 @@
 .form__input:focus {
   outline: none;
   background-color: var(--blanco-normal);
-  box-shadow: 0 0 0 0.1875rem rgba(255, 211, 0, 0.3);
+  box-shadow: 0 0 0 0.1875rem var(--amarillo-normal-transparente-030);
 }
 
 .form__input:hover:not(:focus) {
@@ -91,7 +91,7 @@
 
 .form__input--error:focus {
   border-color: var(--button-red);
-  box-shadow: 0 0 0 0.1875rem rgba(255, 52, 52, 0.2);
+  box-shadow: 0 0 0 0.1875rem var(--rojo-normal-transparente-020);
 }
 
 

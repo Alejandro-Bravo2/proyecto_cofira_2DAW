@@ -16,11 +16,11 @@
   }
 
   :has(app-onboarding) app-header .cabecera {
-    background: transparent;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: none;
-    border-bottom: none;
+    background: var(--negro-normal);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 1px 0 var(--gris-dark);
+    border-bottom: 1px solid var(--amarillo-dark-hover);
   }
 
   app-onboarding .onboarding__header {
@@ -37,7 +37,7 @@
   }
 
   app-onboarding .onboarding__btn-back:hover {
-    background-color: rgba(255, 211, 0, 0.25);
+    background-color: var(--amarillo-normal-transparente-025);
     color: var(--amarillo-normal);
     transform: scale(1.05);
   }
@@ -83,6 +83,20 @@
   app-header .cabecera__perfil:hover {
     background: var(--amarillo-normal-transparente-010);
     border-color: var(--oscuro-cabecera-enlace-hover);
+  }
+
+  app-header .cabecera__perfil:focus {
+    outline: none;
+    outline-width: 0;
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
+  }
+
+  app-header .cabecera__perfil:focus-visible {
+    outline: none;
+    outline-width: 0;
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
   }
 
   app-header .cabecera__perfil-icono {
@@ -226,6 +240,22 @@
 
   app-header .menu-movil__cerrar-sesion:hover {
     background: var(--rojo-normal-transparente-010);
+  }
+
+  app-header .menu-movil__tema-btn {
+    background: transparent;
+    border-color: var(--blanco-normal-transparente-015);
+    color: var(--blanco-normal);
+  }
+
+  app-header .menu-movil__tema-btn:hover {
+    background: var(--amarillo-normal-transparente-010);
+    border-color: var(--amarillo-normal);
+    color: var(--amarillo-normal);
+  }
+
+  app-header .menu-movil__tema-btn-icono {
+    color: var(--amarillo-normal);
   }
 
 
@@ -638,11 +668,11 @@
   .blog__categoria-btn {
     color: var(--oscuro-info-texto);
     border-color: var(--oscuro-info-borde);
+  }
 
-    &:hover {
-      color: var(--oscuro-info-titulo);
-      border-color: var(--oscuro-info-titulo);
-    }
+  .blog__categoria-btn:hover {
+    color: var(--oscuro-info-titulo);
+    border-color: var(--oscuro-info-titulo);
   }
 
 
@@ -710,14 +740,18 @@
     background-color: var(--oscuro-input-fondo);
     color: var(--oscuro-texto-principal);
     border-color: var(--oscuro-info-borde);
+  }
 
-    &::placeholder {
-      color: var(--oscuro-texto-secundario);
-    }
+  .contacto__input::placeholder,
+  .contacto__select::placeholder,
+  .contacto__textarea::placeholder {
+    color: var(--oscuro-texto-secundario);
+  }
 
-    &:focus {
-      border-color: var(--amarillo-normal);
-    }
+  .contacto__input:focus,
+  .contacto__select:focus,
+  .contacto__textarea:focus {
+    border-color: var(--amarillo-normal);
   }
 
 
@@ -731,10 +765,10 @@
 
   .contacto__info-valor--enlace {
     color: var(--amarillo-normal);
+  }
 
-    &:hover {
-      color: var(--amarillo-dark);
-    }
+  .contacto__info-valor--enlace:hover {
+    color: var(--amarillo-dark);
   }
 
   .contacto__info-icono {
@@ -1007,7 +1041,7 @@
       var(--amarillo-normal) 50%,
       var(--amarillo-dark) 100%
     );
-    box-shadow: 0 0 8px rgba(255, 211, 0, 0.4);
+    box-shadow: 0 0 8px var(--amarillo-normal-transparente-040);
   }
 
 
@@ -1272,10 +1306,10 @@
     background-color: var(--oscuro-input-fondo);
     color: var(--oscuro-texto-principal);
     border-color: var(--oscuro-borde-color);
+  }
 
-    &::placeholder {
-      color: var(--oscuro-texto-suave);
-    }
+  app-gimnasio .gimnasio__feedback-textarea::placeholder {
+    color: var(--oscuro-texto-suave);
   }
 
 
@@ -1433,11 +1467,11 @@
   app-alimentacion .alimentacion__btn-info {
     background-color: var(--oscuro-hover-fondo);
     color: var(--blanco-normal);
+  }
 
-    &:hover {
-      background-color: var(--amarillo-normal);
-      color: var(--negro-normal);
-    }
+  app-alimentacion .alimentacion__btn-info:hover {
+    background-color: var(--amarillo-normal);
+    color: var(--negro-normal);
   }
 
 
@@ -1447,10 +1481,10 @@
 
   app-alimentacion .alimentacion__btn-fecha {
     color: var(--oscuro-texto-secundario);
+  }
 
-    &:hover {
-      color: var(--oscuro-texto-principal);
-    }
+  app-alimentacion .alimentacion__btn-fecha:hover {
+    color: var(--oscuro-texto-principal);
   }
 
   app-alimentacion .alimentacion__fecha-texto {
@@ -1640,6 +1674,94 @@
   }
 
 
+  app-modal .modal {
+    background-color: var(--gris-dark);
+    box-shadow: 0 8px 32px var(--negro-puro-transparente-050);
+  }
+
+  app-modal .modal__header {
+    border-bottom-color: var(--gris-normal);
+  }
+
+  app-modal .modal__titulo {
+    color: var(--blanco-normal);
+  }
+
+  app-modal .modal__cerrar {
+    color: var(--blanco-dark);
+  }
+
+  app-modal .modal__cerrar:hover {
+    background-color: var(--gris-normal);
+    color: var(--blanco-normal);
+  }
+
+
+  app-calendario .calendario__btn {
+    color: var(--blanco-normal);
+  }
+
+  app-calendario .calendario__btn:hover {
+    background-color: var(--gris-normal);
+    color: var(--blanco-normal);
+  }
+
+  app-calendario .calendario__mes-anio {
+    color: var(--blanco-normal);
+  }
+
+  app-calendario .calendario__dia-semana {
+    color: var(--gris-light);
+  }
+
+  app-calendario .calendario__dia {
+    color: var(--blanco-normal);
+  }
+
+  app-calendario .calendario__dia:hover:not(.calendario__dia--vacio) {
+    background-color: var(--gris-normal);
+    border-color: var(--amarillo-normal);
+  }
+
+  app-calendario .calendario__dia--seleccionado {
+    background-color: var(--amarillo-normal);
+    border-color: var(--amarillo-dark);
+    color: var(--negro-normal);
+  }
+
+  app-calendario .calendario__dia--seleccionado:hover {
+    background-color: var(--amarillo-normal-hover);
+    color: var(--blanco-normal);
+  }
+
+
+  app-ingredientes .ingredientes__info {
+    background-color: var(--gris-normal);
+  }
+
+  app-ingredientes .ingredientes__calorias {
+    color: var(--blanco-normal);
+  }
+
+  app-ingredientes .ingredientes__subtitulo {
+    color: var(--blanco-normal);
+  }
+
+  app-ingredientes .ingredientes__item {
+    background-color: var(--gris-normal);
+  }
+
+  app-ingredientes .ingredientes__nombre {
+    color: var(--blanco-normal);
+  }
+
+  app-ingredientes .ingredientes__cantidad {
+    color: var(--gris-light);
+  }
+
+  app-ingredientes .ingredientes__calorias-item {
+    color: var(--amarillo-normal);
+  }
 
 
   ::-webkit-scrollbar {
@@ -1654,10 +1776,10 @@
   ::-webkit-scrollbar-thumb {
     background: var(--oscuro-borde-color);
     border-radius: 5px;
+  }
 
-    &:hover {
-      background: var(--oscuro-texto-suave);
-    }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--oscuro-texto-suave);
   }
 
 
@@ -1665,6 +1787,7 @@
     scrollbar-width: thin;
     scrollbar-color: var(--oscuro-borde-color) var(--oscuro-pagina-fondo);
   }
+
 }
 
 

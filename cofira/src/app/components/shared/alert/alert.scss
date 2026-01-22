@@ -3,7 +3,7 @@
 .alert {
   --alert-icono-color: currentColor;
   --alert-cerrar-color: currentColor;
-  --alert-cerrar-hover-fondo: rgba(0, 0, 0, 0.1);
+  --alert-cerrar-hover-fondo: var(--negro-puro-transparente-010);
 
   display: flex;
   align-items: center;
@@ -12,7 +12,7 @@
   margin-bottom: var(--spacing-size-s);
   border-radius: var(--radius-xss);
   border-left: 0.25rem solid;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.125rem 0.5rem var(--negro-puro-transparente-010);
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   transition: all var(--duration-base) ease;
@@ -20,7 +20,7 @@
 }
 
 .alert:hover {
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0.25rem 0.75rem var(--negro-puro-transparente-015);
   transform: translateY(-0.125rem);
 }
 
@@ -94,7 +94,7 @@
 .alert--error {
   --alert-icono-color: var(--blanco-normal);
   --alert-cerrar-color: var(--blanco-normal);
-  --alert-cerrar-hover-fondo: rgba(255, 255, 255, 0.2);
+  --alert-cerrar-hover-fondo: var(--blanco-puro-transparente-020);
 
   background-color: var(--button-red);
   border-left-color: var(--button-red-hover);
@@ -113,7 +113,7 @@
 .alert--info {
   --alert-icono-color: var(--blanco-normal);
   --alert-cerrar-color: var(--blanco-normal);
-  --alert-cerrar-hover-fondo: rgba(255, 255, 255, 0.2);
+  --alert-cerrar-hover-fondo: var(--blanco-puro-transparente-020);
 
   background-color: var(--gris-normal);
   border-left-color: var(--gris-dark);

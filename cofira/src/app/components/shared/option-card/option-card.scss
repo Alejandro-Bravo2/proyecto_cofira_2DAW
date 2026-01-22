@@ -2,7 +2,7 @@
 @import '../../../../styles/01-tools/mixins';
 
 .option-card {
-  --card-titulo-color: var(--negro-normal);
+  --card-titulo-color: var(--text-primary);
   --card-icono-fondo: var(--amarillo-light);
   --card-icono-color: var(--amarillo-dark);
 
@@ -31,7 +31,7 @@
 }
 
 .option-card--seleccionado {
-  --card-titulo-color: var(--negro-normal);
+  --card-titulo-color: var(--text-primary);
   --card-icono-fondo: var(--amarillo-normal);
   --card-icono-color: var(--negro-normal);
 
@@ -78,7 +78,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
   margin: 0;
   line-height: var(--line-height-normal);
 }
@@ -98,13 +98,13 @@
   opacity: 0;
   transform: scale(0.8);
   transition: all var(--duration-fast) ease;
+}
 
-  &--visible {
-    opacity: 1;
-    transform: scale(1);
-    background-color: var(--amarillo-normal);
-    border-color: var(--amarillo-normal);
-  }
+.option-card__check--visible {
+  opacity: 1;
+  transform: scale(1);
+  background-color: var(--amarillo-normal);
+  border-color: var(--amarillo-normal);
 }
 
 .option-card__check-svg {

@@ -32,7 +32,7 @@
   font-weight: var(--font-weight-bold);
   color: var(--negro-normal);
   text-align: center;
-  text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  text-shadow: 0 0.25rem 0.25rem var(--negro-puro-transparente-025);
   margin: 0;
 
   @include responsive-down('lg') {
@@ -69,10 +69,10 @@
   cursor: pointer;
   color: var(--gris-normal);
   transition: color var(--duration-fast) ease;
+}
 
-  &:hover {
-    color: var(--amarillo-dark);
-  }
+.alimentacion__btn-fecha:hover {
+  color: var(--amarillo-dark);
 }
 
 .alimentacion__btn-fecha-svg {
@@ -89,10 +89,10 @@
   border: none;
   cursor: pointer;
   transition: opacity var(--duration-fast) ease;
+}
 
-  &:hover {
-    opacity: 0.8;
-  }
+.alimentacion__selector-fecha:hover {
+  opacity: 0.8;
 }
 
 .alimentacion__icono-calendario {
@@ -265,14 +265,14 @@
   border-radius: 50%;
   cursor: pointer;
   color: var(--blanco-normal);
-  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0.25rem 0.25rem var(--negro-puro-transparente-025);
   transition: background-color var(--duration-fast) ease,
   transform var(--duration-fast) ease;
+}
 
-  &:hover {
-    background-color: var(--gris-normal-hover);
-    transform: scale(1.1);
-  }
+.alimentacion__btn-info:hover {
+  background-color: var(--gris-normal-hover);
+  transform: scale(1.1);
 }
 
 .alimentacion__btn-info-svg {

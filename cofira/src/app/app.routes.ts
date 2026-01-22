@@ -8,6 +8,8 @@ import { StyleGuide } from './pages/style-guide/style-guide';
 import { Onboarding } from './pages/onboarding/onboarding';
 import { Login } from './pages/login/login';
 
+import { Perfil } from './pages/perfil/perfil';
+import { Configuracion } from './pages/configuracion/configuracion';
 
 import { Privacidad } from './pages/privacidad/privacidad';
 import { Terminos } from './pages/terminos/terminos';
@@ -32,7 +34,10 @@ export const routes: Routes = [
   { path: 'onboarding', component: Onboarding },
   { path: 'login', component: Login },
 
-  
+  { path: 'perfil', component: Perfil },
+  { path: 'configuracion', component: Configuracion },
+
+
   { path: 'privacidad', component: Privacidad },
   { path: 'terminos', component: Terminos },
   { path: 'cookies', component: Cookies },

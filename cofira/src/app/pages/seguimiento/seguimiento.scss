@@ -32,7 +32,7 @@
   font-weight: var(--font-weight-bold);
   color: var(--negro-normal);
   text-align: center;
-  text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+  text-shadow: 0 0.25rem 0.25rem var(--negro-puro-transparente-025);
   margin: 0;
 
   @include responsive-down('lg') {
@@ -120,18 +120,18 @@
   height: 1rem;
   border-radius: 50%;
   flex-shrink: 0;
+}
 
-  &--proteinas {
-    background-color: var(--negro-normal);
-  }
+.seguimiento__macro-indicador--proteinas {
+  background-color: var(--negro-normal);
+}
 
-  &--carbohidratos {
-    background-color: var(--amarillo-normal);
-  }
+.seguimiento__macro-indicador--carbohidratos {
+  background-color: var(--amarillo-normal);
+}
 
-  &--grasas {
-    background-color: var(--gris-normal);
-  }
+.seguimiento__macro-indicador--grasas {
+  background-color: var(--gris-normal);
 }
 
 .seguimiento__macro-texto {
@@ -241,15 +241,15 @@
   background-position: right 0.75rem center;
   background-size: 1.25rem;
   transition: border-color var(--duration-fast) ease;
+}
 
-  &:focus {
-    outline: none;
-    border-color: var(--amarillo-normal);
-  }
+.seguimiento__select:focus {
+  outline: none;
+  border-color: var(--amarillo-normal);
+}
 
-  &:hover {
-    border-color: var(--gris-normal);
-  }
+.seguimiento__select:hover {
+  border-color: var(--gris-normal);
 }
 
 

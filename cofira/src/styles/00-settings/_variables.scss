@@ -1,75 +1,69 @@
 @import 'css-variables';
 
 :root {
-  --negro-normal: #110e10;
-  --negro-normal-hover: #0f0d0e;
-  --negro-normal-active: #0e0b0d;
-  --negro-dark: #0d0b0c;
-  --negro-dark-hover: #0a080a;
-  --negro-dark-active: #080607;
+  --negro-normal: hsl(320, 9.68%, 6.08%);
+  --negro-normal-hover: hsl(330, 7.14%, 5.49%);
+  --negro-normal-active: hsl(320, 12%, 4.9%);
+  --negro-dark: hsl(330, 8.33%, 4.71%);
+  --negro-dark-hover: hsl(300, 11.11%, 3.53%);
+  --negro-dark-active: hsl(330, 14.29%, 2.75%);
 
-  --amarillo-normal: #ffd300;
-  --amarillo-normal-hover: #e6be00;
-  --amarillo-normal-active: #cca900;
-  --amarillo-dark: #bf9e00;
-  --amarillo-dark-hover: #997f00;
-  --amarillo-dark-active: #735f00;
-  --amarillo-darker: #594A00;
+  --amarillo-normal: hsl(49.65, 100%, 50%);
+  --amarillo-normal-hover: hsl(49.57, 100%, 45.1%);
+  --amarillo-normal-active: hsl(49.71, 100%, 40%);
+  --amarillo-dark: hsl(49.63, 100%, 37.45%);
+  --amarillo-dark-hover: hsl(49.8, 100%, 30%);
+  --amarillo-dark-active: hsl(49.57, 100%, 22.55%);
+  --amarillo-darker: hsl(49.89, 100%, 17.45%);
 
-  --blanco-normal: #f5f5f5;
-  --blanco-normal-hover: #dddddd;
-  --blanco-normal-active: #c4c4c4;
-  --blanco-dark: #b8b8b8;
-  --blanco-dark-hover: #939393;
-  --blanco-dark-active: #6e6e6e;
-
-
-  
-  --gris-normal: #3f454c;
-  --gris-normal-hover: #393e44;
-  --gris-normal-active: #32373d;
-  --gris-dark: #2f3439;
-  --gris-dark-hover: #26292e;
-  --gris-dark-active: #1c1f22;
-  --gris-light: #b8b8b8;
+  --blanco-normal: hsl(0, 0%, 96.08%);
+  --blanco-normal-hover: hsl(0, 0%, 86.67%);
+  --blanco-normal-active: hsl(0, 0%, 76.86%);
+  --blanco-dark: hsl(0, 0%, 72.16%);
+  --blanco-dark-hover: hsl(0, 0%, 57.65%);
+  --blanco-dark-active: hsl(0, 0%, 43.14%);
 
 
-  
-  --verde-normal: #22c55e;
-  --verde-normal-hover: #16a34a;
-  --verde-normal-active: #15803d;
-  --verde-dark: #166534;
-  --verde-light: #86efac;
+  --gris-normal: hsl(212.31, 9.35%, 27.25%);
+  --gris-normal-hover: hsl(212.73, 8.8%, 24.51%);
+  --gris-normal-active: hsl(212.73, 9.91%, 21.76%);
+  --gris-dark: hsl(210, 9.62%, 20.39%);
+  --gris-dark-hover: hsl(217.5, 9.52%, 16.47%);
+  --gris-dark-active: hsl(210, 9.68%, 12.16%);
+  --gris-light: hsl(0, 0%, 72.16%);
 
 
-  
-  --rojo-normal: #ef4444;
-  --rojo-normal-hover: #dc2626;
-  --rojo-normal-active: #b91c1c;
-  --rojo-dark: #991b1b;
-  --rojo-light: #fca5a5;
+  --verde-normal: hsl(142.09, 70.56%, 45.29%);
+  --verde-normal-hover: hsl(142.13, 76.22%, 36.27%);
+  --verde-normal-active: hsl(142.43, 71.81%, 29.22%);
+  --verde-dark: hsl(142.78, 64.23%, 24.12%);
+  --verde-light: hsl(141.71, 76.64%, 73.14%);
 
 
-  
-  --text-light: #110e10;
-  --text-dark: #f5f5f5;
+  --rojo-normal: hsl(0, 84.24%, 60.2%);
+  --rojo-normal-hover: hsl(0, 72.22%, 50.59%);
+  --rojo-normal-active: hsl(0, 73.71%, 41.76%);
+  --rojo-dark: hsl(0, 70%, 35.29%);
+  --rojo-light: hsl(0, 93.55%, 81.76%);
 
 
-  
-  --background-light-gray: #3F454C;
+  --text-light: hsl(320, 9.68%, 6.08%);
+  --text-dark: hsl(0, 0%, 96.08%);
 
 
-  
-  --button-red: #FF3434;
-  --button-red-hover: #910505;
-  --button-gray: #3f454c;
-  --button-gray-hover: #2f3439;
-  --button-yellow: #FFD300;
-  --button-yellow-hover: #594A00;
-  --button-darker: #32373D;
-  --button-darker-hover: #26292E;
+  --background-light-gray: hsl(212.31, 9.35%, 27.25%);
 
-  
+
+  --button-red: hsl(0, 100%, 60.2%);
+  --button-red-hover: hsl(0, 93.33%, 29.41%);
+  --button-gray: hsl(212.31, 9.35%, 27.25%);
+  --button-gray-hover: hsl(210, 9.62%, 20.39%);
+  --button-yellow: hsl(49.65, 100%, 50%);
+  --button-yellow-hover: hsl(49.89, 100%, 17.45%);
+  --button-darker: hsl(212.73, 9.91%, 21.76%);
+  --button-darker-hover: hsl(217.5, 9.52%, 16.47%);
+
+
   --font-size-xs: 0.64rem;
   --font-size-sm: 0.8rem;
   --font-size-md: 1rem;
@@ -81,7 +75,7 @@
   --font-size-5xl: 3.815rem;
 
 
-  
+
   --spacing-size-xss: 0.5rem;
   --spacing-size-xs: 1.1875rem;
   --spacing-size-s: 1.3125rem;
@@ -94,7 +88,7 @@
   --spacing-size-xxxxxl: 8.75rem;
 
 
-  
+
   --radius-xsss: 0.125rem;
   --radius-xss: 0.5rem;
   --radius-xs: 1.1875rem;
@@ -103,12 +97,12 @@
   --radius-l: 5.625rem;
 
 
-  
+
   --font-primary: 'Montserrat', sans-serif;
   --font-secondary: 'Poppins', sans-serif;
 
 
-  
+
   --font-weight-light: 300;
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -116,45 +110,44 @@
   --font-weight-bold: 700;
 
 
-  
+
   --line-height-tight: 1.2;
   --line-height-normal: 1.5;
   --line-height-relaxed: 1.75;
 
 
-  
-  --shadow-xs: 0 0.0625rem 0.125rem 0 rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 0.0625rem 0.1875rem 0 rgba(0, 0, 0, 0.1), 0 0.0625rem 0.125rem -0.0625rem rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0 0.125rem 0.25rem -0.125rem rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.1), 0 0.25rem 0.375rem -0.25rem rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 1.25rem 1.5625rem -0.3125rem rgba(0, 0, 0, 0.1), 0 0.5rem 0.625rem -0.375rem rgba(0, 0, 0, 0.1);
-  --shadow-2xl: 0 1.5625rem 3.125rem -0.75rem rgba(0, 0, 0, 0.25);
-  --shadow-inner: inset 0 0.125rem 0.25rem 0 rgba(0, 0, 0, 0.05);
-  --shadow-primary: 0 0.625rem 0.9375rem -0.1875rem rgba(59, 130, 246, 0.3), 0 0.25rem 0.375rem -0.25rem rgba(59, 130, 246, 0.3);
-  --shadow-success: 0 0.625rem 0.9375rem -0.1875rem rgba(34, 197, 94, 0.3), 0 0.25rem 0.375rem -0.25rem rgba(34, 197, 94, 0.3);
-  --shadow-danger: 0 0.625rem 0.9375rem -0.1875rem rgba(239, 68, 68, 0.3), 0 0.25rem 0.375rem -0.25rem rgba(239, 68, 68, 0.3);
+  --shadow-xs: 0 0.0625rem 0.125rem 0 hsla(0, 0%, 0%, 0.05);
+  --shadow-sm: 0 0.0625rem 0.1875rem 0 hsla(0, 0%, 0%, 0.1), 0 0.0625rem 0.125rem -0.0625rem hsla(0, 0%, 0%, 0.1);
+  --shadow-md: 0 0.25rem 0.375rem -0.0625rem hsla(0, 0%, 0%, 0.1), 0 0.125rem 0.25rem -0.125rem hsla(0, 0%, 0%, 0.1);
+  --shadow-lg: 0 0.625rem 0.9375rem -0.1875rem hsla(0, 0%, 0%, 0.1), 0 0.25rem 0.375rem -0.25rem hsla(0, 0%, 0%, 0.1);
+  --shadow-xl: 0 1.25rem 1.5625rem -0.3125rem hsla(0, 0%, 0%, 0.1), 0 0.5rem 0.625rem -0.375rem hsla(0, 0%, 0%, 0.1);
+  --shadow-2xl: 0 1.5625rem 3.125rem -0.75rem hsla(0, 0%, 0%, 0.25);
+  --shadow-inner: inset 0 0.125rem 0.25rem 0 hsla(0, 0%, 0%, 0.05);
+  --shadow-primary: 0 0.625rem 0.9375rem -0.1875rem hsla(217.22, 91.22%, 59.8%, 0.3), 0 0.25rem 0.375rem -0.25rem hsla(217.22, 91.22%, 59.8%, 0.3);
+  --shadow-success: 0 0.625rem 0.9375rem -0.1875rem hsla(142.09, 70.56%, 45.29%, 0.3), 0 0.25rem 0.375rem -0.25rem hsla(142.09, 70.56%, 45.29%, 0.3);
+  --shadow-danger: 0 0.625rem 0.9375rem -0.1875rem hsla(0, 84.24%, 60.2%, 0.3), 0 0.25rem 0.375rem -0.25rem hsla(0, 84.24%, 60.2%, 0.3);
 
 
-  
+
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --duration-slow: 500ms;
   --duration-slower: 700ms;
 
 
-  
+
   --border-width-fino: 0.0625rem;
   --border-width-normal: 0.125rem;
   --border-width-grueso: 0.1875rem;
 
 
-  
+
   --input-padding-vertical: 0.875rem;
   --input-padding-horizontal: 1.25rem;
   --input-margin-bottom: 0.25rem;
 
 
-  
+
   --width-estandar: 17rem;
   --width-grande: 21rem;
   --width-mediano: 9.125rem;
@@ -162,7 +155,7 @@
   --width-muy-pequenio: 6.75rem;
 
 
-  
+
   --z-header: 1;
   --z-header-controls: 2;
   --z-dropdown: 3;
@@ -172,74 +165,148 @@
   --z-tooltip: 11;
 
 
-  
-  --bg-body: #f5f5f5;
-  --bg-card: #f5f5f5;
-  --bg-card-alt: #dddddd;
-  --bg-input: #f5f5f5;
-  --bg-surface: #f0f0f0;
-  --blanco: #ffffff;
-  --text-primary: #110e10;
-  --text-secondary: #3f454c;
-  --text-muted: #939393;
-  --border-color: #b8b8b8;
-  --border-color-light: #dddddd;
+  --bg-body: hsl(0, 0%, 96.08%);
+  --bg-card: hsl(0, 0%, 96.08%);
+  --bg-card-alt: hsl(0, 0%, 86.67%);
+  --bg-input: hsl(0, 0%, 96.08%);
+  --bg-input-config: hsl(0, 0%, 94.12%);
+  --bg-surface: hsl(0, 0%, 94.12%);
+  --blanco: hsl(0, 0%, 100%);
+  --text-primary: hsl(320, 9.68%, 6.08%);
+  --text-secondary: hsl(212.31, 9.35%, 27.25%);
+  --text-muted: hsl(0, 0%, 57.65%);
+  --border-color: hsl(0, 0%, 72.16%);
+  --border-color-light: hsl(0, 0%, 86.67%);
 
-  
+
   --radius-sm: 0.25rem;
   --radius-md: 0.5rem;
   --radius-lg: 0.75rem;
+
+  /* Categorías del Blog - Modo Claro */
+  --blog-categoria-ejercicio-fondo: hsl(205.38, 86.67%, 94.12%);
+  --blog-categoria-ejercicio-texto: hsl(211.93, 80.28%, 41.76%);
+  --blog-categoria-nutricion-fondo: hsl(124.62, 39.39%, 93.53%);
+  --blog-categoria-nutricion-texto: hsl(123.04, 46.2%, 33.53%);
+  --blog-categoria-bienestar-fondo: hsl(340, 80%, 94.12%);
+  --blog-categoria-bienestar-texto: hsl(336.35, 77.98%, 42.75%);
+
+  /* Transparencias comunes - Negro */
+  --negro-puro-transparente-005: hsla(0, 0%, 0%, 0.05);
+  --negro-puro-transparente-008: hsla(0, 0%, 0%, 0.08);
+  --negro-puro-transparente-010: hsla(0, 0%, 0%, 0.1);
+  --negro-puro-transparente-015: hsla(0, 0%, 0%, 0.15);
+  --negro-puro-transparente-025: hsla(0, 0%, 0%, 0.25);
+  --negro-puro-transparente-030: hsla(0, 0%, 0%, 0.3);
+  --negro-puro-transparente-035: hsla(0, 0%, 0%, 0.35);
+  --negro-puro-transparente-040: hsla(0, 0%, 0%, 0.4);
+  --negro-puro-transparente-045: hsla(0, 0%, 0%, 0.45);
+  --negro-puro-transparente-050: hsla(0, 0%, 0%, 0.5);
+  --negro-puro-transparente-060: hsla(0, 0%, 0%, 0.6);
+  --negro-puro-transparente-070: hsla(0, 0%, 0%, 0.7);
+
+  /* Transparencias comunes - Blanco */
+  --blanco-puro-transparente-005: hsla(0, 0%, 100%, 0.05);
+  --blanco-puro-transparente-020: hsla(0, 0%, 100%, 0.2);
+  --blanco-puro-transparente-090: hsla(0, 0%, 100%, 0.9);
+  --blanco-normal-transparente-085: hsla(0, 0%, 96.08%, 0.85);
+
+  /* Transparencias comunes - Amarillo */
+  --amarillo-normal-transparente-030: hsla(49.65, 100%, 50%, 0.3);
+
+  /* Transparencias comunes - Rojo */
+  --rojo-normal-transparente-003: hsla(0, 84.24%, 60.2%, 0.03);
+  --rojo-normal-transparente-006: hsla(0, 84.24%, 60.2%, 0.06);
+  --rojo-normal-transparente-010: hsla(0, 84.24%, 60.2%, 0.1);
+  --rojo-normal-transparente-012: hsla(0, 84.24%, 60.2%, 0.12);
+  --rojo-normal-transparente-020: hsla(0, 100%, 60.2%, 0.2);
+  --rojo-normal-transparente-030: hsla(0, 84.24%, 60.2%, 0.3);
+
+  /* Transparencias comunes - Verde */
+  --verde-normal-transparente-003: hsla(142.09, 70.56%, 45.29%, 0.03);
+  --verde-normal-transparente-010: hsla(142.09, 70.56%, 45.29%, 0.1);
+  --verde-normal-transparente-012: hsla(142.09, 70.56%, 45.29%, 0.12);
+
+  /* Transparencias comunes - Azul (macros) */
+  --azul-normal-transparente-010: hsla(217.22, 91.22%, 59.8%, 0.1);
+
+  /* Transparencias comunes - Dorado (macros) */
+  --dorado-normal-transparente-010: hsla(45.4, 93.39%, 47.45%, 0.1);
+
+  /* Transparencias comunes - Amarillo (adicionales) */
+  --amarillo-normal-transparente-012: hsla(49.65, 100%, 50%, 0.12);
+
+  /* Paleta modo oscuro - Colores base */
+  --oscuro-fondo-muy-oscuro: hsl(210, 13.33%, 11.76%);
+  --oscuro-fondo-oscuro: hsl(213.33, 13.04%, 13.53%);
+  --oscuro-fondo-medio: hsl(212.73, 12.09%, 17.84%);
+  --oscuro-fondo-medio-claro: hsl(214.29, 12.28%, 22.35%);
+  --oscuro-borde-principal: hsl(216, 12.2%, 24.12%);
+  --oscuro-borde-suave: hsl(214.29, 14.29%, 19.22%);
+  --oscuro-texto-claro: hsl(216, 20%, 95.1%);
+  --oscuro-texto-medio: hsl(216.43, 19.18%, 71.37%);
+  --oscuro-texto-apagado: hsl(215.68, 14.74%, 49.22%);
+  --oscuro-acento-amarillo: hsl(49.43, 100%, 58.82%);
+  --oscuro-acento-amarillo-hover: hsl(49.38, 79.34%, 52.55%);
+  --oscuro-cta-gradiente-inicio: hsl(48.46, 44.83%, 11.37%);
 }
 
 
 
 [data-theme="dark"] {
-  --bg-body: #2f3439;
-  --bg-card: #3f454c;
-  --bg-card-alt: #26292e;
-  --bg-input: #3f454c;
-  --bg-surface: #393e44;
-  --blanco: #f5f5f5;
-  --text-primary: #f5f5f5;
-  --text-secondary: #b8b8b8;
-  --text-muted: #939393;
-  --border-color: #393e44;
-  --border-color-light: #26292e;
+  --bg-body: hsl(210, 9.62%, 20.39%);
+  --bg-card: hsl(212.31, 9.35%, 27.25%);
+  --bg-card-alt: hsl(217.5, 9.52%, 16.47%);
+  --bg-input: hsl(212.31, 9.35%, 27.25%);
+  --bg-input-config: hsl(212.73, 8.8%, 24.51%);
+  --bg-surface: hsl(212.73, 8.8%, 24.51%);
+  --blanco: hsl(0, 0%, 96.08%);
+  --text-primary: hsl(0, 0%, 96.08%);
+  --text-secondary: hsl(0, 0%, 72.16%);
+  --text-muted: hsl(0, 0%, 57.65%);
+  --border-color: hsl(212.73, 8.8%, 24.51%);
+  --border-color-light: hsl(217.5, 9.52%, 16.47%);
 
 
-  --negro-normal-transparente-085: rgba(17, 14, 16, 0.85);
-  --negro-normal-transparente-098: rgba(17, 14, 16, 0.98);
-  --negro-oscuro-variante-transparente-095: rgba(25, 22, 24, 0.95);
-  --negro-oscuro-variante-transparente-090: rgba(30, 27, 29, 0.9);
-  --negro-puro-transparente-030: rgba(0, 0, 0, 0.3);
-  --negro-puro-transparente-040: rgba(0, 0, 0, 0.4);
-  --negro-puro-transparente-050: rgba(0, 0, 0, 0.5);
+  --negro-normal-transparente-085: hsla(320, 9.68%, 6.08%, 0.85);
+  --negro-normal-transparente-098: hsla(320, 9.68%, 6.08%, 0.98);
+  --negro-oscuro-variante-transparente-095: hsla(320, 6.38%, 9.22%, 0.95);
+  --negro-oscuro-variante-transparente-090: hsla(320, 5.26%, 11.18%, 0.9);
+  --negro-puro-transparente-030: hsla(0, 0%, 0%, 0.3);
+  --negro-puro-transparente-040: hsla(0, 0%, 0%, 0.4);
+  --negro-puro-transparente-050: hsla(0, 0%, 0%, 0.5);
 
 
-  --blanco-normal-transparente-005: rgba(245, 245, 245, 0.05);
-  --blanco-normal-transparente-008: rgba(245, 245, 245, 0.08);
-  --blanco-normal-transparente-010: rgba(245, 245, 245, 0.1);
-  --blanco-normal-transparente-015: rgba(245, 245, 245, 0.15);
-  --blanco-normal-transparente-050: rgba(245, 245, 245, 0.5);
-  --blanco-normal-transparente-070: rgba(245, 245, 245, 0.7);
+  --blanco-normal-transparente-005: hsla(0, 0%, 96.08%, 0.05);
+  --blanco-normal-transparente-008: hsla(0, 0%, 96.08%, 0.08);
+  --blanco-normal-transparente-010: hsla(0, 0%, 96.08%, 0.1);
+  --blanco-normal-transparente-015: hsla(0, 0%, 96.08%, 0.15);
+  --blanco-normal-transparente-050: hsla(0, 0%, 96.08%, 0.5);
+
+  /* Onboarding header dark mode */
+  --onboarding-header-gradient-inicio: hsla(212.73, 12.09%, 17.84%, 0.75);
+  --onboarding-header-gradient-fin: hsla(213.33, 13.04%, 13.53%, 0.65);
+  --blanco-normal-transparente-070: hsla(0, 0%, 96.08%, 0.7);
 
 
-  --amarillo-normal-transparente-005: rgba(255, 211, 0, 0.05);
-  --amarillo-normal-transparente-008: rgba(255, 211, 0, 0.08);
-  --amarillo-normal-transparente-010: rgba(255, 211, 0, 0.1);
-  --amarillo-normal-transparente-015: rgba(255, 211, 0, 0.15);
-  --amarillo-normal-transparente-020: rgba(255, 211, 0, 0.2);
+  --amarillo-normal-transparente-005: hsla(49.65, 100%, 50%, 0.05);
+  --amarillo-normal-transparente-008: hsla(49.65, 100%, 50%, 0.08);
+  --amarillo-normal-transparente-010: hsla(49.65, 100%, 50%, 0.1);
+  --amarillo-normal-transparente-015: hsla(49.65, 100%, 50%, 0.15);
+  --amarillo-normal-transparente-020: hsla(49.65, 100%, 50%, 0.2);
+  --amarillo-normal-transparente-025: hsla(49.65, 100%, 50%, 0.25);
+  --amarillo-normal-transparente-040: hsla(49.65, 100%, 50%, 0.4);
 
 
-  --rojo-normal-transparente-010: rgba(239, 68, 68, 0.1);
-  --rojo-normal-transparente-015: rgba(239, 68, 68, 0.15);
-  --rojo-normal-transparente-040: rgba(239, 68, 68, 0.4);
+  --rojo-normal-transparente-010: hsla(0, 84.24%, 60.2%, 0.1);
+  --rojo-normal-transparente-015: hsla(0, 84.24%, 60.2%, 0.15);
+  --rojo-normal-transparente-040: hsla(0, 84.24%, 60.2%, 0.4);
 
 
-  --blog-categoria-ejercicio-fondo: rgba(21, 101, 192, 0.25);
-  --blog-categoria-ejercicio-texto: #64b5f6;
-  --blog-categoria-nutricion-fondo: rgba(46, 125, 50, 0.25);
-  --blog-categoria-nutricion-texto: #81c784;
-  --blog-categoria-bienestar-fondo: rgba(194, 24, 91, 0.25);
-  --blog-categoria-bienestar-texto: #f48fb1;
+  --blog-categoria-ejercicio-fondo: hsla(211.93, 80.28%, 41.76%, 0.25);
+  --blog-categoria-ejercicio-texto: hsl(206.71, 89.02%, 67.84%);
+  --blog-categoria-nutricion-fondo: hsla(123.04, 46.2%, 33.53%, 0.25);
+  --blog-categoria-nutricion-texto: hsl(122.57, 38.46%, 64.31%);
+  --blog-categoria-bienestar-fondo: hsla(336.35, 77.98%, 42.75%, 0.25);
+  --blog-categoria-bienestar-texto: hsl(339.8, 82.11%, 75.88%);
 }
