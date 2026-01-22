@@ -1779,7 +1779,8 @@ Cabecera en tablet:
 Cabecera en móvil:
 ![img_2.png](../assets/movil_header.png)
 
-Podemos apreciar como la cabecera va adapántando distintos tamaños tanto de texto como de padding para adaptarse al dispositivo permitiendo que el contenido se pueda visualizar bien y sin ser molestado por otros elementos.
+En las capturas se puede ver la dfiferencia entre los responsive de la cabecera en las distintas plataformas.
+
 
 ---
 
