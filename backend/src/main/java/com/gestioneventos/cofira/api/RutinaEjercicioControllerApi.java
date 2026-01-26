@@ -1,5 +1,7 @@
 package com.gestioneventos.cofira.api;
 
+import com.gestioneventos.cofira.dto.ollama.GenerarRutinaRequestDTO;
+import com.gestioneventos.cofira.dto.ollama.RutinaGeneradaDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.CrearRutinaEjercicioDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.RutinaEjercicioDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Map;
 
 @Tag(name = "Rutinas de Ejercicio", description = "API para gestión de rutinas de ejercicio semanales")
 public interface RutinaEjercicioControllerApi {
@@ -51,4 +54,19 @@ public interface RutinaEjercicioControllerApi {
     })
     ResponseEntity<?> eliminarRutina(
         @Parameter(description = "ID de la rutina a eliminar", required = true) @PathVariable Long id);
+
+    @Operation(summary = "Generar rutina con IA", description = "Genera una rutina de ejercicios personalizada usando Ollama")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Rutina generada exitosamente",
+            content = @Content(mediaType = "application/json", schema = @Schema(implementation = RutinaGeneradaDTO.class))),
+        @ApiResponse(responseCode = "500", description = "Error al comunicarse con Ollama", content = @Content)
+    })
+    ResponseEntity<RutinaGeneradaDTO> generarRutinaConIA(
+        @Parameter(description = "Datos del usuario para generar la rutina", required = true) @RequestBody @Valid GenerarRutinaRequestDTO solicitud);
+
+    @Operation(summary = "Verificar estado de Ollama", description = "Comprueba si el servicio de Ollama está disponible")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "Estado de Ollama obtenido")
+    })
+    ResponseEntity<Map<String, Object>> verificarEstadoOllama();
 }

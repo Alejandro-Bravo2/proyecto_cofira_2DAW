@@ -1,23 +1,14 @@
-import {Component} from '@angular/core';
+import {Component, computed, inject, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {Button} from '../../components/shared/button/button';
 
-interface Ejercicio {
-  id: number;
-  nombre: string;
-  repeticiones: string;
-  descanso: string;
-  series: number;
-  realizado: boolean | null;
-  expandido: boolean;
-}
+import {Button} from '../../components/shared/button/button';
+import {GimnasioService} from '../../services/gimnasio.service';
+import {Ejercicio} from '../../models/gimnasio.model';
 
 interface Feedback {
   ejerciciosDificiles: string;
   masPeso: string;
 }
-
-type EjerciciosPorDia = Record<string, Ejercicio[]>;
 
 @Component({
   selector: 'app-gimnasio',
@@ -26,128 +17,36 @@ type EjerciciosPorDia = Record<string, Ejercicio[]>;
   templateUrl: './gimnasio.html',
   styleUrl: './gimnasio.scss',
 })
-export class Gimnasio {
+export class Gimnasio implements OnInit {
+  private readonly gimnasioService = inject(GimnasioService);
+
   readonly diasSemana = [
     'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
   ];
 
-  diaActualIndex = 1;
+  diaActualIndex = 0;
 
   feedback: Feedback = {
     ejerciciosDificiles: '',
     masPeso: '',
   };
 
-  private readonly ejerciciosPorDia: EjerciciosPorDia = {
-    Lunes: [
-      {
-        id: 1,
-        nombre: 'Press banca',
-        repeticiones: '8-12',
-        descanso: "2' 30\"",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-      {
-        id: 2,
-        nombre: 'Sentadillas',
-        repeticiones: '8-10',
-        descanso: "2'",
-        series: 3,
-        realizado: null,
-        expandido: false
-      },
-      {
-        id: 3,
-        nombre: 'Dominadas',
-        repeticiones: '10-12',
-        descanso: "1' 30\"",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-    ],
-    Martes: [
-      {
-        id: 4,
-        nombre: 'Press banca',
-        repeticiones: '8-12',
-        descanso: "2' 30\"",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-      {
-        id: 5,
-        nombre: 'Sentadillas',
-        repeticiones: '8-10',
-        descanso: "2'",
-        series: 3,
-        realizado: null,
-        expandido: false
-      },
-      {
-        id: 6,
-        nombre: 'Dominadas',
-        repeticiones: '10-12',
-        descanso: "1' 30\"",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-    ],
-    Miércoles: [
-      {id: 7, nombre: 'Peso muerto', repeticiones: '6-8', descanso: "3'", series: 4, realizado: null, expandido: false},
-      {
-        id: 8,
-        nombre: 'Remo con barra',
-        repeticiones: '8-10',
-        descanso: "2'",
-        series: 3,
-        realizado: null,
-        expandido: false
-      },
-    ],
-    Jueves: [
-      {
-        id: 9,
-        nombre: 'Press militar',
-        repeticiones: '8-12',
-        descanso: "2'",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-      {
-        id: 10,
-        nombre: 'Curl bíceps',
-        repeticiones: '10-12',
-        descanso: "1' 30\"",
-        series: 3,
-        realizado: null,
-        expandido: false
-      },
-    ],
-    Viernes: [
-      {
-        id: 11,
-        nombre: 'Sentadillas',
-        repeticiones: '8-10',
-        descanso: "2' 30\"",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-      {id: 12, nombre: 'Prensa', repeticiones: '10-12', descanso: "2'", series: 3, realizado: null, expandido: false},
-    ],
-    Sábado: [],
-    Domingo: [],
-  };
+  readonly isLoading = this.gimnasioService.isLoading;
+  readonly error = this.gimnasioService.error;
+  readonly tieneRutina = this.gimnasioService.tieneRutina;
+  readonly estadoOllama = this.gimnasioService.estadoOllama;
 
-  get ejerciciosDelDia(): Ejercicio[] {
-    const dia = this.diasSemana[this.diaActualIndex];
-    return this.ejerciciosPorDia[dia] ?? [];
+  readonly ejerciciosDelDia = computed(() => {
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    return this.gimnasioService.obtenerEjerciciosDelDia(diaSeleccionado);
+  });
+
+  ngOnInit(): void {
+    this.establecerDiaActual();
+
+    if (!this.tieneRutina()) {
+      this.verificarYGenerarRutina();
+    }
   }
 
   diaAnterior(): void {
@@ -163,11 +62,25 @@ export class Gimnasio {
   }
 
   toggleEjercicio(ejercicio: Ejercicio): void {
-    ejercicio.expandido = !ejercicio.expandido;
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    this.gimnasioService.toggleExpandirEjercicio(diaSeleccionado, ejercicio.id);
   }
 
   marcarRealizado(ejercicio: Ejercicio, realizado: boolean): void {
-    ejercicio.realizado = ejercicio.realizado === realizado ? null : realizado;
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    const nuevoValor = ejercicio.realizado === realizado ? null : realizado;
+    this.gimnasioService.marcarEjercicioRealizado(diaSeleccionado, ejercicio.id, nuevoValor);
+  }
+
+  generarNuevaRutina(): void {
+    this.gimnasioService.generarRutina().subscribe({
+      next: () => {
+        console.log('Rutina generada correctamente');
+      },
+      error: (errorCapturado) => {
+        console.error('Error al generar rutina:', errorCapturado);
+      }
+    });
   }
 
   enviarFeedback(): void {
@@ -177,6 +90,23 @@ export class Gimnasio {
 
   cancelarFeedback(): void {
     this.resetFeedback();
+  }
+
+  private establecerDiaActual(): void {
+    const hoy = new Date();
+    const diaHoy = hoy.getDay();
+    const indiceCorregido = diaHoy === 0 ? 6 : diaHoy - 1;
+    this.diaActualIndex = indiceCorregido;
+  }
+
+  private verificarYGenerarRutina(): void {
+    this.gimnasioService.verificarConexionOllama().subscribe({
+      next: (estado) => {
+        if (estado.conectado) {
+          this.generarNuevaRutina();
+        }
+      }
+    });
   }
 
   private resetFeedback(): void {

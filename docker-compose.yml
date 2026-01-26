@@ -45,9 +45,12 @@ services:
       SPRING_DATASOURCE_PASSWORD: admin123
       SPRING_SQL_INIT_MODE: always
       SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: "true"
+      OLLAMA_URL: http://ollama:11434
     depends_on:
       postgres:
         condition: service_healthy
+      ollama:
+        condition: service_started
     networks:
       - cofira-network-prod
     healthcheck:
@@ -56,6 +59,20 @@ services:
       timeout: 10s
       retries: 5
       start_period: 60s
+    restart: unless-stopped
+
+  # ════════════════════════════════════════
+  # OLLAMA - Modelo de IA Local
+  # ════════════════════════════════════════
+  ollama:
+    image: ollama/ollama:latest
+    container_name: cofira-ollama-prod
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data_prod:/root/.ollama
+    networks:
+      - cofira-network-prod
     restart: unless-stopped
 
   # ════════════════════════════════════════
@@ -78,6 +95,7 @@ services:
 
 volumes:
   postgres_data_prod:
+  ollama_data_prod:
 
 networks:
   cofira-network-prod:

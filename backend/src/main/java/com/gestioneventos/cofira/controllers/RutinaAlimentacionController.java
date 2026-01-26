@@ -1,8 +1,12 @@
 package com.gestioneventos.cofira.controllers;
 
 import com.gestioneventos.cofira.api.RutinaAlimentacionControllerApi;
+import com.gestioneventos.cofira.dto.ollama.GenerarMenuRequestDTO;
+import com.gestioneventos.cofira.dto.ollama.MenuGeneradoDTO;
+import com.gestioneventos.cofira.dto.ollama.MenuSemanalGeneradoDTO;
 import com.gestioneventos.cofira.dto.rutinaalimentacion.CrearRutinaAlimentacionDTO;
 import com.gestioneventos.cofira.dto.rutinaalimentacion.RutinaAlimentacionDTO;
+import com.gestioneventos.cofira.services.OllamaService;
 import com.gestioneventos.cofira.services.RutinaAlimentacionService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -10,15 +14,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/rutinas-alimentacion")
 public class RutinaAlimentacionController implements RutinaAlimentacionControllerApi {
 
     private final RutinaAlimentacionService rutinaAlimentacionService;
+    private final OllamaService ollamaService;
 
-    public RutinaAlimentacionController(RutinaAlimentacionService rutinaAlimentacionService) {
+    public RutinaAlimentacionController(RutinaAlimentacionService rutinaAlimentacionService, OllamaService ollamaService) {
         this.rutinaAlimentacionService = rutinaAlimentacionService;
+        this.ollamaService = ollamaService;
     }
 
     @GetMapping
@@ -43,5 +50,27 @@ public class RutinaAlimentacionController implements RutinaAlimentacionControlle
     public ResponseEntity<?> eliminarRutina(@PathVariable Long id) {
         rutinaAlimentacionService.eliminarRutina(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/generar-menu")
+    public ResponseEntity<MenuGeneradoDTO> generarMenuConIA(@RequestBody @Valid GenerarMenuRequestDTO solicitud) {
+        MenuGeneradoDTO menuGenerado = ollamaService.generarMenuDiario(solicitud);
+        return ResponseEntity.ok(menuGenerado);
+    }
+
+    @PostMapping("/generar-menu-semanal")
+    public ResponseEntity<MenuSemanalGeneradoDTO> generarMenuSemanal(@RequestBody @Valid GenerarMenuRequestDTO solicitud) {
+        MenuSemanalGeneradoDTO menuSemanal = ollamaService.generarMenuSemanal(solicitud);
+        return ResponseEntity.ok(menuSemanal);
+    }
+
+    @GetMapping("/ollama/estado")
+    public ResponseEntity<Map<String, Object>> verificarEstadoOllama() {
+        boolean conexionActiva = ollamaService.verificarConexion();
+        Map<String, Object> respuesta = Map.of(
+            "conectado", conexionActiva,
+            "mensaje", conexionActiva ? "Ollama funcionando correctamente" : "No se puede conectar con Ollama"
+        );
+        return ResponseEntity.ok(respuesta);
     }
 }

@@ -35,6 +35,18 @@
 
 
 
+.gimnasio__cabecera {
+  @include flex-center;
+  gap: var(--spacing-size-l);
+  width: 100%;
+  max-width: var(--contenido-max-width);
+
+  @include responsive-down('md') {
+    flex-direction: column;
+    gap: var(--spacing-size-m);
+  }
+}
+
 .gimnasio__titulo {
   @include titulo-seccion(var(--negro-normal), var(--font-size-4xl), 0);
   text-shadow: 0 0.25rem 0.25rem var(--negro-puro-transparente-025);
@@ -47,6 +59,51 @@
   }
   @include responsive-down('xs') {
     font-size: var(--font-size-xl);
+  }
+}
+
+.gimnasio__estado {
+  @include flex-columna(var(--spacing-size-m));
+  @include caja-contenido;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: var(--contenido-max-width);
+  min-height: 12rem;
+  padding: var(--spacing-size-xxl);
+  text-align: center;
+
+  @include responsive-down('md') {
+    min-height: 10rem;
+    padding: var(--spacing-size-l);
+  }
+}
+
+.gimnasio__estado--error {
+  border: 1px solid var(--rojo-normal);
+}
+
+.gimnasio__estado-texto {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-lg);
+  }
+}
+
+.gimnasio__estado-subtexto {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--negro-normal);
+  opacity: 0.7;
+  margin: 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-sm);
   }
 }
 

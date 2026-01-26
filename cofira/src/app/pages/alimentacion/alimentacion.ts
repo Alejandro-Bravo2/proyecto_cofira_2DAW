@@ -1,21 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, computed, inject, OnInit, signal} from '@angular/core';
+
 import {Calendario} from '../../components/shared/calendario/calendario';
 import {Ingredientes} from '../../components/shared/ingredientes/ingredientes';
-
-interface Alimento {
-  id: number;
-  descripcion: string;
-  icono: 'pizza' | 'bebida' | 'plato';
-  ingredientes?: string[];
-}
-
-interface Comida {
-  id: number;
-  tipo: 'desayuno' | 'almuerzo' | 'cena' | 'merienda';
-  nombre: string;
-  costoTotal: string;
-  alimentos: Alimento[];
-}
+import {AlimentacionService} from '../../services/alimentacion.service';
+import {Alimento, Comida} from '../../models/alimentacion.model';
 
 @Component({
   selector: 'app-alimentacion',
@@ -24,69 +12,74 @@ interface Comida {
   templateUrl: './alimentacion.html',
   styleUrl: './alimentacion.scss',
 })
-export class Alimentacion {
-  fechaActualDate = new Date();
-  calendarioAbierto: boolean = false;
-  ingredientesAbierto: boolean = false;
+export class Alimentacion implements OnInit {
+  private readonly alimentacionService = inject(AlimentacionService);
+
+  readonly fechaActualDate = signal(new Date());
+  calendarioAbierto = false;
+  ingredientesAbierto = false;
   alimentoSeleccionado: Alimento | null = null;
+  comidaSeleccionada: Comida | null = null;
 
-  diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  readonly diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
 
-  comidasDelDia: Comida[] = [
-    {
-      id: 1,
-      tipo: 'desayuno',
-      nombre: 'Desayuno',
-      costoTotal: '8,3',
-      alimentos: [
-        {id: 1, descripcion: '2 porciones de pizza', icono: 'pizza'},
-        {id: 2, descripcion: '1 baso de leche', icono: 'bebida'},
-      ],
-    },
-    {
-      id: 2,
-      tipo: 'almuerzo',
-      nombre: 'Almuerzo',
-      costoTotal: '9',
-      alimentos: [
-        {id: 3, descripcion: '1 plato de arroz con pollo', icono: 'plato'},
-      ],
-    },
-    {
-      id: 3,
-      tipo: 'merienda',
-      nombre: 'Merienda',
-      costoTotal: '4,5',
-      alimentos: [
-        {id: 4, descripcion: '1 yogur natural con frutos secos', icono: 'plato'},
-        {id: 5, descripcion: '1 zumo de naranja', icono: 'bebida'},
-      ],
-    },
-    {
-      id: 4,
-      tipo: 'cena',
-      nombre: 'Cena',
-      costoTotal: '12',
-      alimentos: [
-        {id: 6, descripcion: '1 ensalada mediterránea', icono: 'plato'},
-        {id: 7, descripcion: '1 filete de salmón a la plancha', icono: 'plato'},
-        {id: 8, descripcion: '1 vaso de agua', icono: 'bebida'},
-      ],
-    },
-  ];
+  readonly isLoading = this.alimentacionService.isLoading;
+  readonly error = this.alimentacionService.error;
+  readonly tieneMenu = this.alimentacionService.tieneMenu;
+  readonly estadoOllama = this.alimentacionService.estadoOllama;
+  readonly menuGenerado = this.alimentacionService.menuGenerado;
 
-  get fechaActual(): string {
-    const diaSemana = this.diasSemana[this.fechaActualDate.getDay()];
-    const dia = this.fechaActualDate.getDate();
+  readonly comidasDelDia = computed(() => {
+    return this.alimentacionService.obtenerComidasDelDia(this.fechaActualDate());
+  });
+
+  readonly resumenNutricional = computed(() => {
+    return this.alimentacionService.obtenerResumenDelDia(this.fechaActualDate());
+  });
+
+  readonly tieneMenuParaFecha = computed(() => {
+    const fechaActual = this.fechaActualDate();
+    const fechaInicio = this.alimentacionService.fechaInicio();
+    const fechaFin = this.alimentacionService.fechaFin();
+
+    if (!fechaInicio || !fechaFin) {
+      return false;
+    }
+
+    const fechaActualSinHora = new Date(fechaActual);
+    fechaActualSinHora.setHours(0, 0, 0, 0);
+
+    const inicio = new Date(fechaInicio);
+    const fin = new Date(fechaFin);
+
+    return fechaActualSinHora >= inicio && fechaActualSinHora <= fin;
+  });
+
+  readonly fechaActual = computed(() => {
+    const fecha = this.fechaActualDate();
+    const diaSemana = this.diasSemana[fecha.getDay()];
+    const dia = fecha.getDate();
     return `${diaSemana} ${dia}`;
+  });
+
+  ngOnInit(): void {
+    if (!this.tieneMenu()) {
+      this.generarMenuSemanalAutomatico();
+    } else {
+      this.alimentacionService.verificarYRegenerarSiNecesario();
+    }
   }
 
   diaAnterior(): void {
-    this.fechaActualDate = new Date(this.fechaActualDate.getTime() - 24 * 60 * 60 * 1000);
+    this.fechaActualDate.update(fecha =>
+      new Date(fecha.getTime() - 24 * 60 * 60 * 1000)
+    );
   }
 
   diaSiguiente(): void {
-    this.fechaActualDate = new Date(this.fechaActualDate.getTime() + 24 * 60 * 60 * 1000);
+    this.fechaActualDate.update(fecha =>
+      new Date(fecha.getTime() + 24 * 60 * 60 * 1000)
+    );
   }
 
   abrirCalendario(): void {
@@ -98,17 +91,47 @@ export class Alimentacion {
   }
 
   seleccionarFechaCalendario(fecha: Date): void {
-    this.fechaActualDate = fecha;
+    this.fechaActualDate.set(fecha);
     this.cerrarCalendario();
   }
 
-  verIngredientes(alimento: Alimento): void {
+  verIngredientes(alimento: Alimento, comida: Comida): void {
     this.alimentoSeleccionado = alimento;
+    this.comidaSeleccionada = comida;
     this.ingredientesAbierto = true;
   }
 
   cerrarIngredientes(): void {
     this.ingredientesAbierto = false;
     this.alimentoSeleccionado = null;
+    this.comidaSeleccionada = null;
+  }
+
+  regenerarMenu(): void {
+    this.alimentacionService.generarMenuSemanal().subscribe({
+      next: () => {
+        console.log('Menu semanal regenerado correctamente');
+      },
+      error: (errorCapturado) => {
+        console.error('Error al regenerar menu:', errorCapturado);
+      }
+    });
+  }
+
+  private generarMenuSemanalAutomatico(): void {
+    this.alimentacionService.verificarConexionOllama().subscribe({
+      next: (estado) => {
+        if (estado.conectado) {
+          this.alimentacionService.generarMenuSemanal().subscribe({
+            next: () => {
+              console.log('Menu semanal generado automaticamente');
+            },
+            error: (errorCapturado) => {
+              console.error('Error al generar menu semanal:', errorCapturado);
+            }
+          });
+        }
+      }
+    });
   }
 }
