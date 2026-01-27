@@ -1,6 +1,12 @@
 
 
-ul, ol {
+ul {
+  font-family: var(--font-primary);
+  margin: 0 0 var(--spacing-size-s) 0;
+  padding-left: var(--spacing-size-l);
+}
+
+ol {
   font-family: var(--font-primary);
   margin: 0 0 var(--spacing-size-s) 0;
   padding-left: var(--spacing-size-l);
@@ -13,7 +19,12 @@ li {
   margin-bottom: var(--spacing-size-xss);
 }
 
-ul[class],
+ul[class] {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 ol[class] {
   list-style: none;
   padding: 0;

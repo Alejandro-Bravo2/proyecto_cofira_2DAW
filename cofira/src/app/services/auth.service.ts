@@ -12,11 +12,11 @@ export class AuthService {
   readonly error = signal<string | null>(null);
 
   readonly isAuthenticated = computed(() => !!this.currentUser());
-  readonly userNombre = computed(() => this.currentUser()?.nombre ?? '');
+  readonly userNombre = computed(() => this.currentUser()?.nombre ?? "");
   private readonly api = inject(ApiService);
 
-  private readonly TOKEN_KEY = 'cofira_token';
-  private readonly USER_KEY = 'cofira_user';
+  private readonly TOKEN_KEY = "cofira_token";
+  private readonly USER_KEY = "cofira_user";
 
   constructor() {
     this.loadSession();
@@ -33,7 +33,7 @@ export class AuthService {
       }),
       catchError(error => {
         this.isLoading.set(false);
-        const message = error.error?.message || 'Error al crear la cuenta';
+        const message = error.error?.message || "Error al crear la cuenta";
         this.error.set(message);
         throw error;
       })
@@ -51,7 +51,7 @@ export class AuthService {
       }),
       catchError(error => {
         this.isLoading.set(false);
-        const message = error.error?.message || 'Credenciales incorrectas';
+        const message = error.error?.message || "Credenciales incorrectas";
         this.error.set(message);
         throw error;
       })
@@ -102,7 +102,7 @@ export class AuthService {
         this.currentUser.set(user);
       }
     } catch (e) {
-      console.error('Error cargando sesion:', e);
+      console.error("Error cargando sesion:", e);
       this.logout();
     }
   }

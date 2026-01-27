@@ -27,34 +27,34 @@ export class Configuracion {
   private readonly notificacionService = inject(NotificacionService);
 
   readonly estaCargando = signal(false);
-  readonly seccionActiva = signal<'general' | 'notificaciones' | 'privacidad' | 'cuenta'>('general');
+  readonly seccionActiva = signal<"general" | "notificaciones" | "privacidad" | "cuenta">("general");
 
   readonly preferencias = signal<Preferencias>({
     notificacionesEmail: true,
     notificacionesPush: false,
     recordatoriosEntrenamiento: true,
     recordatoriosComidas: true,
-    idiomaSeleccionado: 'es',
-    unidadesPeso: 'kg',
-    unidadesAltura: 'cm',
+    idiomaSeleccionado: "es",
+    unidadesPeso: "kg",
+    unidadesAltura: "cm",
   });
 
   readonly idiomas = [
-    { codigo: 'es', nombre: 'Español' },
-    { codigo: 'en', nombre: 'English' },
+    { codigo: "es", nombre: "Español" },
+    { codigo: "en", nombre: "English" },
   ];
 
   readonly unidadesPesoOpciones = [
-    { codigo: 'kg', nombre: 'Kilogramos (kg)' },
-    { codigo: 'lb', nombre: 'Libras (lb)' },
+    { codigo: "kg", nombre: "Kilogramos (kg)" },
+    { codigo: "lb", nombre: "Libras (lb)" },
   ];
 
   readonly unidadesAlturaOpciones = [
-    { codigo: 'cm', nombre: 'Centímetros (cm)' },
-    { codigo: 'ft', nombre: 'Pies y pulgadas' },
+    { codigo: "cm", nombre: "Centímetros (cm)" },
+    { codigo: "ft", nombre: "Pies y pulgadas" },
   ];
 
-  cambiarSeccion(seccion: 'general' | 'notificaciones' | 'privacidad' | 'cuenta'): void {
+  cambiarSeccion(seccion: "general" | "notificaciones" | "privacidad" | "cuenta"): void {
     this.seccionActiva.set(seccion);
   }
 
@@ -63,7 +63,7 @@ export class Configuracion {
 
     setTimeout(() => {
       this.estaCargando.set(false);
-      this.notificacionService.exito('Configuración guardada correctamente');
+      this.notificacionService.exito("Configuración guardada correctamente");
     }, 800);
   }
 
@@ -71,7 +71,7 @@ export class Configuracion {
     const prefsActuales = this.preferencias();
     const valorActual = prefsActuales[clave];
 
-    if (typeof valorActual === 'boolean') {
+    if (typeof valorActual === "boolean") {
       this.preferencias.set({
         ...prefsActuales,
         [clave]: !valorActual,
@@ -88,10 +88,10 @@ export class Configuracion {
   }
 
   eliminarCuenta(): void {
-    this.notificacionService.error('Esta función no está disponible en la demo');
+    this.notificacionService.error("Esta función no está disponible en la demo");
   }
 
   exportarDatos(): void {
-    this.notificacionService.info('Preparando exportación de datos...');
+    this.notificacionService.info("Preparando exportación de datos...");
   }
 }

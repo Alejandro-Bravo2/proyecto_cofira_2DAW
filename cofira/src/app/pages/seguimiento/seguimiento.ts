@@ -31,7 +31,7 @@ export class Seguimiento implements OnInit {
   readonly fibraObjetivo = signal(25);
 
   readonly ejerciciosDisponibles = signal<string[]>([]);
-  readonly ejercicioSeleccionado = signal<string>('');
+  readonly ejercicioSeleccionado = signal<string>("");
   readonly historialEjercicio = signal<HistorialEntrenamiento[]>([]);
   readonly cargandoGrafico = signal(false);
 
@@ -155,7 +155,7 @@ export class Seguimiento implements OnInit {
         this.fibraObjetivo.set(objetivos.fiberGrams || 25);
       },
       error: () => {
-        console.error('No se pudieron cargar los objetivos nutricionales');
+        console.error("No se pudieron cargar los objetivos nutricionales");
       }
     });
   }
@@ -171,7 +171,7 @@ export class Seguimiento implements OnInit {
         }
       },
       error: () => {
-        console.error('No se pudieron cargar los ejercicios');
+        console.error("No se pudieron cargar los ejercicios");
       }
     });
   }

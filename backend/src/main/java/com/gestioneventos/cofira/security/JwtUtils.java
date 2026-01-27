@@ -28,9 +28,9 @@ public class JwtUtils {
     public String generateJwtToken(Authentication authentication) {
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
 
-        String authorities = authentication.getAuthorities().stream()
-                .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining(","));
+        var listaAuthorities = authentication.getAuthorities();
+        var streamAuthorities = listaAuthorities.stream().map(GrantedAuthority::getAuthority);
+        String authorities = streamAuthorities.collect(Collectors.joining(","));
 
         return Jwts.builder()
                 .subject(userPrincipal.getUsername())

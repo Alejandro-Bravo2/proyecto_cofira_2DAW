@@ -55,8 +55,6 @@ public class SalaDeGimnasioService {
         if (dto.getFechaFin() != null) {
             sala.setFechaFin(dto.getFechaFin());
         }
-        
-        // Validar que después de actualizar las fechas sean coherentes
         if (sala.getFechaInicio() != null && sala.getFechaFin() != null) {
             validarFechas(sala.getFechaInicio(), sala.getFechaFin());
         }

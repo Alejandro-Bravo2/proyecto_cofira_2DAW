@@ -329,12 +329,8 @@
 .seguimiento__sin-datos-grafico__mensaje {
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
-  color: var(--negro-normal);
+  color: var(--oscuro-seguimiento-sin-datos-texto, var(--negro-normal));
   margin: 0;
-}
-
-[data-theme='dark'] .seguimiento__sin-datos-grafico__mensaje {
-  color: var(--oscuro-texto-principal);
 }
 
 .seguimiento__ayuda {

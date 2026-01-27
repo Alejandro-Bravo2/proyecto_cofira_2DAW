@@ -20,11 +20,11 @@ export class FormRegister implements OnInit {
   ngOnInit(): void {
     this.formularioRegistro = this.fb.group(
       {
-        nombre: ['', [Validators.required, Validators.minLength(2)]],
-        apellido: ['', [Validators.required, Validators.minLength(2)]],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', [Validators.required]],
+        nombre: ["", [Validators.required, Validators.minLength(2)]],
+        apellido: ["", [Validators.required, Validators.minLength(2)]],
+        email: ["", [Validators.required, Validators.email]],
+        password: ["", [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ["", [Validators.required]],
         terminos: [false, [Validators.requiredTrue]],
       },
       {
@@ -34,8 +34,8 @@ export class FormRegister implements OnInit {
   }
 
   validadorContrasenasCoinciden(form: FormGroup) {
-    const password = form.get('password');
-    const confirmPassword = form.get('confirmPassword');
+    const password = form.get("password");
+    const confirmPassword = form.get("confirmPassword");
 
     if (password && confirmPassword && password.value !== confirmPassword.value) {
       confirmPassword.setErrors({ passwordMismatch: true });
@@ -47,12 +47,12 @@ export class FormRegister implements OnInit {
 
   alEnviar(): void {
     if (this.formularioRegistro.valid) {
-      console.log('Formulario de registro enviado:', this.formularioRegistro.value);
-      this.notificacion.exito('¡Registro completado correctamente!');
+      console.log("Formulario de registro enviado:", this.formularioRegistro.value);
+      this.notificacion.exito("¡Registro completado correctamente!");
       this.formularioRegistro.reset();
     } else {
       this.formularioRegistro.markAllAsTouched();
-      this.notificacion.advertencia('Por favor, completa todos los campos correctamente');
+      this.notificacion.advertencia("Por favor, completa todos los campos correctamente");
     }
   }
 
@@ -61,6 +61,6 @@ export class FormRegister implements OnInit {
   }
 
   get terminosControl(): FormControl {
-    return this.formularioRegistro.get('terminos') as FormControl;
+    return this.formularioRegistro.get("terminos") as FormControl;
   }
 }

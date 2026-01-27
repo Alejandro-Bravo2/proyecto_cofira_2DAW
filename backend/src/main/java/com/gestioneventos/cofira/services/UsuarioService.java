@@ -11,6 +11,7 @@ import com.gestioneventos.cofira.exceptions.RecursoNoEncontradoException;
 import com.gestioneventos.cofira.repositories.UsuarioRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,13 +23,16 @@ public class UsuarioService {
     private final UsuarioRepository usuarioRepository;
     private final RutinaAlimentacionService rutinaAlimentacionService;
     private final RutinaEjercicioService rutinaEjercicioService;
+    private final PasswordEncoder passwordEncoder;
 
     public UsuarioService(UsuarioRepository usuarioRepository,
                          RutinaAlimentacionService rutinaAlimentacionService,
-                         RutinaEjercicioService rutinaEjercicioService) {
+                         RutinaEjercicioService rutinaEjercicioService,
+                         PasswordEncoder passwordEncoder) {
         this.usuarioRepository = usuarioRepository;
         this.rutinaAlimentacionService = rutinaAlimentacionService;
         this.rutinaEjercicioService = rutinaEjercicioService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public Page<UsuarioListadoDTO> listarUsuarios(String nombre, Pageable pageable) {
@@ -68,7 +72,8 @@ public class UsuarioService {
         usuario.setNombre(crearUsuarioDTO.getNombre());
         usuario.setUsername(crearUsuarioDTO.getUsername());
         usuario.setEmail(crearUsuarioDTO.getEmail());
-        usuario.setPassword(crearUsuarioDTO.getPassword()); // Nota: debería hashearse
+        String contrasenaHasheada = passwordEncoder.encode(crearUsuarioDTO.getPassword());
+        usuario.setPassword(contrasenaHasheada);
         
         // Establecer el rol (si se proporciona, sino usar el default USER)
         if (crearUsuarioDTO.getRol() != null) {
@@ -96,7 +101,8 @@ public class UsuarioService {
             usuario.setEmail(modificarUsuarioDTO.getEmail());
         }
         if (modificarUsuarioDTO.getPassword() != null) {
-            usuario.setPassword(modificarUsuarioDTO.getPassword());
+            String contrasenaHasheada = passwordEncoder.encode(modificarUsuarioDTO.getPassword());
+            usuario.setPassword(contrasenaHasheada);
         }
         if (modificarUsuarioDTO.getEdad() != null) {
             usuario.setEdad(modificarUsuarioDTO.getEdad());

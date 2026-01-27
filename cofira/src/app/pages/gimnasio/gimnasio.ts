@@ -16,7 +16,7 @@ export class Gimnasio implements OnInit {
   private readonly gimnasioService = inject(GimnasioService);
 
   readonly diasSemana = [
-    'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
+    "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"
   ];
 
   diaActualIndex = 0;
@@ -81,10 +81,10 @@ export class Gimnasio implements OnInit {
     if (nuevoValor === true) {
       this.gimnasioService.guardarProgreso(diaSeleccionado).subscribe({
         next: () => {
-          console.log('Progreso guardado correctamente');
+          console.log("Progreso guardado correctamente");
         },
         error: (errorCapturado) => {
-          console.error('Error al guardar progreso:', errorCapturado);
+          console.error("Error al guardar progreso:", errorCapturado);
         }
       });
     }
@@ -100,10 +100,10 @@ export class Gimnasio implements OnInit {
   generarNuevaRutina(): void {
     this.gimnasioService.generarRutina().subscribe({
       next: () => {
-        console.log('Rutina generada correctamente');
+        console.log("Rutina generada correctamente");
       },
       error: (errorCapturado) => {
-        console.error('Error al generar rutina:', errorCapturado);
+        console.error("Error al generar rutina:", errorCapturado);
       }
     });
   }
@@ -113,12 +113,12 @@ export class Gimnasio implements OnInit {
 
     this.gimnasioService.guardarFeedback(this.feedback).subscribe({
       next: () => {
-        console.log('Feedback guardado correctamente');
+        console.log("Feedback guardado correctamente");
         this.resetFeedback();
         this.generarNuevaRutina();
       },
       error: (errorCapturado) => {
-        console.error('Error al guardar feedback:', errorCapturado);
+        console.error("Error al guardar feedback:", errorCapturado);
       }
     });
   }
@@ -147,9 +147,9 @@ export class Gimnasio implements OnInit {
   private resetFeedback(): void {
     this.feedback = {
       semanaNumero: this.semanaActual(),
-      ejerciciosDificiles: '',
+      ejerciciosDificiles: "",
       puedeMasPeso: false,
-      comentarios: '',
+      comentarios: "",
       nivelFatiga: 3
     };
   }

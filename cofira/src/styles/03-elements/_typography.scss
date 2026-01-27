@@ -2,35 +2,57 @@
 
 
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
   font-family: var(--font-secondary);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   color: var(--text-light);
   margin: 0 0 var(--spacing-size-s) 0;
-}
-
-h1 {
   font-size: var(--font-size-4xl);
 }
 
 h2 {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-light);
+  margin: 0 0 var(--spacing-size-s) 0;
   font-size: var(--font-size-3xl);
 }
 
 h3 {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-light);
+  margin: 0 0 var(--spacing-size-s) 0;
   font-size: var(--font-size-2xl);
 }
 
 h4 {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-light);
+  margin: 0 0 var(--spacing-size-s) 0;
   font-size: var(--font-size-xl);
 }
 
 h5 {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-light);
+  margin: 0 0 var(--spacing-size-s) 0;
   font-size: var(--font-size-lg);
 }
 
 h6 {
+  font-family: var(--font-secondary);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--text-light);
+  margin: 0 0 var(--spacing-size-s) 0;
   font-size: var(--font-size-md);
 }
 
@@ -64,12 +86,22 @@ small {
   font-size: var(--font-size-sm);
 }
 
-strong, b {
+strong {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-bold);
 }
 
-em, i {
+b {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+em {
+  font-family: var(--font-primary);
+  font-style: italic;
+}
+
+i {
   font-family: var(--font-primary);
   font-style: italic;
 }
@@ -80,18 +112,19 @@ mark {
   padding: 0 var(--spacing-size-xss);
 }
 
-code, pre {
+code {
   font-family: monospace;
   font-size: var(--font-size-sm);
   background-color: var(--gris-normal);
   border-radius: var(--radius-xss);
-}
-
-code {
   padding: var(--spacing-size-xss);
 }
 
 pre {
+  font-family: monospace;
+  font-size: var(--font-size-sm);
+  background-color: var(--gris-normal);
+  border-radius: var(--radius-xss);
   padding: var(--spacing-size-s);
   overflow-x: auto;
 }
@@ -108,9 +141,21 @@ blockquote {
 
 
 
-button,
-input,
-textarea,
+button {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+}
+
+input {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+}
+
+textarea {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+}
+
 select {
   font-family: var(--font-primary);
   font-size: var(--font-size-md);

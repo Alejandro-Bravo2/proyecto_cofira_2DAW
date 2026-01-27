@@ -44,7 +44,7 @@ export class AlimentacionService {
   private readonly api = inject(ApiService);
   private readonly onboardingService = inject(OnboardingService);
   private readonly ngZone = inject(NgZone);
-  private readonly STORAGE_KEY = 'cofira_menu_alimentacion';
+  private readonly STORAGE_KEY = "cofira_menu_alimentacion";
   private eventoStreamActivo: EventSource | null = null;
 
   constructor() {
@@ -75,7 +75,7 @@ export class AlimentacionService {
       }),
       catchError(errorCapturado => {
         this.isLoading.set(false);
-        this.error.set(errorCapturado.message || 'Error al generar el menu');
+        this.error.set(errorCapturado.message || "Error al generar el menu");
         throw errorCapturado;
       })
     );
@@ -103,7 +103,7 @@ export class AlimentacionService {
       catchError(errorCapturado => {
         this.isLoading.set(false);
         this.estaGenerando.set(false);
-        this.error.set(errorCapturado.message || 'Error al generar el menu semanal');
+        this.error.set(errorCapturado.message || "Error al generar el menu semanal");
         throw errorCapturado;
       })
     );
@@ -123,7 +123,7 @@ export class AlimentacionService {
     const datosOnboarding = this.onboardingService.formData();
     const solicitudMenu = this.construirSolicitudMenu(datosOnboarding);
 
-    const token = localStorage.getItem('cofira_token');
+    const token = localStorage.getItem("cofira_token");
     const urlEndpoint = `${environment.apiUrl}/rutinas-alimentacion/generar-menu-semanal-stream`;
 
     if (this.eventoStreamActivo) {
@@ -135,58 +135,61 @@ export class AlimentacionService {
     });
   }
 
-  private iniciarConexionSSE(urlEndpoint: string, solicitudMenu: GenerarMenuRequest, token: string | null): void {
-    fetch(urlEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': token ? `Bearer ${token}` : ''
-      },
-      body: JSON.stringify(solicitudMenu)
-    }).then(respuesta => {
+  private async iniciarConexionSSE(urlEndpoint: string, solicitudMenu: GenerarMenuRequest, token: string | null): Promise<void> {
+    try {
+      const respuesta = await fetch(urlEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": token ? `Bearer ${token}` : ""
+        },
+        body: JSON.stringify(solicitudMenu)
+      });
+
       if (!respuesta.ok) {
         throw new Error(`Error HTTP: ${respuesta.status}`);
       }
 
       const lectorStream = respuesta.body?.getReader();
       if (!lectorStream) {
-        throw new Error('No se pudo obtener el lector del stream');
+        throw new Error("No se pudo obtener el lector del stream");
       }
 
       const decodificador = new TextDecoder();
-      let bufferDatos = '';
+      let bufferDatos = "";
+      let lecturaActiva = true;
 
-      const procesarChunk = (resultado: ReadableStreamReadResult<Uint8Array>): Promise<void> | void => {
+      while (lecturaActiva) {
+        const resultado = await lectorStream.read();
+
         if (resultado.done) {
           this.ngZone.run(() => {
             this.finalizarGeneracion();
           });
-          return;
+          lecturaActiva = false;
+          break;
         }
 
         bufferDatos += decodificador.decode(resultado.value, {stream: true});
-        const lineas = bufferDatos.split('\n');
-        bufferDatos = lineas.pop() || '';
+        const lineas = bufferDatos.split("\n");
+        bufferDatos = lineas.pop() || "";
 
         for (const linea of lineas) {
           this.procesarLineaSSE(linea);
         }
-
-        return lectorStream.read().then(procesarChunk);
-      };
-
-      return lectorStream.read().then(procesarChunk);
-    }).catch(errorCapturado => {
+      }
+    } catch (errorCapturado) {
+      const mensajeError = errorCapturado instanceof Error ? errorCapturado.message : "Error al generar el menú";
       this.ngZone.run(() => {
-        this.error.set(errorCapturado.message || 'Error al generar el menú');
+        this.error.set(mensajeError);
         this.isLoading.set(false);
         this.estaGenerando.set(false);
       });
-    });
+    }
   }
 
   private procesarLineaSSE(linea: string): void {
-    if (linea.startsWith('data:')) {
+    if (linea.startsWith("data:")) {
       const datosJson = linea.substring(5).trim();
       if (!datosJson) {
         return;
@@ -198,7 +201,7 @@ export class AlimentacionService {
           this.procesarEventoSSE(datosParseados);
         });
       } catch (errorParseo) {
-        console.error('Error parseando evento SSE:', errorParseo);
+        console.error("Error parseando evento SSE:", errorParseo);
       }
     }
   }
@@ -206,7 +209,7 @@ export class AlimentacionService {
   private procesarEventoSSE(datos: unknown): void {
     const datosConTipo = datos as { tipo?: string; fecha?: string; numeroDia?: number };
 
-    if (datosConTipo.tipo === 'inicio') {
+    if (datosConTipo.tipo === "inicio") {
       const eventoInicio = datos as EventoInicioStream;
       this.fechaInicio.set(eventoInicio.fechaInicio);
       this.fechaFin.set(eventoInicio.fechaFin);
@@ -219,12 +222,12 @@ export class AlimentacionService {
       return;
     }
 
-    if (datosConTipo.tipo === 'completado') {
+    if (datosConTipo.tipo === "completado") {
       this.finalizarGeneracion();
       return;
     }
 
-    if (datosConTipo.tipo === 'error') {
+    if (datosConTipo.tipo === "error") {
       const eventoError = datos as EventoErrorStream;
       this.error.set(eventoError.mensaje);
       this.isLoading.set(false);
@@ -281,7 +284,7 @@ export class AlimentacionService {
       };
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(menuSemanalParaGuardar));
     } catch (error) {
-      console.error('Error guardando menú en localStorage:', error);
+      console.error("Error guardando menú en localStorage:", error);
     }
   }
 
@@ -331,8 +334,8 @@ export class AlimentacionService {
 
     if (diasRestantes <= 5) {
       this.generarMenuSemanal().subscribe({
-        next: () => console.log('Menu semanal regenerado automaticamente por dias restantes'),
-        error: (errorCapturado) => console.error('Error regenerando menu:', errorCapturado)
+        next: () => console.log("Menu semanal regenerado automaticamente por dias restantes"),
+        error: (errorCapturado) => console.error("Error regenerando menu:", errorCapturado)
       });
     }
   }
@@ -345,7 +348,7 @@ export class AlimentacionService {
       catchError(() => {
         const estadoError: EstadoIA = {
           conectado: false,
-          mensaje: 'No se puede conectar con el servidor'
+          mensaje: "No se puede conectar con el servidor"
         };
         this.estadoIA.set(estadoError);
         return of(estadoError);
@@ -400,12 +403,12 @@ export class AlimentacionService {
 
   private obtenerNutritionTargets(): any {
     try {
-      const saved = localStorage.getItem('cofira_nutrition_targets');
+      const saved = localStorage.getItem("cofira_nutrition_targets");
       if (saved) {
         return JSON.parse(saved);
       }
     } catch (e) {
-      console.error('Error obteniendo nutrition targets:', e);
+      console.error("Error obteniendo nutrition targets:", e);
     }
     return null;
   }
@@ -436,37 +439,37 @@ export class AlimentacionService {
 
   private mapearTipoDieta(tipoDieta: string | null): string {
     const mapaTipos: Record<string, string> = {
-      'OMNIVORE': 'Omnivoro',
-      'VEGETARIAN': 'Vegetariano',
-      'VEGAN': 'Vegano',
-      'PESCATARIAN': 'Pescetariano',
-      'KETO': 'Cetogenica',
-      'PALEO': 'Paleo',
-      'MEDITERRANEAN': 'Mediterranea'
+      "OMNIVORE": "Omnivoro",
+      "VEGETARIAN": "Vegetariano",
+      "VEGAN": "Vegano",
+      "PESCATARIAN": "Pescetariano",
+      "KETO": "Cetogenica",
+      "PALEO": "Paleo",
+      "MEDITERRANEAN": "Mediterranea"
     };
 
-    return mapaTipos[tipoDieta || ''] || 'Omnivoro';
+    return mapaTipos[tipoDieta || ""] || "Omnivoro";
   }
 
   private mapearObjetivo(objetivo: string | null): string {
     const mapaObjetivos: Record<string, string> = {
-      'LOSE_WEIGHT': 'Perder grasa',
-      'GAIN_MUSCLE': 'Ganar musculo',
-      'MAINTAIN': 'Mantener peso',
-      'IMPROVE_HEALTH': 'Mejorar salud general'
+      "LOSE_WEIGHT": "Perder grasa",
+      "GAIN_MUSCLE": "Ganar musculo",
+      "MAINTAIN": "Mantener peso",
+      "IMPROVE_HEALTH": "Mejorar salud general"
     };
 
-    return mapaObjetivos[objetivo || ''] || 'Mejorar salud general';
+    return mapaObjetivos[objetivo || ""] || "Mejorar salud general";
   }
 
   private mapearGenero(genero: string | null): string {
     const mapaGeneros: Record<string, string> = {
-      'MALE': 'Masculino',
-      'FEMALE': 'Femenino',
-      'OTHER': 'Otro'
+      "MALE": "Masculino",
+      "FEMALE": "Femenino",
+      "OTHER": "Otro"
     };
 
-    return mapaGeneros[genero || ''] || 'Masculino';
+    return mapaGeneros[genero || ""] || "Masculino";
   }
 
   private transformarMenuAComidas(menu: MenuGenerado): Comida[] {
@@ -506,36 +509,36 @@ export class AlimentacionService {
 
   private mapearIcono(icono: string): TipoIconoAlimento {
     const mapaIconos: Record<string, TipoIconoAlimento> = {
-      'pan': 'pan',
-      'fruta': 'fruta',
-      'verdura': 'verdura',
-      'proteina': 'proteina',
-      'lacteo': 'lacteo',
-      'bebida': 'bebida',
-      'cereal': 'cereal',
-      'legumbre': 'legumbre',
-      'fruto-seco': 'fruto-seco'
+      "pan": "pan",
+      "fruta": "fruta",
+      "verdura": "verdura",
+      "proteina": "proteina",
+      "lacteo": "lacteo",
+      "bebida": "bebida",
+      "cereal": "cereal",
+      "legumbre": "legumbre",
+      "fruto-seco": "fruto-seco"
     };
 
-    return mapaIconos[icono] || 'plato';
+    return mapaIconos[icono] || "plato";
   }
 
   private mapearTipoComida(tipo: string): TipoComida {
     const mapaTipos: Record<string, TipoComida> = {
-      'DESAYUNO': 'desayuno',
-      'ALMUERZO': 'almuerzo',
-      'COMIDA': 'comida',
-      'MERIENDA': 'merienda',
-      'CENA': 'cena'
+      "DESAYUNO": "desayuno",
+      "ALMUERZO": "almuerzo",
+      "COMIDA": "comida",
+      "MERIENDA": "merienda",
+      "CENA": "cena"
     };
 
-    return mapaTipos[tipo] || 'comida';
+    return mapaTipos[tipo] || "comida";
   }
 
   private formatearFecha(fecha: Date): string {
     const ano = fecha.getFullYear();
-    const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-    const dia = String(fecha.getDate()).padStart(2, '0');
+    const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+    const dia = String(fecha.getDate()).padStart(2, "0");
     return `${ano}-${mes}-${dia}`;
   }
 
@@ -552,7 +555,7 @@ export class AlimentacionService {
       };
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(menuConFecha));
     } catch (error) {
-      console.error('Error guardando menu en localStorage:', error);
+      console.error("Error guardando menu en localStorage:", error);
     }
   }
 
@@ -566,7 +569,7 @@ export class AlimentacionService {
       };
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(menuSemanalParaGuardar));
     } catch (error) {
-      console.error('Error guardando menu semanal en localStorage:', error);
+      console.error("Error guardando menu semanal en localStorage:", error);
     }
   }
 
@@ -586,7 +589,7 @@ export class AlimentacionService {
         }
       }
     } catch (error) {
-      console.error('Error cargando menu desde localStorage:', error);
+      console.error("Error cargando menu desde localStorage:", error);
       localStorage.removeItem(this.STORAGE_KEY);
     }
   }

@@ -22,10 +22,9 @@ public class RutinaAlimentacionService {
     }
 
     public List<RutinaAlimentacionDTO> listarRutinas() {
-        return rutinaAlimentacionRepository.findAll()
-                .stream()
-                .map(this::convertirADTO)
-                .collect(Collectors.toList());
+        var listaRutinas = rutinaAlimentacionRepository.findAll();
+        var streamMapeado = listaRutinas.stream().map(this::convertirADTO);
+        return streamMapeado.collect(Collectors.toList());
     }
 
     public RutinaAlimentacionDTO obtenerRutina(Long id) {
@@ -39,9 +38,9 @@ public class RutinaAlimentacionService {
         RutinaAlimentacion rutina = new RutinaAlimentacion();
         rutina.setFechaInicio(dto.getFechaInicio());
 
-        List<DiaAlimentacion> dias = dto.getDiasAlimentacion().stream()
-                .map(this::convertirDiaAlimentacionDTOAEntidad)
-                .collect(Collectors.toList());
+        var listaDiasDTO = dto.getDiasAlimentacion();
+        var streamDiasMapeados = listaDiasDTO.stream().map(this::convertirDiaAlimentacionDTOAEntidad);
+        List<DiaAlimentacion> dias = streamDiasMapeados.collect(Collectors.toList());
 
         rutina.setDiasAlimentacion(dias);
 
@@ -62,9 +61,9 @@ public class RutinaAlimentacionService {
         dto.setFechaInicio(rutina.getFechaInicio());
 
         if (rutina.getDiasAlimentacion() != null) {
-            List<DiaAlimentacionDTO> diasDTO = rutina.getDiasAlimentacion().stream()
-                    .map(this::convertirDiaAlimentacionADTO)
-                    .collect(Collectors.toList());
+            var listaDias = rutina.getDiasAlimentacion();
+            var streamDiasMapeados = listaDias.stream().map(this::convertirDiaAlimentacionADTO);
+            List<DiaAlimentacionDTO> diasDTO = streamDiasMapeados.collect(Collectors.toList());
             dto.setDiasAlimentacion(diasDTO);
         }
 

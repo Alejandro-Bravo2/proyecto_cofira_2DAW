@@ -1,6 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 
-export type TipoNotificacion = 'exito' | 'error' | 'advertencia' | 'info';
+export type TipoNotificacion = "exito" | "error" | "advertencia" | "info";
 
 export interface Notificacion {
   id: number;
@@ -9,7 +9,7 @@ export interface Notificacion {
   duracion: number;
 }
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: "root" })
 export class NotificacionService {
   private contadorId = 0;
 
@@ -18,19 +18,19 @@ export class NotificacionService {
   private readonly DURACION_DEFECTO = 5000;
 
   exito(mensaje: string, duracion?: number): void {
-    this.mostrar('exito', mensaje, duracion);
+    this.mostrar("exito", mensaje, duracion);
   }
 
   error(mensaje: string, duracion?: number): void {
-    this.mostrar('error', mensaje, duracion);
+    this.mostrar("error", mensaje, duracion);
   }
 
   advertencia(mensaje: string, duracion?: number): void {
-    this.mostrar('advertencia', mensaje, duracion);
+    this.mostrar("advertencia", mensaje, duracion);
   }
 
   info(mensaje: string, duracion?: number): void {
-    this.mostrar('info', mensaje, duracion);
+    this.mostrar("info", mensaje, duracion);
   }
 
   cerrar(id: number): void {

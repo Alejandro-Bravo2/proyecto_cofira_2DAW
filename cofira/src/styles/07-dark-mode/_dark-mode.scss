@@ -406,7 +406,10 @@
     border-color: var(--oscuro-borde-suave);
   }
 
-  .tarjeta-color__titulo,
+  .tarjeta-color__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
   .color-name {
     color: var(--oscuro-texto-principal);
   }
@@ -458,96 +461,232 @@
     color: var(--oscuro-texto-principal);
   }
 
-  .tarjeta-color__titulo,
-  .color-name,
-  .typography-sample,
+  .tarjeta-color__titulo {
+    color: var(--blanco-normal);
+  }
+
+  .color-name {
+    color: var(--blanco-normal);
+  }
+
+  .typography-sample {
+    color: var(--blanco-normal);
+  }
+
   .font-weights__item {
     color: var(--blanco-normal);
   }
 
-  .color-value,
-  .typography-info,
-  .font-weights__label,
-  .spacing-info,
-  .animation-info,
+  .color-value {
+    color: var(--blanco-dark);
+  }
+
+  .typography-info {
+    color: var(--blanco-dark);
+  }
+
+  .font-weights__label {
+    color: var(--blanco-dark);
+  }
+
+  .spacing-info {
+    color: var(--blanco-dark);
+  }
+
+  .animation-info {
+    color: var(--blanco-dark);
+  }
+
   .radius-info {
     color: var(--blanco-dark);
   }
 
-  .color-value,
+  .color-value {
+    background: var(--gris-dark);
+    color: var(--blanco-normal);
+  }
+
   .typography-info-codigo {
     background: var(--gris-dark);
     color: var(--blanco-normal);
   }
 
-  app-privacidad .legal,
-  app-terminos .legal,
-  app-cookies .legal,
+  app-privacidad .legal {
+    background-color: var(--oscuro-legal-fondo);
+  }
+
+  app-terminos .legal {
+    background-color: var(--oscuro-legal-fondo);
+  }
+
+  app-cookies .legal {
+    background-color: var(--oscuro-legal-fondo);
+  }
+
   app-licencias .legal {
     background-color: var(--oscuro-legal-fondo);
   }
 
-  app-privacidad .legal__titulo,
-  app-terminos .legal__titulo,
-  app-cookies .legal__titulo,
+  app-privacidad .legal__titulo {
+    color: var(--oscuro-legal-titulo);
+  }
+
+  app-terminos .legal__titulo {
+    color: var(--oscuro-legal-titulo);
+  }
+
+  app-cookies .legal__titulo {
+    color: var(--oscuro-legal-titulo);
+  }
+
   app-licencias .legal__titulo {
     color: var(--oscuro-legal-titulo);
   }
 
-  app-privacidad .legal__fecha,
-  app-terminos .legal__fecha,
-  app-cookies .legal__fecha,
+  app-privacidad .legal__fecha {
+    color: var(--oscuro-legal-fecha);
+  }
+
+  app-terminos .legal__fecha {
+    color: var(--oscuro-legal-fecha);
+  }
+
+  app-cookies .legal__fecha {
+    color: var(--oscuro-legal-fecha);
+  }
+
   app-licencias .legal__fecha {
     color: var(--oscuro-legal-fecha);
   }
 
-  app-privacidad .legal__contenido,
-  app-terminos .legal__contenido,
-  app-cookies .legal__contenido,
+  app-privacidad .legal__contenido {
+    background-color: var(--oscuro-legal-contenido-fondo);
+    box-shadow: 0 0.25rem 1rem var(--oscuro-legal-contenido-sombra);
+  }
+
+  app-terminos .legal__contenido {
+    background-color: var(--oscuro-legal-contenido-fondo);
+    box-shadow: 0 0.25rem 1rem var(--oscuro-legal-contenido-sombra);
+  }
+
+  app-cookies .legal__contenido {
+    background-color: var(--oscuro-legal-contenido-fondo);
+    box-shadow: 0 0.25rem 1rem var(--oscuro-legal-contenido-sombra);
+  }
+
   app-licencias .legal__contenido {
     background-color: var(--oscuro-legal-contenido-fondo);
     box-shadow: 0 0.25rem 1rem var(--oscuro-legal-contenido-sombra);
   }
 
-  app-privacidad .legal__seccion,
-  app-terminos .legal__seccion,
-  app-cookies .legal__seccion,
+  app-privacidad .legal__seccion {
+    border-bottom-color: var(--oscuro-legal-borde);
+  }
+
+  app-terminos .legal__seccion {
+    border-bottom-color: var(--oscuro-legal-borde);
+  }
+
+  app-cookies .legal__seccion {
+    border-bottom-color: var(--oscuro-legal-borde);
+  }
+
   app-licencias .legal__seccion {
     border-bottom-color: var(--oscuro-legal-borde);
   }
 
-  app-privacidad .legal__subtitulo,
-  app-privacidad .legal__subtitulo-menor,
-  app-terminos .legal__subtitulo,
-  app-terminos .legal__subtitulo-menor,
-  app-cookies .legal__subtitulo,
-  app-cookies .legal__subtitulo-menor,
-  app-licencias .legal__subtitulo,
+  app-privacidad .legal__subtitulo {
+    color: var(--oscuro-legal-subtitulo);
+  }
+
+  app-privacidad .legal__subtitulo-menor {
+    color: var(--oscuro-legal-subtitulo);
+  }
+
+  app-terminos .legal__subtitulo {
+    color: var(--oscuro-legal-subtitulo);
+  }
+
+  app-terminos .legal__subtitulo-menor {
+    color: var(--oscuro-legal-subtitulo);
+  }
+
+  app-cookies .legal__subtitulo {
+    color: var(--oscuro-legal-subtitulo);
+  }
+
+  app-cookies .legal__subtitulo-menor {
+    color: var(--oscuro-legal-subtitulo);
+  }
+
+  app-licencias .legal__subtitulo {
+    color: var(--oscuro-legal-subtitulo);
+  }
+
   app-licencias .legal__subtitulo-menor {
     color: var(--oscuro-legal-subtitulo);
   }
 
-  app-privacidad .legal__texto,
-  app-privacidad .legal__lista,
-  app-terminos .legal__texto,
-  app-terminos .legal__lista,
-  app-cookies .legal__texto,
-  app-cookies .legal__lista,
-  app-licencias .legal__texto,
+  app-privacidad .legal__texto {
+    color: var(--oscuro-legal-texto);
+  }
+
+  app-privacidad .legal__lista {
+    color: var(--oscuro-legal-texto);
+  }
+
+  app-terminos .legal__texto {
+    color: var(--oscuro-legal-texto);
+  }
+
+  app-terminos .legal__lista {
+    color: var(--oscuro-legal-texto);
+  }
+
+  app-cookies .legal__texto {
+    color: var(--oscuro-legal-texto);
+  }
+
+  app-cookies .legal__lista {
+    color: var(--oscuro-legal-texto);
+  }
+
+  app-licencias .legal__texto {
+    color: var(--oscuro-legal-texto);
+  }
+
   app-licencias .legal__lista {
     color: var(--oscuro-legal-texto);
   }
 
-  app-privacidad .legal__enlace,
-  app-terminos .legal__enlace,
-  app-cookies .legal__enlace,
+  app-privacidad .legal__enlace {
+    color: var(--oscuro-legal-enlace);
+  }
+
+  app-terminos .legal__enlace {
+    color: var(--oscuro-legal-enlace);
+  }
+
+  app-cookies .legal__enlace {
+    color: var(--oscuro-legal-enlace);
+  }
+
   app-licencias .legal__enlace {
     color: var(--oscuro-legal-enlace);
   }
 
-  app-privacidad .legal__enlace:hover,
-  app-terminos .legal__enlace:hover,
-  app-cookies .legal__enlace:hover,
+  app-privacidad .legal__enlace:hover {
+    color: var(--oscuro-legal-enlace-hover);
+  }
+
+  app-terminos .legal__enlace:hover {
+    color: var(--oscuro-legal-enlace-hover);
+  }
+
+  app-cookies .legal__enlace:hover {
+    color: var(--oscuro-legal-enlace-hover);
+  }
+
   app-licencias .legal__enlace:hover {
     color: var(--oscuro-legal-enlace-hover);
   }
@@ -627,10 +766,22 @@
     color: var(--oscuro-info-titulo);
   }
 
-  .blog__articulo-extracto,
-  .blog__articulo-fecha,
-  .blog__articulo-tiempo,
-  .blog__articulo-autor,
+  .blog__articulo-extracto {
+    color: var(--oscuro-info-texto);
+  }
+
+  .blog__articulo-fecha {
+    color: var(--oscuro-info-texto);
+  }
+
+  .blog__articulo-tiempo {
+    color: var(--oscuro-info-texto);
+  }
+
+  .blog__articulo-autor {
+    color: var(--oscuro-info-texto);
+  }
+
   .blog__articulo-separador {
     color: var(--oscuro-info-texto);
   }
@@ -670,22 +821,44 @@
     color: var(--oscuro-info-titulo);
   }
 
-  .contacto__input,
-  .contacto__select,
+  .contacto__input {
+    background-color: var(--oscuro-input-fondo);
+    color: var(--oscuro-texto-principal);
+    border-color: var(--oscuro-info-borde);
+  }
+
+  .contacto__select {
+    background-color: var(--oscuro-input-fondo);
+    color: var(--oscuro-texto-principal);
+    border-color: var(--oscuro-info-borde);
+  }
+
   .contacto__textarea {
     background-color: var(--oscuro-input-fondo);
     color: var(--oscuro-texto-principal);
     border-color: var(--oscuro-info-borde);
   }
 
-  .contacto__input::placeholder,
-  .contacto__select::placeholder,
+  .contacto__input::placeholder {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  .contacto__select::placeholder {
+    color: var(--oscuro-texto-secundario);
+  }
+
   .contacto__textarea::placeholder {
     color: var(--oscuro-texto-secundario);
   }
 
-  .contacto__input:focus,
-  .contacto__select:focus,
+  .contacto__input:focus {
+    border-color: var(--amarillo-normal);
+  }
+
+  .contacto__select:focus {
+    border-color: var(--amarillo-normal);
+  }
+
   .contacto__textarea:focus {
     border-color: var(--amarillo-normal);
   }
@@ -769,32 +942,50 @@
     background: var(--oscuro-home-hero-fondo);
   }
 
-  app-home .home__titulo,
+  app-home .home__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
   app-home .home__section-titulo {
     color: var(--oscuro-texto-principal);
   }
 
-  app-home .home__subtitulo,
+  app-home .home__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
   app-home .home__section-subtitulo {
     color: var(--oscuro-texto-secundario);
   }
 
-  app-home .home__feature,
+  app-home .home__feature {
+    background-color: var(--oscuro-home-feature-fondo);
+  }
+
   app-home .home__caracteristica {
     background-color: var(--oscuro-home-feature-fondo);
   }
 
-  app-home .home__feature-titulo,
+  app-home .home__feature-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
   app-home .home__caracteristica-titulo {
     color: var(--oscuro-texto-principal);
   }
 
-  app-home .home__feature-descripcion,
+  app-home .home__feature-descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
   app-home .home__caracteristica-descripcion {
     color: var(--oscuro-texto-secundario);
   }
 
-  app-home .home__feature-icono,
+  app-home .home__feature-icono {
+    background-color: var(--oscuro-home-feature-icono-fondo);
+  }
+
   app-home .home__caracteristica-icono {
     background-color: var(--oscuro-home-feature-icono-fondo);
   }
@@ -811,17 +1002,26 @@
     color: var(--oscuro-texto-principal);
   }
 
-  app-home .home__stat,
+  app-home .home__stat {
+    background-color: var(--oscuro-home-stat-fondo);
+  }
+
   app-home .home__estadistica {
     background-color: var(--oscuro-home-stat-fondo);
   }
 
-  app-home .home__stat-valor,
+  app-home .home__stat-valor {
+    color: var(--oscuro-texto-principal);
+  }
+
   app-home .home__estadistica-valor {
     color: var(--oscuro-texto-principal);
   }
 
-  app-home .home__stat-label,
+  app-home .home__stat-label {
+    color: var(--oscuro-texto-secundario);
+  }
+
   app-home .home__estadistica-label {
     color: var(--oscuro-texto-secundario);
   }
@@ -942,7 +1142,10 @@
     color: var(--oscuro-texto-secundario);
   }
 
-  app-onboarding .onboarding,
+  app-onboarding .onboarding {
+    background-color: var(--oscuro-onboarding-fondo);
+  }
+
   app-onboarding main {
     background-color: var(--oscuro-onboarding-fondo);
   }
@@ -1016,7 +1219,16 @@
     color: var(--oscuro-texto-principal);
   }
 
-  app-onboarding .onboarding__progress-fill,
+  app-onboarding .onboarding__progress-fill {
+    background: linear-gradient(
+      90deg,
+      var(--amarillo-dark) 0%,
+      var(--amarillo-normal) 50%,
+      var(--amarillo-dark) 100%
+    );
+    box-shadow: 0 0 8px var(--amarillo-normal-transparente-040);
+  }
+
   app-onboarding .progress-bar__fill {
     background: linear-gradient(
       90deg,
@@ -1027,38 +1239,122 @@
     box-shadow: 0 0 8px var(--amarillo-normal-transparente-040);
   }
 
-  app-onboarding .step-register__titulo,
-  app-onboarding .step-goal__titulo,
-  app-onboarding .step-gender__titulo,
-  app-onboarding .step-birthdate__titulo,
-  app-onboarding .step-measurements__titulo,
-  app-onboarding .step-activity-level__titulo,
-  app-onboarding .step-fitness-level__titulo,
-  app-onboarding .step-training-days__titulo,
-  app-onboarding .step-equipment__titulo,
-  app-onboarding .step-target-weight__titulo,
-  app-onboarding .step-allergies__titulo,
-  app-onboarding .step-diet-type__titulo,
-  app-onboarding .step-meals__titulo,
-  app-onboarding .step-results__titulo,
+  app-onboarding .step-register__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-goal__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-gender__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-birthdate__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-measurements__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-activity-level__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-fitness-level__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-training-days__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-equipment__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-target-weight__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-allergies__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-diet-type__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-meals__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-results__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
   app-onboarding .welcome__titulo {
     color: var(--oscuro-texto-principal);
   }
 
-  app-onboarding .step-register__subtitulo,
-  app-onboarding .step-goal__subtitulo,
-  app-onboarding .step-gender__subtitulo,
-  app-onboarding .step-birthdate__subtitulo,
-  app-onboarding .step-measurements__subtitulo,
-  app-onboarding .step-activity-level__subtitulo,
-  app-onboarding .step-fitness-level__subtitulo,
-  app-onboarding .step-training-days__subtitulo,
-  app-onboarding .step-equipment__subtitulo,
-  app-onboarding .step-target-weight__subtitulo,
-  app-onboarding .step-allergies__subtitulo,
-  app-onboarding .step-diet-type__subtitulo,
-  app-onboarding .step-meals__subtitulo,
-  app-onboarding .step-results__subtitulo,
+  app-onboarding .step-register__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-goal__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-gender__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-birthdate__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-measurements__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-activity-level__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-fitness-level__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-training-days__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-equipment__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-target-weight__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-allergies__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-diet-type__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-meals__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-results__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
   app-onboarding .welcome__subtitulo {
     color: var(--oscuro-texto-secundario);
   }
@@ -1072,8 +1368,16 @@
     background-color: var(--oscuro-onboarding-option-hover);
   }
 
-  app-onboarding .option-card--selected,
-  app-onboarding .option-card--seleccionado,
+  app-onboarding .option-card--selected {
+    background-color: var(--oscuro-onboarding-option-selected);
+    border-color: var(--oscuro-onboarding-option-borde-selected);
+  }
+
+  app-onboarding .option-card--seleccionado {
+    background-color: var(--oscuro-onboarding-option-selected);
+    border-color: var(--oscuro-onboarding-option-borde-selected);
+  }
+
   app-onboarding .option-card--activa {
     background-color: var(--oscuro-onboarding-option-selected);
     border-color: var(--oscuro-onboarding-option-borde-selected);
@@ -1097,25 +1401,58 @@
     color: var(--negro-normal);
   }
 
-  app-onboarding .step-register__input,
-  app-onboarding .step-measurements__input,
-  app-onboarding .step-target-weight__input,
+  app-onboarding .step-register__input {
+    background-color: var(--oscuro-onboarding-input-fondo);
+    border-color: var(--oscuro-onboarding-input-borde);
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-measurements__input {
+    background-color: var(--oscuro-onboarding-input-fondo);
+    border-color: var(--oscuro-onboarding-input-borde);
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-target-weight__input {
+    background-color: var(--oscuro-onboarding-input-fondo);
+    border-color: var(--oscuro-onboarding-input-borde);
+    color: var(--oscuro-texto-principal);
+  }
+
   app-onboarding .step-birthdate__input {
     background-color: var(--oscuro-onboarding-input-fondo);
     border-color: var(--oscuro-onboarding-input-borde);
     color: var(--oscuro-texto-principal);
   }
 
-  app-onboarding .step-register__input::placeholder,
-  app-onboarding .step-measurements__input::placeholder,
-  app-onboarding .step-target-weight__input::placeholder,
+  app-onboarding .step-register__input::placeholder {
+    color: var(--oscuro-texto-suave);
+  }
+
+  app-onboarding .step-measurements__input::placeholder {
+    color: var(--oscuro-texto-suave);
+  }
+
+  app-onboarding .step-target-weight__input::placeholder {
+    color: var(--oscuro-texto-suave);
+  }
+
   app-onboarding .step-birthdate__input::placeholder {
     color: var(--oscuro-texto-suave);
   }
 
-  app-onboarding .step-register__input:focus,
-  app-onboarding .step-measurements__input:focus,
-  app-onboarding .step-target-weight__input:focus,
+  app-onboarding .step-register__input:focus {
+    border-color: var(--amarillo-normal);
+  }
+
+  app-onboarding .step-measurements__input:focus {
+    border-color: var(--amarillo-normal);
+  }
+
+  app-onboarding .step-target-weight__input:focus {
+    border-color: var(--amarillo-normal);
+  }
+
   app-onboarding .step-birthdate__input:focus {
     border-color: var(--amarillo-normal);
   }
@@ -1177,45 +1514,72 @@
     color: var(--oscuro-texto-secundario);
   }
 
-  app-gimnasio .gimnasio__ejercicio,
+  app-gimnasio .gimnasio__ejercicio {
+    background-color: var(--oscuro-gimnasio-ejercicio-fondo);
+  }
+
   app-gimnasio .ejercicio-card {
     background-color: var(--oscuro-gimnasio-ejercicio-fondo);
   }
 
-  app-gimnasio .gimnasio__ejercicio:hover,
+  app-gimnasio .gimnasio__ejercicio:hover {
+    background-color: var(--oscuro-gimnasio-ejercicio-hover);
+  }
+
   app-gimnasio .ejercicio-card:hover {
     background-color: var(--oscuro-gimnasio-ejercicio-hover);
   }
 
-  app-gimnasio .gimnasio__ejercicio-nombre,
+  app-gimnasio .gimnasio__ejercicio-nombre {
+    color: var(--oscuro-texto-principal);
+  }
+
   app-gimnasio .ejercicio-card__nombre {
     color: var(--oscuro-texto-principal);
   }
 
-  app-gimnasio .gimnasio__ejercicio-info,
+  app-gimnasio .gimnasio__ejercicio-info {
+    color: var(--oscuro-texto-secundario);
+  }
+
   app-gimnasio .ejercicio-card__info {
     color: var(--oscuro-texto-secundario);
   }
 
-  app-gimnasio .gimnasio__categoria,
+  app-gimnasio .gimnasio__categoria {
+    background-color: var(--oscuro-gimnasio-categoria-fondo);
+    color: var(--oscuro-texto-secundario);
+  }
+
   app-gimnasio .categoria-btn {
     background-color: var(--oscuro-gimnasio-categoria-fondo);
     color: var(--oscuro-texto-secundario);
   }
 
-  app-gimnasio .gimnasio__categoria--activa,
+  app-gimnasio .gimnasio__categoria--activa {
+    background-color: var(--amarillo-normal);
+    color: var(--negro-normal);
+  }
+
   app-gimnasio .categoria-btn--activa {
     background-color: var(--amarillo-normal);
     color: var(--negro-normal);
   }
 
-  app-gimnasio .gimnasio__badge,
+  app-gimnasio .gimnasio__badge {
+    background-color: var(--oscuro-gimnasio-badge-fondo);
+    color: var(--oscuro-texto-secundario);
+  }
+
   app-gimnasio .ejercicio-card__badge {
     background-color: var(--oscuro-gimnasio-badge-fondo);
     color: var(--oscuro-texto-secundario);
   }
 
-  app-gimnasio .gimnasio__detalle,
+  app-gimnasio .gimnasio__detalle {
+    background-color: var(--oscuro-gimnasio-detalle-fondo);
+  }
+
   app-gimnasio .ejercicio-detalle {
     background-color: var(--oscuro-gimnasio-detalle-fondo);
   }
@@ -1316,6 +1680,27 @@
     color: var(--amarillo-normal);
   }
 
+  app-gimnasio .gimnasio__estado {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+  app-gimnasio .gimnasio__estado-texto {
+    color: var(--blanco-normal);
+  }
+
+  app-gimnasio .gimnasio__estado-subtexto {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-gimnasio .gimnasio__feedback-label--checkbox span::before {
+    background-color: var(--oscuro-input-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-gimnasio .gimnasio__feedback-label--checkbox:hover span::before {
+    border-color: var(--amarillo-normal);
+  }
+
   app-alimentacion .alimentacion {
     background-color: var(--oscuro-alimentacion-fondo);
   }
@@ -1328,22 +1713,34 @@
     color: var(--oscuro-texto-secundario);
   }
 
-  app-alimentacion .alimentacion__receta,
+  app-alimentacion .alimentacion__receta {
+    background-color: var(--oscuro-alimentacion-receta-fondo);
+  }
+
   app-alimentacion .receta-card {
     background-color: var(--oscuro-alimentacion-receta-fondo);
   }
 
-  app-alimentacion .alimentacion__receta-nombre,
+  app-alimentacion .alimentacion__receta-nombre {
+    color: var(--oscuro-texto-principal);
+  }
+
   app-alimentacion .receta-card__nombre {
     color: var(--oscuro-texto-principal);
   }
 
-  app-alimentacion .alimentacion__receta-descripcion,
+  app-alimentacion .alimentacion__receta-descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
   app-alimentacion .receta-card__descripcion {
     color: var(--oscuro-texto-secundario);
   }
 
-  app-alimentacion .alimentacion__nutrientes,
+  app-alimentacion .alimentacion__nutrientes {
+    background-color: var(--oscuro-alimentacion-nutrientes-fondo);
+  }
+
   app-alimentacion .nutrientes-panel {
     background-color: var(--oscuro-alimentacion-nutrientes-fondo);
   }
@@ -1356,25 +1753,40 @@
     color: var(--oscuro-texto-secundario);
   }
 
-  app-alimentacion .alimentacion__ingrediente,
+  app-alimentacion .alimentacion__ingrediente {
+    background-color: var(--oscuro-alimentacion-ingrediente-fondo);
+    color: var(--oscuro-texto-principal);
+  }
+
   app-alimentacion .ingrediente-item {
     background-color: var(--oscuro-alimentacion-ingrediente-fondo);
     color: var(--oscuro-texto-principal);
   }
 
-  app-alimentacion .alimentacion__tab,
+  app-alimentacion .alimentacion__tab {
+    background-color: var(--oscuro-alimentacion-tab-fondo);
+    color: var(--oscuro-texto-secundario);
+  }
+
   app-alimentacion .tab-btn {
     background-color: var(--oscuro-alimentacion-tab-fondo);
     color: var(--oscuro-texto-secundario);
   }
 
-  app-alimentacion .alimentacion__tab--activa,
+  app-alimentacion .alimentacion__tab--activa {
+    background-color: var(--oscuro-alimentacion-tab-activa);
+    color: var(--negro-normal);
+  }
+
   app-alimentacion .tab-btn--activa {
     background-color: var(--oscuro-alimentacion-tab-activa);
     color: var(--negro-normal);
   }
 
-  app-alimentacion .alimentacion__macro,
+  app-alimentacion .alimentacion__macro {
+    background-color: var(--oscuro-alimentacion-macro-fondo);
+  }
+
   app-alimentacion .macro-card {
     background-color: var(--oscuro-alimentacion-macro-fondo);
   }
@@ -1462,6 +1874,31 @@
     color: var(--oscuro-texto-secundario);
   }
 
+  app-alimentacion .alimentacion__loading-texto {
+    color: var(--blanco-normal);
+  }
+
+  app-alimentacion .alimentacion__progreso-porcentaje {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-alimentacion .alimentacion__progreso-barra {
+    background-color: var(--gris-dark);
+  }
+
+  app-alimentacion .alimentacion__progreso-barra::after {
+    background-color: var(--amarillo-normal);
+  }
+
+  app-alimentacion .alimentacion__btn-cancelar {
+    color: var(--blanco-normal);
+  }
+
+  app-alimentacion .alimentacion__btn-regenerar {
+    color: var(--blanco-normal);
+    border-color: var(--blanco-normal);
+  }
+
   app-alimentacion .alimentacion__comida-icono {
     color: var(--blanco-normal);
   }
@@ -1486,37 +1923,58 @@
     color: var(--oscuro-texto-secundario);
   }
 
-  app-seguimiento .seguimiento__card,
+  app-seguimiento .seguimiento__card {
+    background-color: var(--oscuro-seguimiento-card-fondo);
+  }
+
   app-seguimiento .stat-card {
     background-color: var(--oscuro-seguimiento-card-fondo);
   }
 
-  app-seguimiento .seguimiento__stat,
+  app-seguimiento .seguimiento__stat {
+    background-color: var(--oscuro-seguimiento-stat-fondo);
+  }
+
   app-seguimiento .stat-item {
     background-color: var(--oscuro-seguimiento-stat-fondo);
   }
 
-  app-seguimiento .seguimiento__stat-valor,
+  app-seguimiento .seguimiento__stat-valor {
+    color: var(--oscuro-texto-principal);
+  }
+
   app-seguimiento .stat-item__valor {
     color: var(--oscuro-texto-principal);
   }
 
-  app-seguimiento .seguimiento__stat-label,
+  app-seguimiento .seguimiento__stat-label {
+    color: var(--oscuro-texto-secundario);
+  }
+
   app-seguimiento .stat-item__label {
     color: var(--oscuro-texto-secundario);
   }
 
-  app-seguimiento .seguimiento__progress-bg,
+  app-seguimiento .seguimiento__progress-bg {
+    background-color: var(--oscuro-seguimiento-progress-bg);
+  }
+
   app-seguimiento .progress-bar__bg {
     background-color: var(--oscuro-seguimiento-progress-bg);
   }
 
-  app-seguimiento .seguimiento__progress-fill,
+  app-seguimiento .seguimiento__progress-fill {
+    background-color: var(--oscuro-seguimiento-progress-fill);
+  }
+
   app-seguimiento .progress-bar__fill {
     background-color: var(--oscuro-seguimiento-progress-fill);
   }
 
-  app-seguimiento .seguimiento__chart,
+  app-seguimiento .seguimiento__chart {
+    background-color: var(--oscuro-seguimiento-chart-bg);
+  }
+
   app-seguimiento .chart-container {
     background-color: var(--oscuro-seguimiento-chart-bg);
   }
@@ -1747,7 +2205,16 @@ body {
     color 0.3s ease;
 }
 
-body *,
+body * {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    fill 0.2s ease,
+    stroke 0.2s ease;
+}
+
 [data-theme='dark'] * {
   transition:
     background-color 0.2s ease,
@@ -1758,11 +2225,26 @@ body *,
     stroke 0.2s ease;
 }
 
-body [class*='animate'],
-body [class*='spinner'],
-body [class*='loading'],
-[data-theme='dark'] [class*='animate'],
-[data-theme='dark'] [class*='spinner'],
+body [class*='animate'] {
+  transition: none;
+}
+
+body [class*='spinner'] {
+  transition: none;
+}
+
+body [class*='loading'] {
+  transition: none;
+}
+
+[data-theme='dark'] [class*='animate'] {
+  transition: none;
+}
+
+[data-theme='dark'] [class*='spinner'] {
+  transition: none;
+}
+
 [data-theme='dark'] [class*='loading'] {
   transition: none;
 }

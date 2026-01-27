@@ -1,8 +1,9 @@
-import {Component, computed, inject, OnInit, signal} from '@angular/core';
+import {Component, computed, effect, inject, OnInit, signal} from '@angular/core';
 
 import {Calendario} from '../../components/shared/calendario/calendario';
 import {Ingredientes} from '../../components/shared/ingredientes/ingredientes';
 import {AlimentacionService} from '../../services/alimentacion.service';
+import {NotificacionService} from '../../services/notificacion.service';
 import {Alimento, Comida} from '../../models/alimentacion.model';
 
 @Component({
@@ -14,14 +15,25 @@ import {Alimento, Comida} from '../../models/alimentacion.model';
 })
 export class Alimentacion implements OnInit {
   private readonly alimentacionService = inject(AlimentacionService);
+  private readonly notificacionService = inject(NotificacionService);
 
   readonly fechaActualDate = signal(new Date());
+
+  constructor() {
+    effect(() => {
+      const mensajeError = this.alimentacionService.error();
+      if (mensajeError) {
+        this.notificacionService.error(mensajeError, 5000);
+        this.alimentacionService.error.set(null);
+      }
+    }, { allowSignalWrites: true });
+  }
   calendarioAbierto = false;
   ingredientesAbierto = false;
   alimentoSeleccionado: Alimento | null = null;
   comidaSeleccionada: Comida | null = null;
 
-  readonly diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+  readonly diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
   readonly isLoading = this.alimentacionService.isLoading;
   readonly error = this.alimentacionService.error;

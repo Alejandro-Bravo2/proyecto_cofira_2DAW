@@ -15,8 +15,8 @@ import {Button} from '../../components/shared/button/button';
 })
 export class Login {
   readonly formularioLogin = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", [Validators.required])
   });
   readonly estaCargando = signal(false);
   readonly mostrarContrasena = signal(false);
@@ -43,12 +43,12 @@ export class Login {
     }).subscribe({
       next: () => {
         this.estaCargando.set(false);
-        this.notificacionService.exito('¡Sesión iniciada correctamente!');
-        this.router.navigate(['/']);
+        this.notificacionService.exito("¡Sesión iniciada correctamente!");
+        this.router.navigate(["/"]);
       },
       error: () => {
         this.estaCargando.set(false);
-        this.notificacionService.error('No se pudo iniciar sesión. Verifica tus credenciales.');
+        this.notificacionService.error("No se pudo iniciar sesión. Verifica tus credenciales.");
       }
     });
   }

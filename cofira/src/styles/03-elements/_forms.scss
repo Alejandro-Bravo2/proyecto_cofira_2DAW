@@ -2,8 +2,20 @@
 
 
 
-input,
-textarea,
+input {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--text-light);
+}
+
+textarea {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--text-light);
+}
+
 select {
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
@@ -11,7 +23,11 @@ select {
   color: var(--text-light);
 }
 
-input::placeholder,
+input::placeholder {
+  color: var(--gris-normal);
+  opacity: 0.7;
+}
+
 textarea::placeholder {
   color: var(--gris-normal);
   opacity: 0.7;
@@ -50,13 +66,21 @@ legend {
 
 
 
-input[type="checkbox"],
+input[type="checkbox"] {
+  width: auto;
+  margin-right: var(--spacing-size-xss);
+}
+
 input[type="radio"] {
   width: auto;
   margin-right: var(--spacing-size-xss);
 }
 
-input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
@@ -66,9 +90,18 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+input[type="search"]::-webkit-search-results-button {
+  -webkit-appearance: none;
+}
+
 input[type="search"]::-webkit-search-results-decoration {
   -webkit-appearance: none;
 }

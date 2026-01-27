@@ -30,13 +30,6 @@
       <figure class="alimentacion__loading-spinner"></figure>
       <p class="alimentacion__loading-texto">Cargando...</p>
     </section>
-  } @else if (error()) {
-    <section class="alimentacion__error">
-      <p class="alimentacion__error-texto">{{ error() }}</p>
-      <button (click)="regenerarMenu()" class="alimentacion__btn-reintentar">
-        Reintentar
-      </button>
-    </section>
   } @else {
 
     <nav aria-label="Navegación de fechas" class="alimentacion__navegacion-fecha">

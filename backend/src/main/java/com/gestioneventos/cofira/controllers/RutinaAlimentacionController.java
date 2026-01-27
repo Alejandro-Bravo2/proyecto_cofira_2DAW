@@ -20,13 +20,17 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.springframework.security.concurrent.DelegatingSecurityContextExecutorService;
+
 @RestController
 @RequestMapping("/api/rutinas-alimentacion")
 public class RutinaAlimentacionController implements RutinaAlimentacionControllerApi {
 
     private final RutinaAlimentacionService rutinaAlimentacionService;
     private final GeminiService geminiService;
-    private final ExecutorService executorService = Executors.newCachedThreadPool();
+    private final ExecutorService executorService = new DelegatingSecurityContextExecutorService(
+            Executors.newCachedThreadPool()
+    );
 
     public RutinaAlimentacionController(RutinaAlimentacionService rutinaAlimentacionService, GeminiService geminiService) {
         this.rutinaAlimentacionService = rutinaAlimentacionService;

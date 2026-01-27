@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
@@ -27,9 +28,13 @@ import com.gestioneventos.cofira.dto.ollama.MenuGeneradoDTO;
 import com.gestioneventos.cofira.dto.ollama.MenuSemanalGeneradoDTO;
 import com.gestioneventos.cofira.dto.ollama.RutinaGeneradaDTO;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Service
 public class GeminiService {
 
+    private static final Logger logger = LoggerFactory.getLogger(GeminiService.class);
     private static final String OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
 
     private final RestTemplate restTemplate;
@@ -42,16 +47,28 @@ public class GeminiService {
     private String modeloOpenRouter;
 
     public GeminiService() {
-        this.restTemplate = new RestTemplate();
+        SimpleClientHttpRequestFactory factoriaConexiones = new SimpleClientHttpRequestFactory();
+        factoriaConexiones.setConnectTimeout(30000);
+        factoriaConexiones.setReadTimeout(120000);
+        this.restTemplate = new RestTemplate(factoriaConexiones);
         this.objectMapper = new ObjectMapper();
     }
 
     public RutinaGeneradaDTO generarRutinaEjercicio(GenerarRutinaRequestDTO solicitud) {
+        logger.info("Generando rutina de ejercicio para: objetivo={}, nivel={}, dias={}",
+            solicitud.getObjetivoPrincipal(),
+            solicitud.getNivelFitness(),
+            solicitud.getDiasEntrenamientoPorSemana());
+
         String promptGenerado = construirPromptRutina(solicitud);
+        logger.debug("Prompt generado para rutina de ejercicio");
 
         String respuestaOpenRouter = llamarOpenRouter(promptGenerado);
+        logger.debug("Respuesta recibida de OpenRouter, longitud: {} caracteres", respuestaOpenRouter.length());
 
         RutinaGeneradaDTO rutinaParseada = parsearRespuestaRutina(respuestaOpenRouter);
+        logger.info("Rutina generada exitosamente con {} dias de ejercicio",
+            rutinaParseada.getDiasEjercicio() != null ? rutinaParseada.getDiasEjercicio().size() : 0);
 
         return rutinaParseada;
     }
@@ -204,6 +221,8 @@ public class GeminiService {
     }
 
     private String llamarOpenRouter(String prompt) {
+        logger.info("Llamando a OpenRouter con modelo: {}", modeloOpenRouter);
+
         Map<String, Object> mensaje = Map.of(
                 "role", "user",
                 "content", prompt
@@ -225,32 +244,73 @@ public class GeminiService {
             String cuerpoJson = objectMapper.writeValueAsString(cuerpoSolicitud);
             HttpEntity<String> solicitudHttp = new HttpEntity<>(cuerpoJson, cabeceras);
 
+            logger.debug("Enviando solicitud a OpenRouter...");
             String respuestaCompleta = restTemplate.postForObject(OPENROUTER_URL, solicitudHttp, String.class);
+            logger.debug("Respuesta completa recibida de OpenRouter");
 
             JsonNode nodoRespuesta = objectMapper.readTree(respuestaCompleta);
 
+            JsonNode errorNode = nodoRespuesta.get("error");
+            if (errorNode != null) {
+                String mensajeError = errorNode.has("message") ? errorNode.get("message").asText() : "Error desconocido de OpenRouter";
+                logger.error("OpenRouter devolvio error: {}", mensajeError);
+                throw new RuntimeException("Error de OpenRouter: " + mensajeError);
+            }
+
             JsonNode choices = nodoRespuesta.get("choices");
             if (choices == null || choices.isEmpty()) {
+                logger.error("OpenRouter no devolvio choices. Respuesta completa: {}", respuestaCompleta);
                 throw new RuntimeException("OpenRouter no devolvio choices en la respuesta");
             }
 
             String textoRespuesta = choices.get(0).get("message").get("content").asText();
+            logger.info("Respuesta de OpenRouter recibida exitosamente, longitud: {} caracteres", textoRespuesta.length());
 
             return textoRespuesta;
 
         } catch (Exception excepcion) {
+            logger.error("Error al comunicarse con OpenRouter: {}", excepcion.getMessage(), excepcion);
             throw new RuntimeException("Error al comunicarse con OpenRouter: " + excepcion.getMessage(), excepcion);
         }
     }
 
     private RutinaGeneradaDTO parsearRespuestaRutina(String respuestaJson) {
         try {
-            RutinaGeneradaDTO rutinaParsesada = objectMapper.readValue(respuestaJson, RutinaGeneradaDTO.class);
+            String jsonLimpio = limpiarRespuestaJson(respuestaJson);
+            logger.debug("JSON limpio para parsear rutina, longitud: {} caracteres", jsonLimpio.length());
+
+            RutinaGeneradaDTO rutinaParsesada = objectMapper.readValue(jsonLimpio, RutinaGeneradaDTO.class);
             return rutinaParsesada;
 
         } catch (JsonProcessingException excepcion) {
+            logger.error("Error al parsear respuesta de rutina. Respuesta original: {}", respuestaJson);
+            logger.error("Detalle del error de parsing: {}", excepcion.getMessage());
             throw new RuntimeException("Error al parsear respuesta de OpenRouter: " + excepcion.getMessage(), excepcion);
         }
+    }
+
+    private String limpiarRespuestaJson(String respuesta) {
+        if (respuesta == null || respuesta.isEmpty()) {
+            logger.warn("Respuesta vacia recibida de OpenRouter");
+            return "{}";
+        }
+
+        String respuestaLimpia = respuesta.trim();
+
+        if (respuestaLimpia.startsWith("```json")) {
+            respuestaLimpia = respuestaLimpia.substring(7);
+            logger.debug("Eliminado prefijo ```json de la respuesta");
+        } else if (respuestaLimpia.startsWith("```")) {
+            respuestaLimpia = respuestaLimpia.substring(3);
+            logger.debug("Eliminado prefijo ``` de la respuesta");
+        }
+
+        if (respuestaLimpia.endsWith("```")) {
+            respuestaLimpia = respuestaLimpia.substring(0, respuestaLimpia.length() - 3);
+            logger.debug("Eliminado sufijo ``` de la respuesta");
+        }
+
+        return respuestaLimpia.trim();
     }
 
     public boolean verificarConexion() {
@@ -365,10 +425,12 @@ public class GeminiService {
 
     private MenuGeneradoDTO parsearRespuestaMenu(String respuestaJson) {
         try {
-            MenuGeneradoDTO menuParseado = objectMapper.readValue(respuestaJson, MenuGeneradoDTO.class);
+            String jsonLimpio = limpiarRespuestaJson(respuestaJson);
+            MenuGeneradoDTO menuParseado = objectMapper.readValue(jsonLimpio, MenuGeneradoDTO.class);
             return menuParseado;
 
         } catch (JsonProcessingException excepcion) {
+            logger.error("Error al parsear respuesta de menu. Respuesta original: {}", respuestaJson);
             throw new RuntimeException("Error al parsear respuesta de menu de OpenRouter: " + excepcion.getMessage(), excepcion);
         }
     }
@@ -401,9 +463,9 @@ public class GeminiService {
 
             menusPorDia.add(menuDiaDTO);
 
-            List<String> nombresDelDia = menuDelDia.getComidas().stream()
-                    .map(ComidaGeneradaDTO::getNombre)
-                    .collect(Collectors.toList());
+            var comidasDelDia = menuDelDia.getComidas();
+            var streamNombres = comidasDelDia.stream().map(ComidaGeneradaDTO::getNombre);
+            List<String> nombresDelDia = streamNombres.collect(Collectors.toList());
             platosYaGenerados.addAll(nombresDelDia);
         }
 
@@ -455,9 +517,9 @@ public class GeminiService {
                     .name("menu-dia")
                     .data(menuDiaJson));
 
-                List<String> nombresDelDia = menuDelDia.getComidas().stream()
-                    .map(ComidaGeneradaDTO::getNombre)
-                    .collect(Collectors.toList());
+                var comidasDelDia = menuDelDia.getComidas();
+            var streamNombres = comidasDelDia.stream().map(ComidaGeneradaDTO::getNombre);
+            List<String> nombresDelDia = streamNombres.collect(Collectors.toList());
                 platosYaGenerados.addAll(nombresDelDia);
             }
 

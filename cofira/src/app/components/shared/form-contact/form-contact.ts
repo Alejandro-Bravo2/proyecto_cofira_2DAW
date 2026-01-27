@@ -18,20 +18,20 @@ export class FormContact implements OnInit {
 
   ngOnInit(): void {
     this.formularioContacto = this.fb.group({
-      nombre: ['', [Validators.required, Validators.minLength(2)]],
-      apellido: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]]
+      nombre: ["", [Validators.required, Validators.minLength(2)]],
+      apellido: ["", [Validators.required, Validators.minLength(2)]],
+      email: ["", [Validators.required, Validators.email]]
     });
   }
 
   alEnviar(): void {
     if (this.formularioContacto.valid) {
-      console.log('Formulario enviado:', this.formularioContacto.value);
-      this.notificacion.exito('¡Formulario enviado correctamente!');
+      console.log("Formulario enviado:", this.formularioContacto.value);
+      this.notificacion.exito("¡Formulario enviado correctamente!");
       this.formularioContacto.reset();
     } else {
       this.formularioContacto.markAllAsTouched();
-      this.notificacion.advertencia('Por favor, completa todos los campos correctamente');
+      this.notificacion.advertencia("Por favor, completa todos los campos correctamente");
     }
   }
 }

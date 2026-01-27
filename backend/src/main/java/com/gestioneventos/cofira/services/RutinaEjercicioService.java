@@ -45,10 +45,9 @@ public class RutinaEjercicioService {
     }
 
     public List<RutinaEjercicioDTO> listarRutinas() {
-        return rutinaEjercicioRepository.findAll()
-                .stream()
-                .map(this::convertirADTO)
-                .collect(Collectors.toList());
+        var listaRutinas = rutinaEjercicioRepository.findAll();
+        var streamMapeado = listaRutinas.stream().map(this::convertirADTO);
+        return streamMapeado.collect(Collectors.toList());
     }
 
     public RutinaEjercicioDTO obtenerRutina(Long id) {
@@ -62,9 +61,9 @@ public class RutinaEjercicioService {
         RutinaEjercicio rutina = new RutinaEjercicio();
         rutina.setFechaInicio(dto.getFechaInicio());
 
-        List<DiaEjercicio> dias = dto.getDiasEjercicio().stream()
-                .map(this::convertirDiaEjercicioDTOAEntidad)
-                .collect(Collectors.toList());
+        var listaDiasDTO = dto.getDiasEjercicio();
+        var streamDiasMapeados = listaDiasDTO.stream().map(this::convertirDiaEjercicioDTOAEntidad);
+        List<DiaEjercicio> dias = streamDiasMapeados.collect(Collectors.toList());
 
         rutina.setDiasEjercicio(dias);
 
@@ -85,9 +84,9 @@ public class RutinaEjercicioService {
         dto.setFechaInicio(rutina.getFechaInicio());
 
         if (rutina.getDiasEjercicio() != null) {
-            List<DiaEjercicioDTO> diasDTO = rutina.getDiasEjercicio().stream()
-                    .map(this::convertirDiaEjercicioADTO)
-                    .collect(Collectors.toList());
+            var listaDias = rutina.getDiasEjercicio();
+            var streamDiasMapeados = listaDias.stream().map(this::convertirDiaEjercicioADTO);
+            List<DiaEjercicioDTO> diasDTO = streamDiasMapeados.collect(Collectors.toList());
             dto.setDiasEjercicio(diasDTO);
         }
 
@@ -100,9 +99,9 @@ public class RutinaEjercicioService {
         dto.setDiaSemana(dia.getDiaSemana().name());
 
         if (dia.getEjercicios() != null) {
-            List<EjerciciosDTO> ejerciciosDTO = dia.getEjercicios().stream()
-                    .map(this::convertirEjercicioADTO)
-                    .collect(Collectors.toList());
+            var listaEjercicios = dia.getEjercicios();
+            var streamEjerciciosMapeados = listaEjercicios.stream().map(this::convertirEjercicioADTO);
+            List<EjerciciosDTO> ejerciciosDTO = streamEjerciciosMapeados.collect(Collectors.toList());
             dto.setEjercicios(ejerciciosDTO);
         }
 
@@ -126,10 +125,10 @@ public class RutinaEjercicioService {
         dia.setDiaSemana(DiaSemana.valueOf(dto.getDiaSemana().toUpperCase()));
 
         if (dto.getEjerciciosIds() != null && !dto.getEjerciciosIds().isEmpty()) {
-            List<Ejercicios> ejercicios = dto.getEjerciciosIds().stream()
-                    .map(id -> ejerciciosRepository.findById(id)
-                            .orElseThrow(() -> new RecursoNoEncontradoException(EJERCICIO_NO_ENCONTRADO + id)))
-                    .collect(Collectors.toList());
+            var listaIds = dto.getEjerciciosIds();
+            var streamEjerciciosBuscados = listaIds.stream().map(id -> ejerciciosRepository.findById(id)
+                    .orElseThrow(() -> new RecursoNoEncontradoException(EJERCICIO_NO_ENCONTRADO + id)));
+            List<Ejercicios> ejercicios = streamEjerciciosBuscados.collect(Collectors.toList());
             dia.setEjercicios(ejercicios);
         }
 
@@ -185,29 +184,28 @@ public class RutinaEjercicioService {
         Integer semanaActual = calcularSemanaActual();
         LocalDate fechaHoy = LocalDate.now();
 
-        List<HistorialEntrenamiento> historialesAGuardar = progresoDTO.getEjercicios().stream()
-                .map(ejercicioProgreso -> {
-                    HistorialEntrenamiento historial = HistorialEntrenamiento.builder()
-                            .fechaEntrenamiento(fechaHoy)
-                            .diaSemana(progresoDTO.getDiaSemana())
-                            .nombreEjercicio(ejercicioProgreso.getNombreEjercicio())
-                            .grupoMuscular(ejercicioProgreso.getGrupoMuscular())
-                            .seriesCompletadas(ejercicioProgreso.getSeriesCompletadas())
-                            .seriesObjetivo(ejercicioProgreso.getSeriesObjetivo())
-                            .repeticiones(ejercicioProgreso.getRepeticiones())
-                            .completado(ejercicioProgreso.getCompletado())
-                            .pesoKg(ejercicioProgreso.getPesoKg())
-                            .semanaNumero(semanaActual)
-                            .build();
-                    return historial;
-                })
-                .collect(Collectors.toList());
+        var listaEjerciciosProgreso = progresoDTO.getEjercicios();
+        var streamHistorialesMapeados = listaEjerciciosProgreso.stream().map(ejercicioProgreso -> {
+            HistorialEntrenamiento historial = HistorialEntrenamiento.builder()
+                    .fechaEntrenamiento(fechaHoy)
+                    .diaSemana(progresoDTO.getDiaSemana())
+                    .nombreEjercicio(ejercicioProgreso.getNombreEjercicio())
+                    .grupoMuscular(ejercicioProgreso.getGrupoMuscular())
+                    .seriesCompletadas(ejercicioProgreso.getSeriesCompletadas())
+                    .seriesObjetivo(ejercicioProgreso.getSeriesObjetivo())
+                    .repeticiones(ejercicioProgreso.getRepeticiones())
+                    .completado(ejercicioProgreso.getCompletado())
+                    .pesoKg(ejercicioProgreso.getPesoKg())
+                    .semanaNumero(semanaActual)
+                    .build();
+            return historial;
+        });
+        List<HistorialEntrenamiento> historialesAGuardar = streamHistorialesMapeados.collect(Collectors.toList());
 
         List<HistorialEntrenamiento> historialesGuardados = historialEntrenamientoRepository.saveAll(historialesAGuardar);
 
-        List<HistorialEntrenamientoDTO> historialesDTO = historialesGuardados.stream()
-                .map(this::mapearHistorialADTO)
-                .collect(Collectors.toList());
+        var streamHistorialesDTOMapeados = historialesGuardados.stream().map(this::mapearHistorialADTO);
+        List<HistorialEntrenamientoDTO> historialesDTO = streamHistorialesDTOMapeados.collect(Collectors.toList());
 
         return historialesDTO;
     }
@@ -215,9 +213,8 @@ public class RutinaEjercicioService {
     public List<HistorialEntrenamientoDTO> obtenerProgresoPorSemana(Integer semanaNumero) {
         List<HistorialEntrenamiento> historialesSemana = historialEntrenamientoRepository.findBySemanaNumero(semanaNumero);
 
-        List<HistorialEntrenamientoDTO> historialesDTO = historialesSemana.stream()
-                .map(this::mapearHistorialADTO)
-                .collect(Collectors.toList());
+        var streamHistorialesMapeados = historialesSemana.stream().map(this::mapearHistorialADTO);
+        List<HistorialEntrenamientoDTO> historialesDTO = streamHistorialesMapeados.collect(Collectors.toList());
 
         return historialesDTO;
     }
@@ -284,8 +281,7 @@ public class RutinaEjercicioService {
         List<HistorialEntrenamiento> historiales = historialEntrenamientoRepository
                 .findByNombreEjercicioConPesoOrdenadoPorFecha(nombreEjercicio);
 
-        return historiales.stream()
-                .map(this::mapearHistorialADTO)
-                .collect(Collectors.toList());
+        var streamHistorialesMapeados = historiales.stream().map(this::mapearHistorialADTO);
+        return streamHistorialesMapeados.collect(Collectors.toList());
     }
 }

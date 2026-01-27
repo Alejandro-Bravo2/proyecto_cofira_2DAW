@@ -180,7 +180,13 @@
   margin: var(--spacing-size-m) 0;
 }
 
-.formulario__separador::before,
+.formulario__separador::before {
+  content: '';
+  flex: 1;
+  height: 0.0625rem;
+  background-color: var(--gris-dark);
+}
+
 .formulario__separador::after {
   content: '';
   flex: 1;

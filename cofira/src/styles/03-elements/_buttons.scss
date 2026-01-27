@@ -13,8 +13,16 @@ button {
   line-height: inherit;
 }
 
-button[type="submit"],
-button[type="reset"],
+button[type="submit"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+button[type="reset"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 button[type="button"] {
   -webkit-appearance: none;
   appearance: none;
