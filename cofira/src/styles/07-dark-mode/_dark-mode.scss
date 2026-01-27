@@ -1031,6 +1031,72 @@
   }
 
 
+  app-login {
+    background-color: var(--oscuro-onboarding-fondo);
+  }
+
+  app-login .acceso__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-login .acceso__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-login .acceso__entrada {
+    background-color: var(--oscuro-onboarding-input-fondo);
+    border-color: var(--oscuro-onboarding-input-borde);
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-login .acceso__entrada::placeholder {
+    color: var(--oscuro-texto-suave);
+  }
+
+  app-login .acceso__entrada:hover {
+    background-color: var(--oscuro-hover-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-login .acceso__entrada:focus {
+    background-color: var(--oscuro-hover-fondo);
+    border-color: var(--amarillo-normal);
+  }
+
+  app-login .acceso__campo-icono {
+    color: var(--oscuro-texto-suave);
+  }
+
+  app-login .acceso__campo:focus-within .acceso__campo-icono {
+    color: var(--amarillo-normal);
+  }
+
+  app-login .acceso__alternar-contrasena {
+    color: var(--oscuro-texto-suave);
+  }
+
+  app-login .acceso__alternar-contrasena:hover {
+    color: var(--oscuro-texto-principal);
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-login .acceso__alternar-contrasena:focus {
+    color: var(--amarillo-normal);
+  }
+
+  app-login .acceso__accion-alternativa {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-login .acceso__enlace {
+    color: var(--amarillo-normal);
+  }
+
+  app-login .acceso__enlace:hover {
+    color: var(--oscuro-texto-principal);
+  }
+
+
 
 
   app-onboarding .onboarding__progress-fill,
@@ -1164,12 +1230,25 @@
 
 
   app-onboarding .step-register__field-error {
-    background-color: var(--rojo-normal-transparente-010);
+    background-color: var(--rojo-normal-transparente-020);
+    color: var(--rojo-light);
+  }
+
+  app-onboarding .step-register__field-error svg {
+    color: var(--rojo-light);
+  }
+
+  app-onboarding .step-register__field-error span {
+    color: var(--rojo-light);
   }
 
 
   app-onboarding .step-register__alt-action {
     color: var(--oscuro-texto-secundario);
+  }
+
+  app-step-welcome .welcome__content{
+    background-color: var(--gris-dark);
   }
 
 

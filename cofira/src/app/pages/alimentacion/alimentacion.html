@@ -1,125 +1,245 @@
 <main class="alimentacion">
 
-  <h1 class="alimentacion__titulo">MENÚ DIÁRIO</h1>
+  <h1 class="alimentacion__titulo">MENÚ DIARIO</h1>
 
-  <nav aria-label="Navegación de fechas" class="alimentacion__navegacion-fecha">
-    <button
-      (click)="diaAnterior()"
-      aria-label="Día anterior"
-      class="alimentacion__btn-fecha alimentacion__btn-fecha--anterior">
-      <svg aria-hidden="true" class="alimentacion__btn-fecha-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
-      </svg>
-    </button>
-
-    <button (click)="abrirCalendario()" aria-label="Abrir calendario" class="alimentacion__selector-fecha">
-      <svg aria-hidden="true" class="alimentacion__icono-calendario" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"
-          fill="currentColor"/>
-      </svg>
-      <span class="alimentacion__fecha-texto">{{ fechaActual }}</span>
-    </button>
-
-    <button
-      (click)="diaSiguiente()"
-      aria-label="Día siguiente"
-      class="alimentacion__btn-fecha alimentacion__btn-fecha--siguiente">
-      <svg aria-hidden="true" class="alimentacion__btn-fecha-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/>
-      </svg>
-    </button>
-  </nav>
-
-  <section class="alimentacion__menu-dia">
-
-    @for (comida of comidasDelDia; track comida.id) {
-      <article class="alimentacion__comida">
-        <header class="alimentacion__comida-header">
-          <figure class="alimentacion__comida-icono">
-            @if (comida.tipo === 'desayuno') {
-              <svg aria-hidden="true" class="alimentacion__comida-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 3H6C4.9 3 4 3.9 4 5v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H6V5h12v14z"
-                      fill="currentColor"/>
-                <path d="M8 7h8v2H8zm0 4h8v2H8zm0 4h5v2H8z" fill="currentColor"/>
-              </svg>
-            }
-            @if (comida.tipo === 'almuerzo' || comida.tipo === 'cena') {
-              <svg aria-hidden="true" class="alimentacion__comida-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"
-                  fill="currentColor"/>
-              </svg>
-            }
-            @if (comida.tipo === 'merienda') {
-              <svg aria-hidden="true" class="alimentacion__comida-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05l-5 2v16l.06-.06zM1 21.99h15.03V5.84L1 21.99zM9 4V2H7v2H5V2H3v4h4v16h2V6h4V4H9z"
-                  fill="currentColor"/>
-              </svg>
-            }
+  @if (estaGenerando()) {
+    <section class="alimentacion__loading">
+      <figure class="alimentacion__loading-spinner"></figure>
+      @if (progresoGeneracion()) {
+        <p class="alimentacion__loading-texto">
+          Generando día {{ progresoGeneracion()?.diasGenerados }} de {{ progresoGeneracion()?.totalDias }}
+        </p>
+        <aside class="alimentacion__progreso">
+          <figure class="alimentacion__progreso-barra">
+            <span
+              class="alimentacion__progreso-relleno"
+              [style.width.%]="progresoGeneracion()?.porcentaje">
+            </span>
           </figure>
-          <h2 class="alimentacion__comida-titulo">{{ comida.nombre }}</h2>
-          <aside class="alimentacion__comida-costo">
-            <svg aria-hidden="true" class="alimentacion__comida-costo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.41 16.09V20h-2.67v-1.93c-1.71-.36-3.16-1.46-3.27-3.4h1.96c.1 1.05.82 1.87 2.65 1.87 1.96 0 2.4-.98 2.4-1.59 0-.83-.44-1.61-2.67-2.14-2.48-.6-4.18-1.62-4.18-3.67 0-1.72 1.39-2.84 3.11-3.21V4h2.67v1.95c1.86.45 2.79 1.86 2.85 3.39H14.3c-.05-1.11-.64-1.87-2.22-1.87-1.5 0-2.4.68-2.4 1.64 0 .84.65 1.39 2.67 1.91s4.18 1.39 4.18 3.91c-.01 1.83-1.38 2.83-3.12 3.16z"
-                fill="currentColor"/>
-            </svg>
-            <span class="alimentacion__comida-costo-texto">Costo total: {{ comida.costoTotal }}€</span>
-          </aside>
-        </header>
+          <span class="alimentacion__progreso-porcentaje">{{ progresoGeneracion()?.porcentaje }}%</span>
+        </aside>
+        <button (click)="cancelarGeneracion()" class="alimentacion__btn-cancelar">
+          Cancelar generación
+        </button>
+      } @else {
+        <p class="alimentacion__loading-texto">Iniciando generación del menú...</p>
+      }
+    </section>
+  } @else if (isLoading()) {
+    <section class="alimentacion__loading">
+      <figure class="alimentacion__loading-spinner"></figure>
+      <p class="alimentacion__loading-texto">Cargando...</p>
+    </section>
+  } @else if (error()) {
+    <section class="alimentacion__error">
+      <p class="alimentacion__error-texto">{{ error() }}</p>
+      <button (click)="regenerarMenu()" class="alimentacion__btn-reintentar">
+        Reintentar
+      </button>
+    </section>
+  } @else {
 
-        <ul class="alimentacion__alimentos">
-          @for (alimento of comida.alimentos; track alimento.id) {
-            <li class="alimentacion__alimento">
-              <figure class="alimentacion__alimento-icono">
-                @if (alimento.icono === 'pizza') {
-                  <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M12 2C8.43 2 5.23 3.54 3.01 6L12 22l8.99-16C18.78 3.55 15.57 2 12 2zM7 7c0-1.1.9-2 2-2s2 .9 2 2-.9 2-2 2-2-.9-2-2zm5 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
-                      fill="currentColor"/>
+    <nav aria-label="Navegación de fechas" class="alimentacion__navegacion-fecha">
+      <button
+        (click)="diaAnterior()"
+        aria-label="Día anterior"
+        class="alimentacion__btn-fecha alimentacion__btn-fecha--anterior">
+        <svg aria-hidden="true" class="alimentacion__btn-fecha-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
+        </svg>
+      </button>
+
+      <button (click)="abrirCalendario()" aria-label="Abrir calendario" class="alimentacion__selector-fecha">
+        <svg aria-hidden="true" class="alimentacion__icono-calendario" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11zM9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z"
+            fill="currentColor"/>
+        </svg>
+        <span class="alimentacion__fecha-texto">{{ fechaActual() }}</span>
+      </button>
+
+      <button
+        (click)="diaSiguiente()"
+        aria-label="Día siguiente"
+        class="alimentacion__btn-fecha alimentacion__btn-fecha--siguiente">
+        <svg aria-hidden="true" class="alimentacion__btn-fecha-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/>
+        </svg>
+      </button>
+    </nav>
+
+    @if (resumenNutricional()) {
+      <section class="alimentacion__resumen">
+        <h2 class="alimentacion__resumen-titulo">Resumen del día</h2>
+        <ul class="alimentacion__resumen-lista">
+          <li class="alimentacion__resumen-item">
+            <span class="alimentacion__resumen-label">Calorías</span>
+            <span class="alimentacion__resumen-valor">{{ resumenNutricional()?.caloriasTotal }} kcal</span>
+          </li>
+          <li class="alimentacion__resumen-item">
+            <span class="alimentacion__resumen-label">Proteínas</span>
+            <span class="alimentacion__resumen-valor">{{ resumenNutricional()?.proteinasTotal }}g</span>
+          </li>
+          <li class="alimentacion__resumen-item">
+            <span class="alimentacion__resumen-label">Carbohidratos</span>
+            <span class="alimentacion__resumen-valor">{{ resumenNutricional()?.carbohidratosTotal }}g</span>
+          </li>
+          <li class="alimentacion__resumen-item">
+            <span class="alimentacion__resumen-label">Grasas</span>
+            <span class="alimentacion__resumen-valor">{{ resumenNutricional()?.grasasTotal }}g</span>
+          </li>
+        </ul>
+      </section>
+    }
+
+    <section class="alimentacion__menu-dia">
+
+      @if (!tieneMenuParaFecha()) {
+        <article class="alimentacion__sin-menu">
+          <p class="alimentacion__sin-menu-texto">No hay menú disponible para esta fecha</p>
+          <p class="alimentacion__sin-menu-texto">Los menús se generan para las próximas 2 semanas</p>
+        </article>
+      } @else if (comidasDelDia().length === 0) {
+        <article class="alimentacion__sin-menu">
+          <p class="alimentacion__sin-menu-texto">Cargando menú del día...</p>
+        </article>
+      } @else {
+        @for (comida of comidasDelDia(); track comida.id) {
+          <article class="alimentacion__comida">
+            <header class="alimentacion__comida-header">
+              <figure class="alimentacion__comida-icono">
+                @if (comida.tipo === 'desayuno') {
+                  <svg aria-hidden="true" class="alimentacion__comida-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 3H6C4.9 3 4 3.9 4 5v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H6V5h12v14z"
+                          fill="currentColor"/>
+                    <path d="M8 7h8v2H8zm0 4h8v2H8zm0 4h5v2H8z" fill="currentColor"/>
                   </svg>
                 }
-                @if (alimento.icono === 'bebida') {
-                  <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M3 2l2.01 18.23C5.13 21.23 5.97 22 7 22h10c1.03 0 1.87-.77 1.99-1.77L21 2H3zm9 17c-1.66 0-3-1.34-3-3 0-2 3-5.4 3-5.4s3 3.4 3 5.4c0 1.66-1.34 3-3 3zm6.33-11H5.67l-.44-4h13.53l-.43 4z"
-                      fill="currentColor"/>
-                  </svg>
-                }
-                @if (alimento.icono === 'plato') {
-                  <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                @if (comida.tipo === 'almuerzo' || comida.tipo === 'comida' || comida.tipo === 'cena') {
+                  <svg aria-hidden="true" class="alimentacion__comida-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path
                       d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"
                       fill="currentColor"/>
                   </svg>
                 }
+                @if (comida.tipo === 'merienda') {
+                  <svg aria-hidden="true" class="alimentacion__comida-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05l-5 2v16l.06-.06zM1 21.99h15.03V5.84L1 21.99zM9 4V2H7v2H5V2H3v4h4v16h2V6h4V4H9z"
+                      fill="currentColor"/>
+                  </svg>
+                }
               </figure>
-              <span class="alimentacion__alimento-nombre">{{ alimento.descripcion }}</span>
-              <button
-                (click)="verIngredientes(alimento)"
-                aria-label="Ver ingredientes de {{ alimento.descripcion }}"
-                class="alimentacion__btn-info">
-                <svg aria-hidden="true" class="alimentacion__btn-info-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path
-                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
-                    fill="currentColor"/>
-                </svg>
-              </button>
-            </li>
-          }
-        </ul>
-      </article>
-    }
+              <h2 class="alimentacion__comida-titulo">{{ comida.nombre }}</h2>
+              <aside class="alimentacion__comida-macros">
+                <span class="alimentacion__comida-macro">{{ comida.caloriasEstimadas }} kcal</span>
+                <span class="alimentacion__comida-macro alimentacion__comida-macro--proteina">P: {{ comida.proteinasGramos }}g</span>
+                <span class="alimentacion__comida-macro alimentacion__comida-macro--carbs">C: {{ comida.carbohidratosGramos }}g</span>
+                <span class="alimentacion__comida-macro alimentacion__comida-macro--grasa">G: {{ comida.grasasGramos }}g</span>
+              </aside>
+            </header>
 
-  </section>
+            <ul class="alimentacion__alimentos">
+              @for (alimento of comida.alimentos; track alimento.id) {
+                <li class="alimentacion__alimento">
+                  <figure class="alimentacion__alimento-icono">
+                    @switch (alimento.icono) {
+                      @case ('pan') {
+                        <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2C8.43 2 5.23 3.54 3.01 6L12 22l8.99-16C18.78 3.55 15.57 2 12 2z" fill="currentColor"/>
+                        </svg>
+                      }
+                      @case ('fruta') {
+                        <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2a9 9 0 0 0-9 9c0 4.97 4.03 9 9 9a9 9 0 0 0 0-18zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z" fill="currentColor"/>
+                        </svg>
+                      }
+                      @case ('verdura') {
+                        <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z" fill="currentColor"/>
+                        </svg>
+                      }
+                      @case ('proteina') {
+                        <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M8.1 13.34l2.83-2.83L3.91 3.5a4.008 4.008 0 0 0 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z" fill="currentColor"/>
+                        </svg>
+                      }
+                      @case ('lacteo') {
+                        <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 2l2.01 18.23C5.13 21.23 5.97 22 7 22h10c1.03 0 1.87-.77 1.99-1.77L21 2H3zm9 17c-1.66 0-3-1.34-3-3 0-2 3-5.4 3-5.4s3 3.4 3 5.4c0 1.66-1.34 3-3 3z" fill="currentColor"/>
+                        </svg>
+                      }
+                      @case ('bebida') {
+                        <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M3 2l2.01 18.23C5.13 21.23 5.97 22 7 22h10c1.03 0 1.87-.77 1.99-1.77L21 2H3zm9 17c-1.66 0-3-1.34-3-3 0-2 3-5.4 3-5.4s3 3.4 3 5.4c0 1.66-1.34 3-3 3zm6.33-11H5.67l-.44-4h13.53l-.43 4z" fill="currentColor"/>
+                        </svg>
+                      }
+                      @case ('cereal') {
+                        <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2C8.43 2 5.23 3.54 3.01 6L12 22l8.99-16C18.78 3.55 15.57 2 12 2z" fill="currentColor"/>
+                        </svg>
+                      }
+                      @case ('legumbre') {
+                        <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="8" fill="currentColor"/>
+                        </svg>
+                      }
+                      @case ('fruto-seco') {
+                        <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <ellipse cx="12" cy="12" rx="6" ry="8" fill="currentColor"/>
+                        </svg>
+                      }
+                      @default {
+                        <svg aria-hidden="true" class="alimentacion__alimento-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z" fill="currentColor"/>
+                        </svg>
+                      }
+                    }
+                  </figure>
+                  <span class="alimentacion__alimento-nombre">{{ alimento.descripcion }}</span>
+                  @if (alimento.gramos) {
+                    <span class="alimentacion__alimento-gramos">({{ alimento.gramos }}g)</span>
+                  }
+                  <button
+                    (click)="verIngredientes(alimento, comida)"
+                    aria-label="Ver detalles de {{ alimento.descripcion }}"
+                    class="alimentacion__btn-info">
+                    <svg aria-hidden="true" class="alimentacion__btn-info-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
+                        fill="currentColor"/>
+                    </svg>
+                  </button>
+                </li>
+              }
+            </ul>
+
+            @if (comida.preparacion) {
+              <footer class="alimentacion__comida-preparacion">
+                <h3 class="alimentacion__preparacion-titulo">Preparación</h3>
+                <p class="alimentacion__preparacion-texto">{{ comida.preparacion }}</p>
+              </footer>
+            }
+          </article>
+        }
+
+        <button (click)="regenerarMenu()" class="alimentacion__btn-regenerar">
+          <svg aria-hidden="true" class="alimentacion__btn-regenerar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/>
+          </svg>
+          Regenerar menú semanal
+        </button>
+      }
+
+    </section>
+
+  }
 
   <app-calendario
     (cerrar)="cerrarCalendario()"
     (seleccionarFecha)="seleccionarFechaCalendario($event)"
     [abierto]="calendarioAbierto"
-    [fechaInicial]="fechaActualDate">
+    [fechaInicial]="fechaActualDate()">
   </app-calendario>
 
   <app-ingredientes

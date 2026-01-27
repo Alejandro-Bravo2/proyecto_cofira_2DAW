@@ -1,23 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, computed, inject, OnInit} from '@angular/core';
 import {FormsModule} from '@angular/forms';
+
 import {Button} from '../../components/shared/button/button';
-
-interface Ejercicio {
-  id: number;
-  nombre: string;
-  repeticiones: string;
-  descanso: string;
-  series: number;
-  realizado: boolean | null;
-  expandido: boolean;
-}
-
-interface Feedback {
-  ejerciciosDificiles: string;
-  masPeso: string;
-}
-
-type EjerciciosPorDia = Record<string, Ejercicio[]>;
+import {GimnasioService} from '../../services/gimnasio.service';
+import {Ejercicio, FeedbackEjercicio} from '../../models/gimnasio.model';
 
 @Component({
   selector: 'app-gimnasio',
@@ -26,128 +12,48 @@ type EjerciciosPorDia = Record<string, Ejercicio[]>;
   templateUrl: './gimnasio.html',
   styleUrl: './gimnasio.scss',
 })
-export class Gimnasio {
+export class Gimnasio implements OnInit {
+  private readonly gimnasioService = inject(GimnasioService);
+
   readonly diasSemana = [
     'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'
   ];
 
-  diaActualIndex = 1;
+  diaActualIndex = 0;
 
-  feedback: Feedback = {
+  feedback: FeedbackEjercicio = {
+    semanaNumero: 1,
     ejerciciosDificiles: '',
-    masPeso: '',
+    puedeMasPeso: false,
+    comentarios: '',
+    nivelFatiga: 3
   };
 
-  private readonly ejerciciosPorDia: EjerciciosPorDia = {
-    Lunes: [
-      {
-        id: 1,
-        nombre: 'Press banca',
-        repeticiones: '8-12',
-        descanso: "2' 30\"",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-      {
-        id: 2,
-        nombre: 'Sentadillas',
-        repeticiones: '8-10',
-        descanso: "2'",
-        series: 3,
-        realizado: null,
-        expandido: false
-      },
-      {
-        id: 3,
-        nombre: 'Dominadas',
-        repeticiones: '10-12',
-        descanso: "1' 30\"",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-    ],
-    Martes: [
-      {
-        id: 4,
-        nombre: 'Press banca',
-        repeticiones: '8-12',
-        descanso: "2' 30\"",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-      {
-        id: 5,
-        nombre: 'Sentadillas',
-        repeticiones: '8-10',
-        descanso: "2'",
-        series: 3,
-        realizado: null,
-        expandido: false
-      },
-      {
-        id: 6,
-        nombre: 'Dominadas',
-        repeticiones: '10-12',
-        descanso: "1' 30\"",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-    ],
-    Miércoles: [
-      {id: 7, nombre: 'Peso muerto', repeticiones: '6-8', descanso: "3'", series: 4, realizado: null, expandido: false},
-      {
-        id: 8,
-        nombre: 'Remo con barra',
-        repeticiones: '8-10',
-        descanso: "2'",
-        series: 3,
-        realizado: null,
-        expandido: false
-      },
-    ],
-    Jueves: [
-      {
-        id: 9,
-        nombre: 'Press militar',
-        repeticiones: '8-12',
-        descanso: "2'",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-      {
-        id: 10,
-        nombre: 'Curl bíceps',
-        repeticiones: '10-12',
-        descanso: "1' 30\"",
-        series: 3,
-        realizado: null,
-        expandido: false
-      },
-    ],
-    Viernes: [
-      {
-        id: 11,
-        nombre: 'Sentadillas',
-        repeticiones: '8-10',
-        descanso: "2' 30\"",
-        series: 4,
-        realizado: null,
-        expandido: false
-      },
-      {id: 12, nombre: 'Prensa', repeticiones: '10-12', descanso: "2'", series: 3, realizado: null, expandido: false},
-    ],
-    Sábado: [],
-    Domingo: [],
-  };
+  readonly isLoading = this.gimnasioService.isLoading;
+  readonly error = this.gimnasioService.error;
+  readonly tieneRutina = this.gimnasioService.tieneRutina;
+  readonly estadoOllama = this.gimnasioService.estadoOllama;
+  readonly semanaActual = this.gimnasioService.semanaActual;
+  readonly feedbackEnviado = this.gimnasioService.feedbackEnviado;
 
-  get ejerciciosDelDia(): Ejercicio[] {
-    const dia = this.diasSemana[this.diaActualIndex];
-    return this.ejerciciosPorDia[dia] ?? [];
+  readonly ejerciciosDelDia = computed(() => {
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    return this.gimnasioService.obtenerEjerciciosDelDia(diaSeleccionado);
+  });
+
+  ngOnInit(): void {
+    this.establecerDiaActual();
+    this.gimnasioService.cargarSemanaDeStorage();
+
+    this.gimnasioService.obtenerSemanaActual().subscribe({
+      next: (semana) => {
+        this.feedback.semanaNumero = semana;
+      }
+    });
+
+    if (!this.tieneRutina()) {
+      this.verificarYGenerarRutina();
+    }
   }
 
   diaAnterior(): void {
@@ -163,26 +69,81 @@ export class Gimnasio {
   }
 
   toggleEjercicio(ejercicio: Ejercicio): void {
-    ejercicio.expandido = !ejercicio.expandido;
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    this.gimnasioService.toggleExpandirEjercicio(diaSeleccionado, ejercicio.id);
   }
 
   marcarRealizado(ejercicio: Ejercicio, realizado: boolean): void {
-    ejercicio.realizado = ejercicio.realizado === realizado ? null : realizado;
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    const nuevoValor = ejercicio.realizado === realizado ? null : realizado;
+    this.gimnasioService.marcarEjercicioRealizado(diaSeleccionado, ejercicio.id, nuevoValor);
+
+    if (nuevoValor === true) {
+      this.gimnasioService.guardarProgreso(diaSeleccionado).subscribe({
+        next: () => {
+          console.log('Progreso guardado correctamente');
+        },
+        error: (errorCapturado) => {
+          console.error('Error al guardar progreso:', errorCapturado);
+        }
+      });
+    }
+  }
+
+  generarNuevaRutina(): void {
+    this.gimnasioService.generarRutina().subscribe({
+      next: () => {
+        console.log('Rutina generada correctamente');
+      },
+      error: (errorCapturado) => {
+        console.error('Error al generar rutina:', errorCapturado);
+      }
+    });
   }
 
   enviarFeedback(): void {
-    console.log('Feedback enviado:', this.feedback);
-    this.resetFeedback();
+    this.feedback.semanaNumero = this.semanaActual();
+
+    this.gimnasioService.guardarFeedback(this.feedback).subscribe({
+      next: () => {
+        console.log('Feedback guardado correctamente');
+        this.resetFeedback();
+        this.generarNuevaRutina();
+      },
+      error: (errorCapturado) => {
+        console.error('Error al guardar feedback:', errorCapturado);
+      }
+    });
   }
 
   cancelarFeedback(): void {
     this.resetFeedback();
   }
 
+  private establecerDiaActual(): void {
+    const hoy = new Date();
+    const diaHoy = hoy.getDay();
+    const indiceCorregido = diaHoy === 0 ? 6 : diaHoy - 1;
+    this.diaActualIndex = indiceCorregido;
+  }
+
+  private verificarYGenerarRutina(): void {
+    this.gimnasioService.verificarConexionOllama().subscribe({
+      next: (estado) => {
+        if (estado.conectado) {
+          this.generarNuevaRutina();
+        }
+      }
+    });
+  }
+
   private resetFeedback(): void {
     this.feedback = {
+      semanaNumero: this.semanaActual(),
       ejerciciosDificiles: '',
-      masPeso: '',
+      puedeMasPeso: false,
+      comentarios: '',
+      nivelFatiga: 3
     };
   }
 }

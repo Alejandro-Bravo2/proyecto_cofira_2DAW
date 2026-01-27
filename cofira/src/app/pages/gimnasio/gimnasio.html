@@ -1,7 +1,45 @@
 <main class="gimnasio">
 
-  <h1 class="gimnasio__titulo">TABLA SEMANAL</h1>
+  <header class="gimnasio__cabecera">
+    <h1 class="gimnasio__titulo">TABLA SEMANAL</h1>
+    @if (tieneRutina()) {
+      <app-button (click)="generarNuevaRutina()" [habilitado]="isLoading()" tamanio="pequeno" variante="secundario">
+        @if (isLoading()) {
+          Generando...
+        } @else {
+          Regenerar rutina
+        }
+      </app-button>
+    }
+  </header>
 
+  @if (isLoading()) {
+    <section class="gimnasio__estado">
+      <p class="gimnasio__estado-texto">Generando tu rutina personalizada con IA...</p>
+      <p class="gimnasio__estado-subtexto">Esto puede tardar unos segundos</p>
+    </section>
+  }
+
+  @if (error()) {
+    <section class="gimnasio__estado gimnasio__estado--error">
+      <p class="gimnasio__estado-texto">{{ error() }}</p>
+      <app-button (click)="generarNuevaRutina()" tamanio="mediano" variante="primario">
+        Reintentar
+      </app-button>
+    </section>
+  }
+
+  @if (!tieneRutina() && !isLoading() && !error()) {
+    <section class="gimnasio__estado">
+      <p class="gimnasio__estado-texto">No tienes una rutina generada</p>
+      <p class="gimnasio__estado-subtexto">Genera tu rutina personalizada basada en tus objetivos</p>
+      <app-button (click)="generarNuevaRutina()" tamanio="grande" variante="primario">
+        Generar mi rutina
+      </app-button>
+    </section>
+  }
+
+  @if (tieneRutina() && !isLoading()) {
   <nav aria-label="Navegación de días" class="gimnasio__dias">
     <button (click)="diaAnterior()" aria-label="Día anterior" class="gimnasio__dias-btn">
       <svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +78,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (ejercicio of ejerciciosDelDia; track ejercicio.id) {
+        @for (ejercicio of ejerciciosDelDia(); track ejercicio.id) {
         <tr class="gimnasio__tabla-fila">
           <td class="gimnasio__ejercicio gimnasio__tabla-dato">
             <button (click)="toggleEjercicio(ejercicio)" [attr.aria-expanded]="ejercicio.expandido" aria-label="Expandir ejercicio"
@@ -77,7 +115,7 @@
   </section>
 
   <section class="gimnasio__acordeon gimnasio__acordeon--movil">
-    @for (ejercicio of ejerciciosDelDia; track ejercicio.id) {
+    @for (ejercicio of ejerciciosDelDia(); track ejercicio.id) {
     <article class="gimnasio__acordeon-item" [class.gimnasio__acordeon-item--expandido]="ejercicio.expandido">
       <header class="gimnasio__acordeon-header" (click)="toggleEjercicio(ejercicio)">
         <hgroup class="gimnasio__acordeon-info">
@@ -141,11 +179,19 @@
       </fieldset>
 
       <fieldset class="gimnasio__feedback-field">
-        <label class="gimnasio__feedback-label" for="mas-peso">
-          ¿Crees que podrías con más peso?
+        <label class="gimnasio__feedback-label gimnasio__feedback-label--checkbox">
+          <input type="checkbox" [(ngModel)]="feedback.puedeMasPeso" name="puedeMasPeso"
+            class="gimnasio__feedback-checkbox">
+          <span>¿Crees que podrías con más peso?</span>
         </label>
-        <textarea [(ngModel)]="feedback.masPeso" class="gimnasio__feedback-textarea" id="mas-peso" name="masPeso"
-          placeholder="Escribe si podrías realizar los ejercicios con más peso o si el actual está bien ajustado..."
+      </fieldset>
+
+      <fieldset class="gimnasio__feedback-field">
+        <label class="gimnasio__feedback-label" for="comentarios">
+          Comentarios adicionales
+        </label>
+        <textarea [(ngModel)]="feedback.comentarios" class="gimnasio__feedback-textarea" id="comentarios" name="comentarios"
+          placeholder="Escribe cualquier comentario adicional sobre tu entrenamiento esta semana..."
           rows="4">
         </textarea>
       </fieldset>
@@ -200,5 +246,6 @@
       </figure>
     </article>
   </section>
+  }
 
 </main>

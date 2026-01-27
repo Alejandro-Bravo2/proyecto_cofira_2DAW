@@ -16,41 +16,45 @@ import { Terminos } from './pages/terminos/terminos';
 import { Cookies } from './pages/cookies/cookies';
 import { Licencias } from './pages/licencias/licencias';
 
-
 import { SobreNosotros } from './pages/sobre-nosotros/sobre-nosotros';
 import { Blog } from './pages/blog/blog';
 import { Contacto } from './pages/contacto/contacto';
 
-
 import { Pruebas } from './pages/pruebas/pruebas';
 
+import { authGuard, guestGuard } from './guards/auth.guard';
+
 export const routes: Routes = [
-  
+
+  // Rutas publicas (accesibles sin autenticacion)
   { path: '', component: Home },
-  { path: 'alimentacion', component: Alimentacion },
-  { path: 'seguimiento', component: Seguimiento },
-  { path: 'gimnasio', component: Gimnasio },
+  { path: 'login', component: Login, canActivate: [guestGuard] },
   { path: 'style-guide', component: StyleGuide },
+
+  // Ruta de onboarding (flujo de registro, sin autenticacion)
   { path: 'onboarding', component: Onboarding },
-  { path: 'login', component: Login },
 
-  { path: 'perfil', component: Perfil },
-  { path: 'configuracion', component: Configuracion },
+  // Rutas protegidas (requieren autenticacion)
+  { path: 'alimentacion', component: Alimentacion, canActivate: [authGuard] },
+  { path: 'seguimiento', component: Seguimiento, canActivate: [authGuard] },
+  { path: 'gimnasio', component: Gimnasio, canActivate: [authGuard] },
+  { path: 'perfil', component: Perfil, canActivate: [authGuard] },
+  { path: 'configuracion', component: Configuracion, canActivate: [authGuard] },
 
-
+  // Rutas legales (publicas)
   { path: 'privacidad', component: Privacidad },
   { path: 'terminos', component: Terminos },
   { path: 'cookies', component: Cookies },
   { path: 'licencias', component: Licencias },
 
-  
+  // Rutas informativas (publicas)
   { path: 'sobre-nosotros', component: SobreNosotros },
   { path: 'blog', component: Blog },
   { path: 'contacto', component: Contacto },
 
-  
+  // Ruta de pruebas (desarrollo)
   { path: 'pruebas', component: Pruebas },
 
-  
+  // Redireccion para rutas no encontradas
   { path: '**', redirectTo: '' },
 ];

@@ -1,0 +1,27 @@
+# ════════════════════════════════════════════════════════════════
+# GITHUB ACTION - AUTO DEPLOY EN VPS
+# Se ejecuta automáticamente en cada push a la rama main
+# ════════════════════════════════════════════════════════════════
+
+name: Deploy a VPS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /root/repositorios/proyecto_cofira_2daw
+            git pull origin main
+            docker compose down
+            docker compose up -d --build

@@ -432,3 +432,8 @@
   color: var(--amarillo-normal);
   font-weight: var(--font-weight-bold);
 }
+
+
+.enlaces__arial-oculto{
+  @include texto-oculto;
+}

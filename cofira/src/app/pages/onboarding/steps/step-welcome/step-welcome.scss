@@ -35,16 +35,19 @@
 
 
 .welcome__content {
-  flex: 20%;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: var(--spacing-size-xl);
+  justify-content: flex-start;
+  gap: var(--spacing-size-2xl);
   padding: var(--spacing-size-xxxl);
+  padding-top: 8rem;
   background-color: var(--negro-normal);
 
   @include responsive-down('lg') {
     flex: 1;
+    justify-content: center;
+    gap: var(--spacing-size-xl);
     padding: var(--spacing-size-xl);
   }
 }
@@ -59,7 +62,7 @@
 
 .welcome__titulo {
   font-family: var(--font-secondary);
-  font-size: var(--font-size-4xl);
+  font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   color: var(--blanco-normal);
@@ -77,6 +80,7 @@
   line-height: var(--line-height-relaxed);
   color: var(--blanco-dark);
   margin: 0;
+  padding-bottom: 1rem;
 
   @include responsive-down('md') {
     font-size: var(--font-size-md);

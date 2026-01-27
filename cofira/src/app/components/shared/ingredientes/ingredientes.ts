@@ -1,13 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {Modal} from '../modal/modal';
-
-interface Alimento {
-  id: number;
-  descripcion: string;
-  icono: 'pizza' | 'bebida' | 'plato';
-  ingredientes?: string[];
-}
+import {Alimento} from '../../../models/alimentacion.model';
 
 interface IngredienteDetalle {
   nombre: string;
