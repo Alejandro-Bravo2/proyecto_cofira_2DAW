@@ -540,6 +540,10 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   color: var(--gris-dark);
+
+  [data-theme="dark"] & {
+    color: var(--blanco-normal);
+  }
 }
 
 
