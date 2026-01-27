@@ -1835,12 +1835,13 @@
     border-color: var(--oscuro-borde-suave);
   }
 
-  app-alimentacion .alimentacion__alimento:hover {
-    background-color: var(--oscuro-hover-fondo);
-  }
 
   app-alimentacion .alimentacion__alimento-nombre {
     color: var(--oscuro-texto-principal);
+  }
+
+  app-alimentacion .alimentacion__alimento-gramos {
+    color: var(--blanco-normal);
   }
 
   app-alimentacion .alimentacion__btn-info {

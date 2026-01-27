@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gestioneventos.cofira.dto.ollama.AlimentoGeneradoDTO;
 import com.gestioneventos.cofira.dto.ollama.ComidaGeneradaDTO;
 import com.gestioneventos.cofira.dto.ollama.GenerarMenuRequestDTO;
 import com.gestioneventos.cofira.dto.ollama.GenerarRutinaRequestDTO;
@@ -427,12 +428,48 @@ public class GeminiService {
         try {
             String jsonLimpio = limpiarRespuestaJson(respuestaJson);
             MenuGeneradoDTO menuParseado = objectMapper.readValue(jsonLimpio, MenuGeneradoDTO.class);
+            normalizarCapitalizacionMenu(menuParseado);
             return menuParseado;
 
         } catch (JsonProcessingException excepcion) {
             logger.error("Error al parsear respuesta de menu. Respuesta original: {}", respuestaJson);
             throw new RuntimeException("Error al parsear respuesta de menu de OpenRouter: " + excepcion.getMessage(), excepcion);
         }
+    }
+
+    private void normalizarCapitalizacionMenu(MenuGeneradoDTO menu) {
+        if (menu == null || menu.getComidas() == null) {
+            return;
+        }
+
+        for (ComidaGeneradaDTO comida : menu.getComidas()) {
+            if (comida.getNombre() != null) {
+                comida.setNombre(capitalizarEstiloEspanol(comida.getNombre()));
+            }
+
+            if (comida.getAlimentos() != null) {
+                for (AlimentoGeneradoDTO alimento : comida.getAlimentos()) {
+                    if (alimento.getNombre() != null) {
+                        alimento.setNombre(capitalizarEstiloEspanol(alimento.getNombre()));
+                    }
+                    if (alimento.getCantidad() != null) {
+                        alimento.setCantidad(capitalizarEstiloEspanol(alimento.getCantidad()));
+                    }
+                }
+            }
+        }
+    }
+
+    private String capitalizarEstiloEspanol(String texto) {
+        if (texto == null || texto.isEmpty()) {
+            return texto;
+        }
+
+        String textoMinusculas = texto.toLowerCase();
+        String primeraLetra = textoMinusculas.substring(0, 1).toUpperCase();
+        String restoTexto = textoMinusculas.substring(1);
+
+        return primeraLetra + restoTexto;
     }
 
     public MenuSemanalGeneradoDTO generarMenuSemanal(GenerarMenuRequestDTO solicitud) {

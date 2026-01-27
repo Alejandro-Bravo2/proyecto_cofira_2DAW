@@ -86,7 +86,7 @@
             <span class="alimentacion__resumen-valor alimentacion__agua">
               <button
                 (click)="quitarAgua()"
-                [disabled]="aguaConsumida() <= 0"
+                [disabled]="aguaConsumida() <= 0 || aguaActualizando()"
                 aria-label="Quitar vaso de agua"
                 class="alimentacion__agua-btn"
                 type="button">
@@ -97,6 +97,7 @@
               <span class="alimentacion__agua-texto">{{ aguaConsumida() | number:'1.1-1' }}L</span>
               <button
                 (click)="agregarAgua()"
+                [disabled]="aguaActualizando()"
                 aria-label="Añadir vaso de agua"
                 class="alimentacion__agua-btn"
                 type="button">

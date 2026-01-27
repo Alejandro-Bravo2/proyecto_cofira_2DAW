@@ -1,6 +1,6 @@
 import {Injectable, inject, signal} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Observable, tap, catchError, of} from "rxjs";
+import {Observable, tap, catchError, of, finalize} from "rxjs";
 import {environment} from "../../environments/environment";
 
 export interface ConsumoAguaDTO {
@@ -23,6 +23,7 @@ export class AguaService {
 
   readonly aguaConsumida = signal(0);
   readonly cargando = signal(false);
+  readonly actualizando = signal(false);
 
   obtenerConsumoHoy(): Observable<ConsumoAguaDTO> {
     this.cargando.set(true);
@@ -35,7 +36,7 @@ export class AguaService {
       catchError((error) => {
         console.error("Error obteniendo consumo de agua:", error);
         this.cargando.set(false);
-        return of({ fecha: new Date().toISOString().split("T")[0], litros: 0 });
+        return of({ fecha: this.obtenerFechaHoy(), litros: 0 });
       })
     );
   }
@@ -45,8 +46,10 @@ export class AguaService {
   }
 
   actualizarConsumo(litros: number): Observable<ConsumoAguaDTO> {
-    const hoy = new Date().toISOString().split("T")[0];
-    const dto: ActualizarAguaDTO = { fecha: hoy, litros };
+    const fechaHoy = this.obtenerFechaHoy();
+    const dto: ActualizarAguaDTO = { fecha: fechaHoy, litros };
+
+    this.actualizando.set(true);
 
     return this.httpClient.put<ConsumoAguaDTO>(this.apiUrl, dto).pipe(
       tap((consumo) => {
@@ -55,23 +58,54 @@ export class AguaService {
       catchError((error) => {
         console.error("Error actualizando consumo de agua:", error);
         throw error;
+      }),
+      finalize(() => {
+        this.actualizando.set(false);
       })
     );
   }
 
   agregarAgua(): void {
-    const nuevoValor = this.aguaConsumida() + 0.25;
-    this.actualizarConsumo(nuevoValor).subscribe();
+    if (this.actualizando()) {
+      return;
+    }
+
+    const valorActual = this.aguaConsumida();
+    const nuevoValor = Math.round((valorActual + 0.25) * 100) / 100;
+
+    this.actualizarConsumo(nuevoValor).subscribe({
+      error: () => {
+        console.error("No se pudo guardar el agua consumida");
+      }
+    });
   }
 
   quitarAgua(): void {
-    const nuevoValor = Math.max(0, this.aguaConsumida() - 0.25);
-    this.actualizarConsumo(nuevoValor).subscribe();
+    if (this.actualizando()) {
+      return;
+    }
+
+    const valorActual = this.aguaConsumida();
+    const nuevoValor = Math.max(0, Math.round((valorActual - 0.25) * 100) / 100);
+
+    this.actualizarConsumo(nuevoValor).subscribe({
+      error: () => {
+        console.error("No se pudo guardar el agua consumida");
+      }
+    });
   }
 
   obtenerHistorial(fechaInicio: string, fechaFin: string): Observable<ConsumoAguaDTO[]> {
     return this.httpClient.get<ConsumoAguaDTO[]>(
       `${this.apiUrl}/historial?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`
     );
+  }
+
+  private obtenerFechaHoy(): string {
+    const ahora = new Date();
+    const anio = ahora.getFullYear();
+    const mes = String(ahora.getMonth() + 1).padStart(2, "0");
+    const dia = String(ahora.getDate()).padStart(2, "0");
+    return `${anio}-${mes}-${dia}`;
   }
 }

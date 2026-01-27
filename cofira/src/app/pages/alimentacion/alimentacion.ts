@@ -22,6 +22,7 @@ export class Alimentacion implements OnInit {
 
   readonly fechaActualDate = signal(new Date());
   readonly aguaConsumida = this.aguaService.aguaConsumida;
+  readonly aguaActualizando = this.aguaService.actualizando;
   readonly aguaObjetivo = signal(3);
 
   constructor() {
