@@ -31,8 +31,11 @@ dependencies {
     // Web
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    // WebFlux (para WebClient - comunicacion con Ollama)
+    // WebFlux (para WebClient - comunicacion con Gemini)
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // Dotenv - Para cargar variables de entorno desde .env
+    implementation 'me.paulschwarz:spring-dotenv:4.0.0'
 
     // PostgreSQL Driver
     runtimeOnly 'org.postgresql:postgresql'

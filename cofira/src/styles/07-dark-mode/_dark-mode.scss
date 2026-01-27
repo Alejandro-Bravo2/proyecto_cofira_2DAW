@@ -1,17 +1,13 @@
-
 @import 'dark-mode-config';
 
-
-
-[data-theme="dark"] {
-
-
-
+[data-theme='dark'] {
   app-header .cabecera {
     background: var(--negro-normal);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    box-shadow: 0 1px 0 var(--gris-dark), var(--negro-normal);
+    box-shadow:
+      0 1px 0 var(--gris-dark),
+      var(--negro-normal);
     border-bottom: 1px solid var(--amarillo-dark-hover);
   }
 
@@ -50,7 +46,6 @@
     filter: brightness(1.2);
   }
 
-
   app-header .cabecera__tema-btn {
     color: var(--blanco-normal);
   }
@@ -59,7 +54,6 @@
     background: var(--amarillo-normal-transparente-015);
     color: var(--amarillo-normal);
   }
-
 
   app-header .cabecera__enlace {
     color: var(--oscuro-cabecera-enlace);
@@ -73,7 +67,6 @@
   app-header .cabecera__enlace::after {
     background: var(--oscuro-cabecera-enlace-hover);
   }
-
 
   app-header .cabecera__perfil {
     background: var(--blanco-normal-transparente-005);
@@ -119,7 +112,6 @@
     color: var(--oscuro-cabecera-enlace-hover);
   }
 
-
   app-header .cabecera__hamburguesa-linea {
     background-color: var(--oscuro-hamburguesa-color);
   }
@@ -128,15 +120,14 @@
     background-color: var(--oscuro-hamburguesa-hover);
   }
 
-
-
-
   app-header .cabecera__desplegable {
     background: var(--negro-oscuro-variante-transparente-095);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--blanco-normal-transparente-010);
-    box-shadow: 0 8px 32px var(--negro-puro-transparente-050), 0 0 0 1px var(--amarillo-normal-transparente-005);
+    box-shadow:
+      0 8px 32px var(--negro-puro-transparente-050),
+      0 0 0 1px var(--amarillo-normal-transparente-005);
   }
 
   app-header .cabecera__desplegable-item {
@@ -171,9 +162,6 @@
   app-header .cabecera__desplegable-separador {
     background: var(--blanco-normal-transparente-010);
   }
-
-
-
 
   app-header .menu-movil__contenido {
     background: var(--negro-normal-transparente-098);
@@ -213,7 +201,6 @@
     border-left-color: var(--oscuro-cabecera-enlace-hover);
   }
 
-
   app-header .menu-movil__usuario {
     background: var(--amarillo-normal-transparente-008);
     border: 1px solid var(--amarillo-normal-transparente-015);
@@ -226,7 +213,6 @@
   app-header .menu-movil__usuario-nombre {
     color: var(--blanco-normal);
   }
-
 
   app-header .menu-movil__acciones {
     border-top-color: var(--blanco-normal-transparente-008);
@@ -258,7 +244,6 @@
     color: var(--amarillo-normal);
   }
 
-
   app-header .cabecera__hamburguesa-linea {
     background-color: var(--oscuro-hamburguesa-color);
   }
@@ -266,8 +251,6 @@
   app-header .cabecera__hamburguesa-linea--hover {
     background-color: var(--oscuro-hamburguesa-hover);
   }
-
-
 
   app-footer .pie {
     background: var(--oscuro-pie-fondo);
@@ -286,7 +269,6 @@
     color: var(--oscuro-pie-texto);
   }
 
-
   app-footer .pie__social {
     background: var(--oscuro-pie-social-fondo);
     color: var(--oscuro-pie-social-icono);
@@ -296,8 +278,6 @@
     background: var(--oscuro-pie-social-hover-fondo);
     color: var(--oscuro-pie-social-hover-icono);
   }
-
-
 
   .tarjeta {
     background: var(--oscuro-tarjeta-fondo);
@@ -319,8 +299,6 @@
   .tarjeta--destacada {
     border-color: var(--oscuro-tarjeta-destacada-borde);
   }
-
-
 
   .formulario__etiqueta {
     color: var(--oscuro-formulario-etiqueta);
@@ -355,8 +333,6 @@
     color: var(--oscuro-formulario-ayuda-texto);
   }
 
-
-
   .input {
     background: var(--oscuro-input-campo-fondo);
     color: var(--oscuro-input-campo-texto);
@@ -371,8 +347,6 @@
     color: var(--oscuro-formulario-placeholder);
   }
 
-
-
   .alerta {
     border: 0.0625rem solid var(--oscuro-alerta-borde);
   }
@@ -381,8 +355,6 @@
     background-color: var(--oscuro-alerta-info-fondo);
     border-color: var(--oscuro-alerta-info-borde);
   }
-
-
 
   .guia-estilos {
     background-color: var(--oscuro-guia-fondo);
@@ -429,7 +401,6 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   .tarjeta-color {
     background: var(--oscuro-superficie-fondo);
     border-color: var(--oscuro-borde-suave);
@@ -439,7 +410,6 @@
   .color-name {
     color: var(--oscuro-texto-principal);
   }
-
 
   .typography-item {
     background: var(--oscuro-superficie-fondo);
@@ -454,7 +424,6 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   .spacing-item {
     background: var(--oscuro-superficie-fondo);
     border-color: var(--oscuro-borde-suave);
@@ -463,7 +432,6 @@
   .spacing-info-texto {
     color: var(--oscuro-texto-secundario);
   }
-
 
   .animation-item {
     background: var(--oscuro-superficie-fondo);
@@ -475,7 +443,6 @@
     background: var(--oscuro-pagina-fondo);
   }
 
-
   .radius-item {
     background: var(--oscuro-superficie-fondo);
     border-color: var(--oscuro-borde-suave);
@@ -485,13 +452,11 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   .guia-estilos__nota {
     background-color: var(--oscuro-guia-nota-fondo);
     border-left-color: var(--oscuro-guia-nota-borde);
     color: var(--oscuro-texto-principal);
   }
-
 
   .tarjeta-color__titulo,
   .color-name,
@@ -509,15 +474,11 @@
     color: var(--blanco-dark);
   }
 
-
   .color-value,
   .typography-info-codigo {
     background: var(--gris-dark);
     color: var(--blanco-normal);
   }
-
-
-
 
   app-privacidad .legal,
   app-terminos .legal,
@@ -526,7 +487,6 @@
     background-color: var(--oscuro-legal-fondo);
   }
 
-
   app-privacidad .legal__titulo,
   app-terminos .legal__titulo,
   app-cookies .legal__titulo,
@@ -534,14 +494,12 @@
     color: var(--oscuro-legal-titulo);
   }
 
-
   app-privacidad .legal__fecha,
   app-terminos .legal__fecha,
   app-cookies .legal__fecha,
   app-licencias .legal__fecha {
     color: var(--oscuro-legal-fecha);
   }
-
 
   app-privacidad .legal__contenido,
   app-terminos .legal__contenido,
@@ -551,14 +509,12 @@
     box-shadow: 0 0.25rem 1rem var(--oscuro-legal-contenido-sombra);
   }
 
-
   app-privacidad .legal__seccion,
   app-terminos .legal__seccion,
   app-cookies .legal__seccion,
   app-licencias .legal__seccion {
     border-bottom-color: var(--oscuro-legal-borde);
   }
-
 
   app-privacidad .legal__subtitulo,
   app-privacidad .legal__subtitulo-menor,
@@ -571,7 +527,6 @@
     color: var(--oscuro-legal-subtitulo);
   }
 
-
   app-privacidad .legal__texto,
   app-privacidad .legal__lista,
   app-terminos .legal__texto,
@@ -582,7 +537,6 @@
   app-licencias .legal__lista {
     color: var(--oscuro-legal-texto);
   }
-
 
   app-privacidad .legal__enlace,
   app-terminos .legal__enlace,
@@ -598,9 +552,6 @@
     color: var(--oscuro-legal-enlace-hover);
   }
 
-
-
-
   .sobre-nosotros__seccion-titulo {
     color: var(--oscuro-info-titulo);
   }
@@ -609,7 +560,6 @@
     color: var(--oscuro-info-texto);
   }
 
-
   .sobre-nosotros__historia {
     background-color: var(--oscuro-pagina-fondo);
   }
@@ -617,7 +567,6 @@
   .sobre-nosotros__historia-parrafo {
     color: var(--oscuro-info-texto);
   }
-
 
   .sobre-nosotros__valores {
     background-color: var(--oscuro-info-seccion-alt-fondo);
@@ -639,7 +588,6 @@
     background-color: var(--gris-dark);
   }
 
-
   .sobre-nosotros__equipo {
     background-color: var(--oscuro-pagina-fondo);
   }
@@ -652,13 +600,9 @@
     color: var(--oscuro-info-texto);
   }
 
-
-
-
   .blog {
     background-color: var(--oscuro-pagina-fondo);
   }
-
 
   .blog__filtros {
     background-color: var(--oscuro-info-card-fondo);
@@ -674,7 +618,6 @@
     color: var(--oscuro-info-titulo);
     border-color: var(--oscuro-info-titulo);
   }
-
 
   .blog__articulo {
     background-color: var(--oscuro-info-card-fondo);
@@ -692,11 +635,9 @@
     color: var(--oscuro-info-texto);
   }
 
-
   .blog__sin-resultados-texto {
     color: var(--oscuro-info-texto);
   }
-
 
   .blog__articulo-categoria--ejercicio {
     background-color: var(--blog-categoria-ejercicio-fondo);
@@ -713,18 +654,13 @@
     color: var(--blog-categoria-bienestar-texto);
   }
 
-
-
-
   .contacto {
     background-color: var(--oscuro-pagina-fondo);
   }
 
-
   .contacto__seccion-titulo {
     color: var(--oscuro-info-titulo);
   }
-
 
   .contacto__formulario-wrapper {
     background-color: var(--oscuro-info-card-fondo);
@@ -754,7 +690,6 @@
     border-color: var(--amarillo-normal);
   }
 
-
   .contacto__info-titulo {
     color: var(--oscuro-info-texto);
   }
@@ -775,7 +710,6 @@
     background-color: var(--gris-dark);
   }
 
-
   .contacto__horarios {
     background-color: var(--oscuro-info-card-fondo);
   }
@@ -791,7 +725,6 @@
   .contacto__horario-hora {
     color: var(--oscuro-info-texto);
   }
-
 
   .contacto__faq {
     background-color: var(--negro-dark);
@@ -828,8 +761,6 @@
     color: var(--faq-respuesta-color);
   }
 
-
-
   app-home .home {
     background-color: var(--oscuro-pagina-fondo);
   }
@@ -847,7 +778,6 @@
   app-home .home__section-subtitulo {
     color: var(--oscuro-texto-secundario);
   }
-
 
   app-home .home__feature,
   app-home .home__caracteristica {
@@ -869,7 +799,6 @@
     background-color: var(--oscuro-home-feature-icono-fondo);
   }
 
-
   app-home .home__testimonial {
     background-color: var(--oscuro-home-testimonial-fondo);
   }
@@ -881,7 +810,6 @@
   app-home .home__testimonial-autor {
     color: var(--oscuro-texto-principal);
   }
-
 
   app-home .home__stat,
   app-home .home__estadistica {
@@ -898,16 +826,13 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   app-home .home__cta {
     background: var(--oscuro-home-cta-fondo);
   }
 
-
   app-home .home__section--alt {
     background-color: var(--oscuro-home-seccion-alt);
   }
-
 
   app-home .funcionalidades__contenedor {
     background-color: var(--oscuro-pagina-fondo);
@@ -933,7 +858,6 @@
   app-home .funcionalidades__texto {
     color: var(--oscuro-texto-principal);
   }
-
 
   app-home .faq__section {
     background-color: var(--oscuro-pagina-fondo);
@@ -1002,7 +926,6 @@
     color: var(--amarillo-dark);
   }
 
-
   app-home .planes__section {
     background-color: var(--oscuro-pagina-fondo);
   }
@@ -1019,8 +942,6 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
-
   app-onboarding .onboarding,
   app-onboarding main {
     background-color: var(--oscuro-onboarding-fondo);
@@ -1029,7 +950,6 @@
   app-onboarding .onboarding__card {
     background-color: var(--oscuro-onboarding-card-fondo);
   }
-
 
   app-login {
     background-color: var(--oscuro-onboarding-fondo);
@@ -1096,9 +1016,6 @@
     color: var(--oscuro-texto-principal);
   }
 
-
-
-
   app-onboarding .onboarding__progress-fill,
   app-onboarding .progress-bar__fill {
     background: linear-gradient(
@@ -1109,7 +1026,6 @@
     );
     box-shadow: 0 0 8px var(--amarillo-normal-transparente-040);
   }
-
 
   app-onboarding .step-register__titulo,
   app-onboarding .step-goal__titulo,
@@ -1147,7 +1063,6 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   app-onboarding .option-card {
     background-color: var(--oscuro-onboarding-option-fondo);
     border-color: var(--oscuro-borde-color);
@@ -1182,7 +1097,6 @@
     color: var(--negro-normal);
   }
 
-
   app-onboarding .step-register__input,
   app-onboarding .step-measurements__input,
   app-onboarding .step-target-weight__input,
@@ -1206,7 +1120,6 @@
     border-color: var(--amarillo-normal);
   }
 
-
   app-onboarding .step-register__field-icon {
     color: var(--oscuro-texto-suave);
   }
@@ -1214,7 +1127,6 @@
   app-onboarding .step-register__field-icon--enfocado {
     color: var(--amarillo-normal);
   }
-
 
   app-onboarding .step-register__requirements {
     background-color: var(--oscuro-superficie-fondo);
@@ -1227,7 +1139,6 @@
   app-onboarding .step-register__requirement--valid {
     color: var(--verde-normal);
   }
-
 
   app-onboarding .step-register__field-error {
     background-color: var(--rojo-normal-transparente-020);
@@ -1242,16 +1153,13 @@
     color: var(--rojo-light);
   }
 
-
   app-onboarding .step-register__alt-action {
     color: var(--oscuro-texto-secundario);
   }
 
-  app-step-welcome .welcome__content{
+  app-step-welcome .welcome__content {
     background-color: var(--gris-dark);
   }
-
-
 
   app-gimnasio .gimnasio {
     background-color: var(--oscuro-gimnasio-fondo);
@@ -1268,7 +1176,6 @@
   app-gimnasio .gimnasio__subtitulo {
     color: var(--oscuro-texto-secundario);
   }
-
 
   app-gimnasio .gimnasio__ejercicio,
   app-gimnasio .ejercicio-card {
@@ -1290,7 +1197,6 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   app-gimnasio .gimnasio__categoria,
   app-gimnasio .categoria-btn {
     background-color: var(--oscuro-gimnasio-categoria-fondo);
@@ -1303,13 +1209,11 @@
     color: var(--negro-normal);
   }
 
-
   app-gimnasio .gimnasio__badge,
   app-gimnasio .ejercicio-card__badge {
     background-color: var(--oscuro-gimnasio-badge-fondo);
     color: var(--oscuro-texto-secundario);
   }
-
 
   app-gimnasio .gimnasio__detalle,
   app-gimnasio .ejercicio-detalle {
@@ -1324,11 +1228,9 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   app-gimnasio .gimnasio__video-overlay {
     background-color: var(--oscuro-gimnasio-video-overlay);
   }
-
 
   app-gimnasio .gimnasio__tabla-section {
     background-color: var(--oscuro-superficie-fondo);
@@ -1343,7 +1245,7 @@
   app-gimnasio .gimnasio__tabla-cabecera {
     background-color: var(--oscuro-hover-fondo);
     border-color: var(--oscuro-borde-color);
-    color: var(--blanco-normal)
+    color: var(--blanco-normal);
   }
 
   app-gimnasio .gimnasio__tabla-celda {
@@ -1357,7 +1259,7 @@
 
   app-gimnasio .gimnasio__tabla-dato {
     background-color: var(--oscuro-superficie-fondo);
-    color: var(--blanco-normal)
+    color: var(--blanco-normal);
   }
 
   app-gimnasio .gimnasio__ejercicio {
@@ -1367,7 +1269,6 @@
   app-gimnasio .gimnasio__ejercicio-toggle-svg {
     color: var(--blanco-normal);
   }
-
 
   app-gimnasio .gimnasio__feedback {
     background-color: var(--oscuro-superficie-fondo);
@@ -1391,7 +1292,6 @@
     color: var(--oscuro-texto-suave);
   }
 
-
   app-gimnasio .gimnasio__progreso {
     background-color: var(--oscuro-superficie-fondo);
   }
@@ -1403,7 +1303,6 @@
   app-gimnasio .gimnasio__progreso-descripcion {
     color: var(--oscuro-texto-secundario);
   }
-
 
   app-gimnasio .gimnasio__dias-btn {
     color: var(--oscuro-texto-secundario);
@@ -1417,8 +1316,6 @@
     color: var(--amarillo-normal);
   }
 
-
-
   app-alimentacion .alimentacion {
     background-color: var(--oscuro-alimentacion-fondo);
   }
@@ -1430,7 +1327,6 @@
   app-alimentacion .alimentacion__subtitulo {
     color: var(--oscuro-texto-secundario);
   }
-
 
   app-alimentacion .alimentacion__receta,
   app-alimentacion .receta-card {
@@ -1447,7 +1343,6 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   app-alimentacion .alimentacion__nutrientes,
   app-alimentacion .nutrientes-panel {
     background-color: var(--oscuro-alimentacion-nutrientes-fondo);
@@ -1461,13 +1356,11 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   app-alimentacion .alimentacion__ingrediente,
   app-alimentacion .ingrediente-item {
     background-color: var(--oscuro-alimentacion-ingrediente-fondo);
     color: var(--oscuro-texto-principal);
   }
-
 
   app-alimentacion .alimentacion__tab,
   app-alimentacion .tab-btn {
@@ -1480,7 +1373,6 @@
     background-color: var(--oscuro-alimentacion-tab-activa);
     color: var(--negro-normal);
   }
-
 
   app-alimentacion .alimentacion__macro,
   app-alimentacion .macro-card {
@@ -1495,17 +1387,14 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   app-alimentacion .alimentacion__calorias-ring {
     stroke: var(--oscuro-alimentacion-calorias-ring);
   }
-
 
   app-alimentacion .alimentacion__menu-dia {
     background-color: var(--oscuro-superficie-fondo);
     border-color: var(--oscuro-borde-color);
   }
-
 
   app-alimentacion .alimentacion__comida {
     background-color: var(--oscuro-superficie-fondo);
@@ -1523,7 +1412,6 @@
   app-alimentacion .alimentacion__comida-costo {
     color: var(--oscuro-texto-principal);
   }
-
 
   app-alimentacion .alimentacion__alimentos {
     background-color: transparent;
@@ -1553,7 +1441,6 @@
     color: var(--negro-normal);
   }
 
-
   app-alimentacion .alimentacion__navegacion-fecha {
     color: var(--oscuro-texto-secundario);
   }
@@ -1579,17 +1466,13 @@
     color: var(--blanco-normal);
   }
 
-
   app-alimentacion .alimentacion__icono-calendario {
     color: var(--blanco-normal);
   }
 
-
   app-alimentacion .alimentacion__comida-costo-svg {
     color: var(--blanco-normal);
   }
-
-
 
   app-seguimiento .seguimiento {
     background-color: var(--oscuro-seguimiento-fondo);
@@ -1603,12 +1486,10 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   app-seguimiento .seguimiento__card,
   app-seguimiento .stat-card {
     background-color: var(--oscuro-seguimiento-card-fondo);
   }
-
 
   app-seguimiento .seguimiento__stat,
   app-seguimiento .stat-item {
@@ -1625,7 +1506,6 @@
     color: var(--oscuro-texto-secundario);
   }
 
-
   app-seguimiento .seguimiento__progress-bg,
   app-seguimiento .progress-bar__bg {
     background-color: var(--oscuro-seguimiento-progress-bg);
@@ -1635,7 +1515,6 @@
   app-seguimiento .progress-bar__fill {
     background-color: var(--oscuro-seguimiento-progress-fill);
   }
-
 
   app-seguimiento .seguimiento__chart,
   app-seguimiento .chart-container {
@@ -1650,7 +1529,6 @@
     stroke: var(--oscuro-seguimiento-grafico-grid);
   }
 
-
   app-seguimiento .seguimiento__chart-label {
     fill: var(--blanco-normal);
   }
@@ -1658,7 +1536,6 @@
   app-seguimiento .seguimiento__chart-label-axis {
     fill: var(--blanco-dark);
   }
-
 
   app-seguimiento .seguimiento__calendario {
     background-color: var(--oscuro-seguimiento-card-fondo);
@@ -1677,7 +1554,6 @@
     background-color: var(--oscuro-hover-fondo);
     color: var(--oscuro-texto-principal);
   }
-
 
   app-seguimiento .seguimiento__macronutrientes {
     background-color: transparent;
@@ -1723,7 +1599,6 @@
     color: var(--oscuro-texto-principal);
   }
 
-
   app-seguimiento .seguimiento__fuerza {
     background-color: transparent;
   }
@@ -1743,7 +1618,6 @@
     border-color: var(--oscuro-borde-color);
   }
 
-
   app-seguimiento .seguimiento__grafico-lineas {
     background-color: var(--oscuro-superficie-fondo);
   }
@@ -1755,7 +1629,6 @@
   app-seguimiento .seguimiento__chart-container {
     background-color: var(--oscuro-superficie-fondo);
   }
-
 
   app-modal .modal {
     background-color: var(--gris-dark);
@@ -1778,7 +1651,6 @@
     background-color: var(--gris-normal);
     color: var(--blanco-normal);
   }
-
 
   app-calendario .calendario__btn {
     color: var(--blanco-normal);
@@ -1817,7 +1689,6 @@
     color: var(--blanco-normal);
   }
 
-
   app-ingredientes .ingredientes__info {
     background-color: var(--gris-normal);
   }
@@ -1846,7 +1717,6 @@
     color: var(--amarillo-normal);
   }
 
-
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -1865,33 +1735,34 @@
     background: var(--oscuro-texto-suave);
   }
 
-
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--oscuro-borde-color) var(--oscuro-pagina-fondo);
   }
-
 }
-
-
 
 body {
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
-
 
 body *,
-[data-theme="dark"] * {
-  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease,
-  box-shadow 0.2s ease, fill 0.2s ease, stroke 0.2s ease;
+[data-theme='dark'] * {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    fill 0.2s ease,
+    stroke 0.2s ease;
 }
-
 
 body [class*='animate'],
 body [class*='spinner'],
 body [class*='loading'],
-[data-theme="dark"] [class*='animate'],
-[data-theme="dark"] [class*='spinner'],
-[data-theme="dark"] [class*='loading'] {
+[data-theme='dark'] [class*='animate'],
+[data-theme='dark'] [class*='spinner'],
+[data-theme='dark'] [class*='loading'] {
   transition: none;
 }

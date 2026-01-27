@@ -54,7 +54,7 @@ export interface MenuSemanalGenerado {
   fechaFin: string;
 }
 
-export interface EstadoOllamaAlimentacion {
+export interface EstadoIA {
   conectado: boolean;
   mensaje: string;
 }

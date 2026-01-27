@@ -22,5 +22,6 @@ public class HistorialEntrenamientoDTO {
     private Integer seriesObjetivo;
     private String repeticiones;
     private Boolean completado;
+    private Double pesoKg;
     private Integer semanaNumero;
 }

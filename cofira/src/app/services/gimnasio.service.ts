@@ -8,7 +8,7 @@ import {
   EjercicioProgreso,
   EjerciciosPorDia,
   EstadisticasGimnasio,
-  EstadoOllama,
+  EstadoIA,
   FeedbackEjercicio,
   GenerarRutinaRequest,
   GuardarProgresoRequest,
@@ -23,7 +23,7 @@ export class GimnasioService {
   readonly ejerciciosPorDia = signal<EjerciciosPorDia>({});
   readonly isLoading = signal(false);
   readonly error = signal<string | null>(null);
-  readonly estadoOllama = signal<EstadoOllama | null>(null);
+  readonly estadoIA = signal<EstadoIA | null>(null);
   readonly semanaActual = signal<number>(1);
   readonly feedbackEnviado = signal<boolean>(false);
 
@@ -64,17 +64,17 @@ export class GimnasioService {
     );
   }
 
-  verificarConexionOllama(): Observable<EstadoOllama> {
-    return this.api.get<EstadoOllama>('/rutinas-ejercicio/ollama/estado').pipe(
+  verificarConexionIA(): Observable<EstadoIA> {
+    return this.api.get<EstadoIA>('/rutinas-ejercicio/ia/estado').pipe(
       tap(estado => {
-        this.estadoOllama.set(estado);
+        this.estadoIA.set(estado);
       }),
       catchError(() => {
-        const estadoError: EstadoOllama = {
+        const estadoError: EstadoIA = {
           conectado: false,
           mensaje: 'No se puede conectar con el servidor'
         };
-        this.estadoOllama.set(estadoError);
+        this.estadoIA.set(estadoError);
         return of(estadoError);
       })
     );
@@ -95,6 +95,24 @@ export class GimnasioService {
       const ejerciciosActualizados = ejerciciosDelDia.map(ejercicio => {
         if (ejercicio.id === ejercicioId) {
           return {...ejercicio, realizado};
+        }
+        return ejercicio;
+      });
+
+      return {...ejercicios, [diaSemana]: ejerciciosActualizados};
+    });
+  }
+
+  actualizarPesoEjercicio(diaSemana: string, ejercicioId: number, pesoKg: number | undefined): void {
+    this.ejerciciosPorDia.update(ejercicios => {
+      const ejerciciosDelDia = ejercicios[diaSemana];
+      if (!ejerciciosDelDia) {
+        return ejercicios;
+      }
+
+      const ejerciciosActualizados = ejerciciosDelDia.map(ejercicio => {
+        if (ejercicio.id === ejercicioId) {
+          return {...ejercicio, pesoKg};
         }
         return ejercicio;
       });
@@ -360,7 +378,8 @@ export class GimnasioService {
         seriesCompletadas: ejercicio.realizado === true ? ejercicio.series : 0,
         seriesObjetivo: ejercicio.series,
         repeticiones: ejercicio.repeticiones,
-        completado: ejercicio.realizado === true
+        completado: ejercicio.realizado === true,
+        pesoKg: ejercicio.pesoKg
       };
 
       return ejercicioProgresoMapeado;
@@ -411,5 +430,18 @@ export class GimnasioService {
     } catch (error) {
       console.error('Error cargando semana desde localStorage:', error);
     }
+  }
+
+  obtenerEjerciciosUnicos(): Observable<string[]> {
+    return this.api.get<string[]>('/rutinas-ejercicio/ejercicios-unicos').pipe(
+      catchError(() => of([]))
+    );
+  }
+
+  obtenerProgresoPorEjercicio(nombreEjercicio: string): Observable<HistorialEntrenamiento[]> {
+    const nombreCodificado = encodeURIComponent(nombreEjercicio);
+    return this.api.get<HistorialEntrenamiento[]>(`/rutinas-ejercicio/progreso/ejercicio/${nombreCodificado}`).pipe(
+      catchError(() => of([]))
+    );
   }
 }

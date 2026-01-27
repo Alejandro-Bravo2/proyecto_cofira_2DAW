@@ -32,7 +32,7 @@ export class Gimnasio implements OnInit {
   readonly isLoading = this.gimnasioService.isLoading;
   readonly error = this.gimnasioService.error;
   readonly tieneRutina = this.gimnasioService.tieneRutina;
-  readonly estadoOllama = this.gimnasioService.estadoOllama;
+  readonly estadoIA = this.gimnasioService.estadoIA;
   readonly semanaActual = this.gimnasioService.semanaActual;
   readonly feedbackEnviado = this.gimnasioService.feedbackEnviado;
 
@@ -90,6 +90,13 @@ export class Gimnasio implements OnInit {
     }
   }
 
+  actualizarPeso(ejercicio: Ejercicio, evento: Event): void {
+    const input = evento.target as HTMLInputElement;
+    const pesoNuevo = input.value ? parseFloat(input.value) : undefined;
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    this.gimnasioService.actualizarPesoEjercicio(diaSeleccionado, ejercicio.id, pesoNuevo);
+  }
+
   generarNuevaRutina(): void {
     this.gimnasioService.generarRutina().subscribe({
       next: () => {
@@ -128,7 +135,7 @@ export class Gimnasio implements OnInit {
   }
 
   private verificarYGenerarRutina(): void {
-    this.gimnasioService.verificarConexionOllama().subscribe({
+    this.gimnasioService.verificarConexionIA().subscribe({
       next: (estado) => {
         if (estado.conectado) {
           this.generarNuevaRutina();

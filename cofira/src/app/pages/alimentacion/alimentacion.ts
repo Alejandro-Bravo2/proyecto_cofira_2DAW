@@ -26,7 +26,7 @@ export class Alimentacion implements OnInit {
   readonly isLoading = this.alimentacionService.isLoading;
   readonly error = this.alimentacionService.error;
   readonly tieneMenu = this.alimentacionService.tieneMenu;
-  readonly estadoOllama = this.alimentacionService.estadoOllama;
+  readonly estadoIA = this.alimentacionService.estadoIA;
   readonly menuGenerado = this.alimentacionService.menuGenerado;
   readonly progresoGeneracion = this.alimentacionService.progresoGeneracion;
   readonly estaGenerando = this.alimentacionService.estaGenerando;
@@ -118,7 +118,7 @@ export class Alimentacion implements OnInit {
   }
 
   private generarMenuSemanalAutomatico(): void {
-    this.alimentacionService.verificarConexionOllama().subscribe({
+    this.alimentacionService.verificarConexionIA().subscribe({
       next: (estado) => {
         if (estado.conectado) {
           this.alimentacionService.generarMenuSemanalConStreaming();

@@ -9,8 +9,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -22,31 +25,33 @@ import com.gestioneventos.cofira.dto.ollama.GenerarRutinaRequestDTO;
 import com.gestioneventos.cofira.dto.ollama.MenuDiaDTO;
 import com.gestioneventos.cofira.dto.ollama.MenuGeneradoDTO;
 import com.gestioneventos.cofira.dto.ollama.MenuSemanalGeneradoDTO;
-import com.gestioneventos.cofira.dto.ollama.ResumenNutricionalDTO;
 import com.gestioneventos.cofira.dto.ollama.RutinaGeneradaDTO;
 
 @Service
-public class OllamaService {
+public class GeminiService {
 
-    private final WebClient webClient;
+    private static final String OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions";
+
+    private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
-    @Value("${ollama.model:llama3.2}")
-    private String modeloOllama;
+    @Value("${openrouter.api-key}")
+    private String openRouterApiKey;
 
-    public OllamaService(@Value("${ollama.url:http://localhost:11434}") String ollamaUrl) {
-        this.webClient = WebClient.builder()
-                .baseUrl(ollamaUrl)
-                .build();
+    @Value("${openrouter.model:openai/gpt-4o-mini}")
+    private String modeloOpenRouter;
+
+    public GeminiService() {
+        this.restTemplate = new RestTemplate();
         this.objectMapper = new ObjectMapper();
     }
 
     public RutinaGeneradaDTO generarRutinaEjercicio(GenerarRutinaRequestDTO solicitud) {
         String promptGenerado = construirPromptRutina(solicitud);
 
-        String respuestaOllama = llamarOllama(promptGenerado);
+        String respuestaOpenRouter = llamarOpenRouter(promptGenerado);
 
-        RutinaGeneradaDTO rutinaParseada = parsearRespuestaRutina(respuestaOllama);
+        RutinaGeneradaDTO rutinaParseada = parsearRespuestaRutina(respuestaOpenRouter);
 
         return rutinaParseada;
     }
@@ -198,29 +203,43 @@ public class OllamaService {
         };
     }
 
-    private String llamarOllama(String prompt) {
+    private String llamarOpenRouter(String prompt) {
+        Map<String, Object> mensaje = Map.of(
+                "role", "user",
+                "content", prompt
+        );
+
         Map<String, Object> cuerpoSolicitud = Map.of(
-                "model", modeloOllama,
-                "prompt", prompt,
-                "stream", false,
-                "format", "json"
+                "model", modeloOpenRouter,
+                "messages", List.of(mensaje),
+                "temperature", 0.7
         );
 
         try {
-            String respuestaCompleta = webClient.post()
-                    .uri("/api/generate")
-                    .bodyValue(cuerpoSolicitud)
-                    .retrieve()
-                    .bodyToMono(String.class)
-                    .block();
+            HttpHeaders cabeceras = new HttpHeaders();
+            cabeceras.setContentType(MediaType.APPLICATION_JSON);
+            cabeceras.setBearerAuth(openRouterApiKey);
+            cabeceras.set("HTTP-Referer", "https://cofira.app");
+            cabeceras.set("X-Title", "Cofira");
+
+            String cuerpoJson = objectMapper.writeValueAsString(cuerpoSolicitud);
+            HttpEntity<String> solicitudHttp = new HttpEntity<>(cuerpoJson, cabeceras);
+
+            String respuestaCompleta = restTemplate.postForObject(OPENROUTER_URL, solicitudHttp, String.class);
 
             JsonNode nodoRespuesta = objectMapper.readTree(respuestaCompleta);
-            String textoRespuesta = nodoRespuesta.get("response").asText();
+
+            JsonNode choices = nodoRespuesta.get("choices");
+            if (choices == null || choices.isEmpty()) {
+                throw new RuntimeException("OpenRouter no devolvio choices en la respuesta");
+            }
+
+            String textoRespuesta = choices.get(0).get("message").get("content").asText();
 
             return textoRespuesta;
 
         } catch (Exception excepcion) {
-            throw new RuntimeException("Error al comunicarse con Ollama: " + excepcion.getMessage(), excepcion);
+            throw new RuntimeException("Error al comunicarse con OpenRouter: " + excepcion.getMessage(), excepcion);
         }
     }
 
@@ -230,17 +249,32 @@ public class OllamaService {
             return rutinaParsesada;
 
         } catch (JsonProcessingException excepcion) {
-            throw new RuntimeException("Error al parsear respuesta de Ollama: " + excepcion.getMessage(), excepcion);
+            throw new RuntimeException("Error al parsear respuesta de OpenRouter: " + excepcion.getMessage(), excepcion);
         }
     }
 
     public boolean verificarConexion() {
         try {
-            String respuesta = webClient.get()
-                    .uri("/api/tags")
-                    .retrieve()
-                    .bodyToMono(String.class)
-                    .block();
+            Map<String, Object> mensaje = Map.of(
+                    "role", "user",
+                    "content", "Responde solo: OK"
+            );
+
+            Map<String, Object> cuerpoSolicitud = Map.of(
+                    "model", modeloOpenRouter,
+                    "messages", List.of(mensaje),
+                    "max_tokens", 10
+            );
+
+            HttpHeaders cabeceras = new HttpHeaders();
+            cabeceras.setContentType(MediaType.APPLICATION_JSON);
+            cabeceras.setBearerAuth(openRouterApiKey);
+            cabeceras.set("HTTP-Referer", "https://cofira.app");
+
+            String cuerpoJson = objectMapper.writeValueAsString(cuerpoSolicitud);
+            HttpEntity<String> solicitudHttp = new HttpEntity<>(cuerpoJson, cabeceras);
+
+            String respuesta = restTemplate.postForObject(OPENROUTER_URL, solicitudHttp, String.class);
 
             return respuesta != null;
 
@@ -252,9 +286,9 @@ public class OllamaService {
     public MenuGeneradoDTO generarMenuDiario(GenerarMenuRequestDTO solicitud) {
         String promptGenerado = construirPromptMenuDiario(solicitud);
 
-        String respuestaOllama = llamarOllama(promptGenerado);
+        String respuestaOpenRouter = llamarOpenRouter(promptGenerado);
 
-        MenuGeneradoDTO menuParseado = parsearRespuestaMenu(respuestaOllama);
+        MenuGeneradoDTO menuParseado = parsearRespuestaMenu(respuestaOpenRouter);
 
         return menuParseado;
     }
@@ -335,7 +369,7 @@ public class OllamaService {
             return menuParseado;
 
         } catch (JsonProcessingException excepcion) {
-            throw new RuntimeException("Error al parsear respuesta de menu de Ollama: " + excepcion.getMessage(), excepcion);
+            throw new RuntimeException("Error al parsear respuesta de menu de OpenRouter: " + excepcion.getMessage(), excepcion);
         }
     }
 
@@ -354,9 +388,9 @@ public class OllamaService {
 
             String promptDelDia = construirPromptMenuDelDia(solicitud, numeroDia, platosYaGenerados);
 
-            String respuestaOllama = llamarOllama(promptDelDia);
+            String respuestaOpenRouter = llamarOpenRouter(promptDelDia);
 
-            MenuGeneradoDTO menuDelDia = parsearRespuestaMenu(respuestaOllama);
+            MenuGeneradoDTO menuDelDia = parsearRespuestaMenu(respuestaOpenRouter);
 
             MenuDiaDTO menuDiaDTO = MenuDiaDTO.builder()
                     .fecha(fechaDelDia.toString())
@@ -406,8 +440,8 @@ public class OllamaService {
                 int numeroDia = indiceDia + 1;
 
                 String promptDelDia = construirPromptMenuDelDia(solicitud, numeroDia, platosYaGenerados);
-                String respuestaOllama = llamarOllama(promptDelDia);
-                MenuGeneradoDTO menuDelDia = parsearRespuestaMenu(respuestaOllama);
+                String respuestaOpenRouter = llamarOpenRouter(promptDelDia);
+                MenuGeneradoDTO menuDelDia = parsearRespuestaMenu(respuestaOpenRouter);
 
                 MenuDiaDTO menuDiaDTO = MenuDiaDTO.builder()
                     .fecha(fechaDelDia.toString())

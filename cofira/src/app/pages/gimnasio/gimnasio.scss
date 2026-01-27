@@ -307,6 +307,34 @@
   height: 50%;
 }
 
+.gimnasio__input-peso {
+  width: 4rem;
+  padding: var(--spacing-size-xs) var(--spacing-size-s);
+  font-family: var(--font-primary);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--negro-normal);
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--blanco-dark);
+  border-radius: var(--radius-xss);
+  text-align: center;
+  transition: border-color var(--duration-fast) ease;
+}
+
+.gimnasio__input-peso:focus {
+  outline: none;
+  border-color: var(--amarillo-normal);
+}
+
+.gimnasio__input-peso::placeholder {
+  color: var(--gris-normal);
+}
+
+.gimnasio__input-peso--acordeon {
+  width: 100%;
+  max-width: 5rem;
+}
+
 
 
 .gimnasio__acordeon {

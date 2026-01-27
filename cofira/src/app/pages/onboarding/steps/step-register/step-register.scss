@@ -229,7 +229,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   color: var(--gris-normal);
   padding: 0;
   transition: all $register-transition;
-  z-index: 1;
+  z-index: 0;
 }
 
 .step-register__toggle-password:hover {

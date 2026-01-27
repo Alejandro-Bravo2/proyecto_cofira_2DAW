@@ -8,7 +8,7 @@ import com.gestioneventos.cofira.dto.ollama.GenerarRutinaRequestDTO;
 import com.gestioneventos.cofira.dto.ollama.RutinaGeneradaDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.CrearRutinaEjercicioDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.RutinaEjercicioDTO;
-import com.gestioneventos.cofira.services.OllamaService;
+import com.gestioneventos.cofira.services.GeminiService;
 import com.gestioneventos.cofira.services.RutinaEjercicioService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -24,11 +24,11 @@ import java.util.Optional;
 public class RutinaEjercicioController implements RutinaEjercicioControllerApi {
 
     private final RutinaEjercicioService rutinaEjercicioService;
-    private final OllamaService ollamaService;
+    private final GeminiService geminiService;
 
-    public RutinaEjercicioController(RutinaEjercicioService rutinaEjercicioService, OllamaService ollamaService) {
+    public RutinaEjercicioController(RutinaEjercicioService rutinaEjercicioService, GeminiService geminiService) {
         this.rutinaEjercicioService = rutinaEjercicioService;
-        this.ollamaService = ollamaService;
+        this.geminiService = geminiService;
     }
 
     @GetMapping
@@ -57,16 +57,16 @@ public class RutinaEjercicioController implements RutinaEjercicioControllerApi {
 
     @PostMapping("/generar")
     public ResponseEntity<RutinaGeneradaDTO> generarRutinaConIA(@RequestBody @Valid GenerarRutinaRequestDTO solicitud) {
-        RutinaGeneradaDTO rutinaGenerada = ollamaService.generarRutinaEjercicio(solicitud);
+        RutinaGeneradaDTO rutinaGenerada = geminiService.generarRutinaEjercicio(solicitud);
         return ResponseEntity.ok(rutinaGenerada);
     }
 
-    @GetMapping("/ollama/estado")
-    public ResponseEntity<Map<String, Object>> verificarEstadoOllama() {
-        boolean conexionActiva = ollamaService.verificarConexion();
+    @GetMapping("/ia/estado")
+    public ResponseEntity<Map<String, Object>> verificarEstadoIA() {
+        boolean conexionActiva = geminiService.verificarConexion();
         Map<String, Object> respuesta = Map.of(
             "conectado", conexionActiva,
-            "mensaje", conexionActiva ? "Ollama funcionando correctamente" : "No se puede conectar con Ollama"
+            "mensaje", conexionActiva ? "Gemini funcionando correctamente" : "No se puede conectar con Gemini"
         );
         return ResponseEntity.ok(respuesta);
     }
@@ -122,5 +122,17 @@ public class RutinaEjercicioController implements RutinaEjercicioControllerApi {
         Integer semanaActual = rutinaEjercicioService.calcularSemanaActual();
         Map<String, Integer> respuesta = Map.of("semanaActual", semanaActual);
         return ResponseEntity.ok(respuesta);
+    }
+
+    @GetMapping("/ejercicios-unicos")
+    public ResponseEntity<List<String>> obtenerEjerciciosUnicos() {
+        List<String> ejercicios = rutinaEjercicioService.obtenerEjerciciosUnicos();
+        return ResponseEntity.ok(ejercicios);
+    }
+
+    @GetMapping("/progreso/ejercicio/{nombreEjercicio}")
+    public ResponseEntity<List<HistorialEntrenamientoDTO>> obtenerProgresoPorEjercicio(@PathVariable String nombreEjercicio) {
+        List<HistorialEntrenamientoDTO> progreso = rutinaEjercicioService.obtenerProgresoPorEjercicio(nombreEjercicio);
+        return ResponseEntity.ok(progreso);
     }
 }

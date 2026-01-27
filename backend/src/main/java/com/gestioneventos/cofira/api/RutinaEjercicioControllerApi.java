@@ -55,18 +55,18 @@ public interface RutinaEjercicioControllerApi {
     ResponseEntity<?> eliminarRutina(
         @Parameter(description = "ID de la rutina a eliminar", required = true) @PathVariable Long id);
 
-    @Operation(summary = "Generar rutina con IA", description = "Genera una rutina de ejercicios personalizada usando Ollama")
+    @Operation(summary = "Generar rutina con IA", description = "Genera una rutina de ejercicios personalizada usando Gemini")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Rutina generada exitosamente",
             content = @Content(mediaType = "application/json", schema = @Schema(implementation = RutinaGeneradaDTO.class))),
-        @ApiResponse(responseCode = "500", description = "Error al comunicarse con Ollama", content = @Content)
+        @ApiResponse(responseCode = "500", description = "Error al comunicarse con Gemini", content = @Content)
     })
     ResponseEntity<RutinaGeneradaDTO> generarRutinaConIA(
         @Parameter(description = "Datos del usuario para generar la rutina", required = true) @RequestBody @Valid GenerarRutinaRequestDTO solicitud);
 
-    @Operation(summary = "Verificar estado de Ollama", description = "Comprueba si el servicio de Ollama está disponible")
+    @Operation(summary = "Verificar estado de IA", description = "Comprueba si el servicio de Gemini esta disponible")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Estado de Ollama obtenido")
+        @ApiResponse(responseCode = "200", description = "Estado de Gemini obtenido")
     })
-    ResponseEntity<Map<String, Object>> verificarEstadoOllama();
+    ResponseEntity<Map<String, Object>> verificarEstadoIA();
 }

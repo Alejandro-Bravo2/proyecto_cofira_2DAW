@@ -21,4 +21,13 @@ public interface HistorialEntrenamientoRepository extends JpaRepository<Historia
 
     @Query("SELECT COUNT(h) FROM HistorialEntrenamiento h WHERE h.completado = true AND h.semanaNumero = :semana")
     Long countCompletadosBySemana(@Param("semana") Integer semana);
+
+    @Query("SELECT DISTINCT h.nombreEjercicio FROM HistorialEntrenamiento h ORDER BY h.nombreEjercicio")
+    List<String> findDistinctNombreEjercicio();
+
+    @Query("SELECT h FROM HistorialEntrenamiento h WHERE h.nombreEjercicio = :nombreEjercicio AND h.pesoKg IS NOT NULL ORDER BY h.fechaEntrenamiento ASC")
+    List<HistorialEntrenamiento> findByNombreEjercicioConPesoOrdenadoPorFecha(@Param("nombreEjercicio") String nombreEjercicio);
+
+    @Query("SELECT h FROM HistorialEntrenamiento h WHERE h.pesoKg IS NOT NULL ORDER BY h.fechaEntrenamiento DESC")
+    List<HistorialEntrenamiento> findAllConPesoOrdenadoPorFechaDesc();
 }

@@ -53,6 +53,9 @@ public class HistorialEntrenamiento {
     @Column(name = "completado")
     private Boolean completado;
 
+    @Column(name = "peso_kg")
+    private Double pesoKg;
+
     @Column(name = "semana_numero")
     private Integer semanaNumero;
 

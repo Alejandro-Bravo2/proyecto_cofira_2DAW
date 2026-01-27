@@ -74,6 +74,7 @@
           <th class="gimnasio__tabla-cabecera">Repeticiones</th>
           <th class="gimnasio__tabla-cabecera">Descanso</th>
           <th class="gimnasio__tabla-cabecera">Series</th>
+          <th class="gimnasio__tabla-cabecera">Peso (kg)</th>
           <th class="gimnasio__tabla-cabecera">Realizado</th>
         </tr>
       </thead>
@@ -92,6 +93,18 @@
           <td class="gimnasio__tabla-dato">{{ ejercicio.repeticiones }}</td>
           <td class="gimnasio__tabla-dato">{{ ejercicio.descanso }}</td>
           <td class="gimnasio__tabla-dato">{{ ejercicio.series }}</td>
+          <td class="gimnasio__tabla-dato">
+            <input
+              type="number"
+              [value]="ejercicio.pesoKg || ''"
+              (change)="actualizarPeso(ejercicio, $event)"
+              class="gimnasio__input-peso"
+              placeholder="0"
+              min="0"
+              max="500"
+              step="0.5"
+              aria-label="Peso en kilogramos">
+          </td>
           <td class="gimnasio__acciones gimnasio__tabla-dato">
             <button (click)="marcarRealizado(ejercicio, true)" [class.gimnasio__btn-accion--activo]="ejercicio.realizado === true"
               aria-label="Marcar como realizado" class="gimnasio__btn-accion gimnasio__btn-accion--ok">
@@ -158,6 +171,19 @@
           <dd class="gimnasio__acordeon-valor">{{ ejercicio.descanso }}</dd>
           <dt class="gimnasio__acordeon-label">Series</dt>
           <dd class="gimnasio__acordeon-valor">{{ ejercicio.series }}</dd>
+          <dt class="gimnasio__acordeon-label">Peso (kg)</dt>
+          <dd class="gimnasio__acordeon-valor">
+            <input
+              type="number"
+              [value]="ejercicio.pesoKg || ''"
+              (change)="actualizarPeso(ejercicio, $event)"
+              class="gimnasio__input-peso gimnasio__input-peso--acordeon"
+              placeholder="0"
+              min="0"
+              max="500"
+              step="0.5"
+              aria-label="Peso en kilogramos">
+          </dd>
         </dl>
       </section>
     </article>

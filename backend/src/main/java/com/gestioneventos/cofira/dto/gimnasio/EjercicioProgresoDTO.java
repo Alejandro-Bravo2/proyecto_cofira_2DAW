@@ -17,4 +17,5 @@ public class EjercicioProgresoDTO {
     private Integer seriesObjetivo;
     private String repeticiones;
     private Boolean completado;
+    private Double pesoKg;
 }

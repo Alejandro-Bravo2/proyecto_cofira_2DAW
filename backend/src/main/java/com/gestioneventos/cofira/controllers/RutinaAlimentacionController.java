@@ -6,7 +6,7 @@ import com.gestioneventos.cofira.dto.ollama.MenuGeneradoDTO;
 import com.gestioneventos.cofira.dto.ollama.MenuSemanalGeneradoDTO;
 import com.gestioneventos.cofira.dto.rutinaalimentacion.CrearRutinaAlimentacionDTO;
 import com.gestioneventos.cofira.dto.rutinaalimentacion.RutinaAlimentacionDTO;
-import com.gestioneventos.cofira.services.OllamaService;
+import com.gestioneventos.cofira.services.GeminiService;
 import com.gestioneventos.cofira.services.RutinaAlimentacionService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -25,12 +25,12 @@ import java.util.concurrent.Executors;
 public class RutinaAlimentacionController implements RutinaAlimentacionControllerApi {
 
     private final RutinaAlimentacionService rutinaAlimentacionService;
-    private final OllamaService ollamaService;
+    private final GeminiService geminiService;
     private final ExecutorService executorService = Executors.newCachedThreadPool();
 
-    public RutinaAlimentacionController(RutinaAlimentacionService rutinaAlimentacionService, OllamaService ollamaService) {
+    public RutinaAlimentacionController(RutinaAlimentacionService rutinaAlimentacionService, GeminiService geminiService) {
         this.rutinaAlimentacionService = rutinaAlimentacionService;
-        this.ollamaService = ollamaService;
+        this.geminiService = geminiService;
     }
 
     @GetMapping
@@ -59,13 +59,13 @@ public class RutinaAlimentacionController implements RutinaAlimentacionControlle
 
     @PostMapping("/generar-menu")
     public ResponseEntity<MenuGeneradoDTO> generarMenuConIA(@RequestBody @Valid GenerarMenuRequestDTO solicitud) {
-        MenuGeneradoDTO menuGenerado = ollamaService.generarMenuDiario(solicitud);
+        MenuGeneradoDTO menuGenerado = geminiService.generarMenuDiario(solicitud);
         return ResponseEntity.ok(menuGenerado);
     }
 
     @PostMapping("/generar-menu-semanal")
     public ResponseEntity<MenuSemanalGeneradoDTO> generarMenuSemanal(@RequestBody @Valid GenerarMenuRequestDTO solicitud) {
-        MenuSemanalGeneradoDTO menuSemanal = ollamaService.generarMenuSemanal(solicitud);
+        MenuSemanalGeneradoDTO menuSemanal = geminiService.generarMenuSemanal(solicitud);
         return ResponseEntity.ok(menuSemanal);
     }
 
@@ -75,18 +75,18 @@ public class RutinaAlimentacionController implements RutinaAlimentacionControlle
         SseEmitter emisorEventos = new SseEmitter(tiempoTimeoutMilisegundos);
 
         executorService.execute(() -> {
-            ollamaService.generarMenuSemanalConStreaming(solicitud, emisorEventos);
+            geminiService.generarMenuSemanalConStreaming(solicitud, emisorEventos);
         });
 
         return emisorEventos;
     }
 
-    @GetMapping("/ollama/estado")
-    public ResponseEntity<Map<String, Object>> verificarEstadoOllama() {
-        boolean conexionActiva = ollamaService.verificarConexion();
+    @GetMapping("/ia/estado")
+    public ResponseEntity<Map<String, Object>> verificarEstadoIA() {
+        boolean conexionActiva = geminiService.verificarConexion();
         Map<String, Object> respuesta = Map.of(
             "conectado", conexionActiva,
-            "mensaje", conexionActiva ? "Ollama funcionando correctamente" : "No se puede conectar con Ollama"
+            "mensaje", conexionActiva ? "Gemini funcionando correctamente" : "No se puede conectar con Gemini"
         );
         return ResponseEntity.ok(respuesta);
     }

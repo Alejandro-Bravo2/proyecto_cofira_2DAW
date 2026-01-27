@@ -9,7 +9,7 @@ import {
   Comida,
   ComidasPorFecha,
   DatosDelDia,
-  EstadoOllamaAlimentacion,
+  EstadoIA,
   EventoErrorStream,
   EventoInicioStream,
   GenerarMenuRequest,
@@ -29,7 +29,7 @@ export class AlimentacionService {
   readonly comidasPorFecha = signal<ComidasPorFecha>({});
   readonly isLoading = signal(false);
   readonly error = signal<string | null>(null);
-  readonly estadoOllama = signal<EstadoOllamaAlimentacion | null>(null);
+  readonly estadoIA = signal<EstadoIA | null>(null);
   readonly fechaInicio = signal<string | null>(null);
   readonly fechaFin = signal<string | null>(null);
   readonly estaGenerando = signal(false);
@@ -337,17 +337,17 @@ export class AlimentacionService {
     }
   }
 
-  verificarConexionOllama(): Observable<EstadoOllamaAlimentacion> {
-    return this.api.get<EstadoOllamaAlimentacion>('/rutinas-alimentacion/ollama/estado').pipe(
+  verificarConexionIA(): Observable<EstadoIA> {
+    return this.api.get<EstadoIA>('/rutinas-alimentacion/ia/estado').pipe(
       tap(estado => {
-        this.estadoOllama.set(estado);
+        this.estadoIA.set(estado);
       }),
       catchError(() => {
-        const estadoError: EstadoOllamaAlimentacion = {
+        const estadoError: EstadoIA = {
           conectado: false,
           mensaje: 'No se puede conectar con el servidor'
         };
-        this.estadoOllama.set(estadoError);
+        this.estadoIA.set(estadoError);
         return of(estadoError);
       })
     );

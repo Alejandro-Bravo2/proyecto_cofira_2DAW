@@ -46,9 +46,10 @@ export interface Ejercicio {
   expandido: boolean;
   descripcion?: string;
   grupoMuscular?: string;
+  pesoKg?: number;
 }
 
-export interface EstadoOllama {
+export interface EstadoIA {
   conectado: boolean;
   mensaje: string;
 }
@@ -75,6 +76,7 @@ export interface HistorialEntrenamiento {
   seriesObjetivo: number;
   repeticiones: string;
   completado: boolean;
+  pesoKg?: number;
   semanaNumero: number;
 }
 
@@ -85,6 +87,22 @@ export interface EjercicioProgreso {
   seriesObjetivo: number;
   repeticiones: string;
   completado: boolean;
+  pesoKg?: number;
+}
+
+export interface ObjetivosNutricionales {
+  calculatedBMR: number;
+  calculatedTDEE: number;
+  dailyCalories: number;
+  proteinGrams: number;
+  carbsGrams: number;
+  fatGrams: number;
+  fiberGrams: number;
+}
+
+export interface PuntoGraficoFuerza {
+  fecha: string;
+  pesoKg: number;
 }
 
 export interface GuardarProgresoRequest {

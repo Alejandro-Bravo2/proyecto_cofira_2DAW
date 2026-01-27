@@ -196,6 +196,7 @@ public class RutinaEjercicioService {
                             .seriesObjetivo(ejercicioProgreso.getSeriesObjetivo())
                             .repeticiones(ejercicioProgreso.getRepeticiones())
                             .completado(ejercicioProgreso.getCompletado())
+                            .pesoKg(ejercicioProgreso.getPesoKg())
                             .semanaNumero(semanaActual)
                             .build();
                     return historial;
@@ -268,9 +269,23 @@ public class RutinaEjercicioService {
                 .seriesObjetivo(historial.getSeriesObjetivo())
                 .repeticiones(historial.getRepeticiones())
                 .completado(historial.getCompletado())
+                .pesoKg(historial.getPesoKg())
                 .semanaNumero(historial.getSemanaNumero())
                 .build();
 
         return historialDTO;
+    }
+
+    public List<String> obtenerEjerciciosUnicos() {
+        return historialEntrenamientoRepository.findDistinctNombreEjercicio();
+    }
+
+    public List<HistorialEntrenamientoDTO> obtenerProgresoPorEjercicio(String nombreEjercicio) {
+        List<HistorialEntrenamiento> historiales = historialEntrenamientoRepository
+                .findByNombreEjercicioConPesoOrdenadoPorFecha(nombreEjercicio);
+
+        return historiales.stream()
+                .map(this::mapearHistorialADTO)
+                .collect(Collectors.toList());
     }
 }
