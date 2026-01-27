@@ -22,7 +22,7 @@ export const authGuard: CanActivateFn = () => {
     return true;
   }
 
-  const rutaDeRedireccion = enrutador.createUrlTree(['/login']);
+  const rutaDeRedireccion = enrutador.createUrlTree(["/login"]);
   return rutaDeRedireccion;
 };
 
@@ -34,7 +34,7 @@ export const authGuard: CanActivateFn = () => {
  * como login u onboarding. Los redirige al inicio.
  *
  * Uso en app.routes.ts:
- *   { path: 'login', component: Login, canActivate: [guestGuard] }
+ *   { path: "login", component: Login, canActivate: [guestGuard] }
  */
 export const guestGuard: CanActivateFn = () => {
   const servicioAutenticacion = inject(AuthService);
@@ -43,7 +43,7 @@ export const guestGuard: CanActivateFn = () => {
   const usuarioEstaAutenticado = servicioAutenticacion.isLoggedIn();
 
   if (usuarioEstaAutenticado) {
-    const rutaDeRedireccion = enrutador.createUrlTree(['/']);
+    const rutaDeRedireccion = enrutador.createUrlTree(["/"]);
     return rutaDeRedireccion;
   }
 

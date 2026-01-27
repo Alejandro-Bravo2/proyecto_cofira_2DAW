@@ -19,10 +19,10 @@ interface MealsOption {
 export class StepMeals {
   @Output() continuar = new EventEmitter<void>();
   readonly options: MealsOption[] = [
-    {value: 2, label: '2 comidas', description: 'Ayuno intermitente o comidas grandes'},
-    {value: 3, label: '3 comidas', description: 'Desayuno, almuerzo y cena'},
-    {value: 4, label: '4 comidas', description: 'Tres comidas principales y un snack'},
-    {value: 5, label: '5+ comidas', description: 'Multiples comidas pequenas al dia'}
+    {value: 2, label: "2 comidas", description: "Ayuno intermitente o comidas grandes"},
+    {value: 3, label: "3 comidas", description: "Desayuno, almuerzo y cena"},
+    {value: 4, label: "4 comidas", description: "Tres comidas principales y un snack"},
+    {value: 5, label: "5+ comidas", description: "Multiples comidas pequenas al dia"}
   ];
   readonly selectedMeals = signal<number | null>(null);
   private readonly onboardingService = inject(OnboardingService);
@@ -41,7 +41,7 @@ export class StepMeals {
   onContinue(): void {
     const meals = this.selectedMeals();
     if (meals !== null) {
-      this.onboardingService.setField('mealsPerDay', meals);
+      this.onboardingService.setField("mealsPerDay", meals);
       this.continuar.emit();
     }
   }

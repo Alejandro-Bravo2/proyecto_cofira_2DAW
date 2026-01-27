@@ -24,19 +24,19 @@ export class StepRegister {
   private readonly authService = inject(AuthService);
   private readonly notificacionService = inject(NotificacionService);
   readonly formularioRegistro = new FormGroup({
-    nombre: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    email: new FormControl('',
+    nombre: new FormControl("", [Validators.required, Validators.minLength(2)]),
+    email: new FormControl("",
       [Validators.required, Validators.email],
       [emailAvailableValidator(this.authService)]
     ),
-    password: new FormControl('', [Validators.required, passwordStrengthValidator()]),
-    confirmPassword: new FormControl('', [Validators.required])
+    password: new FormControl("", [Validators.required, passwordStrengthValidator()]),
+    confirmPassword: new FormControl("", [Validators.required])
   });
   private readonly onboardingService = inject(OnboardingService);
   private readonly router = inject(Router);
 
   get valorContrasena(): string {
-    return this.formularioRegistro.get('password')?.value || '';
+    return this.formularioRegistro.get("password")?.value || "";
   }
 
   get requisitosContrasena() {
@@ -48,13 +48,13 @@ export class StepRegister {
     return req.hasUpperCase && req.hasLowerCase && req.hasNumeric && req.hasSpecial && req.isLongEnough;
   }
 
-  get estadoEmail(): 'valid' | 'invalid-format' | 'taken' | 'checking' | null {
-    const emailControl = this.formularioRegistro.get('email');
+  get estadoEmail(): "valid" | "invalid-format" | "taken" | "checking" | null {
+    const emailControl = this.formularioRegistro.get("email");
     if (!emailControl?.value) return null;
-    if (emailControl.pending) return 'checking';
-    if (emailControl.hasError('email')) return 'invalid-format';
-    if (emailControl.hasError('emailTaken')) return 'taken';
-    if (emailControl.valid) return 'valid';
+    if (emailControl.pending) return "checking";
+    if (emailControl.hasError("email")) return "invalid-format";
+    if (emailControl.hasError("emailTaken")) return "taken";
+    if (emailControl.valid) return "valid";
     return null;
   }
 
@@ -67,8 +67,8 @@ export class StepRegister {
   }
 
   contrasenasCoinciden(): boolean {
-    const password = this.formularioRegistro.get('password')?.value;
-    const confirm = this.formularioRegistro.get('confirmPassword')?.value;
+    const password = this.formularioRegistro.get("password")?.value;
+    const confirm = this.formularioRegistro.get("confirmPassword")?.value;
     return password === confirm;
   }
 
@@ -92,12 +92,12 @@ export class StepRegister {
       password: valorFormulario.password!
     }).subscribe({
       next: () => {
-        this.notificacionService.exito('¡Cuenta creada con éxito!');
+        this.notificacionService.exito("¡Cuenta creada con éxito!");
         this.completarOnboarding();
       },
       error: () => {
         this.estaCargando.set(false);
-        this.notificacionService.error('No se pudo crear la cuenta. Inténtalo de nuevo.');
+        this.notificacionService.error("No se pudo crear la cuenta. Inténtalo de nuevo.");
       }
     });
   }
@@ -109,7 +109,7 @@ export class StepRegister {
     if (!tieneDataRequerida) {
       this.estaCargando.set(false);
       this.onboardingService.clearProgress();
-      this.router.navigate(['']);
+      this.router.navigate([""]);
       return;
     }
 
@@ -117,16 +117,16 @@ export class StepRegister {
       next: () => {
         this.estaCargando.set(false);
         this.onboardingService.clearProgress();
-        this.router.navigate(['']);
+        this.router.navigate([""]);
       },
       error: (error) => {
         this.estaCargando.set(false);
         this.onboardingService.clearProgress();
-        console.error('Error al completar onboarding:', error);
-        const mensajeError = error?.error?.message || error?.error?.errors || 'Error desconocido';
-        console.error('Detalles del error:', mensajeError);
-        this.notificacionService.error('No se pudieron guardar todos los datos, pero tu cuenta ha sido creada.');
-        this.router.navigate(['']);
+        console.error("Error al completar onboarding:", error);
+        const mensajeError = error?.error?.message || error?.error?.errors || "Error desconocido";
+        console.error("Detalles del error:", mensajeError);
+        this.notificacionService.error("No se pudieron guardar todos los datos, pero tu cuenta ha sido creada.");
+        this.router.navigate([""]);
       }
     });
   }

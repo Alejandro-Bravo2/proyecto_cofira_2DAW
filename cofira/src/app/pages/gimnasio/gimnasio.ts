@@ -1,4 +1,4 @@
-import {Component, computed, inject, OnInit} from '@angular/core';
+import {Component, computed, inject, OnInit, signal} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 
 import {Button} from '../../components/shared/button/button';
@@ -19,7 +19,7 @@ export class Gimnasio implements OnInit {
     "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"
   ];
 
-  diaActualIndex = 0;
+  readonly diaActualIndex = signal(0);
 
   feedback: FeedbackEjercicio = {
     semanaNumero: 1,
@@ -37,7 +37,7 @@ export class Gimnasio implements OnInit {
   readonly feedbackEnviado = this.gimnasioService.feedbackEnviado;
 
   readonly ejerciciosDelDia = computed(() => {
-    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex()];
     return this.gimnasioService.obtenerEjerciciosDelDia(diaSeleccionado);
   });
 
@@ -57,24 +57,24 @@ export class Gimnasio implements OnInit {
   }
 
   diaAnterior(): void {
-    if (this.diaActualIndex > 0) {
-      this.diaActualIndex--;
+    if (this.diaActualIndex() > 0) {
+      this.diaActualIndex.update(indice => indice - 1);
     }
   }
 
   diaSiguiente(): void {
-    if (this.diaActualIndex < this.diasSemana.length - 1) {
-      this.diaActualIndex++;
+    if (this.diaActualIndex() < this.diasSemana.length - 1) {
+      this.diaActualIndex.update(indice => indice + 1);
     }
   }
 
   toggleEjercicio(ejercicio: Ejercicio): void {
-    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex()];
     this.gimnasioService.toggleExpandirEjercicio(diaSeleccionado, ejercicio.id);
   }
 
   marcarRealizado(ejercicio: Ejercicio, realizado: boolean): void {
-    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex()];
     const nuevoValor = ejercicio.realizado === realizado ? null : realizado;
     this.gimnasioService.marcarEjercicioRealizado(diaSeleccionado, ejercicio.id, nuevoValor);
 
@@ -93,7 +93,7 @@ export class Gimnasio implements OnInit {
   actualizarPeso(ejercicio: Ejercicio, evento: Event): void {
     const input = evento.target as HTMLInputElement;
     const pesoNuevo = input.value ? parseFloat(input.value) : undefined;
-    const diaSeleccionado = this.diasSemana[this.diaActualIndex];
+    const diaSeleccionado = this.diasSemana[this.diaActualIndex()];
     this.gimnasioService.actualizarPesoEjercicio(diaSeleccionado, ejercicio.id, pesoNuevo);
   }
 
@@ -131,7 +131,7 @@ export class Gimnasio implements OnInit {
     const hoy = new Date();
     const diaHoy = hoy.getDay();
     const indiceCorregido = diaHoy === 0 ? 6 : diaHoy - 1;
-    this.diaActualIndex = indiceCorregido;
+    this.diaActualIndex.set(indiceCorregido);
   }
 
   private verificarYGenerarRutina(): void {

@@ -36,7 +36,6 @@ export class Alimentacion implements OnInit {
   readonly diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 
   readonly isLoading = this.alimentacionService.isLoading;
-  readonly error = this.alimentacionService.error;
   readonly tieneMenu = this.alimentacionService.tieneMenu;
   readonly estadoIA = this.alimentacionService.estadoIA;
   readonly menuGenerado = this.alimentacionService.menuGenerado;

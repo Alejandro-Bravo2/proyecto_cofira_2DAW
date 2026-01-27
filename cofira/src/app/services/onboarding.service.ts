@@ -13,7 +13,7 @@ import {
 } from '../models/onboarding.model';
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({providedIn: "root"})
 export class OnboardingService {
   readonly currentStep = signal(0);
   readonly formData = signal<Partial<OnboardingData>>(DEFAULT_ONBOARDING_DATA);
@@ -25,7 +25,7 @@ export class OnboardingService {
     return this.currentStep() > 0;
   });
   private readonly api = inject(ApiService);
-  private readonly STORAGE_KEY = 'cofira_onboarding_progress';
+  private readonly STORAGE_KEY = "cofira_onboarding_progress";
 
   private readonly TOTAL_STEPS = 15;
   readonly progress = computed(() => {
@@ -103,7 +103,7 @@ export class OnboardingService {
     try {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(progress));
     } catch (e) {
-      console.error('Error guardando progreso de onboarding:', e);
+      console.error("Error guardando progreso de onboarding:", e);
     }
   }
 
@@ -117,7 +117,7 @@ export class OnboardingService {
         this.formData.set({...DEFAULT_ONBOARDING_DATA, ...progress.data});
       }
     } catch (e) {
-      console.error('Error cargando progreso de onboarding:', e);
+      console.error("Error cargando progreso de onboarding:", e);
       this.clearProgress();
     }
   }
@@ -134,9 +134,9 @@ export class OnboardingService {
       return of([]);
     }
 
-    return this.api.get<Alimento[]>('/alimentos', {nombre: query}).pipe(
+    return this.api.get<Alimento[]>("/alimentos", {nombre: query}).pipe(
       catchError(error => {
-        console.error('Error buscando alimentos:', error);
+        console.error("Error buscando alimentos:", error);
         return of([]);
       })
     );
@@ -148,7 +148,7 @@ export class OnboardingService {
 
     const data = this.formData();
 
-    return this.api.post<OnboardingResponse>('/onboarding/complete', data).pipe(
+    return this.api.post<OnboardingResponse>("/onboarding/complete", data).pipe(
       tap(response => {
         this.isLoading.set(false);
         if (response.isOnboarded) {
@@ -157,18 +157,18 @@ export class OnboardingService {
       }),
       catchError(error => {
         this.isLoading.set(false);
-        this.error.set(error.message || 'Error al completar el onboarding');
+        this.error.set(error.message || "Error al completar el onboarding");
         throw error;
       })
     );
   }
 
   getNutritionTargets(): Observable<NutritionTargets> {
-    return this.api.get<NutritionTargets>('/onboarding/nutrition-targets');
+    return this.api.get<NutritionTargets>("/onboarding/nutrition-targets");
   }
 
   checkOnboardingStatus(): Observable<boolean> {
-    return this.api.get<boolean>('/onboarding/status');
+    return this.api.get<boolean>("/onboarding/status");
   }
 
   getTotalSteps(): number {
@@ -177,23 +177,23 @@ export class OnboardingService {
 
   getStepTitle(step: number): string {
     const titles: Record<number, string> = {
-      0: 'Bienvenida',
-      1: 'Objetivo',
-      2: 'Genero',
-      3: 'Fecha de nacimiento',
-      4: 'Medidas corporales',
-      5: 'Peso objetivo',
-      6: 'Nivel de actividad',
-      7: 'Nivel de experiencia',
-      8: 'Dias de entrenamiento',
-      9: 'Tipo de dieta',
-      10: 'Comidas al dia',
-      11: 'Alergias',
-      12: 'Equipamiento',
-      13: 'Resultados',
-      14: 'Registro'
+      0: "Bienvenida",
+      1: "Objetivo",
+      2: "Genero",
+      3: "Fecha de nacimiento",
+      4: "Medidas corporales",
+      5: "Peso objetivo",
+      6: "Nivel de actividad",
+      7: "Nivel de experiencia",
+      8: "Dias de entrenamiento",
+      9: "Tipo de dieta",
+      10: "Comidas al dia",
+      11: "Alergias",
+      12: "Equipamiento",
+      13: "Resultados",
+      14: "Registro"
     };
 
-    return titles[step] || '';
+    return titles[step] || "";
   }
 }

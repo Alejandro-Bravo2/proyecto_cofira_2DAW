@@ -2,6 +2,7 @@ import {Component, computed, inject, OnInit, signal} from '@angular/core';
 import {DecimalPipe} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
+import {AlimentacionService} from '../../services/alimentacion.service';
 import {GimnasioService} from '../../services/gimnasio.service';
 import {OnboardingService} from '../../services/onboarding.service';
 import {HistorialEntrenamiento} from '../../models/gimnasio.model';
@@ -21,8 +22,11 @@ interface PuntoGrafico {
   styleUrl: './seguimiento.scss',
 })
 export class Seguimiento implements OnInit {
+  private readonly alimentacionService = inject(AlimentacionService);
   private readonly gimnasioService = inject(GimnasioService);
   private readonly onboardingService = inject(OnboardingService);
+
+  private readonly STORAGE_KEY_AGUA = "cofira_agua_consumo";
 
   readonly caloriasDiarias = signal(2000);
   readonly proteinasObjetivo = signal(120);
@@ -30,29 +34,57 @@ export class Seguimiento implements OnInit {
   readonly grasasObjetivo = signal(65);
   readonly fibraObjetivo = signal(25);
 
+  readonly aguaConsumida = signal(0);
+  readonly aguaObjetivo = signal(3);
+
   readonly ejerciciosDisponibles = signal<string[]>([]);
   readonly ejercicioSeleccionado = signal<string>("");
   readonly historialEjercicio = signal<HistorialEntrenamiento[]>([]);
   readonly cargandoGrafico = signal(false);
 
-  readonly macros = computed(() => {
-    const proteinas = this.proteinasObjetivo();
-    const carbohidratos = this.carbohidratosObjetivo();
-    const grasas = this.grasasObjetivo();
-    const total = proteinas + carbohidratos + grasas;
+  readonly tieneMenuSemanal = this.alimentacionService.tieneMenu;
+
+  readonly consumoSemanal = computed(() => {
+    return this.alimentacionService.obtenerResumenSemanal();
+  });
+
+  readonly macrosConsumo = computed(() => {
+    const consumo = this.consumoSemanal();
+    const diasSemana = 7;
+
+    const objetivosSemana = {
+      calorias: this.caloriasDiarias() * diasSemana,
+      proteinas: this.proteinasObjetivo() * diasSemana,
+      carbohidratos: this.carbohidratosObjetivo() * diasSemana,
+      grasas: this.grasasObjetivo() * diasSemana
+    };
+
+    const totalGramosConsumidos = consumo.proteinasTotal + consumo.carbohidratosTotal + consumo.grasasTotal;
 
     return {
+      diasConDatos: consumo.diasConDatos,
+      calorias: {
+        consumido: consumo.caloriasTotal,
+        objetivo: objetivosSemana.calorias,
+        porcentaje: objetivosSemana.calorias > 0 ? Math.round((consumo.caloriasTotal / objetivosSemana.calorias) * 100) : 0
+      },
       proteinas: {
-        gramos: proteinas,
-        porcentaje: total > 0 ? Math.round((proteinas / total) * 100) : 0
+        consumido: consumo.proteinasTotal,
+        objetivo: objetivosSemana.proteinas,
+        porcentaje: objetivosSemana.proteinas > 0 ? Math.round((consumo.proteinasTotal / objetivosSemana.proteinas) * 100) : 0,
+        porcentajeGrafica: totalGramosConsumidos > 0 ? Math.round((consumo.proteinasTotal / totalGramosConsumidos) * 100) : 0
       },
       carbohidratos: {
-        gramos: carbohidratos,
-        porcentaje: total > 0 ? Math.round((carbohidratos / total) * 100) : 0
+        consumido: consumo.carbohidratosTotal,
+        objetivo: objetivosSemana.carbohidratos,
+        porcentaje: objetivosSemana.carbohidratos > 0 ? Math.round((consumo.carbohidratosTotal / objetivosSemana.carbohidratos) * 100) : 0,
+        porcentajeGrafica: totalGramosConsumidos > 0 ? Math.round((consumo.carbohidratosTotal / totalGramosConsumidos) * 100) : 0
       },
       grasas: {
-        gramos: grasas,
-        porcentaje: total > 0 ? Math.round((grasas / total) * 100) : 0
+        consumido: consumo.grasasTotal,
+        objetivo: objetivosSemana.grasas,
+        porcentaje: objetivosSemana.grasas > 0 ? Math.round((consumo.grasasTotal / objetivosSemana.grasas) * 100) : 0,
+        porcentajeGrafica: totalGramosConsumidos > 0 ? Math.round((consumo.grasasTotal / totalGramosConsumidos) * 100) : 0
       }
     };
   });
@@ -127,6 +159,7 @@ export class Seguimiento implements OnInit {
   ngOnInit(): void {
     this.cargarObjetivosNutricionales();
     this.cargarEjerciciosDisponibles();
+    this.cargarConsumoAgua();
   }
 
   calcularDashArray(porcentaje: number): string {

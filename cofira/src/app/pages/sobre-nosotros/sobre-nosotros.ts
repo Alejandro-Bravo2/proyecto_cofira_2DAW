@@ -71,9 +71,9 @@ export class SobreNosotros {
   ];
 
   readonly estadisticas: Estadistica[] = [
-    { valor: '50K+', etiqueta: 'Usuarios activos' },
-    { valor: '1M+', etiqueta: 'Entrenamientos completados' },
-    { valor: '500K+', etiqueta: 'Comidas registradas' },
-    { valor: '98%', etiqueta: 'Satisfacción' },
+    { valor: "50K+", etiqueta: "Usuarios activos" },
+    { valor: "1M+", etiqueta: "Entrenamientos completados" },
+    { valor: "500K+", etiqueta: "Comidas registradas" },
+    { valor: "98%", etiqueta: "Satisfacción" },
   ];
 }

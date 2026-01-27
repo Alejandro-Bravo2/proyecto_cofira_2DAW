@@ -13,7 +13,6 @@ import com.gestioneventos.cofira.repositories.TokenRevocadoRepository;
 import com.gestioneventos.cofira.repositories.UsuarioRepository;
 import com.gestioneventos.cofira.security.JwtUtils;
 import com.gestioneventos.cofira.security.UserDetailsImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -28,20 +27,24 @@ import java.time.ZoneId;
 @Service
 public class AuthService {
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
+    private final AuthenticationManager authenticationManager;
+    private final UsuarioRepository usuarioRepository;
+    private final TokenRevocadoRepository tokenRevocadoRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtils jwtUtils;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    @Autowired
-    private TokenRevocadoRepository tokenRevocadoRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private JwtUtils jwtUtils;
+    public AuthService(
+            AuthenticationManager authenticationManager,
+            UsuarioRepository usuarioRepository,
+            TokenRevocadoRepository tokenRevocadoRepository,
+            PasswordEncoder passwordEncoder,
+            JwtUtils jwtUtils) {
+        this.authenticationManager = authenticationManager;
+        this.usuarioRepository = usuarioRepository;
+        this.tokenRevocadoRepository = tokenRevocadoRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtils = jwtUtils;
+    }
 
     public AuthResponseDTO login(LoginRequestDTO loginRequest) {
         Authentication authentication = authenticationManager.authenticate(

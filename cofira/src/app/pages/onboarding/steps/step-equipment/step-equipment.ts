@@ -18,18 +18,18 @@ interface EquipmentOption {
 export class StepEquipment {
   @Output() continuar = new EventEmitter<void>();
   readonly options: EquipmentOption[] = [
-    {id: 'mancuernas', label: 'Mancuernas'},
-    {id: 'barra', label: 'Barra olimpica'},
-    {id: 'kettlebell', label: 'Kettlebell'},
-    {id: 'bandas', label: 'Bandas elasticas'},
-    {id: 'banco', label: 'Banco de pesas'},
-    {id: 'rack', label: 'Rack/Jaula'},
-    {id: 'poleas', label: 'Poleas/Cables'},
-    {id: 'maquinas', label: 'Maquinas'},
-    {id: 'bicicleta', label: 'Bicicleta estatica'},
-    {id: 'cinta', label: 'Cinta de correr'},
-    {id: 'remo', label: 'Maquina de remo'},
-    {id: 'trx', label: 'TRX/Suspension'}
+    {id: "mancuernas", label: "Mancuernas"},
+    {id: "barra", label: "Barra olimpica"},
+    {id: "kettlebell", label: "Kettlebell"},
+    {id: "bandas", label: "Bandas elasticas"},
+    {id: "banco", label: "Banco de pesas"},
+    {id: "rack", label: "Rack/Jaula"},
+    {id: "poleas", label: "Poleas/Cables"},
+    {id: "maquinas", label: "Maquinas"},
+    {id: "bicicleta", label: "Bicicleta estatica"},
+    {id: "cinta", label: "Cinta de correr"},
+    {id: "remo", label: "Maquina de remo"},
+    {id: "trx", label: "TRX/Suspension"}
   ];
   readonly selectedEquipment = signal<string[]>([]);
   private readonly onboardingService = inject(OnboardingService);
@@ -55,12 +55,12 @@ export class StepEquipment {
   }
 
   onContinue(): void {
-    this.onboardingService.setField('equipment', this.selectedEquipment());
+    this.onboardingService.setField("equipment", this.selectedEquipment());
     this.continuar.emit();
   }
 
   onSkip(): void {
-    this.onboardingService.setField('equipment', []);
+    this.onboardingService.setField("equipment", []);
     this.continuar.emit();
   }
 }

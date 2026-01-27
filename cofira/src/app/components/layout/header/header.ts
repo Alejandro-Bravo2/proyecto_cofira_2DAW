@@ -27,7 +27,7 @@ export class Header {
   menuAbierto = false;
   menuCuentaAbierto = false;
 
-  @HostListener('document:keydown.escape')
+  @HostListener("document:keydown.escape")
   cerrarMenusConEscape(): void {
     this.cerrarMenu();
     this.cerrarMenuCuenta();

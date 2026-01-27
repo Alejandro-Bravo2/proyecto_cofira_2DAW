@@ -310,7 +310,7 @@
 .alimentacion__loading-texto {
   font-family: var(--font-primary);
   font-size: var(--font-size-lg);
-  color: var(--gris-dark);
+  color: var(--oscuro-alimentacion-loading-texto, var(--gris-dark));
   margin: 0;
   text-align: center;
 }
@@ -588,9 +588,9 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
-  color: var(--gris-dark);
+  color: var(--oscuro-alimentacion-btn-regenerar-color, var(--gris-dark));
   background-color: transparent;
-  border: 0.125rem solid var(--gris-normal);
+  border: 0.125rem solid var(--oscuro-alimentacion-btn-regenerar-borde, var(--gris-normal));
   border-radius: var(--radius-xss);
   padding: var(--spacing-size-s) var(--spacing-size-l);
   cursor: pointer;

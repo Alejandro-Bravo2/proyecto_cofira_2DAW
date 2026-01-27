@@ -5,7 +5,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {ApiService} from './api.service';
 import {AuthResponse, LoginRequest, RegisterRequest, User} from '../models/auth.model';
 
-@Injectable({providedIn: 'root'})
+@Injectable({providedIn: "root"})
 export class AuthService {
   readonly currentUser = signal<User | null>(null);
   readonly isLoading = signal(false);

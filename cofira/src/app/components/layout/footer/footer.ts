@@ -18,15 +18,15 @@ export class Footer {
   anioActual = new Date().getFullYear();
 
   socialLinks = [
-    {name: 'YouTube', url: 'https://youtube.com/cofira'},
-    {name: 'Facebook', url: 'https://facebook.com/cofira'},
-    {name: 'Twitter', url: 'https://twitter.com/cofira'},
-    {name: 'Instagram', url: 'https://instagram.com/cofira'},
-    {name: 'LinkedIn', url: 'https://linkedin.com/company/cofira'},
+    {name: "YouTube", url: "https://youtube.com/cofira"},
+    {name: "Facebook", url: "https://facebook.com/cofira"},
+    {name: "Twitter", url: "https://twitter.com/cofira"},
+    {name: "Instagram", url: "https://instagram.com/cofira"},
+    {name: "LinkedIn", url: "https://linkedin.com/company/cofira"},
   ];
 
-  idiomaActual = 'ES';
-  idiomas = ['ES', 'EN', 'FR', 'DE'];
+  idiomaActual = "ES";
+  idiomas = ["ES", "EN", "FR", "DE"];
   mostrarIdiomas = false;
 
   get modoOscuro(): boolean {

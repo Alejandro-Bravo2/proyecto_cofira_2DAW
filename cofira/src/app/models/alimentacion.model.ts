@@ -59,7 +59,7 @@ export interface EstadoIA {
   mensaje: string;
 }
 
-export type TipoIconoAlimento = 'pizza' | 'bebida' | 'plato' | 'pan' | 'fruta' | 'verdura' | 'proteina' | 'lacteo' | 'cereal' | 'legumbre' | 'fruto-seco';
+export type TipoIconoAlimento = "pizza" | "bebida" | "plato" | "pan" | "fruta" | "verdura" | "proteina" | "lacteo" | "cereal" | "legumbre" | "fruto-seco";
 
 export interface Alimento {
   id: number;
@@ -70,7 +70,7 @@ export interface Alimento {
   gramos?: number;
 }
 
-export type TipoComida = 'desayuno' | 'almuerzo' | 'comida' | 'merienda' | 'cena';
+export type TipoComida = "desayuno" | "almuerzo" | "comida" | "merienda" | "cena";
 
 export interface Comida {
   id: number;

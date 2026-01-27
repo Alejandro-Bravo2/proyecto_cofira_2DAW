@@ -15,15 +15,15 @@ export class StepTargetWeight {
   @Output() continuar = new EventEmitter<void>();
   readonly pesoObjetivoKg = signal<number | null>(null);
   readonly mostrarNotificacion = signal(false);
-  readonly mensajeNotificacion = signal('');
+  readonly mensajeNotificacion = signal("");
   private readonly onboardingService = inject(OnboardingService);
-  private ultimoErrorMostrado = '';
+  private ultimoErrorMostrado = "";
 
   readonly errorPeso = computed(() => {
     const peso = this.pesoObjetivoKg();
     if (peso === null) return null;
-    if (peso < 10) return 'El peso mínimo es 10 kg';
-    if (peso > 300) return 'El peso máximo es 300 kg';
+    if (peso < 10) return "El peso mínimo es 10 kg";
+    if (peso > 300) return "El peso máximo es 300 kg";
     return null;
   });
 
@@ -36,7 +36,7 @@ export class StepTargetWeight {
 
   readonly textoDiferencia = computed(() => {
     const diferencia = this.diferenciaPeso();
-    if (diferencia === 0) return 'Mantener peso';
+    if (diferencia === 0) return "Mantener peso";
     if (diferencia > 0) return `+${diferencia.toFixed(1)} kg`;
     return `${diferencia.toFixed(1)} kg`;
   });
@@ -61,7 +61,7 @@ export class StepTargetWeight {
         this.mensajeNotificacion.set(errorActual);
         this.mostrarNotificacion.set(true);
       } else if (!errorActual) {
-        this.ultimoErrorMostrado = '';
+        this.ultimoErrorMostrado = "";
       }
     });
   }
@@ -78,7 +78,7 @@ export class StepTargetWeight {
   alContinuar(): void {
     const peso = this.pesoObjetivoKg();
     if (peso) {
-      this.onboardingService.setField('targetWeightKg', peso);
+      this.onboardingService.setField("targetWeightKg", peso);
       this.continuar.emit();
     }
   }

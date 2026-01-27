@@ -5,9 +5,11 @@ import com.gestioneventos.cofira.entities.*;
 import com.gestioneventos.cofira.enums.DiaSemana;
 import com.gestioneventos.cofira.exceptions.RecursoNoEncontradoException;
 import com.gestioneventos.cofira.repositories.RutinaAlimentacionRepository;
+import com.gestioneventos.cofira.repositories.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,9 +18,50 @@ public class RutinaAlimentacionService {
     private static final String RUTINA_NO_ENCONTRADA = "Rutina de alimentación no encontrada con id ";
 
     private final RutinaAlimentacionRepository rutinaAlimentacionRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    public RutinaAlimentacionService(RutinaAlimentacionRepository rutinaAlimentacionRepository) {
+    public RutinaAlimentacionService(RutinaAlimentacionRepository rutinaAlimentacionRepository,
+                                     UsuarioRepository usuarioRepository) {
         this.rutinaAlimentacionRepository = rutinaAlimentacionRepository;
+        this.usuarioRepository = usuarioRepository;
+    }
+
+    @Transactional
+    public void guardarMenuDelUsuario(String username, String menuJson, String fechaInicio, String fechaFin) {
+        Usuario usuario = usuarioRepository.findByUsername(username)
+                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado: " + username));
+
+        RutinaAlimentacion rutina = usuario.getRutinaAlimentacion();
+
+        if (rutina == null) {
+            rutina = new RutinaAlimentacion();
+        }
+
+        rutina.setFechaInicio(LocalDate.parse(fechaInicio));
+        rutina.setFechaFin(LocalDate.parse(fechaFin));
+        rutina.setMenuJson(menuJson);
+
+        RutinaAlimentacion rutinaGuardada = rutinaAlimentacionRepository.save(rutina);
+        usuario.setRutinaAlimentacion(rutinaGuardada);
+        usuarioRepository.save(usuario);
+    }
+
+    public String obtenerMenuDelUsuario(String username) {
+        Usuario usuario = usuarioRepository.findByUsername(username)
+                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado: " + username));
+
+        RutinaAlimentacion rutina = usuario.getRutinaAlimentacion();
+
+        if (rutina == null || rutina.getMenuJson() == null) {
+            return null;
+        }
+
+        LocalDate fechaFin = rutina.getFechaFin();
+        if (fechaFin != null && fechaFin.isBefore(LocalDate.now())) {
+            return null;
+        }
+
+        return rutina.getMenuJson();
     }
 
     public List<RutinaAlimentacionDTO> listarRutinas() {

@@ -18,16 +18,16 @@ interface AllergyOption {
 export class StepAllergies {
   @Output() continuar = new EventEmitter<void>();
   readonly options: AllergyOption[] = [
-    {id: 'gluten', label: 'Gluten'},
-    {id: 'lactosa', label: 'Lactosa'},
-    {id: 'huevo', label: 'Huevo'},
-    {id: 'frutos-secos', label: 'Frutos secos'},
-    {id: 'mariscos', label: 'Mariscos'},
-    {id: 'pescado', label: 'Pescado'},
-    {id: 'soja', label: 'Soja'},
-    {id: 'cacahuete', label: 'Cacahuete'},
-    {id: 'sesamo', label: 'Sesamo'},
-    {id: 'mostaza', label: 'Mostaza'}
+    {id: "gluten", label: "Gluten"},
+    {id: "lactosa", label: "Lactosa"},
+    {id: "huevo", label: "Huevo"},
+    {id: "frutos-secos", label: "Frutos secos"},
+    {id: "mariscos", label: "Mariscos"},
+    {id: "pescado", label: "Pescado"},
+    {id: "soja", label: "Soja"},
+    {id: "cacahuete", label: "Cacahuete"},
+    {id: "sesamo", label: "Sesamo"},
+    {id: "mostaza", label: "Mostaza"}
   ];
   readonly selectedAllergies = signal<string[]>([]);
   private readonly onboardingService = inject(OnboardingService);
@@ -53,12 +53,12 @@ export class StepAllergies {
   }
 
   onContinue(): void {
-    this.onboardingService.setField('allergies', this.selectedAllergies());
+    this.onboardingService.setField("allergies", this.selectedAllergies());
     this.continuar.emit();
   }
 
   onSkip(): void {
-    this.onboardingService.setField('allergies', []);
+    this.onboardingService.setField("allergies", []);
     this.continuar.emit();
   }
 }

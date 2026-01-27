@@ -23,10 +23,10 @@ export class Ingredientes {
   @Output() cerrar = new EventEmitter<void>();
 
   ingredientesDetallados: IngredienteDetalle[] = [
-    {nombre: 'Harina de trigo', cantidad: '200g', calorias: 360},
-    {nombre: 'Queso mozzarella', cantidad: '150g', calorias: 280},
-    {nombre: 'Salsa de tomate', cantidad: '100g', calorias: 30},
-    {nombre: 'Aceite de oliva', cantidad: '15ml', calorias: 120},
+    {nombre: "Harina de trigo", cantidad: "200g", calorias: 360},
+    {nombre: "Queso mozzarella", cantidad: "150g", calorias: 280},
+    {nombre: "Salsa de tomate", cantidad: "100g", calorias: 30},
+    {nombre: "Aceite de oliva", cantidad: "15ml", calorias: 120},
   ];
 
   get caloriasTotal(): number {

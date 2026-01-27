@@ -31,7 +31,7 @@ export class StepGender {
   onContinue(): void {
     const gender = this.selectedGender();
     if (gender) {
-      this.onboardingService.setField('gender', gender);
+      this.onboardingService.setField("gender", gender);
       this.continuar.emit();
     }
   }

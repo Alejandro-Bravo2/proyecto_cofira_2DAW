@@ -48,15 +48,15 @@
     </button>
 
     <span class="gimnasio__dia gimnasio__dia--adyacente">
-      {{ diasSemana[diaActualIndex - 1] || '' }}
+      {{ diasSemana[diaActualIndex() - 1] || '' }}
     </span>
 
     <h2 class="gimnasio__dia gimnasio__dia--actual">
-      {{ diasSemana[diaActualIndex] }}
+      {{ diasSemana[diaActualIndex()] }}
     </h2>
 
     <span class="gimnasio__dia gimnasio__dia--adyacente">
-      {{ diasSemana[diaActualIndex + 1] || '' }}
+      {{ diasSemana[diaActualIndex() + 1] || '' }}
     </span>
 
     <button (click)="diaSiguiente()" aria-label="Día siguiente" class="gimnasio__dias-btn">

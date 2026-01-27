@@ -16,23 +16,23 @@ export class StepMeasurements {
   readonly alturaCm = signal<number | null>(null);
   readonly pesoActualKg = signal<number | null>(null);
   readonly mostrarNotificacion = signal(false);
-  readonly mensajeNotificacion = signal('');
+  readonly mensajeNotificacion = signal("");
   private readonly onboardingService = inject(OnboardingService);
-  private ultimoErrorMostrado = '';
+  private ultimoErrorMostrado = "";
 
   readonly errorAltura = computed(() => {
     const altura = this.alturaCm();
     if (altura === null) return null;
-    if (altura < 100) return 'La altura mínima es 100 cm';
-    if (altura > 250) return 'La altura máxima es 250 cm';
+    if (altura < 100) return "La altura mínima es 100 cm";
+    if (altura > 250) return "La altura máxima es 250 cm";
     return null;
   });
 
   readonly errorPeso = computed(() => {
     const peso = this.pesoActualKg();
     if (peso === null) return null;
-    if (peso < 10) return 'El peso mínimo es 10 kg';
-    if (peso > 300) return 'El peso máximo es 300 kg';
+    if (peso < 10) return "El peso mínimo es 10 kg";
+    if (peso > 300) return "El peso máximo es 300 kg";
     return null;
   });
 
@@ -55,7 +55,7 @@ export class StepMeasurements {
         this.mensajeNotificacion.set(errorActual);
         this.mostrarNotificacion.set(true);
       } else if (!errorActual) {
-        this.ultimoErrorMostrado = '';
+        this.ultimoErrorMostrado = "";
       }
     });
   }
@@ -78,8 +78,8 @@ export class StepMeasurements {
     const altura = this.alturaCm();
     const peso = this.pesoActualKg();
     if (altura && peso) {
-      this.onboardingService.setField('heightCm', altura);
-      this.onboardingService.setField('currentWeightKg', peso);
+      this.onboardingService.setField("heightCm", altura);
+      this.onboardingService.setField("currentWeightKg", peso);
       this.continuar.emit();
     }
   }

@@ -12,7 +12,7 @@ import {Button} from '../../../../components/shared/button/button';
 })
 export class StepBirthdate {
   @Output() continuar = new EventEmitter<void>();
-  readonly birthDate = signal<string>('');
+  readonly birthDate = signal<string>("");
   readonly maxDate = this.getMaxDate();
   readonly minDate = this.getMinDate();
   private readonly onboardingService = inject(OnboardingService);
@@ -31,24 +31,24 @@ export class StepBirthdate {
   onContinue(): void {
     const date = this.birthDate();
     if (date) {
-      this.onboardingService.setField('birthDate', date);
+      this.onboardingService.setField("birthDate", date);
       this.continuar.emit();
     }
   }
 
   canContinue(): boolean {
-    return this.birthDate() !== '';
+    return this.birthDate() !== "";
   }
 
   private getMaxDate(): string {
     const today = new Date();
-    today.setFullYear(today.getFullYear() - 14); 
-    return today.toISOString().split('T')[0];
+    today.setFullYear(today.getFullYear() - 14);
+    return today.toISOString().split("T")[0];
   }
 
   private getMinDate(): string {
     const date = new Date();
-    date.setFullYear(date.getFullYear() - 100); 
-    return date.toISOString().split('T')[0];
+    date.setFullYear(date.getFullYear() - 100);
+    return date.toISOString().split("T")[0];
   }
 }

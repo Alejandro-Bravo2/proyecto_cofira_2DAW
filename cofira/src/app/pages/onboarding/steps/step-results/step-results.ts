@@ -18,16 +18,16 @@ export class StepResults implements OnInit {
   readonly goalText = computed(() => {
     const goal = this.formData().primaryGoal;
     switch (goal) {
-      case 'LOSE_WEIGHT':
-        return 'Perder peso';
-      case 'GAIN_MUSCLE':
-        return 'Ganar musculo';
-      case 'MAINTAIN':
-        return 'Mantener peso';
-      case 'IMPROVE_HEALTH':
-        return 'Mejorar salud';
+      case "LOSE_WEIGHT":
+        return "Perder peso";
+      case "GAIN_MUSCLE":
+        return "Ganar musculo";
+      case "MAINTAIN":
+        return "Mantener peso";
+      case "IMPROVE_HEALTH":
+        return "Mejorar salud";
       default:
-        return '';
+        return "";
     }
   });
   private readonly onboardingService = inject(OnboardingService);
@@ -61,7 +61,7 @@ export class StepResults implements OnInit {
     
     const weight = data.currentWeightKg || 70;
     const height = data.heightCm || 170;
-    const isMale = data.gender === 'MALE';
+    const isMale = data.gender === "MALE";
 
     let bmr: number;
     if (isMale) {
@@ -70,16 +70,16 @@ export class StepResults implements OnInit {
       bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
     }
 
-    
+
     const activityMultipliers: Record<string, number> = {
-      'SEDENTARY': 1.2,
-      'LIGHTLY_ACTIVE': 1.375,
-      'MODERATELY_ACTIVE': 1.55,
-      'VERY_ACTIVE': 1.725,
-      'EXTRA_ACTIVE': 1.9
+      "SEDENTARY": 1.2,
+      "LIGHTLY_ACTIVE": 1.375,
+      "MODERATELY_ACTIVE": 1.55,
+      "VERY_ACTIVE": 1.725,
+      "EXTRA_ACTIVE": 1.9
     };
 
-    const activityLevel = data.activityLevel || 'SEDENTARY';
+    const activityLevel = data.activityLevel || "SEDENTARY";
     const multiplier = activityMultipliers[activityLevel] || 1.2;
 
     
@@ -89,10 +89,10 @@ export class StepResults implements OnInit {
     const goal = data.primaryGoal;
     let dailyCalories = tdee;
 
-    if (goal === 'LOSE_WEIGHT') {
-      dailyCalories = Math.round(tdee * 0.80); 
-    } else if (goal === 'GAIN_MUSCLE') {
-      dailyCalories = Math.round(tdee * 1.10); 
+    if (goal === "LOSE_WEIGHT") {
+      dailyCalories = Math.round(tdee * 0.80);
+    } else if (goal === "GAIN_MUSCLE") {
+      dailyCalories = Math.round(tdee * 1.10);
     }
 
     

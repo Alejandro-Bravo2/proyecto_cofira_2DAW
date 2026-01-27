@@ -17,7 +17,7 @@ import {
 } from '../models/gimnasio.model';
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({providedIn: "root"})
 export class GimnasioService {
   readonly rutinaGenerada = signal<RutinaGenerada | null>(null);
   readonly ejerciciosPorDia = signal<EjerciciosPorDia>({});
@@ -34,8 +34,8 @@ export class GimnasioService {
 
   private readonly api = inject(ApiService);
   private readonly onboardingService = inject(OnboardingService);
-  private readonly STORAGE_KEY = 'cofira_rutina_gimnasio';
-  private readonly STORAGE_KEY_SEMANA = 'cofira_gimnasio_semana';
+  private readonly STORAGE_KEY = "cofira_rutina_gimnasio";
+  private readonly STORAGE_KEY_SEMANA = "cofira_gimnasio_semana";
 
   constructor() {
     this.cargarRutinaGuardada();
@@ -49,7 +49,7 @@ export class GimnasioService {
     const datosOnboarding = this.onboardingService.formData();
     const solicitudRutina = this.construirSolicitudRutina(datosOnboarding);
 
-    return this.api.post<RutinaGenerada>('/rutinas-ejercicio/generar', solicitudRutina).pipe(
+    return this.api.post<RutinaGenerada>("/rutinas-ejercicio/generar", solicitudRutina).pipe(
       tap(rutina => {
         this.rutinaGenerada.set(rutina);
         this.ejerciciosPorDia.set(this.transformarRutinaAEjerciciosPorDia(rutina));
@@ -58,21 +58,21 @@ export class GimnasioService {
       }),
       catchError(errorCapturado => {
         this.isLoading.set(false);
-        this.error.set(errorCapturado.message || 'Error al generar la rutina');
+        this.error.set(errorCapturado.message || "Error al generar la rutina");
         throw errorCapturado;
       })
     );
   }
 
   verificarConexionIA(): Observable<EstadoIA> {
-    return this.api.get<EstadoIA>('/rutinas-ejercicio/ia/estado').pipe(
+    return this.api.get<EstadoIA>("/rutinas-ejercicio/ia/estado").pipe(
       tap(estado => {
         this.estadoIA.set(estado);
       }),
       catchError(() => {
         const estadoError: EstadoIA = {
           conectado: false,
-          mensaje: 'No se puede conectar con el servidor'
+          mensaje: "No se puede conectar con el servidor"
         };
         this.estadoIA.set(estadoError);
         return of(estadoError);
@@ -165,7 +165,7 @@ export class GimnasioService {
       pesoKg: datosOnboarding.currentWeightKg,
       alturaCm: datosOnboarding.heightCm,
       imc: imcCalculado,
-      ubicacionEntrenamiento: datosOnboarding.trainingLocation || 'GYM',
+      ubicacionEntrenamiento: datosOnboarding.trainingLocation || "GYM",
       lesiones: datosOnboarding.injuries || [],
       condicionesMedicas: datosOnboarding.medicalConditions || [],
       semanaActual: this.semanaActual()
@@ -212,46 +212,46 @@ export class GimnasioService {
 
   private mapearObjetivo(objetivo: string | null): string {
     const mapaObjetivos: Record<string, string> = {
-      'LOSE_WEIGHT': 'Perder grasa',
-      'GAIN_MUSCLE': 'Ganar musculo',
-      'MAINTAIN': 'Mantener peso',
-      'IMPROVE_HEALTH': 'Mejorar salud general'
+      "LOSE_WEIGHT": "Perder grasa",
+      "GAIN_MUSCLE": "Ganar musculo",
+      "MAINTAIN": "Mantener peso",
+      "IMPROVE_HEALTH": "Mejorar salud general"
     };
 
-    return mapaObjetivos[objetivo || ''] || 'Mejorar forma fisica';
+    return mapaObjetivos[objetivo || ""] || "Mejorar forma fisica";
   }
 
   private mapearNivelFitness(nivel: string | null): string {
     const mapaNiveles: Record<string, string> = {
-      'SEDENTARY': 'Sedentario',
-      'NOVICE': 'Principiante',
-      'INTERMEDIATE': 'Intermedio',
-      'ADVANCED': 'Avanzado',
-      'ATHLETE': 'Atleta'
+      "SEDENTARY": "Sedentario",
+      "NOVICE": "Principiante",
+      "INTERMEDIATE": "Intermedio",
+      "ADVANCED": "Avanzado",
+      "ATHLETE": "Atleta"
     };
 
-    return mapaNiveles[nivel || ''] || 'Principiante';
+    return mapaNiveles[nivel || ""] || "Principiante";
   }
 
   private mapearGenero(genero: string | null): string {
     const mapaGeneros: Record<string, string> = {
-      'MALE': 'Masculino',
-      'FEMALE': 'Femenino',
-      'OTHER': 'Otro'
+      "MALE": "Masculino",
+      "FEMALE": "Femenino",
+      "OTHER": "Otro"
     };
 
-    return mapaGeneros[genero || ''] || 'Masculino';
+    return mapaGeneros[genero || ""] || "Masculino";
   }
 
   private transformarRutinaAEjerciciosPorDia(rutina: RutinaGenerada): EjerciciosPorDia {
     const ejerciciosPorDiaTransformados: EjerciciosPorDia = {
-      'Lunes': [],
-      'Martes': [],
-      'Miércoles': [],
-      'Jueves': [],
-      'Viernes': [],
-      'Sábado': [],
-      'Domingo': []
+      "Lunes": [],
+      "Martes": [],
+      "Miércoles": [],
+      "Jueves": [],
+      "Viernes": [],
+      "Sábado": [],
+      "Domingo": []
     };
 
     let contadorIdGlobal = 1;
@@ -283,15 +283,15 @@ export class GimnasioService {
 
   private corregirDiaSemana(diaSemana: string): string {
     const mapaDias: Record<string, string> = {
-      'Lunes': 'Lunes',
-      'Martes': 'Martes',
-      'Miercoles': 'Miércoles',
-      'Miércoles': 'Miércoles',
-      'Jueves': 'Jueves',
-      'Viernes': 'Viernes',
-      'Sabado': 'Sábado',
-      'Sábado': 'Sábado',
-      'Domingo': 'Domingo'
+      "Lunes": "Lunes",
+      "Martes": "Martes",
+      "Miercoles": "Miércoles",
+      "Miércoles": "Miércoles",
+      "Jueves": "Jueves",
+      "Viernes": "Viernes",
+      "Sabado": "Sábado",
+      "Sábado": "Sábado",
+      "Domingo": "Domingo"
     };
 
     return mapaDias[diaSemana] || diaSemana;
@@ -316,7 +316,7 @@ export class GimnasioService {
     try {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(rutina));
     } catch (error) {
-      console.error('Error guardando rutina en localStorage:', error);
+      console.error("Error guardando rutina en localStorage:", error);
     }
   }
 
@@ -330,33 +330,33 @@ export class GimnasioService {
         this.ejerciciosPorDia.set(this.transformarRutinaAEjerciciosPorDia(rutinaParsesada));
       }
     } catch (error) {
-      console.error('Error cargando rutina desde localStorage:', error);
+      console.error("Error cargando rutina desde localStorage:", error);
       localStorage.removeItem(this.STORAGE_KEY);
     }
   }
 
   guardarFeedback(feedback: FeedbackEjercicio): Observable<FeedbackEjercicio> {
-    return this.api.post<FeedbackEjercicio>('/rutinas-ejercicio/feedback', feedback).pipe(
+    return this.api.post<FeedbackEjercicio>("/rutinas-ejercicio/feedback", feedback).pipe(
       tap(() => {
         this.feedbackEnviado.set(true);
         this.semanaActual.update(semana => semana + 1);
         this.guardarSemanaEnStorage();
       }),
       catchError(errorCapturado => {
-        console.error('Error al guardar feedback:', errorCapturado);
+        console.error("Error al guardar feedback:", errorCapturado);
         throw errorCapturado;
       })
     );
   }
 
   obtenerUltimoFeedback(): Observable<FeedbackEjercicio | null> {
-    return this.api.get<FeedbackEjercicio>('/rutinas-ejercicio/feedback/ultimo').pipe(
+    return this.api.get<FeedbackEjercicio>("/rutinas-ejercicio/feedback/ultimo").pipe(
       catchError(() => of(null))
     );
   }
 
   obtenerSemanaActual(): Observable<number> {
-    return this.api.get<{semanaActual: number}>('/rutinas-ejercicio/semana-actual').pipe(
+    return this.api.get<{semanaActual: number}>("/rutinas-ejercicio/semana-actual").pipe(
       map(respuesta => respuesta.semanaActual),
       tap(semana => {
         this.semanaActual.set(semana);
@@ -390,18 +390,18 @@ export class GimnasioService {
       ejercicios: ejerciciosProgreso
     };
 
-    return this.api.post<HistorialEntrenamiento[]>('/rutinas-ejercicio/progreso', requestProgreso).pipe(
+    return this.api.post<HistorialEntrenamiento[]>("/rutinas-ejercicio/progreso", requestProgreso).pipe(
       catchError(errorCapturado => {
-        console.error('Error al guardar progreso:', errorCapturado);
+        console.error("Error al guardar progreso:", errorCapturado);
         throw errorCapturado;
       })
     );
   }
 
   obtenerEstadisticas(): Observable<EstadisticasGimnasio> {
-    return this.api.get<EstadisticasGimnasio>('/rutinas-ejercicio/progreso/estadisticas').pipe(
+    return this.api.get<EstadisticasGimnasio>("/rutinas-ejercicio/progreso/estadisticas").pipe(
       catchError(errorCapturado => {
-        console.error('Error al obtener estadisticas:', errorCapturado);
+        console.error("Error al obtener estadisticas:", errorCapturado);
         const estadisticasVacias: EstadisticasGimnasio = {
           semanaActual: this.semanaActual(),
           ejerciciosCompletadosEstaSemana: 0
@@ -415,7 +415,7 @@ export class GimnasioService {
     try {
       localStorage.setItem(this.STORAGE_KEY_SEMANA, this.semanaActual().toString());
     } catch (error) {
-      console.error('Error guardando semana en localStorage:', error);
+      console.error("Error guardando semana en localStorage:", error);
     }
   }
 
@@ -428,12 +428,12 @@ export class GimnasioService {
         this.semanaActual.set(semanaParsesada);
       }
     } catch (error) {
-      console.error('Error cargando semana desde localStorage:', error);
+      console.error("Error cargando semana desde localStorage:", error);
     }
   }
 
   obtenerEjerciciosUnicos(): Observable<string[]> {
-    return this.api.get<string[]>('/rutinas-ejercicio/ejercicios-unicos').pipe(
+    return this.api.get<string[]>("/rutinas-ejercicio/ejercicios-unicos").pipe(
       catchError(() => of([]))
     );
   }

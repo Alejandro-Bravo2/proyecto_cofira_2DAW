@@ -4,39 +4,39 @@
 
 
 
-export type PrimaryGoal = 'LOSE_WEIGHT' | 'GAIN_MUSCLE' | 'MAINTAIN' | 'IMPROVE_HEALTH';
+export type PrimaryGoal = "LOSE_WEIGHT" | "GAIN_MUSCLE" | "MAINTAIN" | "IMPROVE_HEALTH";
 
-export type Gender = 'MALE' | 'FEMALE' | 'OTHER';
+export type Gender = "MALE" | "FEMALE" | "OTHER";
 
 export type ActivityLevel =
-  | 'SEDENTARY'
-  | 'LIGHTLY_ACTIVE'
-  | 'MODERATELY_ACTIVE'
-  | 'VERY_ACTIVE'
-  | 'EXTRA_ACTIVE';
+  | "SEDENTARY"
+  | "LIGHTLY_ACTIVE"
+  | "MODERATELY_ACTIVE"
+  | "VERY_ACTIVE"
+  | "EXTRA_ACTIVE";
 
 export type WorkType =
-  | 'OFFICE_DESK'
-  | 'STANDING'
-  | 'PHYSICAL_LABOR';
+  | "OFFICE_DESK"
+  | "STANDING"
+  | "PHYSICAL_LABOR";
 
 export type FitnessLevel =
-  | 'SEDENTARY'
-  | 'NOVICE'
-  | 'INTERMEDIATE'
-  | 'ADVANCED'
-  | 'ATHLETE';
+  | "SEDENTARY"
+  | "NOVICE"
+  | "INTERMEDIATE"
+  | "ADVANCED"
+  | "ATHLETE";
 
 export type DietType =
-  | 'OMNIVORE'
-  | 'VEGETARIAN'
-  | 'VEGAN'
-  | 'PESCATARIAN'
-  | 'KETO'
-  | 'PALEO'
-  | 'MEDITERRANEAN';
+  | "OMNIVORE"
+  | "VEGETARIAN"
+  | "VEGAN"
+  | "PESCATARIAN"
+  | "KETO"
+  | "PALEO"
+  | "MEDITERRANEAN";
 
-export type TrainingLocation = 'HOME' | 'GYM' | 'OUTDOOR' | 'MIXED';
+export type TrainingLocation = "HOME" | "GYM" | "OUTDOOR" | "MIXED";
 
 
 

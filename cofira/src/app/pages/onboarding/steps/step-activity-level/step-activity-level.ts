@@ -32,20 +32,20 @@ export class StepActivityLevel {
   onContinue(): void {
     const nivelActividad = this.selectedLevel();
     if (nivelActividad) {
-      this.onboardingService.setField('activityLevel', nivelActividad);
+      this.onboardingService.setField("activityLevel", nivelActividad);
       const tipoTrabajo = this.derivarTipoTrabajo(nivelActividad);
-      this.onboardingService.setField('workType', tipoTrabajo);
+      this.onboardingService.setField("workType", tipoTrabajo);
       this.continuar.emit();
     }
   }
 
   private derivarTipoTrabajo(nivelActividad: ActivityLevel): WorkType {
     const mapeoNivelATrabajo: Record<ActivityLevel, WorkType> = {
-      'SEDENTARY': 'OFFICE_DESK',
-      'LIGHTLY_ACTIVE': 'OFFICE_DESK',
-      'MODERATELY_ACTIVE': 'STANDING',
-      'VERY_ACTIVE': 'PHYSICAL_LABOR',
-      'EXTRA_ACTIVE': 'PHYSICAL_LABOR'
+      "SEDENTARY": "OFFICE_DESK",
+      "LIGHTLY_ACTIVE": "OFFICE_DESK",
+      "MODERATELY_ACTIVE": "STANDING",
+      "VERY_ACTIVE": "PHYSICAL_LABOR",
+      "EXTRA_ACTIVE": "PHYSICAL_LABOR"
     };
     return mapeoNivelATrabajo[nivelActividad];
   }

@@ -32,7 +32,7 @@ export class StepFitnessLevel {
   onContinue(): void {
     const level = this.selectedLevel();
     if (level) {
-      this.onboardingService.setField('fitnessLevel', level);
+      this.onboardingService.setField("fitnessLevel", level);
       this.continuar.emit();
     }
   }

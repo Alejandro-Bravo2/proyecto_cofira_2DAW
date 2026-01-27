@@ -56,7 +56,7 @@ export class Onboarding implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      const step = parseInt(params['step'] || '0', 10);
+      const step = parseInt(params["step"] || "0", 10);
       if (step !== this.currentStep()) {
         this.onboardingService.goToStep(step);
       }
@@ -82,7 +82,7 @@ export class Onboarding implements OnInit {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: {step},
-      queryParamsHandling: 'merge'
+      queryParamsHandling: "merge"
     });
   }
 }

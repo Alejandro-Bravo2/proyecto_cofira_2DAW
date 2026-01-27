@@ -5,7 +5,7 @@ import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({providedIn: "root"})
 export class ApiService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.apiUrl;
@@ -43,13 +43,13 @@ export class ApiService {
   }
 
   private getHeaders(): HttpHeaders {
-    const token = localStorage.getItem('cofira_token');
+    const token = localStorage.getItem("cofira_token");
     let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      "Content-Type": "application/json"
     });
 
     if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
+      headers = headers.set("Authorization", `Bearer ${token}`);
     }
 
     return headers;

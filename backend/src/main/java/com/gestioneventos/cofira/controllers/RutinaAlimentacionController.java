@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -93,5 +94,34 @@ public class RutinaAlimentacionController implements RutinaAlimentacionControlle
             "mensaje", conexionActiva ? "Gemini funcionando correctamente" : "No se puede conectar con Gemini"
         );
         return ResponseEntity.ok(respuesta);
+    }
+
+    @GetMapping("/mi-menu")
+    public ResponseEntity<Map<String, Object>> obtenerMiMenu(Principal principal) {
+        String username = principal.getName();
+        String menuJson = rutinaAlimentacionService.obtenerMenuDelUsuario(username);
+
+        if (menuJson == null) {
+            return ResponseEntity.ok(Map.of("tieneMenu", false));
+        }
+
+        return ResponseEntity.ok(Map.of(
+            "tieneMenu", true,
+            "menuJson", menuJson
+        ));
+    }
+
+    @PostMapping("/guardar-menu")
+    public ResponseEntity<Map<String, String>> guardarMiMenu(
+            @RequestBody Map<String, String> solicitud,
+            Principal principal) {
+        String username = principal.getName();
+        String menuJson = solicitud.get("menuJson");
+        String fechaInicio = solicitud.get("fechaInicio");
+        String fechaFin = solicitud.get("fechaFin");
+
+        rutinaAlimentacionService.guardarMenuDelUsuario(username, menuJson, fechaInicio, fechaFin);
+
+        return ResponseEntity.ok(Map.of("mensaje", "Menú guardado correctamente"));
     }
 }

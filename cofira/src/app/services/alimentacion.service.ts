@@ -23,7 +23,7 @@ import {
 } from '../models/alimentacion.model';
 
 
-@Injectable({providedIn: 'root'})
+@Injectable({providedIn: "root"})
 export class AlimentacionService {
   readonly menuGenerado = signal<MenuGenerado | null>(null);
   readonly comidasPorFecha = signal<ComidasPorFecha>({});
@@ -74,8 +74,9 @@ export class AlimentacionService {
         this.isLoading.set(false);
       }),
       catchError(errorCapturado => {
+        console.error("Error generando menú:", errorCapturado);
         this.isLoading.set(false);
-        this.error.set(errorCapturado.message || "Error al generar el menu");
+        this.error.set("No hemos podido generar tu menú. Inténtalo de nuevo en unos minutos.");
         throw errorCapturado;
       })
     );
@@ -101,9 +102,10 @@ export class AlimentacionService {
         this.estaGenerando.set(false);
       }),
       catchError(errorCapturado => {
+        console.error("Error generando menú semanal:", errorCapturado);
         this.isLoading.set(false);
         this.estaGenerando.set(false);
-        this.error.set(errorCapturado.message || "Error al generar el menu semanal");
+        this.error.set("No hemos podido generar tu menú. Inténtalo de nuevo en unos minutos.");
         throw errorCapturado;
       })
     );
@@ -179,9 +181,9 @@ export class AlimentacionService {
         }
       }
     } catch (errorCapturado) {
-      const mensajeError = errorCapturado instanceof Error ? errorCapturado.message : "Error al generar el menú";
+      console.error("Error en streaming:", errorCapturado);
       this.ngZone.run(() => {
-        this.error.set(mensajeError);
+        this.error.set("No hemos podido generar tu menú. Inténtalo de nuevo en unos minutos.");
         this.isLoading.set(false);
         this.estaGenerando.set(false);
       });
@@ -229,7 +231,8 @@ export class AlimentacionService {
 
     if (datosConTipo.tipo === "error") {
       const eventoError = datos as EventoErrorStream;
-      this.error.set(eventoError.mensaje);
+      console.error("Error del servidor:", eventoError.mensaje);
+      this.error.set("No hemos podido generar tu menú. Inténtalo de nuevo en unos minutos.");
       this.isLoading.set(false);
       this.estaGenerando.set(false);
       return;
@@ -273,6 +276,7 @@ export class AlimentacionService {
     this.estaGenerando.set(false);
     this.progresoGeneracion.set(null);
     this.guardarMenuStreamEnStorage();
+    this.guardarMenuEnBaseDeDatos();
   }
 
   private guardarMenuStreamEnStorage(): void {
@@ -285,6 +289,78 @@ export class AlimentacionService {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(menuSemanalParaGuardar));
     } catch (error) {
       console.error("Error guardando menú en localStorage:", error);
+    }
+  }
+
+  private guardarMenuEnBaseDeDatos(): void {
+    const fechaInicioActual = this.fechaInicio();
+    const fechaFinActual = this.fechaFin();
+    const comidasActuales = this.comidasPorFecha();
+
+    if (!fechaInicioActual || !fechaFinActual) {
+      return;
+    }
+
+    const menuParaGuardar = {
+      fechaInicio: fechaInicioActual,
+      fechaFin: fechaFinActual,
+      comidasPorFecha: comidasActuales
+    };
+    const menuJson = JSON.stringify(menuParaGuardar);
+
+    const solicitud = {
+      menuJson: menuJson,
+      fechaInicio: fechaInicioActual,
+      fechaFin: fechaFinActual
+    };
+
+    this.api.post<{ mensaje: string }>("/rutinas-alimentacion/guardar-menu", solicitud).subscribe({
+      next: () => console.log("Menú guardado en base de datos"),
+      error: (errorCapturado) => console.error("Error guardando menú en base de datos:", errorCapturado)
+    });
+  }
+
+  cargarMenuDesdeBaseDeDatos(): void {
+    this.api.get<{ tieneMenu: boolean; menuJson?: string }>("/rutinas-alimentacion/mi-menu").subscribe({
+      next: (respuesta) => {
+        if (respuesta.tieneMenu && respuesta.menuJson) {
+          try {
+            const menuParseado = JSON.parse(respuesta.menuJson);
+            this.fechaInicio.set(menuParseado.fechaInicio);
+            this.fechaFin.set(menuParseado.fechaFin);
+            this.comidasPorFecha.set(menuParseado.comidasPorFecha);
+            localStorage.setItem(this.STORAGE_KEY, respuesta.menuJson);
+          } catch (errorParseo) {
+            console.error("Error parseando menú desde base de datos:", errorParseo);
+            this.cargarMenuDesdeLocalStorage();
+          }
+        } else {
+          this.cargarMenuDesdeLocalStorage();
+        }
+      },
+      error: () => {
+        this.cargarMenuDesdeLocalStorage();
+      }
+    });
+  }
+
+  private cargarMenuDesdeLocalStorage(): void {
+    try {
+      const menuGuardado = localStorage.getItem(this.STORAGE_KEY);
+
+      if (menuGuardado) {
+        const menuParseado = JSON.parse(menuGuardado);
+        const tieneFormatoSemanal = menuParseado.fechaInicio && menuParseado.fechaFin;
+
+        if (tieneFormatoSemanal) {
+          this.cargarMenuSemanalDesdeStorage(menuParseado);
+        } else {
+          this.cargarMenuDiarioDesdeStorage(menuParseado);
+        }
+      }
+    } catch (error) {
+      console.error("Error cargando menu desde localStorage:", error);
+      localStorage.removeItem(this.STORAGE_KEY);
     }
   }
 
@@ -370,6 +446,33 @@ export class AlimentacionService {
   obtenerResumenDelDia(fecha: Date): ResumenNutricional | null {
     const datosDelDia = this.obtenerDatosDelDia(fecha);
     return datosDelDia?.resumenNutricional ?? null;
+  }
+
+  obtenerResumenSemanal(): ResumenNutricional & { diasConDatos: number } {
+    const comidas = this.comidasPorFecha();
+    let totalCalorias = 0;
+    let totalProteinas = 0;
+    let totalCarbohidratos = 0;
+    let totalGrasas = 0;
+    let diasConDatos = 0;
+
+    Object.values(comidas).forEach(dia => {
+      if (dia.resumenNutricional) {
+        totalCalorias += dia.resumenNutricional.caloriasTotal;
+        totalProteinas += dia.resumenNutricional.proteinasTotal;
+        totalCarbohidratos += dia.resumenNutricional.carbohidratosTotal;
+        totalGrasas += dia.resumenNutricional.grasasTotal;
+        diasConDatos++;
+      }
+    });
+
+    return {
+      caloriasTotal: totalCalorias,
+      proteinasTotal: totalProteinas,
+      carbohidratosTotal: totalCarbohidratos,
+      grasasTotal: totalGrasas,
+      diasConDatos: diasConDatos
+    };
   }
 
   limpiarMenu(): void {
@@ -574,23 +677,13 @@ export class AlimentacionService {
   }
 
   private cargarMenuGuardado(): void {
-    try {
-      const menuGuardado = localStorage.getItem(this.STORAGE_KEY);
+    const token = localStorage.getItem("cofira_token");
+    const estaAutenticado = token !== null && token !== "";
 
-      if (menuGuardado) {
-        const menuParseado = JSON.parse(menuGuardado);
-
-        const tieneFormatoSemanal = menuParseado.fechaInicio && menuParseado.fechaFin;
-
-        if (tieneFormatoSemanal) {
-          this.cargarMenuSemanalDesdeStorage(menuParseado);
-        } else {
-          this.cargarMenuDiarioDesdeStorage(menuParseado);
-        }
-      }
-    } catch (error) {
-      console.error("Error cargando menu desde localStorage:", error);
-      localStorage.removeItem(this.STORAGE_KEY);
+    if (estaAutenticado) {
+      this.cargarMenuDesdeBaseDeDatos();
+    } else {
+      this.cargarMenuDesdeLocalStorage();
     }
   }
 

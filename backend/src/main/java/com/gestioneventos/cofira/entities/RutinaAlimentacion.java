@@ -23,6 +23,11 @@ public class RutinaAlimentacion {
     @Column(nullable = false)
     private LocalDate fechaInicio;
 
+    private LocalDate fechaFin;
+
+    @Column(columnDefinition = "TEXT")
+    private String menuJson;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "rutina_alimentacion_id")
     private List<DiaAlimentacion> diasAlimentacion;

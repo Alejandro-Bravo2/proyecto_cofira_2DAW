@@ -32,7 +32,7 @@ export class StepDietType {
   onContinue(): void {
     const diet = this.selectedDiet();
     if (diet) {
-      this.onboardingService.setField('dietType', diet);
+      this.onboardingService.setField("dietType", diet);
       this.continuar.emit();
     }
   }
