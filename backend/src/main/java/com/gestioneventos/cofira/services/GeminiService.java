@@ -463,8 +463,8 @@ public class GeminiService {
 
             menusPorDia.add(menuDiaDTO);
 
-            var comidasDelDia = menuDelDia.getComidas();
-            var streamNombres = comidasDelDia.stream().map(ComidaGeneradaDTO::getNombre);
+            List<ComidaGeneradaDTO> comidasDelDia = menuDelDia.getComidas();
+            java.util.stream.Stream<String> streamNombres = comidasDelDia.stream().map(ComidaGeneradaDTO::getNombre);
             List<String> nombresDelDia = streamNombres.collect(Collectors.toList());
             platosYaGenerados.addAll(nombresDelDia);
         }
@@ -517,9 +517,9 @@ public class GeminiService {
                     .name("menu-dia")
                     .data(menuDiaJson));
 
-                var comidasDelDia = menuDelDia.getComidas();
-            var streamNombres = comidasDelDia.stream().map(ComidaGeneradaDTO::getNombre);
-            List<String> nombresDelDia = streamNombres.collect(Collectors.toList());
+                List<ComidaGeneradaDTO> comidasDelDiaStream = menuDelDia.getComidas();
+                java.util.stream.Stream<String> streamNombresComidas = comidasDelDiaStream.stream().map(ComidaGeneradaDTO::getNombre);
+                List<String> nombresDelDia = streamNombresComidas.collect(Collectors.toList());
                 platosYaGenerados.addAll(nombresDelDia);
             }
 

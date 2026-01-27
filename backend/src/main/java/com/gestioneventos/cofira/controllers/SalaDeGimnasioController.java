@@ -5,7 +5,6 @@ import com.gestioneventos.cofira.dto.sala.ModificarSalaDTO;
 import com.gestioneventos.cofira.dto.sala.SalaDTO;
 import com.gestioneventos.cofira.services.SalaDeGimnasioService;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,7 +18,6 @@ public class SalaDeGimnasioController {
 
     private final SalaDeGimnasioService salaDeGimnasioService;
 
-    @Autowired
     public SalaDeGimnasioController(SalaDeGimnasioService salaDeGimnasioService) {
         this.salaDeGimnasioService = salaDeGimnasioService;
     }

@@ -2,40 +2,24 @@
 
   <header class="gimnasio__cabecera">
     <h1 class="gimnasio__titulo">TABLA SEMANAL</h1>
-    @if (tieneRutina()) {
-      <app-button (click)="generarNuevaRutina()" [habilitado]="isLoading()" tamanio="pequeno" variante="secundario">
-        @if (isLoading()) {
-          Generando...
-        } @else {
-          Regenerar rutina
-        }
-      </app-button>
-    }
   </header>
 
   @if (isLoading()) {
     <section class="gimnasio__estado">
-      <p class="gimnasio__estado-texto">Generando tu rutina personalizada con IA...</p>
-      <p class="gimnasio__estado-subtexto">Esto puede tardar unos segundos</p>
+      <p class="gimnasio__estado-texto">Cargando tu rutina...</p>
     </section>
   }
 
   @if (error()) {
     <section class="gimnasio__estado gimnasio__estado--error">
       <p class="gimnasio__estado-texto">{{ error() }}</p>
-      <app-button (click)="generarNuevaRutina()" tamanio="mediano" variante="primario">
-        Reintentar
-      </app-button>
     </section>
   }
 
   @if (!tieneRutina() && !isLoading() && !error()) {
     <section class="gimnasio__estado">
-      <p class="gimnasio__estado-texto">No tienes una rutina generada</p>
-      <p class="gimnasio__estado-subtexto">Genera tu rutina personalizada basada en tus objetivos</p>
-      <app-button (click)="generarNuevaRutina()" tamanio="grande" variante="primario">
-        Generar mi rutina
-      </app-button>
+      <p class="gimnasio__estado-texto">Tu rutina se está preparando</p>
+      <p class="gimnasio__estado-subtexto">Las rutinas se generan automáticamente cada mes. Tu nueva rutina estará lista pronto.</p>
     </section>
   }
 

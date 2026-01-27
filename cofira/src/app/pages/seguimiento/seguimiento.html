@@ -5,69 +5,84 @@
   <section class="seguimiento__macronutrientes">
     <article class="seguimiento__card-macros">
       <header class="seguimiento__macros-info">
-        <h2 class="seguimiento__macros-titulo">Desglose de Macronutrientes y Caloría</h2>
-        <p class="seguimiento__macros-calorias">Calorías objetivo: {{ caloriasDiarias() }} kcal</p>
+        <h2 class="seguimiento__macros-titulo">Desglose de Macronutrientes y Calorías</h2>
+        <p class="seguimiento__macros-calorias">
+          Calorías totales: {{ macrosConsumo().calorias.consumido }}/{{ macrosConsumo().calorias.objetivo }} kcal
+        </p>
 
         <ul class="seguimiento__macros-lista">
           <li class="seguimiento__macro-item">
             <span aria-hidden="true" class="seguimiento__macro-indicador seguimiento__macro-indicador--proteinas"></span>
-            <span class="seguimiento__macro-texto">Proteínas: {{ macros().proteinas.gramos }}
-              g ({{ macros().proteinas.porcentaje }}%)</span>
+            <span class="seguimiento__macro-texto">
+              Proteínas: {{ macrosConsumo().proteinas.consumido }}g ({{ macrosConsumo().proteinas.porcentajeGrafica }}%)
+            </span>
           </li>
           <li class="seguimiento__macro-item">
             <span aria-hidden="true" class="seguimiento__macro-indicador seguimiento__macro-indicador--carbohidratos"></span>
-            <span class="seguimiento__macro-texto">Carbohidratos: {{ macros().carbohidratos.gramos }}
-              g ({{ macros().carbohidratos.porcentaje }}%)</span>
+            <span class="seguimiento__macro-texto">
+              Carbohidratos: {{ macrosConsumo().carbohidratos.consumido }}g ({{ macrosConsumo().carbohidratos.porcentajeGrafica }}%)
+            </span>
           </li>
           <li class="seguimiento__macro-item">
             <span aria-hidden="true" class="seguimiento__macro-indicador seguimiento__macro-indicador--grasas"></span>
-            <span class="seguimiento__macro-texto">Grasas: {{ macros().grasas.gramos }}g ({{ macros().grasas.porcentaje }}
-              %)</span>
+            <span class="seguimiento__macro-texto">
+              Grasas: {{ macrosConsumo().grasas.consumido }}g ({{ macrosConsumo().grasas.porcentajeGrafica }}%)
+            </span>
           </li>
         </ul>
 
         <dl class="seguimiento__extras">
           <dt class="seguimiento__extra-label">Fibra objetivo:</dt>
           <dd class="seguimiento__extra-valor">{{ fibraObjetivo() }}g</dd>
+
+          <dt class="seguimiento__extra-label">Agua hoy:</dt>
+          <dd class="seguimiento__extra-valor">{{ aguaConsumida() | number:'1.1-1' }}L / {{ aguaObjetivo() }}L</dd>
         </dl>
       </header>
 
       <figure class="seguimiento__grafico-circular">
-        <svg aria-label="Gráfico circular de macronutrientes" class="seguimiento__pie-chart" role="img" viewBox="0 0 200 200">
-          <circle
-            [attr.stroke-dasharray]="calcularDashArray(macros().proteinas.porcentaje)"
-            [attr.stroke-dashoffset]="calcularDashOffset(0)"
-            cx="100"
-            cy="100"
-            fill="transparent"
-            r="80"
-            stroke="#110e10"
-            stroke-width="40"
-            transform="rotate(-90 100 100)"
-          />
-          <circle
-            [attr.stroke-dasharray]="calcularDashArray(macros().carbohidratos.porcentaje)"
-            [attr.stroke-dashoffset]="calcularDashOffset(macros().proteinas.porcentaje)"
-            cx="100"
-            cy="100"
-            fill="transparent"
-            r="80"
-            stroke="#ffd300"
-            stroke-width="40"
-            transform="rotate(-90 100 100)"
-          />
-          <circle
-            [attr.stroke-dasharray]="calcularDashArray(macros().grasas.porcentaje)"
-            [attr.stroke-dashoffset]="calcularDashOffset(macros().proteinas.porcentaje + macros().carbohidratos.porcentaje)"
-            cx="100"
-            cy="100"
-            fill="transparent"
-            r="80"
-            stroke="#3f454c"
-            stroke-width="40"
-            transform="rotate(-90 100 100)"
-          />
-        </svg>
+        @if (macrosConsumo().diasConDatos > 0) {
+          <svg aria-label="Gráfico circular de macronutrientes" class="seguimiento__pie-chart" role="img" viewBox="0 0 200 200">
+            <circle
+              [attr.stroke-dasharray]="calcularDashArray(macrosConsumo().proteinas.porcentajeGrafica)"
+              [attr.stroke-dashoffset]="calcularDashOffset(0)"
+              cx="100"
+              cy="100"
+              fill="transparent"
+              r="80"
+              stroke="#110e10"
+              stroke-width="40"
+              transform="rotate(-90 100 100)"
+            />
+            <circle
+              [attr.stroke-dasharray]="calcularDashArray(macrosConsumo().carbohidratos.porcentajeGrafica)"
+              [attr.stroke-dashoffset]="calcularDashOffset(macrosConsumo().proteinas.porcentajeGrafica)"
+              cx="100"
+              cy="100"
+              fill="transparent"
+              r="80"
+              stroke="#ffd300"
+              stroke-width="40"
+              transform="rotate(-90 100 100)"
+            />
+            <circle
+              [attr.stroke-dasharray]="calcularDashArray(macrosConsumo().grasas.porcentajeGrafica)"
+              [attr.stroke-dashoffset]="calcularDashOffset(macrosConsumo().proteinas.porcentajeGrafica + macrosConsumo().carbohidratos.porcentajeGrafica)"
+              cx="100"
+              cy="100"
+              fill="transparent"
+              r="80"
+              stroke="#3f454c"
+              stroke-width="40"
+              transform="rotate(-90 100 100)"
+            />
+          </svg>
+        } @else {
+          <aside class="seguimiento__sin-datos-circular">
+            <p>Sin datos de alimentación</p>
+            <p class="seguimiento__ayuda">Genera tu menú semanal para ver tus macros</p>
+          </aside>
+        }
       </figure>
     </article>
   </section>

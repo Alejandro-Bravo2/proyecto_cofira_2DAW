@@ -1911,6 +1911,37 @@
     color: var(--blanco-normal);
   }
 
+  app-alimentacion .alimentacion__agua-btn {
+    background-color: var(--gris-dark);
+    color: var(--amarillo-normal);
+  }
+
+  app-alimentacion .alimentacion__agua-btn:hover {
+    background-color: var(--negro-puro);
+  }
+
+  app-alimentacion .alimentacion__agua-btn:disabled {
+    background-color: var(--gris-normal);
+    color: var(--gris-dark);
+  }
+
+  app-alimentacion .alimentacion__agua-texto {
+    color: var(--negro-normal);
+  }
+
+  app-alimentacion .alimentacion__comida-preparacion {
+    background-color: var(--gris-normal);
+    border-left-color: var(--amarillo-normal);
+  }
+
+  app-alimentacion .alimentacion__preparacion-titulo {
+    color: var(--blanco-normal);
+  }
+
+  app-alimentacion .alimentacion__preparacion-texto {
+    color: var(--blanco-dark);
+  }
+
   app-seguimiento .seguimiento {
     background-color: var(--oscuro-seguimiento-fondo);
   }
@@ -2086,6 +2117,30 @@
 
   app-seguimiento .seguimiento__chart-container {
     background-color: var(--oscuro-superficie-fondo);
+  }
+
+  app-seguimiento .seguimiento__agua-btn {
+    color: var(--oscuro-texto-principal);
+    background-color: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-seguimiento .seguimiento__agua-btn:hover:not(:disabled) {
+    background-color: var(--amarillo-normal);
+    border-color: var(--amarillo-normal);
+    color: var(--negro-normal);
+  }
+
+  app-seguimiento .seguimiento__agua-valor {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-seguimiento .seguimiento__sin-datos-circular {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-seguimiento .seguimiento__sin-datos-circular p {
+    color: var(--oscuro-texto-secundario);
   }
 
   app-modal .modal {

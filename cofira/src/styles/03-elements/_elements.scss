@@ -8,18 +8,55 @@ body {
               color var(--duration-base) ease;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
   font-family: var(--font-secondary);
   color: var(--text-primary);
   transition: color var(--duration-base) ease;
 }
 
-p, span, li {
-
+h2 {
+  font-family: var(--font-secondary);
+  color: var(--text-primary);
   transition: color var(--duration-base) ease;
 }
 
-input, textarea, select {
+h3 {
+  font-family: var(--font-secondary);
+  color: var(--text-primary);
+  transition: color var(--duration-base) ease;
+}
+
+h4 {
+  font-family: var(--font-secondary);
+  color: var(--text-primary);
+  transition: color var(--duration-base) ease;
+}
+
+h5 {
+  font-family: var(--font-secondary);
+  color: var(--text-primary);
+  transition: color var(--duration-base) ease;
+}
+
+h6 {
+  font-family: var(--font-secondary);
+  color: var(--text-primary);
+  transition: color var(--duration-base) ease;
+}
+
+p {
+  transition: color var(--duration-base) ease;
+}
+
+span {
+  transition: color var(--duration-base) ease;
+}
+
+li {
+  transition: color var(--duration-base) ease;
+}
+
+input {
   background-color: var(--bg-input);
   color: var(--text-primary);
   border-color: var(--border-color);
@@ -28,6 +65,32 @@ input, textarea, select {
               border-color var(--duration-base) ease;
 }
 
-section, article, aside {
+textarea {
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  transition: background-color var(--duration-base) ease,
+              color var(--duration-base) ease,
+              border-color var(--duration-base) ease;
+}
+
+select {
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  transition: background-color var(--duration-base) ease,
+              color var(--duration-base) ease,
+              border-color var(--duration-base) ease;
+}
+
+section {
+  transition: background-color var(--duration-base) ease;
+}
+
+article {
+  transition: background-color var(--duration-base) ease;
+}
+
+aside {
   transition: background-color var(--duration-base) ease;
 }

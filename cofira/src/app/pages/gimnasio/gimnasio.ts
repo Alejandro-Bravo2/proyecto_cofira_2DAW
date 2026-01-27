@@ -51,9 +51,7 @@ export class Gimnasio implements OnInit {
       }
     });
 
-    if (!this.tieneRutina()) {
-      this.verificarYGenerarRutina();
-    }
+    this.cargarMiRutina();
   }
 
   diaAnterior(): void {
@@ -97,17 +95,6 @@ export class Gimnasio implements OnInit {
     this.gimnasioService.actualizarPesoEjercicio(diaSeleccionado, ejercicio.id, pesoNuevo);
   }
 
-  generarNuevaRutina(): void {
-    this.gimnasioService.generarRutina().subscribe({
-      next: () => {
-        console.log("Rutina generada correctamente");
-      },
-      error: (errorCapturado) => {
-        console.error("Error al generar rutina:", errorCapturado);
-      }
-    });
-  }
-
   enviarFeedback(): void {
     this.feedback.semanaNumero = this.semanaActual();
 
@@ -115,7 +102,6 @@ export class Gimnasio implements OnInit {
       next: () => {
         console.log("Feedback guardado correctamente");
         this.resetFeedback();
-        this.generarNuevaRutina();
       },
       error: (errorCapturado) => {
         console.error("Error al guardar feedback:", errorCapturado);
@@ -134,14 +120,8 @@ export class Gimnasio implements OnInit {
     this.diaActualIndex.set(indiceCorregido);
   }
 
-  private verificarYGenerarRutina(): void {
-    this.gimnasioService.verificarConexionIA().subscribe({
-      next: (estado) => {
-        if (estado.conectado) {
-          this.generarNuevaRutina();
-        }
-      }
-    });
+  private cargarMiRutina(): void {
+    this.gimnasioService.obtenerMiRutina().subscribe();
   }
 
   private resetFeedback(): void {

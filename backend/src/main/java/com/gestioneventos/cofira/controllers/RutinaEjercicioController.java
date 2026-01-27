@@ -8,11 +8,15 @@ import com.gestioneventos.cofira.dto.ollama.GenerarRutinaRequestDTO;
 import com.gestioneventos.cofira.dto.ollama.RutinaGeneradaDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.CrearRutinaEjercicioDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.RutinaEjercicioDTO;
+import com.gestioneventos.cofira.entities.Usuario;
+import com.gestioneventos.cofira.repositories.UsuarioRepository;
 import com.gestioneventos.cofira.services.GeminiService;
 import com.gestioneventos.cofira.services.RutinaEjercicioService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,10 +29,14 @@ public class RutinaEjercicioController implements RutinaEjercicioControllerApi {
 
     private final RutinaEjercicioService rutinaEjercicioService;
     private final GeminiService geminiService;
+    private final UsuarioRepository usuarioRepository;
 
-    public RutinaEjercicioController(RutinaEjercicioService rutinaEjercicioService, GeminiService geminiService) {
+    public RutinaEjercicioController(RutinaEjercicioService rutinaEjercicioService,
+                                     GeminiService geminiService,
+                                     UsuarioRepository usuarioRepository) {
         this.rutinaEjercicioService = rutinaEjercicioService;
         this.geminiService = geminiService;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @GetMapping
@@ -134,5 +142,23 @@ public class RutinaEjercicioController implements RutinaEjercicioControllerApi {
     public ResponseEntity<List<HistorialEntrenamientoDTO>> obtenerProgresoPorEjercicio(@PathVariable String nombreEjercicio) {
         List<HistorialEntrenamientoDTO> progreso = rutinaEjercicioService.obtenerProgresoPorEjercicio(nombreEjercicio);
         return ResponseEntity.ok(progreso);
+    }
+
+    @GetMapping("/mi-rutina")
+    public ResponseEntity<RutinaGeneradaDTO> obtenerMiRutina(@AuthenticationPrincipal UserDetails userDetails) {
+        Long usuarioId = obtenerUsuarioIdDesdeUserDetails(userDetails);
+        Optional<RutinaGeneradaDTO> miRutinaOptional = rutinaEjercicioService.obtenerMiRutina(usuarioId);
+
+        if (miRutinaOptional.isPresent()) {
+            return ResponseEntity.ok(miRutinaOptional.get());
+        }
+
+        return ResponseEntity.noContent().build();
+    }
+
+    private Long obtenerUsuarioIdDesdeUserDetails(UserDetails userDetails) {
+        Usuario usuario = usuarioRepository.findByUsername(userDetails.getUsername())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        return usuario.getId();
     }
 }

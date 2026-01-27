@@ -34,6 +34,7 @@ export class AlimentacionService {
   readonly fechaFin = signal<string | null>(null);
   readonly estaGenerando = signal(false);
   readonly progresoGeneracion = signal<ProgresoGeneracion | null>(null);
+  readonly cargaInicialCompletada = signal(false);
 
   readonly tieneMenu = computed(() => {
     const fechaInicioActual = this.fechaInicio();
@@ -297,7 +298,13 @@ export class AlimentacionService {
     const fechaFinActual = this.fechaFin();
     const comidasActuales = this.comidasPorFecha();
 
+    console.log("[DB] Intentando guardar menú en base de datos...");
+    console.log("[DB] fechaInicio:", fechaInicioActual);
+    console.log("[DB] fechaFin:", fechaFinActual);
+    console.log("[DB] Tiene comidas:", Object.keys(comidasActuales).length > 0);
+
     if (!fechaInicioActual || !fechaFinActual) {
+      console.warn("[DB] ABORTANDO: No hay fechas disponibles para guardar");
       return;
     }
 
@@ -314,15 +321,29 @@ export class AlimentacionService {
       fechaFin: fechaFinActual
     };
 
+    console.log("[DB] Enviando POST /guardar-menu con solicitud:", {
+      fechaInicio: fechaInicioActual,
+      fechaFin: fechaFinActual,
+      menuJsonLength: menuJson.length
+    });
+
     this.api.post<{ mensaje: string }>("/rutinas-alimentacion/guardar-menu", solicitud).subscribe({
-      next: () => console.log("Menú guardado en base de datos"),
-      error: (errorCapturado) => console.error("Error guardando menú en base de datos:", errorCapturado)
+      next: () => console.log("[DB] SUCCESS: Menú guardado en base de datos correctamente"),
+      error: (errorCapturado) => {
+        console.error("[DB] ERROR guardando menú en base de datos:", errorCapturado);
+        console.error("[DB] Status:", errorCapturado.status);
+        console.error("[DB] Message:", errorCapturado.message);
+      }
     });
   }
 
   cargarMenuDesdeBaseDeDatos(): void {
+    console.log("[DB] Intentando cargar menú desde base de datos...");
+
     this.api.get<{ tieneMenu: boolean; menuJson?: string }>("/rutinas-alimentacion/mi-menu").subscribe({
       next: (respuesta) => {
+        console.log("[DB] Respuesta del servidor:", respuesta);
+
         if (respuesta.tieneMenu && respuesta.menuJson) {
           try {
             const menuParseado = JSON.parse(respuesta.menuJson);
@@ -330,16 +351,25 @@ export class AlimentacionService {
             this.fechaFin.set(menuParseado.fechaFin);
             this.comidasPorFecha.set(menuParseado.comidasPorFecha);
             localStorage.setItem(this.STORAGE_KEY, respuesta.menuJson);
+            console.log("[DB] SUCCESS: Menú cargado desde base de datos");
+            console.log("[DB] Días cargados:", Object.keys(menuParseado.comidasPorFecha).length);
+            this.cargaInicialCompletada.set(true);
           } catch (errorParseo) {
-            console.error("Error parseando menú desde base de datos:", errorParseo);
+            console.error("[DB] ERROR parseando menú:", errorParseo);
             this.cargarMenuDesdeLocalStorage();
+            this.cargaInicialCompletada.set(true);
           }
         } else {
+          console.log("[DB] No hay menú en base de datos, usando localStorage");
           this.cargarMenuDesdeLocalStorage();
+          this.cargaInicialCompletada.set(true);
         }
       },
-      error: () => {
+      error: (errorCapturado) => {
+        console.error("[DB] ERROR cargando menú:", errorCapturado);
+        console.error("[DB] Status:", errorCapturado.status);
         this.cargarMenuDesdeLocalStorage();
+        this.cargaInicialCompletada.set(true);
       }
     });
   }
@@ -684,6 +714,7 @@ export class AlimentacionService {
       this.cargarMenuDesdeBaseDeDatos();
     } else {
       this.cargarMenuDesdeLocalStorage();
+      this.cargaInicialCompletada.set(true);
     }
   }
 

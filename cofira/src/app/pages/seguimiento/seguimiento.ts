@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {AlimentacionService} from '../../services/alimentacion.service';
 import {GimnasioService} from '../../services/gimnasio.service';
 import {OnboardingService} from '../../services/onboarding.service';
+import {AguaService} from '../../services/agua.service';
 import {HistorialEntrenamiento} from '../../models/gimnasio.model';
 
 interface PuntoGrafico {
@@ -25,8 +26,7 @@ export class Seguimiento implements OnInit {
   private readonly alimentacionService = inject(AlimentacionService);
   private readonly gimnasioService = inject(GimnasioService);
   private readonly onboardingService = inject(OnboardingService);
-
-  private readonly STORAGE_KEY_AGUA = "cofira_agua_consumo";
+  private readonly aguaService = inject(AguaService);
 
   readonly caloriasDiarias = signal(2000);
   readonly proteinasObjetivo = signal(120);
@@ -34,7 +34,7 @@ export class Seguimiento implements OnInit {
   readonly grasasObjetivo = signal(65);
   readonly fibraObjetivo = signal(25);
 
-  readonly aguaConsumida = signal(0);
+  readonly aguaConsumida = this.aguaService.aguaConsumida;
   readonly aguaObjetivo = signal(3);
 
   readonly ejerciciosDisponibles = signal<string[]>([]);
@@ -102,7 +102,6 @@ export class Seguimiento implements OnInit {
 
     const pesos = historial.map(h => h.pesoKg || 0);
     const pesoMaximo = Math.max(...pesos, 100);
-    const pesoMinimo = 0;
 
     const puntos: PuntoGrafico[] = historial.map((registro, indice) => {
       const x = margenIzquierdo + (indice / Math.max(historial.length - 1, 1)) * anchoGrafico;
@@ -159,7 +158,7 @@ export class Seguimiento implements OnInit {
   ngOnInit(): void {
     this.cargarObjetivosNutricionales();
     this.cargarEjerciciosDisponibles();
-    this.cargarConsumoAgua();
+    this.aguaService.obtenerConsumoHoy().subscribe();
   }
 
   calcularDashArray(porcentaje: number): string {

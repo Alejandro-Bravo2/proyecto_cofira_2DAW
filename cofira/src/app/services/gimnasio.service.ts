@@ -444,4 +444,31 @@ export class GimnasioService {
       catchError(() => of([]))
     );
   }
+
+  obtenerMiRutina(): Observable<RutinaGenerada | null> {
+    this.isLoading.set(true);
+    this.error.set(null);
+
+    return this.api.get<RutinaGenerada>("/rutinas-ejercicio/mi-rutina").pipe(
+      tap(rutina => {
+        this.rutinaGenerada.set(rutina);
+        this.ejerciciosPorDia.set(this.transformarRutinaAEjerciciosPorDia(rutina));
+        this.guardarRutinaEnStorage(rutina);
+        this.isLoading.set(false);
+      }),
+      catchError(errorCapturado => {
+        this.isLoading.set(false);
+
+        const esRespuesta204 = errorCapturado.status === 204;
+        if (esRespuesta204) {
+          this.rutinaGenerada.set(null);
+          this.ejerciciosPorDia.set({});
+          return of(null);
+        }
+
+        this.error.set(errorCapturado.message || "Error al obtener la rutina");
+        return of(null);
+      })
+    );
+  }
 }

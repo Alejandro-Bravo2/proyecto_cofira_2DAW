@@ -1,23 +1,28 @@
 import {Component, computed, effect, inject, OnInit, signal} from '@angular/core';
+import {DecimalPipe} from '@angular/common';
 
 import {Calendario} from '../../components/shared/calendario/calendario';
 import {Ingredientes} from '../../components/shared/ingredientes/ingredientes';
 import {AlimentacionService} from '../../services/alimentacion.service';
 import {NotificacionService} from '../../services/notificacion.service';
+import {AguaService} from '../../services/agua.service';
 import {Alimento, Comida} from '../../models/alimentacion.model';
 
 @Component({
   selector: 'app-alimentacion',
   standalone: true,
-  imports: [Calendario, Ingredientes],
+  imports: [Calendario, Ingredientes, DecimalPipe],
   templateUrl: './alimentacion.html',
   styleUrl: './alimentacion.scss',
 })
 export class Alimentacion implements OnInit {
   private readonly alimentacionService = inject(AlimentacionService);
   private readonly notificacionService = inject(NotificacionService);
+  private readonly aguaService = inject(AguaService);
 
   readonly fechaActualDate = signal(new Date());
+  readonly aguaConsumida = this.aguaService.aguaConsumida;
+  readonly aguaObjetivo = signal(3);
 
   constructor() {
     effect(() => {
@@ -76,6 +81,18 @@ export class Alimentacion implements OnInit {
   });
 
   ngOnInit(): void {
+    this.aguaService.obtenerConsumoHoy().subscribe();
+    this.verificarYGenerarMenuSiNecesario();
+  }
+
+  private verificarYGenerarMenuSiNecesario(): void {
+    const cargaCompletada = this.alimentacionService.cargaInicialCompletada();
+
+    if (!cargaCompletada) {
+      setTimeout(() => this.verificarYGenerarMenuSiNecesario(), 100);
+      return;
+    }
+
     if (!this.tieneMenu()) {
       this.generarMenuSemanalAutomatico();
     } else {
@@ -136,5 +153,13 @@ export class Alimentacion implements OnInit {
         }
       }
     });
+  }
+
+  agregarAgua(): void {
+    this.aguaService.agregarAgua();
+  }
+
+  quitarAgua(): void {
+    this.aguaService.quitarAgua();
   }
 }

@@ -469,7 +469,7 @@
 .alimentacion__comida-macros {
   display: flex;
   align-items: center;
-  gap: var(--spacing-size-s);
+  gap: var(--spacing-size-m);
   margin-left: auto;
   flex-wrap: wrap;
 
@@ -484,26 +484,54 @@
 .alimentacion__comida-macro {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   color: var(--gris-dark);
-  background-color: var(--gris-normal-hover);
-  padding: var(--spacing-size-xxs) var(--spacing-size-xs);
-  border-radius: var(--radius-xss);
+  background-color: var(--gris-light);
+  padding: var(--spacing-size-xs) var(--spacing-size-s);
+  border-radius: var(--radius-sm);
+  border: 0.0625rem solid var(--gris-normal);
+
+  [data-theme="dark"] & {
+    color: var(--blanco-dark);
+    background-color: var(--gris-dark);
+    border-color: var(--gris-normal);
+  }
 }
 
 .alimentacion__comida-macro--proteina {
-  background-color: rgba(76, 175, 80, 0.2);
+  background-color: rgba(76, 175, 80, 0.15);
   color: #2e7d32;
+  border-color: rgba(76, 175, 80, 0.4);
+
+  [data-theme="dark"] & {
+    background-color: rgba(76, 175, 80, 0.25);
+    color: #81c784;
+    border-color: rgba(76, 175, 80, 0.5);
+  }
 }
 
 .alimentacion__comida-macro--carbs {
-  background-color: rgba(33, 150, 243, 0.2);
-  color: #1565c0;
+  background-color: rgba(255, 152, 0, 0.15);
+  color: #e65100;
+  border-color: rgba(255, 152, 0, 0.4);
+
+  [data-theme="dark"] & {
+    background-color: rgba(255, 152, 0, 0.25);
+    color: #ffb74d;
+    border-color: rgba(255, 152, 0, 0.5);
+  }
 }
 
 .alimentacion__comida-macro--grasa {
-  background-color: rgba(255, 152, 0, 0.2);
-  color: #e65100;
+  background-color: rgba(244, 67, 54, 0.15);
+  color: #c62828;
+  border-color: rgba(244, 67, 54, 0.4);
+
+  [data-theme="dark"] & {
+    background-color: rgba(244, 67, 54, 0.25);
+    color: #ef5350;
+    border-color: rgba(244, 67, 54, 0.5);
+  }
 }
 
 
@@ -517,12 +545,14 @@
 
 
 .alimentacion__comida-preparacion {
-  padding-left: var(--spacing-size-l);
+  padding: var(--spacing-size-m) var(--spacing-size-l);
   border-left: 0.1875rem solid var(--amarillo-normal);
   margin-left: var(--spacing-size-l);
+  background-color: var(--gris-light);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
 
   @include responsive-down('md') {
-    padding-left: var(--spacing-size-m);
+    padding: var(--spacing-size-s) var(--spacing-size-m);
     margin-left: var(--spacing-size-m);
   }
 }
@@ -540,7 +570,7 @@
   font-size: var(--font-size-sm);
   color: var(--gris-dark);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 
@@ -607,4 +637,58 @@
 .alimentacion__btn-regenerar-svg {
   width: 1.25rem;
   height: 1.25rem;
+}
+
+
+
+.alimentacion__resumen-item--agua {
+  min-width: 7rem;
+}
+
+.alimentacion__agua {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-xs);
+}
+
+.alimentacion__agua-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  background-color: var(--negro-normal);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: var(--amarillo-normal);
+  transition: background-color var(--duration-fast) ease,
+              transform var(--duration-fast) ease;
+}
+
+.alimentacion__agua-btn:hover {
+  background-color: var(--negro-puro);
+  transform: scale(1.1);
+}
+
+.alimentacion__agua-btn:disabled {
+  background-color: var(--gris-normal);
+  color: var(--gris-dark);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.alimentacion__agua-btn-svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.alimentacion__agua-texto {
+  min-width: 2.5rem;
+  text-align: center;
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--negro-normal);
 }

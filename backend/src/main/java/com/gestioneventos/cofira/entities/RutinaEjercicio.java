@@ -23,6 +23,16 @@ public class RutinaEjercicio {
     @Column(nullable = false)
     private LocalDate fechaInicio;
 
+    @Column(nullable = false)
+    private LocalDate fechaFin;
+
+    @Column(nullable = false)
+    @Builder.Default
+    private Integer mesNumero = 1;
+
+    @Column(columnDefinition = "TEXT")
+    private String rutinaJson;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "rutina_ejercicio_id")
     private List<DiaEjercicio> diasEjercicio;

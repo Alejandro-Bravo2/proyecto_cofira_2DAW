@@ -81,6 +81,31 @@
             <span class="alimentacion__resumen-label">Grasas</span>
             <span class="alimentacion__resumen-valor">{{ resumenNutricional()?.grasasTotal }}g</span>
           </li>
+          <li class="alimentacion__resumen-item alimentacion__resumen-item--agua">
+            <span class="alimentacion__resumen-label">Agua</span>
+            <span class="alimentacion__resumen-valor alimentacion__agua">
+              <button
+                (click)="quitarAgua()"
+                [disabled]="aguaConsumida() <= 0"
+                aria-label="Quitar vaso de agua"
+                class="alimentacion__agua-btn"
+                type="button">
+                <svg aria-hidden="true" class="alimentacion__agua-btn-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 13H5v-2h14v2z" fill="currentColor"/>
+                </svg>
+              </button>
+              <span class="alimentacion__agua-texto">{{ aguaConsumida() | number:'1.1-1' }}L</span>
+              <button
+                (click)="agregarAgua()"
+                aria-label="Añadir vaso de agua"
+                class="alimentacion__agua-btn"
+                type="button">
+                <svg aria-hidden="true" class="alimentacion__agua-btn-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/>
+                </svg>
+              </button>
+            </span>
+          </li>
         </ul>
       </section>
     }

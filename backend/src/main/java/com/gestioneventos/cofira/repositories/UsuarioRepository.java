@@ -37,4 +37,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     // Usuarios con plan activo (Query JPQL con JOIN para evitar NPE)
     @Query("SELECT u FROM Usuario u JOIN u.plan p WHERE p.subscripcionActiva = true")
     List<Usuario> findUsuariosConPlanActivo();
+
+    // Usuarios con onboarding completado para generación de rutinas
+    @Query("SELECT u FROM Usuario u WHERE u.isOnboarded = true")
+    List<Usuario> findUsuariosConOnboardingCompletado();
 }
