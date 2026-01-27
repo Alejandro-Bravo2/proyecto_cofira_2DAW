@@ -534,6 +534,21 @@
   }
 }
 
+.gimnasio__feedback-label--checkbox {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.gimnasio__feedback-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: var(--amarillo-normal);
+  cursor: pointer;
+}
+
 .gimnasio__feedback-textarea {
   @include input-base;
   width: 100%;

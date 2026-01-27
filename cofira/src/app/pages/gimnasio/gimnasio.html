@@ -179,11 +179,19 @@
       </fieldset>
 
       <fieldset class="gimnasio__feedback-field">
-        <label class="gimnasio__feedback-label" for="mas-peso">
-          ¿Crees que podrías con más peso?
+        <label class="gimnasio__feedback-label gimnasio__feedback-label--checkbox">
+          <input type="checkbox" [(ngModel)]="feedback.puedeMasPeso" name="puedeMasPeso"
+            class="gimnasio__feedback-checkbox">
+          <span>¿Crees que podrías con más peso?</span>
         </label>
-        <textarea [(ngModel)]="feedback.masPeso" class="gimnasio__feedback-textarea" id="mas-peso" name="masPeso"
-          placeholder="Escribe si podrías realizar los ejercicios con más peso o si el actual está bien ajustado..."
+      </fieldset>
+
+      <fieldset class="gimnasio__feedback-field">
+        <label class="gimnasio__feedback-label" for="comentarios">
+          Comentarios adicionales
+        </label>
+        <textarea [(ngModel)]="feedback.comentarios" class="gimnasio__feedback-textarea" id="comentarios" name="comentarios"
+          placeholder="Escribe cualquier comentario adicional sobre tu entrenamiento esta semana..."
           rows="4">
         </textarea>
       </fieldset>

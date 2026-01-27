@@ -312,6 +312,60 @@
   font-size: var(--font-size-lg);
   color: var(--gris-dark);
   margin: 0;
+  text-align: center;
+}
+
+.alimentacion__progreso {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-m);
+  width: 100%;
+  max-width: 18.75rem;
+}
+
+.alimentacion__progreso-barra {
+  flex: 1;
+  height: 0.5rem;
+  margin: 0;
+  background-color: var(--gris-normal);
+  border-radius: var(--radius-xss);
+  overflow: hidden;
+}
+
+.alimentacion__progreso-relleno {
+  display: block;
+  height: 100%;
+  background-color: var(--amarillo-normal);
+  border-radius: var(--radius-xss);
+  transition: width var(--duration-normal) ease;
+}
+
+.alimentacion__progreso-porcentaje {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  min-width: 2.5rem;
+  text-align: right;
+}
+
+.alimentacion__btn-cancelar {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--gris-dark);
+  background-color: transparent;
+  border: 0.0625rem solid var(--gris-normal);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-xs) var(--spacing-size-m);
+  cursor: pointer;
+  transition: border-color var(--duration-fast) ease,
+              color var(--duration-fast) ease;
+}
+
+.alimentacion__btn-cancelar:hover {
+  border-color: var(--rojo-normal);
+  color: var(--rojo-normal);
 }
 
 

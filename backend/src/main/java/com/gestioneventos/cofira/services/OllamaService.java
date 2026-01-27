@@ -1,5 +1,6 @@
 package com.gestioneventos.cofira.services;
 
+import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -52,16 +54,59 @@ public class OllamaService {
     private String construirPromptRutina(GenerarRutinaRequestDTO solicitud) {
         String equipamientoTexto = solicitud.getEquipamientoDisponible() != null
                 ? String.join(", ", solicitud.getEquipamientoDisponible())
-                : "sin equipamiento";
+                : "sin equipamiento especifico";
+
+        String lesionesTexto = solicitud.getLesiones() != null && !solicitud.getLesiones().isEmpty()
+                ? String.join(", ", solicitud.getLesiones())
+                : "ninguna";
+
+        String condicionesTexto = solicitud.getCondicionesMedicas() != null && !solicitud.getCondicionesMedicas().isEmpty()
+                ? String.join(", ", solicitud.getCondicionesMedicas())
+                : "ninguna";
+
+        String ubicacionTexto = mapearUbicacionEntrenamiento(solicitud.getUbicacionEntrenamiento());
+        String nivelIntensidad = calcularNivelIntensidad(solicitud);
+        String seccionProgresion = construirSeccionProgresion(solicitud);
+
+        int semanaActual = solicitud.getSemanaActual() != null ? solicitud.getSemanaActual() : 1;
+        double pesoKg = solicitud.getPesoKg() != null ? solicitud.getPesoKg() : 70.0;
+        double alturaCm = solicitud.getAlturaCm() != null ? solicitud.getAlturaCm() : 170.0;
+        double imc = solicitud.getImc() != null ? solicitud.getImc() : 24.0;
+        int duracionMinutos = solicitud.getDuracionSesionMinutos() != null ? solicitud.getDuracionSesionMinutos() : 60;
 
         String promptCompleto = String.format("""
-            Genera una rutina de ejercicios para una persona con estas caracteristicas:
+            Genera una rutina de ejercicios SEMANA %d para una persona con estas caracteristicas:
+
+            === DATOS PERSONALES ===
             - Objetivo: %s
             - Nivel de fitness: %s
-            - Dias de entrenamiento: %d dias por semana
-            - Equipamiento disponible: %s
             - Genero: %s
             - Edad: %d anos
+            - Peso: %.1f kg
+            - Altura: %.1f cm
+            - IMC: %.1f
+
+            === ENTRENAMIENTO ===
+            - Dias de entrenamiento: %d dias por semana
+            - Duracion por sesion: %d minutos
+            - Ubicacion: %s
+            - Equipamiento disponible: %s
+
+            === SALUD Y LIMITACIONES (MUY IMPORTANTE) ===
+            - Lesiones: %s
+            - Condiciones medicas: %s
+
+            === PROGRESION ===
+            - Semana actual: %d
+            - Nivel de intensidad sugerido: %s
+            %s
+
+            REGLAS IMPORTANTES:
+            1. NO incluyas ejercicios que puedan agravar las lesiones indicadas
+            2. Adapta la intensidad segun las condiciones medicas
+            3. Si es ubicacion CASA, usa ejercicios sin maquinas pesadas
+            4. Si es ubicacion GYM, puedes incluir maquinas y pesos libres
+            5. Aumenta progresivamente la dificultad cada semana
 
             Responde UNICAMENTE con un JSON valido con esta estructura exacta, sin texto adicional:
             {
@@ -83,15 +128,74 @@ public class OllamaService {
               ]
             }
             """,
+                semanaActual,
                 solicitud.getObjetivoPrincipal(),
                 solicitud.getNivelFitness(),
-                solicitud.getDiasEntrenamientoPorSemana(),
-                equipamientoTexto,
                 solicitud.getGenero(),
-                solicitud.getEdad()
+                solicitud.getEdad(),
+                pesoKg,
+                alturaCm,
+                imc,
+                solicitud.getDiasEntrenamientoPorSemana(),
+                duracionMinutos,
+                ubicacionTexto,
+                equipamientoTexto,
+                lesionesTexto,
+                condicionesTexto,
+                semanaActual,
+                nivelIntensidad,
+                seccionProgresion
         );
 
         return promptCompleto;
+    }
+
+    private String calcularNivelIntensidad(GenerarRutinaRequestDTO solicitud) {
+        int semana = solicitud.getSemanaActual() != null ? solicitud.getSemanaActual() : 1;
+        boolean feedbackPositivo = Boolean.TRUE.equals(solicitud.getFeedbackPositivo());
+
+        if (semana == 1) {
+            return "MODERADO (semana inicial de adaptacion)";
+        } else if (feedbackPositivo) {
+            return "ALTO (usuario indica que puede mas)";
+        } else {
+            return "MODERADO-ALTO (progresion gradual)";
+        }
+    }
+
+    private String construirSeccionProgresion(GenerarRutinaRequestDTO solicitud) {
+        if (solicitud.getSemanaActual() == null || solicitud.getSemanaActual() <= 1) {
+            return "";
+        }
+
+        StringBuilder seccion = new StringBuilder();
+        seccion.append("\n=== AJUSTES BASADOS EN FEEDBACK ===\n");
+
+        if (Boolean.TRUE.equals(solicitud.getFeedbackPositivo())) {
+            seccion.append("- El usuario indica que PUEDE LEVANTAR MAS PESO\n");
+            seccion.append("- Aumenta series en 1 o repeticiones en 2-3 respecto a la semana anterior\n");
+        }
+
+        if (solicitud.getEjerciciosDificiles() != null && !solicitud.getEjerciciosDificiles().isEmpty()) {
+            seccion.append("- Ejercicios que resultaron DIFICILES: ").append(solicitud.getEjerciciosDificiles()).append("\n");
+            seccion.append("- Considera reducir intensidad o sustituir estos ejercicios\n");
+        }
+
+        return seccion.toString();
+    }
+
+    private String mapearUbicacionEntrenamiento(String ubicacion) {
+        if (ubicacion == null) {
+            return "Gimnasio";
+        }
+
+        return switch (ubicacion) {
+            case "HOME" -> "Casa (equipamiento limitado)";
+            case "GYM" -> "Gimnasio (equipamiento completo)";
+            case "OUTDOOR" -> "Aire libre (sin equipamiento)";
+            case "MIXED" -> "Mixto (casa y gimnasio)";
+            default -> "Gimnasio";
+        };
     }
 
     private String llamarOllama(String prompt) {
@@ -276,6 +380,76 @@ public class OllamaService {
                 .build();
 
         return menuSemanal;
+    }
+
+    public void generarMenuSemanalConStreaming(GenerarMenuRequestDTO solicitud, SseEmitter emisorEventos) {
+        LocalDate hoy = LocalDate.now();
+        LocalDate lunesSemanaActual = hoy.with(DayOfWeek.MONDAY);
+        LocalDate fechaInicio = lunesSemanaActual;
+
+        List<String> platosYaGenerados = new ArrayList<>();
+        int totalDias = 14;
+
+        try {
+            Map<String, String> eventoInicio = Map.of(
+                "tipo", "inicio",
+                "totalDias", String.valueOf(totalDias),
+                "fechaInicio", fechaInicio.toString(),
+                "fechaFin", fechaInicio.plusDays(totalDias - 1).toString()
+            );
+            emisorEventos.send(SseEmitter.event()
+                .name("inicio")
+                .data(objectMapper.writeValueAsString(eventoInicio)));
+
+            for (int indiceDia = 0; indiceDia < totalDias; indiceDia++) {
+                LocalDate fechaDelDia = fechaInicio.plusDays(indiceDia);
+                int numeroDia = indiceDia + 1;
+
+                String promptDelDia = construirPromptMenuDelDia(solicitud, numeroDia, platosYaGenerados);
+                String respuestaOllama = llamarOllama(promptDelDia);
+                MenuGeneradoDTO menuDelDia = parsearRespuestaMenu(respuestaOllama);
+
+                MenuDiaDTO menuDiaDTO = MenuDiaDTO.builder()
+                    .fecha(fechaDelDia.toString())
+                    .numeroDia(numeroDia)
+                    .comidas(menuDelDia.getComidas())
+                    .resumenNutricional(menuDelDia.getResumenNutricional())
+                    .build();
+
+                String menuDiaJson = objectMapper.writeValueAsString(menuDiaDTO);
+                emisorEventos.send(SseEmitter.event()
+                    .name("menu-dia")
+                    .data(menuDiaJson));
+
+                List<String> nombresDelDia = menuDelDia.getComidas().stream()
+                    .map(ComidaGeneradaDTO::getNombre)
+                    .collect(Collectors.toList());
+                platosYaGenerados.addAll(nombresDelDia);
+            }
+
+            Map<String, String> eventoFin = Map.of("tipo", "completado");
+            emisorEventos.send(SseEmitter.event()
+                .name("fin")
+                .data(objectMapper.writeValueAsString(eventoFin)));
+
+            emisorEventos.complete();
+
+        } catch (IOException excepcion) {
+            emisorEventos.completeWithError(excepcion);
+        } catch (Exception excepcion) {
+            try {
+                Map<String, String> eventoError = Map.of(
+                    "tipo", "error",
+                    "mensaje", excepcion.getMessage() != null ? excepcion.getMessage() : "Error desconocido"
+                );
+                emisorEventos.send(SseEmitter.event()
+                    .name("error")
+                    .data(objectMapper.writeValueAsString(eventoError)));
+            } catch (IOException ioExcepcion) {
+                emisorEventos.completeWithError(ioExcepcion);
+            }
+            emisorEventos.completeWithError(excepcion);
+        }
     }
 
     private String construirPromptMenuDelDia(GenerarMenuRequestDTO solicitud, int numeroDia, List<String> platosYaGenerados) {

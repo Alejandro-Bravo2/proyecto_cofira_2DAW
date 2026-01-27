@@ -1230,7 +1230,16 @@
 
 
   app-onboarding .step-register__field-error {
-    background-color: var(--rojo-normal-transparente-010);
+    background-color: var(--rojo-normal-transparente-020);
+    color: var(--rojo-light);
+  }
+
+  app-onboarding .step-register__field-error svg {
+    color: var(--rojo-light);
+  }
+
+  app-onboarding .step-register__field-error span {
+    color: var(--rojo-light);
   }
 
 

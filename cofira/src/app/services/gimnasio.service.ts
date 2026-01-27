@@ -5,9 +5,14 @@ import {ApiService} from './api.service';
 import {OnboardingService} from './onboarding.service';
 import {
   Ejercicio,
+  EjercicioProgreso,
   EjerciciosPorDia,
+  EstadisticasGimnasio,
   EstadoOllama,
+  FeedbackEjercicio,
   GenerarRutinaRequest,
+  GuardarProgresoRequest,
+  HistorialEntrenamiento,
   RutinaGenerada
 } from '../models/gimnasio.model';
 
@@ -19,6 +24,8 @@ export class GimnasioService {
   readonly isLoading = signal(false);
   readonly error = signal<string | null>(null);
   readonly estadoOllama = signal<EstadoOllama | null>(null);
+  readonly semanaActual = signal<number>(1);
+  readonly feedbackEnviado = signal<boolean>(false);
 
   readonly tieneRutina = computed(() => {
     const rutina = this.rutinaGenerada();
@@ -28,9 +35,11 @@ export class GimnasioService {
   private readonly api = inject(ApiService);
   private readonly onboardingService = inject(OnboardingService);
   private readonly STORAGE_KEY = 'cofira_rutina_gimnasio';
+  private readonly STORAGE_KEY_SEMANA = 'cofira_gimnasio_semana';
 
   constructor() {
     this.cargarRutinaGuardada();
+    this.cargarSemanaDeStorage();
   }
 
   generarRutina(): Observable<RutinaGenerada> {
@@ -125,6 +134,8 @@ export class GimnasioService {
     const nivelMapeado = this.mapearNivelFitness(datosOnboarding.fitnessLevel);
     const generoMapeado = this.mapearGenero(datosOnboarding.gender);
 
+    const imcCalculado = this.calcularIMC(datosOnboarding.currentWeightKg, datosOnboarding.heightCm);
+
     const solicitud: GenerarRutinaRequest = {
       objetivoPrincipal: objetivoMapeado,
       nivelFitness: nivelMapeado,
@@ -132,10 +143,29 @@ export class GimnasioService {
       equipamientoDisponible: datosOnboarding.equipment || [],
       genero: generoMapeado,
       edad: edadCalculada,
-      duracionSesionMinutos: datosOnboarding.sessionDurationMinutes || 60
+      duracionSesionMinutos: datosOnboarding.sessionDurationMinutes || 60,
+      pesoKg: datosOnboarding.currentWeightKg,
+      alturaCm: datosOnboarding.heightCm,
+      imc: imcCalculado,
+      ubicacionEntrenamiento: datosOnboarding.trainingLocation || 'GYM',
+      lesiones: datosOnboarding.injuries || [],
+      condicionesMedicas: datosOnboarding.medicalConditions || [],
+      semanaActual: this.semanaActual()
     };
 
     return solicitud;
+  }
+
+  private calcularIMC(pesoKg: number | null, alturaCm: number | null): number | undefined {
+    if (!pesoKg || !alturaCm) {
+      return undefined;
+    }
+
+    const alturaMetros = alturaCm / 100;
+    const imcCalculado = pesoKg / (alturaMetros * alturaMetros);
+    const imcRedondeado = Math.round(imcCalculado * 10) / 10;
+
+    return imcRedondeado;
   }
 
   private calcularEdad(fechaNacimiento: string | null): number {
@@ -284,6 +314,102 @@ export class GimnasioService {
     } catch (error) {
       console.error('Error cargando rutina desde localStorage:', error);
       localStorage.removeItem(this.STORAGE_KEY);
+    }
+  }
+
+  guardarFeedback(feedback: FeedbackEjercicio): Observable<FeedbackEjercicio> {
+    return this.api.post<FeedbackEjercicio>('/rutinas-ejercicio/feedback', feedback).pipe(
+      tap(() => {
+        this.feedbackEnviado.set(true);
+        this.semanaActual.update(semana => semana + 1);
+        this.guardarSemanaEnStorage();
+      }),
+      catchError(errorCapturado => {
+        console.error('Error al guardar feedback:', errorCapturado);
+        throw errorCapturado;
+      })
+    );
+  }
+
+  obtenerUltimoFeedback(): Observable<FeedbackEjercicio | null> {
+    return this.api.get<FeedbackEjercicio>('/rutinas-ejercicio/feedback/ultimo').pipe(
+      catchError(() => of(null))
+    );
+  }
+
+  obtenerSemanaActual(): Observable<number> {
+    return this.api.get<{semanaActual: number}>('/rutinas-ejercicio/semana-actual').pipe(
+      map(respuesta => respuesta.semanaActual),
+      tap(semana => {
+        this.semanaActual.set(semana);
+        this.guardarSemanaEnStorage();
+      }),
+      catchError(() => {
+        return of(this.semanaActual());
+      })
+    );
+  }
+
+  guardarProgreso(diaSemana: string): Observable<HistorialEntrenamiento[]> {
+    const ejerciciosDelDia = this.obtenerEjerciciosDelDia(diaSemana);
+
+    const ejerciciosProgreso: EjercicioProgreso[] = ejerciciosDelDia.map(ejercicio => {
+      const ejercicioProgresoMapeado: EjercicioProgreso = {
+        nombreEjercicio: ejercicio.nombre,
+        grupoMuscular: ejercicio.grupoMuscular,
+        seriesCompletadas: ejercicio.realizado === true ? ejercicio.series : 0,
+        seriesObjetivo: ejercicio.series,
+        repeticiones: ejercicio.repeticiones,
+        completado: ejercicio.realizado === true
+      };
+
+      return ejercicioProgresoMapeado;
+    });
+
+    const requestProgreso: GuardarProgresoRequest = {
+      diaSemana: diaSemana,
+      ejercicios: ejerciciosProgreso
+    };
+
+    return this.api.post<HistorialEntrenamiento[]>('/rutinas-ejercicio/progreso', requestProgreso).pipe(
+      catchError(errorCapturado => {
+        console.error('Error al guardar progreso:', errorCapturado);
+        throw errorCapturado;
+      })
+    );
+  }
+
+  obtenerEstadisticas(): Observable<EstadisticasGimnasio> {
+    return this.api.get<EstadisticasGimnasio>('/rutinas-ejercicio/progreso/estadisticas').pipe(
+      catchError(errorCapturado => {
+        console.error('Error al obtener estadisticas:', errorCapturado);
+        const estadisticasVacias: EstadisticasGimnasio = {
+          semanaActual: this.semanaActual(),
+          ejerciciosCompletadosEstaSemana: 0
+        };
+        return of(estadisticasVacias);
+      })
+    );
+  }
+
+  private guardarSemanaEnStorage(): void {
+    try {
+      localStorage.setItem(this.STORAGE_KEY_SEMANA, this.semanaActual().toString());
+    } catch (error) {
+      console.error('Error guardando semana en localStorage:', error);
+    }
+  }
+
+  cargarSemanaDeStorage(): void {
+    try {
+      const semanaGuardada = localStorage.getItem(this.STORAGE_KEY_SEMANA);
+
+      if (semanaGuardada) {
+        const semanaParsesada = parseInt(semanaGuardada, 10);
+        this.semanaActual.set(semanaParsesada);
+      }
+    } catch (error) {
+      console.error('Error cargando semana desde localStorage:', error);
     }
   }
 }

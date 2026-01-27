@@ -90,3 +90,25 @@ export interface DatosDelDia {
 }
 
 export type ComidasPorFecha = Record<string, DatosDelDia>;
+
+export interface EventoInicioStream {
+  tipo: 'inicio';
+  totalDias: string;
+  fechaInicio: string;
+  fechaFin: string;
+}
+
+export interface EventoFinStream {
+  tipo: 'completado';
+}
+
+export interface EventoErrorStream {
+  tipo: 'error';
+  mensaje: string;
+}
+
+export interface ProgresoGeneracion {
+  diasGenerados: number;
+  totalDias: number;
+  porcentaje: number;
+}

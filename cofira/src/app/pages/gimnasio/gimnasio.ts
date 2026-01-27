@@ -3,12 +3,7 @@ import {FormsModule} from '@angular/forms';
 
 import {Button} from '../../components/shared/button/button';
 import {GimnasioService} from '../../services/gimnasio.service';
-import {Ejercicio} from '../../models/gimnasio.model';
-
-interface Feedback {
-  ejerciciosDificiles: string;
-  masPeso: string;
-}
+import {Ejercicio, FeedbackEjercicio} from '../../models/gimnasio.model';
 
 @Component({
   selector: 'app-gimnasio',
@@ -26,15 +21,20 @@ export class Gimnasio implements OnInit {
 
   diaActualIndex = 0;
 
-  feedback: Feedback = {
+  feedback: FeedbackEjercicio = {
+    semanaNumero: 1,
     ejerciciosDificiles: '',
-    masPeso: '',
+    puedeMasPeso: false,
+    comentarios: '',
+    nivelFatiga: 3
   };
 
   readonly isLoading = this.gimnasioService.isLoading;
   readonly error = this.gimnasioService.error;
   readonly tieneRutina = this.gimnasioService.tieneRutina;
   readonly estadoOllama = this.gimnasioService.estadoOllama;
+  readonly semanaActual = this.gimnasioService.semanaActual;
+  readonly feedbackEnviado = this.gimnasioService.feedbackEnviado;
 
   readonly ejerciciosDelDia = computed(() => {
     const diaSeleccionado = this.diasSemana[this.diaActualIndex];
@@ -43,6 +43,13 @@ export class Gimnasio implements OnInit {
 
   ngOnInit(): void {
     this.establecerDiaActual();
+    this.gimnasioService.cargarSemanaDeStorage();
+
+    this.gimnasioService.obtenerSemanaActual().subscribe({
+      next: (semana) => {
+        this.feedback.semanaNumero = semana;
+      }
+    });
 
     if (!this.tieneRutina()) {
       this.verificarYGenerarRutina();
@@ -70,6 +77,17 @@ export class Gimnasio implements OnInit {
     const diaSeleccionado = this.diasSemana[this.diaActualIndex];
     const nuevoValor = ejercicio.realizado === realizado ? null : realizado;
     this.gimnasioService.marcarEjercicioRealizado(diaSeleccionado, ejercicio.id, nuevoValor);
+
+    if (nuevoValor === true) {
+      this.gimnasioService.guardarProgreso(diaSeleccionado).subscribe({
+        next: () => {
+          console.log('Progreso guardado correctamente');
+        },
+        error: (errorCapturado) => {
+          console.error('Error al guardar progreso:', errorCapturado);
+        }
+      });
+    }
   }
 
   generarNuevaRutina(): void {
@@ -84,8 +102,18 @@ export class Gimnasio implements OnInit {
   }
 
   enviarFeedback(): void {
-    console.log('Feedback enviado:', this.feedback);
-    this.resetFeedback();
+    this.feedback.semanaNumero = this.semanaActual();
+
+    this.gimnasioService.guardarFeedback(this.feedback).subscribe({
+      next: () => {
+        console.log('Feedback guardado correctamente');
+        this.resetFeedback();
+        this.generarNuevaRutina();
+      },
+      error: (errorCapturado) => {
+        console.error('Error al guardar feedback:', errorCapturado);
+      }
+    });
   }
 
   cancelarFeedback(): void {
@@ -111,8 +139,11 @@ export class Gimnasio implements OnInit {
 
   private resetFeedback(): void {
     this.feedback = {
+      semanaNumero: this.semanaActual(),
       ejerciciosDificiles: '',
-      masPeso: '',
+      puedeMasPeso: false,
+      comentarios: '',
+      nivelFatiga: 3
     };
   }
 }

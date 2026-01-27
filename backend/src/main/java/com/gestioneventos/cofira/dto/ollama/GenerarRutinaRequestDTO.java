@@ -20,4 +20,17 @@ public class GenerarRutinaRequestDTO {
     private String genero;
     private Integer edad;
     private Integer duracionSesionMinutos;
+
+    private Double pesoKg;
+    private Double alturaCm;
+    private Double imc;
+
+    private String ubicacionEntrenamiento;
+
+    private List<String> lesiones;
+    private List<String> condicionesMedicas;
+
+    private Integer semanaActual;
+    private Boolean feedbackPositivo;
+    private String ejerciciosDificiles;
 }

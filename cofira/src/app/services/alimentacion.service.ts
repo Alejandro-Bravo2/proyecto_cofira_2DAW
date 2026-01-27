@@ -1,17 +1,22 @@
-import {computed, inject, Injectable, signal} from '@angular/core';
+import {computed, inject, Injectable, NgZone, signal} from '@angular/core';
 import {catchError, Observable, of, tap} from 'rxjs';
 
 import {ApiService} from './api.service';
 import {OnboardingService} from './onboarding.service';
+import {environment} from '../../environments/environment';
 import {
   Alimento,
   Comida,
   ComidasPorFecha,
   DatosDelDia,
   EstadoOllamaAlimentacion,
+  EventoErrorStream,
+  EventoInicioStream,
   GenerarMenuRequest,
+  MenuDia,
   MenuGenerado,
   MenuSemanalGenerado,
+  ProgresoGeneracion,
   ResumenNutricional,
   TipoComida,
   TipoIconoAlimento
@@ -28,6 +33,7 @@ export class AlimentacionService {
   readonly fechaInicio = signal<string | null>(null);
   readonly fechaFin = signal<string | null>(null);
   readonly estaGenerando = signal(false);
+  readonly progresoGeneracion = signal<ProgresoGeneracion | null>(null);
 
   readonly tieneMenu = computed(() => {
     const fechaInicioActual = this.fechaInicio();
@@ -37,7 +43,9 @@ export class AlimentacionService {
 
   private readonly api = inject(ApiService);
   private readonly onboardingService = inject(OnboardingService);
+  private readonly ngZone = inject(NgZone);
   private readonly STORAGE_KEY = 'cofira_menu_alimentacion';
+  private eventoStreamActivo: EventSource | null = null;
 
   constructor() {
     this.cargarMenuGuardado();
@@ -99,6 +107,192 @@ export class AlimentacionService {
         throw errorCapturado;
       })
     );
+  }
+
+  generarMenuSemanalConStreaming(): void {
+    if (this.estaGenerando()) {
+      return;
+    }
+
+    this.isLoading.set(true);
+    this.estaGenerando.set(true);
+    this.error.set(null);
+    this.progresoGeneracion.set(null);
+    this.comidasPorFecha.set({});
+
+    const datosOnboarding = this.onboardingService.formData();
+    const solicitudMenu = this.construirSolicitudMenu(datosOnboarding);
+
+    const token = localStorage.getItem('cofira_token');
+    const urlEndpoint = `${environment.apiUrl}/rutinas-alimentacion/generar-menu-semanal-stream`;
+
+    if (this.eventoStreamActivo) {
+      this.eventoStreamActivo.close();
+    }
+
+    this.ngZone.runOutsideAngular(() => {
+      this.iniciarConexionSSE(urlEndpoint, solicitudMenu, token);
+    });
+  }
+
+  private iniciarConexionSSE(urlEndpoint: string, solicitudMenu: GenerarMenuRequest, token: string | null): void {
+    fetch(urlEndpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': token ? `Bearer ${token}` : ''
+      },
+      body: JSON.stringify(solicitudMenu)
+    }).then(respuesta => {
+      if (!respuesta.ok) {
+        throw new Error(`Error HTTP: ${respuesta.status}`);
+      }
+
+      const lectorStream = respuesta.body?.getReader();
+      if (!lectorStream) {
+        throw new Error('No se pudo obtener el lector del stream');
+      }
+
+      const decodificador = new TextDecoder();
+      let bufferDatos = '';
+
+      const procesarChunk = (resultado: ReadableStreamReadResult<Uint8Array>): Promise<void> | void => {
+        if (resultado.done) {
+          this.ngZone.run(() => {
+            this.finalizarGeneracion();
+          });
+          return;
+        }
+
+        bufferDatos += decodificador.decode(resultado.value, {stream: true});
+        const lineas = bufferDatos.split('\n');
+        bufferDatos = lineas.pop() || '';
+
+        for (const linea of lineas) {
+          this.procesarLineaSSE(linea);
+        }
+
+        return lectorStream.read().then(procesarChunk);
+      };
+
+      return lectorStream.read().then(procesarChunk);
+    }).catch(errorCapturado => {
+      this.ngZone.run(() => {
+        this.error.set(errorCapturado.message || 'Error al generar el menú');
+        this.isLoading.set(false);
+        this.estaGenerando.set(false);
+      });
+    });
+  }
+
+  private procesarLineaSSE(linea: string): void {
+    if (linea.startsWith('data:')) {
+      const datosJson = linea.substring(5).trim();
+      if (!datosJson) {
+        return;
+      }
+
+      try {
+        const datosParseados = JSON.parse(datosJson);
+        this.ngZone.run(() => {
+          this.procesarEventoSSE(datosParseados);
+        });
+      } catch (errorParseo) {
+        console.error('Error parseando evento SSE:', errorParseo);
+      }
+    }
+  }
+
+  private procesarEventoSSE(datos: unknown): void {
+    const datosConTipo = datos as { tipo?: string; fecha?: string; numeroDia?: number };
+
+    if (datosConTipo.tipo === 'inicio') {
+      const eventoInicio = datos as EventoInicioStream;
+      this.fechaInicio.set(eventoInicio.fechaInicio);
+      this.fechaFin.set(eventoInicio.fechaFin);
+      const totalDias = parseInt(eventoInicio.totalDias, 10);
+      this.progresoGeneracion.set({
+        diasGenerados: 0,
+        totalDias: totalDias,
+        porcentaje: 0
+      });
+      return;
+    }
+
+    if (datosConTipo.tipo === 'completado') {
+      this.finalizarGeneracion();
+      return;
+    }
+
+    if (datosConTipo.tipo === 'error') {
+      const eventoError = datos as EventoErrorStream;
+      this.error.set(eventoError.mensaje);
+      this.isLoading.set(false);
+      this.estaGenerando.set(false);
+      return;
+    }
+
+    if (datosConTipo.fecha && datosConTipo.numeroDia !== undefined) {
+      const menuDia = datos as MenuDia;
+      this.procesarMenuDiaRecibido(menuDia);
+    }
+  }
+
+  private procesarMenuDiaRecibido(menuDia: MenuDia): void {
+    const menuParaTransformar: MenuGenerado = {
+      comidas: menuDia.comidas,
+      resumenNutricional: menuDia.resumenNutricional
+    };
+    const comidasTransformadas = this.transformarMenuAComidas(menuParaTransformar);
+
+    this.comidasPorFecha.update(comidasActuales => ({
+      ...comidasActuales,
+      [menuDia.fecha]: {
+        comidas: comidasTransformadas,
+        resumenNutricional: menuDia.resumenNutricional
+      }
+    }));
+
+    const progresoActual = this.progresoGeneracion();
+    if (progresoActual) {
+      const diasGenerados = menuDia.numeroDia;
+      const porcentajeCalculado = Math.round((diasGenerados / progresoActual.totalDias) * 100);
+      this.progresoGeneracion.set({
+        diasGenerados: diasGenerados,
+        totalDias: progresoActual.totalDias,
+        porcentaje: porcentajeCalculado
+      });
+    }
+  }
+
+  private finalizarGeneracion(): void {
+    this.isLoading.set(false);
+    this.estaGenerando.set(false);
+    this.progresoGeneracion.set(null);
+    this.guardarMenuStreamEnStorage();
+  }
+
+  private guardarMenuStreamEnStorage(): void {
+    try {
+      const menuSemanalParaGuardar = {
+        fechaInicio: this.fechaInicio(),
+        fechaFin: this.fechaFin(),
+        comidasPorFecha: this.comidasPorFecha()
+      };
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(menuSemanalParaGuardar));
+    } catch (error) {
+      console.error('Error guardando menú en localStorage:', error);
+    }
+  }
+
+  cancelarGeneracion(): void {
+    if (this.eventoStreamActivo) {
+      this.eventoStreamActivo.close();
+      this.eventoStreamActivo = null;
+    }
+    this.isLoading.set(false);
+    this.estaGenerando.set(false);
+    this.progresoGeneracion.set(null);
   }
 
   private procesarMenuSemanal(menuSemanal: MenuSemanalGenerado): void {

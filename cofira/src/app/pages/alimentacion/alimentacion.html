@@ -2,10 +2,33 @@
 
   <h1 class="alimentacion__titulo">MENÚ DIARIO</h1>
 
-  @if (isLoading()) {
+  @if (estaGenerando()) {
     <section class="alimentacion__loading">
       <figure class="alimentacion__loading-spinner"></figure>
-      <p class="alimentacion__loading-texto">Generando tu menú personalizado...</p>
+      @if (progresoGeneracion()) {
+        <p class="alimentacion__loading-texto">
+          Generando día {{ progresoGeneracion()?.diasGenerados }} de {{ progresoGeneracion()?.totalDias }}
+        </p>
+        <aside class="alimentacion__progreso">
+          <figure class="alimentacion__progreso-barra">
+            <span
+              class="alimentacion__progreso-relleno"
+              [style.width.%]="progresoGeneracion()?.porcentaje">
+            </span>
+          </figure>
+          <span class="alimentacion__progreso-porcentaje">{{ progresoGeneracion()?.porcentaje }}%</span>
+        </aside>
+        <button (click)="cancelarGeneracion()" class="alimentacion__btn-cancelar">
+          Cancelar generación
+        </button>
+      } @else {
+        <p class="alimentacion__loading-texto">Iniciando generación del menú...</p>
+      }
+    </section>
+  } @else if (isLoading()) {
+    <section class="alimentacion__loading">
+      <figure class="alimentacion__loading-spinner"></figure>
+      <p class="alimentacion__loading-texto">Cargando...</p>
     </section>
   } @else if (error()) {
     <section class="alimentacion__error">

@@ -10,11 +10,15 @@ import com.gestioneventos.cofira.services.OllamaService;
 import com.gestioneventos.cofira.services.RutinaAlimentacionService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @RestController
 @RequestMapping("/api/rutinas-alimentacion")
@@ -22,6 +26,7 @@ public class RutinaAlimentacionController implements RutinaAlimentacionControlle
 
     private final RutinaAlimentacionService rutinaAlimentacionService;
     private final OllamaService ollamaService;
+    private final ExecutorService executorService = Executors.newCachedThreadPool();
 
     public RutinaAlimentacionController(RutinaAlimentacionService rutinaAlimentacionService, OllamaService ollamaService) {
         this.rutinaAlimentacionService = rutinaAlimentacionService;
@@ -62,6 +67,18 @@ public class RutinaAlimentacionController implements RutinaAlimentacionControlle
     public ResponseEntity<MenuSemanalGeneradoDTO> generarMenuSemanal(@RequestBody @Valid GenerarMenuRequestDTO solicitud) {
         MenuSemanalGeneradoDTO menuSemanal = ollamaService.generarMenuSemanal(solicitud);
         return ResponseEntity.ok(menuSemanal);
+    }
+
+    @PostMapping(value = "/generar-menu-semanal-stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public SseEmitter generarMenuSemanalStream(@RequestBody @Valid GenerarMenuRequestDTO solicitud) {
+        long tiempoTimeoutMilisegundos = 30L * 60L * 1000L;
+        SseEmitter emisorEventos = new SseEmitter(tiempoTimeoutMilisegundos);
+
+        executorService.execute(() -> {
+            ollamaService.generarMenuSemanalConStreaming(solicitud, emisorEventos);
+        });
+
+        return emisorEventos;
     }
 
     @GetMapping("/ollama/estado")

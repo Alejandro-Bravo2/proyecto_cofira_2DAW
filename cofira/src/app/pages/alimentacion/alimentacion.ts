@@ -28,6 +28,8 @@ export class Alimentacion implements OnInit {
   readonly tieneMenu = this.alimentacionService.tieneMenu;
   readonly estadoOllama = this.alimentacionService.estadoOllama;
   readonly menuGenerado = this.alimentacionService.menuGenerado;
+  readonly progresoGeneracion = this.alimentacionService.progresoGeneracion;
+  readonly estaGenerando = this.alimentacionService.estaGenerando;
 
   readonly comidasDelDia = computed(() => {
     return this.alimentacionService.obtenerComidasDelDia(this.fechaActualDate());
@@ -108,28 +110,18 @@ export class Alimentacion implements OnInit {
   }
 
   regenerarMenu(): void {
-    this.alimentacionService.generarMenuSemanal().subscribe({
-      next: () => {
-        console.log('Menu semanal regenerado correctamente');
-      },
-      error: (errorCapturado) => {
-        console.error('Error al regenerar menu:', errorCapturado);
-      }
-    });
+    this.alimentacionService.generarMenuSemanalConStreaming();
+  }
+
+  cancelarGeneracion(): void {
+    this.alimentacionService.cancelarGeneracion();
   }
 
   private generarMenuSemanalAutomatico(): void {
     this.alimentacionService.verificarConexionOllama().subscribe({
       next: (estado) => {
         if (estado.conectado) {
-          this.alimentacionService.generarMenuSemanal().subscribe({
-            next: () => {
-              console.log('Menu semanal generado automaticamente');
-            },
-            error: (errorCapturado) => {
-              console.error('Error al generar menu semanal:', errorCapturado);
-            }
-          });
+          this.alimentacionService.generarMenuSemanalConStreaming();
         }
       }
     });
