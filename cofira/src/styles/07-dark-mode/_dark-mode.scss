@@ -1570,6 +1570,10 @@
     color: var(--oscuro-texto-principal);
   }
 
+  // Texto cuando no hay menú generado
+  app-alimentacion .alimentacion__sin-menu-texto {
+    color: var(--oscuro-texto-secundario);
+  }
 
   app-alimentacion .alimentacion__comida-icono {
     color: var(--blanco-normal);

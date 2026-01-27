@@ -85,7 +85,7 @@ services:
       target: production
     container_name: cofira-frontend-prod
     ports:
-      - "80:80"
+      - "4202:80"
     depends_on:
       backend:
         condition: service_healthy

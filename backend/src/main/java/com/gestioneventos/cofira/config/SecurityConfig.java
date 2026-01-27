@@ -89,7 +89,9 @@ public class SecurityConfig {
             "http://localhost:4200",
             "http://localhost:4400",
             "http://localhost:4600",
-            "http://217.160.204.238"
+            "http://217.160.204.238",
+            "https://cofira.app",
+            "https://www.cofira.app"
         ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type", "X-Requested-With"));
