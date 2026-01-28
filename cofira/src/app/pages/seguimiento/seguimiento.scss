@@ -221,35 +221,56 @@
 
 .seguimiento__selector-ejercicio {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  padding-bottom: var(--spacing-size-xs);
+  scrollbar-width: thin;
 }
 
-.seguimiento__select {
-  min-width: 10rem;
-  padding: var(--spacing-size-s) var(--spacing-size-xl) var(--spacing-size-s) var(--spacing-size-m);
-  font-family: var(--font-primary);
-  font-size: 0.9375rem;
-  font-weight: var(--font-weight-regular);
-  color: var(--negro-normal);
+.seguimiento__lista-chips {
+  display: flex;
+  gap: var(--spacing-size-xs);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.seguimiento__chip-item {
+  flex-shrink: 0;
+}
+
+.seguimiento__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-size-xs) var(--spacing-size-s);
   background-color: var(--blanco-normal);
   border: 0.0625rem solid var(--blanco-dark);
-  border-radius: var(--radius-xss);
+  border-radius: var(--radius-m);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
   cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 1.25rem;
-  transition: border-color var(--duration-fast) ease;
+  transition: all var(--duration-fast) ease;
+  white-space: nowrap;
 }
 
-.seguimiento__select:focus {
-  outline: none;
+.seguimiento__chip:hover {
   border-color: var(--amarillo-normal);
+  background-color: var(--amarillo-normal-transparente-012);
 }
 
-.seguimiento__select:hover {
-  border-color: var(--gris-normal);
+.seguimiento__chip--activo {
+  background-color: var(--amarillo-normal);
+  border-color: var(--amarillo-dark);
+  color: var(--negro-normal);
+  font-weight: var(--font-weight-semibold);
+}
+
+.seguimiento__chip--activo:hover {
+  background-color: var(--amarillo-normal-hover);
 }
 
 

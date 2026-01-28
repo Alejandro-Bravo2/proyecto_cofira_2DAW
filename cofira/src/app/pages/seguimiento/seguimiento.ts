@@ -1,6 +1,5 @@
 import {Component, computed, effect, inject, OnInit, signal} from '@angular/core';
 import {DecimalPipe} from '@angular/common';
-import {FormsModule} from '@angular/forms';
 
 import {GimnasioService} from '../../services/gimnasio.service';
 import {OnboardingService} from '../../services/onboarding.service';
@@ -18,7 +17,7 @@ interface PuntoGrafico {
 @Component({
   selector: 'app-seguimiento',
   standalone: true,
-  imports: [FormsModule, DecimalPipe],
+  imports: [DecimalPipe],
   templateUrl: './seguimiento.html',
   styleUrl: './seguimiento.scss',
 })
@@ -185,11 +184,9 @@ export class Seguimiento implements OnInit {
     return -(porcentajeAcumulado / 100) * this.circunferencia;
   }
 
-  cambiarEjercicio(): void {
-    const nombreEjercicio = this.ejercicioSeleccionado();
-    if (nombreEjercicio) {
-      this.cargarProgresoEjercicio(nombreEjercicio);
-    }
+  seleccionarEjercicio(nombreEjercicio: string): void {
+    this.ejercicioSeleccionado.set(nombreEjercicio);
+    this.cargarProgresoEjercicio(nombreEjercicio);
   }
 
   private cargarObjetivosNutricionales(): void {
@@ -239,20 +236,13 @@ export class Seguimiento implements OnInit {
   }
 
   private recargarDatosGrafico(): void {
-    this.gimnasioService.obtenerEjerciciosUnicos().subscribe({
-      next: (ejercicios) => {
-        this.ejerciciosDisponibles.set(ejercicios);
+    const ejercicioActual = this.ejercicioSeleccionado();
 
-        const ejercicioActual = this.ejercicioSeleccionado();
-        if (ejercicioActual) {
-          this.recargarGraficoEjercicio(ejercicioActual);
-        }
-      }
-    });
-  }
+    if (!ejercicioActual) {
+      return;
+    }
 
-  private recargarGraficoEjercicio(nombreEjercicio: string): void {
-    this.gimnasioService.obtenerProgresoPorEjercicio(nombreEjercicio).subscribe({
+    this.gimnasioService.obtenerProgresoPorEjercicio(ejercicioActual).subscribe({
       next: (historial) => {
         this.historialEjercicio.set(historial);
       }

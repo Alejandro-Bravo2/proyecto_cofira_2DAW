@@ -2099,14 +2099,24 @@
   }
 
   app-seguimiento .seguimiento__selector-ejercicio {
-    background-color: var(--oscuro-superficie-fondo);
-    border-color: var(--oscuro-borde-color);
+    scrollbar-color: var(--oscuro-borde-color) var(--oscuro-pagina-fondo);
   }
 
-  app-seguimiento .seguimiento__select {
+  app-seguimiento .seguimiento__chip {
     background-color: var(--oscuro-superficie-fondo);
     color: var(--oscuro-texto-principal);
     border-color: var(--oscuro-borde-color);
+  }
+
+  app-seguimiento .seguimiento__chip:hover {
+    background-color: var(--amarillo-normal-transparente-015);
+    border-color: var(--amarillo-normal);
+  }
+
+  app-seguimiento .seguimiento__chip--activo {
+    background-color: var(--amarillo-normal);
+    border-color: var(--amarillo-dark);
+    color: var(--negro-normal);
   }
 
   app-seguimiento .seguimiento__grafico-lineas {

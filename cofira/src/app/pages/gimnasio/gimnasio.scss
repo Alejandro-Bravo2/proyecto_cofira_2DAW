@@ -177,6 +177,10 @@
 
 .gimnasio__tabla-section--escritorio {
   display: block;
+
+  @include responsive-down('sm') {
+    display: none;
+  }
 }
 
 .gimnasio__tabla {
@@ -252,8 +256,7 @@
 }
 
 .gimnasio__ejercicio-toggle {
-  @include boton-icono(1rem);
-  flex-shrink: 0;
+  display: none;
 }
 
 .gimnasio__ejercicio-toggle-svg {
@@ -347,6 +350,10 @@
 
 .gimnasio__acordeon--movil {
   display: none;
+
+  @include responsive-down('sm') {
+    display: flex;
+  }
 }
 
 
@@ -360,16 +367,6 @@
   .gimnasio__tabla-dato {
     padding: var(--spacing-size-xs) var(--spacing-size-s);
     font-size: 0.875rem;
-  }
-}
-
-@media (max-width: 40rem) {
-  .gimnasio__tabla-section--escritorio {
-    display: none;
-  }
-
-  .gimnasio__acordeon--movil {
-    display: flex;
   }
 }
 
