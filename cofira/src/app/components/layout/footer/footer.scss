@@ -70,8 +70,6 @@
   background: var(--gris-normal);
   border-radius: var(--radius-xss);
   transition: all var(--duration-base) ease;
-
-  @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
 }
 
 .pie__social:hover {
@@ -122,8 +120,6 @@
   text-decoration: none;
   color: var(--blanco-dark);
   transition: color var(--duration-fast) ease;
-
-  @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
 }
 
 .pie__nav-enlace:hover {
@@ -202,8 +198,6 @@
   text-decoration: none;
   color: var(--blanco-dark);
   transition: color var(--duration-fast) ease;
-
-  @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
 }
 
 .pie__legal-enlace:hover {
@@ -346,8 +340,6 @@
   color: var(--blanco-normal);
   cursor: pointer;
   transition: all var(--duration-base) ease;
-
-  @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
 }
 
 .pie__tema-btn:hover {
@@ -383,8 +375,6 @@
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: all var(--duration-base) ease;
-
-  @include focus-anillo(var(--amarillo-normal), 0.125rem, 0.125rem);
 }
 
 .pie__idioma-btn:hover {
