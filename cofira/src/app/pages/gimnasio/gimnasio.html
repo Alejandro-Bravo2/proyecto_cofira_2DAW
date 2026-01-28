@@ -63,114 +63,130 @@
         </tr>
       </thead>
       <tbody>
-        @for (ejercicio of ejerciciosDelDia(); track ejercicio.id) {
-        <tr class="gimnasio__tabla-fila">
-          <td class="gimnasio__ejercicio gimnasio__tabla-dato">
-            <button (click)="toggleEjercicio(ejercicio)" [attr.aria-expanded]="ejercicio.expandido" aria-label="Expandir ejercicio"
-              class="gimnasio__ejercicio-toggle">
-              <svg aria-hidden="true" class="gimnasio__ejercicio-toggle-svg" [class.gimnasio__ejercicio-toggle-svg--rotado]="ejercicio.expandido" viewBox="0 0 24 24">
-                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor" />
-              </svg>
-            </button>
-            {{ ejercicio.nombre }}
-          </td>
-          <td class="gimnasio__tabla-dato">{{ ejercicio.repeticiones }}</td>
-          <td class="gimnasio__tabla-dato">{{ ejercicio.descanso }}</td>
-          <td class="gimnasio__tabla-dato">{{ ejercicio.series }}</td>
-          <td class="gimnasio__tabla-dato">
-            <input
-              type="number"
-              [value]="ejercicio.pesoKg || ''"
-              (change)="actualizarPeso(ejercicio, $event)"
-              class="gimnasio__input-peso"
-              placeholder="0"
-              min="0"
-              max="500"
-              step="0.5"
-              aria-label="Peso en kilogramos">
-          </td>
-          <td class="gimnasio__acciones gimnasio__tabla-dato">
-            <button (click)="marcarRealizado(ejercicio, true)" [class.gimnasio__btn-accion--activo]="ejercicio.realizado === true"
-              aria-label="Marcar como realizado" class="gimnasio__btn-accion gimnasio__btn-accion--ok">
-              <svg aria-hidden="true" class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor" />
-              </svg>
-            </button>
-            <button (click)="marcarRealizado(ejercicio, false)" [class.gimnasio__btn-accion--activo]="ejercicio.realizado === false"
-              aria-label="Marcar como no realizado" class="gimnasio__btn-accion gimnasio__btn-accion--no">
-              <svg aria-hidden="true" class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
-                <path
-                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                  fill="currentColor" />
-              </svg>
-            </button>
-          </td>
-        </tr>
+        @if (ejerciciosDelDia().length > 0) {
+          @for (ejercicio of ejerciciosDelDia(); track ejercicio.id) {
+          <tr class="gimnasio__tabla-fila">
+            <td class="gimnasio__ejercicio gimnasio__tabla-dato">
+              <button (click)="toggleEjercicio(ejercicio)" [attr.aria-expanded]="ejercicio.expandido" aria-label="Expandir ejercicio"
+                class="gimnasio__ejercicio-toggle">
+                <svg aria-hidden="true" class="gimnasio__ejercicio-toggle-svg" [class.gimnasio__ejercicio-toggle-svg--rotado]="ejercicio.expandido" viewBox="0 0 24 24">
+                  <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor" />
+                </svg>
+              </button>
+              {{ ejercicio.nombre }}
+            </td>
+            <td class="gimnasio__tabla-dato">{{ ejercicio.repeticiones }}</td>
+            <td class="gimnasio__tabla-dato">{{ ejercicio.descanso }}</td>
+            <td class="gimnasio__tabla-dato">{{ ejercicio.series }}</td>
+            <td class="gimnasio__tabla-dato">
+              <input
+                type="number"
+                [value]="ejercicio.pesoKg || ''"
+                (change)="actualizarPeso(ejercicio, $event)"
+                class="gimnasio__input-peso"
+                placeholder="0"
+                min="0"
+                max="500"
+                step="0.5"
+                aria-label="Peso en kilogramos">
+            </td>
+            <td class="gimnasio__acciones gimnasio__tabla-dato">
+              <button (click)="marcarRealizado(ejercicio, true)" [class.gimnasio__btn-accion--activo]="ejercicio.realizado === true"
+                aria-label="Marcar como realizado" class="gimnasio__btn-accion gimnasio__btn-accion--ok">
+                <svg aria-hidden="true" class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor" />
+                </svg>
+              </button>
+              <button (click)="marcarRealizado(ejercicio, false)" [class.gimnasio__btn-accion--activo]="ejercicio.realizado === false"
+                aria-label="Marcar como no realizado" class="gimnasio__btn-accion gimnasio__btn-accion--no">
+                <svg aria-hidden="true" class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
+                  <path
+                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                    fill="currentColor" />
+                </svg>
+              </button>
+            </td>
+          </tr>
+          }
+        } @else {
+          <tr>
+            <td colspan="6" class="gimnasio__sin-ejercicios">
+              <p class="gimnasio__sin-ejercicios-titulo">Dia de descanso</p>
+              <span class="gimnasio__sin-ejercicios-subtitulo">No hay ejercicios programados para este dia</span>
+            </td>
+          </tr>
         }
       </tbody>
     </table>
   </section>
 
   <section class="gimnasio__acordeon gimnasio__acordeon--movil">
-    @for (ejercicio of ejerciciosDelDia(); track ejercicio.id) {
-    <article class="gimnasio__acordeon-item" [class.gimnasio__acordeon-item--expandido]="ejercicio.expandido">
-      <header class="gimnasio__acordeon-header" (click)="toggleEjercicio(ejercicio)">
-        <hgroup class="gimnasio__acordeon-info">
-          <button [attr.aria-expanded]="ejercicio.expandido" aria-label="Expandir ejercicio" class="gimnasio__acordeon-toggle">
-            <svg aria-hidden="true" class="gimnasio__acordeon-toggle-svg" [class.gimnasio__ejercicio-toggle-svg--rotado]="ejercicio.expandido" viewBox="0 0 24 24">
-              <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor" />
-            </svg>
-          </button>
-          <span class="gimnasio__acordeon-nombre">{{ ejercicio.nombre }}</span>
-        </hgroup>
-        <menu class="gimnasio__acordeon-acciones">
-          <li class="gimnasio__acordeon-acciones-item">
-            <button (click)="marcarRealizado(ejercicio, true); $event.stopPropagation()"
-              [class.gimnasio__btn-accion--activo]="ejercicio.realizado === true" aria-label="Marcar como realizado"
-              class="gimnasio__btn-accion gimnasio__btn-accion--ok gimnasio__btn-accion--acordeon">
-              <svg aria-hidden="true" class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
-                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor" />
+    @if (ejerciciosDelDia().length > 0) {
+      @for (ejercicio of ejerciciosDelDia(); track ejercicio.id) {
+      <article class="gimnasio__acordeon-item" [class.gimnasio__acordeon-item--expandido]="ejercicio.expandido">
+        <header class="gimnasio__acordeon-header" (click)="toggleEjercicio(ejercicio)">
+          <hgroup class="gimnasio__acordeon-info">
+            <button [attr.aria-expanded]="ejercicio.expandido" aria-label="Expandir ejercicio" class="gimnasio__acordeon-toggle">
+              <svg aria-hidden="true" class="gimnasio__acordeon-toggle-svg" [class.gimnasio__ejercicio-toggle-svg--rotado]="ejercicio.expandido" viewBox="0 0 24 24">
+                <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor" />
               </svg>
             </button>
-          </li>
-          <li class="gimnasio__acordeon-acciones-item">
-            <button (click)="marcarRealizado(ejercicio, false); $event.stopPropagation()"
-              [class.gimnasio__btn-accion--activo]="ejercicio.realizado === false" aria-label="Marcar como no realizado"
-              class="gimnasio__btn-accion gimnasio__btn-accion--no gimnasio__btn-accion--acordeon">
-              <svg aria-hidden="true" class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
-                <path
-                  d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-                  fill="currentColor" />
-              </svg>
-            </button>
-          </li>
-        </menu>
-      </header>
+            <span class="gimnasio__acordeon-nombre">{{ ejercicio.nombre }}</span>
+          </hgroup>
+          <menu class="gimnasio__acordeon-acciones">
+            <li class="gimnasio__acordeon-acciones-item">
+              <button (click)="marcarRealizado(ejercicio, true); $event.stopPropagation()"
+                [class.gimnasio__btn-accion--activo]="ejercicio.realizado === true" aria-label="Marcar como realizado"
+                class="gimnasio__btn-accion gimnasio__btn-accion--ok gimnasio__btn-accion--acordeon">
+                <svg aria-hidden="true" class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
+                  <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor" />
+                </svg>
+              </button>
+            </li>
+            <li class="gimnasio__acordeon-acciones-item">
+              <button (click)="marcarRealizado(ejercicio, false); $event.stopPropagation()"
+                [class.gimnasio__btn-accion--activo]="ejercicio.realizado === false" aria-label="Marcar como no realizado"
+                class="gimnasio__btn-accion gimnasio__btn-accion--no gimnasio__btn-accion--acordeon">
+                <svg aria-hidden="true" class="gimnasio__btn-accion-svg" viewBox="0 0 24 24">
+                  <path
+                    d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                    fill="currentColor" />
+                </svg>
+              </button>
+            </li>
+          </menu>
+        </header>
 
-      <section class="gimnasio__acordeon-contenido" [class.gimnasio__acordeon-contenido--expandido]="ejercicio.expandido">
-        <dl class="gimnasio__acordeon-detalles">
-          <dt class="gimnasio__acordeon-label">Repeticiones</dt>
-          <dd class="gimnasio__acordeon-valor">{{ ejercicio.repeticiones }}</dd>
-          <dt class="gimnasio__acordeon-label">Descanso</dt>
-          <dd class="gimnasio__acordeon-valor">{{ ejercicio.descanso }}</dd>
-          <dt class="gimnasio__acordeon-label">Series</dt>
-          <dd class="gimnasio__acordeon-valor">{{ ejercicio.series }}</dd>
-          <dt class="gimnasio__acordeon-label">Peso (kg)</dt>
-          <dd class="gimnasio__acordeon-valor">
-            <input
-              type="number"
-              [value]="ejercicio.pesoKg || ''"
-              (change)="actualizarPeso(ejercicio, $event)"
-              class="gimnasio__input-peso gimnasio__input-peso--acordeon"
-              placeholder="0"
-              min="0"
-              max="500"
-              step="0.5"
-              aria-label="Peso en kilogramos">
-          </dd>
-        </dl>
-      </section>
-    </article>
+        <section class="gimnasio__acordeon-contenido" [class.gimnasio__acordeon-contenido--expandido]="ejercicio.expandido">
+          <dl class="gimnasio__acordeon-detalles">
+            <dt class="gimnasio__acordeon-label">Repeticiones</dt>
+            <dd class="gimnasio__acordeon-valor">{{ ejercicio.repeticiones }}</dd>
+            <dt class="gimnasio__acordeon-label">Descanso</dt>
+            <dd class="gimnasio__acordeon-valor">{{ ejercicio.descanso }}</dd>
+            <dt class="gimnasio__acordeon-label">Series</dt>
+            <dd class="gimnasio__acordeon-valor">{{ ejercicio.series }}</dd>
+            <dt class="gimnasio__acordeon-label">Peso (kg)</dt>
+            <dd class="gimnasio__acordeon-valor">
+              <input
+                type="number"
+                [value]="ejercicio.pesoKg || ''"
+                (change)="actualizarPeso(ejercicio, $event)"
+                class="gimnasio__input-peso gimnasio__input-peso--acordeon"
+                placeholder="0"
+                min="0"
+                max="500"
+                step="0.5"
+                aria-label="Peso en kilogramos">
+            </dd>
+          </dl>
+        </section>
+      </article>
+      }
+    } @else {
+      <article class="gimnasio__sin-ejercicios gimnasio__sin-ejercicios--acordeon">
+        <p class="gimnasio__sin-ejercicios-titulo">Dia de descanso</p>
+        <span class="gimnasio__sin-ejercicios-subtitulo">No hay ejercicios programados para este dia</span>
+      </article>
     }
   </section>
 

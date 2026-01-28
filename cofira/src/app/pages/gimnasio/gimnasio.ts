@@ -38,7 +38,8 @@ export class Gimnasio implements OnInit {
 
   readonly ejerciciosDelDia = computed(() => {
     const diaSeleccionado = this.diasSemana[this.diaActualIndex()];
-    return this.gimnasioService.obtenerEjerciciosDelDia(diaSeleccionado);
+    const ejerciciosPorDia = this.gimnasioService.ejerciciosPorDia();
+    return ejerciciosPorDia[diaSeleccionado] ?? [];
   });
 
   ngOnInit(): void {

@@ -1913,17 +1913,18 @@
   }
 
   app-alimentacion .alimentacion__agua-btn {
-    background-color: var(--gris-dark);
-    color: var(--amarillo-normal);
+    background-color: var(--blanco-normal);
+    color: var(--negro-normal);
   }
 
   app-alimentacion .alimentacion__agua-btn:hover {
-    background-color: var(--negro-puro);
+    background-color: var(--gris-light);
   }
 
   app-alimentacion .alimentacion__agua-btn:disabled {
-    background-color: var(--gris-normal);
-    color: var(--gris-dark);
+    background-color: var(--gris-light);
+    color: var(--gris-normal);
+    opacity: 0.6;
   }
 
   app-alimentacion .alimentacion__agua-texto {
@@ -2229,6 +2230,55 @@
 
   app-ingredientes .ingredientes__calorias-item {
     color: var(--amarillo-normal);
+  }
+
+  app-modal-comida-alternativa .modal-alternativa__btn--cancelar {
+    color: var(--blanco-normal);
+    border-color: var(--blanco-normal);
+  }
+
+  app-modal-comida-alternativa .modal-alternativa__btn--cancelar:hover {
+    color: var(--blanco-dark);
+    border-color: var(--blanco-dark);
+  }
+
+  app-modal-comida-alternativa .modal-alternativa__label {
+    color: var(--blanco-normal);
+  }
+
+  app-modal-comida-alternativa .modal-alternativa__macro-unidad {
+    color: var(--blanco-normal);
+  }
+
+  app-modal-comida-alternativa .modal-alternativa__macro-label {
+    color: var(--blanco-normal);
+  }
+
+  app-modal-subir-imagen .modal-imagen__zona-subida {
+    color: var(--blanco-normal);
+    border-color: var(--blanco-normal);
+  }
+
+  app-modal-subir-imagen .modal-imagen__zona-subida:hover {
+    color: var(--blanco-normal);
+    border-color: var(--blanco-normal);
+    background-color: var(--gris-normal);
+  }
+
+  app-modal-subir-imagen .modal-imagen__zona-subida:hover svg {
+    color: var(--blanco-normal);
+  }
+
+  app-modal-subir-imagen .modal-imagen__texto-subida {
+    color: var(--blanco-normal);
+  }
+
+  app-modal-subir-imagen .modal-imagen__texto-formatos {
+    color: var(--blanco-normal);
+  }
+
+  app-modal-subir-imagen .modal-imagen__zona-subida:hover .modal-imagen__texto-formatos {
+    color: var(--gris-light);
   }
 
   ::-webkit-scrollbar {

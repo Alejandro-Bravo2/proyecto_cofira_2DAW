@@ -17,4 +17,5 @@ public class EjercicioGeneradoDTO {
     private Integer descansoSegundos;
     private String descripcion;
     private String grupoMuscular;
+    private Double pesoSugeridoKg;
 }

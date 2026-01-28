@@ -1,7 +1,7 @@
 import {Injectable, inject, signal} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
 import {Observable, tap, catchError, of, finalize} from "rxjs";
-import {environment} from "../../environments/environment";
+
+import {ApiService} from "./api.service";
 
 export interface ConsumoAguaDTO {
   id?: number;
@@ -18,8 +18,7 @@ export interface ActualizarAguaDTO {
   providedIn: "root"
 })
 export class AguaService {
-  private readonly httpClient = inject(HttpClient);
-  private readonly apiUrl = `${environment.apiUrl}/consumo-agua`;
+  private readonly apiService = inject(ApiService);
 
   readonly aguaConsumida = signal(0);
   readonly cargando = signal(false);
@@ -28,7 +27,7 @@ export class AguaService {
   obtenerConsumoHoy(): Observable<ConsumoAguaDTO> {
     this.cargando.set(true);
 
-    return this.httpClient.get<ConsumoAguaDTO>(`${this.apiUrl}/hoy`).pipe(
+    return this.apiService.get<ConsumoAguaDTO>("/consumo-agua/hoy").pipe(
       tap((consumo) => {
         this.aguaConsumida.set(consumo.litros);
         this.cargando.set(false);
@@ -42,7 +41,7 @@ export class AguaService {
   }
 
   obtenerConsumoPorFecha(fecha: string): Observable<ConsumoAguaDTO> {
-    return this.httpClient.get<ConsumoAguaDTO>(`${this.apiUrl}/${fecha}`);
+    return this.apiService.get<ConsumoAguaDTO>(`/consumo-agua/${fecha}`);
   }
 
   actualizarConsumo(litros: number): Observable<ConsumoAguaDTO> {
@@ -51,7 +50,7 @@ export class AguaService {
 
     this.actualizando.set(true);
 
-    return this.httpClient.put<ConsumoAguaDTO>(this.apiUrl, dto).pipe(
+    return this.apiService.put<ConsumoAguaDTO>("/consumo-agua", dto).pipe(
       tap((consumo) => {
         this.aguaConsumida.set(consumo.litros);
       }),
@@ -96,8 +95,9 @@ export class AguaService {
   }
 
   obtenerHistorial(fechaInicio: string, fechaFin: string): Observable<ConsumoAguaDTO[]> {
-    return this.httpClient.get<ConsumoAguaDTO[]>(
-      `${this.apiUrl}/historial?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`
+    return this.apiService.get<ConsumoAguaDTO[]>(
+      "/consumo-agua/historial",
+      { fechaInicio, fechaFin }
     );
   }
 

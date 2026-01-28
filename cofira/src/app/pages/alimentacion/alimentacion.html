@@ -136,8 +136,24 @@
         </article>
       } @else {
         @for (comida of comidasDelDia(); track comida.id) {
-          <article class="alimentacion__comida">
+          <article
+            class="alimentacion__comida"
+            [class.alimentacion__comida--consumida]="estaComidaConsumida(comida)">
             <header class="alimentacion__comida-header">
+              <label class="alimentacion__comida-checkbox-label">
+                <input
+                  type="checkbox"
+                  class="alimentacion__comida-checkbox"
+                  [checked]="estaComidaConsumida(comida)"
+                  (change)="toggleComidaConsumida(comida)">
+                <span class="alimentacion__comida-checkbox-custom">
+                  @if (estaComidaConsumida(comida)) {
+                    <svg aria-hidden="true" class="alimentacion__comida-checkbox-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+                    </svg>
+                  }
+                </span>
+              </label>
               <figure class="alimentacion__comida-icono">
                 @if (comida.tipo === 'desayuno') {
                   <svg aria-hidden="true" class="alimentacion__comida-icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -251,6 +267,29 @@
                 <p class="alimentacion__preparacion-texto">{{ comida.preparacion }}</p>
               </footer>
             }
+
+            @if (!estaComidaConsumida(comida)) {
+              <footer class="alimentacion__comida-acciones">
+                <button
+                  (click)="abrirModalAlternativa(comida)"
+                  class="alimentacion__btn-alternativa"
+                  type="button">
+                  <svg aria-hidden="true" class="alimentacion__btn-alternativa-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/>
+                  </svg>
+                  Registrar lo que comí
+                </button>
+                <button
+                  (click)="abrirModalImagen(comida)"
+                  class="alimentacion__btn-foto"
+                  type="button">
+                  <svg aria-hidden="true" class="alimentacion__btn-foto-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="currentColor"/>
+                  </svg>
+                  Subir foto
+                </button>
+              </footer>
+            }
           </article>
         }
 
@@ -278,5 +317,21 @@
     [abierto]="ingredientesAbierto"
     [alimento]="alimentoSeleccionado">
   </app-ingredientes>
+
+  <app-modal-comida-alternativa
+    (cerrar)="cerrarModalAlternativa()"
+    (guardado)="refrescarDatosConsumo()"
+    [abierto]="modalAlternativaAbierto"
+    [comida]="comidaParaRegistrar"
+    [fecha]="formatearFecha(fechaActualDate())">
+  </app-modal-comida-alternativa>
+
+  <app-modal-subir-imagen
+    (cerrar)="cerrarModalImagen()"
+    (guardado)="refrescarDatosConsumo()"
+    [abierto]="modalImagenAbierto"
+    [comida]="comidaParaRegistrar"
+    [fecha]="formatearFecha(fechaActualDate())">
+  </app-modal-subir-imagen>
 
 </main>

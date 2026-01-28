@@ -92,14 +92,19 @@
 
     <nav class="seguimiento__selector-ejercicio">
       @if (ejerciciosDisponibles().length > 0) {
-        <select
-          [ngModel]="ejercicioSeleccionado()"
-          (ngModelChange)="ejercicioSeleccionado.set($event); cambiarEjercicio()"
-          class="seguimiento__select">
+        <ul class="seguimiento__lista-chips">
           @for (ejercicio of ejerciciosDisponibles(); track ejercicio) {
-            <option [value]="ejercicio">{{ ejercicio }}</option>
+            <li class="seguimiento__chip-item">
+              <button
+                [class.seguimiento__chip--activo]="ejercicioSeleccionado() === ejercicio"
+                (click)="seleccionarEjercicio(ejercicio)"
+                class="seguimiento__chip"
+                type="button">
+                {{ ejercicio }}
+              </button>
+            </li>
           }
-        </select>
+        </ul>
       } @else {
         <p class="seguimiento__sin-datos">No hay ejercicios registrados</p>
       }

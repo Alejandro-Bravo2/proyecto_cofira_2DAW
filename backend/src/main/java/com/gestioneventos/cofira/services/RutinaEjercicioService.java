@@ -343,12 +343,27 @@ public class RutinaEjercicioService {
                 .map(this::convertirEjercicioEntidadAEjercicioGeneradoDTO)
                 .collect(Collectors.toList());
 
+        String diaSemanaFormateado = formatearDiaSemana(diaEntidad.getDiaSemana());
+
+        String grupoMuscular = "";
+        if (ejerciciosEntidad != null && !ejerciciosEntidad.isEmpty()) {
+            grupoMuscular = ejerciciosEntidad.get(0).getGrupoMuscular();
+        }
+
         DiaEjercicioGeneradoDTO diaDTO = DiaEjercicioGeneradoDTO.builder()
-                .diaSemana(diaEntidad.getDiaSemana().name())
+                .diaSemana(diaSemanaFormateado)
+                .grupoMuscular(grupoMuscular)
                 .ejercicios(ejerciciosDTO)
                 .build();
 
         return diaDTO;
+    }
+
+    private String formatearDiaSemana(DiaSemana diaSemana) {
+        String nombreEnum = diaSemana.name();
+        String primeraLetraMayuscula = nombreEnum.substring(0, 1);
+        String restoMinusculas = nombreEnum.substring(1).toLowerCase();
+        return primeraLetraMayuscula + restoMinusculas;
     }
 
     private EjercicioGeneradoDTO convertirEjercicioEntidadAEjercicioGeneradoDTO(Ejercicios ejercicioEntidad) {
@@ -362,6 +377,7 @@ public class RutinaEjercicioService {
                 .descansoSegundos(ejercicioEntidad.getTiempoDescansoSegundos())
                 .descripcion(ejercicioEntidad.getDescripcion())
                 .grupoMuscular(ejercicioEntidad.getGrupoMuscular())
+                .pesoSugeridoKg(ejercicioEntidad.getPesoSugeridoKg())
                 .build();
 
         return ejercicioDTO;

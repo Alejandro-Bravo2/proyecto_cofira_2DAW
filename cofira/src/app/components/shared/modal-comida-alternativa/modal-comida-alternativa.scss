@@ -1,0 +1,192 @@
+@import '../../../../styles/00-settings/css-variables';
+@import '../../../../styles/01-tools/mixins';
+
+.modal-alternativa {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-l);
+}
+
+.modal-alternativa__subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-dark);
+  margin: 0;
+  padding: var(--spacing-size-s);
+  background-color: var(--gris-light);
+  border-radius: var(--radius-xss);
+  border-left: 0.1875rem solid var(--amarillo-normal);
+
+  [data-theme="dark"] & {
+    background-color: var(--gris-dark);
+    color: var(--blanco-dark);
+  }
+}
+
+.modal-alternativa__formulario {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-l);
+}
+
+.modal-alternativa__campo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xs);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-alternativa__label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--negro-normal);
+
+  [data-theme="dark"] & {
+    color: var(--blanco-normal);
+  }
+}
+
+.modal-alternativa__input {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--negro-normal);
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--gris-normal);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-s) var(--spacing-size-m);
+  transition: border-color var(--duration-fast) ease;
+
+  [data-theme="dark"] & {
+    background-color: var(--gris-dark);
+    color: var(--blanco-normal);
+    border-color: var(--gris-normal);
+  }
+}
+
+.modal-alternativa__input:focus {
+  outline: none;
+  border-color: var(--amarillo-normal);
+}
+
+.modal-alternativa__grupo-macros {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-m);
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-alternativa__grupo-titulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--gris-dark);
+  padding: 0;
+
+  [data-theme="dark"] & {
+    color: var(--blanco-dark);
+  }
+}
+
+.modal-alternativa__macro {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-size-s);
+}
+
+.modal-alternativa__macro-label {
+  flex: 1;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--negro-normal);
+
+  [data-theme="dark"] & {
+    color: var(--blanco-normal);
+  }
+}
+
+.modal-alternativa__macro-input {
+  width: 5rem;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--negro-normal);
+  background-color: var(--blanco-normal);
+  border: 0.0625rem solid var(--gris-normal);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-xs) var(--spacing-size-s);
+  text-align: right;
+
+  [data-theme="dark"] & {
+    background-color: var(--gris-dark);
+    color: var(--blanco-normal);
+    border-color: var(--gris-normal);
+  }
+}
+
+.modal-alternativa__macro-input:focus {
+  outline: none;
+  border-color: var(--amarillo-normal);
+}
+
+.modal-alternativa__macro-unidad {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-dark);
+  min-width: 2rem;
+
+  [data-theme="dark"] & {
+    color: var(--blanco-dark);
+  }
+}
+
+.modal-alternativa__acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-size-m);
+  padding-top: var(--spacing-size-m);
+  border-top: 0.0625rem solid var(--gris-normal);
+}
+
+.modal-alternativa__btn {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-xss);
+  padding: var(--spacing-size-s) var(--spacing-size-l);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) ease,
+              border-color var(--duration-fast) ease;
+}
+
+.modal-alternativa__btn--cancelar {
+  color: var(--gris-dark);
+  background-color: transparent;
+  border: 0.0625rem solid var(--gris-normal);
+
+  [data-theme="dark"] & {
+    color: var(--blanco-dark);
+  }
+}
+
+.modal-alternativa__btn--cancelar:hover {
+  border-color: var(--gris-dark);
+}
+
+.modal-alternativa__btn--guardar {
+  color: var(--blanco-normal);
+  background-color: var(--amarillo-normal);
+  border: none;
+}
+
+.modal-alternativa__btn--guardar:hover {
+  background-color: var(--amarillo-dark);
+}
+
+.modal-alternativa__btn--guardar:disabled {
+  background-color: var(--gris-normal);
+  cursor: not-allowed;
+}

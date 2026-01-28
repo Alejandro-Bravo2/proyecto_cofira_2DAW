@@ -831,3 +831,46 @@
     object-position: center calc(50% + 2rem);
   }
 }
+
+
+
+.gimnasio__sin-ejercicios {
+  padding: var(--spacing-size-xxl) var(--spacing-size-xl);
+  text-align: center;
+
+  @include responsive-down('md') {
+    padding: var(--spacing-size-xl) var(--spacing-size-m);
+  }
+}
+
+.gimnasio__sin-ejercicios--acordeon {
+  @include caja-contenido;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 8rem;
+}
+
+.gimnasio__sin-ejercicios-titulo {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--negro-normal);
+  margin: 0 0 var(--spacing-size-xs) 0;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-lg);
+  }
+}
+
+.gimnasio__sin-ejercicios-subtitulo {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+  color: var(--negro-normal);
+  opacity: 0.6;
+
+  @include responsive-down('md') {
+    font-size: var(--font-size-sm);
+  }
+}

@@ -260,6 +260,7 @@ public class ScheduledTasks {
         ejercicio.setTiempoDescansoSegundos(ejercicioDTO.getDescansoSegundos());
         ejercicio.setDescripcion(ejercicioDTO.getDescripcion());
         ejercicio.setGrupoMuscular(ejercicioDTO.getGrupoMuscular());
+        ejercicio.setPesoSugeridoKg(ejercicioDTO.getPesoSugeridoKg());
 
         return ejercicio;
     }

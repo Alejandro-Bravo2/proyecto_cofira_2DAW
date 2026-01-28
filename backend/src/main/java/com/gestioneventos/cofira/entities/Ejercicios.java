@@ -38,6 +38,9 @@ public class Ejercicios {
     @Column
     private String grupoMuscular;
 
+    @Column
+    private Double pesoSugeridoKg;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

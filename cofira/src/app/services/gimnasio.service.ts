@@ -26,10 +26,20 @@ export class GimnasioService {
   readonly estadoIA = signal<EstadoIA | null>(null);
   readonly semanaActual = signal<number>(1);
   readonly feedbackEnviado = signal<boolean>(false);
+  readonly progresoActualizado = signal<number>(0);
 
   readonly tieneRutina = computed(() => {
     const rutina = this.rutinaGenerada();
-    return rutina !== null && rutina.diasEjercicio.length > 0;
+    if (rutina === null) {
+      return false;
+    }
+
+    const diasEjercicioExiste = rutina.diasEjercicio !== undefined && rutina.diasEjercicio !== null;
+    if (!diasEjercicioExiste) {
+      return false;
+    }
+
+    return rutina.diasEjercicio.length > 0;
   });
 
   private readonly api = inject(ApiService);
@@ -51,6 +61,13 @@ export class GimnasioService {
 
     return this.api.post<RutinaGenerada>("/rutinas-ejercicio/generar", solicitudRutina).pipe(
       tap(rutina => {
+        const rutinaEsValida = this.validarFormatoRutina(rutina);
+        if (!rutinaEsValida) {
+          this.isLoading.set(false);
+          this.error.set("La rutina generada no tiene el formato esperado");
+          return;
+        }
+
         this.rutinaGenerada.set(rutina);
         this.ejerciciosPorDia.set(this.transformarRutinaAEjerciciosPorDia(rutina));
         this.guardarRutinaEnStorage(rutina);
@@ -254,6 +271,11 @@ export class GimnasioService {
       "Domingo": []
     };
 
+    const diasEjercicioExiste = rutina.diasEjercicio !== undefined && rutina.diasEjercicio !== null;
+    if (!diasEjercicioExiste) {
+      return ejerciciosPorDiaTransformados;
+    }
+
     let contadorIdGlobal = 1;
 
     rutina.diasEjercicio.forEach(dia => {
@@ -269,7 +291,8 @@ export class GimnasioService {
           realizado: null,
           expandido: false,
           descripcion: ejercicioGenerado.descripcion,
-          grupoMuscular: ejercicioGenerado.grupoMuscular
+          grupoMuscular: ejercicioGenerado.grupoMuscular,
+          pesoKg: ejercicioGenerado.pesoSugeridoKg
         };
 
         return ejercicioTransformado;
@@ -326,6 +349,13 @@ export class GimnasioService {
 
       if (rutinaGuardada) {
         const rutinaParsesada: RutinaGenerada = JSON.parse(rutinaGuardada);
+
+        const rutinaEsValida = this.validarFormatoRutina(rutinaParsesada);
+        if (!rutinaEsValida) {
+          localStorage.removeItem(this.STORAGE_KEY);
+          return;
+        }
+
         this.rutinaGenerada.set(rutinaParsesada);
         this.ejerciciosPorDia.set(this.transformarRutinaAEjerciciosPorDia(rutinaParsesada));
       }
@@ -333,6 +363,21 @@ export class GimnasioService {
       console.error("Error cargando rutina desde localStorage:", error);
       localStorage.removeItem(this.STORAGE_KEY);
     }
+  }
+
+  private validarFormatoRutina(rutina: unknown): rutina is RutinaGenerada {
+    if (rutina === null || rutina === undefined) {
+      return false;
+    }
+
+    const rutinaComoObjeto = rutina as Record<string, unknown>;
+    const tieneDiasEjercicio = "diasEjercicio" in rutinaComoObjeto;
+    if (!tieneDiasEjercicio) {
+      return false;
+    }
+
+    const diasEjercicioEsArray = Array.isArray(rutinaComoObjeto["diasEjercicio"]);
+    return diasEjercicioEsArray;
   }
 
   guardarFeedback(feedback: FeedbackEjercicio): Observable<FeedbackEjercicio> {
@@ -391,6 +436,9 @@ export class GimnasioService {
     };
 
     return this.api.post<HistorialEntrenamiento[]>("/rutinas-ejercicio/progreso", requestProgreso).pipe(
+      tap(() => {
+        this.progresoActualizado.update(valor => valor + 1);
+      }),
       catchError(errorCapturado => {
         console.error("Error al guardar progreso:", errorCapturado);
         throw errorCapturado;
@@ -451,6 +499,14 @@ export class GimnasioService {
 
     return this.api.get<RutinaGenerada>("/rutinas-ejercicio/mi-rutina").pipe(
       tap(rutina => {
+        const rutinaEsValida = this.validarFormatoRutina(rutina);
+        if (!rutinaEsValida) {
+          this.rutinaGenerada.set(null);
+          this.ejerciciosPorDia.set({});
+          this.isLoading.set(false);
+          return;
+        }
+
         this.rutinaGenerada.set(rutina);
         this.ejerciciosPorDia.set(this.transformarRutinaAEjerciciosPorDia(rutina));
         this.guardarRutinaEnStorage(rutina);

@@ -1,11 +1,11 @@
-import {Component, computed, inject, OnInit, signal} from '@angular/core';
+import {Component, computed, effect, inject, OnInit, signal} from '@angular/core';
 import {DecimalPipe} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
-import {AlimentacionService} from '../../services/alimentacion.service';
 import {GimnasioService} from '../../services/gimnasio.service';
 import {OnboardingService} from '../../services/onboarding.service';
 import {AguaService} from '../../services/agua.service';
+import {ConsumoComidaService} from '../../services/consumo-comida.service';
 import {HistorialEntrenamiento} from '../../models/gimnasio.model';
 
 interface PuntoGrafico {
@@ -23,10 +23,10 @@ interface PuntoGrafico {
   styleUrl: './seguimiento.scss',
 })
 export class Seguimiento implements OnInit {
-  private readonly alimentacionService = inject(AlimentacionService);
   private readonly gimnasioService = inject(GimnasioService);
   private readonly onboardingService = inject(OnboardingService);
   private readonly aguaService = inject(AguaService);
+  private readonly consumoComidaService = inject(ConsumoComidaService);
 
   readonly caloriasDiarias = signal(2000);
   readonly proteinasObjetivo = signal(120);
@@ -42,14 +42,8 @@ export class Seguimiento implements OnInit {
   readonly historialEjercicio = signal<HistorialEntrenamiento[]>([]);
   readonly cargandoGrafico = signal(false);
 
-  readonly tieneMenuSemanal = this.alimentacionService.tieneMenu;
-
-  readonly consumoSemanal = computed(() => {
-    return this.alimentacionService.obtenerResumenSemanal();
-  });
-
   readonly macrosConsumo = computed(() => {
-    const consumo = this.consumoSemanal();
+    const resumen = this.consumoComidaService.resumenSemanal();
     const diasSemana = 7;
 
     const objetivosSemana = {
@@ -59,32 +53,42 @@ export class Seguimiento implements OnInit {
       grasas: this.grasasObjetivo() * diasSemana
     };
 
-    const totalGramosConsumidos = consumo.proteinasTotal + consumo.carbohidratosTotal + consumo.grasasTotal;
+    if (!resumen) {
+      return {
+        diasConDatos: 0,
+        calorias: { consumido: 0, objetivo: objetivosSemana.calorias, porcentaje: 0 },
+        proteinas: { consumido: 0, objetivo: objetivosSemana.proteinas, porcentaje: 0, porcentajeGrafica: 0 },
+        carbohidratos: { consumido: 0, objetivo: objetivosSemana.carbohidratos, porcentaje: 0, porcentajeGrafica: 0 },
+        grasas: { consumido: 0, objetivo: objetivosSemana.grasas, porcentaje: 0, porcentajeGrafica: 0 }
+      };
+    }
+
+    const totalGramosConsumidos = resumen.proteinasConsumidas + resumen.carbohidratosConsumidos + resumen.grasasConsumidas;
 
     return {
-      diasConDatos: consumo.diasConDatos,
+      diasConDatos: resumen.comidasRegistradas,
       calorias: {
-        consumido: consumo.caloriasTotal,
+        consumido: resumen.caloriasConsumidas,
         objetivo: objetivosSemana.calorias,
-        porcentaje: objetivosSemana.calorias > 0 ? Math.round((consumo.caloriasTotal / objetivosSemana.calorias) * 100) : 0
+        porcentaje: objetivosSemana.calorias > 0 ? Math.round((resumen.caloriasConsumidas / objetivosSemana.calorias) * 100) : 0
       },
       proteinas: {
-        consumido: consumo.proteinasTotal,
+        consumido: resumen.proteinasConsumidas,
         objetivo: objetivosSemana.proteinas,
-        porcentaje: objetivosSemana.proteinas > 0 ? Math.round((consumo.proteinasTotal / objetivosSemana.proteinas) * 100) : 0,
-        porcentajeGrafica: totalGramosConsumidos > 0 ? Math.round((consumo.proteinasTotal / totalGramosConsumidos) * 100) : 0
+        porcentaje: objetivosSemana.proteinas > 0 ? Math.round((resumen.proteinasConsumidas / objetivosSemana.proteinas) * 100) : 0,
+        porcentajeGrafica: totalGramosConsumidos > 0 ? Math.round((resumen.proteinasConsumidas / totalGramosConsumidos) * 100) : 0
       },
       carbohidratos: {
-        consumido: consumo.carbohidratosTotal,
+        consumido: resumen.carbohidratosConsumidos,
         objetivo: objetivosSemana.carbohidratos,
-        porcentaje: objetivosSemana.carbohidratos > 0 ? Math.round((consumo.carbohidratosTotal / objetivosSemana.carbohidratos) * 100) : 0,
-        porcentajeGrafica: totalGramosConsumidos > 0 ? Math.round((consumo.carbohidratosTotal / totalGramosConsumidos) * 100) : 0
+        porcentaje: objetivosSemana.carbohidratos > 0 ? Math.round((resumen.carbohidratosConsumidos / objetivosSemana.carbohidratos) * 100) : 0,
+        porcentajeGrafica: totalGramosConsumidos > 0 ? Math.round((resumen.carbohidratosConsumidos / totalGramosConsumidos) * 100) : 0
       },
       grasas: {
-        consumido: consumo.grasasTotal,
+        consumido: resumen.grasasConsumidas,
         objetivo: objetivosSemana.grasas,
-        porcentaje: objetivosSemana.grasas > 0 ? Math.round((consumo.grasasTotal / objetivosSemana.grasas) * 100) : 0,
-        porcentajeGrafica: totalGramosConsumidos > 0 ? Math.round((consumo.grasasTotal / totalGramosConsumidos) * 100) : 0
+        porcentaje: objetivosSemana.grasas > 0 ? Math.round((resumen.grasasConsumidas / objetivosSemana.grasas) * 100) : 0,
+        porcentajeGrafica: totalGramosConsumidos > 0 ? Math.round((resumen.grasasConsumidas / totalGramosConsumidos) * 100) : 0
       }
     };
   });
@@ -155,10 +159,21 @@ export class Seguimiento implements OnInit {
 
   private readonly circunferencia = 2 * Math.PI * 80;
 
+  constructor() {
+    effect(() => {
+      const actualizacion = this.gimnasioService.progresoActualizado();
+
+      if (actualizacion > 0) {
+        this.recargarDatosGrafico();
+      }
+    });
+  }
+
   ngOnInit(): void {
     this.cargarObjetivosNutricionales();
     this.cargarEjerciciosDisponibles();
     this.aguaService.obtenerConsumoHoy().subscribe();
+    this.consumoComidaService.obtenerResumenSemanal().subscribe();
   }
 
   calcularDashArray(porcentaje: number): string {
@@ -219,6 +234,27 @@ export class Seguimiento implements OnInit {
       error: () => {
         this.historialEjercicio.set([]);
         this.cargandoGrafico.set(false);
+      }
+    });
+  }
+
+  private recargarDatosGrafico(): void {
+    this.gimnasioService.obtenerEjerciciosUnicos().subscribe({
+      next: (ejercicios) => {
+        this.ejerciciosDisponibles.set(ejercicios);
+
+        const ejercicioActual = this.ejercicioSeleccionado();
+        if (ejercicioActual) {
+          this.recargarGraficoEjercicio(ejercicioActual);
+        }
+      }
+    });
+  }
+
+  private recargarGraficoEjercicio(nombreEjercicio: string): void {
+    this.gimnasioService.obtenerProgresoPorEjercicio(nombreEjercicio).subscribe({
+      next: (historial) => {
+        this.historialEjercicio.set(historial);
       }
     });
   }

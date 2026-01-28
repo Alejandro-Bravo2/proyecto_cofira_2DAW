@@ -24,6 +24,7 @@ export interface EjercicioGenerado {
   descansoSegundos: number;
   descripcion: string;
   grupoMuscular: string;
+  pesoSugeridoKg?: number;
 }
 
 export interface DiaEjercicioGenerado {

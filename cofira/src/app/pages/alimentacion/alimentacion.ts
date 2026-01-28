@@ -3,15 +3,19 @@ import {DecimalPipe} from '@angular/common';
 
 import {Calendario} from '../../components/shared/calendario/calendario';
 import {Ingredientes} from '../../components/shared/ingredientes/ingredientes';
+import {ModalComidaAlternativa} from '../../components/shared/modal-comida-alternativa/modal-comida-alternativa';
+import {ModalSubirImagen} from '../../components/shared/modal-subir-imagen/modal-subir-imagen';
 import {AlimentacionService} from '../../services/alimentacion.service';
 import {NotificacionService} from '../../services/notificacion.service';
 import {AguaService} from '../../services/agua.service';
-import {Alimento, Comida} from '../../models/alimentacion.model';
+import {ConsumoComidaService} from '../../services/consumo-comida.service';
+import {Alimento, Comida, TipoComida} from '../../models/alimentacion.model';
+import {MarcarComidaConsumidaRequest} from '../../models/consumo-comida.model';
 
 @Component({
   selector: 'app-alimentacion',
   standalone: true,
-  imports: [Calendario, Ingredientes, DecimalPipe],
+  imports: [Calendario, Ingredientes, ModalComidaAlternativa, ModalSubirImagen, DecimalPipe],
   templateUrl: './alimentacion.html',
   styleUrl: './alimentacion.scss',
 })
@@ -19,11 +23,20 @@ export class Alimentacion implements OnInit {
   private readonly alimentacionService = inject(AlimentacionService);
   private readonly notificacionService = inject(NotificacionService);
   private readonly aguaService = inject(AguaService);
+  private readonly consumoComidaService = inject(ConsumoComidaService);
 
   readonly fechaActualDate = signal(new Date());
   readonly aguaConsumida = this.aguaService.aguaConsumida;
   readonly aguaActualizando = this.aguaService.actualizando;
   readonly aguaObjetivo = signal(3);
+
+  readonly registrosPorTipo = this.consumoComidaService.registrosPorTipo;
+  readonly resumenReal = this.consumoComidaService.resumenReal;
+  readonly consumoLoading = this.consumoComidaService.isLoading;
+
+  modalAlternativaAbierto = false;
+  modalImagenAbierto = false;
+  comidaParaRegistrar: Comida | null = null;
 
   constructor() {
     effect(() => {
@@ -33,6 +46,13 @@ export class Alimentacion implements OnInit {
         this.alimentacionService.error.set(null);
       }
     }, { allowSignalWrites: true });
+
+    effect(() => {
+      const fecha = this.fechaActualDate();
+      const fechaString = this.formatearFecha(fecha);
+      this.consumoComidaService.obtenerRegistrosPorFecha(fechaString).subscribe();
+      this.consumoComidaService.obtenerResumenReal(fechaString).subscribe();
+    });
   }
   calendarioAbierto = false;
   ingredientesAbierto = false;
@@ -162,5 +182,78 @@ export class Alimentacion implements OnInit {
 
   quitarAgua(): void {
     this.aguaService.quitarAgua();
+  }
+
+  estaComidaConsumida(comida: Comida): boolean {
+    const tipoComidaUpperCase = comida.tipo.toUpperCase();
+    return this.consumoComidaService.estaComidaConsumida(tipoComidaUpperCase);
+  }
+
+  toggleComidaConsumida(comida: Comida): void {
+    const tipoComidaUpperCase = comida.tipo.toUpperCase();
+    const fechaString = this.formatearFecha(this.fechaActualDate());
+    const estaConsumida = this.estaComidaConsumida(comida);
+
+    if (estaConsumida) {
+      this.consumoComidaService.desmarcarComida(fechaString, tipoComidaUpperCase).subscribe({
+        next: () => {
+          this.notificacionService.exito("Comida desmarcada");
+          this.consumoComidaService.obtenerResumenReal(fechaString).subscribe();
+        },
+        error: () => this.notificacionService.error("Error al desmarcar la comida")
+      });
+    } else {
+      const solicitud: MarcarComidaConsumidaRequest = {
+        fecha: fechaString,
+        tipoComida: tipoComidaUpperCase,
+        comidaMenuId: comida.id,
+        consumioMenu: true,
+        caloriasReales: comida.caloriasEstimadas,
+        proteinasReales: comida.proteinasGramos,
+        carbohidratosReales: comida.carbohidratosGramos,
+        grasasReales: comida.grasasGramos
+      };
+
+      this.consumoComidaService.marcarComidaConsumida(solicitud).subscribe({
+        next: () => {
+          this.notificacionService.exito("Comida marcada como consumida");
+          this.consumoComidaService.obtenerResumenReal(fechaString).subscribe();
+        },
+        error: () => this.notificacionService.error("Error al marcar la comida")
+      });
+    }
+  }
+
+  abrirModalAlternativa(comida: Comida): void {
+    this.comidaParaRegistrar = comida;
+    this.modalAlternativaAbierto = true;
+  }
+
+  cerrarModalAlternativa(): void {
+    this.modalAlternativaAbierto = false;
+    this.comidaParaRegistrar = null;
+  }
+
+  abrirModalImagen(comida: Comida): void {
+    this.comidaParaRegistrar = comida;
+    this.modalImagenAbierto = true;
+  }
+
+  cerrarModalImagen(): void {
+    this.modalImagenAbierto = false;
+    this.comidaParaRegistrar = null;
+  }
+
+  refrescarDatosConsumo(): void {
+    const fechaString = this.formatearFecha(this.fechaActualDate());
+    this.consumoComidaService.obtenerRegistrosPorFecha(fechaString).subscribe();
+    this.consumoComidaService.obtenerResumenReal(fechaString).subscribe();
+  }
+
+  formatearFecha(fecha: Date): string {
+    const ano = fecha.getFullYear();
+    const mes = String(fecha.getMonth() + 1).padStart(2, "0");
+    const dia = String(fecha.getDate()).padStart(2, "0");
+    return `${ano}-${mes}-${dia}`;
   }
 }

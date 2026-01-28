@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.gestioneventos.cofira.dto.consumo.AnalisisImagenDTO;
 import com.gestioneventos.cofira.dto.ollama.AlimentoGeneradoDTO;
 import com.gestioneventos.cofira.dto.ollama.ComidaGeneradaDTO;
 import com.gestioneventos.cofira.dto.ollama.GenerarMenuRequestDTO;
@@ -130,6 +131,11 @@ public class GeminiService {
             3. Si es ubicacion CASA, usa ejercicios sin maquinas pesadas
             4. Si es ubicacion GYM, puedes incluir maquinas y pesos libres
             5. Aumenta progresivamente la dificultad cada semana
+            6. IMPORTANTE: Incluye pesoSugeridoKg para CADA ejercicio basandote en:
+               - Nivel de fitness del usuario
+               - Genero (hombres suelen levantar mas que mujeres)
+               - Tipo de ejercicio (compuestos vs aislamiento)
+               - Si es CASA o sin equipamiento, pon 0 para ejercicios de peso corporal
 
             Responde UNICAMENTE con un JSON valido con esta estructura exacta, sin texto adicional:
             {
@@ -144,7 +150,8 @@ public class GeminiService {
                       "repeticiones": "8-10",
                       "descansoSegundos": 90,
                       "descripcion": "Acostado en banco, bajar barra al pecho y empujar",
-                      "grupoMuscular": "Pecho"
+                      "grupoMuscular": "Pecho",
+                      "pesoSugeridoKg": 40.0
                     }
                   ]
                 }
@@ -372,10 +379,18 @@ public class GeminiService {
             - Genero: %s
             - Edad: %d anos
 
-            IMPORTANTE:
+            IMPORTANTE - ALERGIAS:
             - NO incluyas ningun alimento que contenga los alergenos indicados
             - Distribuye las calorias y macros de forma equilibrada entre las comidas
-            - Incluye ingredientes con sus cantidades aproximadas en gramos
+
+            IMPORTANTE - COHERENCIA DE INGREDIENTES:
+            - Cada comida tiene un array de "alimentos" que son los INGREDIENTES del plato
+            - Los ingredientes DEBEN corresponder logicamente con el nombre del plato
+            - Ejemplo correcto: "Pizza casera" tiene ingredientes: harina, tomate, queso, etc.
+            - Ejemplo incorrecto: "Proteina en polvo" NO debe tener harina, queso, etc. Solo: proteina en polvo
+            - Si el plato es un ingrediente simple (batido de proteina, fruta, yogur), solo lista ESE ingrediente
+            - Los gramos de cada ingrediente deben sumar aproximadamente el peso total de la porcion del plato
+            - Las calorias de los ingredientes deben ser coherentes con caloriasEstimadas del plato
 
             Responde UNICAMENTE con un JSON valido con esta estructura exacta, sin texto adicional:
             {
@@ -616,7 +631,15 @@ public class GeminiService {
             IMPORTANTE - ALERGIAS:
             - NO incluyas ningun alimento que contenga los alergenos indicados
             - Distribuye las calorias y macros de forma equilibrada entre las comidas
-            - Incluye ingredientes con sus cantidades aproximadas en gramos
+
+            IMPORTANTE - COHERENCIA DE INGREDIENTES:
+            - Cada comida tiene un array de "alimentos" que son los INGREDIENTES del plato
+            - Los ingredientes DEBEN corresponder logicamente con el nombre del plato
+            - Ejemplo correcto: "Pizza casera" tiene ingredientes: harina, tomate, queso, etc.
+            - Ejemplo incorrecto: "Proteina en polvo" NO debe tener harina, queso, etc. Solo: proteina en polvo
+            - Si el plato es un ingrediente simple (batido de proteina, fruta, yogur), solo lista ESE ingrediente
+            - Los gramos de cada ingrediente deben sumar aproximadamente el peso total de la porcion del plato
+            - Las calorias de los ingredientes deben ser coherentes con caloriasEstimadas del plato
 
             Responde UNICAMENTE con un JSON valido con esta estructura exacta, sin texto adicional:
             {
@@ -666,5 +689,133 @@ public class GeminiService {
         );
 
         return promptCompleto;
+    }
+
+    public AnalisisImagenDTO analizarImagenComida(String imagenBase64) {
+        logger.info("Analizando imagen de comida con modelo de vision");
+
+        String promptAnalisis = """
+            Analiza esta imagen de comida y proporciona una estimacion nutricional.
+
+            IMPORTANTE:
+            - Identifica el plato o comida que aparece en la imagen
+            - Estima las calorias basandote en una porcion normal
+            - Estima los macronutrientes (proteinas, carbohidratos, grasas) en gramos
+            - Lista los ingredientes principales que puedas identificar
+            - Indica tu nivel de confianza: "alta" si la imagen es clara y la comida es reconocible,
+              "media" si hay algo de incertidumbre, "baja" si la imagen es borrosa o dificil de identificar
+
+            Responde UNICAMENTE con un JSON valido con esta estructura exacta:
+            {
+              "nombreComida": "Nombre descriptivo del plato",
+              "caloriasEstimadas": 450,
+              "proteinasGramos": 25,
+              "carbohidratosGramos": 40,
+              "grasasGramos": 20,
+              "ingredientesDetectados": ["ingrediente1", "ingrediente2"],
+              "confianza": "alta"
+            }
+            """;
+
+        String respuestaOpenRouter = llamarOpenRouterConVision(promptAnalisis, imagenBase64);
+        AnalisisImagenDTO analisisParseado = parsearRespuestaAnalisis(respuestaOpenRouter);
+
+        logger.info("Imagen analizada: {} con confianza {}",
+            analisisParseado.getNombreComida(),
+            analisisParseado.getConfianza());
+
+        return analisisParseado;
+    }
+
+    private String llamarOpenRouterConVision(String prompt, String imagenBase64) {
+        logger.info("Llamando a OpenRouter con modelo de vision: openai/gpt-4o");
+
+        String formatoImagen = detectarFormatoImagen(imagenBase64);
+        String dataUri = "data:image/" + formatoImagen + ";base64," + imagenBase64;
+
+        List<Map<String, Object>> contenidoMensaje = List.of(
+            Map.of("type", "text", "text", prompt),
+            Map.of("type", "image_url", "image_url", Map.of("url", dataUri))
+        );
+
+        Map<String, Object> mensaje = Map.of(
+            "role", "user",
+            "content", contenidoMensaje
+        );
+
+        Map<String, Object> cuerpoSolicitud = Map.of(
+            "model", "openai/gpt-4o",
+            "messages", List.of(mensaje),
+            "temperature", 0.3,
+            "max_tokens", 1000
+        );
+
+        try {
+            HttpHeaders cabeceras = new HttpHeaders();
+            cabeceras.setContentType(MediaType.APPLICATION_JSON);
+            cabeceras.setBearerAuth(openRouterApiKey);
+            cabeceras.set("HTTP-Referer", "https://cofira.app");
+            cabeceras.set("X-Title", "Cofira - Analisis de Comida");
+
+            String cuerpoJson = objectMapper.writeValueAsString(cuerpoSolicitud);
+            HttpEntity<String> solicitudHttp = new HttpEntity<>(cuerpoJson, cabeceras);
+
+            logger.debug("Enviando imagen a OpenRouter para analisis...");
+            String respuestaCompleta = restTemplate.postForObject(OPENROUTER_URL, solicitudHttp, String.class);
+
+            JsonNode nodoRespuesta = objectMapper.readTree(respuestaCompleta);
+
+            JsonNode errorNode = nodoRespuesta.get("error");
+            if (errorNode != null) {
+                String mensajeError = errorNode.has("message") ? errorNode.get("message").asText() : "Error desconocido";
+                logger.error("OpenRouter devolvio error en analisis de imagen: {}", mensajeError);
+                throw new RuntimeException("Error de OpenRouter: " + mensajeError);
+            }
+
+            JsonNode choices = nodoRespuesta.get("choices");
+            if (choices == null || choices.isEmpty()) {
+                throw new RuntimeException("OpenRouter no devolvio choices en la respuesta");
+            }
+
+            String textoRespuesta = choices.get(0).get("message").get("content").asText();
+            logger.info("Respuesta de analisis de imagen recibida");
+
+            return textoRespuesta;
+
+        } catch (Exception excepcion) {
+            logger.error("Error al analizar imagen con OpenRouter: {}", excepcion.getMessage());
+            throw new RuntimeException("Error al analizar imagen: " + excepcion.getMessage(), excepcion);
+        }
+    }
+
+    private String detectarFormatoImagen(String base64) {
+        if (base64.startsWith("/9j/")) {
+            return "jpeg";
+        } else if (base64.startsWith("iVBOR")) {
+            return "png";
+        } else if (base64.startsWith("UklGR")) {
+            return "webp";
+        }
+        return "jpeg";
+    }
+
+    private AnalisisImagenDTO parsearRespuestaAnalisis(String respuestaJson) {
+        try {
+            String jsonLimpio = limpiarRespuestaJson(respuestaJson);
+            AnalisisImagenDTO analisisParseado = objectMapper.readValue(jsonLimpio, AnalisisImagenDTO.class);
+            return analisisParseado;
+
+        } catch (JsonProcessingException excepcion) {
+            logger.error("Error al parsear respuesta de analisis: {}", excepcion.getMessage());
+            return AnalisisImagenDTO.builder()
+                .nombreComida("Comida no identificada")
+                .caloriasEstimadas(300)
+                .proteinasGramos(15)
+                .carbohidratosGramos(30)
+                .grasasGramos(15)
+                .ingredientesDetectados(List.of("No identificados"))
+                .confianza("baja")
+                .build();
+        }
     }
 }
