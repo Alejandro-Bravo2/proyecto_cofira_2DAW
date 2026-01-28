@@ -749,13 +749,25 @@
   }
 
   .blog__categoria-btn {
-    color: var(--oscuro-info-texto);
-    border-color: var(--oscuro-info-borde);
+    background-color: var(--oscuro-superficie-fondo);
+    color: var(--oscuro-texto-principal);
+    border-color: var(--oscuro-borde-color);
   }
 
   .blog__categoria-btn:hover {
-    color: var(--oscuro-info-titulo);
-    border-color: var(--oscuro-info-titulo);
+    background-color: var(--amarillo-normal-transparente-015);
+    color: var(--oscuro-texto-principal);
+    border-color: var(--amarillo-normal);
+  }
+
+  .blog__categoria-btn--activo {
+    background-color: var(--amarillo-normal);
+    border-color: var(--amarillo-dark);
+    color: var(--negro-normal);
+  }
+
+  .blog__subtitulo {
+    color: var(--blanco-dark);
   }
 
   .blog__articulo {
@@ -811,6 +823,10 @@
 
   .contacto__seccion-titulo {
     color: var(--oscuro-info-titulo);
+  }
+
+  .contacto__subtitulo {
+    color: var(--blanco-dark);
   }
 
   .contacto__formulario-wrapper {
@@ -1701,6 +1717,26 @@
     border-color: var(--amarillo-normal);
   }
 
+  app-gimnasio .gimnasio__sin-ejercicios-titulo {
+    color: var(--blanco-normal);
+  }
+
+  app-gimnasio .gimnasio__sin-ejercicios-subtitulo {
+    color: var(--blanco-dark);
+  }
+
+  app-gimnasio .gimnasio__sin-ejercicios--acordeon {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+  app-gimnasio .gimnasio__sin-ejercicios--acordeon .gimnasio__sin-ejercicios-titulo {
+    color: var(--blanco-normal);
+  }
+
+  app-gimnasio .gimnasio__sin-ejercicios--acordeon .gimnasio__sin-ejercicios-subtitulo {
+    color: var(--blanco-dark);
+  }
+
   app-alimentacion .alimentacion {
     background-color: var(--oscuro-alimentacion-fondo);
   }
@@ -2312,6 +2348,14 @@
   * {
     scrollbar-width: thin;
     scrollbar-color: var(--oscuro-borde-color) var(--oscuro-pagina-fondo);
+  }
+
+  .configuracion__toggle {
+    background-color: var(--gris-normal);
+  }
+
+  .configuracion__toggle--activo {
+    background-color: var(--amarillo-normal);
   }
 }
 

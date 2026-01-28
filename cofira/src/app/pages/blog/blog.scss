@@ -58,7 +58,6 @@
   border-bottom: 1px solid var(--blanco-dark);
   position: sticky;
   top: 0;
-  z-index: 10;
 }
 
 .blog__categorias {
@@ -175,8 +174,8 @@
   font-weight: var(--font-weight-semibold);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  padding: var(--spacing-size-xxs) var(--spacing-size-s);
-  border-radius: var(--radius-xss);
+  padding: 0.25rem var(--spacing-size-s);
+  border-radius: var(--radius-sm);
 }
 
 .blog__articulo-categoria--ejercicio {

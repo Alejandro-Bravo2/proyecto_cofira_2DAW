@@ -184,12 +184,12 @@
   --radius-lg: 0.75rem;
 
   /* Categorías del Blog - Modo Claro */
-  --blog-categoria-ejercicio-fondo: hsl(205.38, 86.67%, 94.12%);
-  --blog-categoria-ejercicio-texto: hsl(211.93, 80.28%, 41.76%);
-  --blog-categoria-nutricion-fondo: hsl(124.62, 39.39%, 93.53%);
-  --blog-categoria-nutricion-texto: hsl(123.04, 46.2%, 33.53%);
-  --blog-categoria-bienestar-fondo: hsl(340, 80%, 94.12%);
-  --blog-categoria-bienestar-texto: hsl(336.35, 77.98%, 42.75%);
+  --blog-categoria-ejercicio-fondo: var(--amarillo-normal);
+  --blog-categoria-ejercicio-texto: var(--negro-normal);
+  --blog-categoria-nutricion-fondo: var(--amarillo-normal);
+  --blog-categoria-nutricion-texto: var(--negro-normal);
+  --blog-categoria-bienestar-fondo: var(--amarillo-normal);
+  --blog-categoria-bienestar-texto: var(--negro-normal);
 
   /* Transparencias comunes - Negro */
   --negro-puro-transparente-005: hsla(0, 0%, 0%, 0.05);
@@ -303,10 +303,10 @@
   --rojo-normal-transparente-040: hsla(0, 84.24%, 60.2%, 0.4);
 
 
-  --blog-categoria-ejercicio-fondo: hsla(211.93, 80.28%, 41.76%, 0.25);
-  --blog-categoria-ejercicio-texto: hsl(206.71, 89.02%, 67.84%);
-  --blog-categoria-nutricion-fondo: hsla(123.04, 46.2%, 33.53%, 0.25);
-  --blog-categoria-nutricion-texto: hsl(122.57, 38.46%, 64.31%);
-  --blog-categoria-bienestar-fondo: hsla(336.35, 77.98%, 42.75%, 0.25);
-  --blog-categoria-bienestar-texto: hsl(339.8, 82.11%, 75.88%);
+  --blog-categoria-ejercicio-fondo: var(--amarillo-normal);
+  --blog-categoria-ejercicio-texto: var(--negro-normal);
+  --blog-categoria-nutricion-fondo: var(--amarillo-normal);
+  --blog-categoria-nutricion-texto: var(--negro-normal);
+  --blog-categoria-bienestar-fondo: var(--amarillo-normal);
+  --blog-categoria-bienestar-texto: var(--negro-normal);
 }

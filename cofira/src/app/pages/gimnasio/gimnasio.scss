@@ -707,6 +707,7 @@
   width: 45%;
   padding: var(--spacing-size-xxl);
   background-color: var(--gris-normal);
+  overflow: hidden;
   clip-path: polygon(
     0 0,
     100% 0,
@@ -730,7 +731,15 @@
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 
     #gimnasio__progreso-boton ::ng-deep .boton {
-      max-width: 100%;
+      min-width: 0;
+      max-width: 85%;
+    }
+  }
+
+  @media (max-width: 43.75rem) {
+    #gimnasio__progreso-boton ::ng-deep .boton {
+      min-width: 0;
+      max-width: 80%;
     }
   }
 
@@ -740,11 +749,11 @@
     clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
 
     #gimnasio__progreso-boton ::ng-deep .boton {
-      padding: var(--spacing-size-xss);
+      padding: var(--spacing-size-xss) var(--spacing-size-s);
       font-size: var(--font-size-md);
-      min-width: 12rem;
-      height: 2rem;
-      max-width: 100%;
+      min-width: 0;
+      max-width: 75%;
+      height: 2.25rem;
     }
   }
 }
@@ -775,7 +784,7 @@
 
   @include responsive-down('md') {
     font-size: var(--font-size-md);
-    max-width: 100%;
+    max-width: 90%;
   }
 
   @include responsive-down('xs') {
