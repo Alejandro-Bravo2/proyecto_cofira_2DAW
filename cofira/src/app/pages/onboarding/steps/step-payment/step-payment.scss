@@ -177,11 +177,13 @@ $payment-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .step-payment__fieldset {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: var(--spacing-size-m);
+  width: 100%;
   border: none;
-  padding: var(--spacing-size-l);
+  padding: var(--spacing-size-m);
   margin: 0;
   background-color: var(--bg-surface);
   border-radius: var(--radius-lg);
@@ -218,8 +220,10 @@ $payment-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .step-payment__input {
+  box-sizing: border-box;
   width: 100%;
-  padding: var(--spacing-size-m);
+  min-width: 0;
+  padding: var(--spacing-size-s) var(--spacing-size-m);
   font-family: var(--font-primary);
   font-size: var(--font-size-md);
   color: var(--text-primary);
@@ -374,5 +378,48 @@ $payment-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+
+
+@include responsive-down("sm") {
+  .step-payment {
+    padding: var(--spacing-size-m);
+    gap: var(--spacing-size-l);
+  }
+
+  .step-payment__fieldset {
+    padding: var(--spacing-size-s);
+  }
+
+  .step-payment__field-row {
+    flex-direction: column;
+    gap: var(--spacing-size-s);
+  }
+
+  .step-payment__field--mitad {
+    flex: none;
+    width: 100%;
+  }
+
+  .step-payment__input {
+    padding: var(--spacing-size-s);
+    font-size: var(--font-size-sm);
+  }
+
+  .step-payment__beneficio {
+    padding: var(--spacing-size-s);
+    gap: var(--spacing-size-s);
+  }
+
+  .step-payment__beneficio-icono {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .step-payment__beneficio-icono svg {
+    width: 1rem;
+    height: 1rem;
   }
 }

@@ -108,14 +108,14 @@ export class StepRegister {
 
     if (!tieneDataRequerida) {
       this.estaCargando.set(false);
-      this.continuar.emit();
+      this.navegarAlPago();
       return;
     }
 
     this.onboardingService.completeOnboarding().subscribe({
       next: function(this: StepRegister) {
         this.estaCargando.set(false);
-        this.continuar.emit();
+        this.navegarAlPago();
       }.bind(this),
       error: function(this: StepRegister, error: unknown) {
         this.estaCargando.set(false);
@@ -124,9 +124,13 @@ export class StepRegister {
         const mensajeError = errorObj?.error?.message || errorObj?.error?.errors || "Error desconocido";
         console.error("Detalles del error:", mensajeError);
         this.notificacionService.error("No se pudieron guardar todos los datos, pero tu cuenta ha sido creada.");
-        this.continuar.emit();
+        this.navegarAlPago();
       }.bind(this)
     });
+  }
+
+  private navegarAlPago(): void {
+    this.router.navigate(["/onboarding"], { queryParams: { step: 15 } });
   }
 
   private tieneDataMinimaOnboarding(data: Partial<import('../../../../models/onboarding.model').OnboardingData>): boolean {

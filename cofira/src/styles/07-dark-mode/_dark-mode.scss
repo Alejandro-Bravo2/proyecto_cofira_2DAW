@@ -2428,8 +2428,37 @@
   }
 
   .perfil__badge-pro {
-    color: var(--negro-normal);
-    background: linear-gradient(135deg, var(--amarillo-light), var(--amarillo-normal));
+    position: relative;
+    overflow: hidden;
+    color: #000000;
+    background: linear-gradient(
+      135deg,
+      #ffd700 0%,
+      #ffec80 25%,
+      #ffd700 50%,
+      #e6b800 100%
+    );
+    border: 1px solid rgba(255, 215, 0, 0.6);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.15),
+      0 0 8px rgba(255, 215, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  .perfil__badge-pro::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: badge-brillo 3s ease-in-out infinite;
   }
 
   app-acceso-pro .acceso-pro {
@@ -2679,4 +2708,14 @@ body [class*='loading'] {
 
 [data-theme='dark'] [class*='loading'] {
   transition: none;
+}
+
+@keyframes badge-brillo {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
 }
