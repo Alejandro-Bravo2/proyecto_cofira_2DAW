@@ -33,7 +33,7 @@ export class Button {
     return clases;
   }
 
-  onClick(): void {
+  alHacerClick(): void {
     if (!this.habilitado) {
       this.clicked.emit();
     }

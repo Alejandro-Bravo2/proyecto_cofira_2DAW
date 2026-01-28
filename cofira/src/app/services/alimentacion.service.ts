@@ -15,6 +15,7 @@ import {
   GenerarMenuRequest,
   MenuDia,
   MenuGenerado,
+  MenuGuardado,
   MenuSemanalGenerado,
   ProgresoGeneracion,
   ResumenNutricional,
@@ -46,7 +47,31 @@ export class AlimentacionService {
   private readonly onboardingService = inject(OnboardingService);
   private readonly ngZone = inject(NgZone);
   private readonly STORAGE_KEY = "cofira_menu_alimentacion";
+  private readonly SSE_TIMEOUT_MS = 120000;
   private eventoStreamActivo: EventSource | null = null;
+  private timeoutSSE: ReturnType<typeof setTimeout> | null = null;
+
+  private esMenuSemanalValido(data: unknown): data is MenuGuardado {
+    if (typeof data !== "object" || data === null) return false;
+
+    const obj = data as Record<string, unknown>;
+    return (
+      "fechaInicio" in obj &&
+      "fechaFin" in obj &&
+      "comidasPorFecha" in obj &&
+      typeof obj["fechaInicio"] === "string" &&
+      typeof obj["fechaFin"] === "string"
+    );
+  }
+
+  private esMenuDiarioValido(data: unknown): boolean {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "menu" in data &&
+      "fecha" in data
+    );
+  }
 
   constructor() {
     this.cargarMenuGuardado();
@@ -139,6 +164,17 @@ export class AlimentacionService {
   }
 
   private async iniciarConexionSSE(urlEndpoint: string, solicitudMenu: GenerarMenuRequest, token: string | null): Promise<void> {
+    const controladorAbort = new AbortController();
+
+    this.timeoutSSE = setTimeout(() => {
+      controladorAbort.abort();
+      this.ngZone.run(() => {
+        this.error.set("La generación del menú tardó demasiado. Inténtalo de nuevo.");
+        this.isLoading.set(false);
+        this.estaGenerando.set(false);
+      });
+    }, this.SSE_TIMEOUT_MS);
+
     try {
       const respuesta = await fetch(urlEndpoint, {
         method: "POST",
@@ -146,7 +182,8 @@ export class AlimentacionService {
           "Content-Type": "application/json",
           "Authorization": token ? `Bearer ${token}` : ""
         },
-        body: JSON.stringify(solicitudMenu)
+        body: JSON.stringify(solicitudMenu),
+        signal: controladorAbort.signal
       });
 
       if (!respuesta.ok) {
@@ -166,6 +203,7 @@ export class AlimentacionService {
         const resultado = await lectorStream.read();
 
         if (resultado.done) {
+          this.limpiarTimeoutSSE();
           this.ngZone.run(() => {
             this.finalizarGeneracion();
           });
@@ -182,12 +220,22 @@ export class AlimentacionService {
         }
       }
     } catch (errorCapturado) {
-      console.error("Error en streaming:", errorCapturado);
+      this.limpiarTimeoutSSE();
+      if ((errorCapturado as Error).name === "AbortError") {
+        return;
+      }
       this.ngZone.run(() => {
         this.error.set("No hemos podido generar tu menú. Inténtalo de nuevo en unos minutos.");
         this.isLoading.set(false);
         this.estaGenerando.set(false);
       });
+    }
+  }
+
+  private limpiarTimeoutSSE(): void {
+    if (this.timeoutSSE) {
+      clearTimeout(this.timeoutSSE);
+      this.timeoutSSE = null;
     }
   }
 
@@ -346,7 +394,7 @@ export class AlimentacionService {
 
         if (respuesta.tieneMenu && respuesta.menuJson) {
           try {
-            const menuParseado = JSON.parse(respuesta.menuJson);
+            const menuParseado: MenuGuardado = JSON.parse(respuesta.menuJson);
             this.fechaInicio.set(menuParseado.fechaInicio);
             this.fechaFin.set(menuParseado.fechaFin);
             this.comidasPorFecha.set(menuParseado.comidasPorFecha);
@@ -378,18 +426,18 @@ export class AlimentacionService {
     try {
       const menuGuardado = localStorage.getItem(this.STORAGE_KEY);
 
-      if (menuGuardado) {
-        const menuParseado = JSON.parse(menuGuardado);
-        const tieneFormatoSemanal = menuParseado.fechaInicio && menuParseado.fechaFin;
+      if (!menuGuardado) return;
 
-        if (tieneFormatoSemanal) {
-          this.cargarMenuSemanalDesdeStorage(menuParseado);
-        } else {
-          this.cargarMenuDiarioDesdeStorage(menuParseado);
-        }
+      const menuParseado: unknown = JSON.parse(menuGuardado);
+
+      if (this.esMenuSemanalValido(menuParseado)) {
+        this.cargarMenuSemanalDesdeStorage(menuParseado);
+      } else if (this.esMenuDiarioValido(menuParseado)) {
+        this.cargarMenuDiarioDesdeStorage(menuParseado);
+      } else {
+        localStorage.removeItem(this.STORAGE_KEY);
       }
-    } catch (error) {
-      console.error("Error cargando menu desde localStorage:", error);
+    } catch {
       localStorage.removeItem(this.STORAGE_KEY);
     }
   }
@@ -718,7 +766,7 @@ export class AlimentacionService {
     }
   }
 
-  private cargarMenuSemanalDesdeStorage(menuParseado: any): void {
+  private cargarMenuSemanalDesdeStorage(menuParseado: MenuGuardado): void {
     const fechaFinGuardada = new Date(menuParseado.fechaFin);
     const hoy = new Date();
     hoy.setHours(0, 0, 0, 0);

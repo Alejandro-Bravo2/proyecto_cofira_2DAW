@@ -151,7 +151,7 @@
   border-top: 0.0625rem solid var(--gris-normal);
 }
 
-.modal-alternativa__btn {
+.modal-alternativa__boton {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
@@ -162,7 +162,7 @@
               border-color var(--duration-fast) ease;
 }
 
-.modal-alternativa__btn--cancelar {
+.modal-alternativa__boton--cancelar {
   color: var(--gris-dark);
   background-color: transparent;
   border: 0.0625rem solid var(--gris-normal);
@@ -172,21 +172,21 @@
   }
 }
 
-.modal-alternativa__btn--cancelar:hover {
+.modal-alternativa__boton--cancelar:hover {
   border-color: var(--gris-dark);
 }
 
-.modal-alternativa__btn--guardar {
+.modal-alternativa__boton--guardar {
   color: var(--blanco-normal);
   background-color: var(--amarillo-normal);
   border: none;
 }
 
-.modal-alternativa__btn--guardar:hover {
+.modal-alternativa__boton--guardar:hover {
   background-color: var(--amarillo-dark);
 }
 
-.modal-alternativa__btn--guardar:disabled {
+.modal-alternativa__boton--guardar:disabled {
   background-color: var(--gris-normal);
   cursor: not-allowed;
 }

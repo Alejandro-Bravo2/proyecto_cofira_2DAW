@@ -37,7 +37,7 @@ export class Blog {
       titulo: "5 Ejercicios Esenciales para Principiantes",
       extracto:
         "Descubre los movimientos fundamentales que todo principiante debería dominar antes de avanzar a rutinas más complejas. Desde sentadillas hasta planchas.",
-      imagen: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b",
+      imagen: "assets/images/blog/ejercicios-principiantes",
       categoria: "ejercicio",
       categoriaLabel: "Ejercicio",
       fecha: "15 Dic 2024",
@@ -49,7 +49,7 @@ export class Blog {
       titulo: "Guía Completa de Macronutrientes",
       extracto:
         "Aprende a calcular tus macros de forma precisa. Proteínas, carbohidratos y grasas: cuánto necesitas según tus objetivos de fitness.",
-      imagen: "https://images.unsplash.com/photo-1490645935967-10de6ba17061",
+      imagen: "assets/images/blog/macronutrientes",
       categoria: "nutricion",
       categoriaLabel: "Nutrición",
       fecha: "12 Dic 2024",
@@ -61,7 +61,7 @@ export class Blog {
       titulo: "Cómo Mantener la Motivación a Largo Plazo",
       extracto:
         "La constancia es clave en el fitness. Te compartimos estrategias psicológicas probadas para mantener la motivación incluso en los días difíciles.",
-      imagen: "https://images.unsplash.com/photo-1506126613408-eca07ce68773",
+      imagen: "assets/images/blog/motivacion",
       categoria: "bienestar",
       categoriaLabel: "Bienestar",
       fecha: "8 Dic 2024",
@@ -73,7 +73,7 @@ export class Blog {
       titulo: "La Rutina de Calentamiento Perfecta",
       extracto:
         "Un buen calentamiento previene lesiones y mejora el rendimiento. Te enseñamos una rutina completa de 10 minutos para antes de entrenar.",
-      imagen: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b",
+      imagen: "assets/images/blog/calentamiento",
       categoria: "ejercicio",
       categoriaLabel: "Ejercicio",
       fecha: "5 Dic 2024",
@@ -85,7 +85,7 @@ export class Blog {
       titulo: "Alimentos Clave para Ganar Masa Muscular",
       extracto:
         "La alimentación es el 70% de tus resultados. Conoce los alimentos más efectivos para construir músculo de forma natural y saludable.",
-      imagen: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd",
+      imagen: "assets/images/blog/masa-muscular",
       categoria: "nutricion",
       categoriaLabel: "Nutrición",
       fecha: "1 Dic 2024",
@@ -97,7 +97,7 @@ export class Blog {
       titulo: "Beneficios del Ayuno Intermitente",
       extracto:
         "El ayuno intermitente va más allá de perder peso. Descubre cómo puede mejorar tu energía, claridad mental y salud metabólica.",
-      imagen: "https://images.unsplash.com/photo-1511688878353-3a2f5be94cd7",
+      imagen: "assets/images/blog/ayuno-intermitente",
       categoria: "bienestar",
       categoriaLabel: "Bienestar",
       fecha: "28 Nov 2024",

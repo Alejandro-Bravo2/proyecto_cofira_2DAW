@@ -14,11 +14,11 @@ export class Chip {
   @Output() eliminar = new EventEmitter<void>();
   @Output() seleccionar = new EventEmitter<void>();
 
-  onRemove(): void {
+  alEliminar(): void {
     this.eliminar.emit();
   }
 
-  onSeleccionarConTeclado(evento: Event): void {
+  alSeleccionarConTeclado(evento: Event): void {
     evento.preventDefault();
     this.seleccionar.emit();
   }

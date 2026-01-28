@@ -10,8 +10,8 @@
   <section class="step-allergies__grid">
     @for (option of options; track option.id) {
       <app-chip
-        (click)="onToggle(option.id)"
-        (seleccionar)="onToggle(option.id)"
+        (click)="alAlternar(option.id)"
+        (seleccionar)="alAlternar(option.id)"
         [seleccionado]="isSelected(option.id)"
         [texto]="option.label">
       </app-chip>
@@ -21,7 +21,7 @@
   <footer class="step-allergies__footer">
     <nav class="step-allergies__actions">
       <app-button
-        (clicked)="onSkip()"
+        (clicked)="alOmitir()"
         tamanio="grande"
         variante="secundario">
         No tengo alergias
@@ -29,7 +29,7 @@
 
       @if (selectedAllergies().length > 0) {
         <app-button
-          (clicked)="onContinue()"
+          (clicked)="alContinuar()"
           tamanio="grande"
           variante="primario">
           Continuar ({{ selectedAllergies().length }} seleccionadas)

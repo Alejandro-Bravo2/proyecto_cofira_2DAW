@@ -18,7 +18,7 @@
           </figure>
           <span class="alimentacion__progreso-porcentaje">{{ progresoGeneracion()?.porcentaje }}%</span>
         </aside>
-        <button (click)="cancelarGeneracion()" class="alimentacion__btn-cancelar">
+        <button (click)="cancelarGeneracion()" class="alimentacion__boton-cancelar">
           Cancelar generación
         </button>
       } @else {
@@ -36,8 +36,8 @@
       <button
         (click)="diaAnterior()"
         aria-label="Día anterior"
-        class="alimentacion__btn-fecha alimentacion__btn-fecha--anterior">
-        <svg aria-hidden="true" class="alimentacion__btn-fecha-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        class="alimentacion__boton-fecha alimentacion__boton-fecha--anterior">
+        <svg aria-hidden="true" class="alimentacion__boton-fecha-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" fill="currentColor"/>
         </svg>
       </button>
@@ -54,8 +54,8 @@
       <button
         (click)="diaSiguiente()"
         aria-label="Día siguiente"
-        class="alimentacion__btn-fecha alimentacion__btn-fecha--siguiente">
-        <svg aria-hidden="true" class="alimentacion__btn-fecha-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        class="alimentacion__boton-fecha alimentacion__boton-fecha--siguiente">
+        <svg aria-hidden="true" class="alimentacion__boton-fecha-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z" fill="currentColor"/>
         </svg>
       </button>
@@ -88,9 +88,9 @@
                 (click)="quitarAgua()"
                 [disabled]="aguaConsumida() <= 0 || aguaActualizando()"
                 aria-label="Quitar vaso de agua"
-                class="alimentacion__agua-btn"
+                class="alimentacion__agua-boton"
                 type="button">
-                <svg aria-hidden="true" class="alimentacion__agua-btn-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg aria-hidden="true" class="alimentacion__agua-boton-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M19 13H5v-2h14v2z" fill="currentColor"/>
                 </svg>
               </button>
@@ -99,9 +99,9 @@
                 (click)="agregarAgua()"
                 [disabled]="aguaActualizando()"
                 aria-label="Añadir vaso de agua"
-                class="alimentacion__agua-btn"
+                class="alimentacion__agua-boton"
                 type="button">
-                <svg aria-hidden="true" class="alimentacion__agua-btn-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg aria-hidden="true" class="alimentacion__agua-boton-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" fill="currentColor"/>
                 </svg>
               </button>
@@ -117,8 +117,8 @@
         <article class="alimentacion__sin-menu">
           <p class="alimentacion__sin-menu-texto">No hay menú disponible para esta fecha</p>
           <p class="alimentacion__sin-menu-texto">Los menús se generan para las próximas 2 semanas</p>
-          <button (click)="regenerarMenu()" class="alimentacion__btn-regenerar">
-            <svg aria-hidden="true" class="alimentacion__btn-regenerar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <button (click)="regenerarMenu()" class="alimentacion__boton-regenerar">
+            <svg aria-hidden="true" class="alimentacion__boton-regenerar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/>
             </svg>
             Generar menú semanal
@@ -127,8 +127,8 @@
       } @else if (comidasDelDia().length === 0) {
         <article class="alimentacion__sin-menu">
           <p class="alimentacion__sin-menu-texto">No hay comidas para este día</p>
-          <button (click)="regenerarMenu()" class="alimentacion__btn-regenerar">
-            <svg aria-hidden="true" class="alimentacion__btn-regenerar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <button (click)="regenerarMenu()" class="alimentacion__boton-regenerar">
+            <svg aria-hidden="true" class="alimentacion__boton-regenerar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/>
             </svg>
             Regenerar menú semanal
@@ -250,8 +250,8 @@
                   <button
                     (click)="verIngredientes(alimento, comida)"
                     aria-label="Ver detalles de {{ alimento.descripcion }}"
-                    class="alimentacion__btn-info">
-                    <svg aria-hidden="true" class="alimentacion__btn-info-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    class="alimentacion__boton-info">
+                    <svg aria-hidden="true" class="alimentacion__boton-info-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"
                         fill="currentColor"/>
@@ -272,18 +272,18 @@
               <footer class="alimentacion__comida-acciones">
                 <button
                   (click)="abrirModalAlternativa(comida)"
-                  class="alimentacion__btn-alternativa"
+                  class="alimentacion__boton-alternativa"
                   type="button">
-                  <svg aria-hidden="true" class="alimentacion__btn-alternativa-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-hidden="true" class="alimentacion__boton-alternativa-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/>
                   </svg>
                   Registrar lo que comí
                 </button>
                 <button
                   (click)="abrirModalImagen(comida)"
-                  class="alimentacion__btn-foto"
+                  class="alimentacion__boton-foto"
                   type="button">
-                  <svg aria-hidden="true" class="alimentacion__btn-foto-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg aria-hidden="true" class="alimentacion__boton-foto-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" fill="currentColor"/>
                   </svg>
                   Subir foto
@@ -293,8 +293,8 @@
           </article>
         }
 
-        <button (click)="regenerarMenu()" class="alimentacion__btn-regenerar">
-          <svg aria-hidden="true" class="alimentacion__btn-regenerar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <button (click)="regenerarMenu()" class="alimentacion__boton-regenerar">
+          <svg aria-hidden="true" class="alimentacion__boton-regenerar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" fill="currentColor"/>
           </svg>
           Regenerar menú semanal

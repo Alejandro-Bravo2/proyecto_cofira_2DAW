@@ -34,7 +34,7 @@
         <img [src]="imagenPreview" alt="Preview de la comida" class="modal-imagen__preview-img">
         <button
           (click)="seleccionarArchivo()"
-          class="modal-imagen__btn-cambiar"
+          class="modal-imagen__boton-cambiar"
           type="button">
           Cambiar imagen
         </button>
@@ -45,13 +45,13 @@
       <button
         (click)="analizarImagen()"
         [disabled]="analizando"
-        class="modal-imagen__btn-analizar"
+        class="modal-imagen__boton-analizar"
         type="button">
         @if (analizando) {
           <figure class="modal-imagen__spinner"></figure>
           Analizando...
         } @else {
-          <svg aria-hidden="true" class="modal-imagen__btn-analizar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg aria-hidden="true" class="modal-imagen__boton-analizar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" fill="currentColor"/>
           </svg>
           Analizar con IA
@@ -92,7 +92,7 @@
     <footer class="modal-imagen__acciones">
       <button
         (click)="cerrarModal()"
-        class="modal-imagen__btn modal-imagen__btn--cancelar"
+        class="modal-imagen__boton modal-imagen__boton--cancelar"
         type="button">
         Cancelar
       </button>
@@ -100,7 +100,7 @@
         <button
           (click)="guardarResultado()"
           [disabled]="guardando"
-          class="modal-imagen__btn modal-imagen__btn--guardar"
+          class="modal-imagen__boton modal-imagen__boton--guardar"
           type="button">
           @if (guardando) {
             <figure class="modal-imagen__spinner"></figure>

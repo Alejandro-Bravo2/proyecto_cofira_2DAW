@@ -34,11 +34,11 @@ export class StepTrainingDays {
     }
   }
 
-  onSelect(days: number): void {
+  alSeleccionar(days: number): void {
     this.selectedDays.set(days);
   }
 
-  onContinue(): void {
+  alContinuar(): void {
     const days = this.selectedDays();
     if (days !== null) {
       this.onboardingService.setField("trainingDaysPerWeek", days);

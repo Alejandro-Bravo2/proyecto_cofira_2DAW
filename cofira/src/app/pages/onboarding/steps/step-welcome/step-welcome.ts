@@ -12,7 +12,7 @@ import {Button} from '../../../../components/shared/button/button';
 export class StepWelcome {
   @Output() continuar = new EventEmitter<void>();
 
-  onContinue(): void {
+  alContinuar(): void {
     this.continuar.emit();
   }
 }

@@ -15,7 +15,7 @@ export class OptionCard {
 
   @Output() seleccionar = new EventEmitter<string>();
 
-  onSelect(): void {
+  alSeleccionar(): void {
     this.seleccionar.emit(this.valor());
   }
 }

@@ -28,7 +28,7 @@ export class StepGoal {
     this.selectedGoal.set(value as PrimaryGoal);
   }
 
-  onContinue(): void {
+  alContinuar(): void {
     const goal = this.selectedGoal();
     if (goal) {
       this.onboardingService.setField("primaryGoal", goal);

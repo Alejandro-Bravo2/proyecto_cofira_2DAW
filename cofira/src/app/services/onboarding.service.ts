@@ -27,6 +27,18 @@ export class OnboardingService {
   private readonly api = inject(ApiService);
   private readonly STORAGE_KEY = "cofira_onboarding_progress";
 
+  private esProgresoValido(data: unknown): data is OnboardingProgress {
+    if (typeof data !== "object" || data === null) return false;
+
+    const obj = data as Record<string, unknown>;
+    return (
+      "currentStep" in obj &&
+      "completedSteps" in obj &&
+      typeof obj["currentStep"] === "number" &&
+      Array.isArray(obj["completedSteps"])
+    );
+  }
+
   private readonly TOTAL_STEPS = 15;
   readonly progress = computed(() => {
     return Math.round((this.completedSteps().length / this.TOTAL_STEPS) * 100);
@@ -110,14 +122,19 @@ export class OnboardingService {
   loadProgress(): void {
     try {
       const saved = localStorage.getItem(this.STORAGE_KEY);
-      if (saved) {
-        const progress: OnboardingProgress = JSON.parse(saved);
-        this.currentStep.set(progress.currentStep);
-        this.completedSteps.set(progress.completedSteps);
-        this.formData.set({...DEFAULT_ONBOARDING_DATA, ...progress.data});
+      if (!saved) return;
+
+      const parsed: unknown = JSON.parse(saved);
+
+      if (!this.esProgresoValido(parsed)) {
+        this.clearProgress();
+        return;
       }
-    } catch (e) {
-      console.error("Error cargando progreso de onboarding:", e);
+
+      this.currentStep.set(parsed.currentStep);
+      this.completedSteps.set(parsed.completedSteps);
+      this.formData.set({...DEFAULT_ONBOARDING_DATA, ...parsed.data});
+    } catch {
       this.clearProgress();
     }
   }

@@ -327,7 +327,7 @@
   list-style: none;
 }
 
-.pie__tema-btn {
+.pie__tema-boton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -342,17 +342,17 @@
   transition: all var(--duration-base) ease;
 }
 
-.pie__tema-btn:hover {
+.pie__tema-boton:hover {
   background: var(--amarillo-normal);
   color: var(--negro-normal);
   transform: translateY(-0.125rem);
 }
 
-.pie__tema-btn:active {
+.pie__tema-boton:active {
   transform: translateY(0);
 }
 
-.pie__tema-btn-icono {
+.pie__tema-boton-icono {
   width: 1.25rem;
   height: 1.25rem;
 }
@@ -361,7 +361,7 @@
   position: relative;
 }
 
-.pie__idioma-btn {
+.pie__idioma-boton {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-xs);
@@ -377,7 +377,7 @@
   transition: all var(--duration-base) ease;
 }
 
-.pie__idioma-btn:hover {
+.pie__idioma-boton:hover {
   background: var(--amarillo-normal);
   color: var(--negro-normal);
 }

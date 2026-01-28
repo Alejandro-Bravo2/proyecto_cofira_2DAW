@@ -6,8 +6,8 @@
   --contenido-max-width: 970px;
   --color-exito: var(--verde-normal);
   --color-error: var(--rojo-normal);
-  --btn-accion-size: 1.875rem;
-  --btn-nav-size: 1.5rem;
+  --boton-accion-size: 1.875rem;
+  --boton-nav-size: 1.5rem;
 }
 
 
@@ -124,8 +124,8 @@
   }
 }
 
-.gimnasio__dias-btn {
-  @include boton-icono(var(--btn-nav-size));
+.gimnasio__dias-boton {
+  @include boton-icono(var(--boton-nav-size));
   color: var(--negro-normal);
 
   @include responsive-down('xs') {
@@ -134,7 +134,7 @@
   }
 }
 
-.gimnasio__dias-btn:hover {
+.gimnasio__dias-boton:hover {
   color: var(--amarillo-dark);
 }
 
@@ -273,12 +273,12 @@
   gap: 0.75rem;
 }
 
-.gimnasio__btn-accion {
+.gimnasio__boton-accion {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--btn-accion-size);
-  height: var(--btn-accion-size);
+  width: var(--boton-accion-size);
+  height: var(--boton-accion-size);
   padding: 0;
   border-radius: 50%;
   border: none;
@@ -287,25 +287,25 @@
   opacity: 0.5;
 }
 
-.gimnasio__btn-accion:hover {
+.gimnasio__boton-accion:hover {
   transform: scale(1.1);
 }
 
-.gimnasio__btn-accion--activo {
+.gimnasio__boton-accion--activo {
   opacity: 1;
 }
 
-.gimnasio__btn-accion--ok {
+.gimnasio__boton-accion--ok {
   background-color: var(--color-exito);
   color: var(--blanco-normal);
 }
 
-.gimnasio__btn-accion--no {
+.gimnasio__boton-accion--no {
   background-color: var(--color-error);
   color: var(--blanco-normal);
 }
 
-.gimnasio__btn-accion-svg {
+.gimnasio__boton-accion-svg {
   width: 50%;
   height: 50%;
 }
@@ -446,12 +446,12 @@
   display: contents;
 }
 
-.gimnasio__btn-accion--acordeon {
+.gimnasio__boton-accion--acordeon {
   width: 1.75rem;
   height: 1.75rem;
 }
 
-.gimnasio__btn-accion-svg {
+.gimnasio__boton-accion-svg {
   width: 1rem;
   height: 1rem;
 }

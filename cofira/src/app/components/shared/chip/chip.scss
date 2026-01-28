@@ -35,7 +35,7 @@
   line-height: 1;
 }
 
-.chip__btn-eliminar {
+.chip__boton-eliminar {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,17 +50,17 @@
   transition: all var(--duration-fast) ease;
 }
 
-.chip__btn-eliminar:hover {
+.chip__boton-eliminar:hover {
   background-color: var(--amarillo-normal);
   color: var(--text-primary);
 }
 
-.chip__btn-eliminar:focus {
+.chip__boton-eliminar:focus {
   outline: none;
   box-shadow: 0 0 0 0.125rem var(--amarillo-normal);
 }
 
-.chip__btn-eliminar__svg {
+.chip__boton-eliminar__svg {
   width: 0.75rem;
   height: 0.75rem;
 }

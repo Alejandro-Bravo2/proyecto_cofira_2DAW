@@ -87,14 +87,14 @@
 
       <menu class="pie__controles">
         <li>
-          <button (click)="toggleTema()" aria-label="Cambiar tema" class="pie__tema-btn">
+          <button (click)="toggleTema()" aria-label="Cambiar tema" class="pie__tema-boton">
             @if (modoOscuro) {
-            <svg aria-hidden="true" class="pie__tema-btn-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
+            <svg aria-hidden="true" class="pie__tema-boton-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
               width="20" xmlns="http://www.w3.org/2000/svg">
               <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
             </svg>
             } @else {
-            <svg aria-hidden="true" class="pie__tema-btn-icono" fill="none" height="20" stroke="currentColor"
+            <svg aria-hidden="true" class="pie__tema-boton-icono" fill="none" height="20" stroke="currentColor"
               stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20"
               xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="5" />
@@ -112,7 +112,7 @@
         </li>
         <li class="pie__idioma">
           <button (click)="toggleIdiomas()" aria-label="Cambiar idioma" [attr.aria-expanded]="mostrarIdiomas"
-            aria-haspopup="listbox" class="pie__idioma-btn">
+            aria-haspopup="listbox" class="pie__idioma-boton">
             <span>{{ idiomaActual }}</span>
             <svg aria-hidden="true" fill="currentColor" height="12" viewBox="0 0 24 24" width="12"
               xmlns="http://www.w3.org/2000/svg">

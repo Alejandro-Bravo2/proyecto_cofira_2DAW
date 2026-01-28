@@ -91,6 +91,12 @@ export interface DatosDelDia {
 
 export type ComidasPorFecha = Record<string, DatosDelDia>;
 
+export interface MenuGuardado {
+  fechaInicio: string;
+  fechaFin: string;
+  comidasPorFecha: ComidasPorFecha;
+}
+
 export interface EventoInicioStream {
   tipo: 'inicio';
   totalDias: string;

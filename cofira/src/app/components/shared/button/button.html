@@ -3,7 +3,7 @@
 </ng-template>
 
 @if (enlace) {
-  <a (click)="onClick()" [class]="obtenerClasesBoton()" [routerLink]="enlace">
+  <a (click)="alHacerClick()" [class]="obtenerClasesBoton()" [routerLink]="enlace">
     <ng-container *ngTemplateOutlet="contenido"></ng-container>
   </a>
 } @else if (href) {
@@ -11,7 +11,7 @@
     <ng-container *ngTemplateOutlet="contenido"></ng-container>
   </a>
 } @else {
-  <button (click)="onClick()" [class]="obtenerClasesBoton()" [disabled]="habilitado" [type]="tipo">
+  <button (click)="alHacerClick()" [class]="obtenerClasesBoton()" [disabled]="habilitado" [type]="tipo">
     <ng-container *ngTemplateOutlet="contenido"></ng-container>
   </button>
 }

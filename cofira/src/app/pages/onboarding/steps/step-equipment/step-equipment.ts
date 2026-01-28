@@ -45,7 +45,7 @@ export class StepEquipment {
     return this.selectedEquipment().includes(id);
   }
 
-  onToggle(id: string): void {
+  alAlternar(id: string): void {
     const current = this.selectedEquipment();
     if (current.includes(id)) {
       this.selectedEquipment.set(current.filter(e => e !== id));
@@ -54,12 +54,12 @@ export class StepEquipment {
     }
   }
 
-  onContinue(): void {
+  alContinuar(): void {
     this.onboardingService.setField("equipment", this.selectedEquipment());
     this.continuar.emit();
   }
 
-  onSkip(): void {
+  alOmitir(): void {
     this.onboardingService.setField("equipment", []);
     this.continuar.emit();
   }

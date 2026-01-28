@@ -83,7 +83,7 @@
   color: var(--text-primary);
 }
 
-.perfil__btn-editar {
+.perfil__boton-editar {
   display: flex;
   align-items: center;
   gap: var(--spacing-size-xss);
@@ -102,12 +102,12 @@
   transition: all 0.2s ease;
 }
 
-.perfil__btn-editar:hover {
+.perfil__boton-editar:hover {
   color: var(--negro-normal);
   background: var(--amarillo-normal);
 }
 
-.perfil__btn-editar-icono {
+.perfil__boton-editar-icono {
   width: 1rem;
   height: 1rem;
 }

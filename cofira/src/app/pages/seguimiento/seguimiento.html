@@ -112,14 +112,14 @@
 
     <article class="seguimiento__grafico-lineas">
       @if (cargandoGrafico()) {
-        <div class="seguimiento__cargando">
+        <aside class="seguimiento__cargando">
           <p>Cargando datos...</p>
-        </div>
+        </aside>
       } @else if (puntosGrafico().length === 0) {
-        <div class="seguimiento__sin-datos-grafico">
+        <aside class="seguimiento__sin-datos-grafico">
           <p class="seguimiento__sin-datos-grafico__mensaje">No hay datos de peso registrados para este ejercicio.</p>
           <p class="seguimiento__ayuda">Registra el peso levantado en tus entrenamientos para ver tu progreso aquí.</p>
-        </div>
+        </aside>
       } @else {
         <figure class="seguimiento__chart-container">
           <svg aria-label="Gráfico de evolución de fuerza" class="seguimiento__line-chart" role="img" viewBox="-30 0 630 300">

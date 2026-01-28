@@ -49,7 +49,7 @@
   width: 2.5rem;
 }
 
-.onboarding__btn-back {
+.onboarding__boton-back {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,18 +64,18 @@
   transition: all var(--duration-fast) ease;
 }
 
-.onboarding__btn-back:hover {
+.onboarding__boton-back:hover {
   background-color: var(--blanco-normal-hover);
   color: var(--negro-normal);
 }
 
-.onboarding__btn-back:focus {
+.onboarding__boton-back:focus {
   outline: none;
   box-shadow: 0 0 0 0.125rem var(--amarillo-normal);
 }
 
 
-.onboarding__btn-back-svg {
+.onboarding__boton-back-svg {
   width: 1.5rem;
   height: 1.5rem;
 }

@@ -449,7 +449,7 @@
 
 
 
-.home__card--container {
+.home__tarjetas {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -463,7 +463,7 @@
   }
 }
 
-.home__card-wrapper {
+.home__tarjeta {
   width: 100%;
   max-width: 28rem;
   container-type: inline-size;
@@ -524,7 +524,7 @@
 }
 
 @container card-container (min-width: 1200px) {
-  .home__card-wrapper {
+  .home__tarjeta {
     flex-direction: row;
   }
 
@@ -617,7 +617,7 @@
     width: fit-content;
   }
 
-  .boton__primario-btn--xs {
+  .boton__primario-boton--xs {
     width: auto;
     min-width: unset;
   }
@@ -644,12 +644,12 @@
     font-size: var(--font-size-sm);
   }
 
-  .home__card--container {
+  .home__tarjetas {
     padding: 0;
     gap: var(--spacing-size-l);
   }
 
-  .home__card-wrapper {
+  .home__tarjeta {
     max-width: 100%;
     padding: 0 var(--spacing-size-xs);
   }
@@ -725,13 +725,13 @@
     height: auto;
   }
 
-  .boton__primario-app-btn--xxs {
+  .boton__primario-app-boton--xxs {
     display: block;
     height: auto;
     line-height: 1;
   }
 
-  .boton__primario-btn--xxs {
+  .boton__primario-boton--xxs {
     display: flex;
     box-sizing: border-box;
     padding: 0.5rem 1rem;

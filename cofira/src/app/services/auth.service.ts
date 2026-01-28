@@ -18,6 +18,40 @@ export class AuthService {
   private readonly TOKEN_KEY = "cofira_token";
   private readonly USER_KEY = "cofira_user";
 
+  private esUsuarioValido(data: unknown): data is User {
+    return (
+      typeof data === "object" &&
+      data !== null &&
+      "id" in data &&
+      "email" in data &&
+      "username" in data
+    );
+  }
+
+  private decodificarPayloadJWT(token: string): Record<string, unknown> | null {
+    try {
+      const partes = token.split(".");
+      if (partes.length !== 3) return null;
+
+      const payloadBase64 = partes[1];
+      const payloadDecodificado = atob(payloadBase64);
+      return JSON.parse(payloadDecodificado);
+    } catch {
+      return null;
+    }
+  }
+
+  tokenEstaExpirado(): boolean {
+    const token = this.getToken();
+    if (!token) return true;
+
+    const payload = this.decodificarPayloadJWT(token);
+    if (!payload || typeof payload["exp"] !== "number") return true;
+
+    const ahora = Math.floor(Date.now() / 1000);
+    return payload["exp"] < ahora;
+  }
+
   constructor() {
     this.loadSession();
   }
@@ -28,7 +62,7 @@ export class AuthService {
 
     return this.api.post<AuthResponse>('/auth/register', data).pipe(
       tap(response => {
-        this.handleAuthSuccess(response);
+        this.manejarExitoAutenticacion(response);
         this.isLoading.set(false);
       }),
       catchError(error => {
@@ -46,7 +80,7 @@ export class AuthService {
 
     return this.api.post<AuthResponse>('/auth/login', data).pipe(
       tap(response => {
-        this.handleAuthSuccess(response);
+        this.manejarExitoAutenticacion(response);
         this.isLoading.set(false);
       }),
       catchError(error => {
@@ -73,10 +107,18 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean {
-    return !!this.getToken();
+    const token = this.getToken();
+    if (!token) return false;
+
+    if (this.tokenEstaExpirado()) {
+      this.logout();
+      return false;
+    }
+
+    return true;
   }
 
-  private handleAuthSuccess(response: AuthResponse): void {
+  private manejarExitoAutenticacion(response: AuthResponse): void {
     localStorage.setItem(this.TOKEN_KEY, response.token);
 
     const user: User = {
@@ -97,12 +139,22 @@ export class AuthService {
       const token = this.getToken();
       const savedUser = localStorage.getItem(this.USER_KEY);
 
-      if (token && savedUser) {
-        const user: User = JSON.parse(savedUser);
-        this.currentUser.set(user);
+      if (!token || !savedUser) return;
+
+      if (this.tokenEstaExpirado()) {
+        this.logout();
+        return;
       }
-    } catch (e) {
-      console.error("Error cargando sesion:", e);
+
+      const usuarioParseado: unknown = JSON.parse(savedUser);
+
+      if (!this.esUsuarioValido(usuarioParseado)) {
+        this.logout();
+        return;
+      }
+
+      this.currentUser.set(usuarioParseado);
+    } catch {
       this.logout();
     }
   }

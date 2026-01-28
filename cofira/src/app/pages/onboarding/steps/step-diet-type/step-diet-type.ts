@@ -25,11 +25,11 @@ export class StepDietType {
     }
   }
 
-  onSelect(diet: DietType): void {
+  alSeleccionar(diet: DietType): void {
     this.selectedDiet.set(diet);
   }
 
-  onContinue(): void {
+  alContinuar(): void {
     const diet = this.selectedDiet();
     if (diet) {
       this.onboardingService.setField("dietType", diet);

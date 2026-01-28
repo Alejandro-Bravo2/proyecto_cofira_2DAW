@@ -28,7 +28,7 @@ export class StepGender {
     this.selectedGender.set(value as Gender);
   }
 
-  onContinue(): void {
+  alContinuar(): void {
     const gender = this.selectedGender();
     if (gender) {
       this.onboardingService.setField("gender", gender);

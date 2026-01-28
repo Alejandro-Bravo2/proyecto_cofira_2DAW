@@ -79,13 +79,13 @@
       <footer class="modal-alternativa__acciones">
         <button
           (click)="cerrarModal()"
-          class="modal-alternativa__btn modal-alternativa__btn--cancelar"
+          class="modal-alternativa__boton modal-alternativa__boton--cancelar"
           type="button">
           Cancelar
         </button>
         <button
           [disabled]="guardando"
-          class="modal-alternativa__btn modal-alternativa__btn--guardar"
+          class="modal-alternativa__boton modal-alternativa__boton--guardar"
           type="submit">
           @if (guardando) {
             Guardando...

@@ -1,13 +1,13 @@
-<mark [class.chip--selected]="seleccionado()" class="chip" tabindex="0" role="button" (keydown.enter)="onSeleccionarConTeclado($event)" (keydown.space)="onSeleccionarConTeclado($event)">
+<mark [class.chip--selected]="seleccionado()" class="chip" tabindex="0" role="button" (keydown.enter)="alSeleccionarConTeclado($event)" (keydown.space)="alSeleccionarConTeclado($event)">
   <span class="chip__texto">{{ texto() }}</span>
 
   @if (removible()) {
     <button
-      (click)="onRemove()"
+      (click)="alEliminar()"
       [attr.aria-label]="'Eliminar ' + texto()"
-      class="chip__btn-eliminar"
+      class="chip__boton-eliminar"
       type="button">
-      <svg class="chip__btn-eliminar__svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <svg class="chip__boton-eliminar__svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
         <path d="M18 6L6 18M6 6l12 12"/>
       </svg>
     </button>

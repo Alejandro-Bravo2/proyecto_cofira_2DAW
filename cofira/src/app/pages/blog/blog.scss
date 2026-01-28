@@ -41,7 +41,7 @@
 .blog__subtitulo {
   font-family: var(--font-primary);
   font-size: var(--font-size-lg);
-  color: var(--gris-normal);
+  color: var(--gris-light);
   margin: 0;
   line-height: 1.6;
 
@@ -67,7 +67,7 @@
   flex-wrap: wrap;
 }
 
-.blog__categoria-btn {
+.blog__categoria-boton {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
@@ -80,18 +80,18 @@
   transition: all var(--duration-fast) ease;
 }
 
-.blog__categoria-btn:hover {
+.blog__categoria-boton:hover {
   color: var(--negro-normal);
   border-color: var(--gris-normal);
 }
 
-.blog__categoria-btn--activo {
+.blog__categoria-boton--activo {
   color: var(--negro-normal);
   background-color: var(--amarillo-normal);
   border-color: var(--amarillo-normal);
 }
 
-.blog__categoria-btn--activo:hover {
+.blog__categoria-boton--activo:hover {
   background-color: var(--amarillo-dark);
   border-color: var(--amarillo-dark);
 }
@@ -348,7 +348,7 @@
   border-color: var(--negro-normal);
 }
 
-.blog__newsletter-btn {
+.blog__newsletter-boton {
   font-family: var(--font-secondary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
@@ -362,7 +362,7 @@
   white-space: nowrap;
 }
 
-.blog__newsletter-btn:hover {
+.blog__newsletter-boton:hover {
   background-color: var(--negro-dark);
   transform: translateY(-2px);
 }

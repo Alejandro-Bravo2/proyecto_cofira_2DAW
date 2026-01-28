@@ -43,7 +43,7 @@ export class StepAllergies {
     return this.selectedAllergies().includes(id);
   }
 
-  onToggle(id: string): void {
+  alAlternar(id: string): void {
     const current = this.selectedAllergies();
     if (current.includes(id)) {
       this.selectedAllergies.set(current.filter(a => a !== id));
@@ -52,12 +52,12 @@ export class StepAllergies {
     }
   }
 
-  onContinue(): void {
+  alContinuar(): void {
     this.onboardingService.setField("allergies", this.selectedAllergies());
     this.continuar.emit();
   }
 
-  onSkip(): void {
+  alOmitir(): void {
     this.onboardingService.setField("allergies", []);
     this.continuar.emit();
   }

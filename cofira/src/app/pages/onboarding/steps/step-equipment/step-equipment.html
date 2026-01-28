@@ -10,7 +10,7 @@
   <section class="step-equipment__grid">
     @for (option of options; track option.id) {
       <app-chip
-        (click)="onToggle(option.id)"
+        (click)="alAlternar(option.id)"
         [seleccionado]="isSelected(option.id)"
         [texto]="option.label">
       </app-chip>
@@ -20,7 +20,7 @@
   <footer class="step-equipment__footer">
     <nav class="step-equipment__actions">
       <app-button
-        (clicked)="onSkip()"
+        (clicked)="alOmitir()"
         tamanio="grande"
         variante="secundario">
         Solo peso corporal
@@ -28,7 +28,7 @@
 
       @if (selectedEquipment().length > 0) {
         <app-button
-          (clicked)="onContinue()"
+          (clicked)="alContinuar()"
           tamanio="grande"
           variante="primario">
           Continuar ({{ selectedEquipment().length }} seleccionados)

@@ -355,8 +355,10 @@
 }
 
 .seguimiento__ayuda {
-  font-size: var(--font-size-sm) !important;
-  color: var(--gris-normal) !important;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+  color: var(--gris-normal);
+  margin: 0;
 }
 
 
@@ -367,7 +369,7 @@
   gap: var(--spacing-size-xs);
 }
 
-.seguimiento__agua-btn {
+.seguimiento__agua-boton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -385,12 +387,12 @@
   transition: all var(--duration-fast) ease;
 }
 
-.seguimiento__agua-btn:hover:not(:disabled) {
+.seguimiento__agua-boton:hover:not(:disabled) {
   background-color: var(--amarillo-normal);
   border-color: var(--amarillo-normal);
 }
 
-.seguimiento__agua-btn:disabled {
+.seguimiento__agua-boton:disabled {
   opacity: 0.4;
   cursor: not-allowed;
 }

@@ -17,8 +17,8 @@
         @for (cat of categorias; track cat.id) {
           <button
             (click)="filtrarPorCategoria(cat.id)"
-            [ngClass]="{'blog__categoria-btn--activo': categoriaActiva === cat.id}"
-            class="blog__categoria-btn"
+            [ngClass]="{'blog__categoria-boton--activo': categoriaActiva === cat.id}"
+            class="blog__categoria-boton"
           >
             {{ cat.label }}
           </button>
@@ -34,7 +34,21 @@
         @for (articulo of articulosFiltrados; track articulo.titulo) {
           <li class="blog__articulo">
             <figure class="blog__articulo-imagen">
-              <img [alt]="articulo.titulo" [src]="articulo.imagen" class="blog__articulo-imagen-img" loading="lazy"/>
+              <picture>
+                <source
+                  type="image/webp"
+                  [srcset]="articulo.imagen + '-400w.webp 400w, ' +
+                           articulo.imagen + '-800w.webp 800w, ' +
+                           articulo.imagen + '-1200w.webp 1200w'"
+                  sizes="(max-width: 480px) 400px, (max-width: 900px) 800px, 1200px"
+                />
+                <img
+                  [alt]="articulo.titulo"
+                  [src]="articulo.imagen + '-800w.webp'"
+                  class="blog__articulo-imagen-img"
+                  loading="lazy"
+                />
+              </picture>
               <span
                 [ngClass]="'blog__articulo-categoria--' + articulo.categoria"
                 class="blog__articulo-categoria"
@@ -91,7 +105,7 @@
             placeholder="tu@email.com"
             type="email"
           />
-          <button class="blog__newsletter-btn" type="submit">Suscribirse</button>
+          <button class="blog__newsletter-boton" type="submit">Suscribirse</button>
         </form>
       </aside>
     </article>

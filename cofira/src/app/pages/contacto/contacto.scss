@@ -137,7 +137,7 @@
   min-height: 120px;
 }
 
-.contacto__btn-enviar {
+.contacto__boton-enviar {
   font-family: var(--font-secondary);
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-semibold);
@@ -151,7 +151,7 @@
   margin-top: var(--spacing-size-s);
 }
 
-.contacto__btn-enviar:hover {
+.contacto__boton-enviar:hover {
   background-color: var(--amarillo-dark);
   transform: translateY(-2px);
 }

@@ -11,7 +11,7 @@
     @for (option of options; track option.value) {
       <li class="step-meals__opcion-item">
         <app-option-card
-          (seleccionar)="onSelect(option.value)"
+          (seleccionar)="alSeleccionar(option.value)"
           [descripcion]="option.description"
           [seleccionado]="selectedMeals() === option.value"
           [titulo]="option.label">
@@ -22,7 +22,7 @@
 
   <footer class="step-meals__footer">
     <app-button
-      (click)="onContinue()"
+      (click)="alContinuar()"
       [habilitado]="!canContinue()"
       tamanio="grande"
       variante="primario">

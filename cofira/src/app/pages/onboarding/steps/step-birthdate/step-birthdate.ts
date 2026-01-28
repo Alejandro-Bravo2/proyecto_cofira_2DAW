@@ -24,11 +24,11 @@ export class StepBirthdate {
     }
   }
 
-  onDateChange(value: string): void {
+  alCambiarFecha(value: string): void {
     this.birthDate.set(value);
   }
 
-  onContinue(): void {
+  alContinuar(): void {
     const date = this.birthDate();
     if (date) {
       this.onboardingService.setField("birthDate", date);

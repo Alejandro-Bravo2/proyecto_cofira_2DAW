@@ -11,7 +11,7 @@
     <label class="step-birthdate__input-wrapper">
       <span class="step-birthdate__label">Fecha de nacimiento</span>
       <input
-        (change)="onDateChange($any($event.target).value)"
+        (change)="alCambiarFecha($any($event.target).value)"
         [max]="maxDate"
         [min]="minDate"
         [value]="birthDate()"
@@ -23,7 +23,7 @@
 
   <footer class="step-birthdate__footer">
     <app-button
-      (click)="onContinue()"
+      (click)="alContinuar()"
       [habilitado]="!canContinue()"
       tamanio="grande"
       variante="primario">

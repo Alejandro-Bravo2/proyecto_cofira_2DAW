@@ -136,7 +136,7 @@
 
 
 
-.demo-btn {
+.demo-boton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -150,57 +150,57 @@
   transition: all var(--duration-fast) ease;
 }
 
-.demo-btn:hover {
+.demo-boton:hover {
   transform: translateY(-0.125rem);
   box-shadow: 0 0.25rem 0.5rem var(--negro-puro-transparente-010);
 }
 
-.demo-btn:active {
+.demo-boton:active {
   transform: translateY(0);
 }
 
-.demo-btn:focus {
+.demo-boton:focus {
   outline: 0.125rem solid currentColor;
   outline-offset: 0.125rem;
 }
 
-.demo-btn--success {
+.demo-boton--success {
   background-color: var(--amarillo-normal);
   border-color: var(--amarillo-dark);
   color: var(--negro-normal);
 }
 
-.demo-btn--success:hover {
+.demo-boton--success:hover {
   background-color: var(--amarillo-normal-hover);
 }
 
-.demo-btn--error {
+.demo-boton--error {
   background-color: var(--button-red);
   border-color: var(--button-red-hover);
   color: var(--blanco-normal);
 }
 
-.demo-btn--error:hover {
+.demo-boton--error:hover {
   background-color: var(--button-red-hover);
 }
 
-.demo-btn--warning {
+.demo-boton--warning {
   background-color: var(--amarillo-normal-hover);
   border-color: var(--amarillo-normal);
   color: var(--negro-normal);
 }
 
-.demo-btn--warning:hover {
+.demo-boton--warning:hover {
   background-color: var(--amarillo-normal);
 }
 
-.demo-btn--info {
+.demo-boton--info {
   background-color: var(--gris-normal);
   border-color: var(--gris-dark);
   color: var(--blanco-normal);
 }
 
-.demo-btn--info:hover {
+.demo-boton--info:hover {
   background-color: var(--gris-dark);
 }
 
@@ -417,7 +417,7 @@
 
 
 
-.animation-btn {
+.animation-boton {
   padding: var(--spacing-size-s) var(--spacing-size-m);
   background: var(--amarillo-normal);
   color: var(--negro-normal);
@@ -429,25 +429,25 @@
   cursor: pointer;
 }
 
-.animation-btn:hover {
+.animation-boton:hover {
   background: var(--amarillo-normal-hover);
   transform: scale(1.05);
 }
 
-.animation-btn:focus {
+.animation-boton:focus {
   outline: 0.125rem solid var(--amarillo-dark);
   outline-offset: 0.125rem;
 }
 
-.animation-btn--fast {
+.animation-boton--fast {
   transition: all var(--duration-fast) ease;
 }
 
-.animation-btn--base {
+.animation-boton--base {
   transition: all var(--duration-base) ease;
 }
 
-.animation-btn--slow {
+.animation-boton--slow {
   transition: all var(--duration-slow) ease;
 }
 

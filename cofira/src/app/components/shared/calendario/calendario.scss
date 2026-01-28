@@ -17,7 +17,7 @@
   gap: var(--spacing-size-m);
 }
 
-.calendario__btn {
+.calendario__boton {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,12 +32,12 @@
   transition: all var(--duration-fast) ease;
 }
 
-.calendario__btn:hover {
+.calendario__boton:hover {
   background-color: var(--blanco-normal-hover);
   color: var(--negro-normal);
 }
 
-.calendario__btn-svg {
+.calendario__boton-svg {
   width: 1.5rem;
   height: 1.5rem;
 }

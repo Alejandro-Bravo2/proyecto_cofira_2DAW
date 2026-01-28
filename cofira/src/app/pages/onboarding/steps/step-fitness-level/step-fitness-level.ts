@@ -25,11 +25,11 @@ export class StepFitnessLevel {
     }
   }
 
-  onSelect(level: FitnessLevel): void {
+  alSeleccionar(level: FitnessLevel): void {
     this.selectedLevel.set(level);
   }
 
-  onContinue(): void {
+  alContinuar(): void {
     const level = this.selectedLevel();
     if (level) {
       this.onboardingService.setField("fitnessLevel", level);

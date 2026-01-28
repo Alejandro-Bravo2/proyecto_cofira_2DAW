@@ -25,11 +25,11 @@ export class StepActivityLevel {
     }
   }
 
-  onSelect(level: ActivityLevel): void {
+  alSeleccionar(level: ActivityLevel): void {
     this.selectedLevel.set(level);
   }
 
-  onContinue(): void {
+  alContinuar(): void {
     const nivelActividad = this.selectedLevel();
     if (nivelActividad) {
       this.onboardingService.setField("activityLevel", nivelActividad);

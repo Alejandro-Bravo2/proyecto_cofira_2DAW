@@ -27,12 +27,12 @@
     border-bottom: 1px solid var(--amarillo-dark-hover);
   }
 
-  app-onboarding .onboarding__btn-back {
+  app-onboarding .onboarding__boton-back {
     color: var(--blanco-normal);
     border-radius: var(--radius-full);
   }
 
-  app-onboarding .onboarding__btn-back:hover {
+  app-onboarding .onboarding__boton-back:hover {
     background-color: var(--amarillo-normal-transparente-025);
     color: var(--amarillo-normal);
     transform: scale(1.05);
@@ -46,11 +46,11 @@
     filter: brightness(1.2);
   }
 
-  app-header .cabecera__tema-btn {
+  app-header .cabecera__tema-boton {
     color: var(--blanco-normal);
   }
 
-  app-header .cabecera__tema-btn:hover {
+  app-header .cabecera__tema-boton:hover {
     background: var(--amarillo-normal-transparente-015);
     color: var(--amarillo-normal);
   }
@@ -739,6 +739,10 @@
     color: var(--oscuro-info-texto);
   }
 
+  .sobre-nosotros__cta-texto {
+    color: var(--blanco-dark);
+  }
+
   .blog {
     background-color: var(--oscuro-pagina-fondo);
   }
@@ -748,19 +752,19 @@
     border-bottom-color: var(--oscuro-info-borde);
   }
 
-  .blog__categoria-btn {
-    background-color: var(--oscuro-superficie-fondo);
-    color: var(--oscuro-texto-principal);
-    border-color: var(--oscuro-borde-color);
+  .blog__categoria-boton {
+    background-color: transparent;
+    color: var(--blanco-normal);
+    border-color: var(--blanco-normal);
   }
 
-  .blog__categoria-btn:hover {
-    background-color: var(--amarillo-normal-transparente-015);
-    color: var(--oscuro-texto-principal);
-    border-color: var(--amarillo-normal);
+  .blog__categoria-boton:hover {
+    background-color: var(--gris-normal-transparente-015);
+    color: var(--blanco-dark);
+    border-color: var(--blanco-dark);
   }
 
-  .blog__categoria-btn--activo {
+  .blog__categoria-boton--activo {
     background-color: var(--amarillo-normal);
     border-color: var(--amarillo-dark);
     color: var(--negro-normal);
@@ -1849,6 +1853,10 @@
     border-color: var(--oscuro-borde-color);
   }
 
+  app-alimentacion .alimentacion__comida--consumida {
+    border-color: var(--verde-normal);
+  }
+
   app-alimentacion .alimentacion__comida-header {
     border-color: var(--oscuro-borde-suave);
   }
@@ -1880,12 +1888,12 @@
     color: var(--blanco-normal);
   }
 
-  app-alimentacion .alimentacion__btn-info {
+  app-alimentacion .alimentacion__boton-info {
     background-color: var(--oscuro-hover-fondo);
     color: var(--blanco-normal);
   }
 
-  app-alimentacion .alimentacion__btn-info:hover {
+  app-alimentacion .alimentacion__boton-info:hover {
     background-color: var(--amarillo-normal);
     color: var(--negro-normal);
   }
@@ -1894,12 +1902,16 @@
     color: var(--oscuro-texto-secundario);
   }
 
-  app-alimentacion .alimentacion__btn-fecha {
-    color: var(--oscuro-texto-secundario);
+  app-alimentacion .alimentacion__boton-fecha {
+    color: var(--blanco-normal);
   }
 
-  app-alimentacion .alimentacion__btn-fecha:hover {
+  app-alimentacion .alimentacion__boton-fecha:hover {
     color: var(--oscuro-texto-principal);
+  }
+
+  app-alimentacion .alimentacion__boton-fecha-svg {
+    color: var(--blanco-normal);
   }
 
   app-alimentacion .alimentacion__fecha-texto {
@@ -1927,11 +1939,11 @@
     background-color: var(--amarillo-normal);
   }
 
-  app-alimentacion .alimentacion__btn-cancelar {
+  app-alimentacion .alimentacion__boton-cancelar {
     color: var(--blanco-normal);
   }
 
-  app-alimentacion .alimentacion__btn-regenerar {
+  app-alimentacion .alimentacion__boton-regenerar {
     color: var(--blanco-normal);
     border-color: var(--blanco-normal);
   }
@@ -1980,6 +1992,18 @@
     color: var(--blanco-dark);
   }
 
+  app-alimentacion .alimentacion__boton-alternativa {
+    color: var(--blanco-normal);
+    border-color: var(--blanco-normal);
+    background-color: transparent;
+  }
+
+  app-alimentacion .alimentacion__boton-alternativa:hover {
+    color: var(--blanco-dark);
+    border-color: var(--blanco-dark);
+    background-color: transparent;
+  }
+
   app-seguimiento .seguimiento {
     background-color: var(--oscuro-seguimiento-fondo);
   }
@@ -2018,6 +2042,10 @@
 
   app-seguimiento .seguimiento__stat-label {
     color: var(--oscuro-texto-secundario);
+  }
+
+  app-seguimiento .seguimiento__ayuda {
+    color: var(--blanco-dark);
   }
 
   app-seguimiento .stat-item__label {
@@ -2213,11 +2241,11 @@
     color: var(--blanco-normal);
   }
 
-  app-calendario .calendario__btn {
+  app-calendario .calendario__boton {
     color: var(--blanco-normal);
   }
 
-  app-calendario .calendario__btn:hover {
+  app-calendario .calendario__boton:hover {
     background-color: var(--gris-normal);
     color: var(--blanco-normal);
   }
@@ -2278,12 +2306,12 @@
     color: var(--amarillo-normal);
   }
 
-  app-modal-comida-alternativa .modal-alternativa__btn--cancelar {
+  app-modal-comida-alternativa .modal-alternativa__boton--cancelar {
     color: var(--blanco-normal);
     border-color: var(--blanco-normal);
   }
 
-  app-modal-comida-alternativa .modal-alternativa__btn--cancelar:hover {
+  app-modal-comida-alternativa .modal-alternativa__boton--cancelar:hover {
     color: var(--blanco-dark);
     border-color: var(--blanco-dark);
   }

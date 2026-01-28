@@ -34,11 +34,11 @@ export class StepMeals {
     }
   }
 
-  onSelect(meals: number): void {
+  alSeleccionar(meals: number): void {
     this.selectedMeals.set(meals);
   }
 
-  onContinue(): void {
+  alContinuar(): void {
     const meals = this.selectedMeals();
     if (meals !== null) {
       this.onboardingService.setField("mealsPerDay", meals);

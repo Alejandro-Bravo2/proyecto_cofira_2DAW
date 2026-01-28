@@ -37,8 +37,8 @@ export class StepResults implements OnInit {
     this.calculateResults();
   }
 
-  onComplete(): void {
-    
+  alCompletar(): void {
+
     this.continuar.emit();
   }
 
