@@ -21,6 +21,10 @@
 }
 
 .perfil__titulo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-size-s);
   margin: 0;
 
   font-family: var(--font-secondary);
@@ -28,6 +32,25 @@
   font-weight: var(--font-weight-bold);
 
   color: var(--text-primary);
+}
+
+.perfil__badge-pro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-size-xss) var(--spacing-size-s);
+
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  color: var(--negro-normal);
+  background: linear-gradient(135deg, var(--amarillo-light), var(--amarillo-normal));
+  border-radius: var(--radius-full);
+
+  box-shadow: 0 2px 8px var(--amarillo-normal-transparente-024);
 }
 
 .perfil__subtitulo {

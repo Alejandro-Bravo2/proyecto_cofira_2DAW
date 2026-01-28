@@ -70,7 +70,10 @@
         <app-step-results (continuar)="nextStep()"></app-step-results>
       }
       @case (14) {
-        <app-step-register></app-step-register>
+        <app-step-register (continuar)="nextStep()"></app-step-register>
+      }
+      @case (15) {
+        <app-step-payment></app-step-payment>
       }
     }
   </section>

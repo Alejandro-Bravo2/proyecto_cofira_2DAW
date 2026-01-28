@@ -21,8 +21,10 @@ import { Blog } from './pages/blog/blog';
 import { Contacto } from './pages/contacto/contacto';
 
 import { Pruebas } from './pages/pruebas/pruebas';
+import { AccesoPro } from './pages/acceso-pro/acceso-pro';
 
 import { authGuard, guestGuard } from './guards/auth.guard';
+import { proGuard } from './guards/pro.guard';
 
 export const routes: Routes = [
 
@@ -34,10 +36,13 @@ export const routes: Routes = [
   // Ruta de onboarding (flujo de registro, sin autenticacion)
   { path: 'onboarding', component: Onboarding },
 
-  // Rutas protegidas (requieren autenticacion)
-  { path: 'alimentacion', component: Alimentacion, canActivate: [authGuard] },
-  { path: 'seguimiento', component: Seguimiento, canActivate: [authGuard] },
-  { path: 'gimnasio', component: Gimnasio, canActivate: [authGuard] },
+  // Rutas protegidas PRO (requieren autenticacion + suscripcion)
+  { path: 'alimentacion', component: Alimentacion, canActivate: [authGuard, proGuard] },
+  { path: 'seguimiento', component: Seguimiento, canActivate: [authGuard, proGuard] },
+  { path: 'gimnasio', component: Gimnasio, canActivate: [authGuard, proGuard] },
+
+  // Pagina de acceso bloqueado (para usuarios sin PRO)
+  { path: 'acceso-pro', component: AccesoPro, canActivate: [authGuard] },
   { path: 'perfil', component: Perfil, canActivate: [authGuard] },
   { path: 'configuracion', component: Configuracion, canActivate: [authGuard] },
 

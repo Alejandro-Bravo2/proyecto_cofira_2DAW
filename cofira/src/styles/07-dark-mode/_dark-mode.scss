@@ -2385,6 +2385,250 @@
   .configuracion__toggle--activo {
     background-color: var(--amarillo-normal);
   }
+
+  .configuracion__grupo--pro {
+    background: linear-gradient(
+      135deg,
+      var(--amarillo-normal-transparente-006) 0%,
+      var(--amarillo-normal-transparente-012) 100%
+    );
+    border-color: var(--amarillo-normal-transparente-024);
+  }
+
+  .configuracion__suscripcion-detalle {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+  .configuracion__suscripcion-etiqueta {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  .configuracion__suscripcion-valor {
+    color: var(--oscuro-texto-principal);
+  }
+
+  .configuracion__suscripcion-promo {
+    background-color: var(--oscuro-superficie-fondo);
+  }
+
+  .configuracion__suscripcion-promo-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  .configuracion__suscripcion-beneficios li {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  .configuracion__suscripcion-precio {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  .configuracion__suscripcion-precio strong {
+    color: var(--oscuro-texto-principal);
+  }
+
+  .perfil__badge-pro {
+    color: var(--negro-normal);
+    background: linear-gradient(135deg, var(--amarillo-light), var(--amarillo-normal));
+  }
+
+  app-acceso-pro .acceso-pro {
+    background-color: var(--oscuro-pagina-fondo);
+  }
+
+  app-acceso-pro .acceso-pro__contenido {
+    background-color: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-acceso-pro .acceso-pro__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-acceso-pro .acceso-pro__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-acceso-pro .acceso-pro__beneficio {
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-acceso-pro .acceso-pro__beneficio-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-acceso-pro .acceso-pro__beneficio-descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-acceso-pro .acceso-pro__beneficios-titulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-acceso-pro .acceso-pro__precio-cantidad {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-acceso-pro .acceso-pro__precio-periodo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-acceso-pro .acceso-pro__volver {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-acceso-pro .acceso-pro__volver:hover {
+    color: var(--oscuro-texto-principal);
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-acceso-pro .acceso-pro__pago {
+    background-color: var(--oscuro-superficie-fondo);
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-acceso-pro .acceso-pro__pago-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-acceso-pro .acceso-pro__pago-cerrar {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-acceso-pro .acceso-pro__pago-cerrar:hover {
+    color: var(--oscuro-texto-principal);
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-acceso-pro .acceso-pro__fieldset {
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-acceso-pro .acceso-pro__legend {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-acceso-pro .acceso-pro__field-label {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-acceso-pro .acceso-pro__input {
+    background-color: var(--oscuro-input-fondo);
+    color: var(--oscuro-texto-principal);
+    border-color: transparent;
+  }
+
+  app-acceso-pro .acceso-pro__input::placeholder {
+    color: var(--oscuro-texto-suave);
+  }
+
+  app-acceso-pro .acceso-pro__input:hover {
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-acceso-pro .acceso-pro__input:focus {
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 0 0 4px var(--amarillo-normal-transparente-012);
+  }
+
+  app-acceso-pro .acceso-pro__checkbox-label {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-acceso-pro .acceso-pro__aviso {
+    background-color: var(--amarillo-normal-transparente-010);
+  }
+
+  app-acceso-pro .acceso-pro__exito-titulo {
+    color: var(--verde-normal);
+  }
+
+  app-acceso-pro .acceso-pro__exito-texto {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-payment__titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-payment__subtitulo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-payment__beneficio {
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-onboarding .step-payment__beneficio-titulo {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-payment__beneficio-descripcion {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-payment__fieldset {
+    background-color: var(--oscuro-hover-fondo);
+  }
+
+  app-onboarding .step-payment__legend {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-payment__field-label {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-payment__input {
+    background-color: var(--oscuro-input-fondo);
+    color: var(--oscuro-texto-principal);
+    border-color: transparent;
+  }
+
+  app-onboarding .step-payment__input::placeholder {
+    color: var(--oscuro-texto-suave);
+  }
+
+  app-onboarding .step-payment__input:hover {
+    border-color: var(--oscuro-borde-color);
+  }
+
+  app-onboarding .step-payment__input:focus {
+    border-color: var(--amarillo-normal);
+    box-shadow: 0 0 0 4px var(--amarillo-normal-transparente-012);
+  }
+
+  app-onboarding .step-payment__checkbox-label {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-payment__precio-cantidad {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-payment__precio-periodo {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-payment__aviso {
+    background-color: var(--amarillo-normal-transparente-010);
+  }
+
+  app-onboarding .step-payment__omitir {
+    color: var(--oscuro-texto-secundario);
+  }
+
+  app-onboarding .step-payment__omitir:hover {
+    color: var(--oscuro-texto-principal);
+  }
+
+  app-onboarding .step-payment__exito-titulo {
+    color: var(--verde-normal);
+  }
+
+  app-onboarding .step-payment__exito-texto {
+    color: var(--oscuro-texto-secundario);
+  }
 }
 
 body {

@@ -1,6 +1,11 @@
 <main class="perfil">
   <header class="perfil__cabecera">
-    <h1 class="perfil__titulo">Mi Perfil</h1>
+    <h1 class="perfil__titulo">
+      Mi Perfil
+      @if (usuarioEsPro()) {
+        <mark class="perfil__badge-pro">PRO</mark>
+      }
+    </h1>
     <p class="perfil__subtitulo">Gestiona tu información personal y preferencias</p>
   </header>
 

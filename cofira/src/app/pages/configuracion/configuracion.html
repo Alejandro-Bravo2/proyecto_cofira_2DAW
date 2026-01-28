@@ -41,6 +41,17 @@
       </button>
 
       <button
+        (click)="cambiarSeccion('suscripcion')"
+        [class.configuracion__menu-item--activo]="seccionActiva() === 'suscripcion'"
+        class="configuracion__menu-item"
+        type="button">
+        <svg aria-hidden="true" class="configuracion__menu-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>Suscripción</span>
+      </button>
+
+      <button
         (click)="cambiarSeccion('cuenta')"
         [class.configuracion__menu-item--activo]="seccionActiva() === 'cuenta'"
         class="configuracion__menu-item"
@@ -227,6 +238,129 @@
                 </a>
               </nav>
             </fieldset>
+          </section>
+        }
+
+        @case ('suscripcion') {
+          <section class="configuracion__seccion">
+            <h2 class="configuracion__seccion-titulo">Suscripción</h2>
+
+            @if (esPro()) {
+              <fieldset class="configuracion__grupo configuracion__grupo--pro">
+                <legend class="configuracion__grupo-titulo">
+                  <mark class="configuracion__badge-pro">PRO</mark>
+                  Estado de tu Suscripción
+                </legend>
+
+                <article class="configuracion__suscripcion-info">
+                  <section class="configuracion__suscripcion-detalle">
+                    <span class="configuracion__suscripcion-etiqueta">Estado</span>
+                    <span class="configuracion__suscripcion-valor configuracion__suscripcion-valor--activa">
+                      @switch (suscripcionActual()?.estadoSuscripcion) {
+                        @case ('activa') { Activa }
+                        @case ('periodo_gracia') { Período de gracia }
+                        @case ('cancelada') { Cancelada }
+                        @default { -- }
+                      }
+                    </span>
+                  </section>
+
+                  <section class="configuracion__suscripcion-detalle">
+                    <span class="configuracion__suscripcion-etiqueta">Fecha de inicio</span>
+                    <span class="configuracion__suscripcion-valor">
+                      {{ formatearFechaSuscripcion(suscripcionActual()?.fechaInicio || '') }}
+                    </span>
+                  </section>
+
+                  <section class="configuracion__suscripcion-detalle">
+                    <span class="configuracion__suscripcion-etiqueta">Próxima renovación</span>
+                    <span class="configuracion__suscripcion-valor">
+                      {{ formatearFechaSuscripcion(suscripcionActual()?.fechaExpiracion || '') }}
+                    </span>
+                  </section>
+
+                  <section class="configuracion__suscripcion-detalle">
+                    <span class="configuracion__suscripcion-etiqueta">Días restantes</span>
+                    <span class="configuracion__suscripcion-valor">
+                      {{ diasRestantes() }} días
+                    </span>
+                  </section>
+                </article>
+              </fieldset>
+
+              <fieldset class="configuracion__grupo">
+                <legend class="configuracion__grupo-titulo">Opciones de Renovación</legend>
+
+                <article class="configuracion__toggle-item">
+                  <hgroup class="configuracion__toggle-info">
+                    <h3 class="configuracion__toggle-titulo">Renovación automática</h3>
+                    <p class="configuracion__toggle-descripcion">
+                      Tu suscripción se renovará automáticamente cada mes
+                    </p>
+                  </hgroup>
+                  <button
+                    (click)="toggleRenovacionAutomatica()"
+                    [class.configuracion__toggle--activo]="renovacionAutomatica()"
+                    [disabled]="cargandoSuscripcion()"
+                    class="configuracion__toggle"
+                    type="button"
+                    role="switch"
+                    [attr.aria-checked]="renovacionAutomatica()">
+                    <span class="configuracion__toggle-circulo"></span>
+                  </button>
+                </article>
+              </fieldset>
+
+              <fieldset class="configuracion__grupo configuracion__grupo--peligro">
+                <legend class="configuracion__grupo-titulo configuracion__grupo-titulo--peligro">Cancelar Suscripción</legend>
+
+                <article class="configuracion__accion-item configuracion__accion-item--peligro">
+                  <hgroup class="configuracion__accion-info">
+                    <h3 class="configuracion__accion-titulo">Cancelar PRO</h3>
+                    <p class="configuracion__accion-descripcion">
+                      Mantendrás acceso hasta que expire tu período actual
+                    </p>
+                  </hgroup>
+                  <app-button
+                    (click)="cancelarSuscripcion()"
+                    [habilitado]="cargandoSuscripcion()"
+                    tamanio="pequeno"
+                    variante="peligro">
+                    @if (cargandoSuscripcion()) {
+                      Cancelando...
+                    } @else {
+                      Cancelar
+                    }
+                  </app-button>
+                </article>
+              </fieldset>
+            } @else {
+              <fieldset class="configuracion__grupo">
+                <legend class="configuracion__grupo-titulo">Activa Cofira PRO</legend>
+
+                <article class="configuracion__suscripcion-promo">
+                  <figure class="configuracion__suscripcion-icono">
+                    <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                      <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </figure>
+                  <hgroup class="configuracion__suscripcion-promo-info">
+                    <h3 class="configuracion__suscripcion-promo-titulo">Desbloquea todo el potencial</h3>
+                    <ul class="configuracion__suscripcion-beneficios">
+                      <li>Gimnasio personalizado</li>
+                      <li>Planes de alimentación</li>
+                      <li>Seguimiento de progreso</li>
+                    </ul>
+                    <p class="configuracion__suscripcion-precio">
+                      <strong>9.99€</strong>/mes
+                    </p>
+                  </hgroup>
+                  <app-button (click)="activarPro()" tamanio="mediano" variante="primario">
+                    Activar PRO
+                  </app-button>
+                </article>
+              </fieldset>
+            }
           </section>
         }
 

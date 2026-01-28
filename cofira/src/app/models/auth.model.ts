@@ -34,6 +34,8 @@ export interface AuthResponse {
 
 
 
+import { Suscripcion } from "./suscripcion.model";
+
 export interface User {
   id: number;
   username: string;
@@ -46,4 +48,6 @@ export interface User {
   altura?: number | null;
   objetivo?: string;
   nivelActividad?: string;
+  esPro: boolean;
+  suscripcion?: Suscripcion | null;
 }

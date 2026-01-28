@@ -1,0 +1,186 @@
+<main class="acceso-pro">
+
+  @if (pagoExitoso()) {
+    <section class="acceso-pro__exito">
+      <figure class="acceso-pro__exito-icono">
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </figure>
+      <h1 class="acceso-pro__exito-titulo">¡Pago realizado!</h1>
+      <p class="acceso-pro__exito-texto">
+        Ya eres parte de Cofira PRO. Redirigiendo...
+      </p>
+    </section>
+  } @else if (mostrarFormularioPago()) {
+    <article class="acceso-pro__pago">
+      <header class="acceso-pro__pago-header">
+        <button (click)="ocultarPago()" class="acceso-pro__pago-cerrar" type="button" aria-label="Volver">
+          <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M19 12H5M12 19l-7-7 7-7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <h2 class="acceso-pro__pago-titulo">Activar Cofira PRO</h2>
+      </header>
+
+      <form (ngSubmit)="alEnviar()" [formGroup]="formularioPago" class="acceso-pro__form">
+        <fieldset class="acceso-pro__fieldset">
+          <legend class="acceso-pro__legend">Datos de pago</legend>
+
+          <label class="acceso-pro__field">
+            <span class="acceso-pro__field-label">Número de tarjeta</span>
+            <input
+              (input)="formatearNumeroTarjeta($event)"
+              [value]="numeroTarjetaFormateado"
+              autocomplete="cc-number"
+              class="acceso-pro__input"
+              formControlName="numeroTarjeta"
+              inputmode="numeric"
+              placeholder="1234 5678 9012 3456"
+              type="text">
+          </label>
+
+          <label class="acceso-pro__field">
+            <span class="acceso-pro__field-label">Nombre del titular</span>
+            <input
+              autocomplete="cc-name"
+              class="acceso-pro__input"
+              formControlName="nombreTitular"
+              placeholder="NOMBRE APELLIDO"
+              type="text">
+          </label>
+
+          <section class="acceso-pro__field-row">
+            <label class="acceso-pro__field acceso-pro__field--mitad">
+              <span class="acceso-pro__field-label">Fecha expiración</span>
+              <input
+                (input)="formatearFechaExpiracion($event)"
+                autocomplete="cc-exp"
+                class="acceso-pro__input"
+                formControlName="fechaExpiracion"
+                inputmode="numeric"
+                placeholder="MM/YY"
+                type="text">
+            </label>
+
+            <label class="acceso-pro__field acceso-pro__field--mitad">
+              <span class="acceso-pro__field-label">CVV</span>
+              <input
+                (input)="formatearCvv($event)"
+                autocomplete="cc-csc"
+                class="acceso-pro__input"
+                formControlName="cvv"
+                inputmode="numeric"
+                placeholder="123"
+                type="text">
+            </label>
+          </section>
+
+          <label class="acceso-pro__checkbox-field">
+            <input
+              class="acceso-pro__checkbox"
+              formControlName="renovacionAutomatica"
+              type="checkbox">
+            <span class="acceso-pro__checkbox-label">
+              Renovar automáticamente cada mes
+            </span>
+          </label>
+        </fieldset>
+
+        <footer class="acceso-pro__form-footer">
+          <section class="acceso-pro__precio">
+            <span class="acceso-pro__precio-cantidad">9.99€</span>
+            <span class="acceso-pro__precio-periodo">/mes</span>
+          </section>
+
+          <app-button
+            [habilitado]="!puedeEnviar()"
+            tamanio="grande"
+            tipo="submit"
+            variante="primario">
+            @if (estaCargando()) {
+              <span class="acceso-pro__loading">
+                <svg class="acceso-pro__spinner" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path d="M4 12a8 8 0 018-8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Procesando pago...
+              </span>
+            } @else {
+              Activar PRO
+            }
+          </app-button>
+
+          <aside class="acceso-pro__aviso">
+            <svg aria-hidden="true" class="acceso-pro__aviso-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+              <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="acceso-pro__aviso-texto">
+              Pago simulado - No se realizará ningún cargo real
+            </span>
+          </aside>
+        </footer>
+      </form>
+    </article>
+  } @else {
+    <article class="acceso-pro__contenido">
+      <figure class="acceso-pro__icono">
+        <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <path d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </figure>
+
+      <header class="acceso-pro__header">
+        <h1 class="acceso-pro__titulo">Contenido exclusivo para PRO</h1>
+        <p class="acceso-pro__subtitulo">
+          Esta sección requiere una suscripción PRO activa para acceder
+        </p>
+      </header>
+
+      <section class="acceso-pro__beneficios">
+        <h2 class="acceso-pro__beneficios-titulo">¿Qué incluye Cofira PRO?</h2>
+        <ul class="acceso-pro__beneficios-lista">
+          @for (beneficio of beneficiosPro; track beneficio.titulo) {
+            <li class="acceso-pro__beneficio">
+              <figure class="acceso-pro__beneficio-icono">
+                @if (beneficio.icono === 'gimnasio') {
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                }
+                @if (beneficio.icono === 'alimentacion') {
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M12 8.25v-1.5m0 1.5c-1.355 0-2.697.056-4.024.166C6.845 8.51 6 9.473 6 10.608v2.513m6-4.87c1.355 0 2.697.055 4.024.165C17.155 8.51 18 9.473 18 10.608v2.513m-3-4.87v-1.5m-6 1.5v-1.5m12 9.75l-1.5.75a3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0 3.354 3.354 0 00-3 0 3.354 3.354 0 01-3 0L3 16.5m15-3.38a48.474 48.474 0 00-6-.37c-2.032 0-4.034.125-6 .37m12 0c.39.049.777.102 1.163.16 1.07.16 1.837 1.094 1.837 2.175v5.17c0 .62-.504 1.124-1.125 1.124H4.125A1.125 1.125 0 013 20.625v-5.17c0-1.08.768-2.014 1.837-2.174A47.78 47.78 0 016 13.12" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                }
+                @if (beneficio.icono === 'seguimiento') {
+                  <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                }
+              </figure>
+              <hgroup class="acceso-pro__beneficio-texto">
+                <h3 class="acceso-pro__beneficio-titulo">{{ beneficio.titulo }}</h3>
+                <p class="acceso-pro__beneficio-descripcion">{{ beneficio.descripcion }}</p>
+              </hgroup>
+            </li>
+          }
+        </ul>
+      </section>
+
+      <section class="acceso-pro__precio-seccion">
+        <span class="acceso-pro__precio-cantidad">9.99€</span>
+        <span class="acceso-pro__precio-periodo">/mes</span>
+      </section>
+
+      <footer class="acceso-pro__acciones">
+        <app-button (click)="mostrarPago()" tamanio="grande" variante="primario">
+          Activar PRO
+        </app-button>
+        <button (click)="volverAlInicio()" class="acceso-pro__volver" type="button">
+          Volver al inicio
+        </button>
+      </footer>
+    </article>
+  }
+
+</main>

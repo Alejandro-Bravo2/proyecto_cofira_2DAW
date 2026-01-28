@@ -20,6 +20,7 @@ import {StepAllergies} from './steps/step-allergies/step-allergies';
 import {StepEquipment} from './steps/step-equipment/step-equipment';
 import {StepResults} from './steps/step-results/step-results';
 import {StepRegister} from './steps/step-register/step-register';
+import {StepPayment} from './steps/step-payment/step-payment';
 
 @Component({
   selector: 'app-onboarding',
@@ -40,7 +41,8 @@ import {StepRegister} from './steps/step-register/step-register';
     StepAllergies,
     StepEquipment,
     StepResults,
-    StepRegister
+    StepRegister,
+    StepPayment
   ],
   templateUrl: './onboarding.html',
   styleUrl: './onboarding.scss'

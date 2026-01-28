@@ -127,7 +127,9 @@ export class AuthService {
       email: response.email,
       nombre: response.username,
       rol: response.rol,
-      isOnboarded: response.isOnboarded
+      isOnboarded: response.isOnboarded,
+      esPro: false,
+      suscripcion: null
     };
 
     localStorage.setItem(this.USER_KEY, JSON.stringify(user));

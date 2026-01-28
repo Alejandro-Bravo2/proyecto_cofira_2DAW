@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AuthService } from '../../services/auth.service';
 import { NotificacionService } from '../../services/notificacion.service';
+import { SuscripcionService } from '../../services/suscripcion.service';
 import { Button } from '../../components/shared/button/button';
 
 interface DatosUsuario {
@@ -26,6 +27,11 @@ interface DatosUsuario {
 export class Perfil {
   private readonly authService = inject(AuthService);
   private readonly notificacionService = inject(NotificacionService);
+  private readonly suscripcionService = inject(SuscripcionService);
+
+  readonly usuarioEsPro = computed(function(this: Perfil) {
+    return this.suscripcionService.esPro();
+  }.bind(this));
 
   readonly estaCargando = signal(false);
   readonly modoEdicion = signal(false);

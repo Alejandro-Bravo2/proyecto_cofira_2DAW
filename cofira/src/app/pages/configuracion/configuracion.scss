@@ -357,6 +357,159 @@
   border-top: 1px solid var(--border-color-light);
 }
 
+.configuracion__grupo--pro {
+  padding: var(--spacing-size-m);
+
+  background: linear-gradient(
+    135deg,
+    var(--amarillo-normal-transparente-006) 0%,
+    var(--amarillo-normal-transparente-012) 100%
+  );
+  border: 1px solid var(--amarillo-normal-transparente-024);
+  border-radius: var(--radius-md);
+}
+
+.configuracion__badge-pro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-size-xss) var(--spacing-size-s);
+  margin-right: var(--spacing-size-xs);
+
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+
+  color: var(--negro-normal);
+  background: linear-gradient(135deg, var(--amarillo-light), var(--amarillo-normal));
+  border-radius: var(--radius-full);
+}
+
+.configuracion__suscripcion-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-s);
+}
+
+.configuracion__suscripcion-detalle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-size-s);
+
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+}
+
+.configuracion__suscripcion-etiqueta {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+
+  color: var(--text-secondary);
+}
+
+.configuracion__suscripcion-valor {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+
+  color: var(--text-primary);
+}
+
+.configuracion__suscripcion-valor--activa {
+  color: var(--verde-normal);
+}
+
+.configuracion__suscripcion-promo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-size-m);
+  padding: var(--spacing-size-l);
+
+  text-align: center;
+
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-md);
+}
+
+.configuracion__suscripcion-icono {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem;
+  height: 4rem;
+  margin: 0;
+
+  background: linear-gradient(135deg, var(--amarillo-light), var(--amarillo-normal));
+  border-radius: 50%;
+}
+
+.configuracion__suscripcion-icono svg {
+  width: 2rem;
+  height: 2rem;
+
+  color: var(--negro-normal);
+}
+
+.configuracion__suscripcion-promo-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-s);
+}
+
+.configuracion__suscripcion-promo-titulo {
+  margin: 0;
+
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+
+  color: var(--text-primary);
+}
+
+.configuracion__suscripcion-beneficios {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-size-xss);
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+}
+
+.configuracion__suscripcion-beneficios li {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-sm);
+
+  color: var(--text-secondary);
+}
+
+.configuracion__suscripcion-beneficios li::before {
+  content: "✓ ";
+
+  color: var(--verde-normal);
+}
+
+.configuracion__suscripcion-precio {
+  margin: 0;
+
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
+
+  color: var(--text-secondary);
+}
+
+.configuracion__suscripcion-precio strong {
+  font-family: var(--font-secondary);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+
+  color: var(--text-primary);
+}
+
 @include responsive-down('md') {
   .configuracion {
     padding: var(--spacing-size-l) var(--spacing-size-m);

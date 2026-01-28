@@ -39,7 +39,7 @@ export class OnboardingService {
     );
   }
 
-  private readonly TOTAL_STEPS = 15;
+  private readonly TOTAL_STEPS = 16;
   readonly progress = computed(() => {
     return Math.round((this.completedSteps().length / this.TOTAL_STEPS) * 100);
   });
@@ -208,7 +208,8 @@ export class OnboardingService {
       11: "Alergias",
       12: "Equipamiento",
       13: "Resultados",
-      14: "Registro"
+      14: "Registro",
+      15: "Suscripcion PRO"
     };
 
     return titles[step] || "";
