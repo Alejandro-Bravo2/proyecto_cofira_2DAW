@@ -1,6 +1,5 @@
 package com.gestioneventos.cofira.api;
 
-import com.gestioneventos.cofira.dto.ollama.GenerarRutinaRequestDTO;
 import com.gestioneventos.cofira.dto.ollama.RutinaGeneradaDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.CrearRutinaEjercicioDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.RutinaEjercicioDTO;
@@ -13,6 +12,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -55,14 +56,13 @@ public interface RutinaEjercicioControllerApi {
     ResponseEntity<?> eliminarRutina(
         @Parameter(description = "ID de la rutina a eliminar", required = true) @PathVariable Long id);
 
-    @Operation(summary = "Generar rutina con IA", description = "Genera una rutina de ejercicios personalizada usando Gemini")
+    @Operation(summary = "Generar rutina con IA", description = "Genera una rutina de ejercicios personalizada usando IA y la persiste para el usuario autenticado")
     @ApiResponses(value = {
-        @ApiResponse(responseCode = "200", description = "Rutina generada exitosamente",
+        @ApiResponse(responseCode = "200", description = "Rutina generada y guardada exitosamente",
             content = @Content(mediaType = "application/json", schema = @Schema(implementation = RutinaGeneradaDTO.class))),
-        @ApiResponse(responseCode = "500", description = "Error al comunicarse con Gemini", content = @Content)
+        @ApiResponse(responseCode = "500", description = "Error al comunicarse con el servicio de IA", content = @Content)
     })
-    ResponseEntity<RutinaGeneradaDTO> generarRutinaConIA(
-        @Parameter(description = "Datos del usuario para generar la rutina", required = true) @RequestBody @Valid GenerarRutinaRequestDTO solicitud);
+    ResponseEntity<RutinaGeneradaDTO> generarRutinaConIA(@AuthenticationPrincipal UserDetails userDetails);
 
     @Operation(summary = "Verificar estado de IA", description = "Comprueba si el servicio de Gemini esta disponible")
     @ApiResponses(value = {

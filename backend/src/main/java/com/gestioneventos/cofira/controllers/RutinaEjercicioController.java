@@ -4,13 +4,11 @@ import com.gestioneventos.cofira.api.RutinaEjercicioControllerApi;
 import com.gestioneventos.cofira.dto.gimnasio.FeedbackEjercicioDTO;
 import com.gestioneventos.cofira.dto.gimnasio.GuardarProgresoRequestDTO;
 import com.gestioneventos.cofira.dto.gimnasio.HistorialEntrenamientoDTO;
-import com.gestioneventos.cofira.dto.ollama.GenerarRutinaRequestDTO;
 import com.gestioneventos.cofira.dto.ollama.RutinaGeneradaDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.CrearRutinaEjercicioDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.RutinaEjercicioDTO;
 import com.gestioneventos.cofira.entities.Usuario;
 import com.gestioneventos.cofira.repositories.UsuarioRepository;
-import com.gestioneventos.cofira.services.GeminiService;
 import com.gestioneventos.cofira.services.RutinaEjercicioService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -28,14 +26,11 @@ import java.util.Optional;
 public class RutinaEjercicioController implements RutinaEjercicioControllerApi {
 
     private final RutinaEjercicioService rutinaEjercicioService;
-    private final GeminiService geminiService;
     private final UsuarioRepository usuarioRepository;
 
     public RutinaEjercicioController(RutinaEjercicioService rutinaEjercicioService,
-                                     GeminiService geminiService,
                                      UsuarioRepository usuarioRepository) {
         this.rutinaEjercicioService = rutinaEjercicioService;
-        this.geminiService = geminiService;
         this.usuarioRepository = usuarioRepository;
     }
 
@@ -64,14 +59,15 @@ public class RutinaEjercicioController implements RutinaEjercicioControllerApi {
     }
 
     @PostMapping("/generar")
-    public ResponseEntity<RutinaGeneradaDTO> generarRutinaConIA(@RequestBody @Valid GenerarRutinaRequestDTO solicitud) {
-        RutinaGeneradaDTO rutinaGenerada = geminiService.generarRutinaEjercicio(solicitud);
+    public ResponseEntity<RutinaGeneradaDTO> generarRutinaConIA(@AuthenticationPrincipal UserDetails userDetails) {
+        Long usuarioId = obtenerUsuarioIdDesdeUserDetails(userDetails);
+        RutinaGeneradaDTO rutinaGenerada = rutinaEjercicioService.generarYPersistirRutinaParaUsuario(usuarioId);
         return ResponseEntity.ok(rutinaGenerada);
     }
 
     @GetMapping("/ia/estado")
     public ResponseEntity<Map<String, Object>> verificarEstadoIA() {
-        boolean conexionActiva = geminiService.verificarConexion();
+        boolean conexionActiva = rutinaEjercicioService.verificarConexionIA();
         Map<String, Object> respuesta = Map.of(
             "conectado", conexionActiva,
             "mensaje", conexionActiva ? "Gemini funcionando correctamente" : "No se puede conectar con Gemini"

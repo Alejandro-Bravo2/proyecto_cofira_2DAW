@@ -1,31 +1,39 @@
 package com.gestioneventos.cofira.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gestioneventos.cofira.dto.ejercicios.EjerciciosDTO;
 import com.gestioneventos.cofira.dto.gimnasio.EjercicioProgresoDTO;
 import com.gestioneventos.cofira.dto.gimnasio.FeedbackEjercicioDTO;
 import com.gestioneventos.cofira.dto.gimnasio.GuardarProgresoRequestDTO;
 import com.gestioneventos.cofira.dto.gimnasio.HistorialEntrenamientoDTO;
+import com.gestioneventos.cofira.dto.ollama.DiaEjercicioGeneradoDTO;
+import com.gestioneventos.cofira.dto.ollama.EjercicioGeneradoDTO;
+import com.gestioneventos.cofira.dto.ollama.GenerarRutinaRequestDTO;
+import com.gestioneventos.cofira.dto.ollama.RutinaGeneradaDTO;
 import com.gestioneventos.cofira.dto.rutinaejercicio.*;
 import com.gestioneventos.cofira.entities.DiaEjercicio;
 import com.gestioneventos.cofira.entities.Ejercicios;
 import com.gestioneventos.cofira.entities.FeedbackEjercicio;
 import com.gestioneventos.cofira.entities.HistorialEntrenamiento;
 import com.gestioneventos.cofira.entities.RutinaEjercicio;
+import com.gestioneventos.cofira.entities.UserProfile;
+import com.gestioneventos.cofira.entities.Usuario;
 import com.gestioneventos.cofira.enums.DiaSemana;
+import com.gestioneventos.cofira.enums.Gender;
+import com.gestioneventos.cofira.enums.PrimaryGoal;
 import com.gestioneventos.cofira.exceptions.RecursoNoEncontradoException;
 import com.gestioneventos.cofira.repositories.EjerciciosRepository;
 import com.gestioneventos.cofira.repositories.FeedbackEjercicioRepository;
 import com.gestioneventos.cofira.repositories.HistorialEntrenamientoRepository;
 import com.gestioneventos.cofira.repositories.RutinaEjercicioRepository;
 import com.gestioneventos.cofira.repositories.UsuarioRepository;
-import com.gestioneventos.cofira.entities.Usuario;
-import com.gestioneventos.cofira.dto.ollama.RutinaGeneradaDTO;
-import com.gestioneventos.cofira.dto.ollama.DiaEjercicioGeneradoDTO;
-import com.gestioneventos.cofira.dto.ollama.EjercicioGeneradoDTO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,25 +42,33 @@ import java.util.stream.Collectors;
 
 @Service
 public class RutinaEjercicioService {
+    private static final Logger logger = LoggerFactory.getLogger(RutinaEjercicioService.class);
     private static final String RUTINA_NO_ENCONTRADA = "Rutina de ejercicio no encontrada con id ";
     private static final String EJERCICIO_NO_ENCONTRADO = "Ejercicio no encontrado con id ";
+    private static final int DIAS_POR_CICLO_MENSUAL = 30;
 
     private final RutinaEjercicioRepository rutinaEjercicioRepository;
     private final EjerciciosRepository ejerciciosRepository;
     private final FeedbackEjercicioRepository feedbackEjercicioRepository;
     private final HistorialEntrenamientoRepository historialEntrenamientoRepository;
     private final UsuarioRepository usuarioRepository;
+    private final GeminiService geminiService;
+    private final ObjectMapper objectMapper;
 
     public RutinaEjercicioService(RutinaEjercicioRepository rutinaEjercicioRepository,
                                   EjerciciosRepository ejerciciosRepository,
                                   FeedbackEjercicioRepository feedbackEjercicioRepository,
                                   HistorialEntrenamientoRepository historialEntrenamientoRepository,
-                                  UsuarioRepository usuarioRepository) {
+                                  UsuarioRepository usuarioRepository,
+                                  GeminiService geminiService,
+                                  ObjectMapper objectMapper) {
         this.rutinaEjercicioRepository = rutinaEjercicioRepository;
         this.ejerciciosRepository = ejerciciosRepository;
         this.feedbackEjercicioRepository = feedbackEjercicioRepository;
         this.historialEntrenamientoRepository = historialEntrenamientoRepository;
         this.usuarioRepository = usuarioRepository;
+        this.geminiService = geminiService;
+        this.objectMapper = objectMapper;
     }
 
     public List<RutinaEjercicioDTO> listarRutinas() {
@@ -381,5 +397,222 @@ public class RutinaEjercicioService {
                 .build();
 
         return ejercicioDTO;
+    }
+
+    public boolean verificarConexionIA() {
+        return geminiService.verificarConexion();
+    }
+
+    @Transactional
+    public RutinaGeneradaDTO generarYPersistirRutinaParaUsuario(Long usuarioId) {
+        Usuario usuario = usuarioRepository.findById(usuarioId)
+                .orElseThrow(() -> new RecursoNoEncontradoException("Usuario no encontrado con id " + usuarioId));
+
+        UserProfile perfil = usuario.getUserProfile();
+        if (perfil == null) {
+            throw new RuntimeException("El usuario no tiene perfil de onboarding completado");
+        }
+
+        GenerarRutinaRequestDTO solicitudRutina = construirSolicitudDesdePerfilYFeedback(usuario, perfil);
+
+        RutinaGeneradaDTO rutinaGenerada = geminiService.generarRutinaEjercicio(solicitudRutina);
+
+        RutinaEjercicio rutinaEntidad = convertirRutinaGeneradaAEntidad(rutinaGenerada, solicitudRutina);
+
+        usuario.setRutinaEjercicio(rutinaEntidad);
+        usuarioRepository.save(usuario);
+
+        logger.info("Rutina generada y guardada para usuario con id {}", usuarioId);
+
+        return rutinaGenerada;
+    }
+
+    public GenerarRutinaRequestDTO construirSolicitudDesdePerfilYFeedback(Usuario usuario, UserProfile perfil) {
+        Integer mesActual = calcularMesActualDelUsuario(usuario);
+        FeedbackEjercicio ultimoFeedback = feedbackEjercicioRepository
+                .findTopByOrderBySemanaNumeroDesc().orElse(null);
+
+        Integer edadCalculada = calcularEdadDesdeNacimiento(perfil.getBirthDate());
+        Double imcCalculado = calcularImcDesdePerfil(perfil.getCurrentWeightKg(), perfil.getHeightCm());
+        String objetivoMapeado = mapearObjetivoPrincipal(perfil.getPrimaryGoal());
+        String generoMapeado = mapearGenero(perfil.getGender());
+
+        GenerarRutinaRequestDTO.GenerarRutinaRequestDTOBuilder solicitudBuilder = GenerarRutinaRequestDTO.builder()
+                .objetivoPrincipal(objetivoMapeado)
+                .nivelFitness(perfil.getFitnessLevel())
+                .diasEntrenamientoPorSemana(perfil.getTrainingDaysPerWeek())
+                .equipamientoDisponible(perfil.getEquipment())
+                .genero(generoMapeado)
+                .edad(edadCalculada)
+                .duracionSesionMinutos(perfil.getSessionDurationMinutes())
+                .pesoKg(perfil.getCurrentWeightKg())
+                .alturaCm(perfil.getHeightCm())
+                .imc(imcCalculado)
+                .lesiones(perfil.getInjuries())
+                .condicionesMedicas(perfil.getMedicalConditions())
+                .semanaActual(mesActual);
+
+        if (ultimoFeedback != null) {
+            solicitudBuilder.feedbackPositivo(ultimoFeedback.getPuedeMasPeso());
+            solicitudBuilder.ejerciciosDificiles(ultimoFeedback.getEjerciciosDificiles());
+        }
+
+        return solicitudBuilder.build();
+    }
+
+    public RutinaEjercicio convertirRutinaGeneradaAEntidad(RutinaGeneradaDTO rutinaDTO,
+                                                            GenerarRutinaRequestDTO solicitud) {
+        LocalDate hoy = LocalDate.now();
+        LocalDate fechaFin = hoy.plusDays(DIAS_POR_CICLO_MENSUAL);
+
+        String rutinaJson = serializarRutinaAJson(rutinaDTO);
+
+        List<DiaEjercicio> diasEjercicio = rutinaDTO.getDiasEjercicio().stream()
+                .map(this::convertirDiaEjercicioGeneradoAEntidad)
+                .toList();
+
+        RutinaEjercicio rutinaEntidad = RutinaEjercicio.builder()
+                .fechaInicio(hoy)
+                .fechaFin(fechaFin)
+                .mesNumero(solicitud.getSemanaActual())
+                .rutinaJson(rutinaJson)
+                .diasEjercicio(diasEjercicio)
+                .build();
+
+        return rutinaEntidad;
+    }
+
+    private Integer calcularMesActualDelUsuario(Usuario usuario) {
+        RutinaEjercicio rutinaAnterior = usuario.getRutinaEjercicio();
+
+        if (rutinaAnterior == null || rutinaAnterior.getMesNumero() == null) {
+            return 1;
+        }
+
+        return rutinaAnterior.getMesNumero() + 1;
+    }
+
+    private Integer calcularEdadDesdeNacimiento(LocalDate fechaNacimiento) {
+        if (fechaNacimiento == null) {
+            return 25;
+        }
+
+        LocalDate hoy = LocalDate.now();
+        Period periodo = Period.between(fechaNacimiento, hoy);
+        return periodo.getYears();
+    }
+
+    private Double calcularImcDesdePerfil(Double pesoKg, Double alturaCm) {
+        if (pesoKg == null || alturaCm == null || alturaCm == 0) {
+            return null;
+        }
+
+        double alturaMetros = alturaCm / 100;
+        double imcCalculado = pesoKg / (alturaMetros * alturaMetros);
+        double imcRedondeado = Math.round(imcCalculado * 10) / 10.0;
+
+        return imcRedondeado;
+    }
+
+    private String mapearObjetivoPrincipal(PrimaryGoal objetivo) {
+        if (objetivo == null) {
+            return "Mejorar forma fisica";
+        }
+
+        return switch (objetivo) {
+            case LOSE_WEIGHT -> "Perder grasa";
+            case GAIN_MUSCLE -> "Ganar musculo";
+            case MAINTAIN -> "Mantener peso";
+            case IMPROVE_HEALTH -> "Mejorar salud general";
+        };
+    }
+
+    private String mapearGenero(Gender genero) {
+        if (genero == null) {
+            return "Masculino";
+        }
+
+        return switch (genero) {
+            case MALE -> "Masculino";
+            case FEMALE -> "Femenino";
+            case OTHER -> "Otro";
+        };
+    }
+
+    private DiaEjercicio convertirDiaEjercicioGeneradoAEntidad(DiaEjercicioGeneradoDTO diaDTO) {
+        DiaSemana diaSemanaEnum = DiaSemana.valueOf(normalizarDiaSemana(diaDTO.getDiaSemana()));
+
+        List<Ejercicios> listaEjercicios = diaDTO.getEjercicios().stream()
+                .map(this::convertirEjercicioGeneradoAEntidad)
+                .toList();
+
+        DiaEjercicio diaEjercicio = new DiaEjercicio();
+        diaEjercicio.setDiaSemana(diaSemanaEnum);
+        diaEjercicio.setEjercicios(listaEjercicios);
+
+        return diaEjercicio;
+    }
+
+    private Ejercicios convertirEjercicioGeneradoAEntidad(EjercicioGeneradoDTO ejercicioDTO) {
+        Ejercicios ejercicio = new Ejercicios();
+        ejercicio.setNombreEjercicio(ejercicioDTO.getNombre());
+        ejercicio.setSeries(ejercicioDTO.getSeries());
+
+        String repeticionesTexto = ejercicioDTO.getRepeticiones();
+        Integer repeticionesConvertidas = convertirRepeticionesAEntero(repeticionesTexto);
+        ejercicio.setRepeticiones(repeticionesConvertidas);
+
+        ejercicio.setTiempoDescansoSegundos(ejercicioDTO.getDescansoSegundos());
+        ejercicio.setDescripcion(ejercicioDTO.getDescripcion());
+        ejercicio.setGrupoMuscular(ejercicioDTO.getGrupoMuscular());
+        ejercicio.setPesoSugeridoKg(ejercicioDTO.getPesoSugeridoKg());
+
+        return ejercicio;
+    }
+
+    private Integer convertirRepeticionesAEntero(String repeticionesTexto) {
+        if (repeticionesTexto == null || repeticionesTexto.isEmpty()) {
+            return null;
+        }
+
+        String soloNumeros = repeticionesTexto.replaceAll("[^0-9]", " ").trim().split(" ")[0];
+        if (soloNumeros.isEmpty()) {
+            return null;
+        }
+
+        return Integer.parseInt(soloNumeros);
+    }
+
+    private String normalizarDiaSemana(String diaSemana) {
+        if (diaSemana == null) {
+            return "LUNES";
+        }
+
+        String diaMayusculas = diaSemana.toUpperCase()
+                .replace("Á", "A")
+                .replace("É", "E")
+                .replace("Í", "I")
+                .replace("Ó", "O")
+                .replace("Ú", "U");
+
+        return switch (diaMayusculas) {
+            case "LUNES" -> "LUNES";
+            case "MARTES" -> "MARTES";
+            case "MIERCOLES", "MIÉRCOLES" -> "MIERCOLES";
+            case "JUEVES" -> "JUEVES";
+            case "VIERNES" -> "VIERNES";
+            case "SABADO", "SÁBADO" -> "SABADO";
+            case "DOMINGO" -> "DOMINGO";
+            default -> "LUNES";
+        };
+    }
+
+    private String serializarRutinaAJson(RutinaGeneradaDTO rutinaDTO) {
+        try {
+            return objectMapper.writeValueAsString(rutinaDTO);
+        } catch (Exception excepcion) {
+            logger.error("Error serializando rutina a JSON: {}", excepcion.getMessage());
+            return "{}";
+        }
     }
 }

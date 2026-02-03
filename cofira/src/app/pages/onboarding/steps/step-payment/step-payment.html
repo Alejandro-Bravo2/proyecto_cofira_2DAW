@@ -60,7 +60,6 @@
           <span class="step-payment__field-label">Número de tarjeta</span>
           <input
             (input)="formatearNumeroTarjeta($event)"
-            [value]="numeroTarjetaFormateado"
             autocomplete="cc-number"
             class="step-payment__input"
             formControlName="numeroTarjeta"
