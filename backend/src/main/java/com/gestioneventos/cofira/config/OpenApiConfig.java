@@ -40,8 +40,11 @@ public class OpenApiConfig {
                                 .url("https://www.apache.org/licenses/LICENSE-2.0.html")))
                 .servers(List.of(
                         new Server()
+                                .url("http://localhost:9002")
+                                .description("Docker desarrollo (externo)"),
+                        new Server()
                                 .url("http://localhost:" + serverPort)
-                                .description("Servidor de desarrollo")
+                                .description("Servidor interno")
                 ))
                 .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
                 .components(new Components()
