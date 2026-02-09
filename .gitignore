@@ -121,3 +121,8 @@ coverage/
 *.sqlite
 *.sqlite3
 
+# -------------------------------------
+# DOCUMENTACION INTERNA
+# -------------------------------------
+docs/GUIA-PROYECTO.md
+
