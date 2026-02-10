@@ -10,7 +10,7 @@
                                         <label class="peso__label" for="inputPeso">Porcentaje de peso corporal
                                                   (%)</label>
                                         <input class="peso__input" id="inputPeso" type="number" min="0" max="100"
-                                                  step="0.1" placeholder="Ej: 60.5" [value]="valorInput()"
+                                                  step="0.1" placeholder="Ej: 60.5d" [value]="valorInput()"
                                                   (input)="actualizarValor($event)" />
 
                                         <button class="peso__boton" type="submit" [disabled]="estaCargando()">

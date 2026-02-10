@@ -1,7 +1,17 @@
-.tarjeta--peso__cabecera{
+.tarjeta-peso__cabecera {
   background-color: var(--rojo-dark-hover);
   border-radius: 2rem;
   color: white;
   text-align: center;
 }
 
+.tarjeta-peso {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 800px) {
+  .tarjeta-peso {
+    flex-direction: row;
+  }
+}
