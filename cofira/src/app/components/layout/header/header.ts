@@ -1,5 +1,5 @@
 import {Component, HostListener, inject, ViewEncapsulation} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {faChartLine, faMoon, faSun} from '@fortawesome/free-solid-svg-icons';
 import {Button} from '../../shared/button/button';
@@ -8,7 +8,7 @@ import {ThemeService} from '../../../services/theme.service';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, Button, FaIconComponent],
+  imports: [RouterLink, RouterLinkActive, Button, FaIconComponent],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   encapsulation: ViewEncapsulation.None,
@@ -16,6 +16,7 @@ import {ThemeService} from '../../../services/theme.service';
 export class Header {
   private readonly authService = inject(AuthService);
   private readonly themeService = inject(ThemeService);
+  private readonly router = inject(Router);
 
   readonly isAuthenticated = this.authService.isAuthenticated;
   readonly userNombre = this.authService.userNombre;
@@ -56,6 +57,10 @@ export class Header {
 
   toggleTema(): void {
     this.themeService.toggle();
+  }
+
+  navegar(ruta: string): void {
+    this.router.navigate([ruta]);
   }
 
   logout(): void {

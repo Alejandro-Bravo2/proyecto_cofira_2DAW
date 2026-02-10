@@ -12,6 +12,12 @@ Las dos variables que he definido son colores bastante distintos a los usados en
 ## ¿Qué pasaría si importaras Components antes que Settings en el manifiesto?
 
 
+Pues que las variables no existirían todavía cuando el navegador lea los var() de los componentes, osea que en mi _peso.scss tengo var(--rojo-dark-hover) y si settings no se ha importado antes pues no funcionan y no coge ningun color.
+
+
 
 
 ## 2. Metodología: Explica una ventaja real que te haya aportado usar BEM en este examen frente a usar selectores de etiqueta anidados (ej: div > button).
+
+
+La ventaja de usar bem esque he podido usarlos en los archivos de itcss sin problemas ya que como bem es muy especifico y usa nombres concretos pues no se repite en ningún lado. Si hubiera yo usado alguna otra como la de google pues hubiera sido un lio y me hubiera dado problemas de especifidad.

@@ -1,37 +1,32 @@
 # Alejandro bravo calderón
 
-# Jerarquía de componentes
+## Jerarquía de componentes
 
 He creado dos componentes padre e hijo.
 
-El componente padre es el componente peso y su función es:
-- Inyecta a pesoService para recuperar los datos del backend
-- Gestiona el estado  con signal 
-- Controla el flujo del componente con los if y for
-- Registrar los nuevos pesos y cargar el historial
+### Componente padre: Peso (peso.ts)
 
+Es el componente que lleva la logica. Inyecta PesoService para pedir los datos al backend y gestiona el estado con signals. Controla el flujo de la vista con @if y @for y tiene metodos para registrar peso y cargar el historial.
 
-El componente hijo se encarga de: 
-- Recibir los datos del compoennte padre y mostrarlos
+### Componente hijo: TarjetaPeso (tarjeta-peso.ts)
 
+Su función es recibir un objeto RegistroPeso por @Input() y pinta la fecha y los kilos. No tiene logica ni servicios.
 
-Interfaces:
-- RegistroPeso
-- ActualizarPeso
+### Interfaces
 
+En peso.model.ts he creado RegistroPeso y ActualizarPeso para tipar los datos del backend.
 
-Servicios:
-- obtenerPesoHoy() 
-- registrarPeso(datos)
-- obtenerHistorial(fechaInicio, fechaFin)
+### Servicio
 
-Routing:
-- ruta añadida en el app.routes.ts para que puedan cargarse los componentes
-- Tambien se han agregado las rutas en el header y footer para poder acceder a la nueva página dessde la caebcera y footer.
+PesoService tiene metodos para obtener el peso de hoy, registrar un peso nuevo y obtener el historial.
 
+### Routing
+
+He añadido la ruta en app.routes.ts con path 'peso' protegida con authGuard y proGuard. Tambien he puesto los routerLink en el header y footer para navegar a la nueva pagina.
 
 
 ## Instrucciones de ejecución:
+
 1. Arranca el proyecto con docker-compose -f docker-compose-dev.yml up -d
 2. Accede a localhost:4200
-
+3. Inicia sesion con un usuario PRO

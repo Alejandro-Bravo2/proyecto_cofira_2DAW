@@ -43,19 +43,16 @@
 }
 .peso__boton {
   color: var(--blanco-normal);
-}
-.peso__mensaje--error {
-  color: var(--blanco-normal);
-  text-align: center;
+  background-color: var(--verde-dark-hover);
 }
 
 .peso__mensaje {
   color: var(--blanco-normal);
   text-align: center;
 }
-.peso__input {
-  background-color: white;
-  color: black;
+.peso__mensaje--error {
+  color: var(--blanco-normal);
+  text-align: center;
 }
 
 .peso__grid {
@@ -69,13 +66,13 @@
   margin: 0;
 }
 
-@media (min-width: 800px) {
+@media (min-width: $breakpoint-sm) {
   .peso__grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: $breakpoint-xl) {
   .peso__grid {
     grid-template-columns: repeat(3, 1fr);
   }

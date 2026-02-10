@@ -10,7 +10,7 @@
       <li><a class="cabecera__enlace" routerLink="/seguimiento">Seguimiento</a></li>
 
       <!-- LA NUEVA PAGINA -->
-      <li><a class="cabecera__enlace" routerLink="/peso">Seguimiento Peso</a></li>
+      <li><a class="cabecera__enlace" routerLink="/peso" routerLinkActive="cabecera__enlace--activo">Seguimiento Peso</a></li>
     </ul>
   </nav>
 
@@ -137,6 +137,10 @@
       <a routerLink="/seguimiento" (click)="cerrarMenu()" class="menu-movil__enlace">
           <fa-icon [icon]="iconoGrafico" class="menu-movil__enlace-icono"></fa-icon>
         <span>Seguimiento</span>
+      </a>
+
+      <a (click)="navegar('/peso'); cerrarMenu()" class="menu-movil__enlace">
+        <span>Seguimiento Peso</span>
       </a>
     </nav>
 

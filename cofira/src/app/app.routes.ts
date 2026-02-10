@@ -25,8 +25,6 @@ import { AccesoPro } from './pages/acceso-pro/acceso-pro';
 
 import { authGuard, guestGuard } from './guards/auth.guard';
 import { proGuard } from './guards/pro.guard';
-import { Peso } from './pages/peso/peso';
-
 export const routes: Routes = [
 
   // Rutas publicas (accesibles sin autenticacion)
@@ -41,7 +39,7 @@ export const routes: Routes = [
   { path: 'alimentacion', component: Alimentacion, canActivate: [authGuard, proGuard] },
   { path: 'seguimiento', component: Seguimiento, canActivate: [authGuard, proGuard] },
   { path: 'gimnasio', component: Gimnasio, canActivate: [authGuard, proGuard] },
-  { path: 'peso', component: Peso, canActivate: [authGuard, proGuard]},
+  { path: 'peso', loadComponent: () => import('./pages/peso/peso').then(m => m.Peso), canActivate: [authGuard, proGuard]},
 
   // Pagina de acceso bloqueado (para usuarios sin PRO)
   { path: 'acceso-pro', component: AccesoPro, canActivate: [authGuard] },
