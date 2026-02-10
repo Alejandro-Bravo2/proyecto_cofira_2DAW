@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -29,7 +30,7 @@ public class RegistroPesoService {
         this.usuarioRepository = usuarioRepository;
     }
 
-    public RegistroPesoDTO obtenerPesoDelDia(String email, LocalDate fecha) {
+    public RegistroPesoDTO obtenerPesoDelDia(String email, LocalDateTime fecha) {
         Usuario usuario = obtenerUsuarioPorEmail(email);
 
         return registroPesoRepository.findByUsuarioAndFecha(usuario, fecha)

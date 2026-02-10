@@ -15,9 +15,20 @@
           color: black;
 }
 
-.peso__grid{
-          display: grid;
 
-            grid-template-columns: 1fr 1fr;
-  grid-template-rows: 2fr 1fr;
-}
+.peso__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-size-m);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    @include responsive('sm') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include responsive('lg') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }

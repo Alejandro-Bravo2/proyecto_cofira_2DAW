@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "registro_peso", uniqueConstraints = {
@@ -26,7 +27,7 @@ public class RegistroPeso {
     private Usuario usuario;
 
     @Column(nullable = false)
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @Column(nullable = false)
     private Double kilos;

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -13,6 +14,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class RegistroPesoDTO {
     private Long id;
-    private LocalDate fecha;
+    private LocalDateTime fecha;
     private Double kilos;
 }
