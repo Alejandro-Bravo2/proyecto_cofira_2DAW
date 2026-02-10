@@ -3,23 +3,18 @@ ESTE DEBE DE SER EL COMPOENTNE HIJO
 
 <article class="tarjetaPeso">
           <header class="">
-                    
-                    <p class="tarjetaPeso__fecha"> {{ registro.fecha }} </p> 
-                    
-                    
-# Esto lo tengo que revisar porque lo de time tengo que ver si del backend viene bien preparada o no pa la etiqueta time de aca
+
+                    <time class="tarjetaPeso__fecha"> {{ registro.fecha }} </time>
 
 
-</header>
+
+          </header>
 
 
-          <section class="tarjetaPeso__cabecera"> 
-                    
-                    # TENGO QUE HACER UNA TIPICA CARD ASIN QUE ESTO LO TENGO QUE REVISAR MAS TARDE
-                    
-                    
+          <section class="tarjetaPeso__cabecera">
+
                     <p class="tarjetaPeso__titulo">Peso corporal</p>
-                    <p class=""> FALTA POR RELLENAR </p>
+                    <p class="tarjetaPeso__kilos"> {{registro.kilos}} <span> KG</span> </p>
           </section>
 
 </article>
