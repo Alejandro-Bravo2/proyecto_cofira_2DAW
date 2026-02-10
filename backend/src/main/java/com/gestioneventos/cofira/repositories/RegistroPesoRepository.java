@@ -13,7 +13,7 @@ public class RegistroPesoRepository extends JpaRepository<RegistroPeso, Long> {
 
     Optional<RegistroPeso> findByUsuarioAndFecha(Usuario usuario, LocalDate fecha);
 
-    List<RegistroGrasa> findByUsuarioAndFechaBetweenOrderByFechaAsc(
+    List<RegistroPeso> findByUsuarioAndFechaBetweenOrderByFechaAsc(
             Usuario usuario,
             LocalDate fechaInicio,
             LocalDate fechaFin

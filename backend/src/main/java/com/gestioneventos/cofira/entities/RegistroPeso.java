@@ -29,5 +29,5 @@ public class RegistroPeso {
     private LocalDate fecha;
 
     @Column(nullable = false)
-    private Double porcentajeGrasa;
+    private Double kilos;
 }
