@@ -1,4 +1,4 @@
-package com.gestioneventos.cofira.dto.grasa;
+package com.gestioneventos.cofira.dto.peso;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegistroGrasaDTO {
+public class RegistroPesoDTO {
     private Long id;
     private LocalDate fecha;
     private Double porcentajeGrasa;

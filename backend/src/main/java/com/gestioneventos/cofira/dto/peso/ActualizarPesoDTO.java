@@ -1,4 +1,4 @@
-package com.gestioneventos.cofira.dto.grasa;
+package com.gestioneventos.cofira.dto.peso;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -11,12 +11,12 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ActualizarGrasaDTO {
+public class ActualizarPesoDTO {
 
     @NotNull(message = "La fecha no puede ser nula")
     private LocalDate fecha;
 
-    @NotNull(message = "El porcentaje de grasa no puede ser nulo")
-    @Min(value = 0, message = "El porcentaje de grasa no puede ser negativo")
-    private Double porcentajeGrasa;
+    @NotNull(message = "El porcentaje de peso no puede ser nulo")
+    @Min(value = 0, message = "El porcentaje de peso no puede ser negativo")
+    private Double porcentajePeso;
 }
