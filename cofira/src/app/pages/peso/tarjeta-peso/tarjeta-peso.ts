@@ -1,14 +1,14 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Input  } from '@angular/core';
+import { RegistroPeso } from '../../../models/peso.model';
 
-import { GrasaService } from '../../services/Peso.service';
+
 
 @Component({
-  selector: 'app-peso',
+  selector: 'app-tarjeta-peso',
   standalone: true,
-  imports: [FormsModule],
   templateUrl: './tarjeta-peso.html',
 })
-export class Peso {
 
+export class TarjetaPeso  {
+          @Input() registro! : RegistroPeso;
 }

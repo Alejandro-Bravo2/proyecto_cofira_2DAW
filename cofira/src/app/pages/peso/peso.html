@@ -1,80 +1,58 @@
-TENGO QUE CAMBIAR LAS CLASES Y TO ESO PARA QUE VAYAN EN EL ITCSS 
-
-NO PUEDO DEJAR LOS ESTILOS EN EL CSSSSSSSS
-
-
-
-
 <main class="peso">
 
-  <h1 class="grasa__titulo">REGISTRO DE PESO CORPORAL</h1>
+          <h1 class="peso__titulo">REGISTRO DE PESO CORPORAL</h1>
 
-  <section class="grasa__registro">
-    <article class="grasa__card">
-      <h2 class="grasa__card-titulo">Registrar peso en total</h2>
+          <section class="peso__registro">
+                    <article class="peso__card">
+                              <h2 class="peso__card-titulo">Registrar peso en total</h2>
 
-      <form class="grasa__formulario" (ngSubmit)="registrarPeso()">
-        <label class="grasa__label" for="inputGrasa">Porcentaje de peso corporal (%)</label>
-        <input
-          class="grasa__input"
-          id="inputGrasa"
-          type="number"
-          min="0"
-          max="100"
-          step="0.1"
-          placeholder="Ej: 18.5"
-          [value]="valorInput()"
-          (input)="actualizarValor($event)"
-        />
+                              <form class="peso__formulario" (ngSubmit)="registrarPeso()">
+                                        <label class="peso__label" for="inputPeso">Porcentaje de peso corporal
+                                                  (%)</label>
+                                        <input class="peso__input" id="inputPeso" type="number" min="0" max="100"
+                                                  step="0.1" placeholder="Ej: 60.5" [value]="valorInput()"
+                                                  (input)="actualizarValor($event)" />
 
-        <button
-          class="peso__boton"
-          type="submit"
-          [disabled]="estaCargando()">
-          @if (estaCargando()) {
-            Guardando...
-          } @else {
-            Guardar registro
-          }
-        </button>
-      </form>
+                                        <button class="peso__boton" type="submit" [disabled]="estaCargando()">
+                                                  @if (estaCargando()) {
+                                                  Guardando...
+                                                  } @else {
+                                                  Guardar registro
+                                                  }
+                                        </button>
+                              </form>
 
-      @if (mensajeExito()) {
-        <p class="peso__mensaje grasa__mensaje--exito">{{ mensajeExito() }}</p>
-      }
+                              @if (mensajeExito()) {
+                              <p class="peso__mensaje peso__mensaje--exito">{{ mensajeExito() }}</p>
+                              }
 
-      @if (mensajeError()) {
-        <p class="grasa__mensaje grasa__mensaje--error">{{ mensajeError() }}</p>
-      }
-    </article>
-  </section>
+                              @if (mensajeError()) {
+                              <p class="peso__mensaje peso__mensaje--error">{{ mensajeError() }}</p>
+                              }
+                    </article>
+          </section>
 
-  <section class="grasa__historial">
-    <h2 class="grasa__historial-titulo">Historial últimos 30 días</h2>
+          <section class="peso__historial">
+                    <h2 class="peso__historial-titulo">Historial últimos 30 días</h2>
 
-    @if (historialGrasa().length > 0) {
-      <table class="grasa__tabla">
-        <thead>
-          <tr class="grasa__tabla-cabecera">
-            <th class="grasa__tabla-th">Fecha</th>
-            <th class="grasa__tabla-th">Peso total</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (registro of historialGrasa(); track registro.id) {
-            <tr class="grasa__tabla-fila">
-              <td class="grasa__tabla-td">{{ registro.fecha }}</td>
-              <td class="grasa__tabla-td">{{ registro.porcentajeGrasa }}%</td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    } @else {
-      <aside class="grasa__sin-datos">
-        <p class="grasa__sin-datos-mensaje">No hay registros de peso corporal.</p>
-        <p class="grasa__sin-datos-ayuda">Registra tu peso total para ver tu historial aquí.</p>
-      </aside>
-    }
-  </section>
+                    @if (estaCargando()) {
+                    <aside class="peso__cargando">
+                              <p>Cargando datos...</p>
+                    </aside>
+                    } @else if (historialPeso().length === 0) {
+                    <aside class="peso__sin-datos">
+                              <p class="peso__sin-datos-mensaje">No hay registros de peso.</p>
+                              <p class="peso__sin-datos-ayuda">Registra tu peso para ver tu historial aquí.</p>
+                    </aside>
+                    } @else {
+                    <ul class="peso__grid">
+                              @for (registro of historialPeso(); track registro.id) {
+                              <li class="peso__grid-item">
+                                        <app-tarjeta-peso [registro]="registro" />
+                              </li>
+                              }
+                    </ul>
+                    }
+          </section>
 
 </main>
