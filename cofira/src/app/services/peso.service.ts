@@ -12,19 +12,19 @@ export class PesoService {
   readonly historialPeso = signal<RegistroPeso[]>([]);
 
   obtenerPesoHoy(): Observable<RegistroPeso> {
-    return this.apiService.get<RegistroPeso>("/api/registro-peso/hoy").pipe(
+    return this.apiService.get<RegistroPeso>("/registro-peso/hoy").pipe(
       tap(registro => this.registroHoy.set(registro))
     );
   }
 
   registrarPeso(datos: ActualizarPeso): Observable<RegistroPeso> {
-    return this.apiService.put<RegistroPeso>("/api/registro-peso", datos).pipe(
+    return this.apiService.put<RegistroPeso>("/registro-peso", datos).pipe(
       tap(registro => this.registroHoy.set(registro))
     );
   }
 
   obtenerHistorial(fechaInicio: string, fechaFin: string): Observable<RegistroPeso[]> {
-    return this.apiService.get<RegistroPeso[]>("/api/registro-peso/historial", {
+    return this.apiService.get<RegistroPeso[]>("/registro-peso/historial", {
       fechaInicio: fechaInicio,
       fechaFin: fechaFin
     }).pipe(

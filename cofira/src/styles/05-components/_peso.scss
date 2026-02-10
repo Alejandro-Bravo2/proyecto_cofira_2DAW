@@ -3,5 +3,21 @@
 
 .flex-PLACEHOLDER{
           display: flex;
-          
+
+}
+
+.peso__titulo{
+
+}
+
+.peso__input{
+          background-color: white;
+          color: black;
+}
+
+.peso__grid{
+          display: grid;
+
+            grid-template-columns: 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
 }
