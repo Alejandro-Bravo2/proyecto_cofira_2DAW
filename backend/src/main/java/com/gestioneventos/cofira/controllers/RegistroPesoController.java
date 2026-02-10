@@ -14,7 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -30,7 +30,7 @@ public class RegistroPesoController {
     @GetMapping("/hoy")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<RegistroPesoDTO> obtenerPesoHoy(Principal principal) {
-        RegistroPesoDTO peso = registroPesoService.obtenerPesoDelDia(principal.getName(), LocalDate.now());
+        RegistroPesoDTO peso = registroPesoService.obtenerPesoDelDia(principal.getName(), LocalDateTime.now());
         return ResponseEntity.ok(peso);
     }
 
@@ -38,7 +38,7 @@ public class RegistroPesoController {
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<RegistroPesoDTO> obtenerPesoPorFecha(
             Principal principal,
-            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime fecha) {
         RegistroPesoDTO peso = registroPesoService.obtenerPesoDelDia(principal.getName(), fecha);
         return ResponseEntity.ok(peso);
     }
@@ -56,8 +56,8 @@ public class RegistroPesoController {
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<RegistroPesoDTO>> obtenerHistorial(
             Principal principal,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime fechaInicio,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime fechaFin) {
         List<RegistroPesoDTO> historial = registroPesoService.obtenerHistorial(
                 principal.getName(), fechaInicio, fechaFin);
         return ResponseEntity.ok(historial);

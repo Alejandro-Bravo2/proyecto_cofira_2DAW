@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 public class ActualizarPesoDTO {
 
     @NotNull(message = "La fecha no puede ser nula")
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @NotNull(message = "El valor de peso no puede ser nulo")
     @Min(value = 0, message = "El valor de peso no puede ser negativo")

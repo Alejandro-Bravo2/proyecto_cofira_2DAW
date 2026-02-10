@@ -55,7 +55,7 @@ public class RegistroPesoService {
         return convertirADTO(registroGuardado);
     }
 
-    public List<RegistroPesoDTO> obtenerHistorial(String email, LocalDate fechaInicio, LocalDate fechaFin) {
+    public List<RegistroPesoDTO> obtenerHistorial(String email, LocalDateTime fechaInicio, LocalDateTime fechaFin) {
         Usuario usuario = obtenerUsuarioPorEmail(email);
 
         return registroPesoRepository
