@@ -1,35 +1,50 @@
-
-.peso{
-          padding: var(--spacing-size-m);
+.peso {
+  padding: var(--spacing-size-m);
 }
 
-
-
+.peso__titulo {
+  font-size: var(--font-size-2xl);
+  text-align: center;
 }
 
-.peso__titulo{
-
+.peso__card {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: var(--rojo-dark-hover);
+  margin: 0 auto;
+  border-radius: 3rem;
+}
+.peso__formulario {
+  display: flex;
+  flex-direction: column;
 }
 
-.peso__input{
-          background-color: white;
-          color: black;
+.peso__input {
+  background-color: white;
+  color: black;
 }
-
 
 .peso__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-size-m);
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  display: grid;
 
-    @include responsive('sm') {
-      grid-template-columns: repeat(2, 1fr);
-    }
+  gap: var(--spacing-size-m);
+  list-style: none;
 
-    @include responsive('lg') {
-      grid-template-columns: repeat(3, 1fr);
-    }
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 800px) {
+  .peso__grid{
+    grid-template-columns: repeat();
   }
+  
+}
+
+@media (min-width: 1200px){
+
+  .peso__grid{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
