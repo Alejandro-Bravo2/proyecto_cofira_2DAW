@@ -16,7 +16,7 @@ public class ActualizarPesoDTO {
     @NotNull(message = "La fecha no puede ser nula")
     private LocalDate fecha;
 
-    @NotNull(message = "El porcentaje de peso no puede ser nulo")
-    @Min(value = 0, message = "El porcentaje de peso no puede ser negativo")
-    private Double porcentajePeso;
+    @NotNull(message = "El valor de peso no puede ser nulo")
+    @Min(value = 0, message = "El valor de peso no puede ser negativo")
+    private Double kilos;
 }

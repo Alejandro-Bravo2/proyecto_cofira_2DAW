@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public class RegistroPesoRepository extends JpaRepository<RegistroPeso, Long> {
+public interface RegistroPesoRepository extends JpaRepository<RegistroPeso, Long> {
 
     Optional<RegistroPeso> findByUsuarioAndFecha(Usuario usuario, LocalDate fecha);
 

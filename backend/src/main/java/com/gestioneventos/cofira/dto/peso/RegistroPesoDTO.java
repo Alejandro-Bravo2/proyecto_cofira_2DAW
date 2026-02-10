@@ -14,5 +14,5 @@ import java.time.LocalDate;
 public class RegistroPesoDTO {
     private Long id;
     private LocalDate fecha;
-    private Double porcentajeGrasa;
+    private Double kilos;
 }

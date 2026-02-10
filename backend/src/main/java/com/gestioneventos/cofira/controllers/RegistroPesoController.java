@@ -3,6 +3,7 @@ package com.gestioneventos.cofira.controllers;
 
 import com.gestioneventos.cofira.dto.grasa.ActualizarGrasaDTO;
 import com.gestioneventos.cofira.dto.grasa.RegistroGrasaDTO;
+import com.gestioneventos.cofira.dto.peso.ActualizarPesoDTO;
 import com.gestioneventos.cofira.dto.peso.RegistroPesoDTO;
 import com.gestioneventos.cofira.services.RegistroGrasaService;
 import com.gestioneventos.cofira.services.RegistroPesoService;
@@ -35,7 +36,7 @@ public class RegistroPesoController {
 
     @GetMapping("/{fecha}")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<RegistroGrasaDTO> obtenerPesoPorFecha(
+    public ResponseEntity<RegistroPesoDTO> obtenerPesoPorFecha(
             Principal principal,
             @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
         RegistroPesoDTO peso = registroPesoService.obtenerPesoDelDia(principal.getName(), fecha);
@@ -46,7 +47,7 @@ public class RegistroPesoController {
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<RegistroPesoDTO> registrarPeso(
             Principal principal,
-            @RequestBody @Valid ActualizarGrasaDTO dto) {
+            @RequestBody @Valid ActualizarPesoDTO dto) {
         RegistroPesoDTO peso = registroPesoService.registrarPeso(principal.getName(), dto);
         return ResponseEntity.ok(peso);
     }

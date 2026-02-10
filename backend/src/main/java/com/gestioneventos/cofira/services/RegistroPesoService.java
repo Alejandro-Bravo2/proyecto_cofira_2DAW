@@ -3,6 +3,8 @@ package com.gestioneventos.cofira.services;
 
 import com.gestioneventos.cofira.dto.grasa.ActualizarGrasaDTO;
 import com.gestioneventos.cofira.dto.grasa.RegistroGrasaDTO;
+import com.gestioneventos.cofira.dto.peso.ActualizarPesoDTO;
+import com.gestioneventos.cofira.dto.peso.RegistroPesoDTO;
 import com.gestioneventos.cofira.entities.RegistroGrasa;
 import com.gestioneventos.cofira.entities.RegistroPeso;
 import com.gestioneventos.cofira.entities.Usuario;
@@ -46,7 +48,7 @@ public class RegistroPesoService {
                         .fecha(dto.getFecha())
                         .build());
 
-        registro.setPorcentajePeso(dto.getPorcentajePeso());
+        registro.setKilos(dto.getKilos());
         RegistroPeso registroGuardado = registroPesoRepository.save(registro);
 
         return convertirADTO(registroGuardado);
@@ -71,7 +73,7 @@ public class RegistroPesoService {
         return RegistroPesoDTO.builder()
                 .id(registro.getId())
                 .fecha(registro.getFecha())
-                .porcentajeGrasa(registro.getPorcentajeGrasa())
+                .kilos(registro.getKilos())
                 .build();
     }
 }
