@@ -42,7 +42,7 @@ import {Component, inject, OnInit, signal} from "@angular/core";
       this.mensajeError.set("");
       this.mensajeExito.set("");
 
-      const fechaHoy = new Date().toISOString().split("T")[0];
+      const fechaHoy = new Date().toISOString();
 
       const datosRegistro = {
         fecha: fechaHoy,

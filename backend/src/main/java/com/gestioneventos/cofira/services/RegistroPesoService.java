@@ -42,12 +42,10 @@ public class RegistroPesoService {
     public RegistroPesoDTO registrarPeso(String email, ActualizarPesoDTO dto) {
         Usuario usuario = obtenerUsuarioPorEmail(email);
 
-        RegistroPeso registro = registroPesoRepository
-                .findByUsuarioAndFecha(usuario, dto.getFecha())
-                .orElse(RegistroPeso.builder()
-                        .usuario(usuario)
-                        .fecha(dto.getFecha())
-                        .build());
+        RegistroPeso registro = RegistroPeso.builder()
+                .usuario(usuario)
+                .fecha(LocalDateTime.now())
+                .build();
 
         registro.setKilos(dto.getKilos());
         RegistroPeso registroGuardado = registroPesoRepository.save(registro);

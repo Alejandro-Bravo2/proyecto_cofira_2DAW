@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,8 +39,8 @@ public class RegistroPesoController {
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<RegistroPesoDTO> obtenerPesoPorFecha(
             Principal principal,
-            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime fecha) {
-        RegistroPesoDTO peso = registroPesoService.obtenerPesoDelDia(principal.getName(), fecha);
+            @PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha) {
+        RegistroPesoDTO peso = registroPesoService.obtenerPesoDelDia(principal.getName(), fecha.atStartOfDay());
         return ResponseEntity.ok(peso);
     }
 
@@ -56,10 +57,10 @@ public class RegistroPesoController {
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<RegistroPesoDTO>> obtenerHistorial(
             Principal principal,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime fechaInicio,
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDateTime fechaFin) {
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaInicio,
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaFin) {
         List<RegistroPesoDTO> historial = registroPesoService.obtenerHistorial(
-                principal.getName(), fechaInicio, fechaFin);
+                principal.getName(), fechaInicio.atStartOfDay(), fechaFin.atTime(23, 59, 59));
         return ResponseEntity.ok(historial);
     }
 }
