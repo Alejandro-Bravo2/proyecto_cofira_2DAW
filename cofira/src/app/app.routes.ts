@@ -28,38 +28,30 @@ import { proGuard } from './guards/pro.guard';
 
 export const routes: Routes = [
 
-  // Rutas publicas (accesibles sin autenticacion)
-  { path: '', component: Home },
-  { path: 'login', component: Login, canActivate: [guestGuard] },
-  { path: 'style-guide', component: StyleGuide },
+  { path: '', component: Home, title: 'Cofira - Nutricion y Entrenamiento' },
+  { path: 'login', component: Login, canActivate: [guestGuard], title: 'Iniciar Sesion - Cofira' },
+  { path: 'style-guide', component: StyleGuide, title: 'Guia de Estilos - Cofira' },
 
-  // Ruta de onboarding (flujo de registro, sin autenticacion)
-  { path: 'onboarding', component: Onboarding },
+  { path: 'onboarding', component: Onboarding, title: 'Registro - Cofira' },
 
-  // Rutas protegidas PRO (requieren autenticacion + suscripcion)
-  { path: 'alimentacion', component: Alimentacion, canActivate: [authGuard, proGuard] },
-  { path: 'seguimiento', component: Seguimiento, canActivate: [authGuard, proGuard] },
-  { path: 'gimnasio', component: Gimnasio, canActivate: [authGuard, proGuard] },
+  { path: 'alimentacion', component: Alimentacion, canActivate: [authGuard, proGuard], title: 'Alimentacion - Cofira' },
+  { path: 'seguimiento', component: Seguimiento, canActivate: [authGuard, proGuard], title: 'Seguimiento - Cofira' },
+  { path: 'gimnasio', component: Gimnasio, canActivate: [authGuard, proGuard], title: 'Gimnasio - Cofira' },
 
-  // Pagina de acceso bloqueado (para usuarios sin PRO)
-  { path: 'acceso-pro', component: AccesoPro, canActivate: [authGuard] },
-  { path: 'perfil', component: Perfil, canActivate: [authGuard] },
-  { path: 'configuracion', component: Configuracion, canActivate: [authGuard] },
+  { path: 'acceso-pro', component: AccesoPro, canActivate: [authGuard], title: 'Cofira PRO - Cofira' },
+  { path: 'perfil', component: Perfil, canActivate: [authGuard], title: 'Mi Perfil - Cofira' },
+  { path: 'configuracion', component: Configuracion, canActivate: [authGuard], title: 'Configuracion - Cofira' },
 
-  // Rutas legales (publicas)
-  { path: 'privacidad', component: Privacidad },
-  { path: 'terminos', component: Terminos },
-  { path: 'cookies', component: Cookies },
-  { path: 'licencias', component: Licencias },
+  { path: 'privacidad', component: Privacidad, title: 'Politica de Privacidad - Cofira' },
+  { path: 'terminos', component: Terminos, title: 'Terminos de Servicio - Cofira' },
+  { path: 'cookies', component: Cookies, title: 'Politica de Cookies - Cofira' },
+  { path: 'licencias', component: Licencias, title: 'Licencias - Cofira' },
 
-  // Rutas informativas (publicas)
-  { path: 'sobre-nosotros', component: SobreNosotros },
-  { path: 'blog', component: Blog },
-  { path: 'contacto', component: Contacto },
+  { path: 'sobre-nosotros', component: SobreNosotros, title: 'Sobre Nosotros - Cofira' },
+  { path: 'blog', component: Blog, title: 'Blog - Cofira' },
+  { path: 'contacto', component: Contacto, title: 'Contacto - Cofira' },
 
-  // Ruta de pruebas (desarrollo)
-  { path: 'pruebas', component: Pruebas },
+  { path: 'pruebas', component: Pruebas, title: 'Pruebas - Cofira' },
 
-  // Redireccion para rutas no encontradas
   { path: '**', redirectTo: '' },
 ];

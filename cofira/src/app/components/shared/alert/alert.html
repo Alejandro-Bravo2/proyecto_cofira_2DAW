@@ -1,6 +1,6 @@
 @if (esVisible) {
-<aside class="alert alert--{{ tipo }}" role="alert">
-  <span class="alert__icono">
+<aside class="alert alert--{{ tipo }}" role="alert" aria-live="assertive">
+  <span class="alert__icono" aria-hidden="true">
     @if (tipo === 'success') {
     <svg class="alert__icono-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M9 16.17L4.83 12l-1.42 1.41L9 19L21 7l-1.41-1.41z" fill="currentColor" />
@@ -29,7 +29,7 @@
 
   @if (puedeCerrarse) {
   <button class="alert__cerrar" (click)="cerrar()" aria-label="Cerrar alerta">
-    <svg class="alert__cerrar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg aria-hidden="true" class="alert__cerrar-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12z"
         fill="currentColor" />
     </svg>

@@ -19,6 +19,7 @@
           </svg>
         </span>
         <input
+          aria-label="Nombre"
           autocomplete="name"
           class="step-register__input"
           formControlName="nombre"
@@ -35,6 +36,7 @@
           </svg>
         </span>
         <input
+          aria-label="Correo electrónico"
           [class.step-register__input--error]="estadoEmail === 'invalid-format' || estadoEmail === 'taken'"
           [class.step-register__input--valid]="estadoEmail === 'valid'"
           autocomplete="email"
@@ -44,7 +46,7 @@
           type="email">
         @if (estadoEmail === 'checking') {
           <span aria-hidden="true" class="step-register__field-status step-register__field-status--loading">
-            <svg class="step-register__spinner" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg aria-hidden="true" class="step-register__spinner" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M4 12a8 8 0 018-8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </span>
@@ -60,8 +62,8 @@
 
       
       @if (estadoEmail === 'invalid-format') {
-        <aside class="step-register__field-error">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <aside class="step-register__field-error" role="alert">
+          <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" stroke-linecap="round"
                   stroke-linejoin="round"/>
           </svg>
@@ -69,8 +71,8 @@
         </aside>
       }
       @if (estadoEmail === 'taken') {
-        <aside class="step-register__field-error">
-          <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+        <aside class="step-register__field-error" role="alert">
+          <svg aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
             <path d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" stroke-linecap="round"
                   stroke-linejoin="round"/>
           </svg>
@@ -88,6 +90,7 @@
           </svg>
         </span>
         <input
+          aria-label="Contraseña"
           [type]="mostrarContrasena() ? 'text' : 'password'"
           autocomplete="new-password"
           class="step-register__input step-register__input--password"
@@ -115,7 +118,7 @@
           <ul class="step-register__requirements-list">
             <li [class.step-register__requirement--valid]="requisitosContrasena.isLongEnough"
                 class="step-register__requirement">
-              <svg class="step-register__requirement-icon" fill="currentColor" viewBox="0 0 20 20">
+              <svg aria-hidden="true" class="step-register__requirement-icon" fill="currentColor" viewBox="0 0 20 20">
                 @if (requisitosContrasena.isLongEnough) {
                   <path clip-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -130,7 +133,7 @@
             </li>
             <li [class.step-register__requirement--valid]="requisitosContrasena.hasUpperCase"
                 class="step-register__requirement">
-              <svg class="step-register__requirement-icon" fill="currentColor" viewBox="0 0 20 20">
+              <svg aria-hidden="true" class="step-register__requirement-icon" fill="currentColor" viewBox="0 0 20 20">
                 @if (requisitosContrasena.hasUpperCase) {
                   <path clip-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -145,7 +148,7 @@
             </li>
             <li [class.step-register__requirement--valid]="requisitosContrasena.hasLowerCase"
                 class="step-register__requirement">
-              <svg class="step-register__requirement-icon" fill="currentColor" viewBox="0 0 20 20">
+              <svg aria-hidden="true" class="step-register__requirement-icon" fill="currentColor" viewBox="0 0 20 20">
                 @if (requisitosContrasena.hasLowerCase) {
                   <path clip-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -160,7 +163,7 @@
             </li>
             <li [class.step-register__requirement--valid]="requisitosContrasena.hasNumeric"
                 class="step-register__requirement">
-              <svg class="step-register__requirement-icon" fill="currentColor" viewBox="0 0 20 20">
+              <svg aria-hidden="true" class="step-register__requirement-icon" fill="currentColor" viewBox="0 0 20 20">
                 @if (requisitosContrasena.hasNumeric) {
                   <path clip-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -175,7 +178,7 @@
             </li>
             <li [class.step-register__requirement--valid]="requisitosContrasena.hasSpecial"
                 class="step-register__requirement">
-              <svg class="step-register__requirement-icon" fill="currentColor" viewBox="0 0 20 20">
+              <svg aria-hidden="true" class="step-register__requirement-icon" fill="currentColor" viewBox="0 0 20 20">
                 @if (requisitosContrasena.hasSpecial) {
                   <path clip-rule="evenodd"
                         d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
@@ -201,6 +204,7 @@
           </svg>
         </span>
         <input
+          aria-label="Confirmar contraseña"
           [type]="mostrarConfirmacionContrasena() ? 'text' : 'password'"
           autocomplete="new-password"
           class="step-register__input step-register__input--password"
@@ -225,8 +229,8 @@
     </fieldset>
 
     @if (!contrasenasCoinciden() && formularioRegistro.get('confirmPassword')?.touched) {
-      <aside class="step-register__error">
-        <svg class="step-register__error-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+      <aside class="step-register__error" role="alert">
+        <svg aria-hidden="true" class="step-register__error-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
           <path d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" stroke-linecap="round"
                 stroke-linejoin="round"/>
         </svg>
@@ -242,7 +246,7 @@
         variante="primario">
         @if (estaCargando()) {
           <span class="step-register__loading">
-            <svg class="step-register__spinner" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <svg aria-hidden="true" class="step-register__spinner" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
               <path d="M4 12a8 8 0 018-8" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
             Creando cuenta...

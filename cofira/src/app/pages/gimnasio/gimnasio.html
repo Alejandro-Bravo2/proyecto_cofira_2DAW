@@ -5,13 +5,13 @@
   </header>
 
   @if (isLoading()) {
-    <section class="gimnasio__estado">
+    <section aria-live="polite" class="gimnasio__estado">
       <p class="gimnasio__estado-texto">Cargando tu rutina...</p>
     </section>
   }
 
   @if (error()) {
-    <section class="gimnasio__estado gimnasio__estado--error">
+    <section class="gimnasio__estado gimnasio__estado--error" role="alert">
       <p class="gimnasio__estado-texto">{{ error() }}</p>
     </section>
   }
@@ -172,7 +172,7 @@
     <h2 class="gimnasio__feedback-titulo">Retroalimentación</h2>
 
     <form (ngSubmit)="enviarFeedback()" class="gimnasio__feedback-form">
-      <fieldset class="gimnasio__feedback-field">
+      <p class="gimnasio__feedback-field">
         <label class="gimnasio__feedback-label" for="ejercicios-dificiles">
           ¿Cuáles son los ejercicios que más te han costado?
         </label>
@@ -180,17 +180,17 @@
           id="ejercicios-dificiles" name="ejerciciosDificiles"
           placeholder="Escribe aquellos ejercicios que te hayan costado y los posibles motivos..." rows="4">
         </textarea>
-      </fieldset>
+      </p>
 
-      <fieldset class="gimnasio__feedback-field">
+      <p class="gimnasio__feedback-field">
         <label class="gimnasio__feedback-label gimnasio__feedback-label--checkbox">
           <input type="checkbox" [(ngModel)]="feedback.puedeMasPeso" name="puedeMasPeso"
             class="gimnasio__feedback-checkbox">
           <span>¿Crees que podrías con más peso?</span>
         </label>
-      </fieldset>
+      </p>
 
-      <fieldset class="gimnasio__feedback-field">
+      <p class="gimnasio__feedback-field">
         <label class="gimnasio__feedback-label" for="comentarios">
           Comentarios adicionales
         </label>
@@ -198,7 +198,7 @@
           placeholder="Escribe cualquier comentario adicional sobre tu entrenamiento esta semana..."
           rows="4">
         </textarea>
-      </fieldset>
+      </p>
 
       <footer class="gimnasio__feedback-acciones">
         <app-button (click)="cancelarFeedback()" tamanio="mediano" tipo="button" variante="secundario">

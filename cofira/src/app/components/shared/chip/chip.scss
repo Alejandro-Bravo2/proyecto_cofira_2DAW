@@ -55,8 +55,7 @@
   color: var(--text-primary);
 }
 
-.chip__boton-eliminar:focus {
-  outline: none;
+.chip__boton-eliminar:focus-visible {
   box-shadow: 0 0 0 0.125rem var(--amarillo-normal);
 }
 

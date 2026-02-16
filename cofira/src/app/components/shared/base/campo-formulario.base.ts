@@ -18,9 +18,11 @@ export abstract class CampoFormularioBase implements OnInit {
   @Input() controlDelFormulario: FormControl = new FormControl('');
 
   protected readonly inputId = signal('');
+  protected readonly errorId = signal('');
 
   ngOnInit(): void {
     const idAleatorio = Math.random().toString(36).substring(2, 12);
     this.inputId.set(`campo-${this.nombre}-${idAleatorio}`);
+    this.errorId.set(`error-${this.nombre}-${idAleatorio}`);
   }
 }

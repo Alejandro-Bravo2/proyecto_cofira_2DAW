@@ -36,8 +36,7 @@
   border-color: var(--button-yellow);
 }
 
-.formulario-seleccion__campo:focus {
-  outline: none;
+.formulario-seleccion__campo:focus-visible {
   border-color: var(--button-yellow);
   box-shadow: 0 0 0 0.1875rem var(--amarillo-normal-transparente-010);
 }

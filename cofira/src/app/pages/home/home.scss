@@ -92,14 +92,14 @@
   font-family: var(--font-secondary);
   font-size: var(--font-size-4xl);
   text-align: left;
-  color: var(--blanco-normal);
+  color: #000000;
 }
 
 .home__seccion-intro__subtitulo {
   -webkit-text-stroke: 2px var(--gris-normal);
   max-width: var(--home-subtitulo-ancho-maximo, 25rem);
   font-size: var(--font-size-2xl);
-  color: var(--blanco-normal);
+  color: #000000;
 }
 
 .home__seccion-intro__boton {

@@ -364,8 +364,7 @@ $acceso-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   border-color: var(--gris-light);
 }
 
-.acceso-pro__input:focus {
-  outline: none;
+.acceso-pro__input:focus-visible {
   border-color: var(--amarillo-normal);
   box-shadow: 0 0 0 4px var(--amarillo-normal-transparente-012);
 }

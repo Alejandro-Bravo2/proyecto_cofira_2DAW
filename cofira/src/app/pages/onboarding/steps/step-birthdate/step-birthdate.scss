@@ -73,9 +73,9 @@
   transition: border-color var(--duration-fast) ease;
 }
 
-.step-birthdate__input:focus {
-  outline: none;
+.step-birthdate__input:focus-visible {
   border-color: var(--amarillo-normal);
+  box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
 }
 
 .step-birthdate__input::-webkit-calendar-picker-indicator {

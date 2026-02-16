@@ -15,6 +15,7 @@
   --amarillo-dark-hover: hsl(49.8, 100%, 30%);
   --amarillo-dark-active: hsl(49.57, 100%, 22.55%);
   --amarillo-darker: hsl(49.89, 100%, 17.45%);
+  --amarillo-texto-accesible: hsl(50, 100%, 25%);
 
   --blanco-normal: hsl(0, 0%, 96.08%);
   --blanco-normal-hover: hsl(0, 0%, 86.67%);
@@ -254,6 +255,7 @@
 
 
 [data-theme="dark"] {
+  --amarillo-texto-accesible: hsl(49.65, 100%, 50%);
   --bg-body: hsl(210, 9.62%, 20.39%);
   --bg-card: hsl(212.31, 9.35%, 27.25%);
   --bg-card-alt: hsl(217.5, 9.52%, 16.47%);
