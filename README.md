@@ -64,6 +64,54 @@ La aplicación está desplegada en un VPS y es totalmente funcional. Puedes prob
 
 ---
 
+## Proyecto 4 - Accesibilidad y Multimedia
+
+### Descripción
+
+Este proyecto implementa mejoras de accesibilidad web siguiendo el estándar WCAG 2.1 nivel AA y añade un componente multimedia accesible a la aplicación Cofira.
+
+### Componente multimedia añadido
+
+**Tipo:** Galería de imágenes
+
+**Descripción:** Galería de 6 imágenes en la página Sobre Nosotros que muestra las instalaciones y actividades de Cofira usando `<figure>` con `<figcaption>` para máxima accesibilidad.
+
+### Resultados de auditoría de accesibilidad
+
+| Herramienta | Puntuación inicial | Puntuación final | Mejora |
+|-------------|-------------------|------------------|--------|
+| Lighthouse | 100/100 | 100/100 | +0 puntos |
+| WAVE | 0 errores, 3 alertas | 0 errores, 0 alertas | -3 alertas |
+| TAW | 7 problemas | 0 errores, 16 advertencias | -7 problemas |
+
+**Nivel de conformidad alcanzado:** WCAG 2.1 AA
+
+### Documentación completa
+
+**[Ver análisis completo de accesibilidad](./docs/accesibilidad/README.md)**
+
+### Verificación realizada
+
+- Auditoría con Lighthouse, WAVE y TAW
+- Test con lector de pantalla (VoiceOver)
+- Test de navegación por teclado
+- Verificación cross-browser (Chrome, Safari, Brave)
+
+### Tecnologías utilizadas
+
+- HTML5 semántico con landmarks
+- CSS3 con variables semánticas adaptables a temas
+- ARIA cuando el HTML nativo no es suficiente
+- Angular 20 con ViewEncapsulation
+
+### Autor
+
+**Nombre:** Alejandro Bravo Calderón
+**Curso:** 2º DAW - Desarrollo de Aplicaciones Web
+**Módulo:** Diseño de Interfaces Web (DIW)
+
+---
+
 ## Stack tecnológico
 
 ### Frontend

@@ -69,8 +69,7 @@
   color: var(--negro-normal);
 }
 
-.onboarding__boton-back:focus {
-  outline: none;
+.onboarding__boton-back:focus-visible {
   box-shadow: 0 0 0 0.125rem var(--amarillo-normal);
 }
 

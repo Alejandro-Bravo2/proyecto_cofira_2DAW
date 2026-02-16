@@ -9,7 +9,7 @@
       </p>
       <ul class="pie__sociales-lista">
         <li class="pie__sociales-item">
-          <a class="pie__social" href="https://twitter.com" rel="noopener" target="_blank">
+          <a aria-label="Twitter" class="pie__social" href="https://twitter.com" rel="noopener" target="_blank">
             <svg aria-hidden="true" class="pie__social-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
               width="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -19,7 +19,7 @@
           </a>
         </li>
         <li class="pie__sociales-item">
-          <a class="pie__social" href="https://linkedin.com" rel="noopener" target="_blank">
+          <a aria-label="LinkedIn" class="pie__social" href="https://linkedin.com" rel="noopener" target="_blank">
             <svg aria-hidden="true" class="pie__social-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
               width="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -29,7 +29,7 @@
           </a>
         </li>
         <li class="pie__sociales-item">
-          <a class="pie__social" href="https://github.com" rel="noopener" target="_blank">
+          <a aria-label="GitHub" class="pie__social" href="https://github.com" rel="noopener" target="_blank">
             <svg aria-hidden="true" class="pie__social-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
               width="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -39,7 +39,7 @@
           </a>
         </li>
         <li class="pie__sociales-item">
-          <a class="pie__social" href="https://instagram.com" rel="noopener" target="_blank">
+          <a aria-label="Instagram" class="pie__social" href="https://instagram.com" rel="noopener" target="_blank">
             <svg aria-hidden="true" class="pie__social-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
               width="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -87,7 +87,7 @@
 
       <menu class="pie__controles">
         <li>
-          <button (click)="toggleTema()" aria-label="Cambiar tema" class="pie__tema-boton">
+          <button (click)="toggleTema()" [attr.aria-label]="modoOscuro ? 'Activar modo claro' : 'Activar modo oscuro'" [attr.aria-pressed]="modoOscuro" class="pie__tema-boton">
             @if (modoOscuro) {
             <svg aria-hidden="true" class="pie__tema-boton-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
               width="20" xmlns="http://www.w3.org/2000/svg">
@@ -135,7 +135,7 @@
       </menu>
     </header>
 
-    <hr class="pie__inferior-separador">
+    <hr aria-hidden="true" class="pie__inferior-separador">
 
     <nav class="pie__legal">
       <a class="pie__legal-enlace" routerLink="/privacidad">Política de Privacidad</a>

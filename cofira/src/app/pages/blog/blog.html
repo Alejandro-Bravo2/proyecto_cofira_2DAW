@@ -12,8 +12,7 @@
 
   
   <section class="blog__filtros">
-    <article class="blog__container">
-      <nav aria-label="Filtrar por categoría" class="blog__categorias">
+      <nav aria-label="Filtrar por categoría" class="blog__categorias blog__container">
         @for (cat of categorias; track cat.id) {
           <button
             (click)="filtrarPorCategoria(cat.id)"
@@ -24,12 +23,11 @@
           </button>
         }
       </nav>
-    </article>
   </section>
 
   
   <section class="blog__contenido">
-    <article class="blog__container">
+    <section class="blog__container">
       <ul class="blog__grid">
         @for (articulo of articulosFiltrados; track articulo.titulo) {
           <li class="blog__articulo">
@@ -66,9 +64,9 @@
               <p class="blog__articulo-extracto">{{ articulo.extracto }}</p>
               <footer class="blog__articulo-footer">
                 <span class="blog__articulo-autor">Por {{ articulo.autor }}</span>
-                <a class="blog__articulo-leer" href="#">
+                <a [attr.aria-label]="'Leer más sobre ' + articulo.titulo" class="blog__articulo-leer" href="#">
                   Leer más
-                  <svg class="blog__articulo-leer-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  <svg aria-hidden="true" class="blog__articulo-leer-svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                        stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M5 12h14"/>
                     <path d="m12 5 7 7-7 7"/>
@@ -84,13 +82,12 @@
       @if (articulosFiltrados.length === 0) {
         <p class="blog__sin-resultados">No hay artículos en esta categoría todavía.</p>
       }
-    </article>
+    </section>
   </section>
 
-  
+
   <section class="blog__newsletter">
-    <article class="blog__container">
-      <aside class="blog__newsletter-card">
+      <aside class="blog__newsletter-card blog__container">
         <hgroup class="blog__newsletter-contenido">
           <h2 class="blog__newsletter-titulo">Mantente al día</h2>
           <p class="blog__newsletter-texto">
@@ -108,6 +105,5 @@
           <button class="blog__newsletter-boton" type="submit">Suscribirse</button>
         </form>
       </aside>
-    </article>
   </section>
 </main>

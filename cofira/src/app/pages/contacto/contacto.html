@@ -12,8 +12,7 @@
 
   
   <section class="contacto__contenido">
-    <article class="contacto__container">
-      <section class="contacto__grid">
+      <section class="contacto__grid contacto__container">
         
         <section class="contacto__formulario-wrapper">
           <h2 class="contacto__seccion-titulo">Envíanos un mensaje</h2>
@@ -107,7 +106,7 @@
           </ul>
 
           
-          <aside class="contacto__horarios">
+          <section class="contacto__horarios">
             <h3 class="contacto__horarios-titulo">Horario de atención</h3>
             <dl class="contacto__horarios-lista">
               @for (h of horarios; track h.dia) {
@@ -115,15 +114,14 @@
               <dd class="contacto__horario-hora">{{ h.horario }}</dd>
               }
             </dl>
-          </aside>
+          </section>
         </aside>
       </section>
-    </article>
   </section>
 
-  
+
   <section class="contacto__faq">
-    <article class="contacto__container">
+    <section class="contacto__container">
       <h2 class="contacto__faq-titulo">Preguntas Frecuentes</h2>
       <ul class="contacto__faq-grid">
         @for (faq of faqs; track faq.pregunta) {
@@ -133,6 +131,6 @@
         </li>
         }
       </ul>
-    </article>
+    </section>
   </section>
 </main>

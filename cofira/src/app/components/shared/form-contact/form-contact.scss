@@ -73,8 +73,7 @@
   color: var(--blanco-dark-hover);
 }
 
-.form__input:focus {
-  outline: none;
+.form__input:focus-visible {
   background-color: var(--blanco-normal);
   box-shadow: 0 0 0 0.1875rem var(--amarillo-normal-transparente-030);
 }

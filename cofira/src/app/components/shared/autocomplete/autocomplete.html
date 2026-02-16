@@ -2,12 +2,12 @@
   <label class="autocomplete__input-wrapper">
     <figure class="autocomplete__icono">
       @if (estaCargando()) {
-        <svg class="autocomplete__icono-svg autocomplete__icono-svg--loading" fill="none" stroke="currentColor" stroke-width="2"
+        <svg aria-hidden="true" class="autocomplete__icono-svg autocomplete__icono-svg--loading" fill="none" stroke="currentColor" stroke-width="2"
              viewBox="0 0 24 24">
           <circle cx="12" cy="12" r="10" stroke-dasharray="32" stroke-dashoffset="32"/>
         </svg>
       } @else {
-        <svg class="autocomplete__icono-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <svg aria-hidden="true" class="autocomplete__icono-svg" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="8"/>
           <path d="m21 21-4.3-4.3"/>
         </svg>

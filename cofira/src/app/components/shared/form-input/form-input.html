@@ -7,10 +7,12 @@
   </label>
 
   <input [autocomplete]="autocompletado" [id]="inputId()" [name]="nombre" [placeholder]="placeholder" [required]="requerido"
-    [type]="tipo" [formControl]="controlDelFormulario" class="campo-entrada__campo">
+    [type]="tipo" [formControl]="controlDelFormulario" class="campo-entrada__campo"
+    [attr.aria-describedby]="controlDelFormulario.invalid && (controlDelFormulario.dirty || controlDelFormulario.touched) ? errorId() : null"
+    [attr.aria-invalid]="controlDelFormulario.invalid && (controlDelFormulario.dirty || controlDelFormulario.touched)">
 
   @if (controlDelFormulario && controlDelFormulario.invalid && (controlDelFormulario.dirty || controlDelFormulario.touched)) {
-  <span class="campo-entrada__error">{{ mensajeDeError }}</span>
+  <span [id]="errorId()" class="campo-entrada__error" role="alert">{{ mensajeDeError }}</span>
   }
 
   @if (textoDeAyuda) {

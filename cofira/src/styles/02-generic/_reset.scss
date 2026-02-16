@@ -259,3 +259,12 @@ template {
 [hidden] {
   display: none;
 }
+
+:focus-visible {
+  outline: 2px solid var(--negro-normal);
+  outline-offset: 2px;
+}
+
+[data-theme="dark"] :focus-visible {
+  outline-color: var(--amarillo-normal);
+}

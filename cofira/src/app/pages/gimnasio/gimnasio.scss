@@ -324,9 +324,9 @@
   transition: border-color var(--duration-fast) ease;
 }
 
-.gimnasio__input-peso:focus {
-  outline: none;
+.gimnasio__input-peso:focus-visible {
   border-color: var(--amarillo-normal);
+  box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
 }
 
 .gimnasio__input-peso::placeholder {

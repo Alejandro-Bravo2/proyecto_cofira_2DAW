@@ -257,7 +257,7 @@
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--amarillo-dark);
+  color: var(--amarillo-texto-accesible);
   text-decoration: none;
   transition: color var(--duration-fast) ease;
 }
@@ -343,9 +343,9 @@
   }
 }
 
-.blog__newsletter-input:focus {
-  outline: none;
+.blog__newsletter-input:focus-visible {
   border-color: var(--negro-normal);
+  box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
 }
 
 .blog__newsletter-boton {

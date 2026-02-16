@@ -51,7 +51,7 @@ $acceso-transicion: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-regular);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
   margin: 0;
   max-width: 20rem;
 }
@@ -127,8 +127,7 @@ $acceso-transicion: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   border-color: var(--gris-light);
 }
 
-.acceso__entrada:focus {
-  outline: none;
+.acceso__entrada:focus-visible {
   background-color: var(--bg-input);
   border-color: var(--amarillo-normal);
   box-shadow: 0 0 0 4px var(--amarillo-normal-transparente-012);
@@ -146,8 +145,8 @@ $acceso-transicion: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
   background: none;
   border: none;
   border-radius: var(--radius-md);
@@ -163,9 +162,9 @@ $acceso-transicion: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--bg-surface);
 }
 
-.acceso__alternar-contrasena:focus {
-  outline: none;
+.acceso__alternar-contrasena:focus-visible {
   color: var(--amarillo-dark);
+  box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
 }
 
 .acceso__alternar-contrasena svg {
@@ -212,13 +211,13 @@ $acceso-transicion: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 .acceso__accion-alternativa {
   font-family: var(--font-primary);
   font-size: var(--font-size-sm);
-  color: var(--gris-normal);
+  color: var(--text-secondary);
   margin: 0;
   text-align: center;
 }
 
 .acceso__enlace {
-  color: var(--amarillo-dark);
+  color: var(--amarillo-texto-accesible);
   font-weight: var(--font-weight-semibold);
   text-decoration: none;
   transition: color $acceso-transicion;

@@ -36,7 +36,7 @@ export class Ingredientes {
 
   @Output() cerrar = new EventEmitter<void>();
 
-  private readonly mapaIconosAlimento: Record<TipoIconoAlimento, IconDefinition> = {
+  private readonly mapaIconosAlimento = {
     "pan": faBreadSlice,
     "fruta": faAppleWhole,
     "verdura": faCarrot,
@@ -48,7 +48,7 @@ export class Ingredientes {
     "fruto-seco": faBowlRice,
     "pizza": faUtensils,
     "plato": faUtensils
-  };
+  } as Record<TipoIconoAlimento, IconDefinition>;
 
   ingredientesDetallados: IngredienteDetalle[] = [
     {nombre: "Harina de trigo", cantidad: "200g", calorias: 360},
@@ -59,7 +59,7 @@ export class Ingredientes {
 
   get iconoActual(): IconDefinition {
     if (!this.alimento?.icono) {
-      return faUtensils;
+      return faUtensils as unknown as IconDefinition;
     }
     return this.mapaIconosAlimento[this.alimento.icono] || faUtensils;
   }

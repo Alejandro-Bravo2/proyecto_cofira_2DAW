@@ -7,10 +7,12 @@
   </label>
 
   <textarea [id]="inputId()" [name]="nombre" [placeholder]="placeholder" [required]="requerido" [formControl]="controlDelFormulario"
-    class="formulario-textarea__campo"></textarea>
+    class="formulario-textarea__campo"
+    [attr.aria-describedby]="controlDelFormulario.invalid && (controlDelFormulario.dirty || controlDelFormulario.touched) ? errorId() : null"
+    [attr.aria-invalid]="controlDelFormulario.invalid && (controlDelFormulario.dirty || controlDelFormulario.touched)"></textarea>
 
   @if (controlDelFormulario && controlDelFormulario.invalid && (controlDelFormulario.dirty || controlDelFormulario.touched)) {
-  <span class="formulario-textarea__error">{{ mensajeDeError }}</span>
+  <span [id]="errorId()" class="formulario-textarea__error" role="alert">{{ mensajeDeError }}</span>
   }
 
   @if (textoDeAyuda) {

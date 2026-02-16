@@ -18,8 +18,9 @@
   color: var(--text-light);
 }
 
-.input:focus {
-  outline: none;
+.input:focus-visible {
+  outline: 2px solid var(--negro-normal);
+  outline-offset: 2px;
   border-color: var(--amarillo-normal);
 }
 

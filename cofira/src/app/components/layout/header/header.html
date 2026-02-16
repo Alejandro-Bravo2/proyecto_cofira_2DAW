@@ -11,10 +11,10 @@
     </ul>
   </nav>
 
-  <section class="cabecera__acciones cabecera__acciones--escritorio">
+  <nav class="cabecera__acciones cabecera__acciones--escritorio" aria-label="Acciones de usuario">
     @if (isAuthenticated()) {
-        <article class="cabecera__perfil-contenedor">
-            <button (click)="toggleMenuCuenta()" [attr.aria-expanded]="menuCuentaAbierto" aria-haspopup="true"
+        <section class="cabecera__perfil-contenedor">
+            <button (click)="toggleMenuCuenta()" [attr.aria-expanded]="menuCuentaAbierto" aria-controls="menu-cuenta" aria-haspopup="true"
                     aria-label="Menú de cuenta" class="cabecera__perfil">
                 <svg aria-hidden="true" class="cabecera__perfil-icono" fill="none" stroke="currentColor"
                      stroke-width="1.5" viewBox="0 0 24 24">
@@ -29,8 +29,8 @@
                 </svg>
             </button>
 
-            <aside [class.cabecera__desplegable--abierto]="menuCuentaAbierto" class="cabecera__desplegable"
-                   tabindex="-1">
+            <section [class.cabecera__desplegable--abierto]="menuCuentaAbierto" class="cabecera__desplegable"
+                   id="menu-cuenta" tabindex="-1">
         <nav class="cabecera__desplegable-navegacion">
           <a (click)="cerrarMenuCuenta()" class="cabecera__desplegable-item" routerLink="/perfil">
             <svg aria-hidden="true" class="cabecera__desplegable-item-icono" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
@@ -56,18 +56,18 @@
             <span>Cerrar sesión</span>
           </button>
         </nav>
-      </aside>
+      </section>
 
       @if (menuCuentaAbierto) {
           <span (click)="cerrarMenuCuenta()" aria-hidden="true" class="cabecera__desplegable-overlay"
                 tabindex="-1"></span>
       }
-        </article>
+        </section>
     } @else {
       <app-button enlace="/onboarding" tamanio="pequeno" variante="primario">Inscríbete</app-button>
     }
 
-    <button (click)="toggleTema()" aria-label="Cambiar tema" class="cabecera__tema-boton">
+    <button (click)="toggleTema()" [attr.aria-label]="modoOscuro ? 'Activar modo claro' : 'Activar modo oscuro'" [attr.aria-pressed]="modoOscuro" class="cabecera__tema-boton">
       @if (modoOscuro) {
         <svg aria-hidden="true" class="cabecera__tema-boton-icono" fill="currentColor" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
@@ -87,9 +87,9 @@
         </svg>
       }
     </button>
-  </section>
+  </nav>
 
-  <button (click)="toggleMenu()" [class.cabecera__hamburguesa--abierto]="menuAbierto" [attr.aria-expanded]="menuAbierto" aria-label="Menú"
+  <button (click)="toggleMenu()" [class.cabecera__hamburguesa--abierto]="menuAbierto" [attr.aria-expanded]="menuAbierto" aria-controls="menu-movil" aria-label="Menú"
           class="cabecera__hamburguesa">
     <span aria-hidden="true" class="cabecera__hamburguesa-linea"></span>
     <span aria-hidden="true" class="cabecera__hamburguesa-linea"></span>
@@ -97,7 +97,7 @@
   </button>
 </header>
 
-<aside class="menu-movil" [class.menu-movil--abierto]="menuAbierto" tabindex="-1">
+<section class="menu-movil" [class.menu-movil--abierto]="menuAbierto" id="menu-movil" role="dialog" aria-label="Menú de navegación" tabindex="-1">
   <span aria-hidden="true" class="menu-movil__overlay" tabindex="-1" [class.menu-movil__overlay--visible]="menuAbierto" (click)="cerrarMenu()"></span>
 
   <section class="menu-movil__contenido" [class.menu-movil__contenido--visible]="menuAbierto">
@@ -153,7 +153,7 @@
           </svg>
           <span>Configuración</span>
         </a>
-          <button (click)="toggleTema()" aria-label="Cambiar tema" class="menu-movil__enlace menu-movil__enlace--tema">
+          <button (click)="toggleTema()" [attr.aria-label]="modoOscuro ? 'Activar modo claro' : 'Activar modo oscuro'" [attr.aria-pressed]="modoOscuro" class="menu-movil__enlace menu-movil__enlace--tema">
               <fa-icon [icon]="modoOscuro ? iconoSol : iconoLuna" class="menu-movil__enlace-icono"></fa-icon>
               <span>{{ modoOscuro ? 'Modo claro' : 'Modo oscuro' }}</span>
           </button>
@@ -165,7 +165,7 @@
           <span>Cerrar sesión</span>
         </button>
       } @else {
-          <button (click)="toggleTema()" aria-label="Cambiar tema" class="menu-movil__enlace menu-movil__enlace--tema">
+          <button (click)="toggleTema()" [attr.aria-label]="modoOscuro ? 'Activar modo claro' : 'Activar modo oscuro'" [attr.aria-pressed]="modoOscuro" class="menu-movil__enlace menu-movil__enlace--tema">
               <fa-icon [icon]="modoOscuro ? iconoSol : iconoLuna" class="menu-movil__enlace-icono"></fa-icon>
               <span>{{ modoOscuro ? 'Modo claro' : 'Modo oscuro' }}</span>
         </button>
@@ -175,4 +175,4 @@
       }
     </section>
   </section>
-</aside>
+</section>

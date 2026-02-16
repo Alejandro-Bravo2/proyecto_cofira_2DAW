@@ -119,8 +119,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   border-color: var(--gris-light);
 }
 
-.step-register__input:focus {
-  outline: none;
+.step-register__input:focus-visible {
   background-color: var(--bg-input);
   border-color: var(--amarillo-normal);
   box-shadow: 0 0 0 4px var(--amarillo-normal-transparente-012);
@@ -135,7 +134,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--rojo-normal-transparente-003);
 }
 
-.step-register__input--error:focus {
+.step-register__input--error:focus-visible {
   border-color: var(--rojo-normal);
   box-shadow: 0 0 0 4px var(--rojo-normal-transparente-012);
 }
@@ -145,7 +144,7 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--verde-normal-transparente-003);
 }
 
-.step-register__input--valid:focus {
+.step-register__input--valid:focus-visible {
   border-color: var(--verde-normal);
   box-shadow: 0 0 0 4px var(--verde-normal-transparente-012);
 }
@@ -220,8 +219,8 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.75rem;
+  height: 2.75rem;
   background: none;
   border: none;
   border-radius: var(--radius-md);
@@ -237,9 +236,9 @@ $register-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: var(--bg-surface);
 }
 
-.step-register__toggle-password:focus {
-  outline: none;
+.step-register__toggle-password:focus-visible {
   color: var(--amarillo-dark);
+  box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
 }
 
 .step-register__toggle-password-svg {

@@ -190,9 +190,9 @@
   transition: border-color 0.2s ease;
 }
 
-.configuracion__select:focus {
+.configuracion__select:focus-visible {
   border-color: var(--amarillo-normal);
-  outline: none;
+  box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
 }
 
 .configuracion__toggle-item {

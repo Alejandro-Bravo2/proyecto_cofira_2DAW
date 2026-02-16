@@ -66,9 +66,9 @@
   }
 }
 
-.modal-alternativa__input:focus {
-  outline: none;
+.modal-alternativa__input:focus-visible {
   border-color: var(--amarillo-normal);
+  box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
 }
 
 .modal-alternativa__grupo-macros {
@@ -127,9 +127,9 @@
   }
 }
 
-.modal-alternativa__macro-input:focus {
-  outline: none;
+.modal-alternativa__macro-input:focus-visible {
   border-color: var(--amarillo-normal);
+  box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
 }
 
 .modal-alternativa__macro-unidad {

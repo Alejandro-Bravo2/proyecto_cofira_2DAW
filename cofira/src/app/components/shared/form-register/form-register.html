@@ -8,9 +8,11 @@
                                         <legend class="form__label">Nombre:</legend>
                                         <input type="text" id="nombre" formControlName="nombre" class="form__input"
                                                   placeholder="Escribe tu nombre"
-                                                  [class.form__input--error]="controlesDelFormulario['nombre'].invalid && controlesDelFormulario['nombre'].touched">
+                                                  [class.form__input--error]="controlesDelFormulario['nombre'].invalid && controlesDelFormulario['nombre'].touched"
+                                                  [attr.aria-describedby]="controlesDelFormulario['nombre'].invalid && controlesDelFormulario['nombre'].touched ? 'error-nombre' : null"
+                                                  [attr.aria-invalid]="controlesDelFormulario['nombre'].invalid && controlesDelFormulario['nombre'].touched">
                                         @if (controlesDelFormulario['nombre'].invalid && controlesDelFormulario['nombre'].touched) {
-                                        <small class="form__error">El nombre es requerido (mínimo 2 caracteres)</small>
+                                        <small id="error-nombre" class="form__error" role="alert">El nombre es requerido (mínimo 2 caracteres)</small>
                                         }
                               </fieldset>
 
@@ -18,9 +20,11 @@
                                         <legend class="form__label">Apellido:</legend>
                                         <input type="text" id="apellido" formControlName="apellido" class="form__input"
                                                   placeholder="Escribe tu apellido"
-                                                  [class.form__input--error]="controlesDelFormulario['apellido'].invalid && controlesDelFormulario['apellido'].touched">
+                                                  [class.form__input--error]="controlesDelFormulario['apellido'].invalid && controlesDelFormulario['apellido'].touched"
+                                                  [attr.aria-describedby]="controlesDelFormulario['apellido'].invalid && controlesDelFormulario['apellido'].touched ? 'error-apellido' : null"
+                                                  [attr.aria-invalid]="controlesDelFormulario['apellido'].invalid && controlesDelFormulario['apellido'].touched">
                                         @if (controlesDelFormulario['apellido'].invalid && controlesDelFormulario['apellido'].touched) {
-                                        <small class="form__error">El apellido es requerido (mínimo 2
+                                        <small id="error-apellido" class="form__error" role="alert">El apellido es requerido (mínimo 2
                                                   caracteres)</small>
                                         }
                               </fieldset>
@@ -29,9 +33,11 @@
                                         <legend class="form__label">Email:</legend>
                                         <input type="email" id="email" formControlName="email" class="form__input"
                                                   placeholder="tu@email.com"
-                                                  [class.form__input--error]="controlesDelFormulario['email'].invalid && controlesDelFormulario['email'].touched">
+                                                  [class.form__input--error]="controlesDelFormulario['email'].invalid && controlesDelFormulario['email'].touched"
+                                                  [attr.aria-describedby]="controlesDelFormulario['email'].invalid && controlesDelFormulario['email'].touched ? 'error-email' : null"
+                                                  [attr.aria-invalid]="controlesDelFormulario['email'].invalid && controlesDelFormulario['email'].touched">
                                         @if (controlesDelFormulario['email'].invalid && controlesDelFormulario['email'].touched) {
-                                        <small class="form__error">Por favor, introduce un email válido</small>
+                                        <small id="error-email" class="form__error" role="alert">Por favor, introduce un email válido</small>
                                         }
                               </fieldset>
 
@@ -39,9 +45,11 @@
                                         <legend class="form__label">Contraseña:</legend>
                                         <input type="password" id="password" formControlName="password"
                                                   class="form__input" placeholder="Mínimo 6 caracteres"
-                                                  [class.form__input--error]="controlesDelFormulario['password'].invalid && controlesDelFormulario['password'].touched">
+                                                  [class.form__input--error]="controlesDelFormulario['password'].invalid && controlesDelFormulario['password'].touched"
+                                                  [attr.aria-describedby]="controlesDelFormulario['password'].invalid && controlesDelFormulario['password'].touched ? 'error-password' : null"
+                                                  [attr.aria-invalid]="controlesDelFormulario['password'].invalid && controlesDelFormulario['password'].touched">
                                         @if (controlesDelFormulario['password'].invalid && controlesDelFormulario['password'].touched) {
-                                        <small class="form__error">La contraseña debe tener al menos 6
+                                        <small id="error-password" class="form__error" role="alert">La contraseña debe tener al menos 6
                                                   caracteres</small>
                                         }
                               </fieldset>
@@ -50,10 +58,12 @@
                                         <legend class="form__label">Confirmar Contraseña:</legend>
                                         <input type="password" id="confirmPassword" formControlName="confirmPassword"
                                                   class="form__input" placeholder="Repite tu contraseña"
-                                                  [class.form__input--error]="controlesDelFormulario['confirmPassword'].invalid && controlesDelFormulario['confirmPassword'].touched">
+                                                  [class.form__input--error]="controlesDelFormulario['confirmPassword'].invalid && controlesDelFormulario['confirmPassword'].touched"
+                                                  [attr.aria-describedby]="controlesDelFormulario['confirmPassword'].touched && controlesDelFormulario['confirmPassword'].errors?.['passwordMismatch'] ? 'error-confirmPassword' : null"
+                                                  [attr.aria-invalid]="controlesDelFormulario['confirmPassword'].touched && controlesDelFormulario['confirmPassword'].errors?.['passwordMismatch']">
                                         @if (controlesDelFormulario['confirmPassword'].touched &&
                                         controlesDelFormulario['confirmPassword'].errors?.['passwordMismatch']) {
-                                        <small class="form__error">Las contraseñas no coinciden</small>
+                                        <small id="error-confirmPassword" class="form__error" role="alert">Las contraseñas no coinciden</small>
                                         }
                               </fieldset>
 
@@ -61,7 +71,7 @@
                                         [requerido]="true" [controlDelFormulario]="terminosControl">
                               </app-form-checkbox>
                               @if (controlesDelFormulario['terminos'].invalid && controlesDelFormulario['terminos'].touched) {
-                              <small class="form__error">Debes aceptar los términos y condiciones</small>
+                              <small class="form__error" role="alert">Debes aceptar los términos y condiciones</small>
                               }
 
                     </fieldset>

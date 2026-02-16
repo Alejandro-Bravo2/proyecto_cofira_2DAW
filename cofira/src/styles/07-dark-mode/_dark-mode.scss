@@ -78,16 +78,9 @@
     border-color: var(--oscuro-cabecera-enlace-hover);
   }
 
-  app-header .cabecera__perfil:focus {
-    outline: none;
-    outline-width: 0;
-    border-color: var(--amarillo-normal);
-    box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
-  }
-
   app-header .cabecera__perfil:focus-visible {
-    outline: none;
-    outline-width: 0;
+    outline: 2px solid var(--amarillo-normal);
+    outline-offset: 2px;
     border-color: var(--amarillo-normal);
     box-shadow: 0 0 0 3px var(--amarillo-normal-transparente-025);
   }

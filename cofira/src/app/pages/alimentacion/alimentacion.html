@@ -3,7 +3,7 @@
   <h1 class="alimentacion__titulo">MENÚ DIARIO</h1>
 
   @if (estaGenerando()) {
-    <section class="alimentacion__loading">
+    <section aria-live="polite" class="alimentacion__loading">
       <figure class="alimentacion__loading-spinner"></figure>
       @if (progresoGeneracion()) {
         <p class="alimentacion__loading-texto">
@@ -26,7 +26,7 @@
       }
     </section>
   } @else if (isLoading()) {
-    <section class="alimentacion__loading">
+    <section aria-live="polite" class="alimentacion__loading">
       <figure class="alimentacion__loading-spinner"></figure>
       <p class="alimentacion__loading-texto">Cargando...</p>
     </section>

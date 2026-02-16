@@ -46,13 +46,11 @@ export class Footer {
     this.mostrarIdiomas = !this.mostrarIdiomas;
   }
 
-  /**
-   * Cierra el dropdown de idiomas cuando se hace clic fuera del componente.
-   * Escucha todos los clics en el documento y verifica si el clic fue
-   * dentro del contenedor del selector de idiomas.
-   *
-   * @param evento El evento de clic del documento
-   */
+  @HostListener("document:keydown.escape")
+  cerrarIdiomasConEscape(): void {
+    this.mostrarIdiomas = false;
+  }
+
   @HostListener('document:click', ['$event'])
   cerrarIdiomasSiClicFuera(evento: Event): void {
     const elementoClicado = evento.target as HTMLElement;

@@ -24,8 +24,7 @@
   background-color: var(--blanco-normal-hover);
 }
 
-.option-card:focus {
-  outline: none;
+.option-card:focus-visible {
   border-color: var(--amarillo-normal);
   box-shadow: 0 0 0 0.1875rem var(--amarillo-light);
 }

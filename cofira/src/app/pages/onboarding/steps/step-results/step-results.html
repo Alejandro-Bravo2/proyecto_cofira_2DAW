@@ -1,11 +1,11 @@
 <article class="step-results">
 
   @if (isLoading()) {
-    <section class="step-results__loading">
+    <section aria-live="polite" class="step-results__loading">
       <p class="step-results__loading-text">Calculando tu plan personalizado...</p>
     </section>
   } @else if (error()) {
-    <section class="step-results__error">
+    <section class="step-results__error" role="alert">
       <p class="step-results__error-text">{{ error() }}</p>
     </section>
   } @else if (results()) {
