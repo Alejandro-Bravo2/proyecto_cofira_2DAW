@@ -21,7 +21,7 @@ La accesibilidad web es hacer que tu web la pueda usar cualquiera, tenga discapa
    - Ejemplo: Cada página tiene `lang="es"` y los errores de formularios explican qué falta exactamente
 
 4. **Robusto:** Tiene que funcionar con tecnologías de asistencia y ser compatible con navegadores actuales y futuros.
-   - Ejemplo: Los SVGs decorativos que uso como iconos llevan `aria-hidden="true"` para que VoiceOver anuncie si están activados o no.
+   - Ejemplo: Los SVGs decorativos que uso como iconos llevan `aria-hidden="true"` para que los lectores de pantalla los ignoren y no lean contenido sin sentido
 
 
 ### Niveles de conformidad
@@ -66,7 +66,7 @@ He pasado 3 herramientas de análisis ANTES de aplicar ninguna corrección:
 
 ### Los 3 problemas más graves
 
-1. **Labels vacíos en el login** - Los inputs del login tenían `<label>` como wrapper pero sin asociación real y WAVE los marcaba como error. Los lectores de pantalla no anunciaban el nombre de cada campo.
+1. **Labels vacíos en el login** - Los inputs del login tenían `<label>` como wrapper pero sin asociación real y TAW los marcaba como error. Los lectores de pantalla no anunciaban el nombre de cada campo.
 
 2. **Contraste del skip link** - El skip link tenía un contraste muy bajo. Pasaba porque en `app.scss` tenía un selector `* { background-color }` que me sobreescribía el fondo del skip link.
 
@@ -80,10 +80,10 @@ He pasado 3 herramientas de análisis ANTES de aplicar ninguna corrección:
 
 | # | Error | Criterio WCAG | Herramienta | Solución aplicada |
 |---|-------|---------------|-------------|-------------------|
-| 1 | Labels vacíos en login | 1.3.1 | WAVE, TAW | Cambié `<label>` por `<span>` y añadí `aria-label` a cada input |
-| 2 | Contraste del skip link | 1.4.3 | TAW, Lighthouse | Cambié `*{}` por `:host{}` y puse colores de alto contraste |
-| 3 | Enlaces vacíos en footer | 2.4.4 | WAVE, TAW | Añadí `aria-label` con el nombre de cada red social |
-| 4 | Contraste en "Leer más" del blog | 1.4.3 | Lighthouse | Cambié el color a `--amarillo-texto-accesible` |
+| 1 | Labels vacíos en login | 1.3.1 | TAW | Cambié `<label>` por `<span>` y añadí `aria-label` a cada input |
+| 2 | Contraste del skip link | 1.4.3 | TAW | Cambié `*{}` por `:host{}` y puse colores de alto contraste |
+| 3 | Enlaces vacíos en footer | 2.4.4 | TAW | Añadí `aria-label` con el nombre de cada red social |
+| 4 | Contraste en "Leer más" del blog | 1.4.3 | TAW | Cambié el color a `--amarillo-texto-accesible` |
 | 5 | Contraste en login modo oscuro | 1.4.3 | TAW | Cambié `--gris-normal` por `--text-secondary` |
 | 6 | Título genérico en todas las páginas | 2.4.2 | TAW | Añadí `title` a cada ruta en `app.routes.ts` |
 | 7 | HTML anidado inválido | 4.1.1 | TAW | Quité el `<html>` duplicado de `app.html` |
@@ -92,7 +92,7 @@ He pasado 3 herramientas de análisis ANTES de aplicar ninguna corrección:
 
 #### 1º Error: Labels vacíos en el formulario de login
 
-**Problema:** Los inputs del login estaban envueltos en `<label>` pero sin texto asociado real y WAVE los detectaba como labels vacíos.
+**Problema:** Los inputs del login estaban envueltos en `<label>` pero sin texto asociado real y TAW los detectaba como labels vacíos.
 
 **Impacto:** Los lectores de pantalla no sabían qué campo era cada uno.
 
@@ -100,17 +100,21 @@ He pasado 3 herramientas de análisis ANTES de aplicar ninguna corrección:
 
 **Código ANTES:**
 ```html
-<label class="login__campo">
-  <span class="login__campo-texto">Email</span>
-  <input type="email" placeholder="Tu email">
+<label class="acceso__campo">
+  <span aria-hidden="true" class="acceso__campo-icono">
+    <svg class="acceso__campo-icono-svg">...</svg>
+  </span>
+  <input type="email" placeholder="tu@email.com">
 </label>
 ```
 
 **Código DESPUÉS:**
 ```html
-<span class="login__campo">
-  <span class="login__campo-texto">Email</span>
-  <input aria-label="Email" type="email" placeholder="Tu email">
+<span class="acceso__campo">
+  <span aria-hidden="true" class="acceso__campo-icono">
+    <svg aria-hidden="true" class="acceso__campo-icono-svg">...</svg>
+  </span>
+  <input aria-label="Correo electrónico" autocomplete="email" type="email" placeholder="tu@email.com">
 </span>
 ```
 
@@ -166,7 +170,7 @@ He pasado 3 herramientas de análisis ANTES de aplicar ninguna corrección:
 
 #### 4º Error: Contraste en los enlaces "Leer más" del blog
 
-**Problema:** Los enlaces "Leer más" del blog tenían un color amarillo sobre fondo oscuro que no daba suficiente contraste.
+**Problema:** Los enlaces "Leer más" del blog tenían un color amarillo sobre fondo claro que no daba suficiente contraste.
 
 **Impacto:** Usuarios con baja visión no podían leer bien los enlaces.
 
@@ -196,14 +200,14 @@ He pasado 3 herramientas de análisis ANTES de aplicar ninguna corrección:
 
 **Código ANTES:**
 ```scss
-.login__subtitulo {
+.acceso__subtitulo {
   color: var(--gris-normal);
 }
 ```
 
 **Código DESPUÉS:**
 ```scss
-.login__subtitulo {
+.acceso__subtitulo {
   color: var(--text-secondary);
 }
 ```
@@ -219,9 +223,9 @@ He usado estos landmarks para que los lectores de pantalla puedan navegar por re
 - [x] `<header>` - Cabecera del sitio con logo y navegación
 - [x] `<nav>` - Menú de navegación principal
 - [x] `<main>` - Contenido principal. Lo tengo en `app.html` y el contenido cambia con `router-outlet`
-- [x] `<article>` - Lo uso en las tarjetas del blog
+- [x] `<article>` - Lo uso dentro de secciones como en el footer y sobre nosotros
 - [x] `<section>` - Lo uso para separar bloques como historia, galería y valores
-- [ ] `<aside>` - No lo uso como sidebar pero sí para alertas con `role="alert"`
+- [x] `<aside>` - Lo uso para alertas con `role="alert"`, la newsletter del blog y paneles informativos
 - [x] `<footer>` - Pie de página con redes sociales, idioma y tema
 
 ### Jerarquía de encabezados
@@ -229,12 +233,11 @@ He usado estos landmarks para que los lectores de pantalla puedan navegar por re
 Ejemplo de la Home:
 
 ```
-H1: Cofira - Tu compañero de fitness
-  H2: Nuestros servicios
-    H3: Entrenamiento personalizado
-    H3: Nutrición inteligente
-    H3: Seguimiento de progreso
-  H2: Testimonios
+H1: Tu entrenamiento, nutrición y progreso en un solo lugar
+  H2: Inscríbete hoy y empieza tu cambio
+  H2: Planes
+    H3: Elige tu cuota individual
+  H2: Más funcionalidades que disfrutar
   H2: Preguntas frecuentes
 ```
 
@@ -315,12 +318,14 @@ Después de aplicar todas las correcciones volví a pasar las 3 herramientas:
 | Herramienta | Antes | Después | Mejora |
 |-------------|-------|---------|--------|
 | Lighthouse | 100/100 | 100/100 | +0 puntos |
-| WAVE | 0 errores, 3 alertas | 0 errores | -3 alertas |
-| TAW | 7 problemas | 0 problemas | -7 problemas |
+| WAVE | 0 errores, 3 alertas | 0 errores, 0 alertas | -3 alertas |
+| TAW | 7 problemas | 0 errores, 16 advertencias | -7 problemas |
 
 ![Lighthouse después](capturas/lighthouse-despues.png)
 
 ![WAVE después](capturas/wave-despues.png)
+
+![TAW después](capturas/taw-despues.png)
 
 ### Checklist de conformidad WCAG 2.1 Nivel AA
 
@@ -329,6 +334,8 @@ Después de aplicar todas las correcciones volví a pasar las 3 herramientas:
 - [x] 1.3.1 - Información y relaciones (HTML semántico)
 - [x] 1.4.3 - Contraste mínimo (4.5:1 en texto normal)
 - [x] 1.4.4 - Redimensionar texto (200% sin scroll horizontal)
+
+![Zoom al 200%](capturas/zoom_200.png)
 
 **Operable:**
 - [x] 2.1.1 - Teclado (todo accesible)

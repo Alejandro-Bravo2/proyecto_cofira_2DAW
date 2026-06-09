@@ -81,8 +81,8 @@ Este proyecto implementa mejoras de accesibilidad web siguiendo el estándar WCA
 | Herramienta | Puntuación inicial | Puntuación final | Mejora |
 |-------------|-------------------|------------------|--------|
 | Lighthouse | 100/100 | 100/100 | +0 puntos |
-| WAVE | 0 errores, 3 alertas | 0 errores | -3 alertas |
-| TAW | 7 problemas | 0 problemas | -7 problemas |
+| WAVE | 0 errores, 3 alertas | 0 errores, 0 alertas | -3 alertas |
+| TAW | 7 problemas | 0 errores, 16 advertencias | -7 problemas |
 
 **Nivel de conformidad alcanzado:** WCAG 2.1 AA
 
