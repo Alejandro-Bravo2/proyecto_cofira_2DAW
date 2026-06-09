@@ -1,4 +1,4 @@
-<section class="home__seccion-intro">
+<section class="home__seccion-intro" aria-labelledby="titulo-principal">
 
   <picture class="home__seccion-intro__contenedor-imagen">
     <source
@@ -21,12 +21,12 @@
       width="1920">
   </picture>
 
-  <section class="home__seccion-intro__contenido">
-    <h1 class="home__seccion-intro__titulo">Tu entrenamiento, nutrición y progreso en un solo lugar</h1>
+  <div class="home__seccion-intro__contenido">
+    <h1 id="titulo-principal" class="home__seccion-intro__titulo">Tu entrenamiento, nutrición y progreso en un solo lugar</h1>
 
-    <h2 class="home__seccion-intro__subtitulo">Inscríbete hoy y empieza tu cambio</h2>
+    <p class="home__seccion-intro__subtitulo">Inscríbete hoy y empieza tu cambio</p>
 
-    <footer class="boton__primary">
+    <div class="boton__primary">
       <app-button class="boton__primary--inscripcion home__seccion-intro__boton" enlace="/onboarding" tamanio="grande" variante="primario">
         Inscríbete
       </app-button>
@@ -34,27 +34,27 @@
       <app-button (click)="navegarAPlanes()" class="boton__primary--planes home__seccion-intro__boton" tamanio="grande" variante="secundario">
         Ver planes
       </app-button>
-    </footer>
-  </section>
+    </div>
+  </div>
 
 </section>
 
-<section class="planes__section" id="seccion-planes">
-  <h2 class="planes__titulo">PLANES</h2>
+<section class="planes__section" id="seccion-planes" aria-labelledby="titulo-planes">
+  <h2 id="titulo-planes" class="planes__titulo">PLANES</h2>
 
-  <section class="planes__contenido">
-    
-    <article class="planes__info planes__info--responsive">
+  <div class="planes__contenido">
+
+    <div class="planes__info planes__info--responsive">
       <h3 class="planes__subtitulo">
         Elige tu cuota <span class="planes__destacado">individual</span>
       </h3>
       <p class="planes__info-texto">Profesionales 24/7 listos para atenderte y resolverte las dudas.</p>
       <p class="planes__info-texto">Si quieres lograrlo porque no intentarlo.</p>
-    </article>
+    </div>
 
-    
-    <section class="home__tarjetas">
-      <article class="home__tarjeta">
+
+    <div class="home__tarjetas">
+      <div class="home__tarjeta">
         <app-card [ventajas]="[
             'Máximo de 7 comidas diarias',
             'Rutinas de ejercicios hasta 7 días',
@@ -62,9 +62,9 @@
             'Asesoría nutricional personalizada',
             'Acceso a contenido exclusivo'
           ]" precio="19.99€ + IVA al mes" texto_boton="Inscríbete" titulo="Cuota mensual"></app-card>
-      </article>
+      </div>
 
-      <article class="home__tarjeta">
+      <div class="home__tarjeta">
         <app-card [deshabilitada]="false" [ventajas]="[
             'Máximo de 7 comidas diarias',
             'Rutinas de ejercicios hasta 7 días',
@@ -73,15 +73,15 @@
             'Acceso a contenido exclusivo'
           ]" precio="15.99€ + IVA al año" texto_boton="Inscríbete"
                   titulo="Cuota anual"></app-card>
-      </article>
-    </section>
+      </div>
+    </div>
 
-  </section>
+  </div>
 </section>
 
 
-<section class="funcionalidades__contenedor">
-  <h2 class="funcionalidades__titulo">Más funcionalidades que disfrutar</h2>
+<section class="funcionalidades__contenedor" aria-labelledby="titulo-funcionalidades">
+  <h2 id="titulo-funcionalidades" class="funcionalidades__titulo">Más funcionalidades que disfrutar</h2>
 
   <ul class="funcionalidades__grid">
     <li class="funcionalidades__item">
@@ -116,10 +116,10 @@
   </ul>
 </section>
 
-<section class="faq__section">
-  <h2 class="faq__titulo">Preguntas frecuentes</h2>
+<section class="faq__section" aria-labelledby="titulo-faq">
+  <h2 id="titulo-faq" class="faq__titulo">Preguntas frecuentes</h2>
 
-  <article class="faq__contenedor">
+  <div class="faq__contenedor">
     <details class="faq__item" (toggle)="alternarEstadoFaq(0)">
       <summary class="faq__pregunta">
         <span>¿Qué incluye la cuota mensual de Cofira?</span>
@@ -160,5 +160,5 @@
       ¿Tienes más preguntas? Escríbenos a
       <a class="faq__email" href="mailto:soporte@cofira.com">soporte&#64;cofira.com</a>
     </p>
-  </article>
+  </div>
 </section>

@@ -3,7 +3,7 @@
     <img alt="Cofira Logo" class="cabecera__logo" src="assets/images/cofira_logo_hombre.png">
   </a>
 
-  <nav class="cabecera__navegacion cabecera__navegacion--escritorio">
+  <nav class="cabecera__navegacion cabecera__navegacion--escritorio" aria-label="Navegación principal">
     <ul class="cabecera__menu">
       <li><a class="cabecera__enlace" routerLink="/alimentacion">Nutrición</a></li>
       <li><a class="cabecera__enlace" routerLink="/gimnasio">Ejercicio</a></li>
@@ -112,7 +112,7 @@
       </button>
     </header>
 
-    <nav class="menu-movil__navegacion">
+    <nav class="menu-movil__navegacion" aria-label="Navegación principal">
       <a (click)="cerrarMenu()" class="menu-movil__enlace" routerLink="/alimentacion">
         <svg aria-hidden="true" class="menu-movil__enlace-icono" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -132,7 +132,7 @@
       </a>
 
       <a routerLink="/seguimiento" (click)="cerrarMenu()" class="menu-movil__enlace">
-          <fa-icon [icon]="iconoGrafico" class="menu-movil__enlace-icono"></fa-icon>
+          <fa-icon [icon]="iconoGrafico" class="menu-movil__enlace-icono" aria-hidden="true"></fa-icon>
         <span>Seguimiento</span>
       </a>
     </nav>

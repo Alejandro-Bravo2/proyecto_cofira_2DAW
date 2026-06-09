@@ -9,7 +9,7 @@
       </p>
       <ul class="pie__sociales-lista">
         <li class="pie__sociales-item">
-          <a aria-label="Twitter" class="pie__social" href="https://twitter.com" rel="noopener" target="_blank">
+          <a aria-label="Twitter" class="pie__social" href="https://twitter.com" rel="noopener noreferrer" target="_blank">
             <svg aria-hidden="true" class="pie__social-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
               width="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -19,7 +19,7 @@
           </a>
         </li>
         <li class="pie__sociales-item">
-          <a aria-label="LinkedIn" class="pie__social" href="https://linkedin.com" rel="noopener" target="_blank">
+          <a aria-label="LinkedIn" class="pie__social" href="https://linkedin.com" rel="noopener noreferrer" target="_blank">
             <svg aria-hidden="true" class="pie__social-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
               width="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -29,7 +29,7 @@
           </a>
         </li>
         <li class="pie__sociales-item">
-          <a aria-label="GitHub" class="pie__social" href="https://github.com" rel="noopener" target="_blank">
+          <a aria-label="GitHub" class="pie__social" href="https://github.com" rel="noopener noreferrer" target="_blank">
             <svg aria-hidden="true" class="pie__social-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
               width="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -39,7 +39,7 @@
           </a>
         </li>
         <li class="pie__sociales-item">
-          <a aria-label="Instagram" class="pie__social" href="https://instagram.com" rel="noopener" target="_blank">
+          <a aria-label="Instagram" class="pie__social" href="https://instagram.com" rel="noopener noreferrer" target="_blank">
             <svg aria-hidden="true" class="pie__social-icono" fill="currentColor" height="20" viewBox="0 0 24 24"
               width="20" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -51,7 +51,7 @@
       </ul>
     </article>
 
-    <nav class="pie__nav pie__nav--producto">
+    <nav class="pie__nav pie__nav--producto" aria-label="Producto">
       <h3 class="pie__nav-titulo">PRODUCTO</h3>
       <ul class="pie__nav-lista pie__nav-lista--producto">
         <li><a class="pie__nav-enlace" routerLink="/alimentacion">Nutrición</a></li>
@@ -60,7 +60,7 @@
       </ul>
     </nav>
 
-    <nav class="pie__nav pie__nav--compania">
+    <nav class="pie__nav pie__nav--compania" aria-label="Compañía">
       <h3 class="pie__nav-titulo">COMPAÑÍA</h3>
       <ul class="pie__nav-lista pie__nav-lista--compania">
         <li><a class="pie__nav-enlace" routerLink="/sobre-nosotros">Sobre Nosotros</a></li>
@@ -69,7 +69,7 @@
       </ul>
     </nav>
 
-    <nav class="pie__nav pie__nav--legal">
+    <nav class="pie__nav pie__nav--legal" aria-label="Legal">
       <h3 class="pie__nav-titulo">LEGAL</h3>
       <ul class="pie__nav-lista pie__nav-lista--legal">
         <li><a class="pie__nav-enlace" routerLink="/privacidad">Privacidad</a></li>
@@ -82,7 +82,7 @@
   </section>
 
   <section class="pie__inferior">
-    <header class="pie__inferior-encabezado">
+    <div class="pie__inferior-encabezado">
       <p class="pie__copyright">© {{ anioActual }} Cofira. Todos los derechos reservados.</p>
 
       <menu class="pie__controles">
@@ -133,11 +133,11 @@
           }
         </li>
       </menu>
-    </header>
+    </div>
 
     <hr aria-hidden="true" class="pie__inferior-separador">
 
-    <nav class="pie__legal">
+    <nav class="pie__legal" aria-label="Enlaces legales">
       <a class="pie__legal-enlace" routerLink="/privacidad">Política de Privacidad</a>
       <a class="pie__legal-enlace" routerLink="/terminos">Términos de Servicio</a>
       <a class="pie__legal-enlace" routerLink="/cookies">Cookies</a>
